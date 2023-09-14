@@ -1,0 +1,65 @@
+ion-card {
+    margin-top: 0px;
+    position: relative;
+}
+
+
+
+.follow-up ion-input {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 35px;
+    
+    padding: 5px;
+    color: #000000;
+
+}
+.follow-up ::-ms-value{
+    margin-left: 5px;
+}
+
+.follow-up ion-label {
+    font-weight: bold;
+    color: goldenrod;
+    text-decoration: underline;
+    font-size: 16px;
+
+}
+
+.follow-up ion-select {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #000000;
+
+}
+
+.follow-up ion-textarea {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    color: #000000;
+
+}
+ion-segment-button{
+    border: solid 2px goldenrod;
+background-color: #000000;}
+
+table , th , td{
+    border: solid 2px goldenrod;
+    color: goldenrod;
+}
+th{
+    background-color: #000000;
+}
+
+ion-button{
+    margin-top: 25px;
+    margin-left: 10px;
+}

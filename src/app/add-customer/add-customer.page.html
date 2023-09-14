@@ -1,0 +1,553 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Customer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="add_customer">
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Name :</ion-label>
+            <ion-input type="text" placeholder="Enter ledger name"></ion-input>
+            <ion-checkbox>Active</ion-checkbox>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Alternate Name :</ion-label>
+            <ion-input type="text" placeholder="Enter ledger alternate name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="div" style="border-bottom: 2px solid grey; width: 100%;"></div>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-checkbox>Is sub ledger account</ion-checkbox>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-checkbox>Allow sub accounts under this ledger</ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Vendor Code :</ion-label>
+            <ion-input type="text" placeholder="Enter Vendor Code"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>GSTIN :</ion-label>
+            <ion-input type="text" maxlength="15" placeholder="Enter GSTIN"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Group Name :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="India">India</ion-select-option>
+              <ion-select-option value="UK">UK</ion-select-option>
+              <ion-select-option value="UAE">UAE</ion-select-option>
+              <ion-select-option value="CANADA">CANADA</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <ion-checkbox>Apply Billwise</ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Opening Balance :</ion-label>
+            <ion-input type="text" placeholder="0.00 Cr"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Closing Balance :</ion-label>
+            <ion-input type="text" placeholder="0.00 Cr"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-segment [(ngModel)]="selectTabs">
+            <ion-segment-button value="Address">
+              <ion-label>Address</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="Registration">
+              <ion-label>Registration</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="Contact">
+              <ion-label>Contact </ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="Other">
+              <ion-label>Other Details</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'Address'">
+            <ion-row>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>Print Name :</ion-label>
+                <ion-input type="text" placeholder="Enter Name"></ion-input>
+              </ion-col>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>DOB :</ion-label>
+                <ion-input type="date" placeholder="Enter Date Of Birth"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>Address :</ion-label>
+                <ion-input type="text" placeholder="Enter Address"></ion-input>
+              </ion-col>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>Pincode :</ion-label>
+                <ion-input type="number" placeholder="Enter Pincode"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Select Country :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">India</ion-select-option>
+                  <ion-select-option value="UK">UK</ion-select-option>
+                  <ion-select-option value="UAE">UAE</ion-select-option>
+                  <ion-select-option value="CANADA">CANADA</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Select State :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Rajasthan</ion-select-option>
+                  <ion-select-option value="UK">Panjab</ion-select-option>
+                  <ion-select-option value="UAE">UAE</ion-select-option>
+                  <ion-select-option value="CANADA">CANADA</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Select City :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">India</ion-select-option>
+                  <ion-select-option value="UK">UK</ion-select-option>
+                  <ion-select-option value="UAE">UAE</ion-select-option>
+                  <ion-select-option value="CANADA">CANADA</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Phone Number :</ion-label>
+                <ion-input type="number" placeholder="Enter Phone Number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Mobile NUmber :</ion-label>
+                <ion-input type="number" placeholder="Enter Mobile number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Email :</ion-label>
+                <ion-input type="email" placeholder="Enter Email Address"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Website :</ion-label>
+                <ion-input type="text" placeholder="Enter Website Address"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Fax :</ion-label>
+                <ion-input type="text" placeholder="Enter Fax Details"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Send SMS/WhtasApp</ion-checkbox>
+              </ion-col>
+
+            </ion-row>
+          </div>
+          <div *ngIf="selectTabs == 'Registration'">
+            <h1>Registration</h1>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Cust/Supplier Type :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Regular</ion-select-option>
+                  <ion-select-option value="UK">NRI</ion-select-option>
+                  <ion-select-option value="UAE">Composition</ion-select-option>
+                  <ion-select-option value="CANADA">Consumer</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Contact Person :</ion-label>
+                <ion-input type="text" placeholder="Enter Contact Person Name"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Tax Deduction No. :</ion-label>
+                <ion-input type="text" placeholder="Enter Tax Deduction Number "></ion-input>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>SEZ Type :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Non SEZ</ion-select-option>
+                  <ion-select-option value="UK">SEZ with Payment</ion-select-option>
+                  <ion-select-option value="UAE">SEZ without Payment</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>GSTIN :</ion-label>
+                <ion-input type="text" placeholder="Enter GSTIN"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>IE Code :</ion-label>
+                <ion-input type="text" placeholder="Enter IE Code "></ion-input>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>CIN :</ion-label>
+                <ion-input type="text" placeholder="Enter CIN "></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Permanenet A/C No. :</ion-label>
+                <ion-input type="text" placeholder="Enter Permanenet account number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>PAN Reference No. :</ion-label>
+                <ion-input type="text" placeholder="Enter PAN Reference Number "></ion-input>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>MSME Reg. Type :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Non </ion-select-option>
+                  <ion-select-option value="UK">Micro</ion-select-option>
+                  <ion-select-option value="UAE">Small</ion-select-option>
+                  <ion-select-option value="UAE">Medium</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Type Of Enterprise :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Manufacturing</ion-select-option>
+                  <ion-select-option value="UK">Service</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Aadhar No. :</ion-label>
+                <ion-input type="text" placeholder="Enter Aadhar number"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Udyog Aadhar No. :</ion-label>
+                <ion-input type="text" placeholder="Enter Udyog Aadhar number "></ion-input>
+
+              </ion-col>
+            </ion-row>
+          </div>
+          <div *ngIf="selectTabs == 'Contact'">
+            <h1>Contact Us</h1>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Department :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">India</ion-select-option>
+                  <ion-select-option value="UK">UK</ion-select-option>
+                  <ion-select-option value="UAE">UAE</ion-select-option>
+                  <ion-select-option value="CANADA">CANADA</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Contact Person :</ion-label>
+                <ion-input type="text" placeholder="Enter Contact Person Name"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Position Code :</ion-label>
+                <ion-input type="text" placeholder="Enter Position "></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Phone Number :</ion-label>
+                <ion-input type="number" placeholder="Enter Phone Number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Email :</ion-label>
+                <ion-input type="email" placeholder="Enter Email Address"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Fax :</ion-label>
+                <ion-input type="text" placeholder="Enter Fax Address"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-label>Reamark :</ion-label>
+              <ion-textarea type="text" placeholder="Enter text here">
+
+              </ion-textarea>
+            </ion-row>
+            <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+            <ion-row style="justify-content: center;">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning">Edit</ion-button>
+              <ion-button color="warning">Ok</ion-button>
+              <ion-button color="warning">Close</ion-button>
+            </ion-row>
+            <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+          </div>
+          <div *ngIf="selectTabs == 'Other'">
+            <h1>Bank Details</h1>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Bank Name :</ion-label>
+                <ion-input type="text" placeholder="Enter bank name"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Account Number :</ion-label>
+                <ion-input label="" label-placement="floating" fill="solid" type="number"
+                  placeholder="Enter Account number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>IFSC Code :</ion-label>
+                <ion-input type="text" placeholder="Enter IFSC Code"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Account Type :</ion-label>
+                <ion-input type="text" placeholder="Enter Account Type"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Swift Code :</ion-label>
+                <ion-input type="text" placeholder="Enter Swift Code"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>BRS Code :</ion-label>
+                <ion-input type="text" placeholder="Enter BRS Code"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Branch Name :</ion-label>
+                <ion-input type="text" placeholder="Enter Branch name"></ion-input>
+              </ion-col>
+            </ion-row>
+            <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+            <h1>Tax Details</h1>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>TDS Applicable</ion-checkbox>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>GST Applicable</ion-checkbox>
+
+              </ion-col>
+
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Transporter</ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>Status :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-label>Click Here to Select GST Rate :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+                  <ion-select-option value="CANADA">5%</ion-select-option>
+                  <ion-select-option value="CANADA">12%</ion-select-option>
+                  <ion-select-option value="CANADA">18%</ion-select-option>
+                  <ion-select-option value="CANADA">28%</ion-select-option>
+                  <ion-select-option value="UK">Composition(GST)</ion-select-option>
+                  <ion-select-option value="CANADA">3%</ion-select-option>
+                  <ion-select-option value="CANADA">6%</ion-select-option>
+                </ion-select>
+              </ion-col>
+
+            </ion-row>
+            <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+            <h1>Other Details</h1>
+            <h3>General</h3>
+            <ion-row>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Credit Period :</ion-label>
+                <ion-input type="text" placeholder="Enter Credit Period in days"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Credit Limit :</ion-label>
+                <ion-input type="text" placeholder="Enter Credit Limit"></ion-input>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Sales Person :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
+                <ion-label>Price Group :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <h3>Credit Points</h3>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Card Number :</ion-label>
+                <ion-input type="text" placeholder="Enter Card number"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Opening Points :</ion-label>
+                <ion-input type="text" placeholder="Enter Opening Points"></ion-input>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Closing Points :</ion-label>
+                <ion-input type="text" placeholder="Enter Closing Points "></ion-input>
+              </ion-col>
+            </ion-row>
+            <h3>Tax Group</h3>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Sales :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-label>Purchase :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="India">Zero Rated</ion-select-option>
+                  <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+                  <ion-select-option value="UAE">None GST</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Apply TCS</ion-checkbox>
+              </ion-col>
+
+            </ion-row>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-label>Commission Rate :</ion-label>
+              <ion-input type="text" placeholder="Enter Credit Limit  "></ion-input>
+            </ion-col>
+            <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+            <h1>Terms & Conditions</h1>
+            <ion-label>Terms & Conditions :</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Purchase Order</ion-checkbox>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Purchase Return</ion-checkbox>
+
+              </ion-col>
+
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Sales Invoice</ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Sales Order</ion-checkbox>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Performa Invoice </ion-checkbox>
+
+              </ion-col>
+
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Quotation</ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox> Delivery Challan <br> Outward</ion-checkbox>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Rejection Outward </ion-checkbox>
+              </ion-col>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Sales Return</ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <div style="border-bottom: solid 2px rgb(255, 240, 204); width: 100%; margin: 5px;"></div>
+
+            <ion-row>
+              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-checkbox>Select All</ion-checkbox>
+              </ion-col>
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Close</ion-button>
+
+            </ion-row>
+            <ion-row>
+              <ion-label>Description :</ion-label>
+              <ion-textarea type="text" placeholder="">
+              </ion-textarea>
+            </ion-row>
+          </div>
+        </ion-row>
+        <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">New</ion-button>
+          <ion-button color="warning">Save</ion-button>
+          <ion-button color="warning">Delete</ion-button>
+          <ion-button color="warning">Preview</ion-button>
+          <ion-button color="warning">Close</ion-button>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

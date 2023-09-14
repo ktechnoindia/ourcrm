@@ -1,0 +1,72 @@
+ion-card {
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+ion-item {
+    --background: transparent;
+    --border-color: #000000;
+    /* You can adjust the border color as needed */
+    height: 50px;
+
+}
+
+ion-input {
+    --background: transparent;
+    --color: #000000;
+    /* You can adjust the text color as needed */
+}
+
+.add_vendor ion-input {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+
+.add_vendor ion-label {
+    font-weight: bold;
+    color: goldenrod;
+    text-decoration: underline;
+    font-size: 16px;
+
+}
+
+.add_vendor ion-select {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+
+.add_vendor ion-textarea {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+
+ion-segment {
+    background-color: rgb(0, 0, 0);
+    border: solid 2px goldenrod;
+}
+
+ion-segment-button {
+    color: goldenrod;
+
+}
+
+ion-segment-button :hover {
+    color: rgb(255, 255, 255);
+
+}

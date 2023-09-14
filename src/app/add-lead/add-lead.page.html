@@ -1,0 +1,124 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">Add Lead</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="add_lead">
+    <ion-card-content>
+      <ion-grid>
+        
+        <ion-row>
+          <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size="12">
+            <ion-label>Company Name :</ion-label>
+            <ion-input type="text" placeholder="Enter Company name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Customer Name :</ion-label>
+            <ion-input type="text" placeholder="Enter Customer name"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> Mobile Number :</ion-label>
+            <ion-input type="number" placeholder="Enter Mobile Number"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Address:</ion-label>
+            <ion-input type="text" placeholder="Enter Customer name"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> State :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Rajasthan"
+              justify="space-between">
+              <ion-select-option value="MP">MP</ion-select-option>
+              <ion-select-option value="Panjab">Punjab</ion-select-option>
+              <ion-select-option value="Haryana">Haryana</ion-select-option>
+              <ion-select-option value="Delhi">Delhi</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> City :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Rajasthan"
+              justify="space-between">
+              <ion-select-option value="Jaipur">Jaipur</ion-select-option>
+              <ion-select-option value="Jodhpur">Jodhpur</ion-select-option>
+              <ion-select-option value="Bikaner">Bikaner</ion-select-option>
+              <ion-select-option value="Ajmer">Ajmer</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-label>Pincode:</ion-label>
+              <ion-input type="Nnmber" placeholder="Enter Your Pincode"></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label>Email ID:</ion-label>
+            <ion-input type="email" placeholder="Enter Your Email ID"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> Product Name :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+              placeholder="Ktechno Billing" justify="space-between">
+              <ion-select-option value="Billing">Ktechno Billing</ion-select-option>
+              <ion-select-option value="Accounting">Ktechno Accounting</ion-select-option>
+              <ion-select-option value="GST">Ktechno GST</ion-select-option>
+              <ion-select-option value="TDS">Ktechno TDS</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> Reference :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Reference"
+              justify="space-between">
+              <ion-select-option value="Billing">Deepak</ion-select-option>
+              <ion-select-option value="Accounting">Nirbhay</ion-select-option>
+              <ion-select-option value="GST">Yogesh</ion-select-option>
+              <ion-select-option value="TDS">Ravi</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-label> Map To :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="Map To"
+              justify="space-between">
+              <ion-select-option value="Billing">Deepak</ion-select-option>
+              <ion-select-option value="Accounting">Nirbhay</ion-select-option>
+              <ion-select-option value="GST">Yogesh</ion-select-option>
+              <ion-select-option value="TDS">Ravi</ion-select-option>
+
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size="12">
+            <ion-label> Remark :</ion-label>
+
+            <ion-textarea placeholder="Type anything else here......." type="text" >
+
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row style="justify-content: center;">
+          <ion-button color="warning">New</ion-button>
+          <ion-button color="warning">Edit</ion-button>
+          <ion-button color="warning">Save</ion-button>
+          <ion-button color="warning">Close</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

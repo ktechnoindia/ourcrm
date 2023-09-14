@@ -1,0 +1,459 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="add_item">
+        <ion-row>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Item Description :</ion-label>
+            <ion-input type="text" placeholder="Enter ledger name"></ion-input>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Stock Type :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">Stock</ion-select-option>
+              <ion-select-option value="">Non Stock(Asset)</ion-select-option>
+              <ion-select-option value="">Non Stock(Expense)</ion-select-option>
+              <ion-select-option value="">Service</ion-select-option>
+              <ion-select-option value="">Capital</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>HSN Code :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">121</ion-select-option>
+              <ion-select-option value="">2324232</ion-select-option>
+              <ion-select-option value="">21322</ion-select-option>
+              <ion-select-option value="">2312</ion-select-option>
+              <ion-select-option value="">1313</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-button id="click-trigger" color="light">HSN code</ion-button>
+            <ion-popover trigger="click-trigger" triggerAction="click" size="auto">
+              <ng-template>
+                <ion-content class="ion-padding">
+                  <ion-row>
+                    <ion-label>HSN Code :</ion-label>
+                    <ion-input type="text" placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>Unit :</ion-label>
+                    <ion-input type="text" placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>HSN Description :</ion-label>
+                    <ion-textarea fill="solid" type="text" placeholder="Enter text here...."></ion-textarea>
+                  </ion-row>
+                  <ion-row style="justify-content: center;">
+                    <ion-button color="warning">New</ion-button>
+                    <ion-button color="warning">Save</ion-button>
+                    <ion-button color="warning">DElete</ion-button>
+                    <ion-button color="warning">Close</ion-button>
+                  </ion-row>
+                  <ion-row style="overflow: hidden;">
+                    <table>
+                      <tr>
+                        <th>Code</th>
+                        <th>Unit</th>
+                        <th>Description</th>
+                      </tr>
+                      <tr>
+                        <td>234</td>
+                        <td>dft</td>
+                        <td>cghk,by hi</td>
+                      </tr>
+                    </table>
+                  </ion-row>
+                </ion-content>
+              </ng-template>
+            </ion-popover>
+            <ion-checkbox>Active</ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" size-lg="4" size-md="6" size-sm="6" size="12">
+            <!--  <ion-button id="click-trigger" color="light">Item Group</ion-button>
+               <ion-popover trigger="click-trigger" triggerAction="click" size="auto">
+              <ng-template>
+                <ion-content class="ion-padding">
+                  <ion-row>
+                    <ion-input icon="person" label="Item Group Name" label-placement="floating" fill="solid" type="text"
+                      placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-input icon="person" label=" Alternate Name" label-placement="floating" fill="solid" type="text"
+                      placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-select color="success" label="Parent Group" label-placement="floating" class="always-flip"
+              toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
+              <ion-select-option value="">Main Group</ion-select-option>
+              <ion-select-option value="">2324232</ion-select-option>
+              <ion-select-option value="">21322</ion-select-option>
+              <ion-select-option value="">2312</ion-select-option>
+              <ion-select-option value="">1313</ion-select-option>
+            </ion-select>
+                  </ion-row>
+                  <ion-row style="justify-content: center;">
+                    <ion-button color="warning">New</ion-button>
+                    <ion-button color="warning">Save</ion-button>
+                    <ion-button color="warning">DElete</ion-button>
+                    <ion-button color="warning">Close</ion-button>
+                  </ion-row>
+                  <ion-row style="overflow: hidden;">
+                    <table>
+                      <tr>
+                        <th>Item Group Name</th>
+                        <th>Alternate Name</th>
+                        <th>Parentb  Group</th>
+                      </tr>
+                      <tr>
+                        <td>234</td>
+                        <td>dft</td>
+                        <td>cghk,by hi</td>
+                      </tr>
+                    </table>
+                  </ion-row>
+                </ion-content>
+              </ng-template>
+            </ion-popover>-->
+            <ion-label>Item Group :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">Main Group</ion-select-option>
+              <ion-select-option value="">2324232</ion-select-option>
+              <ion-select-option value="">21322</ion-select-option>
+              <ion-select-option value="">2312</ion-select-option>
+              <ion-select-option value="">1313</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="5" size-lg="4" size-md="6" size-sm="6" size="12">
+          <!--     <ion-button id="click-trigger" color="light">Primary Unit</ion-button>
+                <ion-popover trigger="click-trigger" triggerAction="click" size="auto">
+              <ng-template>
+                <ion-content class="ion-padding">
+                  <ion-row>
+                    <ion-input icon="person" label="HSN Code" label-placement="floating" fill="solid" type="text"
+                      placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-input icon="person" label=" Unit" label-placement="floating" fill="solid" type="text"
+                      placeholder="Enter HSN Code"></ion-input>
+                  </ion-row>
+                  <ion-row>
+                    <ion-textarea icon="person" label="HSN Description" label-placement="floating" fill="solid"
+                      type="text" placeholder="Enter text here...."></ion-textarea>
+                  </ion-row>
+                  <ion-row style="justify-content: center;">
+                    <ion-button color="warning">New</ion-button>
+                    <ion-button color="warning">Save</ion-button>
+                    <ion-button color="warning">DElete</ion-button>
+                    <ion-button color="warning">Close</ion-button>
+                  </ion-row>
+                  <ion-row style="overflow: hidden;">
+                    <table>
+                      <tr>
+                        <th>Code</th>
+                        <th>Unit</th>
+                        <th>Description</th>
+                      </tr>
+                      <tr>
+                        <td>234</td>
+                        <td>dft</td>
+                        <td>cghk,by hi</td>
+                      </tr>
+                    </table>
+                  </ion-row>
+                </ion-content>
+              </ng-template>
+            </ion-popover>-->
+            <ion-label>Primary Unit :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">Box</ion-select-option>
+              <ion-select-option value="">Case</ion-select-option>
+              <ion-select-option value="">Cubic feet</ion-select-option>
+              <ion-select-option value="">Cubic mtr</ion-select-option>
+              <ion-select-option value="">feet</ion-select-option>
+            </ion-select>
+
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Automatic :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">Automatic</ion-select-option>
+              <ion-select-option value="">Manually</ion-select-option>
+              <ion-select-option value="">Multi Conversion factor</ion-select-option>
+
+            </ion-select>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Alternate Unit :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="">Main Group</ion-select-option>
+              <ion-select-option value="">2324232</ion-select-option>
+              <ion-select-option value="">21322</ion-select-option>
+              <ion-select-option value="">2312</ion-select-option>
+              <ion-select-option value="">1313</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>GST Rate :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+              justify="space-between">
+              <ion-select-option value="India">Zero Rated</ion-select-option>
+              <ion-select-option value="UK">Exempted(GST)</ion-select-option>
+              <ion-select-option value="UAE">None GST</ion-select-option>
+              <ion-select-option value="CANADA">5%</ion-select-option>
+              <ion-select-option value="CANADA">12%</ion-select-option>
+              <ion-select-option value="CANADA">18%</ion-select-option>
+              <ion-select-option value="CANADA">28%</ion-select-option>
+              <ion-select-option value="UK">Composition(GST)</ion-select-option>
+              <ion-select-option value="CANADA">3%</ion-select-option>
+              <ion-select-option value="CANADA">6%</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Opening Balance :</ion-label>
+            <ion-input type="text" placeholder="Enter Opening Balance"></ion-input>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Closing Balance :</ion-label>
+            <ion-input type="text" placeholder="Enter Closing Balance"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-segment [(ngModel)]="selectTabs">
+            <ion-segment-button value="General">
+              <ion-label>General</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Image">
+              <ion-label>Image</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Barcode">
+              <ion-label>Barcode </ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Other">
+              <ion-label>Other Details</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'General'">
+            <ion-row>
+              <ion-button>Opening Balance</ion-button>
+              <ion-button> Delete Opening Balance</ion-button>
+              <ion-checkbox>Serial No.</ion-checkbox>
+            </ion-row>
+            <ion-row>
+              <table>
+                <tr>
+                  <th>Reference No.</th>
+                  <th>Vendor</th>
+                  <th>Quantity</th>
+                  <th>Rate</th>
+                  <th>Value</th>
+                </tr>
+                <tr>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+
+                </tr>
+                <tr>
+                  <td colspan="4"></td>
+                  <td>
+                    <ion-input label="Total Quantity" label-placement="floating" fill="solid" type="text"
+                      placeholder="0.000"></ion-input>
+                    <ion-input label=" Value " label-placement="floating" fill="solid" type="text"
+                      placeholder="0.00"></ion-input>
+                  </td>
+                </tr>
+
+              </table>
+            </ion-row>
+          </div>
+          <div *ngIf="selectTabs == 'Image'">
+            <ion-row>
+              <ion-col size="4">
+                <ion-label>Image :</ion-label>
+                <ion-input type="text" placeholder=""></ion-input></ion-col>
+              <ion-col size="4">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
+              </ion-col>
+              <ion-col size="4">
+                <ion-checkbox>Delete</ion-checkbox>
+              </ion-col>
+              <ion-row>
+                <div class="imgage" style="height: 300px; width: 300px; border: 1px solid grey;"></div>
+              </ion-row>
+            </ion-row>
+          </div>
+          <div *ngIf="selectTabs == 'Barcode'">
+            <h4>EAN Code Details</h4>
+            <ion-row>
+              <ion-label>EAN Code :</ion-label>
+              <ion-input type="text" placeholder="0.00"></ion-input>
+            </ion-row>
+            <h4>Company Code Details</h4>
+
+            <ion-row>
+              <ion-col size="4">
+                <ion-checkbox>Standard</ion-checkbox>
+              </ion-col>
+              <ion-col size="4">
+                <ion-select color="success" label="" label-placement="floating" class="always-flip"
+                  toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
+                  <ion-select-option value="">Box</ion-select-option>
+                  <ion-select-option value="">Case</ion-select-option>
+                  <ion-select-option value="">ltr</ion-select-option>
+                  <ion-select-option value="">cm</ion-select-option>
+                  <ion-select-option value="">ft</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size="4">
+                <ion-input label="" label-placement="floating" fill="solid" type="text" placeholder="0.00"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="4">
+                <ion-checkbox>Complex</ion-checkbox>
+              </ion-col>
+              <ion-col size="4">
+                <ion-checkbox>Fixed</ion-checkbox>
+                <ion-checkbox>Separate by Character</ion-checkbox>
+              </ion-col>
+              <ion-col size="4">
+                <ion-select color="success" label="" label-placement="floating" class="always-flip"
+                  toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
+                  <ion-select-option value="">Box</ion-select-option>
+                  <ion-select-option value="">Case</ion-select-option>
+                  <ion-select-option value="">ltr</ion-select-option>
+                  <ion-select-option value="">cm</ion-select-option>
+                  <ion-select-option value="">ft</ion-select-option>
+                </ion-select>
+
+                <ion-input label="" label-placement="floating" fill="solid" type="text" placeholder="0.00"></ion-input>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-checkbox>None</ion-checkbox>
+            </ion-row>
+          </div>
+          <div *ngIf="selectTabs == 'Other'">
+            <h1>Others Details</h1>
+            <div style="border-bottom: 1px solid grey; width: 100%;"></div>
+            <h4>Quantity Levels</h4>
+            <ion-row>
+              <ion-col size="4">
+                <ion-label>Minimum :</ion-label>
+                <ion-input type="text" placeholder="0.00"></ion-input>
+              </ion-col>
+              <ion-col size="4"> <ion-label>Item Description :</ion-label>
+                <ion-label>Maximum :</ion-label>
+                <ion-input type="text" placeholder="0.00"></ion-input>
+              </ion-col>
+              <ion-col size="4">
+                <ion-label>Re-Order :</ion-label>
+                <ion-input type="text" placeholder="0.00"></ion-input>
+              </ion-col>
+            </ion-row>
+            <div style="border-bottom: 1px solid grey; width: 100%;"></div>
+            <ion-row>
+              <ion-col size="4" style="border: 1px solid grye;">
+                <h4>Dimension & Weight</h4>
+                <ion-label>Dimension :</ion-label>
+                <ion-input type="text" placeholder="0.000"></ion-input>
+                <ion-label>Weight :</ion-label>
+                <ion-input type="text" placeholder="0.000"></ion-input>
+                <ion-label>Unit of Weight :</ion-label>
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                  justify="space-between">
+                  <ion-select-option value="">Box</ion-select-option>
+                  <ion-select-option value="">Case</ion-select-option>
+                  <ion-select-option value="">ltr</ion-select-option>
+                  <ion-select-option value="">cm</ion-select-option>
+                  <ion-select-option value="">ft</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size="8" style="border: 1px solid grye;">
+                <h4>Others</h4>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-label>Model No. :</ion-label>
+                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                      placeholder="India" justify="space-between">
+                      <ion-select-option value="">Box</ion-select-option>
+                      <ion-select-option value="">Case</ion-select-option>
+                      <ion-select-option value="">ltr</ion-select-option>
+                      <ion-select-option value="">cm</ion-select-option>
+                      <ion-select-option value="">ft</ion-select-option>
+                    </ion-select>
+                    <ion-label>Brand Name :</ion-label>
+                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                      placeholder="India" justify="space-between">
+                      <ion-select-option value="">Box</ion-select-option>
+                      <ion-select-option value="">Case</ion-select-option>
+                      <ion-select-option value="">ltr</ion-select-option>
+                      <ion-select-option value="">cm</ion-select-option>
+                      <ion-select-option value="">ft</ion-select-option>
+                    </ion-select>
+                    <ion-label>Category :</ion-label>
+                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                      placeholder="India" justify="space-between">
+                      <ion-select-option value="">Capital Item</ion-select-option>
+                      <ion-select-option value="">Components</ion-select-option>
+                      <ion-select-option value="">Cosumables</ion-select-option>
+                      <ion-select-option value="">Row Material</ion-select-option>
+                      <ion-select-option value="">Resale Items</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-label>Part NO. :</ion-label>
+                    <ion-input type="text" placeholder=""></ion-input>
+                    <ion-label>Retailer Profit Margin % :</ion-label>
+                    <ion-input type="text" placeholder="0.000"></ion-input>
+                    <ion-label>Dealer Profit Margin % :</ion-label>
+                    <ion-input type="text" placeholder="0.000"></ion-input>
+                  </ion-col>
+
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-row>
+        <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">Copy</ion-button>
+          <ion-button color="warning">HSN Search</ion-button>
+          <ion-button color="warning">New</ion-button>
+          <ion-button color="warning">Save</ion-button>
+          <ion-button color="warning">Delete</ion-button>
+          <ion-button color="warning">Report</ion-button>
+          <ion-button color="warning">Close</ion-button>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

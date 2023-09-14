@@ -1,0 +1,7 @@
+{
+  "name": "CRMApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular-standalone"
+}

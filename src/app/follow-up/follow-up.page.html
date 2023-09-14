@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">Follow Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="follow-up">
+    <ion-card-content>
+      <ion-grid>
+
+        <ion-row class="sement">
+          <ion-segment [(ngModel)]="selectTabs">
+            <ion-segment-button value="follow-up">
+              <ion-label>Follow Up</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="Update">
+              <ion-label>Update Logs</ion-label>
+            </ion-segment-button>
+
+            <ion-segment-button value="Transfer">
+              <ion-label>Transfer Logs </ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <ion-segment>
+            <ion-segment-button value="Matching">
+              <ion-label>Matching Leads</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Downloads">
+              <ion-label>Downloads Logs</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'follow-up'">
+            <ion-row>
+              <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size="12">
+                <ion-label> Remark :</ion-label>
+
+                <ion-textarea placeholder="Type anything else here......." type="text">
+
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-label>Next Follow Up Date:</ion-label>
+              <ion-input type="date" placeholder="Enter Next Follow Up date"></ion-input>
+              </ion-col>
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning">Add</ion-button>
+              <ion-button color="warning">Save</ion-button>
+
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <table>
+                <tr>
+                  <th>SI NO.</th>
+                  <th>Date</th>
+                  <th>Remarks</th>
+                  <th>Next Follow Up</th>
+                  <th>Entered By</th>
+                </tr>
+                <tr>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+
+                </tr>
+              </table>
+            </ion-row>
+          </div>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'Update'">
+          </div>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'Transfer'">
+          </div>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'Matching'">
+          </div>
+        </ion-row>
+        <ion-row>
+          <div *ngIf="selectTabs == 'Downloads'">
+          </div>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
