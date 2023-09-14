@@ -9,34 +9,43 @@
     <ion-card-content>
       <ion-grid class="add_sale">
        
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">
+            <ion-icon class="add" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="print" name="print"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="show" name="eye"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="save" name="save"></ion-icon>
+          </ion-button>
+
+        </ion-row>
         <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="2" size-md="6" size-sm="6" size="12">
             <ion-label> Billing No. :</ion-label>
             <ion-input type="number"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="2" size-md="6" size-sm="6" size="12">
             <ion-label> Billing Date:</ion-label>
             <ion-input type="date" ></ion-input>
           </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="2" size-md="6" size-sm="6" size="12">
             <ion-label> Voucher No. :</ion-label>
             <ion-input type="number"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="2" size-md="6" size-sm="6" size="12">
             <ion-label> Date :</ion-label>
             <ion-input type="date" ></ion-input>
           </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="2" size-md="6" size-sm="6" size="12">
             <ion-label> Supplier :</ion-label>
-            <ion-input type="number"></ion-input>
+            <ion-input type="text"></ion-input>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col class="selects" size="6" size-lg="2" size-md="6" size-sm="6" size="12">
               <ion-label> Payment Type :</ion-label>
               <select aria-label="Default select example" id="transaction">
                 <option selected>-Select-</option>
@@ -44,7 +53,7 @@
                 <option value="2">Cash</option>
               </select>
           </ion-col>
-        </ion-row> 
+        </ion-row>
 
         <ion-row>
           <div class="tables" style="overflow-x:auto;">
@@ -94,22 +103,6 @@
                 </table>
             </div>
         </div>
-        </ion-row>
-
-        <ion-row style="justify-content: right;">
-          <ion-button color="warning">
-            <ion-icon class="add" name="add"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="print" name="print"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="show" name="eye"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="save" name="save"></ion-icon>
-          </ion-button>
-
         </ion-row>
 
       </ion-grid>

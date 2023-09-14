@@ -8,31 +8,43 @@
   <ion-card>
     <ion-card-content>
       <ion-grid class="add_sale">
-        
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">
+            <ion-icon class="add" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="print" name="print"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="show" name="eye"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="save" name="save"></ion-icon>
+          </ion-button>
+
+        </ion-row>
         <ion-row>
           <p style="color: #000; font-size: 22px; font-weight: bold; text-align: center; ">Tax Invoice</p>
         </ion-row>
         <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
             <ion-label> Billing No. :</ion-label>
             <ion-input type="number"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
             <ion-label> Billing Date:</ion-label>
             <ion-input type="date" ></ion-input>
           </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
             <ion-label> Order No. :</ion-label>
             <ion-input type="number"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
             <ion-label> Order Date:</ion-label>
             <ion-input type="date" ></ion-input>
           </ion-col>
         </ion-row>
+
         <ion-row>
           <p style="color: #000; font-size: 22px; font-weight: bold; text-align: center; ">Customer: Cash A/c</p>
         </ion-row>
@@ -104,22 +116,6 @@
                 </table>
             </div>
         </div>
-        </ion-row>
-
-        <ion-row style="justify-content: right;">
-          <ion-button color="warning">
-            <ion-icon class="add" name="add"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="print" name="print"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="show" name="eye"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="save" name="save"></ion-icon>
-          </ion-button>
-
         </ion-row>
 
       </ion-grid>

@@ -109,13 +109,11 @@ select{
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 14px;
+    font-size: 15px;
     min-height: 30px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
+    padding: 0 5px;
     outline: none;
-    width: 200px;
+  
 }
 option{
     border-color: goldenrod;
