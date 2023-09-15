@@ -1,0 +1,51 @@
+.tables{
+    width: 100%;
+    // border-radius: 5px;
+}
+table {
+    border-collapse: collapse;
+     width: 1057px;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid goldenrod;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+td{
+    color: #000;
+}
+
+th {
+    background-color: #000;
+}
+
+
+ion-icon {
+    font-size: 25px;
+}
+.add{
+    font-weight: bolder;
+}
+.print{
+    color: grey;
+}
+.delete {
+    color: red;
+    font: 10px;
+}
+
+.create {
+    color: rgb(24, 24, 204);
+    font: 10px;
+}
+
+.show {
+    color: green;
+}
+
+.save {
+    color: rgb(159, 15, 196);
+}

@@ -14,17 +14,10 @@ import { Router } from '@angular/router'; // Import the Router module
 export class AppComponent {
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
-    {
-      title: 'Lead Manager',
-      subPages: [
-        { title: 'Add Lead', url: '../lead-manager/add-lead', icon: 'add' },
-        { title: 'Follow Up', url: '../lead-manager/follow-up', icon: 'clipboard' },
-        { title: 'Transfer Lead', url: '../lead-manager/transfer-lead', icon: 'swap-horizontal' },
-        { title: 'View Lead', url: '../lead-manager/view-lead', icon: 'eye' },
-      ],
-      icon: 'layers'
-    },
+    { title: 'Lead Manager', url: '../lead-manager', icon: 'layers'},
     { title: 'Quote Manager', url: '../quote-manager', icon: 'desktop' },
+    { title: 'HSN Manager', url: '../hsn-manager', icon: 'desktop' },
+    { title: 'Challan Manager', url: '../challan-manager', icon: 'desktop' },
     { title: 'Sales Manager', url: '../sales-manager', icon: 'cart' },
     { title: 'Stock Manager', url: '../stock-manager', icon: 'clipboard' },
     { title: 'Account Manager', url: '../account-manager', icon: 'calculator' },

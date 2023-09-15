@@ -1,0 +1,139 @@
+
+ion-header{
+    --background-color:#000;
+    text-align: center;
+}
+
+ion-title{
+    font-weight: bold;
+    color: goldenrod;
+}
+ion-card {
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+ion-item {
+    --background: transparent;
+    --border-color: #000000;
+    /* You can adjust the border color as needed */
+    height: 50px;
+
+}
+
+ion-input {
+    --background: transparent;
+    --color: #000000;
+    /* You can adjust the text color as needed */
+}
+
+.add_quot_label{
+    font-size: 25px;
+    color: #000;
+}
+
+.add_quot ion-input {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+.add_quot ion-select {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+
+.add_quot ion-label {
+    font-weight: bold;
+    color: goldenrod;
+    text-decoration: underline;
+    font-size: 16px;
+}
+.tables{
+    width: 100%;
+    // border-radius: 5px;
+}
+table {
+    border-collapse: collapse;
+     width: 1057px;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid goldenrod;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+td{
+    color: #000;
+}
+
+th {
+    background-color: #000;
+}
+
+
+ion-icon {
+    font-size: 25px;
+}
+.add{
+    font-weight: bolder;
+}
+.print{
+    color: grey;
+}
+.delete {
+    color: red;
+    font: 10px;
+}
+
+.create {
+    color: rgb(24, 24, 204);
+    font: 10px;
+}
+
+.show {
+    color: green;
+}
+
+.save {
+    color: rgb(159, 15, 196);
+}
+.selects{
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+}
+select{
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 15px;
+    min-height: 30px;
+    padding: 0 5px;
+    outline: none;
+  
+}
+option{
+    border-color: goldenrod;
+    text-align: center;
+    color: #000;
+}
+
+.add_input{
+    width: 50px;
+    outline: none;
+    border:1px solid goldenrod;
+    border-radius: 3px;
+}

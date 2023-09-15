@@ -3,8 +3,7 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header routerLink="/home"><ion-icon name="home-outline"
-              style="margin-right: 20px; color:goldenrod; font-weight: bold;  border: #000000 solid 1.5px;
+          <ion-list-header routerLink="/home"><ion-icon name="home-outline" style="margin-right: 20px; color:goldenrod; font-weight: bold;  border: #000000 solid 1.5px;
               border-radius: 50%;
               padding: 5px;"></ion-icon> Dashboard</ion-list-header>
           <!-- <ion-note>Go to Home</ion-note>-->
@@ -16,53 +15,68 @@
               <ion-icon aria-hidden="true" name="globe" slot="start"></ion-icon>
               <ion-label>Master</ion-label>
             </ion-item>
+           
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
               routerLink="./lead-manger">
               <ion-icon aria-hidden="true" slot="start" name="layers"></ion-icon>
               <ion-label>Lead Manger</ion-label>
-              <ion-select (ionChange)="onDropdownChange($event)" class="always-flip" toggleIcon="caret-down-sharp" interface="popover" >
-                <ion-select-option value="/add-lead" ><ion-icon aria-hidden="true" slot="start"
-                    name="add"></ion-icon>Add Lead</ion-select-option>
-
-                <ion-select-option value="/follow-up"><ion-icon aria-hidden="true"
-                    slot="start" name="clipboard"></ion-icon>Follow Up</ion-select-option>
-
-                <ion-select-option value="/transfer-lead" ><ion-icon aria-hidden="true"
-                    slot="start" name="swap-horizontal"></ion-icon>Transfer Lead</ion-select-option>
-
-                <ion-select-option value="/view-lead"><ion-icon aria-hidden="true"
-                    slot="start" name="eye"></ion-icon>View Lead</ion-select-option>
-
-              </ion-select>
-
             </ion-item>
+              <!--<ion-select (ionChange)="onDropdownChange($event)" class="always-flip" toggleIcon="caret-down-sharp"
+                interface="popover">
+                <ion-select-option value="/add-lead"><ion-icon aria-hidden="true" slot="start" name="add"></ion-icon>Add
+                  Lead</ion-select-option>
+
+                <ion-select-option value="/follow-up"><ion-icon aria-hidden="true" slot="start"
+                    name="clipboard"></ion-icon>Follow Up</ion-select-option>
+
+                <ion-select-option value="/transfer-lead"><ion-icon aria-hidden="true" slot="start"
+                    name="swap-horizontal"></ion-icon>Transfer Lead</ion-select-option>
+
+                <ion-select-option value="/view-lead"><ion-icon aria-hidden="true" slot="start"
+                    name="eye"></ion-icon>View Lead</ion-select-option>
+
+              </ion-select>-->
+
+            
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-              routerLink="./quote-manager">
+              routerLink="/quote-manager">
               <ion-icon aria-hidden="true" slot="start" name="desktop"></ion-icon>
               <ion-label>Quote Manager</ion-label>
             </ion-item>
+            <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
+              routerLink="/hsn-manager">
+              <ion-icon aria-hidden="true" slot="start" name="desktop"></ion-icon>
+              <ion-label>HSN Manager</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
+              routerLink="/challan-manager">
+              <ion-icon aria-hidden="true" slot="start" name="desktop"></ion-icon>
+              <ion-label>Challan Manager</ion-label>
+            </ion-item>
+
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
               routerLink="./sales-manager">
               <ion-icon aria-hidden="true" slot="start" name="cart"></ion-icon>
               <ion-label>Sales Manager</ion-label>
             </ion-item>
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-              routerLink="./stock-manager">
+              routerLink="/stock-manager">
               <ion-icon aria-hidden="true" slot="start" name="clipboard"></ion-icon>
               <ion-label>Stock Manager</ion-label>
             </ion-item>
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-              routerLink="./account-manager">
+              routerLink="/account-manager">
               <ion-icon aria-hidden="true" slot="start" name="calculator"></ion-icon>
               <ion-label>Account Manager</ion-label>
             </ion-item>
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-              routerLink="./amc-manager">
+              routerLink="/amc-manager">
               <ion-icon aria-hidden="true" slot="start" name="newspaper"></ion-icon>
               <ion-label>AMC Manager</ion-label>
             </ion-item>
             <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-              routerLink="./login">
+              routerLink="/login">
               <ion-icon aria-hidden="true" slot="start" name="key"></ion-icon>
               <ion-label>Logout</ion-label>
             </ion-item>

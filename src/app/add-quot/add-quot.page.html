@@ -1,0 +1,147 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Quotation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="add_quot">
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">
+            <ion-icon class="add" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="print" name="print"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="show" name="eye"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="save" name="save"></ion-icon>
+          </ion-button>
+
+        </ion-row>
+        <ion-row>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Quotation No. :</ion-label>
+            <ion-input type="number" placeholder="Enter Quotation Number"></ion-input>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Quotation Date:</ion-label>
+            <ion-input type="date"></ion-input>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Customer Name :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+              placeholder="Customer Name" justify="space-between">
+              <ion-select-option value="">AMAN</ion-select-option>
+              <ion-select-option value="">NAMAN</ion-select-option>
+              <ion-select-option value="">RAM</ion-select-option>
+              <ion-select-option value="">SHYAM</ion-select-option>
+              <ion-select-option value="">SITA</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Tax Group :</ion-label>
+            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+              placeholder="Tax Group" justify="space-between">
+              <ion-select-option value="">CGST</ion-select-option>
+              <ion-select-option value="">SGST</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="add_quot">
+
+        <ion-row>
+          <div class="tables" style="overflow-x:auto;">
+            <div class="row">
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Item Description</th>
+                  <th>Quantity</th>
+                  <th>Unit</th>
+                  <th>Basic Rate</th>
+                  <th>Gross Amount</th>
+                  <th>Tax Rate</th>
+                  <th>Tax Amount</th>
+                  <th>CGST</th>
+                  <th>SGST</th>
+                  <th>Total Amount</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <select style="width: 120px;" class="table-select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>-Select-</option>
+                      <option value="1">Ghee</option>
+                      <option value="2">Milk</option>
+                    </select>
+                  </td>
+                  <td> 
+                    <input class="add_input" type="number">
+                  </td>
+                  <td>
+                    <select style="width: 120px;" class="table-select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>-Select-</option>
+                      <option value="1">Pack</option>
+                      <option value="2">Liter</option>
+                    </select>
+                  </td>
+                  <td> 
+                    <input class="add_input" type="number">
+                  </td>
+                  <td> 
+                    <input class="add_input" type="number">
+                  </td>
+                  <td>
+                    <select style="width: 120px;" class="table-select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>-Select-</option>
+                      <option value="1">5%</option>
+                      <option value="2">12%</option>
+                      <option value="3">18%</option>
+                      <option value="4">28%</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input class="add_input" type="text">
+                  </td>
+                  <td>
+                    <input class="add_input" type="text">
+                  </td>
+                  <td>
+                    <input class="add_input" type="text">
+                  </td>
+                 
+                  <td>110</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
+
+                </tr>
+              </table>
+            </div>
+          </div>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -7,13 +7,14 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  { path: 'lead-manager', loadChildren: () => import('./lead-manager/lead-manager.module').then(m => m.LeadManagerModule) },
-  { path: 'quote-manager', loadChildren: () => import('./quote-manager/quote-manager.module').then(m => m.QuoteManagerModule) },
-  { path: 'bill-manager', loadChildren: () => import('./bill-manager/bill-manager.module').then(m => m.BillManagerModule) },
-  { path: 'stock-manager', loadChildren: () => import('./stock-manager/stock-manager.module').then(m => m.StockManagerModule) },
-  { path: 'account-manager', loadChildren: () => import('./account-manager/account-manager.module').then(m => m.AccountManagerModule) },
-  { path: 'amc-manager', loadChildren: () => import('./amc-manager/amc-manager.module').then(m => m.AmcManagerModule) },
-  { path: '', redirectTo: '/lead-manager', pathMatch: 'full' },
+  { path: 'quote-manager', loadComponent: () => import('./quote-manager/quote-manager.page').then(m => m.QuoteManagerPage) },
+  { path: 'bill-manager', loadComponent: () => import('./bill-manager/bill-manager.page').then(m => m.BillManagerPage) },
+  { path: 'stock-manager', loadComponent: () => import('./stock-manager/stock-manager.page').then(m => m.StockManagerPage) },
+  { path: 'account-manager', loadComponent: () => import('./account-manager/account-manager.page').then(m => m.AccountManagerPage) },
+  { path: 'amc-manager', loadComponent: () => import('./amc-manager/amc-manager.page').then(m => m.AmcManagerPage) },
+  
+  { path: 'lead-manager', loadComponent: () => import('./lead-manager/lead-manager.page').then(m => m.LeadManagerPage) },
+
   {
     path: 'sales-manager',
     loadComponent: () => import('./sales-manager/sales-manager.page').then( m => m.SalesManagerPage)
@@ -106,5 +107,41 @@ export const routes: Routes = [
     path: 'reports',
     loadComponent: () => import('./reports/reports.page').then( m => m.ReportsPage)
   },
+  {
+    path: 'challan-manager',
+    loadComponent: () => import('./challan-manager/challan-manager.page').then( m => m.ChallanManagerPage)
+  },
+  {
+    path: 'dc-in',
+    loadComponent: () => import('./dc-in/dc-in.page').then( m => m.DcInPage)
+  },
+  {
+    path: 'dc-out',
+    loadComponent: () => import('./dc-out/dc-out.page').then( m => m.DcOutPage)
+  },
+  {
+    path: 'dc-out-report',
+    loadComponent: () => import('./dc-out-report/dc-out-report.page').then( m => m.DcOutReportPage)
+  },
+  {
+    path: 'dc-in-report',
+    loadComponent: () => import('./dc-in-report/dc-in-report.page').then( m => m.DcInReportPage)
+  },
+  {
+    path: 'hsn-manager',
+    loadComponent: () => import('./hsn-manager/hsn-manager.page').then( m => m.HsnManagerPage)
+  },  {
+    path: 'add-quot',
+    loadComponent: () => import('./add-quot/add-quot.page').then( m => m.AddQuotPage)
+  },
+  {
+    path: 'view-quot',
+    loadComponent: () => import('./view-quot/view-quot.page').then( m => m.ViewQuotPage)
+  },
+
+
+ 
+ 
+
 
 ];

@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">DC-OUT Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">
+            <ion-icon class="add" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="print" name="print"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="show" name="eye"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="save" name="save"></ion-icon>
+          </ion-button>
+
+        </ion-row>
+
+        <ion-row>
+          <div class="tables" style="overflow-x:auto;">
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Voucher Number</th>
+                        <th>Ref. Number</th>
+                        <th>Ref. Date</th>
+                        <th>Customer Name</th>
+                        <th>Total</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>15/09/2023</td>
+                        <td>Pawan</td>
+                        <td>18</td>
+                        <td>Nothing</td>
+                        <td>
+                            <ion-icon class="create" name="create"></ion-icon>
+                            <ion-icon class="delete" name="trash"></ion-icon>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
