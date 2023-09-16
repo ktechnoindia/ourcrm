@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ViewExecutivePage } from './view-executive/view-executive.page';
 
 
 export const routes: Routes = [
@@ -12,7 +13,10 @@ export const routes: Routes = [
   { path: 'stock-manager', loadComponent: () => import('./stock-manager/stock-manager.page').then(m => m.StockManagerPage) },
   { path: 'account-manager', loadComponent: () => import('./account-manager/account-manager.page').then(m => m.AccountManagerPage) },
   { path: 'amc-manager', loadComponent: () => import('./amc-manager/amc-manager.page').then(m => m.AmcManagerPage) },
-  
+  {
+    path: 'view-executive',
+    component: ViewExecutivePage,
+  },
   { path: 'lead-manager', loadComponent: () => import('./lead-manager/lead-manager.page').then(m => m.LeadManagerPage) },
 
   {
@@ -130,13 +134,21 @@ export const routes: Routes = [
   {
     path: 'hsn-manager',
     loadComponent: () => import('./hsn-manager/hsn-manager.page').then( m => m.HsnManagerPage)
-  },  {
+  },
+  {
     path: 'add-quot',
     loadComponent: () => import('./add-quot/add-quot.page').then( m => m.AddQuotPage)
   },
   {
     path: 'view-quot',
     loadComponent: () => import('./view-quot/view-quot.page').then( m => m.ViewQuotPage)
+  },
+  {
+    path: 'view-executive',
+    loadComponent: () => import('./view-executive/view-executive.page').then( m => m.ViewExecutivePage)
+  },  {
+    path: 'update-quot',
+    loadComponent: () => import('./update-quot/update-quot.page').then( m => m.UpdateQuotPage)
   },
   {
     path: 'item-master',
@@ -150,6 +162,7 @@ export const routes: Routes = [
     path: 'pro-stock',
     loadComponent: () => import('./pro-stock/pro-stock.page').then( m => m.ProStockPage)
   },
+
 
 
  

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router'; // Import the Router
+
 
 @Component({
   selector: 'app-add-executive',
@@ -12,9 +14,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AddExecutivePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  navigateToVieweExecutivePage() {
+    this.router.navigate(['/view-executive']); // Navigate to the target page
+  }
 }
