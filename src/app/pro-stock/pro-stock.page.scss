@@ -1,0 +1,168 @@
+
+ion-header{
+    --background-color:#000;
+    text-align: center;
+}
+
+ion-title{
+    font-weight: bold;
+    color: goldenrod;
+}
+ion-card {
+    position: relative;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+ion-item {
+    --background: transparent;
+    --border-color: #000000;
+    /* You can adjust the border color as needed */
+    height: 50px;
+
+}
+
+ion-input {
+    --background: transparent;
+    --color: #000000;
+    /* You can adjust the text color as needed */
+}
+
+.Pro-Stock_label{
+    font-size: 25px;
+    color: #000;
+}
+
+.Pro-Stock ion-input {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+}
+.Pro-Stock ion-textarea {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+   
+}
+
+.Pro-Stock ion-label {
+    font-weight: bold;
+    color: goldenrod;
+    text-decoration: underline;
+    font-size: 16px;
+}
+.tables{
+    width: 100%;
+    // border-radius: 5px;
+}
+table {
+    border-collapse: collapse;
+     width: 1057px;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid goldenrod;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+td{
+    color: #000;
+}
+
+th {
+    background-color: #000;
+}
+
+
+ion-icon {
+    font-size: 25px;
+}
+.add{
+    font-weight: bolder;
+}
+.print{
+    color: grey;
+}
+.delete {
+    color: red;
+    font: 10px;
+}
+
+.create {
+    color: rgb(24, 24, 204);
+    font: 10px;
+}
+
+.show {
+    color: green;
+}
+
+.save {
+    color: rgb(159, 15, 196);
+}
+.selects{
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+}
+.select1{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10px 0px;
+}
+.select2{
+   width: 250px;
+   margin-left: 10px;
+}
+select{
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 30px;
+    outline: none;
+}
+option{
+    border-color: goldenrod;
+    text-align: center;
+    color: #000;
+}
+.label{
+    font-size: 25px;
+}
+
+.heading_1{
+    font-size: 25px;
+    color: #000;
+    text-align: center;
+}
+.add_input{
+    width: 50px;
+    outline: none;
+    border:1px solid goldenrod;
+    border-radius: 3px;
+}
+.Pro-Stock h6{
+    color: #000;
+    font-weight: 900;
+    margin-top: -2px;
+    text-decoration: underline;
+    
+}
+.item-information{
+    border: solid 2px rgb(119, 119, 119);
+    border-radius: 4px;
+    box-shadow: #c0b1b1 2px 3px 4px 1px;
+    padding: 5px;
+}

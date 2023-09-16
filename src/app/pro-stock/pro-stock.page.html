@@ -1,13 +1,261 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>pro-stock</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pro-Stock</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pro-stock</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid class="Pro-Stock">
+        <ion-row style="justify-content: center;">
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+          <h6>Item Information</h6>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+        </ion-row>
+        <div class="item-information">
+          <ion-row>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Code :</ion-label>
+              <ion-input type="text" placeholder="Enter Code"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Short Name :</ion-label>
+              <ion-input type="text" placeholder="Enter Short Name"></ion-input>
+            </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-label> Description :</ion-label>
+              <ion-textarea type="text" placeholder="Enter Text Here....."></ion-textarea>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label> Classification :</ion-label>
+              <ion-input type="text" placeholder="Enter Item Classification"></ion-input>
+            </ion-col>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label>Group Of Item:</ion-label>
+              <ion-input type="text" placeholder="Enter Group Of Item"></ion-input>
+            </ion-col>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label> Seq. Order :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label> Product Type/Chennel :</ion-label>
+              <ion-input type="text" placeholder="Enter Type of Product"></ion-input>
+            </ion-col>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label>Category :</ion-label>
+              <ion-input type="text" placeholder="Enter Category of Item"></ion-input>
+            </ion-col>
+            <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+              <ion-label> Warranty Days :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-row class="select1">
+          <ion-label> Applicate for HSN / SAC code for GST :</ion-label>
+          <select class="select2" aria-label="Default select example" id="transaction">
+            <option selected>-Select-</option>
+            <option value="1">Credit</option>
+            <option value="2">Cash</option>
+          </select>
+        </ion-row>
+
+        <ion-row style="justify-content: center;">
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+          <h6>Prices/Stock Information</h6>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+        </ion-row>
+        <div class="item-information">
+          <ion-row>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Delivery Price:</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> MRP Price :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Customer Price :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Customer Tax %:</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> CSD Tax % :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> CSD Price :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Additional Tax % :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> SDLr Price :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-row style="justify-content: center;margin-top: 10PX;">
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+          <h6>Item Stock</h6>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+        </ion-row>
+        <div class="item-information">
+          <ion-row>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Opt. Quantity:</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Opt. Price :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Cl. Quantity :</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Avg. Price %:</ion-label>
+              <ion-input type="number" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row class="select1">
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+              <ion-label> Model SAP Code :</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+              <ion-label> Model VIN Number :</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-row style="justify-content: center; margin-top: 10px;">
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+          <h6>Accounts Integration Link</h6>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+        </ion-row>
+        <div class="item-information">
+          <ion-row>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Transfer(In/Out):</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Sale A/c (VAT):</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> Purchase A/c (VAT):</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+            <ion-col size="3" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-label> CSD Sale A/c:</ion-label>
+              <ion-input type="text" placeholder="0"></ion-input>
+            </ion-col>
+
+          </ion-row>
+        </div>
+<ion-row>
+  <ion-col size="6">
+
+        <ion-row style="justify-content: center; margin-top: 10px;">
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+          <h6>Standard Features </h6>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
+            <div style="border-bottom: solid 2px goldenrod;"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="select1">
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> Support :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> Garrenty :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="select1">
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> Warrenty :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> Help :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-row style="justify-content: left; margin-top: 10px;">
+          <h6>GST SALESPOSTING A/c's -:</h6>   
+        </ion-row>
+        <ion-row class="select1">
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> C/S-GST :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> I-GST :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row style="justify-content: left;">
+          <h6>GST PURCHASEPOSTING A/c's -:</h6>
+        </ion-row>
+        <ion-row class="select1">
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> C/S-GST :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> I-GST :</ion-label>
+            <ion-input type="text" placeholder="0"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      </ion-row>
+
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

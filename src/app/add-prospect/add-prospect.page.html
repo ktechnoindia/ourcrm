@@ -1,6 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>add_prospect</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
+      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>Add Prospect</ion-title>
   </ion-toolbar>
 </ion-header>
 

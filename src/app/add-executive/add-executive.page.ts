@@ -21,4 +21,7 @@ export class AddExecutivePage implements OnInit {
   navigateToVieweExecutivePage() {
     this.router.navigate(['/view-executive']); // Navigate to the target page
   }
+  goBack() {
+    this.router.navigate(['/master']); // Navigate back to the previous page
+  }
 }
