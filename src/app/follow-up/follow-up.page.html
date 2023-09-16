@@ -2,7 +2,9 @@
   <ion-toolbar><ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">Follow Up</ion-title>
+    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
+      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pro-stock',
   templateUrl: './pro-stock.page.html',
@@ -12,9 +12,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ProStockPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  goBack(){
+    this.router.navigate(["/item-master"])
+  }
 }

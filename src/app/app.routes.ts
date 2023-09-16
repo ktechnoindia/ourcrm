@@ -146,7 +146,8 @@ export const routes: Routes = [
   {
     path: 'view-executive',
     loadComponent: () => import('./view-executive/view-executive.page').then( m => m.ViewExecutivePage)
-  },  {
+  },
+  {
     path: 'update-quot',
     loadComponent: () => import('./update-quot/update-quot.page').then( m => m.UpdateQuotPage)
   },
@@ -162,11 +163,6 @@ export const routes: Routes = [
     path: 'pro-stock',
     loadComponent: () => import('./pro-stock/pro-stock.page').then( m => m.ProStockPage)
   },
-
-
-
- 
- 
 
 
 ];
