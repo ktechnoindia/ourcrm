@@ -1,13 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>transfer-lead</ion-title>
+  <ion-title style="text-align: center; color: goldenrod; font-weight: bold;">Transfer Lead</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">transfer-lead</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card  class="follow-up">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <table>
+            <tr>
+              <th>SI NO.</th>
+              <th>Lead Id</th>
+              <th>Lead Date</th>
+              <th>Company</th>
+              <th>Dealer</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td>
+                <select aria-label="Default select example" id="transaction">
+                  <option selected>-Select-</option>
+                  <option value="1">Credit</option>
+                  <option value="2">Cash</option>
+                </select>
+              </td>
+              <td>
+                <ion-button size="samll">Share</ion-button>
+              </td>
+
+            </tr>
+          </table>
+        </ion-row>
+
+        <ion-row style="float: right; margin: 10px 0;">
+           <ion-button color="warning">Open To Excel</ion-button>
+           <ion-button color="warning">PDF Download</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

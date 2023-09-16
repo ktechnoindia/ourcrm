@@ -1,0 +1,96 @@
+ion-card {
+    margin-top: 0px;
+    position: relative;
+}
+
+
+
+.add_lead ion-input {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 35px;
+    
+    padding: 5px;
+    color: #000000;
+
+}
+.add_lead ::-ms-value{
+    margin-left: 5px;
+}
+
+.add_lead ion-label {
+    font-weight: bold;
+    color: goldenrod;
+    text-decoration: underline;
+    font-size: 16px;
+
+}
+
+.add_lead ion-select {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #000000;
+
+}
+
+.add_lead ion-textarea {
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 30px;
+    color: #000000;
+
+}
+
+table {
+    border-collapse: collapse;
+     width: 1057px;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid goldenrod;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+td{
+    color: #000;
+}
+
+th {
+    background-color: #000;
+}
+.delete {
+    color: red;
+    font: 10px;
+}
+
+.create {
+    color: rgb(24, 24, 204);
+    font: 10px;
+}
+
+ion-searchbar.custom {
+    --background: goldenrod;
+    --color: #000000;
+    --placeholder-color: #000000;
+    --icon-color: #000000;
+    --clear-button-color: #000000;
+  
+    --border-radius: 4px;
+  }
+  
+  ion-searchbar.ios.custom {
+    --cancel-button-color: goldenrod;
+  }
+  
+  ion-searchbar.md.custom {
+    --cancel-button-color: #000000;
+  }

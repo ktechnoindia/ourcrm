@@ -1,13 +1,95 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>view-lead</ion-title>
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">View Lead</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">view-lead</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card class="add_lead">
+    <ion-card-content>
+      <ion-grid>
+        
+        <ion-row>
+          <ion-col size="12" size-lg="3" size-md="6" size-sm="12" size="12">
+            <ion-label>Company Name :</ion-label>
+            <ion-input type="text" placeholder="Enter Company name"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Customer Name :</ion-label>
+            <ion-input type="text" placeholder="Enter Customer name"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Mobile Number :</ion-label>
+            <ion-input type="number" placeholder="Enter Mobile Number"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label>Email ID:</ion-label>
+            <ion-input type="email" placeholder="Enter Your Email ID"></ion-input>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="12" size="12">
+            <ion-label> Remark :</ion-label>
+            <ion-textarea placeholder="Type anything else here......." type="text" >
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">Edit</ion-button>
+          <ion-button color="warning">Save</ion-button>
+          <ion-button color="warning">Close</ion-button>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <div class="tables" style="overflow-x:auto;">
+            <div class="row">
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Company Name</th>
+                  <th>Customer Name</th>
+                  <th>Email ID</th>
+                  <th>Mobile No.</th>
+                  <th>State</th>
+                  <th>City </th>
+                  <th>Pincode</th>
+                  <th>Remark</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    Pending
+                  </td>
+                  <td>1</td>
+                  <td>
+                    pic
+                  </td>
+                  <td> dsc</td>
+                  <td>dad</td>
+                  <td>wqedsfd</td>
+                  <td>ads</td>
+                  <td>110</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
+  
+                </tr>
+              </table>
+            </div>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
