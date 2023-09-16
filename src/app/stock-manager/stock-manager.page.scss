@@ -142,3 +142,11 @@ ion-searchbar.custom {
   ion-searchbar.md.custom {
     --cancel-button-color: #000000;
   }
+  .selects{
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+  }
+  select{
+    padding: 8px 0px;
+  }
