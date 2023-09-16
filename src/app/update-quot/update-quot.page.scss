@@ -27,12 +27,12 @@ ion-input {
     /* You can adjust the text color as needed */
 }
 
-.view_quot_label{
+.add_quot_label{
     font-size: 25px;
     color: #000;
 }
 
-.view_quot ion-input {
+.add_quot ion-input {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
@@ -42,7 +42,7 @@ ion-input {
     padding-bottom: 2px;
     padding-left: 3px;
 }
-.view_quot ion-select {
+.add_quot ion-select {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
@@ -137,25 +137,3 @@ option{
     border:1px solid goldenrod;
     border-radius: 3px;
 }
-ion-searchbar.custom {
-    --background: goldenrod;
-    --color: #000000;
-    --placeholder-color: #000000;
-    --icon-color: #000000;
-    --clear-button-color: #000000;
-  
-    --border-radius: 4px;
-  }
-  
-  ion-searchbar.ios.custom {
-    --cancel-button-color: goldenrod;
-  }
-  
-  ion-searchbar.md.custom {
-    --cancel-button-color: #000000;
-  }
-  ion-radio{
-    margin-left: 10px;
-    color: goldenrod;
-
-font-weight: 700;}

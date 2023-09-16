@@ -1,13 +1,91 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>add_executive</ion-title>
+  <ion-toolbar><ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">HSN Manager</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add_executive</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="hsn_manager">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">
+            <ion-icon class="add" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="show" name="eye"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="save" name="save"></ion-icon>
+          </ion-button>
+          <ion-button color="warning">
+            <ion-icon class="delete" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label>Role :</ion-label>
+            <ion-select   placeholder="Role" class="always-flip" toggleIcon="caret-down-sharp" interface="popover" Justify="space-between">
+              <ion-select-option value="Cash">Sales Person</ion-select-option>
+              <ion-select-option value="Credit">Manager</ion-select-option>
+            </ion-select>          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Name :</ion-label>
+            <ion-input class="ion-padding" type="text" placeholder="Enter Your Name" aria-required="true"></ion-input>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Manager :</ion-label>
+            <ion-input class="ion-padding" type="text" placeholder="Enter Manager Name" aria-required="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Mobile No. :</ion-label>
+            <ion-input class="ion-padding" type="number" placeholder="Enter Mobile Number" aria-required="true"></ion-input>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Email Id :</ion-label>
+            <ion-input class="ion-padding" type="email" placeholder="Enter Email Id" aria-required="true"></ion-input>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> PAN :</ion-label>
+            <ion-input class="ion-padding" type="text" placeholder="Enter PAN Number" aria-required="true"></ion-input>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Area :</ion-label>
+            <ion-input class="ion-padding" type="text" placeholder="Enter Your Area" aria-required="true"></ion-input>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Group:</ion-label>
+            <ion-input class="ion-padding" type="text" placeholder="Enter Group Name" aria-required="true"></ion-input>
+          </ion-col>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Commission % :</ion-label>
+            <ion-input class="ion-padding" type="number" placeholder="Enter Commission %" aria-required="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-label> Ledger :</ion-label>
+            <ion-input class="ion-padding" type="text" aria-required="true"></ion-input>
+          </ion-col>
+         
+          <ion-col style="display: flex; justify-content: right; align-items: center;">
+          <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
+
+            <ion-button color="warning">New</ion-button>
+            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning">Delete</ion-button>
+            <ion-button color="warning">Close</ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

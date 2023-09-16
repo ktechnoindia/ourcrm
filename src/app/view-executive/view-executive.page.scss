@@ -11,11 +11,11 @@ ion-card {
     background-color: #fff;
     font-size: 14px;
     min-height: 35px;
-    padding-left: 30px;
+    
+    padding: 5px;
     color: #000000;
 
 }
-
 .hsn_manager ::-ms-value{
     margin-left: 5px;
 }
@@ -36,7 +36,6 @@ ion-card {
     padding-top: 2px;
     padding-bottom: 2px;
     color: #000000;
-    padding: 10px;
 
 }
 
@@ -47,7 +46,6 @@ ion-card {
     background-color: #fff;
     min-height: 30px;
     color: #000000;
-    padding-left: 30px;
 
 }
 .tables{
