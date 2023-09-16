@@ -6,7 +6,82 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+<ion-card>
+  <ion-card-content>
+    <ion-grid class="add_sale">
+      <ion-row style="justify-content: right;">
+        <ion-button color="warning">
+          <ion-icon class="add" name="add"></ion-icon>
+        </ion-button>
+        <ion-button color="warning">
+          <ion-icon class="show" name="eye"></ion-icon>
+        </ion-button>
+        <ion-button color="warning">
+          <ion-icon class="save" name="save"></ion-icon>
+        </ion-button>
+        <ion-button color="warning">
+          <ion-icon class="delete" name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <div class="tables" style="overflow-x:auto;">
+          <div class="row">
+              <table>
+                  <tr>
+                      <th>Sr.No.</th>
+                      <th>Item Name</th>
+                      <th>Item Group</th>
+                      <th>Quantity</th>
+                      <th>Rate</th>
+                      <th>Discount%</th>
+                      <th>Discount Amount</th>
+                      <th>CGST</th>
+                      <th>SGST</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                  </tr>
+                  <tr>
+                      <td>1</td>
+                      <td>
+                        gd
+                      </td>
+                      <td>
+                          type
+                      </td>
+                      <td>1</td>
+                      <td>100</td>
+                      <td>
+                       dfd
+                      </td>
+                      <td>12</td>
+                      <td>18</td>
+                      <td>18</td>
+                      <td>110</td>
+                      <td>
+                          <ion-icon class="create" name="create"></ion-icon>
+                          <ion-icon class="delete" name="trash"></ion-icon>
+                      </td>
+
+                  </tr>
+              </table>
+          </div>
+      </div>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+</ion-content>
+
+
+
+<!-- <ion-content [fullscreen]="true">
   <ion-card class="hsn_manager">
     <ion-card-content>
       <ion-grid>
@@ -25,28 +100,41 @@
           </ion-button>
         </ion-row>
         <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="12" size="12">
-            <ion-label> Quntity :</ion-label>
-            <ion-input type="text" ></ion-input>
+          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Item Group :</ion-label>
+            <select aria-label="Default select example" id="transaction">
+              <option selected>-Select-</option>
+              <option value="1">Select All</option>
+              <option value="2">Main-Group</option>
+            </select>
           </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="12" size="12">
-            <ion-label> Price :</ion-label>
-            <ion-input type="text" ></ion-input>
+          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> Stock Type :</ion-label>
+            <select aria-label="Default select example" id="transaction">
+              <option selected>-Select-</option>
+              <option value="1">Stock</option>
+              <option value="2">Non-Stock</option>
+              <option value="3">Service</option>
+              <option value="4">Asset</option>
+              <option value="5">Capital</option>
+            </select>
           </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="12" size="12">
-            <ion-label> Date :</ion-label>
-            <ion-input type="date" ></ion-input>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> From :</ion-label>
+            <ion-input type="date"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="12" size="12">
-            <ion-label> Location :</ion-label>
-            <ion-input type="text" ></ion-input>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label> To :</ion-label>
+            <ion-input type="date"></ion-input>
           </ion-col>
+         
         </ion-row>
         <ion-row>
-          
+
         </ion-row>
 
-<div class="div" style="border-bottom: solid 2px goldenrod; width: 100%; margin-top: 10px;margin-bottom: 10px;"></div>
+        <div class="div" style="border-bottom: solid 2px goldenrod; width: 100%; margin-top: 10px;margin-bottom: 10px;">
+        </div>
 
         <ion-row>
           <ion-col size="12">
@@ -56,32 +144,32 @@
         <ion-row>
           <div class="tables" style="overflow-x:auto;">
             <div class="row">
-                <table>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td> hjs</td>
-                        <td>wddsfd df fad asd</td>
-                        <td>
-                            <ion-icon class="create" name="create"></ion-icon>
-                            <ion-icon class="delete" name="trash"></ion-icon>
-                        </td>
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Stock Type</th>
+                  <th>Price</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>123</td>
+                  <td>123</td>
+                  <td> hjs</td>
+                  <td>wddsfd df fad asd</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
 
-                    </tr>
-                </table>
+                </tr>
+              </table>
             </div>
-        </div>
+          </div>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
-</ion-content>
+</ion-content> -->

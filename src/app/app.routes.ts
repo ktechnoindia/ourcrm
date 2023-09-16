@@ -150,6 +150,18 @@ export const routes: Routes = [
     path: 'update-quot',
     loadComponent: () => import('./update-quot/update-quot.page').then( m => m.UpdateQuotPage)
   },
+  {
+    path: 'item-master',
+    loadComponent: () => import('./item-master/item-master.page').then( m => m.ItemMasterPage)
+  },
+  {
+    path: 'stock',
+    loadComponent: () => import('./stock/stock.page').then( m => m.StockPage)
+  },
+  {
+    path: 'pro-stock',
+    loadComponent: () => import('./pro-stock/pro-stock.page').then( m => m.ProStockPage)
+  },
 
 
 
