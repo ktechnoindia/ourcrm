@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-item',
@@ -13,7 +14,7 @@ import { IonicModule } from '@ionic/angular';
 export class AddItemPage implements OnInit {
   selectTabs='address';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,5 +29,8 @@ export class AddItemPage implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+  }
+  goBack() {
+    this.router.navigate(['/master']); // Navigate back to the previous page
   }
 }
