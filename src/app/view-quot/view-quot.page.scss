@@ -36,13 +36,13 @@ ion-input {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 14px;
-    min-height: 30px;
+    font-size: 13px;
+    min-height: 25px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 3px;
 }
-.view_quot ion-select {
+ ion-select {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
@@ -53,11 +53,11 @@ ion-input {
     padding-left: 3px;
 }
 
-.add_quot ion-label {
+ ion-label {
     font-weight: bold;
     color: goldenrod;
     text-decoration: underline;
-    font-size: 16px;
+    font-size: 15px;
 }
 .tables{
     width: 100%;

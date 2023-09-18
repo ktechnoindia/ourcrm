@@ -9,10 +9,10 @@ ion-card {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 14px;
-    min-height: 35px;
+    font-size: 13px;
+    min-height: 28px;
     
-    padding: 5px;
+    // padding: 5px;
     color: #000000;
 
 }
@@ -24,7 +24,7 @@ ion-card {
     font-weight: bold;
     color: goldenrod;
     text-decoration: underline;
-    font-size: 16px;
+    font-size: 14px;
 
 }
 
@@ -32,18 +32,32 @@ ion-card {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    min-height: 15px;
     color: #000000;
 
 }
 
-.add_lead ion-textarea {
+ion-textarea {
     border: solid 1.5px goldenrod;
     border-radius: 3px;
     background-color: #fff;
-    min-height: 30px;
+    min-height: 20px;
     color: #000000;
 
+}
+
+.selects{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+select{
+    border: solid 1.5px goldenrod;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 14px;
+    min-height: 25px;
+    padding: 0 5px;
+    outline: none;
+  
 }

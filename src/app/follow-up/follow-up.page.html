@@ -3,7 +3,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -37,28 +37,38 @@
           </ion-segment>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'follow-up'" >
+          <div *ngIf="selectTabs == 'follow-up'">
             <ion-row>
-              <ion-col size="12" size-lg="12" size-md="12" size-sm="12" size="12">
-                <ion-label> Remark :</ion-label>
-
-                <ion-textarea placeholder="Type anything else here......." type="text">
-
-                </ion-textarea>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="12" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="12" size="12">
+                    <ion-label> Next Follow Up date :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="12" size="12">
+                    <ion-input type="date" placeholder="Enter Next Follow Up date"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="12" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="3" size-md="12" size-sm="12" size="12">
+                    <ion-label> Remark :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="9" size-md="12" size-sm="12" size="12">
+                    <ion-textarea placeholder="Enter text here..."></ion-textarea>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-label>Next Follow Up Date:</ion-label>
-              <ion-input type="date" placeholder="Enter Next Follow Up date"></ion-input>
-              </ion-col>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-button color="warning">New</ion-button>
-              <ion-button color="warning">Add</ion-button>
-              <ion-button color="warning">Save</ion-button>
 
+            <ion-row style="justify-content: right;">
+              <ion-col  size="12" size-lg="12" size-md="12" size-sm="6" size="12">
+                <ion-button color="warning">New</ion-button>
+                <ion-button color="warning">Add</ion-button>
+                <ion-button color="warning">Save</ion-button>
               </ion-col>
             </ion-row>
+
             <ion-row>
               <table>
                 <tr>
@@ -101,7 +111,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Transfer'"  style="margin: 20px 0;">
+          <div *ngIf="selectTabs == 'Transfer'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -123,7 +133,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Matching'"  style="margin: 20px 0;">
+          <div *ngIf="selectTabs == 'Matching'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -148,7 +158,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Downloads'"  style="margin: 20px 0;">
+          <div *ngIf="selectTabs == 'Downloads'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -162,7 +172,7 @@
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
-                  
+
 
                 </tr>
               </table>
