@@ -3,7 +3,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
     <ion-title>
       Add Customer</ion-title>
@@ -15,61 +15,113 @@
     <ion-card-content>
       <ion-grid class="add_customer">
         <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Name:</ion-label>
-            <ion-input type="text" placeholder="Enter ledger name"></ion-input>
-            <ion-checkbox>Active</ion-checkbox>
+          <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-label> Name :</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder="Enter name"></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                <ion-checkbox>Active</ion-checkbox>
+              </ion-col>
+            </ion-row>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Alternate Name :</ion-label>
-            <ion-input type="text" placeholder="Enter ledger alternate name"></ion-input>
+          <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-label>Alternate Name :</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder="Enter Alternate name"></ion-input>
+              </ion-col>
+            </ion-row>
           </ion-col>
-        </ion-row>
-        <div class="div" style="border-bottom: 2px solid grey; width: 100%;"></div>
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-checkbox>Is sub ledger account</ion-checkbox>
+          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-label>Vendor Code:</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder=" Vendor code"></ion-input>
+              </ion-col>
+            </ion-row>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-checkbox>Allow sub accounts under this ledger</ion-checkbox>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Vendor Code :</ion-label>
-            <ion-input type="text" placeholder="Enter Vendor Code"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>GSTIN :</ion-label>
-            <ion-input type="text" maxlength="15" placeholder="Enter GSTIN"></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Group Name :</ion-label>
-            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-              justify="space-between">
-              <ion-select-option value="India">India</ion-select-option>
-              <ion-select-option value="UK">UK</ion-select-option>
-              <ion-select-option value="UAE">UAE</ion-select-option>
-              <ion-select-option value="CANADA">CANADA</ion-select-option>
 
-            </ion-select>
-          </ion-col>
-          <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
-            <ion-checkbox>Apply Billwise</ion-checkbox>
-          </ion-col>
         </ion-row>
+
+        <div style="border: 1px solid black; width: 100%; height: 2px;"></div>
+
         <ion-row>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Opening Balance :</ion-label>
-            <ion-input type="text" placeholder="0.00 Cr"></ion-input>
+           <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <!-- <ion-checkbox>Is Sub Ledger Account</ion-checkbox> -->
+              </ion-col>
+            </ion-row>
           </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label>Closing Balance :</ion-label>
-            <ion-input type="text" placeholder="0.00 Cr"></ion-input>
+          <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <!-- <ion-checkbox>Is Sub Ledger Account</ion-checkbox> -->
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-label>GSTIN :</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder=""></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-checkbox>Apply Billwise</ion-checkbox>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          
+          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-label>Group Name:</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder=""></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          
+          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-label>Opening Balance:</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder=" 0.00Cr"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-label>Closing Balance:</ion-label>
+              </ion-col>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-input type="text" placeholder=" 0.00Cr"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+
+
+
+
         <ion-row>
           <ion-segment [(ngModel)]="selectTabs">
             <ion-segment-button value="Address">
@@ -92,180 +144,310 @@
         <ion-row>
           <div *ngIf="selectTabs == 'Address'">
             <ion-row>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Print Name :</ion-label>
-                <ion-input type="text" placeholder="Enter Name"></ion-input>
-              </ion-col>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>DOB :</ion-label>
-                <ion-input type="date" placeholder="Enter Date Of Birth"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Address :</ion-label>
-                <ion-input type="text" placeholder="Enter Address"></ion-input>
-              </ion-col>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Pincode :</ion-label>
-                <ion-input type="number" placeholder="Enter Pincode"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Select Country :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">India</ion-select-option>
-                  <ion-select-option value="UK">UK</ion-select-option>
-                  <ion-select-option value="UAE">UAE</ion-select-option>
-                  <ion-select-option value="CANADA">CANADA</ion-select-option>
-
-                </ion-select>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Select State :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">Rajasthan</ion-select-option>
-                  <ion-select-option value="UK">Panjab</ion-select-option>
-                  <ion-select-option value="UAE">UAE</ion-select-option>
-                  <ion-select-option value="CANADA">CANADA</ion-select-option>
-
-                </ion-select>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Select City :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">India</ion-select-option>
-                  <ion-select-option value="UK">UK</ion-select-option>
-                  <ion-select-option value="UAE">UAE</ion-select-option>
-                  <ion-select-option value="CANADA">CANADA</ion-select-option>
-
-                </ion-select>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Phone Number :</ion-label>
-                <ion-input type="number" placeholder="Enter Phone Number"></ion-input>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Mobile NUmber :</ion-label>
-                <ion-input type="number" placeholder="Enter Mobile number"></ion-input>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Email :</ion-label>
-                <ion-input type="email" placeholder="Enter Email Address"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Website :</ion-label>
-                <ion-input type="text" placeholder="Enter Website Address"></ion-input>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Fax :</ion-label>
-                <ion-input type="text" placeholder="Enter Fax Details"></ion-input>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-checkbox>Send SMS/WhtasApp</ion-checkbox>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label> Print Name:</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder=" Entere Name"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
 
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label>DOB :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="date" placeholder=" DOB"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                    <ion-label> Address:</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="  Address"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+             
             </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label> Country:</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label> State:</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                    <ion-label> City:</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>Pincode :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Pincode"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>Phone Number :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Phone Number"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="2" size-md="12" size-sm="6" size="12">
+                    <ion-label>Email :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="10" size-md="12" size-sm="6" size="12">
+                    <ion-input type="email" placeholder="Email"></ion-input>
+                  </ion-col>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-checkbox>Send SMS/Whatshapp</ion-checkbox>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                    <ion-label>Website :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="url"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="2" size-md="12" size-sm="6" size="12">
+                    <ion-label>Fax :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="10" size-md="12" size-sm="6" size="12">
+                    <ion-textarea></ion-textarea>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
           </div>
           <div *ngIf="selectTabs == 'Registration'">
-            <h1>Registration</h1>
+            
             <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Cust/Supplier Type :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">Regular</ion-select-option>
-                  <ion-select-option value="UK">NRI</ion-select-option>
-                  <ion-select-option value="UAE">Composition</ion-select-option>
-                  <ion-select-option value="CANADA">Consumer</ion-select-option>
-
-                </ion-select>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label>Supplier Type :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Contact Person :</ion-label>
-                <ion-input type="text" placeholder="Enter Contact Person Name"></ion-input>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-label>Contact Number :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Contact"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Tax Deduction No. :</ion-label>
-                <ion-input type="text" placeholder="Enter Tax Deduction Number "></ion-input>
+            </ion-row>
 
+            <ion-row>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-label>Tax Deduction No. :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="tax number"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>SEZ Type :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>GSTIN :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="GSTIN"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>IE Code :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="IE code"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
+                    <ion-label>CIN :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="CIN"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <ion-label>Permanent A/c No. :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Account number"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>SEZ Type :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">Non SEZ</ion-select-option>
-                  <ion-select-option value="UK">SEZ with Payment</ion-select-option>
-                  <ion-select-option value="UAE">SEZ without Payment</ion-select-option>
-
-                </ion-select>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label>PAN No. :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="PAN number"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>GSTIN :</ion-label>
-                <ion-input type="text" placeholder="Enter GSTIN"></ion-input>
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                    <ion-label>MSME Reg. Type :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>IE Code :</ion-label>
-                <ion-input type="text" placeholder="Enter IE Code "></ion-input>
-
+              <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <ion-label>Type Enterprise :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
+                    <select name="" id="">
+                      <option value="1">--Select--</option>
+                      <option value="2">sds</option>
+                      <option value="3">ssd</option>
+                    </select>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
+
             <ion-row>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>CIN :</ion-label>
-                <ion-input type="text" placeholder="Enter CIN "></ion-input>
+              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label>Adhar No. :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Adh number"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Permanenet A/C No. :</ion-label>
-                <ion-input type="text" placeholder="Enter Permanenet account number"></ion-input>
-              </ion-col>
-              <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>PAN Reference No. :</ion-label>
-                <ion-input type="text" placeholder="Enter PAN Reference Number "></ion-input>
-
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
-                <ion-label>MSME Reg. Type :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">Non </ion-select-option>
-                  <ion-select-option value="UK">Micro</ion-select-option>
-                  <ion-select-option value="UAE">Small</ion-select-option>
-                  <ion-select-option value="UAE">Medium</ion-select-option>
-
-                </ion-select>
-              </ion-col>
-              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
-                <ion-label>Type Of Enterprise :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="India">Manufacturing</ion-select-option>
-                  <ion-select-option value="UK">Service</ion-select-option>
-
-                </ion-select>
-              </ion-col>
-              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
-                <ion-label>Aadhar No. :</ion-label>
-                <ion-input type="text" placeholder="Enter Aadhar number"></ion-input>
-              </ion-col>
-              <ion-col size="3" size-lg="3" size-md="4" size-sm="6" size="12">
-                <ion-label>Udyog Aadhar No. :</ion-label>
-                <ion-input type="text" placeholder="Enter Udyog Aadhar number "></ion-input>
-
+              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
+                <ion-row>
+                  <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
+                    <ion-label>Udyog Adhar No. :</ion-label>
+                  </ion-col>
+                  <ion-col size="12" size-lg="8" size-md="12" size-sm="6" size="12">
+                    <ion-input type="text" placeholder="Udyog Adhar number"></ion-input>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
+
           </div>
           <div *ngIf="selectTabs == 'Contact'">
             <h1>Contact Us</h1>
