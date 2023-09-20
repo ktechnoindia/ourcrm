@@ -14,31 +14,35 @@
       <ion-grid>
        
         <ion-row>
-          <ion-col size="6" size-lg="2" size-md="6" size-sm="12" size="12">
-            <ion-label> HSN Code :</ion-label>
-            <ion-input type="text" placeholder="Enter HSN Code"></ion-input>
+
+          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label class="add_label" >HSN Code: </ion-label>
+            <ion-input class="add_input" style="width: 140px;"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="2" size-md="6" size-sm="12" size="12">
-            <ion-label> Unit :</ion-label>
-            <ion-input type="text" placeholder="Enter Unit"></ion-input>
+
+          <ion-col class="label_input"   size="3" size-lg="2" size-md="6" size-sm="6" size="12">
+            <ion-label class="add_label" >Unit: </ion-label>
+            <ion-input class="add_input" style="width: 140px;"></ion-input>
           </ion-col>
-          <ion-col size="6" size-lg="8" size-md="6" size-sm="12" size="12">
-            <ion-label> Description :</ion-label>
-            <ion-textarea type="text" placeholder=" Enter Text Here........"></ion-textarea>
+
+          <ion-col class="label_input"   size="6" size-lg="7" size-md="6" size-sm="6" size="12">
+            <ion-label class="add_label" >Description: </ion-label>
+            <ion-textarea class="add_textarea"></ion-textarea>
           </ion-col>
+
         </ion-row>
 
         <ion-row style="justify-content: right;">
-          <ion-button color="primary">
+          <ion-button color="warning">
             Add
           </ion-button>
           <ion-button color="warning">
            Save
           </ion-button>
-          <ion-button color="success">
+          <ion-button color="warning">
             View
           </ion-button>
-          <ion-button color="danger">
+          <ion-button color="warning">
             Close
           </ion-button>
         </ion-row>

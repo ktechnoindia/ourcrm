@@ -17,44 +17,6 @@ ion-input {
     /* You can adjust the text color as needed */
 }
 
-.add_vendor ion-input {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 14px;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 3px;
-}
-
-.add_vendor ion-label {
-    font-weight: bold;
-    color: goldenrod;
-    text-decoration: underline;
-    font-size: 16px;
-
-}
-
-.add_vendor ion-select {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 3px;
-}
-
-.add_vendor ion-textarea {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 3px;
-}
 
 ion-segment {
     background-color: rgb(0, 0, 0);
@@ -69,4 +31,31 @@ ion-segment-button {
 ion-segment-button :hover {
     color: rgb(255, 255, 255);
 
+}
+
+.label_input{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.add_label{
+    color: goldenrod;
+    font-weight: bold;
+    font-size: 12px;
+}
+.add_input{
+    min-height: 20px;
+    border: 1px solid goldenrod;
+}
+select{
+    border-color: goldenrod;
+    width: 150px;
+    outline: none;
+    text-align: center;
+}
+
+.add_textarea{
+    border: 1px solid goldenrod;
+    width: 235px;
 }

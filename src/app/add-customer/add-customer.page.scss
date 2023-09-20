@@ -20,3 +20,28 @@ ion-segment-button :hover {
 ion-input{
     border: 1px solid goldenrod;
 }
+
+.label_input{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.add_label{
+    color: goldenrod;
+    font-weight: bold;
+}
+.add_input{
+    min-height: 20px;
+}
+select{
+    border-color: goldenrod;
+    width: 150px;
+    outline: none;
+    text-align: center;
+}
+
+.add_textarea{
+    border: 1px solid goldenrod;
+    width: 235px;
+}

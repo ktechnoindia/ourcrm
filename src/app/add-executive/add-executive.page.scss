@@ -4,102 +4,6 @@ ion-card {
 }
 
 
-
-.hsn_manager ion-input {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 14px;
-    min-height: 35px;
-    padding-left: 30px;
-    color: #000000;
-
-}
-
-.hsn_manager ::-ms-value{
-    margin-left: 5px;
-}
-
-.hsn_manager ion-label {
-    font-weight: bold;
-    color: goldenrod;
-    text-decoration: underline;
-    font-size: 16px;
-
-}
-
-.hsn_manager ion-select {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    color: #000000;
-    padding: 10px;
-
-}
-
-
-.hsn_manager ion-textarea {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    min-height: 30px;
-    color: #000000;
-    padding-left: 30px;
-
-}
-.tables{
-    width: 100%;
-    // border-radius: 5px;
-}
-table {
-    border-collapse: collapse;
-     width: 1057px;
-    border-radius: 5px;
-}
-
-th, td {
-    border: 1px solid goldenrod;
-    padding: 8px;
-    text-align: center;
-    color: white;
-}
-td{
-    color: #000;
-}
-
-th {
-    background-color: #000;
-}
-
-.add_input{
-    width: 50px;
-    outline: none;
-    border:1px solid goldenrod;
-    border-radius: 3px;
-}
-option{
-    border-color: goldenrod;
-    text-align: center;
-    color: #000;
-}
-.selects{
-    display: flex;
-    justify-content: end;
-    flex-direction: column;
-}
-select{
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 15px;
-    min-height: 30px;
-    padding: 0 5px;
-    outline: none;
-  
-}
 ion-icon {
     font-size: 25px;
 }
@@ -144,3 +48,30 @@ ion-searchbar.custom {
   ion-searchbar.md.custom {
     --cancel-button-color: #000000;
   }
+
+  .label_input{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.add_label{
+    color: goldenrod;
+    font-weight: bold;
+    font-size: 12px;
+}
+.add_input{
+    min-height: 20px;
+    border: 1px solid goldenrod;
+}
+select{
+    border-color: goldenrod;
+    width: 150px;
+    outline: none;
+    text-align: center;
+}
+
+.add_textarea{
+    border: 1px solid goldenrod;
+    width: 235px;
+}
