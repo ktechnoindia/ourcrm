@@ -17,25 +17,44 @@
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col style="display: flex; flex-direction: row; align-items: center;" size="4">
-            <ion-label style="color: goldenrod;">Name</ion-label>
+          <ion-col style="display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;">Name: </ion-label>
             <ion-input  style="min-height: 20px;"></ion-input>
           </ion-col>
         
-          <ion-col style="display: flex; flex-direction: row; align-items: center;" size="4">
-            <ion-label style="color: goldenrod;">Alternate Name</ion-label>
-            <ion-input style="min-height: 20px;"></ion-input>
+          <ion-col style="display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;">Alternate Name: </ion-label>
+            <ion-input style="min-height: 20px; width: 200px;"></ion-input>
           </ion-col>
         
-          <ion-col style= "display: flex; flex-direction: row; align-items: center;" size="4">
-            <ion-label style="color: goldenrod;">Vendor Code </ion-label>
-            <ion-input  style="min-height: 20px;"></ion-input>
+          <ion-col style= "display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;">Vendor Code :</ion-label>
+            <ion-input  style="min-height: 20px; width: 150px;"></ion-input>
           </ion-col>
-        </ion-row>                  
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+        </ion-row>
+        <ion-row>
+          <ion-col style="display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;">GSTIN: </ion-label>
+            <ion-input  style="min-height: 20px;width: 150px;"></ion-input>
+          </ion-col>
+        
+          <ion-col style="display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;"> Group Name: </ion-label>
+            <ion-input style="min-height: 20px; width: 150px;"></ion-input>
+          </ion-col>
+        
+          <ion-col style= "display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;"> Opening Balance :</ion-label>
+            <ion-input  style="min-height: 20px; width: 130px;"></ion-input>
+          </ion-col>
+
+          <ion-col style= "display: flex; flex-direction: row; align-items: center;"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-label style="color: goldenrod;"> Closing Balance :</ion-label>
+            <ion-input  style="min-height: 20px; width: 140px;"></ion-input>
+          </ion-col>
+
+        </ion-row>       
+     
 
 <ion-row>
   <ion-segment [(ngModel)]="selectTabs">
@@ -647,3 +666,9 @@
   <ion-button color="warning">Preview</ion-button>
   <ion-button color="warning">Close</ion-button>
 </ion-row>
+
+
+</ion-grid>
+</ion-card-content>
+</ion-card>
+</ion-content>
