@@ -1,459 +1,251 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
-    </ion-button>
+<ion-header>
+  <ion-toolbar>
     <ion-title>
-      Add Customer</ion-title>
+      Add Customer
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" >Name: </ion-label>
-            <ion-input class="add_input"></ion-input>
-          </ion-col>
-        
-          <ion-col class="label_input" size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" >Alternate Name: </ion-label>
-            <ion-input class="add_input" ></ion-input>
-          </ion-col>
-        
-          <ion-col class="label_input"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label">Customer Code :</ion-label>
-            <ion-input class="add_input" style=" width: 140px;"></ion-input>
-          </ion-col>
-
-          <ion-col class="label_input" size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label">GSTIN: </ion-label>
-            <ion-input class="add_input" style="width: 150px;"></ion-input>
-          </ion-col>
-
-        </ion-row>
-        <ion-row>
-        
-          <ion-col class="label_input"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label"> Group Name: </ion-label>
-            <ion-input class="add_input" style="min-height: 20px; width: 150px;"></ion-input>
-          </ion-col>
-        
-          <ion-col class="label_input"  size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label"> Opening Balance :</ion-label>
-            <ion-input class="add_input" style="width: 130px;"></ion-input>
-          </ion-col>
-
-          <ion-col class="label_input" size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label"> Closing Balance :</ion-label>
-            <ion-input class="add_input" style="width: 140px;"></ion-input>
-          </ion-col>
-
-        </ion-row>       
-     
-
-<ion-row style="width: 100%; margin: 20px auto;">
-  <ion-segment [(ngModel)]="selectTabs">
-    <ion-segment-button value="Address">
-      <ion-label>Address</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="Registration">
-      <ion-label>Registration</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="Contact">
-      <ion-label>Contact </ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="Other">
-      <ion-label>Other Details</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-</ion-row>
-<ion-row>
-  <div style="width: 100%;" *ngIf="selectTabs == 'Address'">
+<ion-content>
+  <ion-grid>
+    <!-- First Row -->
     <ion-row>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Print Name: </ion-label>
-        <ion-input class="add_input"  style="width: 200px;"></ion-input>
+      <ion-col size="12" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">Name :</ion-label>
+          <ion-input class="input-width" type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >DOB: </ion-label>
-        <ion-input type="date" class="add_input" style="width: 150px;"></ion-input>
+      <ion-col size="12" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">Vendor Code :</ion-label>
+          <ion-input class="input-width" type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Address: </ion-label>
-        <ion-input class="add_input"></ion-input>
-      </ion-col>
-
     </ion-row>
+
+    <!-- Second Row -->
     <ion-row>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Country: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="1">--India--</option>
-          <option value="1">--USA--</option>
-          <option value="1">--Canada--</option>
-        </select>
+      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">GSTIN :</ion-label>
+          <ion-input class="input-width"></ion-input>
+        </ion-item>
       </ion-col>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >State: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="1">--Rajasthana--</option>
-          <option value="1">--Panjab--</option>
-          <option value="1">--Haryana--</option>
-        </select>
+      <ion-col size="12"  size-lg="6" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">Group Name:</ion-label>
+          <ion-input class="input-width"></ion-input>
+        </ion-item>
       </ion-col>
-    
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >City: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
+    </ion-row>
+
+    <!-- Third Row -->
+    <ion-row>
+      <ion-col size="12"  size-lg="6" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">Opening Bal. :</ion-label>
+          <ion-input class="input-width"></ion-input>
+        </ion-item>
       </ion-col>
+      <ion-col size="12"  size-lg="6" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label class="label-width">Closing Bal. :</ion-label>
+          <ion-input class="input-width"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col size="4">
+        <div style="border-bottom: 2px solid black; width: 100%;">
+
+        </div>
+      </ion-col>
+      
+     <ion-col size="4">
+      <ion-label style="font-size: 25px; font-weight: bold; justify-content: center;margin-left: 100px;margin-top: -5px;">Address</ion-label><span style="width: 100%; height: 5px; background-color: black;"></span>
+     </ion-col>
+      <ion-col size="4">
+        <div style="border-bottom: 2px solid black; width: 100%;">
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+     <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+      <ion-item lines="none">
+        <ion-label>Birthday :</ion-label>
+        <ion-input type="date"></ion-input>
+      </ion-item>
+     </ion-col>
+     <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+      <ion-item lines="none">
+        <ion-label>Country :</ion-label>
+        <ion-select Placeholder="--Select--"  interface="popover">
+          <ion-select-option value="India">India</ion-select-option>
+          <ion-select-option value="UK">UK</ion-select-option>
+          <ion-select-option value="USA">USA</ion-select-option>
+        </ion-select>
+      </ion-item>
+     </ion-col>
+     <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+      <ion-item lines="none">
+        <ion-label>State :</ion-label>
+        <ion-select Placeholder="--Select--"  interface="popover">
+          <ion-select-option value="Rajasthana">Rajasthana</ion-select-option>
+          <ion-select-option value="Panjab">Panjab</ion-select-option>
+          <ion-select-option value="Haryana">Haryana</ion-select-option>
+        </ion-select>
+      </ion-item>
+     </ion-col>
 
     </ion-row>
 
     <ion-row>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Pincode: </ion-label>
-        <ion-input type="text" class="add_input" style="width: 100px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>City :</ion-label>
+          <ion-select Placeholder="--Select--"  interface="popover">
+            <ion-select-option value="Jaipur">Jaipur</ion-select-option>
+            <ion-select-option value="Sikar">Sikar</ion-select-option>
+            <ion-select-option value="Kota">Kota</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
-     
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Phone Number: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Address :</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Email: </ion-label>
-        <ion-input type="email"  class="add_input"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>PinCode :</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-  
     </ion-row>
-  
-  </div>
-  <div style="width: 100%;" *ngIf="selectTabs == 'Registration'">
-
     <ion-row>
-
-      <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label">Suoolier Type: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
+      <ion-col size="12" size-lh="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Phone No:</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Contact Number: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lh="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Mobile No. :</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Tax Deduction No.: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
+      
     </ion-row>
-
     <ion-row>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >SEZ Type: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
+      <ion-col size="12" size-lh="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Email id :</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >GSTIN: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 150px;"></ion-input>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label>Website(url):</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >IE Code: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
     </ion-row>
 
-    <ion-row>
+    <ion-row >
+      <ion-col size="4">
+        <div style="border-bottom: 2px solid black; width: 100%;">
 
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Parmanent A/c No.: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+        </div>
       </ion-col>
+      
+     <ion-col size="4">
+      <ion-label style="font-size: 25px; font-weight: bold; justify-content: center;margin-left: 100px;margin-top: -5px;">Registration</ion-label><span style="width: 100%; height: 5px; background-color: black;"></span>
+     </ion-col>
+      <ion-col size="4">
+        <div style="border-bottom: 2px solid black; width: 100%;">
 
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >PAN No.: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;" ></ion-input>
+        </div>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >MSMS Type: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-
     </ion-row>
 
     <ion-row>
-     
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Type Interprise: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Sup. Type:</ion-label>
+          <ion-select Placeholder="--Select--"  interface="popover">
+            <ion-select-option value="Jaipur">Jaipur</ion-select-option>
+            <ion-select-option value="Sikar">Sikar</ion-select-option>
+            <ion-select-option value="Kota">Kota</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Adhar No.: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Contact Person:</ion-label>
+         <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Udyog Adhar No. : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Tax Deducation No:</ion-label>
+         <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
     </ion-row>
 
-  </div>
-  <div style="width: 100%;" *ngIf="selectTabs == 'Contact'">
-   
-<ion-row>
-  <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-    <ion-label class="add_label" >Adhar No.: </ion-label>
-    <select name="" id="">
-      <option value="1">--Select--</option>
-      <option value="2">--India--</option>
-      <option value="3">--USA--</option>
-      <option value="4">--Canada--</option>
-    </select>
-  </ion-col>
-
-  <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-    <ion-label class="add_label" >Contact Person : </ion-label>
-    <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-  </ion-col>
-
-  <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-    <ion-label class="add_label" >Position Code : </ion-label>
-    <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-  </ion-col>
-
-</ion-row>
     <ion-row>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Phome No. : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>GSTIN:</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Email : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>IE Code:</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Remark : </ion-label>
-        <ion-textarea class="add_textarea" ></ion-textarea>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>A/c Number:</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
     </ion-row>
- 
-  </div>
-
-  <div style="width: 100%;" *ngIf="selectTabs == 'Other'">
-    <h1>Bank Details</h1>
     <ion-row>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Bank Name : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 250px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>PAN Code :</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >A/c No. : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 250px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Type Of Interprises :</ion-label>
+          <ion-select Placeholder="--Select--"  interface="popover">
+            <ion-select-option value="Jaipur">Jaipur</ion-select-option>
+            <ion-select-option value="Sikar">Sikar</ion-select-option>
+            <ion-select-option value="Kota">Kota</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >IFSC Code : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
+      <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+        <ion-item lines="none">
+          <ion-label>Udayog Adhar No : :</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
       </ion-col>
       
     </ion-row>
 
-    <ion-row>
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Account Type : </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Swift Code: </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >BRS Code : </ion-label>
-        <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Branch Name : </ion-label>
-       <ion-input type="text"  class="add_input" style="width: 230px;"></ion-input>
-      </ion-col> 
-
-    </ion-row>
-
-    <div style="border-bottom: solid 2px #000; width: 100%; margin: 5px;"></div>
-
-    <h1>Tax Details</h1>
-    <ion-row>
-
-      <ion-col class="label_input"   size="3" size-lg="2" size-md="6" size-sm="6" size="12">
-        <ion-label >TDS Applicate </ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="2" size-md="6" size-sm="6" size="12">
-        <ion-label >GST Applicate </ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="2" size-md="6" size-sm="6" size="12">
-        <ion-label >Transporter </ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >State: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-      
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >GST Rate: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-
-    </ion-row>
-  
-    <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
-
-    <h1>Other Details</h1>
-    <h3>General</h3>
-
-    <ion-row>
-
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Credit Period : </ion-label>
-       <ion-input type="text"  class="add_input" style="width: 150px;"></ion-input>
-      </ion-col>
-      
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Credit Limit : </ion-label>
-       <ion-input type="text"  class="add_input" style="width: 150px;"></ion-input>
-      </ion-col>
-      
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Sales Person: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-      
-      <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Price Group: </ion-label>
-        <select name="" id="">
-          <option value="1">--Select--</option>
-          <option value="2">--India--</option>
-          <option value="3">--USA--</option>
-          <option value="4">--Canada--</option>
-        </select>
-      </ion-col>
-    </ion-row>
-
-    <h3>Credit Points</h3>
-    <ion-row>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Card Number : </ion-label>
-       <ion-input type="text"  class="add_input" style="width:200px;"></ion-input>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" >Opening Point : </ion-label>
-       <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
-      <ion-col class="label_input"   size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-        <ion-label class="add_label" > Closing Point : </ion-label>
-       <ion-input type="text"  class="add_input" style="width: 200px;"></ion-input>
-      </ion-col>
-
-    </ion-row>
-
-  </div>
-
-</ion-row>
-<div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
-
-<ion-row style="justify-content: right;">
-  <ion-button color="warning">New</ion-button>
-  <ion-button color="warning">Save</ion-button>
-  <ion-button color="warning">Delete</ion-button>
-  <ion-button color="warning">Preview</ion-button>
-  <ion-button color="warning">Close</ion-button>
-</ion-row>
-
-
-</ion-grid>
-</ion-card-content>
-</ion-card>
+  </ion-grid>
 </ion-content>
+
