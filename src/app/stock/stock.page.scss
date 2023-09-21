@@ -27,52 +27,6 @@ ion-input {
     /* You can adjust the text color as needed */
 }
 
-.add_sale_label{
-    font-size: 25px;
-    color: #000;
-}
-
-.add_sale ion-input {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 14px;
-    min-height: 30px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 3px;
-}
-
-.add_sale ion-label {
-    font-weight: bold;
-    color: goldenrod;
-    text-decoration: underline;
-    font-size: 16px;
-}
-.tables{
-    width: 100%;
-    // border-radius: 5px;
-}
-table {
-    border-collapse: collapse;
-     width: 1057px;
-    border-radius: 5px;
-}
-
-th, td {
-    border: 1px solid goldenrod;
-    padding: 8px;
-    text-align: center;
-    color: white;
-}
-td{
-    color: #000;
-}
-
-th {
-    background-color: #000;
-}
-
 
 ion-icon {
     font-size: 25px;
@@ -97,54 +51,33 @@ ion-icon {
     color: green;
 }
 
-.save {
-    color: rgb(159, 15, 196);
-}
-.selects{
-    display: flex;
-    justify-content: end;
-    flex-direction: column;
-}
-.select1{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    // flex-direction: column;
-    flex-wrap: wrap;
-    margin: 15px 0;
-}
-.select2{
-   width: 250px;
-   margin-left: 10px;
-}
-select{
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 14px;
-    min-height: 30px;
-    outline: none;
-}
-option{
-    border-color: goldenrod;
-    text-align: center;
-    color: #000;
-}
-.label{
-    font-size: 25px;
-}
 
-.heading_1{
-    font-size: 25px;
-    color: #000;
-    text-align: center;
+
+
+
+.label_input{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
-.dash{
+.add_label{
     color: goldenrod;
+    font-weight: bold;
+    font-size: 12px;
 }
 .add_input{
-    width: 50px;
+    min-height: 20px;
+    border: 1px solid goldenrod;
+}
+select{
+    border-color: goldenrod;
+    width: 150px;
     outline: none;
-    border:1px solid goldenrod;
-    border-radius: 3px;
+    text-align: center;
+}
+
+.add_textarea{
+    border: 1px solid goldenrod;
+    width: 235px;
 }
