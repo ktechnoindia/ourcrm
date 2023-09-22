@@ -1,25 +1,3 @@
-ion-card {
-    margin-top: 0px;
-    position: relative;
-}
-
-ion-searchbar.custom {
-    --background: goldenrod;
-    --color: #000000;
-    --placeholder-color: #000000;
-    --icon-color: #000000;
-    --clear-button-color: #000000;
-    --border-radius: 4px;
-  }
-  
-  ion-searchbar.ios.custom {
-    --cancel-button-color: goldenrod;
-  }
-  
-  
-.hsn_manager ::-ms-value{
-    margin-left: 5px;
-}
 
 
 .tables{
@@ -46,28 +24,3 @@ th {
     background-color: #000;
 }
 
-  .label_input{
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-.add_label{
-    color: goldenrod;
-    font-weight: bold;
-}
-.add_input{
-    min-height: 20px;
-    border: 1px solid goldenrod;
-}
-select{
-    border-color: goldenrod;
-    width: 150px;
-    outline: none;
-    text-align: center;
-}
-
-.add_textarea{
-    border: 1px solid goldenrod;
-    width: 500px;
-}

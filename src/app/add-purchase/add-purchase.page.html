@@ -4,85 +4,65 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
-    
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <ion-grid class="add_sale">
-  
-        <ion-row>
-        <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-          <ion-row>
-            <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-              <ion-label>Billing No. :</ion-label>
-            </ion-col>
-            <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
-              <ion-input type="text"  placeholder="Billing number" ></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-          <ion-row>
-            <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-              <ion-label>Billing Date :</ion-label>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
-              <ion-input type="date"  ></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
-              <ion-label>Voucher No. :</ion-label>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
-              <ion-input type="text"  placeholder="Voucher number" ></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-          <ion-row>
-            <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-              <ion-label>Date :</ion-label>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="12" size-sm="6" size="12">
-              <ion-input type="date" ></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-col>
+      <ion-grid>
+         
+        <ion-row class="row">
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Billing No. :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Billing Date :</ion-label>
+              <ion-input class="input-width" type="date"></ion-input>
+            </ion-item>
+          </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col size="12" size-lg="4" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-                <ion-label>Supplier :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
-                <ion-input type="text"  placeholder="Supplier" ></ion-input>
-              </ion-col>
-            </ion-row>
+        <ion-row class="row">
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Voucher No. :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-                <ion-label>Cash/Credit :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="9" size-md="12" size-sm="6" size="12">
-               <select name="" id="">
-                <option value="1">--Select--</option>
-                <option value="2">cash</option>
-                <option value="3">credit</option>
-               </select>
-              </ion-col>
-            </ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Supplier :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
+        </ion-row>
+
+        <ion-row class="row">
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width"> GSTIN :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Cash/Credit :</ion-label>
+              <select class="select-width">
+                <option value="1">--select--</option>
+                <option value="2">Cash</option>
+                <option value="3">Credit</option>
+              </select>
+            </ion-item>
+          </ion-col>
+         
         </ion-row>
 
         <ion-row style="justify-content: right;margin: 10px 0;">
@@ -104,56 +84,54 @@
         <ion-row>
           <div class="tables" style="overflow-x:auto;">
             <div class="row">
-                <table>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>Item Code</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Rate</th>
-                        <th>Discount%</th>
-                        <th>Discount Amount</th>
-                        <th>CGST</th>
-                        <th>SGST</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                          <input class="add_input" type="text">
-                        </td>
-                        <td>
-                            <select style="width: 120px;" class="table-select"
-                                aria-label="Default select example" id="transaction">
-                                <option selected>-Select-</option>
-                                <option value="1">Credit</option>
-                                <option value="2">Cash</option>
-                            </select>
-                        </td>
-                        <td>1</td>
-                        <td>100</td>
-                        <td>
-                          <input class="add_input" type="text">
-                        </td>
-                        <td>12</td>
-                        <td>18</td>
-                        <td>18</td>
-                        <td>110</td>
-                        <td>
-                            <ion-icon class="create" name="create"></ion-icon>
-                            <ion-icon class="delete" name="trash"></ion-icon>
-                        </td>
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Item Code</th>
+                  <th>Item Name</th>
+                  <th>Quantity</th>
+                  <th>Rate</th>
+                  <th>Discount%</th>
+                  <th>Discount Amount</th>
+                  <th>CGST</th>
+                  <th>SGST</th>
+                  <th>Total</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input class="add_input" type="text">
+                  </td>
+                  <td>
+                    <select style="width: 120px;" class="table-select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>-Select-</option>
+                      <option value="1">Credit</option>
+                      <option value="2">Cash</option>
+                    </select>
+                  </td>
+                  <td>1</td>
+                  <td>100</td>
+                  <td>
+                    <input class="add_input" type="text">
+                  </td>
+                  <td>12</td>
+                  <td>18</td>
+                  <td>18</td>
+                  <td>110</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
 
-                    </tr>
-                </table>
+                </tr>
+              </table>
             </div>
-        </div>
+          </div>
         </ion-row>
 
       </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-

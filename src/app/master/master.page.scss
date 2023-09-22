@@ -1,41 +1,33 @@
 .master_window {
     text-align: center;
 }
-
 .master_logo {
     justify-content: center;
     background-color: black;
 }
-
 .master_logo img {
     height: 70px;
     width: 70px;
 }
-
-.master_window ion-card {
-    background-color: black;
+.master {
+    color: #525252;
+    transition: all 0.5s linear;
+    box-shadow: none;
 }
-
-.master_window :hover ion-card {
+.master:hover {
     background-color: #525252;
+    // text-indent: 5px;
+    transform: translateX(10px); 
+}
+ion-card-subtitle{
+    font-size: 25px;
 }
 
-.master_logo h1 {
-    color: goldenrod;
-    font-size: 22px;
-    text-decoration: underline;
-}
 
 .master ion-icon {
     color: goldenrod;
     font-size: 40px;
 }
-
-.master ion-card-subtitle {
-    color: goldenrod;
-    font-size: 22px;
-}
-
 .master a {
     text-decoration: none;
 }

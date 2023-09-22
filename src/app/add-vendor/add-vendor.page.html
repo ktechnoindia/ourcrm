@@ -18,8 +18,7 @@
     <ion-card-content>
       <ion-grid>
         <ion-title style="text-align: center; font-size: 30px;">Add Vendor</ion-title>
-        <ion-row>
-
+        <ion-row class="row">
           <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Name :</ion-label>
@@ -36,12 +35,12 @@
 
         </ion-row>
 
-        <ion-row>
+        <ion-row class="row">
 
           <ion-col size="12" size-lg="6"  size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Group Name :</ion-label>
-              <select class="vendor_select">
+              <select class="select-width">
                 <option value="India">--Select--</option>
                 <option value="India">India</option>
                 <option value="UK">UK</option>
@@ -59,22 +58,22 @@
 
         </ion-row>
 
-        <ion-row>
+        <ion-row class="row">
           <ion-col size="12" size-lg="6"  size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label>Opening Balance:</ion-label>
-              <ion-input type="text"></ion-input>
+            <ion-item lines="none" >
+              <ion-label class="label-width">Opening Balance:</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" size-lg="6"  size-md="6" size-sm="6">
             <ion-item lines="none">
-              <ion-label>Closing Balance:</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-label class="label-width">Closing Balance:</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin: 20px auto;">
+        <ion-row class="row" style="margin: 20px auto;">
           <ion-segment [(ngModel)]="selectTabs">
             <ion-segment-button value="Address">
               <ion-label>Address</ion-label>
@@ -93,12 +92,12 @@
             </ion-segment-button>
           </ion-segment>
         </ion-row>
-        <ion-row>
+        <ion-row class="row">
           <div *ngIf="selectTabs == 'Address'">
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Print Name :</ion-label>
-                <ion-input type="text" placeholder="Enter Name"></ion-input>
+                <ion-label class="label-width">Print Name :</ion-label>
+                <ion-input class="input-width" type="text" placeholder="Enter Name"></ion-input>
               </ion-col>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-label>DOB :</ion-label>
@@ -107,17 +106,17 @@
             </ion-row>
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Address :</ion-label>
-                <ion-input type="text" placeholder="Enter Address"></ion-input>
+                <ion-label class="label-width">Address :</ion-label>
+                <ion-input class="input-width" type="text" placeholder="Enter Address"></ion-input>
               </ion-col>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-label>Pincode :</ion-label>
-                <ion-input type="number" placeholder="Enter Pincode"></ion-input>
+                <ion-label class="label-width">Pincode :</ion-label>
+                <ion-input class="input-width" type="number" placeholder="Enter Pincode"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="4" size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-label>Select Country :</ion-label>
+                <ion-label class="label-width">Select Country :</ion-label>
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
                   justify="space-between">
                   <ion-select-option value="India">India</ion-select-option>

@@ -2,8 +2,8 @@
   <ion-toolbar><ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button style="float: left;"  (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+    <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -12,55 +12,42 @@
   <ion-card>
     <ion-card-content>
       <ion-grid class="add_quot">
-       
+
         <ion-row>
-          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-                <ion-label>Quota. No. :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
-                <ion-input type="text" placeholder=""></ion-input>
-              </ion-col>
-            </ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Quotation No.</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
-                <ion-label>Quotation Date :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-                <ion-input type="date" ></ion-input>
-              </ion-col>
-            </ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Quotation Date.</ion-label>
+              <ion-input class="input-width" type="date"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="7" size-md="12" size-sm="6" size="12">
-                <ion-label> Customer Group :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-                <select name="" id="">
-                  <option value="1">--Select--</option>
-                  <option value="2">sds</option>
-                  <option value="3">ssd</option>
-                </select>
-              </ion-col>
-            </ion-row>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Quotation Group.</ion-label>
+             <select class="select-width">
+                 <option value="1">--Select--</option>
+                 <option value="2">Nirbahy</option>
+                 <option value="3">Yogesh</option>
+             </select>
+            </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="3" size-md="12" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-                <ion-label>Tax Group  :</ion-label>
-              </ion-col>
-              <ion-col size="12" size-lg="5" size-md="12" size-sm="6" size="12">
-                <select name="" id="">
-                  <option value="1">--Select--</option>
-                  <option value="2">sds</option>
-                  <option value="3">ssd</option>
-                </select>
-              </ion-col>
-            </ion-row>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Tax Group :</ion-label>
+              <select class="select-width">
+                <option value="1">--Select--</option>
+                <option value="2">Nirbahy</option>
+                <option value="3">Yogesh</option>
+            </select>
+            </ion-item>
           </ion-col>
         </ion-row>
 
@@ -69,7 +56,7 @@
             Add
           </ion-button>
           <ion-button color="warning">
-           save
+            save
           </ion-button>
           <ion-button color="warning">
             View
@@ -116,7 +103,7 @@
                       <option value="2">Milk</option>
                     </select>
                   </td>
-                  <td> 
+                  <td>
                     <input class="add_input" type="number">
                   </td>
                   <td>
@@ -127,10 +114,10 @@
                       <option value="2">Liter</option>
                     </select>
                   </td>
-                  <td> 
+                  <td>
                     <input class="add_input" type="number">
                   </td>
-                  <td> 
+                  <td>
                     <input class="add_input" type="number">
                   </td>
                   <td>
@@ -152,7 +139,7 @@
                   <td>
                     <input class="add_input" type="text">
                   </td>
-                 
+
                   <td>110</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>

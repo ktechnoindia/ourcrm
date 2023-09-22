@@ -227,6 +227,28 @@ ion-segment-button :hover {
 }
 
 
+ion-searchbar.custom {
+    --background: goldenrod;
+    --color: #000000;
+    --placeholder-color: #000000;
+    --icon-color: #000000;
+    --clear-button-color: #000000;
+    --border-radius: 4px;
+  }
+  
+  ion-searchbar.ios.custom {
+    --cancel-button-color: goldenrod;
+  }
+  
+  
+.hsn_manager ::-ms-value{
+    margin-left: 5px;
+}
+
+.row{
+    height: 40px;
+}
+
 ion-input {
     max-height: 30px;
     --background: transparent;
@@ -241,45 +263,61 @@ input:focus{
     transition: 0.1s all linear;
 }
 
-
 ion-input::before{
     box-shadow: 5px 5px 5px 0px (#ccc);
 }
-ion-label{
-    color: gray;
-}
-select {
-    min-height: 30px;
-    min-width: 350px;
-    border: 1px solid darkgray;
-    border-radius: 3px;
-   
-    text-align: center;
-}
+
+
 .vendor_select{
     max-width: 330px;
 }
-ion-label{
-    text-align: right;
-    margin-right: 20px;
-}
+
 ion-item {
     --background: transparent;
 }
 
-ion-textarea {
-    border: 1px solid goldenrod;
-}
-
 .label-width {
     min-width: 120px;
-    /* Adjust the width as needed */
     display: inline-block;
+    justify-content: right;
 }
 
 .input-width {
     width: calc(100% - 130px);
-    /* Adjust the width as needed (consider label width + some padding) */
     display: inline-block;
     max-height: 30px;
+}
+.select-width {
+    width: calc(100% - 120px);
+    display: inline-block;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    min-height: 30px;
+}
+.textarea-width{
+    width: calc(100% - 130px);
+    display: inline-block;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+   
+}
+
+table,
+th,
+td {
+    border: solid 1px black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 0px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
 }

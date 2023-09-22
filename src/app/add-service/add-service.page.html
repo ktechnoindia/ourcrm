@@ -14,51 +14,38 @@
   <ion-card>
     <ion-card-content>
       <ion-grid class="add_item">
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Item Description :</ion-label>
+              <ion-input class="input-width" type="text" ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Stock Type :</ion-label>
+              <select class="select-width" >
+                <option value="">Stock</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+                </select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
         <ion-row>
-          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>Item Description :</ion-label>
-            <ion-input type="text" placeholder="Enter ledger name"></ion-input>
-          </ion-col>
-          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>Stock Type :</ion-label>
-            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-              justify="space-between">
-              <ion-select-option value="">Stock</ion-select-option>
-              <ion-select-option value="">Non Stock(Asset)</ion-select-option>
-              <ion-select-option value="">Non Stock(Expense)</ion-select-option>
-              <ion-select-option value="">Service</ion-select-option>
-              <ion-select-option value="">Capital</ion-select-option>
-            </ion-select>
-          </ion-col>
-          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>HSN Code :</ion-label>
-            <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-              justify="space-between">
-              <ion-select-option value="">121</ion-select-option>
-              <ion-select-option value="">2324232</ion-select-option>
-              <ion-select-option value="">21322</ion-select-option>
-              <ion-select-option value="">2312</ion-select-option>
-              <ion-select-option value="">1313</ion-select-option>
-            </ion-select>
-          </ion-col>
-          <ion-col size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-button id="click-trigger" color="light">HSN code</ion-button>
-            <ion-popover trigger="click-trigger" triggerAction="click" size="auto">
-              <ng-template>
-                <ion-content class="ion-padding">
-                  <ion-row>
-                    <ion-label>HSN Code :</ion-label>
-                    <ion-input type="text" placeholder="Enter HSN Code"></ion-input>
-                  </ion-row>
-                  <ion-row>
-                    <ion-label>Unit :</ion-label>
-                    <ion-input type="text" placeholder="Enter HSN Code"></ion-input>
-                  </ion-row>
-                  <ion-row>
-                  </ion-row>
-                </ion-content>
-              </ng-template>
-            </ion-popover>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">HSN Code :</ion-label>
+              <select class="select-width">
+                <option value="">121</option>
+                <option value="">2324232</option>
+                <option value="">21322</option>
+                <option value="">2312</option>
+                <option value="">1313</option>
+              </select>
+            </ion-item>
           </ion-col>
 
         </ion-row>

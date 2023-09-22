@@ -37,61 +37,47 @@
           </ion-segment>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'follow-up'">
-            <ion-row>
-              <ion-col size="12" size-lg="6" size-md="12" size-sm="12" size="12">
-                <ion-row>
-                  <ion-col size="12" size-lg="5" size-md="12" size-sm="12" size="12">
-                    <ion-label> Next Follow Up date :</ion-label>
-                  </ion-col>
-                  <ion-col size="12" size-lg="4" size-md="12" size-sm="12" size="12">
-                    <ion-input type="date" placeholder="Enter Next Follow Up date"></ion-input>
-                  </ion-col>
-                </ion-row>
+          <div style="margin: 0 auto;" *ngIf="selectTabs == 'follow-up'">
+            <ion-row class="row">
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-item lines="none">
+                  <ion-label class="label-width">Next Follow Up Date:</ion-label>
+                  <ion-input class="input-width" type="date"></ion-input>
+                </ion-item>
               </ion-col>
-              <ion-col size="12" size-lg="6" size-md="12" size-sm="12" size="12">
-                <ion-row>
-                  <ion-col size="12" size-lg="3" size-md="12" size-sm="12" size="12">
-                    <ion-label> Remark :</ion-label>
-                  </ion-col>
-                  <ion-col size="12" size-lg="9" size-md="12" size-sm="12" size="12">
-                    <ion-textarea placeholder="Enter text here..."></ion-textarea>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-            </ion-row>
+            
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
+                <ion-label class="label-width">Remark:</ion-label>
+                <ion-textarea class="textarea-width"></ion-textarea>
+              </ion-item>
+            </ion-col>
+        </ion-row>
 
-            <ion-row style="justify-content: right;">
-              <ion-col  size="12" size-lg="12" size-md="12" size-sm="6" size="12">
-                <ion-button color="warning">New</ion-button>
-                <ion-button color="warning">Add</ion-button>
-                <ion-button color="warning">Save</ion-button>
-              </ion-col>
-            </ion-row>
 
-            <ion-row>
-              <table>
-                <tr>
-                  <th>SI NO.</th>
-                  <th>Date</th>
-                  <th>Remarks</th>
-                  <th>Next Follow Up</th>
-                  <th>Entered By</th>
-                </tr>
-                <tr>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
+        <ion-row style="margin-top: 60px;">
+          <table>
+            <tr>
+              <th>SI NO.</th>
+              <th>Date</th>
+              <th>Remarks</th>
+              <th>Next Follow Up</th>
+              <th>Entered By</th>
+            </tr>
+            <tr>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
+              <td><ion-input></ion-input></td>
 
-                </tr>
-              </table>
-            </ion-row>
-          </div>
+            </tr>
+          </table>
+        </ion-row>
+        </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Update'" style="margin: 20px 0;">
+          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Update'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -111,7 +97,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Transfer'" style="margin: 20px 0;">
+          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Transfer'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -133,7 +119,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Matching'" style="margin: 20px 0;">
+          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Matching'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -151,14 +137,13 @@
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
-
                 </tr>
               </table>
             </ion-row>
           </div>
         </ion-row>
         <ion-row>
-          <div *ngIf="selectTabs == 'Downloads'" style="margin: 20px 0;">
+          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Downloads'" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
@@ -172,8 +157,6 @@
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
-
-
                 </tr>
               </table>
             </ion-row>

@@ -4,63 +4,52 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
-   </ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <ion-grid class="add_sale">
-        <ion-row>
-          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" > Name: </ion-label>
-            <ion-input type="text" class="add_input"></ion-input>
+      <ion-grid>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Product Name :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Product Caty. :</ion-label>
+              <select class="select-width">
+                <option selected>-Select-</option>
+                <option value="1">Credit</option>
+                <option value="2">Cash</option>
+              </select>
+            </ion-item>
 
-          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" > Name: </ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Credit</option>
-              <option value="2">Cash</option>
-            </select>
-          </ion-col>
-
-          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" > Name: </ion-label>
-            <ion-input type="text" class="add_input"></ion-input>
-          </ion-col>
-         
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Product Name :</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Product Category :</ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Credit</option>
-              <option value="2">Cash</option>
-            </select>
-          </ion-col>
-          <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-label> Description :</ion-label>
-            <ion-input type="text"></ion-input>
           </ion-col>
         </ion-row>
-        <ion-row class="select1">
-          <ion-label> Applicate for HSN / SAC code for GST :</ion-label>
-          <select class="select2" aria-label="Default select example" id="transaction">
-            <option selected>-Select-</option>
-            <option value="1">Credit</option>
-            <option value="2">Cash</option>
-          </select>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Description :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Applicate for HSN / SAC code for GST :</ion-label>
+              <select class="select-width" aria-label="Default select example" id="transaction">
+                <option selected>-Select-</option>
+                <option value="1">Credit</option>
+                <option value="2">Cash</option>
+              </select>
+            </ion-item>
+          </ion-col>
         </ion-row>
 
         <div style="width: 300px; line-height: 25px; border: 2px solid black; margin: 10px auto;">
@@ -71,125 +60,145 @@
           </ion-row>
         </div>
 
-        <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Delr. Price :</ion-label>
-            <ion-input type="number"></ion-input>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Delr. Price :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Op. Qty :</ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Op. Price :</ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>Purc. Price :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Op. Qty :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Cl. Qty :</ion-label>
-            <ion-input type="number"></ion-input>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Op. Price :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
+
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Avg. Price :</ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> MRP Price :</ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>Sale. Price :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Purc. Price :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Wrnt. Price:</ion-label>
-            <ion-input type="number"></ion-input>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Cl. Qty :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Max. Stock :</ion-label>
-            <ion-input type="number"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Avg. Price :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Min. Stock :</ion-label>
-            <ion-input type="number"></ion-input>
+        </ion-row>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> MRP Price :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label>Tax % age :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Sale. Price :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Conversion Factor for Lubricant:</ion-label>
-            <ion-input type="text"></ion-input>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Wrnt. Price:</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Part Loc :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Max. Stock :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Product Category :</ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Credit</option>
-              <option value="2">Cash</option>
-            </select>
+        </ion-row>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Min. Stock :</ion-label>
+              <ion-input class="input-width" type="number"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Product Category :</ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Credit</option>
-              <option value="2">Cash</option>
-            </select>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Tax % age :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
         <div style="width: 300px; line-height: 25px; border: 2px solid black; margin: 10px auto;">
           <ion-row>
             <ion-title class="heading_1">
-              <span class="dash">---</span> Posting A/c's <span  class="dash">---</span>
+              <span class="dash">---</span> Posting A/c's <span class="dash">---</span>
             </ion-title>
           </ion-row>
         </div>
-       
-        <ion-row>
-          <ion-col  size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label> Sales Posting-Ctr(CGST/SGST) :</ion-label>
-            <ion-input type="text"></ion-input>
+
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Sales Posting-Ctr(CGST/SGST) :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
-        <ion-col size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label> Sales Posting-Wks(IGST) :</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-col>
-          <ion-col  size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label> Sales Posting-Wks(VAT) :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Sales Posting-Wks(IGST) :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col  size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label> Purchase A/c(CGST/SGST) :</ion-label>
-            <ion-input type="text"></ion-input>
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Sales Posting-Wks(VAT) :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label>   Purchase A/c(IGST) :</ion-label>
-            <ion-input type="text"></ion-input>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width"> Purchase A/c(CGST/SGST) :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
           </ion-col>
-          <ion-col  size="6" size-lg="4" size-md="6" size-sm="6" size="12">
-            <ion-label>   Purchase A/c(VAT) :</ion-label>
-            <ion-input type="text"></ion-input>
+        </ion-row>
+
+        <ion-row class="row">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label  class="label-width" > Purchase A/c(IGST) :</ion-label>
+              <ion-input  class="input-width"  type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item>
+              <ion-label  class="label-width" > Purchase A/c(VAT) :</ion-label>
+              <ion-input  class="input-width"  type="text"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
 
@@ -197,7 +206,7 @@
           <ion-button color="warning">Save</ion-button>
           <ion-button color="danger">Cancel</ion-button>
         </ion-row>
-      
+
       </ion-grid>
     </ion-card-content>
   </ion-card>

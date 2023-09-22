@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+  <ion-toolbar>
+    <ion-title>Add Item</ion-title>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -12,32 +14,36 @@
   <ion-card class="hsn_manager">
     <ion-card-content>
       <ion-grid>
-       
-        <ion-row>
 
-          <ion-col class="label_input"   size="3" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" >HSN Code: </ion-label>
-            <ion-input class="add_input" style="width: 140px;"></ion-input>
+        <ion-row class="row">
+          <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-item lines="none">
+              <ion-label class="label-width">HSN Code: </ion-label>
+              <ion-input class="input-width" style="width: 140px;"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col class="label_input"  size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-item  lines="none">
+              <ion-label class="label-width">Unit: </ion-label>
+              <ion-input class="input-width" style="width: 140px;"></ion-input>
+            </ion-item>
           </ion-col>
-
-          <ion-col class="label_input"   size="3" size-lg="2" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" >Unit: </ion-label>
-            <ion-input class="add_input" style="width: 140px;"></ion-input>
-          </ion-col>
-
-          <ion-col class="label_input"   size="6" size-lg="7" size-md="6" size-sm="6" size="12">
-            <ion-label class="add_label" >Description: </ion-label>
-            <ion-textarea class="add_textarea"></ion-textarea>
-          </ion-col>
-
         </ion-row>
 
-        <ion-row style="justify-content: right;">
+        <ion-row  >
+          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Description: </ion-label>
+              <ion-textarea class="textarea-width"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="row" style="justify-content: right; margin-right: 20px;">
           <ion-button color="warning">
             Add
           </ion-button>
           <ion-button color="warning">
-           Save
+            Save
           </ion-button>
           <ion-button color="warning">
             View
@@ -45,9 +51,11 @@
           <ion-button color="warning">
             Close
           </ion-button>
+      
         </ion-row>
-       
-<div class="div" style="border-bottom: solid 2px goldenrod; width: 100%; margin-top: 10px;margin-bottom: 10px;"></div>
+
+        <div class="div" style="border-bottom: solid 2px goldenrod; width: 100%; margin-top: 10px;margin-bottom: 10px;">
+        </div>
 
         <ion-row>
           <ion-col size="12">
@@ -57,28 +65,28 @@
         <ion-row>
           <div class="tables" style="overflow-x:auto;">
             <div class="row">
-                <table>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>HSN Code</th>
-                        <th>Unit</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>wddsfd df fad asd</td>
-                        <td>
-                            <ion-icon class="create" name="create"></ion-icon>
-                            <ion-icon class="delete" name="trash"></ion-icon>
-                        </td>
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>HSN Code</th>
+                  <th>Unit</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>123</td>
+                  <td>123</td>
+                  <td>wddsfd df fad asd</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
 
-                    </tr>
-                </table>
+                </tr>
+              </table>
             </div>
-        </div>
+          </div>
         </ion-row>
       </ion-grid>
     </ion-card-content>

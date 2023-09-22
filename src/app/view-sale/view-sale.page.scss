@@ -1,55 +1,4 @@
 
-ion-header{
-    --background-color:#000;
-    text-align: center;
-}
-
-ion-title{
-    font-weight: bold;
-    color: goldenrod;
-}
-ion-card {
-    position: relative;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-ion-item {
-    --background: transparent;
-    --border-color: #000000;
-    /* You can adjust the border color as needed */
-    height: 50px;
-
-}
-
-ion-input {
-    --background: transparent;
-    --color: #000000;
-    /* You can adjust the text color as needed */
-}
-.add_sale_label{
-    font-size: 25px;
-    color: #000;
-}
-
-.add_sale ion-input {
-    border: solid 1.5px goldenrod;
-    border-radius: 3px;
-    background-color: #fff;
-    font-size: 13px;
-    min-height: 25px;
-   
-}
-.add_sale ion-label {
-    font-weight: bold;
-    color: goldenrod;
-    text-decoration: underline;
-    font-size: 16px;
-}
-ion-radio{
-    color: goldenrod;
-    font-size: 16px;
-}
-
 .tables{
     width: 100%;
     // border-radius: 5px;
@@ -73,12 +22,3 @@ td{
 th {
     background-color: #000;
 }
-.delete {
-    color: red;
-    font: 10px;
-}
-.create {
-    color: rgb(24, 24, 204);
-    font: 10px;
-}
-
