@@ -25,22 +25,19 @@ ion-menu.md ion-content {
     --padding-end: 0px;
     --padding-top: 0px;
     --padding-bottom: 20px;
-
-
 }
 
 ion-app ion-menu {
     width: 200px;
-
 }
 
 ion-menu.md ion-list {
-    padding: 20px 0;
+    // padding: 20px 0;
     color: goldenrod;
 }
 
 ion-menu.md ion-note {
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
 }
 
 ion-menu.md ion-list-header,
@@ -49,41 +46,37 @@ ion-menu.md ion-note {
 }
 
 ion-menu.md ion-list#inbox-list {
-    border-bottom: 1px solid var(--ion-color-step-150, #000000);
+    // border-bottom: 1px solid var(--ion-color-step-150, #000000);
 }
 
 ion-menu.md ion-list#inbox-list ion-list-header {
     font-size: 22px;
     font-weight: 600;
-
-    min-height: 20px;
+    // min-height: 20px;
 }
 
 ion-menu.md ion-list#labels-list ion-list-header {
-    font-size: 16px;
-
-    margin-bottom: 18px;
-
-    color: goldenrod;
-
-    min-height: 26px;
+    // font-size: 16px;
+    // margin-bottom: 18px;
+    // color: goldenrod;
+    // min-height: 26px;
 }
 
 ion-menu.md ion-item {
-    --padding-start: 10px;
-    --padding-end: 10px;
-    border-radius: px;
-    border-bottom: #000000 solid 1px;
+    // --padding-start: 10px;
+    // --padding-end: 10px;
+    // border-radius: px;
+    // border-bottom: #000000 solid 1px;
 
 
 }
 
 ion-menu.md ion-item.selected {
-    --background: rgba(var(--ion-color-primary-rgb), 0.14);
+    --background: #f5f5dc;
 }
 
 ion-menu.md ion-item.selected ion-icon {
-    color: var(--ion-color-primary);
+    color: #525252;
 }
 
 ion-menu.md ion-item ion-icon {
@@ -172,22 +165,55 @@ ion-icon :hover {
 ion-buttons {
     width: 100%;
     text-align: left;
-    /* Adjust alignment as needed */
 }
 
-/* Optionally, adjust the ion-menu-button icon alignment */
 ion-menu-button {
     margin-left: 10px;
-    /* Adjust the margin as needed */
 }
 
-
-// add-sale start
 app-root {
     background-color: bisque;
 }
 
-// add-sale end
+.master_window {
+    text-align: center;
+    background-color: #e5e4e2;
+    height: 100%;
+}
+.master_logo {
+    justify-content: center;
+    background-color: #555555;
+}
+.master_logo img {
+    padding: 10px 0;
+    height: 90px;
+    width: 160px;
+}
+.master {
+    margin: 30px auto;
+    width: 160px;
+    color: #525252;
+    transition: all 0.5s linear;
+    box-shadow: none;
+    
+}
+.master:hover {
+    background-color: #525252;
+    // text-indent: 5px;
+    transform: translateY(5px); 
+}
+ion-card-subtitle{
+    font-size: 19px;
+}
+
+
+.master ion-icon {
+    color: goldenrod;
+    font-size: 40px;
+}
+.master a {
+    text-decoration: none;
+}
 
 ion-toolbar ion-icon {
     font-size: 26px;
@@ -258,15 +284,6 @@ ion-input {
     padding: 8px; 
     max-width: 350px;
 }
-input:focus{
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    transition: 0.1s all linear;
-}
-
-ion-input::before{
-    box-shadow: 5px 5px 5px 0px (#ccc);
-}
-
 
 .vendor_select{
     max-width: 330px;
