@@ -230,18 +230,33 @@ ion-segment-button :hover {
 ion-input {
     max-height: 30px;
     --background: transparent;
-    border: 1px solid goldenrod;
+    border: 1px solid darkgray;
     font-size: 14px;
     border-radius: 3px;
+    padding: 8px; 
+    max-width: 350px;
+}
+input:focus{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: 0.1s all linear;
 }
 
-ion-select {
-    min-height: 30px;
-    max-width: 230px;
-    border: 1px solid goldenrod;
-    border-radius: 3px;
+
+ion-input::before{
+    box-shadow: 5px 5px 5px 0px (#ccc);
 }
-.Vendor_select{
+ion-label{
+    color: gray;
+}
+select {
+    min-height: 30px;
+    min-width: 350px;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+   
+    text-align: center;
+}
+.vendor_select{
     max-width: 330px;
 }
 ion-label{

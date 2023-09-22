@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
+  
   <ion-toolbar>
-    <ion-title>Add Vendor</ion-title>
+    
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -12,9 +13,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-card>
     <ion-card-content>
       <ion-grid>
+        <ion-title style="text-align: center; font-size: 30px;">Add Vendor</ion-title>
         <ion-row>
 
           <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -38,11 +41,12 @@
           <ion-col size="12" size-lg="6"  size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Group Name :</ion-label>
-              <ion-select class="Vendor_select" Placeholder="--Select--"  interface="popover">
-                <ion-select-option value="India">India</ion-select-option>
-                <ion-select-option value="UK">UK</ion-select-option>
-                <ion-select-option value="USA">USA</ion-select-option>
-              </ion-select>
+              <select class="vendor_select">
+                <option value="India">--Select--</option>
+                <option value="India">India</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+              </select>
             </ion-item>
           </ion-col>
 
