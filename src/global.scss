@@ -67,12 +67,11 @@ ion-menu.md ion-item {
     // --padding-end: 10px;
     // border-radius: px;
     // border-bottom: #000000 solid 1px;
-
-
 }
 
 ion-menu.md ion-item.selected {
     --background: #f5f5dc;
+    border-radius: 50px;
 }
 
 ion-menu.md ion-item.selected ion-icon {
@@ -191,10 +190,11 @@ app-root {
 }
 .master {
     margin: 30px auto;
-    width: 160px;
+    width: 150px;
     color: #525252;
     transition: all 0.5s linear;
     box-shadow: none;
+    border-radius: 45%;
     
 }
 .master:hover {
