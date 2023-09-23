@@ -13,6 +13,11 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+
+.container{
+    width: 1100px;
+    margin: 0 auto;
+}
 ion-item {
     --background-hover: var(--background);
     --ripple-color: transparent;
@@ -288,7 +293,7 @@ ion-item {
     max-height: 30px;
 }
 .select-width {
-    width: calc(100% - 130px);
+    // width: calc(100% - 130px);
     display: inline-block;
     border: 1px solid darkgray;
     border-radius: 3px;

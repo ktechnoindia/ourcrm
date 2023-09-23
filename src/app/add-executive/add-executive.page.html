@@ -10,10 +10,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="hsn_manager">
-    <ion-card-content>
+  <div class="container">
       <ion-grid>
-        
         <ion-row class="row">
           <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
@@ -91,30 +89,22 @@
             <ion-input type="text" class="input-width"></ion-input>
             </ion-item>
           </ion-col>
-
           <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width" >Legder: </ion-label>
               <ion-input type="text" class="input-width"></ion-input>
             </ion-item>
           </ion-col>
-
         </ion-row> 
-
         <ion-row>
-         
-         
           <ion-col style="display: flex; justify-content: right; align-items: center;">
           <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
-
             <ion-button color="warning">New</ion-button>
             <ion-button color="warning">Save</ion-button>
             <ion-button color="warning">Delete</ion-button>
             <ion-button color="warning">Close</ion-button>
-
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-content>
-  </ion-card>
+</div>
 </ion-content>

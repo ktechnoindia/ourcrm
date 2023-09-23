@@ -4,119 +4,105 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid class="signup">
+  <div class="signup">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-lg="6">
+          <ion-card class="card1">
+            <img src="../../assets/ktechno-removebg-preview.png" alt="">
+          </ion-card>
+        </ion-col>
 
-        <ion-row>
-          <ion-col size="4" class="logo">
-            <img src="./assets/ktechno-removebg-preview.png" alt="">
-          </ion-col>
-          <ion-col size="8" class="form">
-            <ion-card>
-              <ion-row style="justify-content: center;">
-                <H1>Signup</H1>
-              </ion-row>
+        <ion-col size="12" size-lg="6">
+          <ion-card class="card2">
+            <ion-row style="justify-content: center;">
+              <h1>Sign Up</h1>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="text" label="First Name" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="text" label="Last Name" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+            </ion-row>
 
-              <ion-row>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input icon="person" label="First Name" label-placement="floating" fill="solid" type="text"
-                    placeholder="Enter First Name"></ion-input>
-                </ion-col>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input label="Last Name" label-placement="floating" fill="solid" type="text"
-                    placeholder="Enter Last Name"></ion-input>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input label="Email" label-placement="floating" fill="solid" type="Email"
-                    placeholder="Enter Email Addres"></ion-input>
-                </ion-col>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input label="Phone Number" label-placement="floating" fill="solid" type="tel"
-                    placeholder="Enter Phone Number"></ion-input>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input label="Password" label-placement="floating" fill="solid" type="password"
-                    placeholder="Enter Password"></ion-input>
-                </ion-col>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-input label="Cunfrum Password" label-placement="floating" fill="solid" type="password"
-                    placeholder="Renter the Password "></ion-input>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="6" size-lg="6" size-md="6" size-sm="6" size="12">
-                  <ion-select color="success" label="Select Country"  label-placement="floating"
-                    class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                    justify="space-between">
-                    <ion-select-option value="India">India</ion-select-option>
-                    <ion-select-option value="UK">UK</ion-select-option>
-                    <ion-select-option value="UAE">UAE</ion-select-option>
-                    <ion-select-option value="CANADA">CANADA</ion-select-option>
+            <ion-row>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="number" label="Mobile Number" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="email" label="Email" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+            </ion-row>
 
-                  </ion-select>
-                </ion-col>
-                <ion-col size="6" size-lg="" size-md="6" size-sm="6" size="12">
-                  <ion-select color="success" label="How you found me"  label-placement="floating"
-                    class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
-                    placeholder="How do you hear about us?" justify="space-between">
-                    <ion-select-option>How do you hear about us?</ion-select-option>
-                    <ion-select-option>Social</ion-select-option>
-                    <ion-select-option>Field Sales</ion-select-option>
-                    <ion-select-option>Channel Partners</ion-select-option>
-                    <ion-select-option>Tele-calling Team</ion-select-option>
-                    <ion-select-option>Enterprise</ion-select-option>
-                    <ion-select-option>International</ion-select-option>
-                    <ion-select-option>Others</ion-select-option>
+            <ion-row>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="text" label="Password" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <ion-input class="sign_input" type="text" label="Confirm Password" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-col>
+            </ion-row>
 
+            <ion-row>
+              <ion-col size="12" size-lg="6">
+                <select class="sign_select" id="countrySelect">
+                  <option value="1">----Country----</option>
+                  <option value="USA">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="France">France</option>
+                  <option value="Japan">Japan</option>
+                  <option value="China">China</option>
+                  <option value="India">India</option>
+                  <option value="Brazil">Brazil</option>
+                </select>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <select class="sign_select" id="hearAbout">
+                  <option value="1">----How to you hear about me----</option>
+                  <option value="Google">Google</option>
+                  <option value="Social Media">Social Media</option>
+                  <option value="Friend or Family">Friend or Family</option>
+                  <option value="Advertisement">Advertisement</option>
+                  <option value="News Article">News Article</option>
+                  <option value="Other">Other</option>
+                </select>
+              </ion-col>
+            </ion-row>
 
-                  </ion-select>
-                </ion-col>
-              </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="6">
+                <ion-checkbox labelPlacement="end">I read and accept <a href="#"> Terms & Conditions</a></ion-checkbox>
+              </ion-col>
+            </ion-row>
 
+            <ion-row style="justify-content: center;">
+              <ion-button>Signup Now</ion-button>
+            </ion-row>
 
-              <ion-row>
-                <ion-checkbox></ion-checkbox>
-                <h6 style="margin-left: 5px;">I read & accept </h6><span
-                  style="margin-left: 5px; color: goldenrod; font-weight: bold;">Terms & Conditions</span>
-              </ion-row>
-              <ion-row style="justify-content:center;">
-                <ion-button style="width: 200px;" color="warning">Signup Now</ion-button>
-              </ion-row>
-              <ion-row style="justify-content:center; color: black; font-weight: bold;">
-                Or Signup With
-              </ion-row>
-              <ion-row style="justify-content:center; font-size: 22px;">
-                <a href="">
-                  <ion-icon name="logo-google" >Google</ion-icon>
-                </a>
-                <a href="">
-                  <ion-icon name="logo-facebook">Facebook</ion-icon>
-                </a>
-                <a href="">
-                  <ion-icon name="logo-instagram">Instagram</ion-icon>
-                </a>
-              </ion-row>
-              <ion-row style="justify-content:center; color: black; font-weight: bold;">
-                Already have an account ? <a style="margin-left: 10px; text-decoration: none; color: goldenrod;" href="../login">Login
-                  Here</a>
-              </ion-row>
-            </ion-card>
+            <ion-row style="justify-content: center;">
+              <p>Do you have an account? <a href="/login">Login here</a></p>
+            </ion-row>
 
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </ion-card-content>
-  </ion-card>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

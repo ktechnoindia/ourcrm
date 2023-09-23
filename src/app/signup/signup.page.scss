@@ -1,108 +1,45 @@
-ion-card{
+ion-content {
+    --background: rgba(0, 0, 0, 0.9);
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+.signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.card1 {
+    --background: transparent;
+    margin-left: 50px;
+}
+
+.card2 {
+    --background: transparent;
+    border: 1px solid white;
+    padding: 10px 30px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.sign_select {
+    min-height: 50px;
+    background: transparent;
+    width: 295px;
+    border: 1px solid white;
+    border-radius: 3px;
     text-align: center;
-    background-color: black;
-    border: solid 2px goldenrod;
-    border-radius: 5px 0px 5px 0px 
-}
-.form ion-card{
-    background-color: #ffffff;
-    padding: 10px;
-position: relative;
-}
-.signup h1{
-    text-align: center;
-    color:goldenrod;
-font-size: 26px;
-font-weight: bold;
-text-decoration: underline;
-text-transform: capitalize;
-}
-.form a ion-icon{
-    color: goldenrod;
-}
-.form h6{
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-}
-.form ion-input{
-    border: solid 2px goldenrod;
-    border-radius: 5px 0px 5px 0px ;
-    background-color: #fff;
-}
-.form ion-select{
-    border: solid 2px goldenrod;
-    border-radius: 5px 0px 5px 0px ;
-    background-color: #fff;
+    font-size: 17px;
 }
 
-.signup img{
-    margin-top: 120px;
-    
+.sign_select:hover {
+    border: 0.5px solid white;
 }
 
-@media(max-width:540px){
-    .logo{
-        display: none;
-        visibility: hidden;
-    }
-    .form ion-card{
-        width: 500px;
-        margin-left: -17px;
-        border: solid 2px goldenrod;
-
-    }
-    ion-card{
-        background-color: #000000;
-        border: none;
-    }
-}
-@media(max-width:414px){
-    .form ion-card{
-        width: 390px;
-        margin-top: -20px;
-        margin-left: -25px;
-
-    }
-    ion-card{
-        background-color: #ffffff;
-    }
-}
-@media(max-width:393px){
-    .form ion-card{
-        width: 370px;
-        margin-top: -20px;
-        margin-left: -25px;
-
-    }
-   
-}
-@media(max-width:375px){
-    .form ion-card{
-        width: 355px;
-        margin-top: -20px;
-        margin-left: -25px;
-        border-radius: 5px 5px 5px 5px 
-
-    }
-   
-}
-@media(max-width:360px){
-    .form ion-card{
-        width: 340px;
-        margin-top: -20px;
-        margin-left: -25px;
-        border-radius: 5px 5px 5px 5px 
-
-    }
-   
-}
-@media(max-width:280px){
-    .form ion-card{
-        width: 255px;
-        margin-top: -20px;
-        margin-left: -25px;
-        border-radius: 5px 5px 5px 5px 
-
-    }
-   
+.sign_input {
+    border: none;
+    outline: none;
 }
