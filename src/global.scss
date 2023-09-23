@@ -29,6 +29,7 @@ ion-menu.md ion-content {
 
 ion-app ion-menu {
     width: 200px;
+    // display: none;
 }
 
 ion-menu.md ion-list {
@@ -40,7 +41,7 @@ ion-menu.md ion-note {
     // margin-bottom: 30px;
 }
 
-ion-menu.md ion-list-header,
+
 ion-menu.md ion-note {
     padding-left: 10px;
 }
@@ -49,23 +50,17 @@ ion-menu.md ion-list#inbox-list {
     // border-bottom: 1px solid var(--ion-color-step-150, #000000);
 }
 
-ion-menu.md ion-list#inbox-list ion-list-header {
-    font-size: 22px;
-    font-weight: 600;
-    // min-height: 20px;
-}
-
-ion-menu.md ion-list#labels-list ion-list-header {
-    // font-size: 16px;
-    // margin-bottom: 18px;
-    // color: goldenrod;
-    // min-height: 26px;
+.home{
+    color: #525252;
+    border: goldenrod solid 1.5px;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 ion-menu.md ion-item {
-    // --padding-start: 10px;
-    // --padding-end: 10px;
-    // border-radius: px;
+    --padding-start: 30px;
+    --padding-end: 20px;
+    border-radius: 50px;
     // border-bottom: #000000 solid 1px;
 }
 
@@ -120,11 +115,7 @@ ion-menu.ios ion-item ion-icon {
     color: goldenrod;
 }
 
-ion-menu.ios ion-list#labels-list ion-list-header {
-    margin-bottom: 8px;
-}
 
-ion-menu.ios ion-list-header,
 ion-menu.ios ion-note {
     padding-left: 16px;
     padding-right: 16px;
@@ -149,26 +140,17 @@ ion-menu-toggle ion-label {
     font-weight: 100;
 }
 
-ion-list-header {
-    color: goldenrod;
-}
 
-ion-select-option {
-    color: goldenrod;
-}
 
 ion-icon :hover {
     color: #000000;
 }
 
-ion-buttons {
-    width: 100%;
-    text-align: left;
-}
 
 ion-menu-button {
-    margin-left: 10px;
+    margin-left: 10px;      
 }
+
 
 app-root {
     background-color: bisque;
@@ -194,12 +176,13 @@ app-root {
     color: #525252;
     transition: all 0.5s linear;
     box-shadow: none;
-    border-radius: 45%;
+    border-radius: 10%;
+    // border: 1px solid goldenrod;
     
 }
 .master:hover {
     background-color: #525252;
-    // text-indent: 5px;
+    // font-size: 25px;
     transform: translateY(5px); 
 }
 ion-card-subtitle{
@@ -224,12 +207,14 @@ ion-toolbar ion-icon {
 }
 
 ion-header ion-title {
-    text-align: center;
     color: goldenrod;
     font-weight: bold;
-    margin-top: -25px;
-    padding-top: -25px;
-    padding-bottom: 5px;
+}
+
+span{
+    color: goldenrod;
+    font-size: 25px;
+    margin: 10px;
 }
 
 ion-card {
@@ -254,7 +239,7 @@ ion-segment-button :hover {
 
 
 ion-searchbar.custom {
-    --background: goldenrod;
+    // --background: goldenrod;
     --color: #000000;
     --placeholder-color: #000000;
     --icon-color: #000000;
@@ -263,7 +248,7 @@ ion-searchbar.custom {
   }
   
   ion-searchbar.ios.custom {
-    --cancel-button-color: goldenrod;
+    // --cancel-button-color: goldenrod;
   }
   
   
@@ -285,9 +270,7 @@ ion-input {
     max-width: 350px;
 }
 
-.vendor_select{
-    max-width: 330px;
-}
+
 
 ion-item {
     --background: transparent;
@@ -305,7 +288,7 @@ ion-item {
     max-height: 30px;
 }
 .select-width {
-    width: calc(100% - 120px);
+    width: calc(100% - 130px);
     display: inline-block;
     border: 1px solid darkgray;
     border-radius: 3px;
