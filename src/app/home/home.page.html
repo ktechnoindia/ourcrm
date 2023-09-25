@@ -1,29 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Master Window</ion-title>
+    <ion-title>Home </ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons> </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true" class="home">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <p>Welcome To The K-techno CRM</p>
-        </ion-row>
-        <ion-row>
-            <ion-button color="warning" href="../signup" >Sign Up</ion-button>
-        </ion-row>
-        <ion-row>
-            <ion-button color="warning" href="../login">Login</ion-button>
-        </ion-row>
-        <ion-row>
-            <ion-button color="warning" href="../master">Goto Master</ion-button>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+<ion-content class="home_page" [fullscreen]="true">
+  <div class="signup">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-lg="6">
+          <ion-card class="card1">
+            <img src="../../assets/ktechno-removebg-preview.png" alt="">
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-lg="6">
+          <ion-card class="card3">
+            <ion-row style="justify-content: center;">
+              <h1 style="color: goldenrod;font-size: 35px;font-weight: bold;">Welcome to K Techno CRM</h1>
+            </ion-row>
+            <ion-row>
+             <ion-button [routerLink]="'/signup'" color="undefined" class="home_buttons">Signup Now</ion-button>
+            </ion-row>
+
+            <ion-row>
+              <ion-button [routerLink]="'/login'" color="undefined" class="home_buttons">Login </ion-button>
+            </ion-row>
+
+            <ion-row>
+              <ion-button [routerLink]="'/master'" color="undefined" class="home_buttons">Go to Master</ion-button>
+            </ion-row>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
