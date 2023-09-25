@@ -1,16 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Add Sales</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
+  <div class="container">
   <ion-card>
     <ion-card-content>
       <ion-grid class="add_sale">
@@ -45,6 +46,7 @@
 
         <ion-row style="justify-content: right; margin: 10px 0;">
           <ion-col style="display: flex; justify-content: right; align-items: center;">
+            <ion-button color="warning">Go to Excel</ion-button>
             <ion-button color="warning">Ok</ion-button>
             <ion-button color="warning">Close</ion-button>
           </ion-col>
@@ -102,4 +104,5 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+</div>
 </ion-content>

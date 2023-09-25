@@ -1,14 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Dc-In</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="container">
   <ion-card class="dc_in">
     <ion-card-content>
       <ion-grid> 
@@ -67,6 +70,7 @@
         </ion-row>
 
         <ion-row style="justify-content: right; margin: 10px 0;">
+          <ion-button color="warning">Go to Excel</ion-button>
           <ion-button color="warning">
             Add
           </ion-button>
@@ -130,8 +134,8 @@
             </div>
         </div>
         </ion-row>
-
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>

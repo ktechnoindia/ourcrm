@@ -1,341 +1,348 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
     <ion-title>Add Item</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="container">
-      <ion-grid class="add_item">
-        <ion-row class="row">
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label class="label-width">Item Description :</ion-label>
-              <ion-input class="label-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Stock Type: </ion-label>
-              <select class="select-width">
-                <option value="">Stock</option>
-                <option value="">Non Stock(Asset)</option>
-                <option value="">Non Stock(Expense)</option>
-                <option value="">Service</option>
-                <option value="">Capital</option>
-              </select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">HSN Code: </ion-label>
-              <select  class="select-width">
-                <option value="">Stock</option>
-                <option value="">Non Stock(Asset)</option>
-                <option value="">Non Stock(Expense)</option>
-                <option value="">Service</option>
-                <option value="">Capital</option>
-              </select>
-            </ion-item>
-          </ion-col>
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Item Group: </ion-label>
-              <select  class="select-width">
-                <option value="">--Select--</option>
-                <option value="">Non Stock(Asset)</option>
-                <option value="">Non Stock(Expense)</option>
-                <option value="">Service</option>
-                <option value="">Capital</option>
-              </select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Primary Unit: </ion-label>
-              <select  class="select-width">
-                <option value="">--Select--</option>
-                <option value="">Non Stock(Asset)</option>
-                <option value="">Non Stock(Expense)</option>
-                <option value="">Service</option>
-                <option value="">Capital</option>
-              </select>
-            </ion-item>
-          </ion-col>
-        
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Alternate Unit: </ion-label>
-              <select  class="select-width">
-                <option value="">--Select--</option>
-                <option value="">Non Stock(Asset)</option>
-                <option value="">Non Stock(Expense)</option>
-                <option value="">Service</option>
-                <option value="">Capital</option>
-              </select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+      <div class="container">
+        <ion-card>
+          <ion-card-content>
+        <ion-grid class="add_item">
+          <ion-row class="row">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
+                <ion-label class="label-width">Item Description :</ion-label>
+                <ion-input class="label-width" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Stock Type: </ion-label>
+                <select class="select-width">
+                  <option value="">Stock</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">HSN Code: </ion-label>
+                <select class="select-width">
+                  <option value="">Stock</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Item Group: </ion-label>
+                <select class="select-width">
+                  <option value="">--Select--</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Primary Unit: </ion-label>
+                <select class="select-width">
+                  <option value="">--Select--</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
 
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">GST Rate: </ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Alternate Unit: </ion-label>
+                <select class="select-width">
+                  <option value="">--Select--</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Opening Balance: </ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">GST Rate: </ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
 
-        <ion-row class="row">
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Opening Balance: </ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="row">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
                 <ion-label class="label-width">Closing Balance: </ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-        <ion-row style="margin: 20px auto; width: 100%;">
-          <ion-segment [(ngModel)]="selectTabs">
-            <ion-segment-button value="General">
-              <ion-label>General</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Image">
-              <ion-label>Image</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Barcode">
-              <ion-label>Barcode </ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Other">
-              <ion-label>Other Details</ion-label>
-            </ion-segment-button>
-          </ion-segment>
-        </ion-row>
-        <ion-row>
-          <div style="margin: 0 auto;" *ngIf="selectTabs == 'General'">
-            <ion-row>
-              <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-                <ion-button size="small">Opening Balance</ion-button>
-              </ion-col>
-              <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-                <ion-button size="small"> Delete Opening Balance</ion-button>
-              </ion-col>
-              <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-                <ion-checkbox>Serial No.</ion-checkbox>
-              </ion-col>
+          <ion-row style="margin: 20px auto; width: 100%;">
+            <ion-segment [(ngModel)]="selectTabs">
+              <ion-segment-button value="General">
+                <ion-label>General</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="Image">
+                <ion-label>Image</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="Barcode">
+                <ion-label>Barcode </ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="Other">
+                <ion-label>Other Details</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-row>
+          <ion-row>
+            <div style="margin: 0 auto;" *ngIf="selectTabs == 'General'">
+              <ion-row>
+                <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+                  <ion-button size="small">Opening Balance</ion-button>
+                </ion-col>
+                <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+                  <ion-button size="small"> Delete Opening Balance</ion-button>
+                </ion-col>
+                <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+                  <ion-checkbox>Serial No.</ion-checkbox>
+                </ion-col>
 
 
-            </ion-row>
-            <ion-row>
-              <table>
-                <tr>
-                  <th>Reference No.</th>
-                  <th>Vendor</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Value</th>
-                </tr>
-                <tr>
-                  <td><ion-input class="add_input"></ion-input></td>
-                  <td><ion-input class="add_input"></ion-input></td>
-                  <td><ion-input class="add_input"></ion-input></td>
-                  <td><ion-input class="add_input"></ion-input></td>
-                  <td><ion-input class="add_input"></ion-input></td>
+              </ion-row>
+              <ion-row>
+                <table>
+                  <tr>
+                    <th>Reference No.</th>
+                    <th>Vendor</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Value</th>
+                  </tr>
+                  <tr>
+                    <td><ion-input class="add_input"></ion-input></td>
+                    <td><ion-input class="add_input"></ion-input></td>
+                    <td><ion-input class="add_input"></ion-input></td>
+                    <td><ion-input class="add_input"></ion-input></td>
+                    <td><ion-input class="add_input"></ion-input></td>
 
-                </tr>
-                <tr>
-                  <td colspan="4"></td>
-                  <td colspan="4">
-                    <ion-input class="add_input" label="Total Quantity" label-placement="floating" fill="solid"
-                      type="text" placeholder="0.000"></ion-input>
-                    <ion-input class="add_input" label=" Value " label-placement="floating" fill="solid" type="text"
-                      placeholder="0.00"></ion-input>
-                  </td>
-                </tr>
+                  </tr>
+                  <tr>
+                    <td colspan="4"></td>
+                    <td colspan="4">
+                      <ion-input class="add_input" label="Total Quantity" label-placement="floating" fill="solid"
+                        type="text" placeholder="0.000"></ion-input>
+                      <ion-input class="add_input" label=" Value " label-placement="floating" fill="solid" type="text"
+                        placeholder="0.00"></ion-input>
+                    </td>
+                  </tr>
 
-              </table>
-            </ion-row>
-          </div>
-          <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
-            <ion-row>
+                </table>
+              </ion-row>
+            </div>
+            <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
+              <ion-row>
 
-              <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-                <ion-label class="add_label">Image: </ion-label>
-                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-                <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
-              </ion-col>
-              <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-                <ion-checkbox>Serial No.</ion-checkbox>
-              </ion-col>
+                <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+                  <ion-label class="add_label">Image: </ion-label>
+                  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                  <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
+                </ion-col>
+                <ion-col class="label_input" size="3" size-lg="4" size-md="6" size-sm="6" size="12">
+                  <ion-checkbox>Serial No.</ion-checkbox>
+                </ion-col>
 
-            </ion-row>
-            <ion-row>
-              <div class="imgage" style="height: 250px; width: 250px; border: 1px solid grey;"></div>
-            </ion-row>
+              </ion-row>
+              <ion-row>
+                <div class="imgage" style="height: 250px; width: 250px; border: 1px solid grey;"></div>
+              </ion-row>
 
-          </div>
-          <div *ngIf="selectTabs == 'Barcode'">
-            <h4>EAN Code Details</h4>
-            <ion-row>
-              <ion-label>EAN Code :</ion-label>
-              <ion-input type="text" placeholder="0.00"></ion-input>
-            </ion-row>
-            <h4>Company Code Details</h4>
-
-            <ion-row>
-              <ion-col size="4">
-                <ion-checkbox>Standard</ion-checkbox>
-              </ion-col>
-              <ion-col size="4">
-                <ion-select color="success" label="" label-placement="floating" class="always-flip"
-                  toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
-                  <ion-select-option value="">Box</ion-select-option>
-                  <ion-select-option value="">Case</ion-select-option>
-                  <ion-select-option value="">ltr</ion-select-option>
-                  <ion-select-option value="">cm</ion-select-option>
-                  <ion-select-option value="">ft</ion-select-option>
-                </ion-select>
-              </ion-col>
-              <ion-col size="4">
-                <ion-input label="" label-placement="floating" fill="solid" type="text" placeholder="0.00"></ion-input>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="4">
-                <ion-checkbox>Complex</ion-checkbox>
-              </ion-col>
-              <ion-col size="4">
-                <ion-checkbox>Fixed</ion-checkbox>
-                <ion-checkbox>Separate by Character</ion-checkbox>
-              </ion-col>
-              <ion-col size="4">
-                <ion-select color="success" label="" label-placement="floating" class="always-flip"
-                  toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
-                  <ion-select-option value="">Box</ion-select-option>
-                  <ion-select-option value="">Case</ion-select-option>
-                  <ion-select-option value="">ltr</ion-select-option>
-                  <ion-select-option value="">cm</ion-select-option>
-                  <ion-select-option value="">ft</ion-select-option>
-                </ion-select>
-
-                <ion-input label="" label-placement="floating" fill="solid" type="text" placeholder="0.00"></ion-input>
-              </ion-col>
-
-            </ion-row>
-            <ion-row>
-              <ion-checkbox>None</ion-checkbox>
-            </ion-row>
-          </div>
-          <div *ngIf="selectTabs == 'Other'">
-            <h1>Others Details</h1>
-            <div style="border-bottom: 1px solid grey; width: 100%;"></div>
-            <h4>Quantity Levels</h4>
-            <ion-row>
-              <ion-col size="4">
-                <ion-label>Minimum :</ion-label>
+            </div>
+            <div *ngIf="selectTabs == 'Barcode'">
+              <h4>EAN Code Details</h4>
+              <ion-row>
+                <ion-label>EAN Code :</ion-label>
                 <ion-input type="text" placeholder="0.00"></ion-input>
-              </ion-col>
-              <ion-col size="4"> <ion-label>Item Description :</ion-label>
-                <ion-label>Maximum :</ion-label>
-                <ion-input type="text" placeholder="0.00"></ion-input>
-              </ion-col>
-              <ion-col size="4">
-                <ion-label>Re-Order :</ion-label>
-                <ion-input type="text" placeholder="0.00"></ion-input>
-              </ion-col>
-            </ion-row>
-            <div style="border-bottom: 1px solid grey; width: 100%;"></div>
-            <ion-row>
-              <ion-col size="4" style="border: 1px solid grye;">
-                <h4>Dimension & Weight</h4>
-                <ion-label>Dimension :</ion-label>
-                <ion-input type="text" placeholder="0.000"></ion-input>
-                <ion-label>Weight :</ion-label>
-                <ion-input type="text" placeholder="0.000"></ion-input>
-                <ion-label>Unit of Weight :</ion-label>
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
-                  justify="space-between">
-                  <ion-select-option value="">Box</ion-select-option>
-                  <ion-select-option value="">Case</ion-select-option>
-                  <ion-select-option value="">ltr</ion-select-option>
-                  <ion-select-option value="">cm</ion-select-option>
-                  <ion-select-option value="">ft</ion-select-option>
-                </ion-select>
-              </ion-col>
-              <ion-col size="8" style="border: 1px solid grye;">
-                <h4>Others</h4>
-                <ion-row>
-                  <ion-col size="6">
-                    <ion-label>Model No. :</ion-label>
-                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
-                      placeholder="India" justify="space-between">
-                      <ion-select-option value="">Box</ion-select-option>
-                      <ion-select-option value="">Case</ion-select-option>
-                      <ion-select-option value="">ltr</ion-select-option>
-                      <ion-select-option value="">cm</ion-select-option>
-                      <ion-select-option value="">ft</ion-select-option>
-                    </ion-select>
-                    <ion-label>Brand Name :</ion-label>
-                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
-                      placeholder="India" justify="space-between">
-                      <ion-select-option value="">Box</ion-select-option>
-                      <ion-select-option value="">Case</ion-select-option>
-                      <ion-select-option value="">ltr</ion-select-option>
-                      <ion-select-option value="">cm</ion-select-option>
-                      <ion-select-option value="">ft</ion-select-option>
-                    </ion-select>
-                    <ion-label>Category :</ion-label>
-                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
-                      placeholder="India" justify="space-between">
-                      <ion-select-option value="">Capital Item</ion-select-option>
-                      <ion-select-option value="">Components</ion-select-option>
-                      <ion-select-option value="">Cosumables</ion-select-option>
-                      <ion-select-option value="">Row Material</ion-select-option>
-                      <ion-select-option value="">Resale Items</ion-select-option>
-                    </ion-select>
-                  </ion-col>
-                  <ion-col size="6">
-                    <ion-label>Part NO. :</ion-label>
-                    <ion-input type="text" placeholder=""></ion-input>
-                    <ion-label>Retailer Profit Margin % :</ion-label>
-                    <ion-input type="text" placeholder="0.000"></ion-input>
-                    <ion-label>Dealer Profit Margin % :</ion-label>
-                    <ion-input type="text" placeholder="0.000"></ion-input>
-                  </ion-col>
+              </ion-row>
+              <h4>Company Code Details</h4>
 
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </div>
-        </ion-row>
-        <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-checkbox>Standard</ion-checkbox>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-select color="success" label="" label-placement="floating" class="always-flip"
+                    toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
+                    <ion-select-option value="">Box</ion-select-option>
+                    <ion-select-option value="">Case</ion-select-option>
+                    <ion-select-option value="">ltr</ion-select-option>
+                    <ion-select-option value="">cm</ion-select-option>
+                    <ion-select-option value="">ft</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-input label="" label-placement="floating" fill="solid" type="text"
+                    placeholder="0.00"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-checkbox>Complex</ion-checkbox>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-checkbox>Fixed</ion-checkbox>
+                  <ion-checkbox>Separate by Character</ion-checkbox>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-select color="success" label="" label-placement="floating" class="always-flip"
+                    toggleIcon="caret-down-sharp" interface="popover" placeholder="India" justify="space-between">
+                    <ion-select-option value="">Box</ion-select-option>
+                    <ion-select-option value="">Case</ion-select-option>
+                    <ion-select-option value="">ltr</ion-select-option>
+                    <ion-select-option value="">cm</ion-select-option>
+                    <ion-select-option value="">ft</ion-select-option>
+                  </ion-select>
 
-        <ion-row style="justify-content: right;">
-          <ion-button color="warning">Copy</ion-button>
-          <ion-button color="warning">HSN Search</ion-button>
-          <ion-button color="warning">New</ion-button>
-          <ion-button color="warning">Save</ion-button>
-          <ion-button color="warning">Delete</ion-button>
-          <ion-button color="warning">Report</ion-button>
-          <ion-button color="warning">Close</ion-button>
+                  <ion-input label="" label-placement="floating" fill="solid" type="text"
+                    placeholder="0.00"></ion-input>
+                </ion-col>
 
-        </ion-row>
-      </ion-grid>
-</div>
+              </ion-row>
+              <ion-row>
+                <ion-checkbox>None</ion-checkbox>
+              </ion-row>
+            </div>
+            <div *ngIf="selectTabs == 'Other'">
+              <h1>Others Details</h1>
+              <div style="border-bottom: 1px solid grey; width: 100%;"></div>
+              <h4>Quantity Levels</h4>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>Minimum :</ion-label>
+                  <ion-input type="text" placeholder="0.00"></ion-input>
+                </ion-col>
+                <ion-col size="4"> <ion-label>Item Description :</ion-label>
+                  <ion-label>Maximum :</ion-label>
+                  <ion-input type="text" placeholder="0.00"></ion-input>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-label>Re-Order :</ion-label>
+                  <ion-input type="text" placeholder="0.00"></ion-input>
+                </ion-col>
+              </ion-row>
+              <div style="border-bottom: 1px solid grey; width: 100%;"></div>
+              <ion-row>
+                <ion-col size="4" style="border: 1px solid grye;">
+                  <h4>Dimension & Weight</h4>
+                  <ion-label>Dimension :</ion-label>
+                  <ion-input type="text" placeholder="0.000"></ion-input>
+                  <ion-label>Weight :</ion-label>
+                  <ion-input type="text" placeholder="0.000"></ion-input>
+                  <ion-label>Unit of Weight :</ion-label>
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" placeholder="India"
+                    justify="space-between">
+                    <ion-select-option value="">Box</ion-select-option>
+                    <ion-select-option value="">Case</ion-select-option>
+                    <ion-select-option value="">ltr</ion-select-option>
+                    <ion-select-option value="">cm</ion-select-option>
+                    <ion-select-option value="">ft</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-col size="8" style="border: 1px solid grye;">
+                  <h4>Others</h4>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-label>Model No. :</ion-label>
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                        placeholder="India" justify="space-between">
+                        <ion-select-option value="">Box</ion-select-option>
+                        <ion-select-option value="">Case</ion-select-option>
+                        <ion-select-option value="">ltr</ion-select-option>
+                        <ion-select-option value="">cm</ion-select-option>
+                        <ion-select-option value="">ft</ion-select-option>
+                      </ion-select>
+                      <ion-label>Brand Name :</ion-label>
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                        placeholder="India" justify="space-between">
+                        <ion-select-option value="">Box</ion-select-option>
+                        <ion-select-option value="">Case</ion-select-option>
+                        <ion-select-option value="">ltr</ion-select-option>
+                        <ion-select-option value="">cm</ion-select-option>
+                        <ion-select-option value="">ft</ion-select-option>
+                      </ion-select>
+                      <ion-label>Category :</ion-label>
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover"
+                        placeholder="India" justify="space-between">
+                        <ion-select-option value="">Capital Item</ion-select-option>
+                        <ion-select-option value="">Components</ion-select-option>
+                        <ion-select-option value="">Cosumables</ion-select-option>
+                        <ion-select-option value="">Row Material</ion-select-option>
+                        <ion-select-option value="">Resale Items</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label>Part NO. :</ion-label>
+                      <ion-input type="text" placeholder=""></ion-input>
+                      <ion-label>Retailer Profit Margin % :</ion-label>
+                      <ion-input type="text" placeholder="0.000"></ion-input>
+                      <ion-label>Dealer Profit Margin % :</ion-label>
+                      <ion-input type="text" placeholder="0.000"></ion-input>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-row>
+          <div style="border-bottom: solid 2px goldenrod; width: 100%; margin: 5px;"></div>
+
+          <ion-row style="justify-content: right;">
+            <ion-button color="warning">Go to Excel</ion-button>
+            <ion-button color="warning">Copy</ion-button>
+            <ion-button color="warning">HSN Search</ion-button>
+            <ion-button color="warning">New</ion-button>
+            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning">Delete</ion-button>
+            <ion-button color="warning">Report</ion-button>
+            <ion-button color="warning">Close</ion-button>
+          </ion-row>
+        </ion-grid>
+          </ion-card-content>
+        </ion-card>
+  </div>
 </ion-content>

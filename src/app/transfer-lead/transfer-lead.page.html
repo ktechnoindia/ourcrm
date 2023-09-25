@@ -1,13 +1,14 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Transfer Lead</ion-title>
+   </ion-item>
   </ion-toolbar>
-</ion-header>
+</ion-header>>
 
 <ion-content>
   <div class="container">
@@ -45,7 +46,7 @@
         </ion-row>
 
         <ion-row style="float: right; margin: 10px 0;">
-           <ion-button color="warning">Open To Excel</ion-button>
+          <ion-button color="warning">Go to Excel</ion-button>
            <ion-button color="warning">PDF Download</ion-button>
         </ion-row>
       </ion-grid>

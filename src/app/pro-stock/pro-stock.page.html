@@ -1,15 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Pro-Stock</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="container">
   <ion-card>
     <ion-card-content>
       <ion-grid class="Pro-Stock">
@@ -192,9 +194,8 @@
 
           </ion-row>
         </div>
-<ion-row>
-  <ion-col size="6">
-
+      <ion-row>
+       <ion-col size="6">
         <ion-row style="justify-content: center; margin-top: 10px;">
           <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="12">
             <div style="border-bottom: solid 2px goldenrod;"></div>
@@ -254,9 +255,8 @@
         </ion-row>
       </ion-col>
       </ion-row>
-
-
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>

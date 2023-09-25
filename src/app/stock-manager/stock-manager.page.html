@@ -1,31 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Stock Manager</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
 <ion-card>
   <ion-card-content>
     <ion-grid class="add_sale">
-      <ion-row style="justify-content: right;">
-        <ion-button color="warning">
-          <ion-icon class="add" name="add"></ion-icon>
-        </ion-button>
-        <ion-button color="warning">
-          <ion-icon class="show" name="eye"></ion-icon>
-        </ion-button>
-        <ion-button color="warning">
-          <ion-icon class="save" name="save"></ion-icon>
-        </ion-button>
-        <ion-button color="warning">
-          <ion-icon class="delete" name="close-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-row>
       <ion-row>
         <ion-col size="12">
           <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
@@ -74,6 +63,21 @@
               </table>
           </div>
       </div>
+      </ion-row>
+
+      <ion-row style="justify-content: right;margin-top: 10px;">
+        <ion-button color="warning">
+          go to excel
+        </ion-button>
+        <ion-button color="warning">
+          view
+        </ion-button>
+        <ion-button color="warning">
+        save
+        </ion-button>
+        <ion-button color="warning">
+       delete
+        </ion-button>
       </ion-row>
 
     </ion-grid>

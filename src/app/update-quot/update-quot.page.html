@@ -1,18 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button style="float: left;" (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Quotation Update</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="container">
   <ion-card>
     <ion-card-content>
       <ion-grid class="add_quot">
-        
         <ion-row>
           <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
@@ -52,6 +54,7 @@
         </ion-row>
 
         <ion-row style="justify-content: right;">
+          <ion-button color="warning">Go to Excel</ion-button>
           
           <ion-button color="warning">
            Print
@@ -64,14 +67,6 @@
           </ion-button>
 
         </ion-row>
-
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-content>
-      <ion-grid class="add_quot">
 
         <ion-row>
           <div class="tables" style="overflow-x:auto;">
@@ -153,4 +148,5 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+</div>
 </ion-content>

@@ -1,11 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
-    </ion-button>
-    <ion-title style="text-align: center; color: goldenrod;font-weight: bold;">Add Lead</ion-title>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Add Lead</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -147,6 +148,7 @@
         </ion-row>
 
         <ion-row style="justify-content: right; margin-top: 50px;">
+          <ion-button color="warning">Go to Excel</ion-button>
           <ion-button size="default" color="warning">New</ion-button>
           <ion-button color="warning">Edit</ion-button>
           <ion-button color="warning">Save</ion-button>

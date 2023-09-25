@@ -1,110 +1,115 @@
-<ion-header [translucent]="true">
-  <ion-toolbar><ion-buttons slot="start">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()"  name="arrow-back"></ion-icon>
-    </ion-button>
-    <ion-title >Add Executive</ion-title>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Add Exicutive</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
-      <ion-grid>
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width" >Group Name: </ion-label>
-              <select class="select-width">
-                <option value="1">--Select--</option>
-                <option value="1">--India--</option>
-                <option value="1">--USA--</option>
-                <option value="1">--Canada--</option>
-              </select>
-            </ion-item>
-          </ion-col>
-          
-          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width" > Name: </ion-label>
-              <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="row">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Group Name: </ion-label>
+                <select class="select-width">
+                  <option value="1">--Select--</option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
+              </ion-item>
+            </ion-col>
 
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Manager: </ion-label>
-            <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width"> Name: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row class="row">
 
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Mobile Number: </ion-label>
-            <ion-input type="text" class="input-width" ></ion-input>
-            </ion-item>
-          </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Manager: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
 
-        </ion-row>
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Email: </ion-label>
-            <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Mobile Number: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
 
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >PAN No. : </ion-label>
-            <ion-input type="text" class="input-width" ></ion-input>
-            </ion-item>
-          </ion-col>
+          </ion-row>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Email: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
 
-        </ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">PAN No. : </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
 
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Area: </ion-label>
-            <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
+          </ion-row>
 
-          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Group: </ion-label>
-            <ion-input type="text" class="input-width" ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Area: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
 
-        <ion-row class="row">
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-            <ion-label class="label-width" >Commission: </ion-label>
-            <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width" >Legder: </ion-label>
-              <ion-input type="text" class="input-width"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row> 
-        <ion-row>
-          <ion-col style="display: flex; justify-content: right; align-items: center;">
-          <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-</div>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Group: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="row">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Commission: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-item lines="none">
+                <ion-label class="label-width">Legder: </ion-label>
+                <ion-input type="text" class="input-width"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="display: flex; justify-content: right; align-items: center;">
+              <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Close</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

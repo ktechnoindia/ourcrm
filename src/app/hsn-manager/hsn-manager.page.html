@@ -1,17 +1,19 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Add New HSN</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-button (click)="goBack()" fill="clear" class="custom-back-button">
-      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>
-    </ion-button>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>HSN Manager</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
+    <ion-card>
+     <ion-card-content>
       <ion-grid>
         <ion-row class="row">
           <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
@@ -37,6 +39,7 @@
           </ion-col>
         </ion-row>
         <ion-row class="row" style="justify-content: right; margin-right: 20px;">
+          <ion-button color="warning">Go to Excel</ion-button>
           <ion-button color="warning">
             Add
           </ion-button>
@@ -87,5 +90,7 @@
           </div>
         </ion-row>
       </ion-grid>
+     </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
