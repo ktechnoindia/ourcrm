@@ -180,7 +180,9 @@ app-root {
 
 .card1 {
     --background: transparent;
-    margin-left: 50px;
+    padding-left: 100px;
+    padding-top: 70px;
+
 }
 
 .card2 {
@@ -237,7 +239,6 @@ app-root {
 .sign_select {
     min-height: 50px;
     background: transparent;
-    width: 295px;
     border: 1px solid white;
     border-radius: 3px;
     text-align: center;
@@ -369,12 +370,13 @@ ion-input {
     border: 1px solid darkgray;
     font-size: 14px;
     border-radius: 3px;
-    padding: 8px;
-    max-width: 350px;
+    padding: 8px; 
 }
 
 
-
+.label-width ion-label{
+   
+}
 ion-item {
     --background: transparent;
 }
@@ -383,7 +385,8 @@ ion-item {
     min-width: 120px;
     display: inline-block;
     justify-content: right;
-    font-size: 13px;
+    font-size: 109px;
+    color: darkgray;
 }
 
 .input-width {
@@ -427,4 +430,14 @@ td {
 
 th {
     background-color: #f2f2f2;
+}
+ion-title{
+    text-align: center;
+    margin-top: -25px;
+    padding-bottom: 15px;   
+    padding-top: -10px;
+}
+.custom-back-button{
+margin-top: 15px;
+
 }

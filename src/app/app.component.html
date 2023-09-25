@@ -71,6 +71,14 @@
 
 <ion-app>
   <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" >
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header routerLink="/home"><ion-icon name="home-outline" style="margin-right: 20px; color:goldenrod; font-weight: bold;  border: #000000 solid 1.5px;
+              border-radius: 50%;
+              padding: 5px;"></ion-icon> Dashboard</ion-list-header>
+          <!-- <ion-note>Go to Home</ion-note>-->
+          <div class="div" style="  border-bottom: #000000 solid 2px;margin-top: 5px;  width: 100%;"></div>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
