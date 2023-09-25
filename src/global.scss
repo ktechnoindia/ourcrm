@@ -210,10 +210,11 @@ app-root {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    // padding: 20px 0;
+    padding: 10px 30px;
     border: 1px solid white;
 }
-.card4 ion-row{
+
+.card4 ion-row {
     padding: 5px 0;
     width: 100%;
     display: flex;
@@ -370,13 +371,12 @@ ion-input {
     border: 1px solid darkgray;
     font-size: 14px;
     border-radius: 3px;
-    padding: 8px; 
+    padding: 8px;
 }
 
 
-.label-width ion-label{
-   
-}
+.label-width ion-label {}
+
 ion-item {
     --background: transparent;
 }
@@ -431,13 +431,15 @@ td {
 th {
     background-color: #f2f2f2;
 }
-ion-title{
+
+ion-title {
     text-align: center;
     margin-top: -25px;
-    padding-bottom: 15px;   
+    padding-bottom: 15px;
     padding-top: -10px;
 }
-.custom-back-button{
-margin-top: 15px;
+
+.custom-back-button {
+    margin-top: 15px;
 
 }
