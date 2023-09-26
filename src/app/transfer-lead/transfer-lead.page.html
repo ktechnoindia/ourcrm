@@ -3,54 +3,42 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-   <ion-item lines="none">
-    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
-    <ion-title>Transfer Lead</ion-title>
-   </ion-item>
+    <ion-item lines="none">
+      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+      <ion-title>Transfer Lead</ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>>
 
 <ion-content>
   <div class="container">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <table>
-            <tr>
-              <th>SI NO.</th>
-              <th>Lead Id</th>
-              <th>Lead Date</th>
-              <th>Company</th>
-              <th>Dealer</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td>
-                <select aria-label="Default select example" id="transaction">
-                  <option selected>-Select-</option>
-                  <option value="1">Credit</option>
-                  <option value="2">Cash</option>
-                </select>
-              </td>
-              <td>
-                <ion-icon name="share"></ion-icon>
-              </td>
+    <ion-card>
+      <ion-card-content>
+        <table style="overflow-x: auto;">
+          <tr>
+            <th>Sr No.</th>
+            <th>Lead Id</th>
+            <th>Lead Date</th>
+            <th>Company</th>
+            <th>Dealer</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td><input class="table_input" type="text"></td>
+            <td><input class="table_input" type="text"></td>
+            <td><input class="table_input" type="text"></td>
+            <td><input class="table_input" type="text"></td>
+            <td><input class="table_input" type="text"></td>
+            <td>Actions D</td>
+          </tr>
 
-            </tr>
-          </table>
-        </ion-row>
-
-        <ion-row style="float: right; margin: 10px 0;">
+        </table>
+        <div style="float: right;margin-top: 10px;">
           <ion-button color="warning">Go to Excel</ion-button>
-           <ion-button color="warning">PDF Download</ion-button>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div>
+          <ion-button color="warning">PDF Download</ion-button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

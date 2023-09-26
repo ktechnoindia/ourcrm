@@ -15,22 +15,22 @@
   <ion-card>
   <ion-card-content>
     <ion-grid class="view_quot">
-      <ion-row class="row">
-        <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="month" labelPlacement="end" alignment="start">Monthly</ion-radio>
+      <ion-row >
+        <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="month" labelPlacement="end" alignment="start">Monthly</ion-radio>
             <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="quartly" labelPlacement="end" alignment="start">Quartly</ion-radio>
             <ion-radio color="warning" value="view_sale" name="year" labelPlacement="end" alignment="start">Yearly</ion-radio>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
-         <ion-item lines="none">
+        <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-item lines="none">
           <ion-label class="label-width"> From :</ion-label>
           <ion-input class="input-width" type="date"></ion-input>
          </ion-item>
         </ion-col>
-        <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
+        <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
           <ion-item lines="none">
            <ion-label class="label-width"> To :</ion-label>
            <ion-input class="input-width" type="date"></ion-input>
@@ -39,30 +39,13 @@
 
       </ion-row>
 
-      <ion-row style="justify-content: right;">
-        <ion-button color="warning">Go to Excel</ion-button>
-        <ion-button color="warning">
-          Add
-        </ion-button>
-        <ion-button color="warning">
-          Print
-        </ion-button>
-        <ion-button color="warning">
-          View
-        </ion-button>
-        <ion-button color="warning">
-           Close
-        </ion-button>
-      </ion-row>
-
-      <ion-row>
+      <ion-row style="margin-top: 20px;">
         <ion-col size="12">
           <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
         </ion-col>
       </ion-row>
       <ion-row>
         <div class="tables" style="overflow-x:auto;">
-          <div class="row">
             <table>
               <tr>
                 <th>Sr.No.</th>
@@ -102,9 +85,9 @@
               </tr>
             </table>
           </div>
-        </div>
       </ion-row>
-      <ion-row style="justify-content: right;">
+
+      <ion-row style="justify-content: right; margin-top: 10px;">
         <ion-button color="warning">Ok</ion-button>
         <ion-button color="warning">Close</ion-button>
       </ion-row>

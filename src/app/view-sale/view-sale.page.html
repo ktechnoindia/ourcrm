@@ -5,7 +5,7 @@
     </ion-buttons>
    <ion-item lines="none">
     <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
-    <ion-title>Add Sales</ion-title>
+    <ion-title>View Sale</ion-title>
    </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
             BOOK</ion-title>
         </ion-row>
       
-        <ion-row class="row">
+        <ion-row>
           <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
               <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="month" labelPlacement="end" alignment="start">Monthly</ion-radio>
               <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="quartly" labelPlacement="end" alignment="start">Quartly</ion-radio>
@@ -29,13 +29,13 @@
         </ion-row>
   
         <ion-row>
-          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
-           <ion-item lines="none">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
             <ion-label class="label-width"> From :</ion-label>
             <ion-input class="input-width" type="date"></ion-input>
            </ion-item>
           </ion-col>
-          <ion-col  size-lg="6" size-md="6" size-sm="6" size="12">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
              <ion-label class="label-width"> To :</ion-label>
              <ion-input class="input-width" type="date"></ion-input>
@@ -43,18 +43,9 @@
            </ion-col>
   
         </ion-row>
-
-        <ion-row style="justify-content: right; margin: 10px 0;">
-          <ion-col style="display: flex; justify-content: right; align-items: center;">
-            <ion-button color="warning">Go to Excel</ion-button>
-            <ion-button color="warning">Ok</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-col>
-        </ion-row>
    
-        <ion-row>
-          <div class="tables" style="overflow-x:auto;">
-            <div class="row">
+        <ion-row style="margin-top: 30px;">
+          <div style="overflow-x:auto;">
               <table>
                 <tr>
                   <th>Sr.No.</th>
@@ -75,7 +66,7 @@
                     12
                   </td>
                   <td>
-                    <select style="width: 120px;" class="table-select" aria-label="Default select example"
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>-Select-</option>
                       <option value="1">Credit</option>
@@ -95,12 +86,19 @@
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
-
                 </tr>
               </table>
             </div>
-          </div>
         </ion-row>
+
+        <ion-row style="justify-content: right; margin: 10px 0;">
+          <ion-col style="display: flex; justify-content: right; align-items: center;">
+            <ion-button color="warning">Go to Excel</ion-button>
+            <ion-button color="warning">Ok</ion-button>
+            <ion-button color="warning">Close</ion-button>
+          </ion-col>
+        </ion-row>
+
       </ion-grid>
     </ion-card-content>
   </ion-card>

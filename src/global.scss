@@ -291,38 +291,20 @@ ion-card {
     font-family: 'Times New Roman', Times, serif;
 }
 
-ion-segment {
-    background-color: rgb(0, 0, 0);
-    border: solid 2px goldenrod;
+.images{
+    height: 250px; 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-ion-segment-button {
-    color: goldenrod;
-}
-
-ion-segment-button :hover {
-    color: rgb(255, 255, 255);
-}
-
-ion-searchbar.custom {
-    --background: goldenrod;
-    --color: #000000;
-    --placeholder-color: #000000;
-    --icon-color: #000000;
-    --clear-button-color: #000000;
-    --border-radius: 4px;
-}
-
-ion-searchbar.ios.custom {
-    // --cancel-button-color: goldenrod;
-}
-
-.hsn_manager ::-ms-value {
-    margin-left: 5px;
+.file{
+    font-size: 16px;
 }
 
 .row {
-    height: 40px;
+    height: 35px;
 }
 
 ion-item {
@@ -371,25 +353,75 @@ table,
 th,
 td {
     border: solid 1px black;
+    text-align: center;
 }
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 960px;
 }
 
-th,
-td {
-    padding: 0px;
+th{
+    background-color: #f2f2f2;
+}
+
+.table_input{
+    border: none;
+    outline: none;
     text-align: center;
 }
-
-th {
-    background-color: #f2f2f2;
+.table_select{
+    border: none;
+    outline: none;
+    text-align: center;
 }
 .back{
     padding: 3px;
 }
 .back:hover{
     background-color: rgba(255, 251, 251, 0.932);
+}
+
+
+
+@media screen and (max-width:600px){
+    .row {
+        height: 25px;
+    }
+    ion-input {
+        max-height: 20px;
+        --background: transparent;
+        border: 1px solid darkgray;
+        font-size: 12px;
+        border-radius: 3px;
+        padding: 5px;
+    }
+    .label-width {
+        min-width: 120px;
+        display: inline-block;
+        text-align: right;
+        color: darkgray;
+        font-size: 10px;
+    }
+    .input-width {
+        width: calc(100% - 130px);
+        display: inline-block;
+        max-height: 20px;
+    }
+    
+    .select-width {
+        width: calc(100% - 130px);
+        display: inline-block;
+        border: 1px solid darkgray;
+        border-radius: 3px;
+        min-height: 20px;
+    }
+    
+    .textarea-width {
+        width: calc(100% - 130px);
+        display: inline-block;
+        border: 1px solid darkgray;
+        border-radius: 3px;
+    }
+    
 }

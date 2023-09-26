@@ -15,15 +15,14 @@
   <ion-card class="dc_in">
     <ion-card-content>
       <ion-grid> 
-
         <ion-row>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width">Voucher No. :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width"> Date :</ion-label>
               <ion-input class="input-width" type="date"></ion-input>
@@ -32,7 +31,7 @@
         </ion-row>
 
         <ion-row>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width"> Suppliers :</ion-label>
              <select class="select-width">
@@ -42,7 +41,7 @@
              </select>
             </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width">Reference No. :</ion-label>
               <select class="select-width">
@@ -55,13 +54,13 @@
         </ion-row>
 
         <ion-row>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width"> Cash/Credit :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width"> Remark :</ion-label>
              <ion-textarea class="textarea-width"></ion-textarea>
@@ -69,25 +68,8 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="justify-content: right; margin: 10px 0;">
-          <ion-button color="warning">Go to Excel</ion-button>
-          <ion-button color="warning">
-            Add
-          </ion-button>
-          <ion-button color="warning">
-      Print
-          </ion-button>
-          <ion-button color="warning">
-            View
-          </ion-button>
-          <ion-button color="warning">
-           Save
-          </ion-button>
-        </ion-row>
-
         <ion-row>
-          <div class="tables" style="overflow-x:auto;">
-            <div class="row">
+          <div style="overflow-x:auto;margin-top: 80px;">
                 <table>
                     <tr>
                         <th>Sr.No.</th>
@@ -105,12 +87,12 @@
                     <tr>
                         <td>1</td>
                         <td>
-                          <input class="add_input" type="text">
+                          <input class="table_input" type="text">
                         </td>
                         <td>
-                            <select style="width: 120px;" class="table-select"
+                            <select style="width: 120px;" class="table_select"
                                 aria-label="Default select example" id="transaction">
-                                <option selected>-Select-</option>
+                                <option selected>--Select--</option>
                                 <option value="1">Credit</option>
                                 <option value="2">Cash</option>
                             </select>
@@ -118,7 +100,7 @@
                         <td>1</td>
                         <td>100</td>
                         <td>
-                          <input class="add_input" type="text">
+                          <input class="table_input" type="text">
                         </td>
                         <td>12</td>
                         <td>18</td>
@@ -131,9 +113,25 @@
 
                     </tr>
                 </table>
-            </div>
-        </div>
+             </div>
         </ion-row>
+
+        <ion-row style="justify-content: right; margin-top: 20px;">
+          <ion-button color="warning">Go to Excel</ion-button>
+          <ion-button color="warning">
+            Add
+          </ion-button>
+          <ion-button color="warning">
+           Print
+          </ion-button>
+          <ion-button color="warning">
+            View
+          </ion-button>
+          <ion-button color="warning">
+           Save
+          </ion-button>
+        </ion-row>
+
       </ion-grid>
     </ion-card-content>
   </ion-card>
