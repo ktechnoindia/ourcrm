@@ -262,10 +262,15 @@ ion-menu-button {
     background-color: #525252;
     // font-size: 25px;
     transform: translateY(5px);
+    color: #fff;
+}
+.master ion-card-subtitle:hover {
+    color: #fff;
 }
 
 ion-card-subtitle {
     font-size: 19px;
+
 }
 
 .master ion-icon {
