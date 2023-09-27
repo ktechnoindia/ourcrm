@@ -15,6 +15,18 @@
     <ion-card>
       <ion-card-content>
         <ion-grid>
+          <ion-row style="justify-content: right;">
+            <ion-icon id="left-start"  name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover  trigger="left-start"  size="auto" side="left" alignment="start">
+              <ng-template>
+                <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
+                <ion-button style="color: black;"  color="undefined">Delete</ion-button>
+                <ion-button style="color: black;" color="undefined">Edit</ion-button>
+                <ion-button style="color: black; " color="undefined" >Save</ion-button>
+              </ng-template>
+            </ion-popover>
+          </ion-row>
+
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
@@ -40,7 +52,12 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Manager: </ion-label>
-                <ion-input type="text" class="input-width"></ion-input>
+                <select class="select-width">
+                  <option value="1">--Select--</option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
               </ion-item>
             </ion-col>
 
@@ -80,7 +97,12 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Group: </ion-label>
-                <ion-input type="text" class="input-width"></ion-input>
+                <select class="select-width">
+                  <option value="1">--Select--</option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -95,18 +117,17 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Legder: </ion-label>
-                <ion-input type="text" class="input-width"></ion-input>
+                <select class="select-width">
+                  <option value="1">--Select--</option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row style="margin-top: 10px;float: right;">
-            <ion-col  size="12" size-lg="12" size-md="12" size-sm="6" >
-              <ion-button (click)="navigateToVieweExecutivePage()" color="success">View Exicutive</ion-button>
-              <ion-button color="warning">New</ion-button>
-              <ion-button color="warning">Save</ion-button>
-              <ion-button color="warning">Delete</ion-button>
               <ion-button color="warning">Close</ion-button>
-            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>

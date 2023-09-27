@@ -15,6 +15,44 @@
     <ion-card>
     <ion-card-content>
       <ion-grid>
+
+        <ion-row style="justify-content: right;">
+          <ion-icon id="left-start" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-popover  trigger="left-start"  size="auto" side="left" alignment="start">
+            <ng-template>
+              <ion-button style="color: black;"  color="undefined">Delete</ion-button>
+              <ion-button style="color: black;" color="undefined">Edit</ion-button>
+              <ion-button style="color: black; " color="undefined" >Save</ion-button>
+            </ng-template>
+          </ion-popover>
+        </ion-row>
+
+        <ion-row >
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Lead Owner:</ion-label>
+              <select class="select-width">
+                <option value="">--Select--</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
+            </ion-item>
+          </ion-col>
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Product Name:</ion-label>
+              <select class="select-width">
+                <option value="">--Select--</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
         <ion-row >
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
@@ -36,7 +74,24 @@
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Email :</ion-label>
+              <ion-input class="input-width" type="email"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-item lines="none">
+              <ion-label class="label-width">Country :</ion-label>
+              <select class="select-width">
+                <option value="1">--Select--</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              </select>
+            </ion-item>
+          </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width">State :</ion-label>
@@ -103,6 +158,7 @@
           </ion-col>
         </ion-row>
 
+
         <ion-row >
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
@@ -112,27 +168,18 @@
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
-              <ion-label class="label-width">Email :</ion-label>
-              <ion-input class="input-width" type="email"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-        <ion-row >
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Product Name :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
               <ion-label class="label-width">Reference :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
+              <select class="select-width">
+                <option value="">--Select--</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row style="margin-bottom: 50px;">
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
               <ion-label class="label-width">Map To :</ion-label>
@@ -146,13 +193,8 @@
             </ion-item>
           </ion-col>
         </ion-row>
-
-        <ion-row style="justify-content: right; margin-top: 50px;">
-          <ion-button color="warning">Go to Excel</ion-button>
-          <ion-button size="default" color="warning">New</ion-button>
-          <ion-button color="warning">Edit</ion-button>
-          <ion-button color="warning">Save</ion-button>
-          <ion-button color="warning">Close</ion-button>
+        <ion-row style="justify-content: right;">
+          <ion-button color="warning">Cancel</ion-button>
         </ion-row>
       </ion-grid>
     </ion-card-content>
