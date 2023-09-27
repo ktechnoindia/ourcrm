@@ -404,27 +404,23 @@ th{
         width: 100%;
     }
 }
-
-@media screen and (max-width:400px){
+@media screen and (max-width:420px){
     .row{
         .label-width {
-            min-width: 100px;
-            display: inline-block;
-            text-align: justify;
-            
+            min-width: 120px;
+            text-align: left;
         }
     }
+    
     .input-width {
-        min-width: 140px;
+        min-width: 120px;
     }
     
     .select-width {
-        min-width: 140px;
+        min-width: 120px;
     }
     
     .textarea-width {
-        min-width: 140px;
+        min-width: 120px;
     }
-    
 }
-
