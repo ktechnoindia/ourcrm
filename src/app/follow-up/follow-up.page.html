@@ -9,8 +9,10 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <ion-card class="follow-up">
+  <div class="container">
+  <ion-card >
     <ion-card-content>
       <ion-grid>
         <ion-row>
@@ -73,13 +75,13 @@
           </h6>
         </ion-row>
         <ion-row>
-          <ion-col class="row" size="6" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Lead Name :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col class="row" size="6" size-lg="6" size-md="6" size-sm="6">
+          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Company Name :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
@@ -88,29 +90,31 @@
 
         </ion-row>
         <ion-row>
-          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Email :</ion-label>
               <ion-input class="input-width" type="email"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Phone Number :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
             <ion-item lines="none">
               <ion-label class="label-width">Lead Status :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
             </ion-item>
           </ion-col>
-
-
         </ion-row>
+        
         <ion-row>
-          <div style="margin: 0 auto;" style="margin: 20px 0;">
+          <div style="margin: 20px 0;width: 100%;">
             <ion-row style=" overflow-x:auto;">
               <table>
                 <tr>
@@ -137,9 +141,8 @@
             </ion-row>
           </div>
         </ion-row>
-
-
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  </div>
 </ion-content>
