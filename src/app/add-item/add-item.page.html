@@ -15,11 +15,37 @@
     <ion-card>
       <ion-card-content>
         <ion-grid>
+          <ion-row style="justify-content: right;">
+            <ion-icon id="left-start"  name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover  trigger="left-start"  size="auto" side="left" alignment="start">
+              <ng-template>
+                <ion-button style="color: black;"  color="undefined">Delete</ion-button>
+                <ion-button style="color: black;" color="undefined">Edit</ion-button>
+                <ion-button style="color: black; " color="undefined" >Save</ion-button>
+              </ng-template>
+            </ion-popover>
+          </ion-row>
+
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Item Description :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
+                <ion-label class="label-width">Item code :</ion-label>
+                <ion-input class="input-width" type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+          
+          </ion-row>
+          <ion-row>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
+                <ion-label class="label-width">HSN Code: </ion-label>
+                <ion-input class="input-width" type="number"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
@@ -34,32 +60,7 @@
                 </select>
               </ion-item>
             </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
-                <ion-label class="label-width">HSN Code: </ion-label>
-                <select class="select-width">
-                  <option value="">Stock</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-item>
-            </ion-col>
-            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
-                <ion-label class="label-width">Item Group: </ion-label>
-                <select class="select-width">
-                  <option value="">--Select--</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-item>
-            </ion-col>
+          
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
@@ -93,19 +94,36 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">GST Rate: </ion-label>
-                <ion-input class="input-width" type="text"></ion-input>
+                <select class="select-width">
+                  <option value="1">--Select--</option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
               </ion-item>
             </ion-col>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-item lines="none">
+                <ion-label class="label-width">Item Group: </ion-label>
+                <select class="select-width">
+                  <option value="">--Select--</option>
+                  <option value="">Non Stock(Asset)</option>
+                  <option value="">Non Stock(Expense)</option>
+                  <option value="">Service</option>
+                  <option value="">Capital</option>
+                </select>
+              </ion-item>
+            </ion-col>
+          
+          </ion-row>
 
+          <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Opening Balance: </ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
               </ion-item>
             </ion-col>
-          </ion-row>
-
-          <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Closing Balance: </ion-label>
@@ -117,7 +135,7 @@
 
             <ion-segment style="border-bottom: 2px solid grey;" [(ngModel)]="selectTabs">
               <ion-segment-button style="border-right: 2px solid gray; color: #000;" value="General">
-                <ion-label>General</ion-label>
+                <ion-label>Attribute</ion-label>
               </ion-segment-button>
               <ion-segment-button style="border-right: 2px solid gray; color: #000;" value="Image">
                 <ion-label>Image</ion-label>
@@ -132,30 +150,35 @@
 
 
 
-            <div style="margin: 0 auto;" *ngIf="selectTabs == 'General'">
-              <table>
-                <tr>
-                  <th>Reference No.</th>
-                  <th>Vendor</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Value</th>
-                </tr>
-                <tr>
-                  <td><input class="table_input" type="text"></td>
-                  <td><input class="table_input" type="text"></td>
-                  <td><input class="table_input" type="text"></td>
-                  <td><input class="table_input" type="text"></td>
-                  <td><input class="table_input" type="text"></td>
-                </tr>
-                <tr>
-                  <td colspan="4"></td>
-                  <td> <ion-item>
-                      <ion-input style="outline: none; border: none;" label="Total Amount"
-                        placeholder="0.00"></ion-input>
-                    </ion-item></td>
-                </tr>
-              </table>
+            <div style="width: 100%; margin-bottom: 30px;" *ngIf="selectTabs == 'General'">
+              <ion-row>
+                <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-item lines="none">
+                    <ion-label class="label-width">Attribute 1 :</ion-label>
+                    <ion-input class="input-width" type="text" placeholder=""></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-item lines="none">
+                    <ion-label class="label-width">Attribute 2 :</ion-label>
+                    <ion-input class="input-width" type="text" placeholder=""></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-item lines="none">
+                    <ion-label class="label-width">Attribute 3 :</ion-label>
+                    <ion-input class="input-width" type="text" placeholder=""></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-item lines="none">
+                    <ion-label class="label-width">Attribute 4 :</ion-label>
+                    <ion-input class="input-width" type="text" placeholder=""></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
             </div>
 
             <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
@@ -252,7 +275,13 @@
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-item lines="none">
                     <ion-label class="label-width">Category :</ion-label>
-                    <ion-input class="input-width" type="text" placeholder=""></ion-input>
+                    <select class="select-width">
+                      <option value="">--Select--</option>
+                      <option value="">Non Stock(Asset)</option>
+                      <option value="">Non Stock(Expense)</option>
+                      <option value="">Service</option>
+                      <option value="">Capital</option>
+                    </select>
                   </ion-item>
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
@@ -280,11 +309,7 @@
             </div>
           </ion-row>
 
-          <ion-row style="justify-content: right;margin-top: 30px;">
-            <ion-button color="warning">Go to Excel</ion-button>
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
+          <ion-row style="justify-content: right;margin-top: 10px;">
             <ion-button color="warning">Close</ion-button>
           </ion-row>
 

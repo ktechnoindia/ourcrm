@@ -15,6 +15,18 @@
   <ion-card>
     <ion-card-content>
       <ion-grid>
+
+        <ion-row style="justify-content: right;">
+          <ion-icon id="left-start" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-popover  trigger="left-start"  size="auto" side="left" alignment="start">
+            <ng-template>
+              <ion-button style="color: black;"  color="undefined">Delete</ion-button>
+              <ion-button style="color: black;" color="undefined">Edit</ion-button>
+              <ion-button style="color: black; " color="undefined" >Save</ion-button>
+            </ng-template>
+          </ion-popover>
+        </ion-row>
+        
         <ion-row>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
@@ -120,22 +132,10 @@
         </ion-row>
 
         <ion-row style="justify-content: right;">
-          <ion-button color="warning">Go to Excel</ion-button>
           <ion-button color="warning">
-            Add
+            Cancel
           </ion-button>
-          <ion-button color="warning">
-            save
-          </ion-button>
-          <ion-button color="warning">
-            View
-          </ion-button>
-          <ion-button color="warning">
-            Print
-          </ion-button>
-
         </ion-row>
-
       </ion-grid>
     </ion-card-content>
   </ion-card>

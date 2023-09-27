@@ -315,6 +315,9 @@ ion-card {
 .row {
     height: 35px;
 }
+.dots{
+    font-size: 25px;
+}
 
 ion-item {
     --background: transparent;
@@ -401,5 +404,25 @@ th{
 @media screen and (max-width:1010px){
     .container{
         width: 100%;
+    }
+}
+@media screen and (max-width:420px){
+    .row{
+        .label-width {
+            min-width: 120px;
+            text-align: left;
+        }
+    }
+    
+    .input-width {
+        min-width: 120px;
+    }
+    
+    .select-width {
+        min-width: 120px;
+    }
+    
+    .textarea-width {
+        min-width: 120px;
     }
 }

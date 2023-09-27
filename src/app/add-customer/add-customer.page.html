@@ -16,7 +16,17 @@
     <ion-card>
       <ion-card-content>
         <ion-grid>
-          <!-- First Row -->
+          <ion-row style="justify-content: right;">
+            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover   trigger="left-start"  size="auto" side="left" alignment="start">
+              <ng-template>
+                <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
+                <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
+                <ion-button style="color: black; " size="small" color="undefined" >Save</ion-button>
+              </ng-template>
+            </ion-popover>
+          </ion-row>
+          
           <ion-row>
             <ion-label style="font-size: 25px; font-weight: bold;">Contact Information :</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
@@ -320,10 +330,7 @@
           </ion-row>
 
           <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">Go to Excel</ion-button>
             <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">View</ion-button>
             <ion-button color="warning">Cancel</ion-button>
           </ion-row>
 
