@@ -165,7 +165,7 @@ ion-menu-button {
     border: 1px solid white;
     padding: 10px 30px;
     margin: 0 auto;
-    margin-top: 50px;
+    // margin-top: 50px;
 }
 
 .card3 {
@@ -329,7 +329,7 @@ ion-item {
     .label-width {
         min-width: 120px;
         display: inline-block;
-        text-align: right;
+        text-align: justify;
         color: rgb(172, 126, 126);
         font-size: 13px;
         font-weight: bold;
@@ -406,6 +406,16 @@ th{
         width: 100%;
     }
 }
+
+
+@media(max-width:540px) {
+    .card1
+    {
+        display: none;
+        visibility: hidden;
+    }
+}
+
 @media screen and (max-width:420px){
     .row{
         .label-width {
