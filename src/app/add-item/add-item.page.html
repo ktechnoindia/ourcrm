@@ -14,12 +14,12 @@
   <div class="container">
     <ion-card>
       <ion-card-content>
-        <ion-grid class="add_item">
+        <ion-grid>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-item lines="none">
                 <ion-label class="label-width">Item Description :</ion-label>
-                <ion-input class="label-width" type="text"></ion-input>
+                <ion-input class="input-width" type="text"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
@@ -116,17 +116,17 @@
           <ion-row style=" border: 2px solid gray; margin-top: 40px;">
 
             <ion-segment style="border-bottom: 2px solid grey;" [(ngModel)]="selectTabs">
-              <ion-segment-button style="border-right: 2px solid gray;" value="General">
+              <ion-segment-button style="border-right: 2px solid gray; color: #000;" value="General">
                 <ion-label>General</ion-label>
               </ion-segment-button>
-              <ion-segment-button style="border-right: 2px solid gray;" value="Image">
+              <ion-segment-button style="border-right: 2px solid gray; color: #000;" value="Image">
                 <ion-label>Image</ion-label>
               </ion-segment-button>
-              <ion-segment-button style="border-right: 2px solid gray;" value="Barcode">
+              <ion-segment-button style="border-right: 2px solid gray; color: #000;" value="Barcode">
                 <ion-label>Barcode </ion-label>
               </ion-segment-button>
-              <ion-segment-button value="Other">
-                <ion-label>Other Details</ion-label>
+              <ion-segment-button value="Other" style="color: #000;">
+                <ion-label >Other Details</ion-label>
               </ion-segment-button>
             </ion-segment>
 
