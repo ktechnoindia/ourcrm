@@ -319,7 +319,9 @@ ion-card {
 ion-item {
     --background: transparent;
 }
-
+.toolbar{
+    background-color: #000000;
+}
 .row{
     .label-width {
         min-width: 120px;

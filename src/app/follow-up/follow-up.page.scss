@@ -1,4 +1,6 @@
-
+table{
+    width: 100%;
+}
 
 table , th , td{
     border: solid 2px goldenrod;
@@ -11,4 +13,7 @@ th{
 ion-button{
     margin-top: 25px;
     margin-left: 10px;
+}
+.input-width{
+    width: calc(50% - 100px);
 }

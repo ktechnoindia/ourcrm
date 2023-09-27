@@ -3,166 +3,145 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-   <ion-item lines="none">
-    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
-    <ion-title>Follow Up</ion-title>
-   </ion-item>
+    <ion-item lines="none">
+      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+      <ion-title>Lead Follow Up</ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-card class="follow-up">
     <ion-card-content>
       <ion-grid>
-
-        <ion-row class="sement">
-          <ion-segment [(ngModel)]="selectTabs">
-            <ion-segment-button value="follow-up">
-              <ion-label>Follow Up</ion-label>
-            </ion-segment-button>
-
-            <ion-segment-button value="Update">
-              <ion-label>Update Logs</ion-label>
-            </ion-segment-button>
-
-            <ion-segment-button value="Transfer">
-              <ion-label>Transfer Logs </ion-label>
-            </ion-segment-button>
-          </ion-segment>
-          <ion-segment>
-            <ion-segment-button value="Matching">
-              <ion-label>Matching Leads</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Downloads">
-              <ion-label>Downloads Logs</ion-label>
-            </ion-segment-button>
-          </ion-segment>
+        <ion-row>
+          <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Follow-up Lead List :
+          </h6>
         </ion-row>
         <ion-row>
-          <div style="margin: 0 auto;" *ngIf="selectTabs == 'follow-up'">
-            <ion-row class="row">
-              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-item lines="none">
-                  <ion-label class="label-width">Next Follow Up Date:</ion-label>
-                  <ion-input class="input-width" type="date"></ion-input>
-                </ion-item>
-              </ion-col>
-            
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
-                <ion-label class="label-width">Remark:</ion-label>
-                <ion-textarea class="textarea-width"></ion-textarea>
-              </ion-item>
-            </ion-col>
-        </ion-row>
-
-
-        <ion-row style="margin-top: 60px;">
           <table>
             <tr>
               <th>SI NO.</th>
-              <th>Date</th>
-              <th>Remarks</th>
-              <th>Next Follow Up</th>
-              <th>Entered By</th>
+              <th style="width: 100px;">Date</th>
+              <th style="width: 140px;">Company name</th>
+              <th style="width: 140px;">Customer name</th>
+              <th style="width: 140px;">Mobile Number</th>
+              <th style="width: 100px;">City</th>
+              <th style="width: 140px;">Email</th>
+              <th style="width: 100px;">Next Follow Up</th>
+              <th style="width: 100px;">Entered By</th>
+              <th style="width: 200px;">Action</th>
             </tr>
             <tr>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-              <td><ion-input></ion-input></td>
-
+              <td>1</td>
+              <td>23/09/2023</td>
+              <td>Mehta Infotech Pvt. Ltd.</td>
+              <td>Deepak Sharma</td>
+              <td>6367127145</td>
+              <td>Jaipur</td>
+              <td>deepusharma@gmail.com</td>
+              <td>01/10/2023</td>
+              <td>Ravi Sharma</td>
+              <td>
+                <ion-row>
+                  <ion-button><ion-icon name="create"></ion-icon></ion-button>
+                  <ion-button><ion-icon name="trash"></ion-icon></ion-button>
+                  <ion-button><ion-icon name="share-social"></ion-icon></ion-button>
+                </ion-row>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>23/09/2023</td>
+              <td>Bagra Infotech Pvt. Ltd.</td>
+              <td>Yogesh Sharma</td>
+              <td>6367127145</td>
+              <td>Jaipur</td>
+              <td>yogisharma@gmail.com</td>
+              <td>01/10/2023</td>
+              <td>Ravi Sharma</td>
+              <td>
+                <ion-row>
+                  <ion-button><ion-icon name="create"></ion-icon></ion-button>
+                  <ion-button><ion-icon name="trash"></ion-icon></ion-button>
+                  <ion-button><ion-icon name="share-social"></ion-icon></ion-button>
+                </ion-row>
+              </td>
             </tr>
           </table>
-        </ion-row>
-        </div>
+
         </ion-row>
         <ion-row>
-          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Update'" style="margin: 20px 0;">
+          <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Lead Information :
+          </h6>
+        </ion-row>
+        <ion-row>
+          <ion-col class="row" size="6" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Lead Name :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="row" size="6" size-lg="6" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Company Name :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Email :</ion-label>
+              <ion-input class="input-width" type="email"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Phone Number :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
+            <ion-item lines="none">
+              <ion-label class="label-width">Lead Status :</ion-label>
+              <ion-input class="input-width" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+
+
+        </ion-row>
+        <ion-row>
+          <div style="margin: 0 auto;" style="margin: 20px 0;">
             <ion-row>
               <table>
                 <tr>
                   <th>SI NO.</th>
                   <th>Lead Status</th>
-                  <th>Updated Date</th>
-                  <th>Updated By</th>
+                  <th>Next Follow-Up Date</th>
+                  <th>Remark</th>
+                  <th style="width: 150px;">Updated By</th>
+                  <th>Action</th>
                 </tr>
                 <tr>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
                   <td><ion-input></ion-input></td>
+                  <td><ion-input></ion-input></td>
+
+                  <td>
+                    <ion-button>Update</ion-button>
+                    <ion-button>Delete</ion-button>
+
+                  </td>
                 </tr>
               </table>
             </ion-row>
           </div>
         </ion-row>
-        <ion-row>
-          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Transfer'" style="margin: 20px 0;">
-            <ion-row>
-              <table>
-                <tr>
-                  <th>SI NO.</th>
-                  <th>From Dealer</th>
-                  <th>To Dealer</th>
-                  <th>Transfer Date</th>
-                  <th>Transfered By</th>
-                </tr>
-                <tr>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                </tr>
-              </table>
-            </ion-row>
-          </div>
-        </ion-row>
-        <ion-row>
-          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Matching'" style="margin: 20px 0;">
-            <ion-row>
-              <table>
-                <tr>
-                  <th>SI NO.</th>
-                  <th>Lead Id</th>
-                  <th>Lead Date</th>
-                  <th>Product</th>
-                  <th>Company</th>
-                  <th>Dealer</th>
-                </tr>
-                <tr>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                </tr>
-              </table>
-            </ion-row>
-          </div>
-        </ion-row>
-        <ion-row>
-          <div  style="margin: 0 auto;" *ngIf="selectTabs == 'Downloads'" style="margin: 20px 0;">
-            <ion-row>
-              <table>
-                <tr>
-                  <th>SI NO.</th>
-                  <th>Company</th>
-                  <th>Product</th>
-                  <th>Date</th>
-                </tr>
-                <tr>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                </tr>
-              </table>
-            </ion-row>
-          </div>
-        </ion-row>
+
+        
       </ion-grid>
     </ion-card-content>
   </ion-card>
