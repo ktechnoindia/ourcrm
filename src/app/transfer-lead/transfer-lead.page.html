@@ -8,36 +8,87 @@
       <ion-title>Transfer Lead</ion-title>
     </ion-item>
   </ion-toolbar>
-</ion-header>>
+</ion-header>
 
 <ion-content>
   <div class="container">
     <ion-card>
       <ion-card-content>
-        <table style="overflow-x: auto;">
-          <tr>
-            <th>Sr No.</th>
-            <th>Lead Id</th>
-            <th>Lead Date</th>
-            <th>Company</th>
-            <th>Dealer</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td><input class="table_input" type="text"></td>
-            <td><input class="table_input" type="text"></td>
-            <td><input class="table_input" type="text"></td>
-            <td><input class="table_input" type="text"></td>
-            <td><input class="table_input" type="text"></td>
-            <td>Actions D</td>
-          </tr>
+        <ion-grid>
+        <ion-row>
+          <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Total Lead List :
+          </h6>
+        </ion-row>
+        <ion-row style="overflow-x:auto;">
+          <table>
+            <tr>
+              <th>SI NO.</th>
+              <th style="width: 100px;">Date</th>
+              <th style="width: 140px;">Company name</th>
+              <th style="width: 140px;">Customer name</th>
+              <th style="width: 140px;">Mobile Number</th>
+              <th style="width: 100px;">City</th>
+              <th style="width: 140px;">Email</th>
+              <th style="width: 100px;">Next Follow Up</th>
+              <th style="width: 100px;">Entered By</th>
+              <th style="width: 200px;">Action</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>23/09/2023</td>
+              <td>Mehta Infotech Pvt. Ltd.</td>
+              <td>Deepak Sharma</td>
+              <td>6367127145</td>
+              <td>Jaipur</td>
+              <td>deepusharma@gmail.com</td>
+              <td>01/10/2023</td>
+              <td>Ravi Sharma</td>
+              <td>
 
-        </table>
+                <ion-icon name="create"></ion-icon>
+                <ion-icon name="trash"></ion-icon>
+
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>23/09/2023</td>
+              <td>Bagra Infotech Pvt. Ltd.</td>
+              <td>Yogesh Sharma</td>
+              <td>6367127145</td>
+              <td>Jaipur</td>
+              <td>yogisharma@gmail.com</td>
+              <td>01/10/2023</td>
+              <td>Ravi Sharma</td>
+              <td>
+                <ion-icon name="create"></ion-icon>
+                <ion-icon name="trash"></ion-icon>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>23/09/2023</td>
+              <td>Bagra Infotech Pvt. Ltd.</td>
+              <td>Nirbhay Sharma</td>
+              <td>6367127145</td>
+              <td>Jaipur</td>
+              <td>nirbhaysharma@gmail.com</td>
+              <td>01/10/2023</td>
+              <td>Ravi Sharma</td>
+              <td>
+                <ion-icon name="create"></ion-icon>
+                <ion-icon name="trash"></ion-icon>
+              </td>
+            </tr>
+          </table>
+
+        </ion-row>
+       
         <div style="float: right;margin-top: 10px;">
-          <ion-button color="warning">Go to Excel</ion-button>
+          <ion-button color="warning">Share</ion-button>
           <ion-button color="warning">PDF Download</ion-button>
         </div>
-
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>
