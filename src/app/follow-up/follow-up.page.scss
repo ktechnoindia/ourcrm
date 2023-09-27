@@ -1,19 +1,6 @@
 table{
     width: 100%;
 }
-
-table , th , td{
-    border: solid 2px goldenrod;
-    color: goldenrod;
-}
-th{
-    background-color: #000000;
-}
-
-ion-button{
-    margin-top: 25px;
-    margin-left: 10px;
-}
-.input-width{
-    width: calc(50% - 100px);
+td {
+    text-align: center;
 }

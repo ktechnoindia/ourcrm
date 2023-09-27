@@ -365,7 +365,9 @@ ion-item {
     border: 1px solid darkgray;
     border-radius: 2px;
 }
-
+ion-icon{
+    font-size: 22px;
+}
 table,
 th,
 td {
@@ -381,7 +383,10 @@ table {
 th{
     background-color: #f2f2f2;
 }
+tr ion-input{
+    min-height: 30px;
 
+}
 .table_input{
     border: none;
     outline: none;
