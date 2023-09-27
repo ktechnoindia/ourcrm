@@ -315,42 +315,45 @@ ion-item {
     --background: transparent;
 }
 
-ion-input {
-    max-height: 30px;
-    --background: transparent;
-    border: 1px solid darkgray;
-    font-size: 14px;
-    border-radius: 3px;
-    padding: 8px;
-}
-
-.label-width {
-    min-width: 120px;
-    display: inline-block;
-    text-align: right;
-    color: darkgray;
-    font-size: 12px;
+.row{
+    .label-width {
+        min-width: 120px;
+        display: inline-block;
+        text-align: right;
+        color: rgb(172, 126, 126);
+        font-size: 13px;
+        font-weight: bold;
+        padding-right: 5px;
+    }
 }
 
 .input-width {
     width: calc(100% - 130px);
     display: inline-block;
-    max-height: 30px;
+    max-height: 25px;
+    font-size: 13px;
+    border-radius: 2px;
+    border: 1px solid darkgray;
+    background: transparent;
 }
 
 .select-width {
     width: calc(100% - 120px);
     display: inline-block;
     border: 1px solid darkgray;
-    border-radius: 3px;
-    min-height: 30px;
+    border-radius: 2px;
+    min-height: 25px;
+    color: rgb(172, 126, 126);
+    outline: none;
+    text-align: center;
+    font-size: 14px;
 }
 
 .textarea-width {
     width: calc(100% - 130px);
     display: inline-block;
     border: 1px solid darkgray;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 table,
@@ -388,3 +391,8 @@ th{
 
 
 
+@media screen and (max-width:1010px){
+    .container{
+        width: 100%;
+    }
+}
