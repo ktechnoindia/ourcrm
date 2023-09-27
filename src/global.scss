@@ -404,7 +404,11 @@ tr ion-input{
     background-color: rgba(255, 251, 251, 0.932);
 }
 
-
+.input_m{
+    display: none;
+    
+    
+}
 
 @media screen and (max-width:1010px){
     .container{
@@ -427,6 +431,16 @@ tr ion-input{
             min-width: 120px;
             text-align: left;
         }
+    }
+    .row {
+        height: 50px;
+    }
+    .input_m{
+        display: block;
+        min-height: 15px;
+    }
+    .input_s{
+        display: none;
     }
     
     .input-width {
