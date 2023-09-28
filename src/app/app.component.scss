@@ -1,4 +1,5 @@
 .dekstop-header a {
+<<<<<<< HEAD
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
@@ -45,3 +46,61 @@ select option:checked {
   background-color: #007bff;
   color: #fff
 }
+=======
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+}
+ion-header{
+    background-color: #fff;
+}
+.dekstop-header item {
+    list-style: none;
+}
+
+select{
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 30px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    outline: none;
+    font-weight: 900;
+}
+
+ /* Style the dropdown arrow (not supported in all browsers) */
+select::-ms-expand {
+    display: none;
+}
+
+/* Style the options */
+option {
+    font-size: 16px;
+    padding: 10px 10px 10px 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    background: transparent;
+    border: none;
+    text-align: left;
+font-weight: 700;
+}
+
+/* Style the selected option */
+select option:checked {
+    background-color: #007bff;
+    color: #fff;
+    border:none;
+    padding: 10px;
+}
+.dropdown{
+    margin: 10px;
+}
+
+>>>>>>> ebf51b1b8a6ec43706fb1aa196e5a0f9f79ca6d7
