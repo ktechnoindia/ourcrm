@@ -1,10 +1,10 @@
  
 <ion-header class="dekstop-header">
   <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-      
-
+    <div class="mymenu">
+      <div class="drop">
+        <img src="../../assets/ktechno-removebg-preview.png" alt="">
+      </div>
         <div class="dropdown">
           <select (change)="navigateToRoute($event)">
             <option selected value="master">Master</option>
@@ -64,11 +64,10 @@
         <div class="dropdown">
           <a [routerLink]="['/amc-manager']">AMC</a>
         </div>
-        <div class="dropdown">
+        <div class="drop" >
           <a [routerLink]="['/login']">Log Out</a>
         </div>
-      </ion-row>
-    </ion-grid>
+      </div>
   </ion-toolbar>
 </ion-header>
 
