@@ -15,7 +15,7 @@
 
 
 .container {
-    width: 1024px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -37,9 +37,10 @@ ion-menu.md ion-content {
     --padding-bottom: 20px;
 }
 
-ion-app ion-menu {
-    // width: 150px;
-}
+ //ion-menu {
+  //   width: 230px;
+   //  border-right: solid 2px;
+//}
 
 ion-menu.md ion-list {
     color: goldenrod;
@@ -59,8 +60,8 @@ ion-menu.md ion-list#inbox-list {
 
 
 ion-menu.md ion-item {
-    --padding-start: 30px;
-    --padding-end: 20px;
+    --padding-start: 10px;
+    --padding-end: 10px;
     // border-radius: 50px;
     // border-bottom: #000000 solid 1px;
 }
@@ -82,7 +83,7 @@ ion-menu.md ion-item ion-icon {
 }
 
 ion-menu.md ion-item ion-label {
-    font-weight: 500;
+    font-weight: bold;
 }
 
 ion-menu.ios ion-content {
@@ -99,8 +100,8 @@ ion-menu.ios ion-note {
 }
 
 ion-menu.ios ion-item {
-    --padding-start: 16px;
-    --padding-end: 16px;
+    --padding-start: 10px;
+    --padding-end: 10px;
     --min-height: 50px;
 }
 
@@ -366,7 +367,7 @@ ion-item {
     border-radius: 2px;
 }
 ion-icon{
-    font-size: 22px;
+    font-size: 18px;
 }
 table,
 th,
@@ -383,10 +384,7 @@ table {
 th{
     background-color: #f2f2f2;
 }
-tr ion-input{
-    min-height: 30px;
 
-}
 .table_input{
     border: none;
     outline: none;
@@ -404,11 +402,7 @@ tr ion-input{
     background-color: rgba(255, 251, 251, 0.932);
 }
 
-.input_m{
-    display: none;
-    
-    
-}
+
 
 @media screen and (max-width:1010px){
     .container{
@@ -432,16 +426,6 @@ tr ion-input{
             text-align: left;
         }
     }
-    .row {
-        height: 50px;
-    }
-    .input_m{
-        display: block;
-        min-height: 15px;
-    }
-    .input_s{
-        display: none;
-    }
     
     .input-width {
         min-width: 120px;
@@ -454,4 +438,29 @@ tr ion-input{
     .textarea-width {
         min-width: 120px;
     }
+}
+@media(max-width:2200px){
+    ion-menu{
+        display: none;
+        visibility: hidden;
+    }
+ion-menu-button{
+    display: none;
+    visibility: hidden;
+}
+}
+@media(max-width:920px){
+    ion-menu{
+        display: block;
+        visibility: visible;
+    }
+ion-menu-button{
+    display: block;
+    visibility: visible;
+}
+.dekstop-header{
+    display: none;
+    visibility: hidden;
+}
+
 }

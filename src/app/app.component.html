@@ -1,3 +1,75 @@
+<ion-header class="dekstop-header">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-item lines="none">
+          <select (change)="navigateToRoute($event)">
+            <option selected value="master" >Master</option>
+            <option value="add-customer">Add Customer</option>
+            <option value="add-vendor" >Add Vender</option>
+            <option value="add-item" >Add Item</option>
+            <option value="add-service" >Add Service</option>
+            <option value="add-executive" >Add Executive</option>
+            <option value="hsn-manager" >HSN Manager</option>
+            <option  value="item-master" >Item Master</option>
+            <option  value="add-prospect">Add Prospect</option>
+          </select>
+        </ion-item>
+        <ion-item lines="none">
+          <select (change)="navigateToRoute($event)">
+            <option selected value="lead-manager" >Lead</option>
+            <option value="add-lead">Add Lead</option>
+            <option value="follow-up" >Follow Up</option>
+            <option value="transfer-lead" >Transfer Lead</option>
+            <option value="View-lead" >View Lead</option>
+          </select>
+        </ion-item>
+        <ion-item lines="none">
+          <select (change)="navigateToRoute($event)">
+            <option selected value="quote-manager" >Quote</option>
+            <option value="add-quot">Add Quotation</option>
+            <option value="view-quot" >View Quotation</option>
+            <option value="update-quot" >Update Quotation</option>
+          </select>
+        </ion-item>
+        <ion-item lines="none">
+          <select (change)="navigateToRoute($event)">
+            <option selected value="challan-manager" >Challan</option>
+            <option value="dc-in">DC-IN</option>
+            <option value="dc-out" >DC-OUT</option>
+            <option value="dc-in-report" >DC-IN Report</option>
+            <option value="dc-out-report" >DC-OUT Report</option>
+          </select>
+        </ion-item>
+        <ion-item lines="none">
+          <select (change)="navigateToRoute($event)">
+            <option selected value="sales-manager" >Sales</option>
+            <option value="add-sale">Add Sale</option>
+            <option value="add-purchase" >Add Purchase</option>
+            <option value="view-sale" >View Sales</option>
+            <option value="view-purchase" >View Purchase</option>
+            <option value="reports" >Reports</option>
+
+          </select>
+        </ion-item>
+        <ion-item lines="none">
+          <a [routerLink]="['/stock-manager']">Stock</a>
+        </ion-item>
+        <ion-item lines="none">
+          <a [routerLink]="['/account-manager']">Account</a>
+        </ion-item>
+        <ion-item lines="none">
+          <a [routerLink]="['/amc-manager']">AMC</a>
+        </ion-item>
+        <ion-item lines="none">
+          <a [routerLink]="['/login']">Log Out</a>
+        </ion-item>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-menu side="start" contentId="main-content">
   <ion-header [translucent]="true">
     <ion-toolbar>
@@ -5,8 +77,10 @@
         <ion-icon name="home"></ion-icon>
         <ion-title>Dashboard</ion-title>
       </ion-item>
+
     </ion-toolbar>
   </ion-header>
+
 
   <ion-content class="ion-padding">
     <ion-list id="inbox-list">

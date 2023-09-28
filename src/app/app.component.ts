@@ -25,6 +25,7 @@ export class AppComponent {
     { title: 'Logout', url: '../login', icon: 'key' },
 
   ];
+ 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(private router: Router) { }
@@ -35,5 +36,10 @@ export class AppComponent {
       // Use the Router module to navigate to the selected route
       this.router.navigate([selectedValue]);
     }
+  }
+  navigateToRoute(event: any) {
+    const selectedValue = event.target.value;
+    // Navigate to the selected route
+    this.router.navigate([selectedValue]);
   }
 }
