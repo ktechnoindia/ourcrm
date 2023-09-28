@@ -42,4 +42,7 @@ export class AppComponent {
     // Navigate to the selected route
     this.router.navigate([selectedValue]);
   }
+  goBack(){
+    this.router.navigate(["/"])
+  }
 }

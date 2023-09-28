@@ -1,11 +1,13 @@
 .dekstop-header a {
-<<<<<<< HEAD
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
   text-decoration: none;
-  color: black;
+  color: goldenrod;
   font-weight: 700;
+  margin-left: 25px;
+  text-align: center;
+
 }
 
 .dekstop-header item {
@@ -15,14 +17,14 @@
 select {
   display: flex;
   flex-wrap: wrap;
-  width: 110px;
   border: none;
   outline: none;
   text-transform: uppercase;
   text-align: center;
   font-size: 14px;
-  color: black;
+  color: goldenrod;
   font-weight: 700;
+  margin-left: 15px;
 }
 
 /* Style the dropdown arrow (not supported in all browsers) */
@@ -46,61 +48,17 @@ select option:checked {
   background-color: #007bff;
   color: #fff
 }
-=======
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 14px;
-    text-decoration: none;
-    color: black;
-    font-weight: 900;
-}
-ion-header{
-    background-color: #fff;
-}
-.dekstop-header item {
-    list-style: none;
-}
 
-select{
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 30px;
-    border: none;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 14px;
-    text-decoration: none;
-    color: black;
-    outline: none;
-    font-weight: 900;
-}
-
- /* Style the dropdown arrow (not supported in all browsers) */
-select::-ms-expand {
-    display: none;
-}
-
-/* Style the options */
-option {
-    font-size: 16px;
-    padding: 10px 10px 10px 10px;
-    background-color: #f0f0f0;
-    color: #333;
-    background: transparent;
-    border: none;
-    text-align: left;
-font-weight: 700;
-}
-
-/* Style the selected option */
-select option:checked {
-    background-color: #007bff;
-    color: #fff;
-    border:none;
-    padding: 10px;
-}
 .dropdown{
-    margin: 10px;
-}
+  transition: border-bottom 0.3s ease; /* Add a smooth transition effect */
 
->>>>>>> ebf51b1b8a6ec43706fb1aa196e5a0f9f79ca6d7
+}
+.dropdown :hover {
+    color: rgb(0, 0, 0);
+    border-bottom:  grey solid 2px  ;
+border-width: 50%;
+}
+.drop img{
+  height: 100px;
+  width: 100px;
+}
