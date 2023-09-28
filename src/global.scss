@@ -16,12 +16,10 @@
 
 .container {
     width: 100%;
-    margin: 0 auto;
+    margin-top: 70px;
 }
 
-.child_window{
-    --background-image: linear-gradient(to left, #325b99, #0081b4, #00a3a8, #29be81, #accf59);
-}
+
 
 ion-item {
     --background-hover: var(--background);
@@ -37,10 +35,7 @@ ion-menu.md ion-content {
     --padding-bottom: 20px;
 }
 
- //ion-menu {
-  //   width: 230px;
-   //  border-right: solid 2px;
-//}
+
 
 ion-menu.md ion-list {
     color: goldenrod;
@@ -235,11 +230,12 @@ ion-menu-button {
     text-align: center;
     background-color: #e5e4e2;
     height: 100%;
+    margin-top: 60px;
 }
 
 .master_logo {
     justify-content: center;
-    background-color: #555555;
+    // background-color: #555555;
 }
 
 .master_logo img {
@@ -251,7 +247,7 @@ ion-menu-button {
 .master {
     margin: 30px auto;
     width: 150px;
-    color: #525252;
+    // color: #525252;
     transition: all 0.5s linear;
     box-shadow: none;
     border-radius: 10%;
@@ -439,23 +435,14 @@ th{
     }
 }
 @media(max-width:2200px){
-    ion-menu{
-        display: none;
-        visibility: hidden;
-    }
-ion-menu-button{
+ 
+.second_header{
     display: none;
-    visibility: hidden;
 }
 }
 @media(max-width:920px){
-    ion-menu{
-        display: block;
-        visibility: visible;
-    }
-ion-menu-button{
+.second_header{
     display: block;
-    visibility: visible;
 }
 .dekstop-header{
     display: none;

@@ -1,4 +1,52 @@
 .dekstop-header a {
+<<<<<<< HEAD
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+.dekstop-header item {
+  list-style: none;
+}
+
+select {
+  display: flex;
+  flex-wrap: wrap;
+  width: 110px;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  color: black;
+  font-weight: 700;
+}
+
+/* Style the dropdown arrow (not supported in all browsers) */
+select::-ms-expand {
+  display: none;
+}
+
+/* Stysle the options */
+
+select option {
+  font-size: 16px;
+  padding: 20px;
+
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+
+/* Style the selected option */
+select option:checked {
+  background-color: #007bff;
+  color: #fff
+}
+=======
     text-transform: uppercase;
     text-align: center;
     font-size: 14px;
@@ -55,3 +103,4 @@ select option:checked {
     margin: 10px;
 }
 
+>>>>>>> ebf51b1b8a6ec43706fb1aa196e5a0f9f79ca6d7
