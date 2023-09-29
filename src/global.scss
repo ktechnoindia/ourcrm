@@ -230,7 +230,7 @@ ion-menu-button {
     text-align: center;
     background-color: #e5e4e2;
     height: 100%;
-    margin-top: 60px;
+    margin-top: 0px;
 }
 
 .master_logo {
@@ -448,6 +448,25 @@ th{
 .dekstop-header{
     display: none;
     visibility: hidden;
+    
 }
-
+ion-card-header{
+    display: none;
+    visibility: hidden;
+}
+}
+ion-card-header{
+    border-bottom: 2px solid goldenrod;
+    width: 100%;
+    margin-top: -20px;
+}
+ion-card-header ion-title{
+    color: goldenrod;
+    font-weight: bold;
+    text-align: center;
+}
+ion-card-header .back{
+    color: goldenrod;
+    font-size: 24px;
+    font-weight: bold;
 }

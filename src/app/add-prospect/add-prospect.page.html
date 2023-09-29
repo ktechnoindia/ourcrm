@@ -12,8 +12,19 @@
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-title>Add Prospect</ion-title>
+          </ion-item>
+        </ion-card-header>
+    
     <ion-toolbar>
       <ion-title size="large">add_prospect</ion-title>
     </ion-toolbar>
+  </ion-card-content>
+</ion-card>
   </ion-header>
 </ion-content>

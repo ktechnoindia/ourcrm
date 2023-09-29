@@ -10,12 +10,16 @@
   </ion-toolbar>
 
 </ion-header>
-
-
 <ion-content [fullscreen]="true">
   <div class="container">
   <ion-card>
     <ion-card-content>
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+          <ion-title>View Purchase</ion-title>
+        </ion-item>
+      </ion-card-header>
       <ion-grid class="add_sale">
 
         <ion-row>
