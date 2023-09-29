@@ -1,0 +1,21 @@
+.signup{
+    margin-top: 30px;
+}
+.signup ion-input{
+    min-height: 40px;
+    color: goldenrod;
+    font-weight: 400;
+}
+.signup select{
+    min-height: 40px;
+    color: goldenrod;
+    font-weight: 400;
+}
+.card1{
+    margin-top: -50px;
+}
+@media(max-width:540px){
+    .signup{
+        margin-top: 0px;
+    }
+}

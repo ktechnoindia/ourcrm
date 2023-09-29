@@ -1,4 +1,3 @@
-
 <ion-header class="toolbar">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -11,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
- <ion-content>
+<ion-content>
   <div class="container">
     <ion-card>
       <ion-card-content>
@@ -24,15 +23,15 @@
         <ion-grid>
           <ion-row style="justify-content: right;">
             <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover   trigger="left-start"  size="auto" side="left" alignment="start">
+            <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
               <ng-template>
                 <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
                 <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
-                <ion-button style="color: black; " size="small" color="undefined" >Save</ion-button>
+                <ion-button style="color: black; " size="small" color="undefined">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
-          
+
           <ion-row>
             <ion-label style="font-size: 25px; font-weight: bold;">Contact Information :</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
@@ -40,14 +39,18 @@
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item   lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="password" label=" Name" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+              <ion-item lines="none">
                 <ion-label class="label-width">Name :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
               </ion-item>
 
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item  lines="none">
+              <ion-item lines="none">
                 <ion-label class="label-width">Customer Code :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
               </ion-item>
@@ -58,14 +61,14 @@
           <!-- Second Row -->
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item   lines="none">
+              <ion-item lines="none">
                 <ion-label class="label-width">GSTIN :</ion-label>
                 <ion-input class="input-width"></ion-input>
               </ion-item>
 
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item   lines="none">
+              <ion-item lines="none">
                 <ion-label class="label-width">Group Name:</ion-label>
                 <select class="select-width">
                   <option value="India">--Select Group Name --</option>
@@ -74,9 +77,9 @@
                   <option value="silver">Silver</option>
                 </select>
               </ion-item>
-             
+
             </ion-col>
-           
+
 
 
           </ion-row>
@@ -84,14 +87,14 @@
           <!-- Third Row -->
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item  lines="none">
+              <ion-item lines="none">
                 <ion-label class="label-width">Opening Bal. :</ion-label>
                 <ion-input class="input-width"></ion-input>
               </ion-item>
 
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item  lines="none">
+              <ion-item lines="none">
                 <ion-label class="label-width">Closing Bal. :</ion-label>
                 <ion-input class="input-width"></ion-input>
               </ion-item>
