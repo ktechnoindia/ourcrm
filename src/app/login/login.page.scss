@@ -1,0 +1,11 @@
+ion-content{
+    margin-top: 70px;
+}
+
+@media(max-width:2200px){
+ 
+    .dekstop-header ion-toolbar{
+        display: none;
+        visibility: hidden;
+    }
+    }
