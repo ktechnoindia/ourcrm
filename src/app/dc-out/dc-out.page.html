@@ -16,6 +16,17 @@
   <ion-card class="dc_out">
     <ion-card-content>
       <ion-grid>
+        <ion-row style="justify-content: right;">
+          <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-popover   trigger="left-start"  size="auto" side="left" alignment="start">
+            <ng-template>
+              <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
+              <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
+              <ion-button style="color: black; " size="small" color="undefined" >Save</ion-button>
+            </ng-template>
+          </ion-popover>
+        </ion-row>
+        
         <ion-row>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
             <ion-item lines="none">
