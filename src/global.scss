@@ -346,11 +346,11 @@ ion-item {
 }
 
 .select-width {
-    width: calc(100% - 120px);
+    //width: calc(100% - 120px);
     display: inline-block;
     border: 1px solid darkgray;
     border-radius: 2px;
-    min-height: 25px;
+    //min-height: 25px;
     color: rgb(172, 126, 126);
     outline: none;
     text-align: center;
