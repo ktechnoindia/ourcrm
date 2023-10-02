@@ -1,14 +1,14 @@
-<ion-header>
+<ion-header class="toolbar">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-   <ion-item lines="none">
-    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
-    <ion-title>Add Vendor</ion-title>
-   </ion-item>
+    <ion-item lines="none">
+      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+      <ion-title>Add Vendor</ion-title>
+    </ion-item>
   </ion-toolbar>
-</ion-header> 
+</ion-header>
 
 <ion-content>
   <div class="container">
@@ -38,7 +38,7 @@
           </ion-row>
 
           <ion-row>
-            <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="warning" class="sign_input" type="text" label=" Name :" label-placement="floating"
                   fill="outline"></ion-input>
@@ -50,7 +50,7 @@
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Customer Code :" label-placement="floating"
+                <ion-input color="warning" class="sign_input" type="text" label=" Vendor Code :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
               <!-- <ion-item lines="none">
@@ -129,7 +129,7 @@
           </ion-row>
 
           <ion-row>
-            <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
+            <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
               <!-- <ion-item lines="none"> -->
                 <!-- <ion-label class="label-width">Country :</ion-label> -->
                 <select  class="select-width">
@@ -140,7 +140,7 @@
                 </select>
               <!-- </ion-item> -->
             </ion-col>
-            <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
+            <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">State :</ion-label> -->
                 <select class="select-width">
@@ -183,7 +183,7 @@
                 </select>
               <!-- </ion-item> -->
             </ion-col>
-            <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
+            <ion-col class="row" size="4" size-lg="4" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">City :</ion-label> -->
                 <select class="select-width">
@@ -207,11 +207,11 @@
 
           <ion-row>
             
-            <ion-col  size="12">
-              <!-- <ion-row> -->
+            <ion-col class="row" size="12">
+              <ion-row>
                 <ion-input color="warning" class="sign_input" type="text" label="Full Address :" label-placement="floating"
                   fill="outline"></ion-input>
-              <!-- </ion-row> -->
+              </ion-row>
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Address :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
