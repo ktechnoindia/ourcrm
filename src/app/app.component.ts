@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
+  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule],
 })
 export class AppComponent {
   public appPages = [

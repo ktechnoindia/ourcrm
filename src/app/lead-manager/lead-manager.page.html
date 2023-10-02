@@ -13,15 +13,10 @@
 <ion-content>
   <div class="master_window">
     <ion-grid>
-      <!-- <ion-row class="master_logo">
-        <img src="https://k-techno.in/images/K_techno_l-removebg-preview.png" alt="">
-
-      </ion-row> -->
-      
       <ion-row>
         <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./add-lead">
+            <a [routerLink]="['/add-lead']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="person-add"></ion-icon>
@@ -33,7 +28,7 @@
         </ion-col>
         <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./follow-up">
+            <a [routerLink]="['/follow-up']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="laptop-outline"></ion-icon>
@@ -46,7 +41,7 @@
      
         <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./transfer-lead">
+            <a [routerLink]="['/transfer-lead']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="share-social"></ion-icon>
@@ -58,7 +53,7 @@
         </ion-col>
         <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./view-lead">
+            <a [routerLink]="['/view-lead']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="eye"></ion-icon>

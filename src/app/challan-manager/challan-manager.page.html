@@ -13,14 +13,11 @@
 <ion-content>
   <div class="master_window">
     <ion-grid>
-      <!-- <ion-row class="master_logo">
-        <img src="https://k-techno.in/images/K_techno_l-removebg-preview.png" alt="">
-      </ion-row> -->
-
+   
       <ion-row>
         <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./dc-in">
+            <a [routerLink]="['/dc-in']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="laptop-outline"></ion-icon> </ion-card-title>
@@ -31,7 +28,7 @@
         </ion-col>
         <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./dc-out">
+            <a [routerLink]="['/dc-out']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="laptop-outline"></ion-icon>
@@ -44,7 +41,7 @@
   
         <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./dc-in-report">
+            <a [routerLink]="['/dc-in-report']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="newspaper-outline"></ion-icon>
@@ -56,7 +53,7 @@
         </ion-col>
         <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
           <ion-card class="master">
-            <a href="./dc-out-report">
+            <a [routerLink]="['/dc-out-report']">
               <ion-card-header>
                 <ion-card-title>
                   <ion-icon name="newspaper-outline"></ion-icon>
