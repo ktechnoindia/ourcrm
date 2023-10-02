@@ -219,9 +219,10 @@ ion-menu-button {
     border: 0.5px solid white;
 }
 
-.sign_input {
+ion-input .sign_input {
     border: none;
     outline: none;
+
 }
 
 
@@ -282,32 +283,6 @@ ion-card-subtitle {
 }
 
 
-.container ion-input {
-    min-height: 30px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-    outline-style: initial;
-}
-
-.container ion-select {
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-    outline-style: initial;
-}
-
-.container select {
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    //border-color: goldenrod;
-    width: 100%;
-    text-align: left
-}
 
 
 @media(max-width:940px) {
@@ -417,6 +392,7 @@ ion-item {
 ion-icon {
     font-size: 18px;
 }
+
 
 table,
 th,
