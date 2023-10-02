@@ -25,21 +25,21 @@
         <ion-grid>
           <ion-row style="justify-content: right;">
             <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover   trigger="left-start"  size="auto" side="left" alignment="start">
+            <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
               <ng-template>
                 <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
                 <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
-                <ion-button style="color: black; " size="small" color="undefined" >Save</ion-button>
+                <ion-button style="color: black; " size="small" color="undefined">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
-          
+
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Item Description :" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input color="warning" class="sign_input" type="text" label=" Item Description :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Item Description :</ion-label>
@@ -48,68 +48,72 @@
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Item code :" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input color="warning" class="sign_input" type="text" label=" Item code :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Item code :</ion-label>
                 <ion-input class="input-width" type="number"></ion-input>
               </ion-item> -->
             </ion-col>
-          
+
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">HSN Code: </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">HSN Code :</option>
-                  <option value="daimond">Daimond</option>
-                  <option value="star">Star</option>
-                  <option value="silver">Silver</option>
-                </select>           
-                 <!-- </ion-item> -->
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">HSN Code :
+                </option>
+                <option value="daimond">Daimond</option>
+                <option value="star">Star</option>
+                <option value="silver">Silver</option>
+              </select>
+              <!-- </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Stock Type: </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Stock Type :</option>
-                  <option value="">Stock</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Stock
+                  Type :</option>
+                <option value="">Stock</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
               <!-- </ion-item> -->
             </ion-col>
-          
+
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Primary Unit: </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Primary Unit:</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Primary
+                  Unit:</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
               <!-- </ion-item> -->
             </ion-col>
 
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Alternate Unit: </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Alternate Unit :</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-                <!-- </ion-item> -->
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Alternate
+                  Unit :</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
+              <!-- </ion-item> -->
             </ion-col>
           </ion-row>
 
@@ -117,37 +121,39 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">GST Rate : </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">GST Rate : </option>
-                  <option value="1">3%</option>
-                  <option value="1">5%</option>
-                  <option value="1">8%</option>
-                  <option value="1">10%</option>
-                  <option value="1">15%</option>
-                  <option value="1">18%</option>
-                </select>
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">GST Rate
+                  : </option>
+                <option value="1">3%</option>
+                <option value="1">5%</option>
+                <option value="1">8%</option>
+                <option value="1">10%</option>
+                <option value="1">15%</option>
+                <option value="1">18%</option>
+              </select>
               <!-- </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Item Group: </ion-label> -->
-                <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Item Group :</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
+              <select class="select-width">
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">Item
+                  Group :</option>
+                <option value="">Non Stock(Asset)</option>
+                <option value="">Non Stock(Expense)</option>
+                <option value="">Service</option>
+                <option value="">Capital</option>
+              </select>
               <!-- </ion-item> -->
             </ion-col>
-          
+
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Opening Balance :" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input color="warning" class="sign_input" type="text" label=" Opening Balance :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Opening Balance: </ion-label>
@@ -156,8 +162,8 @@
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Closing Balance :" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input color="warning" class="sign_input" type="text" label=" Closing Balance :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
               <!-- <ion-item lines="none">
                 <ion-label class="label-width">Closing Balance: </ion-label>
@@ -168,17 +174,20 @@
           <ion-row style=" border: 2px solid goldenrod; margin-top: 40px;">
 
             <ion-segment style="border-bottom: 2px solid goldenrod;" [(ngModel)]="selectTabs">
-              <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;" value="General">
+              <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;"
+                value="General">
                 <ion-label>Attribute</ion-label>
               </ion-segment-button>
-              <ion-segment-button style="border-right: 2px solid goldenrod;background: lightgreen; color: #fff;" value="Image">
+              <ion-segment-button style="border-right: 2px solid goldenrod;background: lightgreen; color: #fff;"
+                value="Image">
                 <ion-label>Image</ion-label>
               </ion-segment-button>
-              <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;" value="Barcode">
+              <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;"
+                value="Barcode">
                 <ion-label>Barcode </ion-label>
               </ion-segment-button>
               <ion-segment-button value="Other" style="background: lightgreen; color: #fff;">
-                <ion-label >Other Details</ion-label>
+                <ion-label>Other Details</ion-label>
               </ion-segment-button>
             </ion-segment>
 
@@ -188,8 +197,8 @@
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 1 :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 1 :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Attribute 1 :</ion-label>
@@ -198,8 +207,8 @@
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 2 :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 2 :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Attribute 2 :</ion-label>
@@ -210,8 +219,8 @@
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 3 :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 3 :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Attribute 3 :</ion-label>
@@ -220,8 +229,8 @@
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 4 :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Attribute 4 :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Attribute 4 :</ion-label>
@@ -245,8 +254,8 @@
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="number" label=" EAN Code :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" EAN Code :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                     <!-- <ion-item lines="none">
                     <ion-label class="label-width">EAN Code :</ion-label>
@@ -261,13 +270,21 @@
               <h1 style="text-align: center;">--- Quantity Levels ---</h1>
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label="Minimum :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Minimum :</ion-label>
                     <ion-input class="input-width" type="number" placeholder="0.00"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label="Maximum :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Maximum :</ion-label>
                     <ion-input class="input-width" type="number" placeholder="0.00"></ion-input>
                   </ion-item>
@@ -275,27 +292,35 @@
               </ion-row>
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label="Re-order :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Re-order :</ion-label>
                     <ion-input class="input-width" type="text" placeholder="0.00"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <ion-row>
+                    <ion-textarea color="warning" class="sign_input" type="text" label=" Description :"
+                      label-placement="floating" fill="outline"></ion-textarea>
+                  </ion-row>
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Description :</ion-label>
                     <ion-input class="input-width" type="text" placeholder=""></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
-              <!-- <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div> -->
-            
-                <h1 style="text-align: center;">--- Dimension & Weight ---</h1>
-      
+              <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+
+              <h1>Dimension & Weight</h1>
+
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label="Dimension :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Dimension :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Dimension :</ion-label>
@@ -304,8 +329,8 @@
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="number" label="Weight :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Weight :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Weight :</ion-label>
@@ -317,8 +342,8 @@
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label="Brand Name :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Brand Name :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Brand Name :</ion-label>
@@ -327,8 +352,8 @@
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="text" label=" Model name :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Model name :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Model name :</ion-label>
@@ -341,19 +366,20 @@
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Category :</ion-label> -->
-                    <select class="select-width">
-                      <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">Category :</option>
-                      <option value="">Non Stock(Asset)</option>
-                      <option value="">Non Stock(Expense)</option>
-                      <option value="">Service</option>
-                      <option value="">Capital</option>
-                    </select>
+                  <select class="select-width">
+                    <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">
+                      Category :</option>
+                    <option value="">Non Stock(Asset)</option>
+                    <option value="">Non Stock(Expense)</option>
+                    <option value="">Service</option>
+                    <option value="">Capital</option>
+                  </select>
                   <!-- </ion-item> -->
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="number" label="Unit of Weigth :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Unit of Weigth :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Unit of Weigth :</ion-label>
@@ -365,8 +391,8 @@
               <ion-row style="margin-bottom: 20px;">
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="number" label="Retailer Profit % :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Retailer Profit % :"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Retailer Profit % :</ion-label>
@@ -375,8 +401,8 @@
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" class="sign_input" type="number" label="Delar Profit % : " label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input color="warning" class="sign_input" type="text" label="Delar Profit % : "
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                   <!-- <ion-item lines="none">
                     <ion-label class="label-width">Delar Profit % :</ion-label>

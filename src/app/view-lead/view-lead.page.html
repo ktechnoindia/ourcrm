@@ -25,42 +25,50 @@
         <ion-grid>
           <ion-row>
             <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-item lines="none">
-                <ion-label class="label-width">Company Name :</ion-label>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Company Name :</ion-label> -->
                 <select class="select-width">
-                  <option value="India">--Select Company Name--</option>
-                  <option value="India">Mehta Infotech</option>
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Company Name :</option>
+                    <option value="India">Mehta Infotech</option>
                   <option value="UK">Ktechno</option>
                   <option value="USA">Relyon</option>
                 </select>
-              </ion-item>
+              <!-- </ion-item> -->
             </ion-col>
             <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-item lines="none">
-                <ion-label class="label-width">Customer Name :</ion-label>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Customer Name :</ion-label> -->
                 <select class="select-width">
-                  <option value="India">--Select Customer Name--</option>
-                  <option value="India">Deepak</option>
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer Name :</option>
+                    <option value="India">Deepak</option>
                   <option value="UK">Abhishel</option>
                   <option value="USA">Ravi</option>
                 </select>
-              </ion-item>
+              <!-- </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-item lines="none">
-                 <ion-label class="label-width">From Date :</ion-label>
-                 <ion-input class="input-width" type="date" id="startDate" name="startDate"   ></ion-input>
-                </ion-item>
-               </ion-col>
-               <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-item lines="none">
-                  <ion-label class="label-width" >To Date :</ion-label>
-                  <ion-input class="input-width" type="date" id="endDate" name="endDate"></ion-input>
-                 </ion-item>
-                </ion-col>
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="date" label="From Date :"
+                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">From Date :</ion-label>
+                <ion-input class="input-width" type="date" id="startDate" name="startDate"></ion-input>
+              </ion-item> -->
+            </ion-col>
+            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="date" label="To Date :"
+                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">To Date :</ion-label>
+                <ion-input class="input-width" type="date" id="endDate" name="endDate"></ion-input>
+              </ion-item> -->
+            </ion-col>
           </ion-row>
 
           <ion-row>
@@ -69,7 +77,7 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <div style="overflow-x:auto;">
+            <div style="overflow-x:auto; width: 100%;">
               <table>
                 <tr>
                   <th>Sr.No.</th>

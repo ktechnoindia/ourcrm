@@ -15,12 +15,12 @@
   <ion-card>
     <ion-card-content>
       <div class="dekstop-menu">
-        <ion-card-header>
-          <ion-item lines="none">
-            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-            <ion-title>Add Quotation</ion-title>
-          </ion-item>
-        </ion-card-header>
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+          <ion-title>Add Quotation</ion-title>
+        </ion-item>
+      </ion-card-header>
       </div>
       <ion-grid>
         <ion-row style="justify-content: right;">
@@ -36,44 +36,52 @@
         
         <ion-row>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label="Quotation No :"
+                label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+            </ion-row>
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Quotation No.</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="date" label="Quotation Date :"
+                label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+            </ion-row>
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Quotation Date.</ion-label>
               <ion-input class="input-width" type="date"></ion-input>
-            </ion-item>
+            </ion-item> -->
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Quotation Group.</ion-label>
+            <!-- <ion-item lines="none">
+              <ion-label class="label-width">Quotation Group.</ion-label> -->
              <select class="select-width">
-                 <option value="1">--Select--</option>
-                 <option value="2">Nirbahy</option>
+              <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Quotation Group :</option>
+              <option value="2">Nirbahy</option>
                  <option value="3">Yogesh</option>
              </select>
-            </ion-item>
+            <!-- </ion-item> -->
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width">Tax Group :</ion-label>
+            <!-- <ion-item lines="none">
+              <ion-label class="label-width">Tax Group :</ion-label> -->
               <select class="select-width">
-                <option value="1">--Select--</option>
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Tax Group :</option>
                 <option value="2">Nirbahy</option>
                 <option value="3">Yogesh</option>
             </select>
-            </ion-item>
+            <!-- </ion-item> -->
           </ion-col>
         </ion-row>
 
         <ion-row style="margin-top:30px;">
-          <div style="overflow-x:auto;">
+          <div style="overflow-x:auto; width: 100%;">
               <table>
                 <tr>
                   <th>Sr.No.</th>

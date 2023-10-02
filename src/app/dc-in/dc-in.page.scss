@@ -1,27 +1,53 @@
+table{
+    width: 100%;
+}
+td {
+    text-align: center;
+}
 
-.container ion-input {
+.container ion-input{
     min-height: 35px;
     color: goldenrod;
     font-weight: 400;
     outline-color: goldenrod;
     outline-width: 2px;
-    outline-style: initial;
+outline-style: initial;
 }
-
-.container ion-select {
+.container ion-select{
     min-height: 35px;
     color: goldenrod;
     font-weight: 400;
     outline-color: goldenrod;
     outline-width: 2px;
-    outline-style: initial;
+outline-style: initial;
 }
-
-.container select {
+.container ion-textarea{
+    min-height: 35px;
+    color: goldenrod;
+    font-weight: 400;
+    outline-color: goldenrod;
+    outline-width: 2px;
+outline-style: initial;
+}
+.container select{
     min-height: 35px;
     color: goldenrod;
     font-weight: 400;
     //border-color: goldenrod;
-    width: 100%;
-    text-align: left
+width: 100%;
+text-align: left;
 }
+
+.row{
+    margin-top: 6px;
+
+}
+ion-card{
+   // background-color: rgb(71, 71, 71);
+}
+.outline{
+    color: goldenrod;
+}
+
+
+ 
