@@ -7,7 +7,7 @@
       </div>
         <div class="dropdown">
           <select (change)="navigateToRoute($event)">
-            <option selected value="master">Master</option>
+            <option selected value="">Master</option>
             <option value="add-customer">Add Customer</option>
             <option value="add-vendor">Add Vender</option>
             <option value="add-item">Add Item</option>
@@ -56,7 +56,13 @@
           </select>
         </div>
         <div  class="dropdown">
-          <a [routerLink]="['/stock-manager']">Stock</a>
+          <select (change)="navigateToRoute($event)">
+            <option selected >Stock </option>
+            <option value="item-ledger">Item Ledger Master Report </option>
+            <option value="stock-ledger">Stock Ledger</option>
+            <option value="service-ledger">Service Ledger</option>
+            <option value="group-wise-report">Group Wise Report</option>
+          </select>
         </div>
         <div class="dropdown">
           <a [routerLink]="['/account-manager']">Account</a>

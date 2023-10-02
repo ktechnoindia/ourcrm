@@ -9,11 +9,17 @@ import { Router } from '@angular/router';
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,]
 })
 export class AddCustomerPage implements OnInit {
   selectTabs='address';
   constructor(private router: Router) { }
+
+  segmentChanged(event: any) {
+    const selectedValue = event.detail.value;
+    // Handle the selected segment value here
+    console.log('Selected Segment Value:', selectedValue);
+  }
 
   ngOnInit() {
   }

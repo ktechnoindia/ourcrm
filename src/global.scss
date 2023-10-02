@@ -193,8 +193,8 @@ ion-menu-button {
 }
 
 .home_buttons {
-    background-color: #fff;
-    color: #000000;
+    background-color: #000000;
+    color: white;
     border: 1px solid goldenrod;
     border-radius: 3px;
     margin: 20px auto;
@@ -202,8 +202,9 @@ ion-menu-button {
 }
 
 .home_buttons:hover {
-    background-color: #000000;
-    color: white;
+    
+    background-color: #fff;
+    color: #000000;
 }
 
 .sign_select {
@@ -349,45 +350,7 @@ ion-item {
 }
 
 
-.label-width {
-    min-width: 120px;
-    display: inline-block;
-    text-align: justify;
-    color: rgb(172, 126, 126);
-    font-size: 13px;
-    font-weight: bold;
-    padding-right: 5px;
-}
 
-
-.input-width {
-    width: calc(100% - 130px);
-    display: inline-block;
-    max-height: 25px;
-    font-size: 13px;
-    border-radius: 2px;
-    border: 1px solid darkgray;
-    background: transparent;
-}
-
-.select-width {
-    //width: calc(100% - 120px);
-    display: inline-block;
-    border: 1px solid darkgray;
-    border-radius: 2px;
-    //min-height: 25px;
-    color: rgb(172, 126, 126);
-    outline: none;
-    text-align: center;
-    font-size: 14px;
-}
-
-.textarea-width {
-    width: calc(100% - 130px);
-    display: inline-block;
-    border: 1px solid darkgray;
-    border-radius: 2px;
-}
 
 ion-icon {
     font-size: 18px;

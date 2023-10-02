@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-item lines="none">
+      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+      <ion-title>Service Ledger</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="container">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title>Service Ledger</ion-title>
+            </ion-item>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+
+          <ion-row style="justify-content: right;">
+            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
+              <ng-template>
+                <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
+                <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
+                <ion-button style="color: black; " size="small" color="undefined">Save</ion-button>
+              </ng-template>
+            </ion-popover>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label=" Transaction Id :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="date" label=" Date :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="number" label=" Service Code :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label=" Category :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="number" label=" Quantity :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label=" In/Out :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="justify-content: right;">
+            <ion-button color="warning">Cancel</ion-button>
+          </ion-row>
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
