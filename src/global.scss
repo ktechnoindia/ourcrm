@@ -247,6 +247,8 @@ ion-menu-button {
 .master {
     margin: 30px auto;
     width: 150px;
+    height: 120px;
+    padding: 10px;
     // color: #525252;
     transition: all 0.5s linear;
     box-shadow: none;
@@ -278,7 +280,19 @@ ion-card-subtitle {
 .master a {
     text-decoration: none;
 }
-
+@media(max-width:940px){
+    .master ion-icon {
+        color: goldenrod;
+        font-size: 30px;
+    }
+    ion-card-subtitle {
+        font-size: 16px;
+    
+    }
+    .master{
+        height: 100px;
+    }
+}
 ion-toolbar ion-icon {
     font-size: 26px;
     color: goldenrod;
@@ -450,10 +464,7 @@ th{
     visibility: hidden;
     
 }
-ion-card-header{
-    display: none;
-    visibility: hidden;
-}
+
 }
 ion-card-header{
     border-bottom: 2px solid goldenrod;
