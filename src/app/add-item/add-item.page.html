@@ -230,11 +230,7 @@
             </div>
 
             <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
-              <ion-row>
-                <ion-col size="3" size-lg="4" size-md="6" size-sm="6" size="12">
-
-                </ion-col>
-              </ion-row>
+             
               <ion-row>
                 <div class="images">
                   <input class="file" type="file" (change)="onFileSelected($event)" accept="image/*" />
@@ -246,48 +242,68 @@
             <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Barcode'">
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">EAN Code :</ion-label>
                     <ion-input class="input-width" type="text" placeholder="0.00"></ion-input>
-                  </ion-item>
+                  </ion-item> -->
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label=" EAN Code :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
                 </ion-col>
               </ion-row>
             </div>
 
-            <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Other'">
+            <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
 
-              <h1>Quantity Levels</h1>
+              <h1 style="text-align: center;">--- Quantity Levels ---</h1>
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Minimum :</ion-label>
                     <ion-input class="input-width" type="text" placeholder="0.00"></ion-input>
-                  </ion-item>
+                  </ion-item> -->
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Minimum :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Maximum :</ion-label>
                     <ion-input class="input-width" type="text" placeholder="0.00"></ion-input>
-                  </ion-item>
+                  </ion-item> -->
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label="  Maximum :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Re-order :</ion-label>
                     <ion-input class="input-width" type="text" placeholder="0.00"></ion-input>
-                  </ion-item>
+                  </ion-item> -->
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Re-Order :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
                 </ion-col>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-                  <ion-item lines="none">
+                  <!-- <ion-item lines="none">
                     <ion-label class="label-width">Description :</ion-label>
                     <ion-input class="input-width" type="text" placeholder=""></ion-input>
-                  </ion-item>
+                  </ion-item> -->
+                  <ion-row>
+                    <ion-input color="warning" class="sign_input" type="text" label=" Description :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
                 </ion-col>
               </ion-row>
-              <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+              <!-- <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div> -->
             
-                <h1>Dimension & Weight</h1>
+                <h1 style="text-align: center;">--- Dimension & Weight ---</h1>
       
               <ion-row>
                 <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
