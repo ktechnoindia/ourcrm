@@ -14,12 +14,14 @@
   <div class="container">
   <ion-card >
     <ion-card-content>
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-          <ion-title>Lead Follow Up Window</ion-title>
-        </ion-item>
-      </ion-card-header>
+      <div class="dekstop-menu">
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-title>Follow-Up</ion-title>
+          </ion-item>
+        </ion-card-header>
+      </div>
       <ion-grid>
         <ion-row>
           <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Follow-up Lead List :
@@ -82,40 +84,60 @@
         </ion-row>
         <ion-row>
           <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Lead Name :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Lead Name  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
           <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Company Name :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Company Name   :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
 
         </ion-row>
         <ion-row>
           <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Email :</ion-label>
               <ion-input class="input-width" type="email"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Email  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
           <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Phone Number :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Phone Number   :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Lead Status :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Lead Status  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
         </ion-row>
         

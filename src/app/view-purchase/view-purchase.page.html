@@ -14,12 +14,14 @@
   <div class="container">
   <ion-card>
     <ion-card-content>
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-          <ion-title>View Purchase</ion-title>
-        </ion-item>
-      </ion-card-header>
+      <div class="dekstop-menu">
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-title>View Purchase</ion-title>
+          </ion-item>
+        </ion-card-header>
+      </div>
       <ion-grid class="add_sale">
 
         <ion-row>
@@ -36,16 +38,24 @@
   
         <ion-row>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
             <ion-label class="label-width"> From :</ion-label>
             <ion-input class="input-width" type="date"></ion-input>
-           </ion-item>
+           </ion-item> -->
+           <ion-row>
+            <ion-input color="warning" class="sign_input" type="text" label=" From  :" label-placement="floating"
+              fill="outline"></ion-input>
+          </ion-row>
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
              <ion-label class="label-width"> To :</ion-label>
              <ion-input class="input-width" type="date"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" To  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
            </ion-col>
   
         </ion-row>
