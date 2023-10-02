@@ -14,12 +14,14 @@
   <div class="container">
   <ion-card>
     <ion-card-content>
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-          <ion-title>Add Sales</ion-title>
-        </ion-item>
-      </ion-card-header>
+      <div class="dekstop-menu">
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-title>Add Sele</ion-title>
+          </ion-item>
+        </ion-card-header>
+      </div>
       <ion-grid >
         <ion-row style="justify-content: right;">
           <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
@@ -34,60 +36,84 @@
         
 
         <ion-row >
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width">Billing No. :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Billing No. :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width"> Billing Date :</ion-label>
               <ion-input class="input-width" type="date"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Billing Date :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
         </ion-row>
 
         <ion-row >
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width"> Order No. :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Order No.  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width"> Order Date :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Order Date :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
         </ion-row>
 
         <ion-row >
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width"> Customer Name :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" Customer Name  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
+            <!-- <ion-item lines="none">
               <ion-label class="label-width"> GSTIN :</ion-label>
               <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
+            <ion-row>
+              <ion-input color="warning" class="sign_input" type="text" label=" GSTIN  :" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-row>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-            <ion-item lines="none">
-              <ion-label class="label-width"> Cash/Credit :</ion-label>
+           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <!-- <ion-item lines="none"> 
+              <ion-label class="label-width"> Cash/Credit :</ion-label> -->
               <select class="select-width">
                 <option value="1">--select--</option>
                 <option value="2">Cash</option>
                 <option value="3">Credit</option>
               </select>
-            </ion-item>
+            <!-- </ion-item> -->
           </ion-col>
         </ion-row>
 
