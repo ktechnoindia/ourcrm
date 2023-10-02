@@ -14,12 +14,14 @@
   <div class="container">
     <ion-card>
       <ion-card-content>
-        <ion-card-header>
-          <ion-item lines="none">
-            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-            <ion-title>Pro Stock Window</ion-title>
-          </ion-item>
-        </ion-card-header>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title>Pro Stock Window</ion-title>
+            </ion-item>
+          </ion-card-header>
+        </div>
         <ion-grid>
           <ion-row style="margin: 10px auto;">
             <ion-label style="font-size: 25px; font-weight: bold;">Item Information</ion-label><span
@@ -27,46 +29,70 @@
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Code :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Code :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Short Name :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Short Name :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-textarea color="warning" class="sign_input" type="text" label="Description :"
+                  label-placement="floating" fill="outline"></ion-textarea>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Description :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Group of Item :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Group of Item</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Product Type :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Product Type :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Catrgory :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Catrgory :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
@@ -77,46 +103,70 @@
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Delivery Price :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Delivery Price :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="MRP Price :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">MRP Price :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Customer Price : "
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Customer Price : </ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Customer Tax % :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Customer Tax % :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="CSD % :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">CSD % :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Additional Tax % :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Additional Tax % :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
@@ -127,46 +177,70 @@
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Opt. Quantity :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Opt. Quantity :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Opt. Price :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Opt. Price :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="CL Quantity :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">CL Quantity :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Avg. Price :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Avg. Price :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Model SAP Code :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Model SAP Code :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Model VIN No. :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Model VIN No. :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
@@ -177,31 +251,47 @@
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Transfer :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Transfer :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Sale A/c :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Sale A/c :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Purchase A/c :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Purchase A/c :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="CSD Sale A/c :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">CSD Sale A/c :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
@@ -211,32 +301,48 @@
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Support Garrenty :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Support Garrenty :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="CGST :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">CGST :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Warrenty Help :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">Warrenty Help :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
 
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-item lines="none">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="IGST :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
                 <ion-label class="label-width">IGST :</ion-label>
                 <ion-input class="input-width" type="text"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </ion-col>
           </ion-row>
 

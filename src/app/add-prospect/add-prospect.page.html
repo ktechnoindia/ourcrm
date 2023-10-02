@@ -3,28 +3,29 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-   <ion-item lines="none">
-    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
-    <ion-title>Add Prospect</ion-title>
-   </ion-item>
+    <ion-item lines="none">
+      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+      <ion-title>Add Prospect</ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content class="child_window" [fullscreen]="true">
+  <div class="container">
     <ion-card>
       <ion-card-content>
-        <ion-card-header>
-          <ion-item lines="none">
-            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-            <ion-title>Add Prospect</ion-title>
-          </ion-item>
-        </ion-card-header>
-    
-    <ion-toolbar>
-      <ion-title size="large">add_prospect</ion-title>
-    </ion-toolbar>
-  </ion-card-content>
-</ion-card>
-  </ion-header>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title>Add Prospect</ion-title>
+            </ion-item>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+

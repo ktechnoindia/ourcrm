@@ -12,143 +12,166 @@
 
 <ion-content>
   <div class="container">
-  <ion-card >
-    <ion-card-content>
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-          <ion-title>Lead Follow Up Window</ion-title>
-        </ion-item>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Follow-up Lead List :
-          </h6>
-        </ion-row>
-        <ion-row style="overflow-x:auto;">
-          <table>
-            <tr>
-              <th>SI NO.</th>
-              <th style="width: 100px;">Date</th>
-              <th style="width: 140px;">Company name</th>
-              <th style="width: 140px;">Customer name</th>
-              <th style="width: 140px;">Mobile Number</th>
-              <th style="width: 100px;">City</th>
-              <th style="width: 140px;">Email</th>
-              <th style="width: 100px;">Next Follow Up</th>
-              <th style="width: 100px;">Entered By</th>
-              <th style="width: 200px;">Action</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>23/09/2023</td>
-              <td>Mehta Infotech Pvt. Ltd.</td>
-              <td>Deepak Sharma</td>
-              <td>6367127145</td>
-              <td>Jaipur</td>
-              <td>deepusharma@gmail.com</td>
-              <td>01/10/2023</td>
-              <td>Ravi Sharma</td>
-              <td>
-
-                <ion-icon name="create"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="share-social"></ion-icon>
-
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>23/09/2023</td>
-              <td>Bagra Infotech Pvt. Ltd.</td>
-              <td>Yogesh Sharma</td>
-              <td>6367127145</td>
-              <td>Jaipur</td>
-              <td>yogisharma@gmail.com</td>
-              <td>01/10/2023</td>
-              <td>Ravi Sharma</td>
-              <td>
-                <ion-icon name="create"></ion-icon>
-                <ion-icon name="trash"></ion-icon>
-                <ion-icon name="share-social"></ion-icon>
-              </td>
-            </tr>
-          </table>
-
-        </ion-row>
-        <ion-row>
-          <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Lead Information :
-          </h6>
-        </ion-row>
-        <ion-row>
-          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
             <ion-item lines="none">
-              <ion-label class="label-width">Lead Name :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title>Lead Follow Up Window</ion-title>
             </ion-item>
-          </ion-col>
-          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label class="label-width">Company Name :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row>
+            <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Follow-up Lead List
+              :
+            </h6>
+          </ion-row>
+          <ion-row style="overflow-x:auto;">
+            <table>
+              <tr>
+                <th>SI NO.</th>
+                <th style="width: 100px;">Date</th>
+                <th style="width: 140px;">Company name</th>
+                <th style="width: 140px;">Customer name</th>
+                <th style="width: 140px;">Mobile Number</th>
+                <th style="width: 100px;">City</th>
+                <th style="width: 140px;">Email</th>
+                <th style="width: 100px;">Next Follow Up</th>
+                <th style="width: 100px;">Entered By</th>
+                <th style="width: 200px;">Action</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>23/09/2023</td>
+                <td>Mehta Infotech Pvt. Ltd.</td>
+                <td>Deepak Sharma</td>
+                <td>6367127145</td>
+                <td>Jaipur</td>
+                <td>deepusharma@gmail.com</td>
+                <td>01/10/2023</td>
+                <td>Ravi Sharma</td>
+                <td>
 
-        </ion-row>
-        <ion-row>
-          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label class="label-width">Email :</ion-label>
-              <ion-input class="input-width" type="email"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label class="label-width">Phone Number :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+                  <ion-icon name="create"></ion-icon>
+                  <ion-icon name="trash"></ion-icon>
+                  <ion-icon name="share-social"></ion-icon>
 
-        <ion-row>
-          <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-item lines="none">
-              <ion-label class="label-width">Lead Status :</ion-label>
-              <ion-input class="input-width" type="text"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        
-        <ion-row>
-          <div style="margin: 20px 0;width: 100%;">
-            <ion-row style=" overflow-x:auto;">
-              <table>
-                <tr>
-                  <th>SI NO.</th>
-                  <th>Lead Status</th>
-                  <th>Next Follow-Up Date</th>
-                  <th>Remark</th>
-                  <th style="width: 150px;">Updated By</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
-                  <td><ion-input></ion-input></td>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>23/09/2023</td>
+                <td>Bagra Infotech Pvt. Ltd.</td>
+                <td>Yogesh Sharma</td>
+                <td>6367127145</td>
+                <td>Jaipur</td>
+                <td>yogisharma@gmail.com</td>
+                <td>01/10/2023</td>
+                <td>Ravi Sharma</td>
+                <td>
+                  <ion-icon name="create"></ion-icon>
+                  <ion-icon name="trash"></ion-icon>
+                  <ion-icon name="share-social"></ion-icon>
+                </td>
+              </tr>
+            </table>
 
-                  <td>
-                    <ion-icon name="cloud-upload"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </ion-row>
-          </div>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+          </ion-row>
+          <ion-row>
+            <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Lead Information :
+            </h6>
+          </ion-row>
+          <ion-row>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label="Lead Name : "
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Lead Name :</ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item> -->
+            </ion-col>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label=" Comapny Name: "
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Company Name :</ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item> -->
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="email" label=" Email :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Email :</ion-label>
+                <ion-input class="input-width" type="email"></ion-input>
+              </ion-item> -->
+            </ion-col>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="number" label=" Phone Number : "
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Phone Number :</ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item> -->
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="warning" class="sign_input" type="text" label=" Lead Status : "
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+              <!-- <ion-item lines="none">
+                <ion-label class="label-width">Lead Status :</ion-label>
+                <ion-input class="input-width" type="text"></ion-input>
+              </ion-item> -->
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <div style="margin: 20px 0;width: 100%;">
+              <ion-row style=" overflow-x:auto;">
+                <table>
+                  <tr>
+                    <th>SI NO.</th>
+                    <th>Lead Status</th>
+                    <th>Next Follow-Up Date</th>
+                    <th>Remark</th>
+                    <th style="width: 150px;">Updated By</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td><ion-input></ion-input></td>
+                    <td><ion-input></ion-input></td>
+                    <td><ion-input></ion-input></td>
+                    <td><ion-input></ion-input></td>
+                    <td><ion-input></ion-input></td>
+
+                    <td>
+                      <ion-icon name="cloud-upload"></ion-icon>
+                      <ion-icon name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </ion-row>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
