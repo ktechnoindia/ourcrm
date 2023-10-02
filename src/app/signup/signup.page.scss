@@ -1,2 +1,37 @@
+.signup{
+    margin-top: 70px;
+}
+.signup ion-input{
+    min-height: 40px;
+    color: goldenrod;
+    font-weight: 400;
+}
+.signup select{
+    min-height: 40px;
+    color: goldenrod;
+    font-weight: 400;
+}
+.signup select :hover{
+    border-color: gold;
 
-
+}
+.card1{
+    margin-top: -50px;
+}
+ion-header{
+    display: none;
+    visibility: hidden;
+}
+.mymenu{
+    display: none;
+    visibility: hidden;
+}
+.dekstop-header{
+    display: none;
+    visibility: hidden;
+}
+@media(max-width:540px){
+    .signup{
+        margin-top: 0px;
+    }
+}

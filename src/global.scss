@@ -16,7 +16,7 @@
 
 .container {
     width: 100%;
-    //margin-top: 100px;
+    // margin-top: 100px;
 }
 
 
@@ -346,11 +346,11 @@ ion-item {
 }
 
 .select-width {
-    width: calc(100% - 120px);
+    //width: calc(100% - 120px);
     display: inline-block;
     border: 1px solid darkgray;
     border-radius: 2px;
-    min-height: 25px;
+    //min-height: 25px;
     color: rgb(172, 126, 126);
     outline: none;
     text-align: center;
@@ -448,6 +448,25 @@ th{
 .dekstop-header{
     display: none;
     visibility: hidden;
+    
 }
-
+ion-card-header{
+    display: none;
+    visibility: hidden;
+}
+}
+ion-card-header{
+    border-bottom: 2px solid goldenrod;
+    width: 100%;
+    margin-top: -20px;
+}
+ion-card-header ion-title{
+    color: goldenrod;
+    font-weight: bold;
+    text-align: center;
+}
+ion-card-header .back{
+    color: goldenrod;
+    font-size: 24px;
+    font-weight: bold;
 }

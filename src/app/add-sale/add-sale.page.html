@@ -14,17 +14,24 @@
   <div class="container">
   <ion-card>
     <ion-card-content>
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+          <ion-title>Add Sales</ion-title>
+        </ion-item>
+      </ion-card-header>
       <ion-grid >
         <ion-row style="justify-content: right;">
-          <ion-icon class="dots" id="left-start" name="ellipsis-vertical-outline"></ion-icon>
-          <ion-popover  trigger="left-start"  size="auto" side="left" alignment="start">
+          <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-popover   trigger="left-start"  size="auto" side="left" alignment="start">
             <ng-template>
-              <ion-button style="color: black;"  color="undefined">Delete</ion-button>
-              <ion-button style="color: black;" color="undefined">Edit</ion-button>
-              <ion-button style="color: black; " color="undefined" >Save</ion-button>
+              <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
+              <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
+              <ion-button style="color: black; " size="small" color="undefined" >Save</ion-button>
             </ng-template>
           </ion-popover>
         </ion-row>
+        
 
         <ion-row >
           <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">

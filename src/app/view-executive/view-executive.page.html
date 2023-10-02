@@ -13,6 +13,12 @@
 <ion-content [fullscreen]="true">
   <ion-card class="hsn_manager">
     <ion-card-content>
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+          <ion-title>View Executive</ion-title>
+        </ion-item>
+      </ion-card-header>
       <ion-grid>
         <ion-row style="justify-content: right;">
           <ion-button color="warning">Go to Excel</ion-button>
