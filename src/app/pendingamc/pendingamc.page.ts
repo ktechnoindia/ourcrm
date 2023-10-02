@@ -3,22 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-amc-manager',
-  templateUrl: './amc-manager.page.html',
-  styleUrls: ['./amc-manager.page.scss'],
+  selector: 'app-pendingamc',
+  templateUrl: './pendingamc.page.html',
+  styleUrls: ['./pendingamc.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class AmcManagerPage implements OnInit {
+export class PendingamcPage implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  goBack(){
-    this.router.navigate([""])
+  goBack() {
+    this.router.navigate(['/amc-manager']); // Navigate back to the previous page
   }
+
 }

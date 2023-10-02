@@ -162,7 +162,19 @@ export const routes: Routes = [
   {
     path: 'pro-stock',
     loadComponent: () => import('./pro-stock/pro-stock.page').then( m => m.ProStockPage)
+  },  {
+    path: 'createamc',
+    loadComponent: () => import('./createamc/createamc.page').then( m => m.CreateamcPage)
   },
+  {
+    path: 'amcreport',
+    loadComponent: () => import('./amcreport/amcreport.page').then( m => m.AmcreportPage)
+  },
+  {
+    path: 'pendingamc',
+    loadComponent: () => import('./pendingamc/pendingamc.page').then( m => m.PendingamcPage)
+  },
+
 
 
 ];

@@ -61,8 +61,14 @@
         <div class="dropdown">
           <a [routerLink]="['/account-manager']">Account</a>
         </div>
+       
         <div class="dropdown">
-          <a [routerLink]="['/amc-manager']">AMC</a>
+          <select (change)="navigateToRoute($event)">
+            <option selected value="amc-manager">AMC</option>
+            <option value="createamc">Creat AMC</option>
+            <option value="amcreport">AMC Report</option>
+            <option value="pendingamc">Pending AMC</option>
+          </select>
         </div>
         <div class="drop" >
           <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
