@@ -175,6 +175,24 @@ export const routes: Routes = [
     path: 'pendingamc',
     loadComponent: () => import('./pendingamc/pendingamc.page').then( m => m.PendingamcPage)
   },
+  {
+    path: 'itemledger',
+    loadComponent: () => import('./item-ledger/item-ledger.page').then( m => m.ItemLedgerPage)
+  },
+  {
+    path: 'stockledger',
+    loadComponent: () => import('./stock-ledger/stock-ledger.page').then( m => m.StockLedgerPage)
+  },
+  {
+    path: 'serviceledger',
+    loadComponent: () => import('./service-ledger/service-ledger.page').then( m => m.ServiceLedgerPage)
+  },
+  {
+    path: 'groupwisereport',
+    loadComponent: () => import('./group-wise-report/group-wise-report.page').then( m => m.GroupWiseReportPage)
+  },
+
+
 
 
 

@@ -157,9 +157,7 @@ ion-menu-button {
 .card2 {
     --background: transparent;
     border: 1px solid white;
-    padding: 10px 30px;
-    margin: 0 auto;
-    // margin-top: 50px;
+    padding: 5px 10px;
 }
 
 .card3 {
@@ -174,23 +172,12 @@ ion-menu-button {
 
 .card4 {
     --background: transparent;
-    margin: 50px auto;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 30px;
+    margin-top: 100px;
+    text-align: center;
     border: 1px solid white;
+    padding: 5px 10px;
 }
 
-.card4 ion-row {
-    padding: 5px 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
 
 .home_buttons {
     background-color: #000000;
@@ -199,6 +186,7 @@ ion-menu-button {
     border-radius: 3px;
     margin: 20px auto;
     transition: all 0.5s ease-out;
+    text-align: center;
 }
 
 .home_buttons:hover {
@@ -206,26 +194,6 @@ ion-menu-button {
     background-color: #fff;
     color: #000000;
 }
-
-.sign_select {
-    min-height: 50px;
-    background: transparent;
-    border: 1px solid white;
-    border-radius: 3px;
-    text-align: center;
-    font-size: 17px;
-}
-
-.sign_select:hover {
-    border: 0.5px solid white;
-}
-
-ion-input .sign_input {
-    border: none;
-    outline: none;
-
-}
-
 
 .master_window {
     text-align: center;
@@ -349,13 +317,9 @@ ion-item {
     background-color: #000000;
 }
 
-
-
-
 ion-icon {
     font-size: 18px;
 }
-
 
 table,
 th,

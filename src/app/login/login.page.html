@@ -1,5 +1,3 @@
-
-
 <ion-content class="home_page" [fullscreen]="true">
   <div class="signup">
     <ion-grid>
@@ -11,38 +9,46 @@
         </ion-col>
 
         <ion-col size="12" size-lg="6">
+
           <ion-card class="card4">
-            <ion-row >
-              <h1  style="color: goldenrod;font-size: 35px;font-weight: bold;">Login Now </h1>
-            </ion-row>
-            <ion-row>
-                <ion-input color="warning" class="sign_input" type="email" label="Email" label-placement="floating"
-                  fill="outline" name=""></ion-input>
-            </ion-row>
+            <form>
+              <ion-row>
+                <h1 style="color: goldenrod;font-size: 35px;font-weight: bold;justify-content: center;">Login Now </h1>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="12">
+                  <ion-input ng-model="email" id="email" color="warning" class="sign_input" type="email" label="Email" label-placement="floating" fill="outline" name="email" value="" required></ion-input>
+                </ion-col>
+              </ion-row>
 
-            <ion-row>
-                <ion-input  color="warning"  class="sign_input" type="number" label="Mobile number" label-placement="floating"
-                  fill="outline"></ion-input>
-            </ion-row>
+              <ion-row>
+               <ion-col size="12" size-lg="12">
+                <ion-input ng-model="phone" name="phone" id="phone" color="warning" class="sign_input" type="number" label="Mobile number" label-placement="floating" fill="outline" value="" required></ion-input>
+               </ion-col>
+              </ion-row>
 
-            <ion-row>
-                <ion-input  color="warning"  class="sign_input" type="password" label=" Password" label-placement="floating"
-                  fill="outline"></ion-input>
-            </ion-row>
-            <ion-row>
-              <ion-input  color="warning"  class="sign_input" type="password" label="Confirm Password" label-placement="floating"
-                fill="outline"></ion-input>
-          </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="12">
+                  <ion-input ng-model="password" name="password" id="password" color="warning" class="sign_input" type="password" label=" Password" label-placement="floating" fill="outline" value=""  required></ion-input>
+                </ion-col>
+              </ion-row>
 
-            <ion-row style="justify-content: center;">
-              <ion-button color="warning"  class="home_buttons">Login Now</ion-button>
-            </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="12">
+                  <ion-input ng-model="confirmpassword" name="confirmpassword" id="confirmpassword" color="warning" class="sign_input" type="password" label="Confirm Password" label-placement="floating" fill="outline" value="" required></ion-input>
+                </ion-col>
+              </ion-row>
 
-            <ion-row style="justify-content: center;">
-              <p>Don't have an account? <a [routerLink]="['/signup']">Signup here</a></p>
-            </ion-row>
+              <ion-row style="justify-content: center;">
+                <ion-input type="submit" value="Login Now" class="home_buttons"></ion-input>
+              </ion-row>
 
+              <ion-row style="justify-content: center;">
+                <p>Don't have an account? <a [routerLink]="['/signup']">Signup here</a></p>
+              </ion-row>
+            </form>
           </ion-card>
+
         </ion-col>
       </ion-row>
     </ion-grid>
