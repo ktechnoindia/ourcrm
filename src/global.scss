@@ -190,7 +190,7 @@ ion-menu-button {
 }
 
 .home_buttons:hover {
-    
+
     background-color: #fff;
     color: #000000;
 }
@@ -320,50 +320,50 @@ ion-icon {
     font-size: 18px;
 }
 
-// table,
-// th,
-// td {
-//     border: solid 1px black;
-//     text-align: center;
-   
-// }
 
-// table {
-//     border-collapse: collapse;
-//     width: 960px;
-// }
-
-// th {
-//     background-color: #f2f2f2;
-// }
-
-/* CSS for the scrollable container */
 .scroll-container {
-    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
-    width: 100%; /* Set a fixed width for the container */
-  max-width: 100%;  /* Set a maximum width for the container */
-  }
-  
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    width: 100%;
+    height: 150px;
+}
 
-  
-  /* Optional: Style the table to make it look better */
-  table {
-    width: 100%; /* Table takes full width of its container */
-    border-collapse: collapse; /* Merge cell borders */
-  }
-  
-  th, td {
-    padding: 0px; /* Add padding to table cells for better spacing */
-    border: 1px solid #ddd; /* Add borders to table cells */
-    text-align: center; /* Align text to the left */
-  }
-  
-  /* Optional: Style the header row differently */
-  th {
-    background-color: #f2f2f2; /* Gray background for header row */
-  }
-  
-  
+.input-style{
+    border: 1px solid #525252;
+    height: 10px;
+    border-radius: 3px;
+    width: 150px;
+}
+ion-row{
+    .label-style{
+        width: 130px;
+        text-align: left;
+        font-size: 12px;
+        color: goldenrod;
+    }
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+
 
 .table_input {
     border: none;
@@ -443,6 +443,7 @@ ion-icon {
         display: none;
         visibility: hidden;
     }
+
     .dekstop-menu {
         display: none;
         visibility: hidden;
@@ -500,13 +501,15 @@ ion-card-header .back {
 //     margin-top: 6px;
 
 // }
-.dekstop-menu ion-card-header{
+.dekstop-menu ion-card-header {
     margin-top: -30px;
     margin-bottom: -27px;
 }
-.dekstop-menu ion-title{
+
+.dekstop-menu ion-title {
     margin-top: 15px;
 }
-.back{
+
+.back {
     margin-top: 15px;
-} 
+}
