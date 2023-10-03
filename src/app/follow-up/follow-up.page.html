@@ -15,7 +15,7 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
+          <ion-card-header style="margin-bottom: -10px;">
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title>Lead Follow Up Window</ion-title>
@@ -169,6 +169,13 @@
                 </table>
               </ion-row>
             </div>
+          </ion-row>
+          <ion-row style="justify-content: right;margin-top: 20px;">
+            <ion-button color="warning">New</ion-button>
+            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning">Delete</ion-button>
+            <ion-button color="warning">Preview</ion-button>
+            <ion-button color="warning">Close</ion-button>
           </ion-row>
         </ion-grid>
       </ion-card-content>

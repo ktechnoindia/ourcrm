@@ -23,7 +23,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
+          <ion-row style="justify-content: right;margin-top: -15px;">
             <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
             <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
               <ng-template>
@@ -36,78 +36,54 @@
 
 
           <ion-row>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
                 <ion-input color="warning" class="sign_input" type="date" label="Voucher No. :"
                   label-placement="floating" fill="outline" ></ion-input>
               </ion-row>
-              <!-- <ion-item lines="none">
-                <ion-label class="label-width">Voucher No. :</ion-label>
-                <ion-input class="input-width" type="text"></ion-input>
-              </ion-item> -->
             </ion-col>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
                 <ion-input color="warning" class="sign_input" type="date" label=" Date :"
                   label-placement="floating" fill="outline" ></ion-input>
               </ion-row>
-              <!-- <ion-item lines="none">
-                <ion-label class="label-width"> Date :</ion-label>
-                <ion-input class="input-width" type="date"></ion-input>
-              </ion-item> -->
             </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-              <!-- <ion-item lines="none">
-              <ion-label class="label-width"> Suppliers :</ion-label> -->
+         
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
               <select class="select-width">
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Suppliers">---Select Suppliers ---
                   :</option>
                 <option value="2">Nirbahy</option>
                 <option value="3">Yogesh</option>
               </select>
-              <!-- </ion-item> -->
             </ion-col>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-              <!-- <ion-item lines="none">
-              <ion-label class="label-width">Reference No. :</ion-label> -->
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
               <select class="select-width">
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Reference no.">---Select Reference No ---</option>
                 <option value="2">Nirbahy</option>
                 <option value="3">Yogesh</option>
               </select>
-              <!-- </ion-item> -->
             </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-             
+          
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">             
               <select class="select-width">
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Reference no.">---Select Cash/Credit ---</option>
                 <option value="2">Cash</option>
                 <option value="3">Credit</option>
               </select>
-              <!-- <ion-item lines="none">
-                <ion-label class="label-width"> Cash/Credit :</ion-label>
-                <ion-input class="input-width" type="text"></ion-input>
-              </ion-item> -->
             </ion-col>
-            <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
                 <ion-textarea color="warning" class="sign_input" type="text" label="Remark :"
                   label-placement="floating" fill="outline"></ion-textarea>
               </ion-row>
-              <!-- <ion-item lines="none">
-                <ion-label class="label-width"> Remark :</ion-label>
-                <ion-textarea class="textarea-width"></ion-textarea>
-              </ion-item> -->
             </ion-col>
           </ion-row>
 
-          <ion-row style="margin-top: 60px;">
+          <ion-row style="margin-top: 10px;">
             <div style="overflow-x:auto; width: 100%;">
               <table>
                 <tr>
@@ -155,11 +131,12 @@
             </div>
           </ion-row>
 
-          <ion-row style="justify-content: right; margin-top: 10px;">
-
-            <ion-button color="warning">
-              Cancel
-            </ion-button>
+          <ion-row style="justify-content: right;margin-top: 20px;">
+            <ion-button color="warning">New</ion-button>
+            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning">Delete</ion-button>
+            <ion-button color="warning">Preview</ion-button>
+            <ion-button color="warning">Close</ion-button>
           </ion-row>
 
         </ion-grid>

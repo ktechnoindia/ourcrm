@@ -6,6 +6,8 @@
   color: goldenrod;
   font-weight: 700;
   margin-left: 25px;
+  width: 100px;
+
 }
 
 .drop a {
@@ -16,6 +18,7 @@
   color: goldenrod;
   font-weight: 700;
   margin-left: 25px;
+  
 }
 
 
@@ -80,4 +83,8 @@ select option:checked {
   justify-content: space-around;
   align-items: center;
   background-color: #000000;
+}
+.mymenu .drop{
+  width: 100px;
+
 }
