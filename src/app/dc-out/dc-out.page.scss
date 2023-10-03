@@ -1,53 +1,66 @@
-table{
-    width: 100%;
-}
-td {
-    text-align: center;
+.container ion-input {
+    min-height: 35px;
+    color: goldenrod;
+    font-weight: 400;
+    outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
 }
 
-.container ion-input{
+.container ion-select {
     min-height: 35px;
     color: goldenrod;
     font-weight: 400;
     outline-color: goldenrod;
     outline-width: 2px;
-outline-style: initial;
+    outline-style: initial;
 }
-.container ion-select{
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-outline-style: initial;
-}
-.container ion-textarea{
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-outline-style: initial;
-}
-.container select{
+
+.container select {
     min-height: 35px;
     color: goldenrod;
     font-weight: 400;
     //border-color: goldenrod;
-width: 100%;
-text-align: left;
+    width: 100%;
+    text-align: left
 }
 
-.row{
-    margin-top: 6px;
+@media(max-width:540px) {
+    .container ion-input {
+        min-height: 33px;
+        text-align: center;
+    }
 
-}
-ion-card{
-   // background-color: rgb(71, 71, 71);
-}
-.outline{
-    color: goldenrod;
+    .container ion-select {
+        min-height: 33px;
+        text-align: center;
+    }
 }
 
+.output td {
+    border: 1px solid grey;
+    margin: 5px;
+    height: 30px;
+}
 
- 
+.output th {
+    text-align: right;
+    border: none;
+    background-color: #fff;
+    padding-left: 10px;
+}
+.scroll-container {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid ;
+    width: 100%;
+    height:210px;
+    overflow-x:auto
+}
+table tr td select{
+    border: solid 1px lightgray;
+    color: darkgray;
+    font-weight: 400;
+    
+}
