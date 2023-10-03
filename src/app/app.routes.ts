@@ -162,21 +162,18 @@ export const routes: Routes = [
   {
     path: 'pro-stock',
     loadComponent: () => import('./pro-stock/pro-stock.page').then( m => m.ProStockPage)
-  },  {
-    path: 'item-ledger',
-    loadComponent: () => import('./item-ledger/item-ledger.page').then( m => m.ItemLedgerPage)
   },
   {
-    path: 'stock-ledger',
-    loadComponent: () => import('./stock-ledger/stock-ledger.page').then( m => m.StockLedgerPage)
+    path: 'createamc',
+    loadComponent: () => import('./createamc/createamc.page').then( m => m.CreateamcPage)
   },
   {
-    path: 'service-ledger',
-    loadComponent: () => import('./service-ledger/service-ledger.page').then( m => m.ServiceLedgerPage)
+    path: 'amcreport',
+    loadComponent: () => import('./amcreport/amcreport.page').then( m => m.AmcreportPage)
   },
   {
-    path: 'group-wise-report',
-    loadComponent: () => import('./group-wise-report/group-wise-report.page').then( m => m.GroupWiseReportPage)
+    path: 'pendingamc',
+    loadComponent: () => import('./pendingamc/pendingamc.page').then( m => m.PendingamcPage)
   },
 
 

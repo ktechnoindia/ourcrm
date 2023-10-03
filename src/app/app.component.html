@@ -7,7 +7,7 @@
       </div>
         <div class="dropdown">
           <select (change)="navigateToRoute($event)">
-            <option selected value="">Master</option>
+            <option selected value="master">Master</option>
             <option value="add-customer">Add Customer</option>
             <option value="add-vendor">Add Vender</option>
             <option value="add-item">Add Item</option>
@@ -57,8 +57,8 @@
         </div>
         <div  class="dropdown">
           <select (change)="navigateToRoute($event)">
-            <option selected >Stock </option>
-            <option value="item-ledger">Item Ledger Master Report </option>
+            <option selected value="stock" >Stock </option>
+            <option value="item-ledger" >Item Ledger Report </option>
             <option value="stock-ledger">Stock Ledger</option>
             <option value="service-ledger">Service Ledger</option>
             <option value="group-wise-report">Group Wise Report</option>
@@ -67,8 +67,14 @@
         <div class="dropdown">
           <a [routerLink]="['/account-manager']">Account</a>
         </div>
+       
         <div class="dropdown">
-          <a [routerLink]="['/amc-manager']">AMC</a>
+          <select (change)="navigateToRoute($event)">
+            <option selected value="amc-manager">AMC</option>
+            <option value="createamc">Creat AMC</option>
+            <option value="amcreport">AMC Report</option>
+            <option value="pendingamc">Pending AMC</option>
+          </select>
         </div>
         <div class="drop" >
           <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>

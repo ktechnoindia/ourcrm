@@ -3,22 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
+
 @Component({
-  selector: 'app-stock-manager',
-  templateUrl: './stock-manager.page.html',
-  styleUrls: ['./stock-manager.page.scss'],
+  selector: 'app-amcreport',
+  templateUrl: './amcreport.page.html',
+  styleUrls: ['./amcreport.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class StockManagerPage implements OnInit {
+export class AmcreportPage implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
-  goBack(){
-    this.router.navigate(["/master"])
+  goBack() {
+    this.router.navigate(['/amc-manager']); // Navigate back to the previous page
   }
-
 }

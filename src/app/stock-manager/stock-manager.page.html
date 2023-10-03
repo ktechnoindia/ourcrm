@@ -3,184 +3,67 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-item lines="none">
-      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-      <ion-title>Stock Manager</ion-title>
-    </ion-item>
+   <ion-item lines="none">
+    <ion-icon (click)="goBack()" class="back"  name="arrow-back"></ion-icon> 
+    <ion-title>Stock</ion-title>
+   </ion-item>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <div class=" container">
-    <ion-card>
-      <ion-card-content>
-        <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Stock Manager</ion-title>
-            </ion-item>
-          </ion-card-header>
-        </div>
-        <ion-grid>
-          <ion-row>
-            <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-          </ion-row>
-          <ion-row>
-            <div style="overflow-x:auto;width: 100%;">
-              <table>
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Item Name</th>
-                  <th>Item Group</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Discount%</th>
-                  <th>Discount Amount</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    gd
-                  </td>
-                  <td>
-                    type
-                  </td>
-                  <td>1</td>
-                  <td>100</td>
-                  <td>
-                    dfd
-                  </td>
-                  <td>12</td>
-                  <td>18</td>
-                  <td>18</td>
-                  <td>110</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </ion-row>
-
-          <ion-row style="justify-content: right;margin-top: 10px;">
-            <ion-button color="warning">
-              go to excel
-            </ion-button>
-            <ion-button color="warning">
-              view
-            </ion-button>
-            <ion-button color="warning">
-              save
-            </ion-button>
-            <ion-button color="warning">
-              delete
-            </ion-button>
-          </ion-row>
-
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+  <div class="master_window">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
+          <ion-card class="master">
+            <a [routerLink]="['/item-ledger']">
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-icon name="person-add"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>Item Ledger Report</ion-card-subtitle>
+              </ion-card-header>
+            </a>
+          </ion-card>
+        </ion-col>
+        <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
+          <ion-card class="master">
+            <a [routerLink]="['/stock-ledger']">
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-icon name="laptop-outline"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>Stock Ledger</ion-card-subtitle>
+              </ion-card-header>
+            </a>
+          </ion-card>
+        </ion-col>
+     
+        <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
+          <ion-card class="master">
+            <a [routerLink]="['/service-ledger']">
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-icon name="share-social"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>Service Ledger</ion-card-subtitle>
+              </ion-card-header>
+            </a>
+          </ion-card>
+        </ion-col>
+        <ion-col  size-lg="3" size-md="6" size-sm="6" size="6">
+          <ion-card class="master">
+            <a [routerLink]="['/group-wise-report']">
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-icon name="eye"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>Group Wise Report</ion-card-subtitle>
+              </ion-card-header>
+            </a>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
-
-
-
-<!-- <ion-content [fullscreen]="true">
-  <ion-card class="hsn_manager">
-    <ion-card-content>
-      <ion-grid>
-        <ion-row style="justify-content: right;">
-          <ion-button color="warning">
-            <ion-icon class="add" name="add"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="show" name="eye"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="save" name="save"></ion-icon>
-          </ion-button>
-          <ion-button color="warning">
-            <ion-icon class="delete" name="close-circle-outline"></ion-icon>
-          </ion-button>
-        </ion-row>
-        <ion-row>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Item Group :</ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Select All</option>
-              <option value="2">Main-Group</option>
-            </select>
-          </ion-col>
-          <ion-col class="selects" size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> Stock Type :</ion-label>
-            <select aria-label="Default select example" id="transaction">
-              <option selected>-Select-</option>
-              <option value="1">Stock</option>
-              <option value="2">Non-Stock</option>
-              <option value="3">Service</option>
-              <option value="4">Asset</option>
-              <option value="5">Capital</option>
-            </select>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> From :</ion-label>
-            <ion-input type="date"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6" size="12">
-            <ion-label> To :</ion-label>
-            <ion-input type="date"></ion-input>
-          </ion-col>
-         
-        </ion-row>
-        <ion-row>
-
-        </ion-row>
-
-        <div class="div" style="border-bottom: solid 2px goldenrod; width: 100%; margin-top: 10px;margin-bottom: 10px;">
-        </div>
-
-        <ion-row>
-          <ion-col size="12">
-            <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <div class="tables" style="overflow-x:auto;">
-            <div class="row">
-              <table>
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Stock Type</th>
-                  <th>Price</th>
-                  <th>Date</th>
-                  <th>Location</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>123</td>
-                  <td>123</td>
-                  <td> hjs</td>
-                  <td>wddsfd df fad asd</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-
-                </tr>
-              </table>
-            </div>
-          </div>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</ion-content> -->
