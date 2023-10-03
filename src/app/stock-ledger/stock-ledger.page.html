@@ -36,55 +36,37 @@
             </ion-popover>
           </ion-row>
 
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Transaction Id :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label=" Date :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+          <ion-row style="overflow-x:auto; width: 100%;">
+            <table style="width: 100%;">
+              <tr>
+                <th>Sr No.</th>
+                <th>Transaction Id </th>
+                <th>Date</th>
+                <th>Product Code</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Action</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>3534</td>
+                <td>23/09/2023 </td>
+                <td>Deepak Sharma</td>
+                <td>dnkdn</td>
+                <td>Jaipur</td>
+                <td>
+  
+                  <ion-icon name="create"></ion-icon>
+                  <ion-icon name="trash"></ion-icon>
+  
+                </td>
+              </tr>
+            </table>
           </ion-row>
-
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Product Code :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Category :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Quantity :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" In/Out :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-
           <ion-row style="justify-content: right;">
             <ion-button color="warning">Cancel</ion-button>
           </ion-row>
-
+          
         </ion-grid>
       </ion-card-content>
     </ion-card>
