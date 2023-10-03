@@ -93,20 +93,24 @@
           </ion-row>
 
           <ion-row style="margin-top: 10px;">
-            <div style="overflow-x:auto;width: 100%;">
-              <table style="width: 100%;">
+            <div  class="scroll-container">
+              <table>
                 <tr>
-                  <th>Sr.No.</th>
-                  <th>Item Code</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Discount%</th>
-                  <th>Discount Amount</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>Total</th>
-                  <th>Action</th>
+                  <th style="width:50px;">Sr. No.</th>
+                  <th style="width:100px;">Bar Code</th>
+                  <th style="width: 50px;">Item Name</th>
+                  <th style="width: 150px;">Quantity</th>
+                  <th style="width: 50px;">Unit</th>
+                  <th style="width: 150px;">Alternate Quantity</th>
+                  <th style="width: 150px;">Basic Rate</th>
+                  <th style="width: 150px;">Gross Amount</th>
+                  <th style="width: 150px;">Discount Rate</th>
+                  <th style="width: 200px;">Discount Amount</th>
+                  <th style="width: 150px;">Net Amount</th>
+                  <th style="width: 150px;">Tax Rate</th>
+                  <th style="width: 150px;">Tax Amount</th>
+                  <th style="width: 150px;">Total Amount</th>
+                  <th style="width: 100px;">Action</th>
                 </tr>
                 <tr>
                   <td>1</td>
@@ -116,18 +120,38 @@
                   <td>
                     <select style="width: 120px;" class="table_select" aria-label="Default select example"
                       id="transaction">
-                      <option selected>-Select-</option>
+                      <option selected>Item</option>
+                      <option value="1">Milk</option>
+                      <option value="2">Cake</option>
+                    </select>
+                  </td>
+                  <td>1</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Unit</option>
                       <option value="1">Credit</option>
                       <option value="2">Cash</option>
                     </select>
                   </td>
-                  <td>1</td>
                   <td>100</td>
                   <td>
                     <input class="table_input" type="text">
                   </td>
                   <td>12</td>
-                  <td>18</td>
+                  <td>10%</td>
+                  <td>100</td>
+                  <td>210</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Tax Rate</option>
+                      <option value="1">5%</option>
+                      <option value="2">10%</option>
+                      <option value="3">15%</option>
+                      <option value="4">18%</option>
+                    </select>
+                  </td>
                   <td>18</td>
                   <td>110</td>
                   <td>
@@ -135,10 +159,136 @@
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
                 </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <input class="table_input" type="text">
+                  </td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Item</option>
+                      <option value="1">Milk</option>
+                      <option value="2">Cake</option>
+                    </select>
+                  </td>
+                  <td>1</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Unit</option>
+                      <option value="1">Credit</option>
+                      <option value="2">Cash</option>
+                    </select>
+                  </td>
+                  <td>100</td>
+                  <td>
+                    <input class="table_input" type="text">
+                  </td>
+                  <td>12</td>
+                  <td>10%</td>
+                  <td>100</td>
+                  <td>210</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Tax Rate</option>
+                      <option value="1">5%</option>
+                      <option value="2">10%</option>
+                      <option value="3">15%</option>
+                      <option value="4">18%</option>
+                    </select>
+                  </td>
+                  <td>18</td>
+                  <td>110</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <input class="table_input" type="text">
+                  </td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Item</option>
+                      <option value="1">Milk</option>
+                      <option value="2">Cake</option>
+                    </select>
+                  </td>
+                  <td>1</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Unit</option>
+                      <option value="1">Credit</option>
+                      <option value="2">Cash</option>
+                    </select>
+                  </td>
+                  <td>100</td>
+                  <td>
+                    <input class="table_input" type="text">
+                  </td>
+                  <td>12</td>
+                  <td>10%</td>
+                  <td>100</td>
+                  <td>210</td>
+                  <td>
+                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                      id="transaction">
+                      <option selected>Tax Rate</option>
+                      <option value="1">5%</option>
+                      <option value="2">10%</option>
+                      <option value="3">15%</option>
+                      <option value="4">18%</option>
+                    </select>
+                  </td>
+                  <td>18</td>
+                  <td>110</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
+                </tr>
+
               </table>
             </div>
           </ion-row>
+          <ion-row>
+            <ion-col size="8">
+            </ion-col>
+            <ion-col class="row" size-lg="4" size-md="12" size-sm="12" size="12">
+              <div class="output">
+                <table>
+                  <tr>
+                    <th colspan="13">Discount Amount :</th>
+                    <td colspan="2" > <input class="table_input"
+                        type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th colspan="13" >Tax Amount : </th>
+                    <td colspan="2"> <input class="table_input" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th colspan="13">Round Off : </th>
+                    <td colspan="2"> <input class="table_input" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <th colspan="13" >Grand Total : </th>
+                    <td colspan="2"> <input class="table_input" type="text">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ion-col>
 
+          </ion-row>
           <ion-row style="justify-content: right;margin-top: 20px;">
             <ion-button color="warning">New</ion-button>
             <ion-button color="warning">Save</ion-button>
