@@ -174,6 +174,13 @@ export const routes: Routes = [
   {
     path: 'pendingamc',
     loadComponent: () => import('./pendingamc/pendingamc.page').then( m => m.PendingamcPage)
+  },  {
+    path: 'addaccount',
+    loadComponent: () => import('./addaccount/addaccount.page').then( m => m.AddaccountPage)
+  },
+  {
+    path: 'accountreport',
+    loadComponent: () => import('./accountreport/accountreport.page').then( m => m.AccountreportPage)
   },
   {
     path: 'itemledger',
@@ -191,6 +198,7 @@ export const routes: Routes = [
     path: 'groupwisereport',
     loadComponent: () => import('./group-wise-report/group-wise-report.page').then( m => m.GroupWiseReportPage)
   },
+
 
 
 
