@@ -1,85 +1,88 @@
- 
 <ion-header class="dekstop-header">
   <ion-toolbar>
     <div class="mymenu">
       <div class="drop">
         <img src="../../assets/ktechno-removebg-preview.png" alt="">
       </div>
-        <div class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="master">Master</option>
-            <option value="add-customer">Add Customer</option>
-            <option value="add-vendor">Add Vender</option>
-            <option value="add-item">Add Item</option>
-            <option value="add-service">Add Service</option>
-            <option value="add-executive">Add Executive</option>
-            <option value="hsn-manager">HSN Manager</option>
-            <option value="item-master">Item Master</option>
-            <option value="add-prospect">Add Prospect</option>
-          </select>
-        </div>
-        <div  class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="lead-manager">Lead</option>
-            <option value="add-lead">Add Lead</option>
-            <option value="follow-up">Follow Up</option>
-            <option value="transfer-lead">Transfer Lead</option>
-            <option value="View-lead">View Lead</option>
-          </select>
-        </div>
-        <div class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="quote-manager">Quote</option>
-            <option value="add-quot">Add Quotation</option>
-            <option value="view-quot">View Quotation</option>
-            <option value="update-quot">Update Quotation</option>
-          </select>
-        </div>
-        <div  class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="challan-manager">Challan</option>
-            <option value="dc-in">DC-IN</option>
-            <option value="dc-out">DC-OUT</option>
-            <option value="dc-in-report">DC-IN Report</option>
-            <option value="dc-out-report">DC-OUT Report</option>
-          </select>
-        </div>
-        <div class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="sales-manager">Sales</option>
-            <option value="add-sale">Add Sale</option>
-            <option value="add-purchase">Add Purchase</option>
-            <option value="view-sale">View Sales</option>
-            <option value="view-purchase">View Purchase</option>
-            <option value="reports">Reports</option>
-
-          </select>
-        </div>
-        <div  class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="stock" >Stock </option>
-            <option value="item-ledger" >Item Ledger Report </option>
-            <option value="stock-ledger">Stock Ledger</option>
-            <option value="service-ledger">Service Ledger</option>
-            <option value="group-wise-report">Group Wise Report</option>
-          </select>
-        </div>
-        <div class="dropdown">
-          <a [routerLink]="['/account-manager']">Account</a>
-        </div>
-       
-        <div class="dropdown">
-          <select (change)="navigateToRoute($event)">
-            <option selected value="amc-manager">AMC</option>
-            <option value="createamc">Creat AMC</option>
-            <option value="amcreport">AMC Report</option>
-            <option value="pendingamc">Pending AMC</option>
-          </select>
-        </div>
-        <div class="drop" >
-          <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
-        </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="master">Master</option>
+          <option value="add-customer">Add Customer</option>
+          <option value="add-vendor">Add Vender</option>
+          <option value="add-item">Add Item</option>
+          <option value="add-service">Add Service</option>
+          <option value="add-executive">Add Executive</option>
+          <option value="hsn-manager">HSN Manager</option>
+          <option value="item-master">Item Master</option>
+          <option value="add-prospect">Add Prospect</option>
+        </select>
       </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="lead-manager">Lead</option>
+          <option value="add-lead">Add Lead</option>
+          <option value="follow-up">Follow Up</option>
+          <option value="transfer-lead">Transfer Lead</option>
+          <option value="View-lead">View Lead</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="quote-manager">Quote</option>
+          <option value="add-quot">Add Quotation</option>
+          <option value="view-quot">View Quotation</option>
+          <option value="update-quot">Update Quotation</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="challan-manager">Challan</option>
+          <option value="dc-in">DC-IN</option>
+          <option value="dc-out">DC-OUT</option>
+          <option value="dc-in-report">DC-IN Report</option>
+          <option value="dc-out-report">DC-OUT Report</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="sales-manager">Sales</option>
+          <option value="add-sale">Add Sale</option>
+          <option value="add-purchase">Add Purchase</option>
+          <option value="view-sale">View Sales</option>
+          <option value="view-purchase">View Purchase</option>
+          <option value="reports">Reports</option>
+
+        </select>
+      </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="stock-manager">Stock </option>
+          <option value="item-ledger">Item Ledger Report </option>
+          <option value="stock-ledger">Stock Ledger</option>
+          <option value="service-ledger">Service Ledger</option>
+          <option value="group-wise-report">Group Wise Report</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="account-manager">Account </option>
+          <option value="addaccount">Add Account </option>
+          <option value="accountreport">Account Report</option>
+        </select>
+      </div>
+
+      <div class="dropdown">
+        <select (change)="navigateToRoute($event)">
+          <option selected value="amc-manager">AMC</option>
+          <option value="createamc">Creat AMC</option>
+          <option value="amcreport">AMC Report</option>
+          <option value="pendingamc">Pending AMC</option>
+        </select>
+      </div>
+      <div class="drop">
+        <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
