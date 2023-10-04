@@ -300,9 +300,7 @@ ion-card {
     font-size: 16px;
 }
 
-// .row {
-//     height: 35px;
-// }
+
 
 .dots {
     font-size: 25px;
@@ -330,20 +328,7 @@ ion-icon {
     height: 200px;
 }
 
-.input-style{
-    border: 1px solid #525252;
-    height: 8px;
-    border-radius: 3px;
-    width: 150px;
-}
-ion-row{
-    .label-style{
-        width: 130px;
-        text-align: left;
-        font-size: 12px;
-        color: goldenrod;
-    }
-}
+
 
 
 table {
@@ -421,12 +406,6 @@ th {
     }
 }
 
-@media(max-width:2200px) {
-
-    .second_header {
-        // display: none;
-    }
-}
 
 @media(max-width:920px) {
     .second_header {
