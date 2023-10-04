@@ -63,14 +63,13 @@ select option:checked {
 
 .dropdown {
   transition: border-bottom 0.3s ease;
-  /* Add a smooth transition effect */
+  // width: 140px;
 
 }
 
 .dropdown :hover {
   color: #fff;
   border-bottom: rgb(255, 255, 255) solid 2px;
-  border-width: 50%;
 }
 
 .drop img {
@@ -84,7 +83,6 @@ select option:checked {
   align-items: center;
   background-color: #000000;
 }
-.mymenu .drop{
-  width: 100px;
-
+.drop1{
+  margin-right: 5px;
 }
