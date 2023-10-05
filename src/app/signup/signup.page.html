@@ -24,35 +24,38 @@
             <ion-row style="justify-content: center;">
               <h1  style="color: goldenrod;font-size: 35px;font-weight: bold;">Sign up </h1>
             </ion-row>
+
+            <form [formGroup]="RegisterFrom" (ngSubmit)="onSubmit()">
+              
             <ion-row>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="text" label="First Name" label-placement="floating"
+                <ion-input formControlName="firstname" name="firstname" color="warning"   type="text" label="First Name" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-col>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="text" label="Last Name" label-placement="floating"
+                <ion-input formControlName="lastname" name="lastname" color="warning"   type="text" label="Last Name" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="tel" label="Mobile Number" label-placement="floating" maxength="10"
+                <ion-input  formControlName="phone" name="phone" color="warning"   type="tel" label="Mobile Number" label-placement="floating" maxength="10"
                   fill="outline"></ion-input>
               </ion-col>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="email" label="Email" label-placement="floating"
+                <ion-input formControlName="email" name="email"  color="warning"   type="email" label="Email" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="Password" label="Password" label-placement="floating"
+                <ion-input formControlName="password" name="password" color="warning" type="Password" label="Password" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-col>
               <ion-col size="12" size-lg="12">
-                <ion-input  color="warning"  class="sign_input" type="Password" label="Confirm Password" label-placement="floating"
+                <ion-input formControlName="confirmpassword" name="confirmpassword" color="warning"   type="Password" label="Confirm Password" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-col>
             </ion-row>
@@ -93,12 +96,13 @@
             </ion-row>
 
             <ion-row >
-              <ion-button style="width: 100%;" color="undefined"  class="home_buttons">Signup Now</ion-button>
+              <ion-button type="submit" [disabled]="!RegisterFrom.valid" color="undefined"  class="home_buttons">Signup Now</ion-button>
             </ion-row>
 
             <ion-row style="justify-content: center;">
               <p>Do you have an account? <a [routerLink]="['/login']">Login here</a></p>
             </ion-row>
+          </form>
 
           </ion-card>
         </ion-col>
