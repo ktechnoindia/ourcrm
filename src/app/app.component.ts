@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
 import { RouterModule } from '@angular/router';
 @Component({
@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule],
 })
 export class AppComponent {
+  activeSegment: string = '';
+
+  selectedPage: string = 'add-customer';
+
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
     { title: 'Lead Manager', url: '../lead-manager', icon: 'layers'},
@@ -28,7 +32,7 @@ export class AppComponent {
  
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor(private router: Router) { }
+  constructor(private navCtrl: NavController,private router: Router) { }
   
   onDropdownChange(event: any) {
     const selectedValue = event.target.value;
@@ -45,4 +49,14 @@ export class AppComponent {
   goBack(){
     this.router.navigate(["/"])
   }
+    //router of segment
+    toggleSegment(segment: string) {
+      this.activeSegment = segment;
+    }
+    
+  //pages connect
+    segmentChanged() {
+      // Use the selectedPage value to navigate to the corresponding page
+      this.navCtrl.navigateForward('/' + this.selectedPage);
+    }
 }

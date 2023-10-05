@@ -174,7 +174,8 @@ export const routes: Routes = [
   {
     path: 'pendingamc',
     loadComponent: () => import('./pendingamc/pendingamc.page').then( m => m.PendingamcPage)
-  },  {
+  },
+  {
     path: 'addaccount',
     loadComponent: () => import('./addaccount/addaccount.page').then( m => m.AddaccountPage)
   },
@@ -202,6 +203,6 @@ export const routes: Routes = [
 
 
 
-
+  
 
 ];

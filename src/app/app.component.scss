@@ -20,6 +20,15 @@
   margin-left: 25px;
   
 }
+.drop ion-label{
+  text-transform: uppercase;
+  text-align: right;
+  font-size: 14px;
+  text-decoration: none;
+  color: goldenrod;
+  font-weight: 700;
+  margin-left: 25px;
+}
 
 
 .dekstop-header item {
@@ -36,7 +45,7 @@ select {
   font-size: 14px;
   color: goldenrod;
   font-weight: 700;
-  background-color: #000000;
+ // background-color: #000000;
 }
 
 /* Style the dropdown arrow (not supported in all browsers) */
@@ -50,7 +59,7 @@ select option {
   font-size: 16px;
   padding: 20px;
 
-  background-color: #000000;
+ // background-color: #000000;
   color: goldenrod;
 }
 
@@ -75,14 +84,51 @@ select option:checked {
 .drop img {
   height: 70px;
   width: 70px;
+  text-align: right;
 }
 
 .mymenu {
-  display: flex;
+ // display: flex;
   justify-content: space-around;
-  align-items: center;
-  background-color: #000000;
+  //align-items: start;
+ // background-color: #000000;
 }
+@media(max-width:950px){
+  .mymenu{
+    visibility: hidden;
+    display: block;
+  }
+}
+
 .drop1{
   margin-right: 5px;
+}
+ion-segment{
+  background-color: rgb(255, 255, 255);
+  color: goldenrod;
+  margin-top: 0px;
+  width: 100%;
+  text-align: left;
+}
+ion-segment-button{
+  color: goldenrod;
+  border: 2px solid goldenrod;
+background-color: black;
+min-height: 30px;
+text-decoration: none;
+
+}
+
+  .segmentbutton{
+text-align: left;}
+.segmentlabel ion-label{
+  border: 2px solid goldenrod;
+  padding: 5px 10px 5px 10px;
+  margin: 0px;
+  margin-bottom: 15px;
+  min-width: 150px;
+  color: goldenrod;
+}
+ion-toolbar{
+  height: 45px;
 }

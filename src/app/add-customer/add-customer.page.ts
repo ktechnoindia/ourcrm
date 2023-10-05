@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, NgForm, Validators } from '@angular/forms';
 
@@ -15,9 +15,12 @@ import { FormGroup, NgForm, Validators } from '@angular/forms';
 export class AddCustomerPage implements OnInit {
   selectTabs='address';
   cname:string='';
+  activeSegment: string = '';
+
+  selectedPage: string = 'page1';
 
 
-  constructor(private fb:FormBuilder,private router: Router,private formBuilder: FormBuilder) { }
+  constructor(private navCtrl: NavController,private fb:FormBuilder,private router: Router,private formBuilder: FormBuilder) { }
 
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
@@ -38,6 +41,10 @@ export class AddCustomerPage implements OnInit {
   }
   openToast(arg0: string) {
     throw new Error('Method not implemented.');
+  }
+
+  toggleSegment(segment: string) {
+    this.activeSegment = segment;
   }
   
 }

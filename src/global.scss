@@ -16,7 +16,9 @@
 
 .container {
     width: 100%;
-    // margin-top: 100px;
+    margin-top: 30px;
+    position: absolute;
+    scroll-snap-align: 0px;
 }
 
 
@@ -369,7 +371,21 @@ th {
 .back:hover {
     background-color: rgba(255, 251, 251, 0.932);
 }
-
+@media(max-width:2222px){
+    .toolbar{
+        display: none;
+        visibility: hidden;
+    }
+}
+@media(max-width:950px){
+    .toolbar{
+        display: block;
+        visibility: visible;
+    }
+    .container{
+        margin-top: 10px;
+    }
+}
 
 @media screen and (max-width:1010px) {
     .container {
@@ -415,17 +431,10 @@ th {
     .dekstop-header {
         display: none;
         visibility: hidden;
-
     }
-
-    .dekstop-menu {
-        display: none;
-        visibility: hidden;
-    }
-
-    .dekstop-menu {
-        display: none;
-        visibility: hidden;
+    
+    ion-content ion-card{
+        margin-top: 0px;
     }
 }
 
@@ -480,14 +489,7 @@ ion-card-header .back {
 //     margin-top: 6px;
 
 // }
-.dekstop-menu ion-card-header {
-    margin-top: -30px;
-    margin-bottom: -27px;
-}
 
-.dekstop-menu ion-title {
-    margin-top: 15px;
-}
 
 .back {
     margin-top: 15px;

@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,14 +8,14 @@
       <ion-title>Lead Follow Up</ion-title>
     </ion-item>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
   <div class="container">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header style="margin-bottom: -10px;">
+          <ion-card-header >
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title>Lead Follow Up Window</ion-title>
@@ -27,6 +27,16 @@
             <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Follow-up Lead List
               :
             </h6>
+          </ion-row>
+          <ion-row style="justify-content: right;">
+            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover trigger="left-start" size="auto" side="left">
+              <ng-template>
+                <ion-button color="danger">Delete</ion-button>
+                <ion-button  color="warning">Edit</ion-button>
+                <ion-button   color="success">Save</ion-button>
+              </ng-template>
+            </ion-popover>
           </ion-row>
           <ion-row style="overflow-x:auto;">
             <table>

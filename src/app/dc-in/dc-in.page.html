@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,14 +8,14 @@
       <ion-title>DC-IN Window</ion-title>
     </ion-item>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
   <div class="container">
     <ion-card class="dc_in">
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header style="margin-bottom: -10px;">
+          <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title>DC-IN Window </ion-title>
@@ -23,13 +23,13 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;margin-top: -28px;">
+          <ion-row style="justify-content: right;">
             <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
+            <ion-popover trigger="left-start" size="auto" side="left">
               <ng-template>
-                <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
-                <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
-                <ion-button style="color: black; " size="small" color="undefined">Save</ion-button>
+                <ion-button color="danger">Delete</ion-button>
+                <ion-button  color="warning">Edit</ion-button>
+                <ion-button   color="success">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
