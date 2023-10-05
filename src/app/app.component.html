@@ -1,4 +1,36 @@
-<ion-header class="dekstop-header">
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex;justify-content: space-around;">
+      <ion-label (click)="toggleSegment('segment1')">Master</ion-label>
+      <ion-label (click)="toggleSegment('segment2')">Lead</ion-label>
+      <ion-label (click)="toggleSegment('segment3')">Quotation</ion-label>
+      <ion-label (click)="toggleSegment('segment4')">Challan</ion-label>
+      <ion-label (click)="toggleSegment('segment5')">Sales</ion-label>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-segment *ngIf="activeSegment === 'segment1'">
+  <ion-segment-button  value="add-customer" routerLink="/add-customer">
+    Add Customer
+  </ion-segment-button>
+  <ion-segment-button value="add-vendor" routerLink="/add-vendor">
+    Add Vendor
+  </ion-segment-button>
+</ion-segment>
+
+<ion-segment *ngIf="activeSegment === 'segment2'">
+  <ion-segment-button value="add-customer" routerLink="/add-lead">
+    Add Customer
+  </ion-segment-button>
+  <ion-segment-button value="add-vendor" routerLink="/view-lead">
+    Add Vendor
+  </ion-segment-button>
+</ion-segment>
+
+
+<!-- <ion-header class="dekstop-header">
   <ion-toolbar>
     <div class="mymenu">
       <div class="drop">
@@ -84,7 +116,7 @@
       </div>
     </div>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 
 <ion-menu side="start" contentId="main-content">

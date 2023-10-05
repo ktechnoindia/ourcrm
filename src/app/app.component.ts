@@ -1,17 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule],
+  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule,FormsModule,],
 })
 export class AppComponent {
+
+  selectedSegment: string = 'buttons';
+
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
     { title: 'Lead Manager', url: '../lead-manager', icon: 'layers'},
@@ -27,13 +32,14 @@ export class AppComponent {
   ];
  
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
-  constructor(private router: Router) { }
+;
+  selectedPage: string = 'add-customer';
+  constructor(private router: Router,private navCtrl: NavController,) { }
   
   onDropdownChange(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
-      // Use the Router module to navigate to the selected route
+  
       this.router.navigate([selectedValue]);
     }
   }
@@ -44,5 +50,15 @@ export class AppComponent {
   }
   goBack(){
     this.router.navigate(["/"])
+  }
+
+  activeSegment: string = ''
+
+  toggleSegment(segment: string) {
+    this.activeSegment = segment;
+  }
+  
+  segmentChanged() {
+    this.navCtrl.navigateForward('/' + this.selectedPage);
   }
 }
