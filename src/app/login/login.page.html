@@ -17,15 +17,20 @@
               </ion-row>
               <ion-row>
                 <ion-col size="12" size-lg="12">
-                  <ion-input  color="warning"  type="email" label="Email" label-placement="floating" fill="outline" name="email" [(ngModel)]="email"  required></ion-input>
+                  <ion-input formControlName="email" color="warning"  type="email" label="Email" label-placement="floating" fill="outline" name="email"  value="email" required></ion-input>
                 </ion-col>
+                <div *ngIf="RegisterFrom?.get('email')?.hasError('required') && RegisterFrom?.get('email')?.touched" >
+                     email is required
+                </div>
               </ion-row>
              
-
               <ion-row>
                <ion-col size="12" size-lg="12">
-                <ion-input  name="phone" id="phone" color="warning"  type="number" label="Mobile number" label-placement="floating" fill="outline"  required></ion-input>
+                <ion-input formControlName="phone" name="phone"  color="warning"  type="number" label="Mobile number" label-placement="floating" fill="outline" value="phone"  required></ion-input>
                </ion-col>
+               <div *ngIf="RegisterFrom?.get('phone')?.hasError('required') && RegisterFrom?.get('phone')?.touched" >
+                mobile number is required
+           </div>
               </ion-row>
 
               <ion-row>
