@@ -34,6 +34,7 @@
               </ng-template>
             </ion-popover>
           </ion-row> 
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
 
           <ion-row>
             <ion-label style="font-size: 18px; font-weight: bold;">Contact Information :</ion-label><span
@@ -336,11 +337,12 @@
 
           <ion-row style="justify-content: right;margin-top: 20px;">
             <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning" type="submit">Save</ion-button>
             <ion-button color="warning">Delete</ion-button>
             <ion-button color="warning">Preview</ion-button>
             <ion-button color="warning">Close</ion-button>
           </ion-row>
+        </form>
 
         </ion-grid>
       </ion-card-content>

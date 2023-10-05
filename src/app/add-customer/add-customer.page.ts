@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-customer',
@@ -13,7 +14,10 @@ import { Router } from '@angular/router';
 })
 export class AddCustomerPage implements OnInit {
   selectTabs='address';
-  constructor(private router: Router) { }
+  cname:string='';
+
+
+  constructor(private fb:FormBuilder,private router: Router,private formBuilder: FormBuilder) { }
 
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
@@ -26,4 +30,14 @@ export class AddCustomerPage implements OnInit {
   goBack() {
     this.router.navigate(['/master']); // Navigate back to the previous page
   }
+  async onSubmit(form: NgForm) {
+    if(form.value.cname==''){
+      this.openToast('Enter customer name');
+      return;
+    }
+  }
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
+  
 }
