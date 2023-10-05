@@ -11,36 +11,37 @@
         <ion-col size="12" size-lg="6">
 
           <ion-card class="card4">
-            <form>
+            <form [formGroup]="RegisterFrom" (ngSubmit)="onSubmit()" >
               <ion-row>
                 <h1 style="color: goldenrod;font-size: 35px;font-weight: bold;justify-content: center;">Login Now </h1>
               </ion-row>
               <ion-row>
                 <ion-col size="12" size-lg="12">
-                  <ion-input ng-model="email" id="email" color="warning" class="sign_input" type="email" label="Email" label-placement="floating" fill="outline" name="email" value="" required></ion-input>
+                  <ion-input formControlName="email" color="warning"  type="email" label="Email" label-placement="floating" fill="outline" name="email"></ion-input>
                 </ion-col>
               </ion-row>
-
+             
               <ion-row>
                <ion-col size="12" size-lg="12">
-                <ion-input ng-model="phone" name="phone" id="phone" color="warning" class="sign_input" type="number" label="Mobile number" label-placement="floating" fill="outline" value="" required></ion-input>
+                <ion-input formControlName="phone" name="phone"  color="warning"  type="number" label="Mobile number" label-placement="floating" fill="outline" value="phone"  required></ion-input>
                </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col size="12" size-lg="12">
-                  <ion-input ng-model="password" name="password" id="password" color="warning" class="sign_input" type="password" label=" Password" label-placement="floating" fill="outline" value=""  required></ion-input>
+                  <ion-input formControlName="password" name="password" id="password" color="warning"  type="password" label=" Password" label-placement="floating" fill="outline"   required></ion-input>
                 </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col size="12" size-lg="12">
-                  <ion-input ng-model="confirmpassword" name="confirmpassword" id="confirmpassword" color="warning" class="sign_input" type="password" label="Confirm Password" label-placement="floating" fill="outline" value="" required></ion-input>
+                  <ion-input formControlName="confirmpassword" name="confirmpassword" id="confirmpassword" color="warning" label-placement="floating" fill="outline"  required></ion-input>
                 </ion-col>
               </ion-row>
 
               <ion-row style="justify-content: center;">
-                <ion-input type="submit" value="Login Now" class="home_buttons"></ion-input>
+                <ion-button expand="full" type="submit" [disabled]="!RegisterFrom.valid">Submit</ion-button>
+
               </ion-row>
 
               <ion-row style="justify-content: center;">

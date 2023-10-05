@@ -1,3 +1,4 @@
+
 <ion-header class="dekstop-header">
   <ion-toolbar>
     <div class="mymenu">
@@ -20,7 +21,7 @@
           <img src="../../assets/ktechno-removebg-preview.png" alt="">
         </div> -->
 
-        <!-- <div class="dropdown">
+<!-- <div class="dropdown">
         <select (change)="navigateToRoute($event)">
           <option selected value="master">Master</option>
           <option value="add-customer">Add Customer</option>
@@ -99,12 +100,13 @@
         <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
       </div>
     </div> -->
-      </div>
-    </div>
-  </ion-toolbar>
-  <div >
-    <ion-row class="segmentbutton" style="justify-content: left;">
-      <!-- Master -->
+</div>
+</div>
+</ion-toolbar>
+
+<div>
+  <ion-row class="segmentbutton" style="justify-content: left;">
+    <!-- Master -->
     <ion-segment *ngIf="activeSegment === 'segment2'">
       <ion-segment-button value="add-customer" routerLink="/add-customer">
         Add Customer
@@ -135,7 +137,7 @@
       </ion-segment-button>
     </ion-segment>
 
-<!-- Accounts -->
+    <!-- Accounts -->
 
     <ion-segment *ngIf="activeSegment === 'segment3'">
       <ion-segment-button value="choice1">
@@ -215,7 +217,7 @@
       </ion-segment-button>
     </ion-segment>
 
-<!-- Others -->
+    <!-- Others -->
     <ion-segment *ngIf="activeSegment === 'segment9'">
       <ion-segment-button value="item1">
         Item 16
@@ -252,12 +254,12 @@
         Close Company
       </ion-segment-button>
       <ion-segment-button value="item3">
-       Home
+        Home
       </ion-segment-button>
     </ion-segment>
-
   </ion-row>
-  </div>
+</div>
+
 </ion-header>
 
 <ion-header class="toolbar">

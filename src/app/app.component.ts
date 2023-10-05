@@ -3,13 +3,15 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule],
+  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule,FormsModule,],
 })
 export class AppComponent {
   activeSegment: string = '';
@@ -37,7 +39,7 @@ export class AppComponent {
   onDropdownChange(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
-      // Use the Router module to navigate to the selected route
+  
       this.router.navigate([selectedValue]);
     }
   }
