@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { Validators,FormBuilder,FormControl,FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +14,20 @@ import { RouterModule } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class LoginPage implements OnInit{
+  
+  RegisterFrom:FormGroup;
+  email:any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
+  onSubmit(){
+    console.log('hello', this.email)
   }
- 
+
+  ngOnInit() {
+    
+  }
+
 }
 
 
