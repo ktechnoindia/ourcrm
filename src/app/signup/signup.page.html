@@ -25,44 +25,44 @@
               <h1  style="color: goldenrod;font-size: 35px;font-weight: bold;">Sign up </h1>
             </ion-row>
 
-            <form [formGroup]="RegisterFrom" (ngSubmit)="onSubmit()">
+            <form #signUpFrom="ngForm" (ngSubmit)="signUp()">
               
             <ion-row>
               <ion-col size="12" size-lg="12">
-                <ion-input formControlName="firstname" name="firstname" color="warning"   type="text" label="First Name" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input [(ngModel)]="firstName" name="firstName" color="warning"   type="text" label="First Name" label-placement="floating"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
               </ion-col>
               <ion-col size="12" size-lg="12">
-                <ion-input formControlName="lastname" name="lastname" color="warning"   type="text" label="Last Name" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="12" size-lg="12">
-                <ion-input  formControlName="phone" name="phone" color="warning"   type="tel" label="Mobile Number" label-placement="floating" maxength="10"
-                  fill="outline"></ion-input>
-              </ion-col>
-              <ion-col size="12" size-lg="12">
-                <ion-input formControlName="email" name="email"  color="warning"   type="email" label="Email" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input [(ngModel)]="lastName" name="lastName" color="warning"   type="text" label="Last Name" label-placement="floating"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="12" size-lg="12">
-                <ion-input formControlName="password" name="password" color="warning" type="Password" label="Password" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input   [(ngModel)]="phone" name="phone" color="warning"   type="tel" label="Mobile Number" label-placement="floating" maxength="10"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
               </ion-col>
               <ion-col size="12" size-lg="12">
-                <ion-input formControlName="confirmpassword" name="confirmpassword" color="warning"   type="Password" label="Confirm Password" label-placement="floating"
-                  fill="outline"></ion-input>
+                <ion-input  [(ngModel)]="email" name="email"  color="warning"   type="email" label="Email" label-placement="floating"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" size-lg="12">
+                <ion-input  [(ngModel)]="password" name="password" color="warning" type="Password" label="Password" label-placement="floating"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
+              </ion-col>
+              <ion-col size="12" size-lg="12">
+                <ion-input  [(ngModel)]="confirmpassword" name="confirmpassword" color="warning"   type="Password" label="Confirm Password" label-placement="floating"
+                  fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="12" >
-                <select  color="warning"   id="countrySelect">
+                <select  color="warning"   id="countrySelect" [(ngModel)]="selectedOption" [ngModelOptions]="{ standalone: true }">
                   <option value="1">----Country----</option>
                   <option value="USA">United States</option>
                   <option value="Canada">Canada</option>
@@ -77,7 +77,7 @@
                 </select>
               </ion-col>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="12" >
-                <select  color="warning"   id="hearAbout">
+                <select  color="warning"   id="hearAbout" [(ngModel)]="selectedOption" [ngModelOptions]="{ standalone: true }">
                   <option value="1">----How to you hear about me----</option>
                   <option value="Google">Google</option>
                   <option value="Social Media">Social Media</option>
@@ -91,12 +91,12 @@
 
             <ion-row>
               <ion-col size="12" size-lg="6">
-                <ion-checkbox labelPlacement="end">I read and accept <a href="#"> Terms & Conditions</a></ion-checkbox>
+                <ion-checkbox [(ngModel)]="checkBoxSection" labelPlacement="end" [ngModelOptions]="{ standalone: true }">I read and accept <a href="#"> Terms & Conditions</a></ion-checkbox>
               </ion-col>
             </ion-row>
 
             <ion-row >
-              <ion-button type="submit" [disabled]="!RegisterFrom.valid" color="undefined"  class="home_buttons">Signup Now</ion-button>
+              <ion-button  type="submit" color="undefined"  class="home_buttons">Signup Now</ion-button>
             </ion-row>
 
             <ion-row style="justify-content: center;">

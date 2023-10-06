@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { FormsModule, NgForm } from '@angular/forms';
+import { IonicModule, NavController } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastController } from '@ionic/angular'; // Import ToastController
+import { ToastController } from '@ionic/angular'; 
 
 
 @Component({
@@ -18,67 +17,66 @@ import { ToastController } from '@ionic/angular'; // Import ToastController
 })
 export class LoginPage implements OnInit {
 
-  RegisterFrom: FormGroup;
+   email:string='';
+   phone:number = 0;
+   password:string='';
+   confirmpassword:string="";
+   
+   submitValue = false;
 
-
-
-  constructor(private formBuilder: FormBuilder, private toastController: ToastController) {
-    this.RegisterFrom = this.formBuilder.group({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      phone: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(10),
-        Validators.pattern(/^[0-9]+$/),
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[0-9a-zA-z]+$/),
-
-      ]),
-      confirmpassword: new FormControl('', [
-        Validators.required,
-      ])
-    });
-
-  }
-  async onSubmit() {
-    if (this.RegisterFrom.valid) {
-     
-      const emailValue = this.RegisterFrom.value.email;
-      const phoneValue = this.RegisterFrom.value.phone;
-      const passwordValue = this.RegisterFrom.value.password;
-      const confirmpasswordValue = this.RegisterFrom.value.confirmpassword;
-  
-      if (passwordValue !== confirmpasswordValue) {
-        const toast = await this.toastController.create({
-          message: 'Passwords do not match',
-          duration: 3000,
-          position: 'top',
-          color: 'danger',
-        });
-        await toast.present();
-        return; 
-      }
-  
-      console.log('Email:', emailValue);
-      console.log('Phone:', phoneValue);
-      console.log('Password:', passwordValue);
-    } else {
-      
-      const toast = await this.toastController.create({
-        message: 'Please enter valid email, phone number, and password',
+   constructor(private navCtrl: NavController, private toastCtrl: ToastController){}
+ 
+  async login(loginForm: NgForm){
+    if(this.email === ""){
+      const toast = await this.toastCtrl.create({
+        message: "Email is required",
         duration: 3000,
-        position: 'top',
-        color: 'danger',
+        color:'danger'
       });
-      await toast.present();
+       toast.present();
+    }else if(this.phone === 0){
+      const toast = await this.toastCtrl.create({
+        message: "Phone Number is required",
+        duration: 3000,
+        color:'danger'
+      });
+       toast.present();
+    }else if(this.password === ""){
+      const toast = await this.toastCtrl.create({
+        message: "Password is required",
+        duration: 3000,
+        color:'danger'
+      });
+       toast.present();
+    }else if(this.confirmpassword === ""){
+      const toast = await this.toastCtrl.create({
+        message: "Confirm Password is required",
+        duration: 3000,
+        color:'danger'
+      });
+       toast.present();
+    }else if(this.password !== this.confirmpassword){
+      const toast = await this.toastCtrl.create({
+        message: "Password does not matched",
+        duration: 3000,
+        color:'danger'
+      });
+       toast.present();
+    }else{
+      const toast = await this.toastCtrl.create({
+        message: "Successfully !",
+        duration: 3000,
+        color:'success'
+      });
+       toast.present();
+       this.submitValue=true
     }
   }
+
+   ngOnInit(){
   
+}
 
-  ngOnInit() {
-
-  }
 
 }
 

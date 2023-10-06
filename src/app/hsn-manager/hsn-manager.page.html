@@ -34,63 +34,64 @@
             </ion-popover>
           </ion-row>
 
+          <form #hsnManagerForm="ngForm" (ngSubmit)="onSubmit()">
 
-          <ion-row style="margin-top: 5px;">
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="HSN Code :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Unit :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row style="margin-top: 5px;">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode" color="warning" type="text" label="HSN Code :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="unit" name="unit" color="warning" class="sign_input" type="text" label="Unit :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-textarea color="warning" class="sign_input" type="text" label="Description :"
-                  label-placement="floating" fill="outline"></ion-textarea>
-              </ion-row>
-             
-            </ion-col>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-textarea [(ngModel)]="desc" name="desc" color="warning" class="sign_input" type="text" label="Description :"
+                    label-placement="floating" fill="outline"></ion-textarea>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-          </ion-row>
+            <ion-row>
+              <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+              <div style="overflow-x:auto; width: 100%;">
+                <table>
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>HSN Code</th>
+                    <th>Unit</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>123</td>
+                    <td>123</td>
+                    <td>wddsfd df fad asd</td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ion-row>
 
-          <ion-row>
-            <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-            <div style="overflow-x:auto; width: 100%;">
-              <table >
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>HSN Code</th>
-                  <th>Unit</th>
-                  <th>Description</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>123</td>
-                  <td>123</td>
-                  <td>wddsfd df fad asd</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </ion-row>
+            <ion-row style="justify-content: right;margin-top: 20px;">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning" type="submit">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Preview</ion-button>
+              <ion-button color="warning">Close</ion-button>
+            </ion-row>
+          </form>
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>

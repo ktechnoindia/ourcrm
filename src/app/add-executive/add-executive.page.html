@@ -28,97 +28,100 @@
             <ion-popover trigger="left-start" size="auto" side="left">
               <ng-template>
                 <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
+                <ion-button color="warning">Edit</ion-button>
+                <ion-button color="success">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
+          <form #executiveForm (ngSubmit)="onSubmit()">
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="role" [ngModelOptions]="{standalone: true}">
+                  <option value="Category">--- Select Role ---
+                  </option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
+              </ion-col>
 
-          <ion-row style="margin-top: 5px;">
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select>
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">--- Select Role ---
-                </option>
-                <option value="1">--India--</option>
-                <option value="1">--USA--</option>
-                <option value="1">--Canada--</option>
-              </select>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="name" type="text" label=" Name :" label-placement="floating"
+                    fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="manager" [ngModelOptions]="{standalone: true}">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---
+                    Select Manager ---
+                  </option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="phone" type="text" label="Mobile No. :"
+                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">--- Select Manager ---
-                </option>
-                <option value="1">--India--</option>
-                <option value="1">--USA--</option>
-                <option value="1">--Canada--</option>
-              </select>
-            </ion-col>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Mobile No. :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning"[(ngModel)]="email" type="email" label="Email :" label-placement="floating"
+                    fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          </ion-row>
-          
-          <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="email" label="Email :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="whatshappnumber" type="number" label="WhatsApp No. :"
+                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label="WhatsApp No. :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="panumber" type="number" label="PAN No. :"
+                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label="PAN No. :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="commission" type="text" label="Commission :"
+                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Commission :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            </ion-row>
 
-          </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="ledger" [ngModelOptions]="{standalone: true}">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---
+                    Select Ledger ---
+                  </option>
+                  <option value="1">--India--</option>
+                  <option value="1">--USA--</option>
+                  <option value="1">--Canada--</option>
+                </select>
+              </ion-col>
+            </ion-row>
 
-          <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">--- Select Ledger ---
-                </option>
-                <option value="1">--India--</option>
-                <option value="1">--USA--</option>
-                <option value="1">--Canada--</option>
-              </select>
-            </ion-col>
-          </ion-row>
+            <ion-row style="justify-content: right;">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning" type="submit">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Preview</ion-button>
+              <ion-button color="warning">Close</ion-button>
+            </ion-row>
+          </form>
 
-          <ion-row style="justify-content: right;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
