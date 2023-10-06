@@ -18,9 +18,10 @@
   color: goldenrod;
   font-weight: 700;
   margin-left: 25px;
-  
+
 }
-.drop ion-label{
+
+.drop ion-label {
   text-transform: uppercase;
   text-align: right;
   font-size: 14px;
@@ -45,7 +46,7 @@ select {
   font-size: 14px;
   color: goldenrod;
   font-weight: 700;
- // background-color: #000000;
+  // background-color: #000000;
 }
 
 /* Style the dropdown arrow (not supported in all browsers) */
@@ -59,7 +60,7 @@ select option {
   font-size: 16px;
   padding: 20px;
 
- // background-color: #000000;
+  // background-color: #000000;
   color: goldenrod;
 }
 
@@ -88,47 +89,103 @@ select option:checked {
 }
 
 .mymenu {
- // display: flex;
+  height: 60px;
+  padding-top: 15px;
+  // display: flex;
   justify-content: space-around;
   //align-items: start;
- // background-color: #000000;
+//background-color: rgb(121, 121, 155);
+  background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+  //background-color:  linear-gradient(#c6ffdd, #fbd786, #f7797d);
+
 }
-@media(max-width:950px){
-  .mymenu{
+ion-toolbar{
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+
+}
+@media(max-width:950px) {
+  .mymenu {
     visibility: hidden;
     display: block;
   }
 }
 
-.drop1{
+.drop1 {
   margin-right: 5px;
 }
-ion-segment{
+
+ion-segment {
   background-color: rgb(255, 255, 255);
   color: goldenrod;
   margin-top: 0px;
   width: 100%;
   text-align: left;
 }
-ion-segment-button{
-  color: goldenrod;
-  border: 2px solid goldenrod;
-background-color: black;
-min-height: 30px;
-text-decoration: none;
 
+ion-segment-button {
+  text-transform: uppercase;
+  background:  skyblue;
+  border: 1px solid #000;
+  //background-clip: text;
+ // color: transparent;
+  font-weight: bold; /* Adjust font styles as needed */
+  /* Add any other styles you want */
+  //background-color: black;
+  min-height: 30px;
+  text-decoration: none;
+color: #000000;
 }
 
-  .segmentbutton{
-text-align: left;}
-.segmentlabel ion-label{
-  border: 2px solid goldenrod;
+.segmentbutton {
+  text-align: left;
+}
+
+.segmentlabel ion-label {
+  // border: 2px solid goldenrod;
   padding: 5px 10px 5px 10px;
-  margin: 0px;
-  margin-bottom: 15px;
-  min-width: 150px;
-  color: goldenrod;
+  // margin: 0px;
+  // margin-bottom: 15px;
+  // min-width: 150px;
+  text-transform: uppercase;
+  background: linear-gradient(to right,purple, black , blue ,green);
+  background-clip: text;
+  color: transparent;
+  font-weight: bold; /* Adjust font styles as needed */
+  /* Add any other styles you want */
+margin: 3px;
+text-decoration-line: initial 1px solid white;
 }
-ion-toolbar{
+.segmentlabel{
+  --background-color:  linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+}
+ion-toolbar {
   height: 45px;
+  background-color: #434343;
 }
+
+/* Remove hover effect for ion-segment-button */
+ion-segment-button:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Remove hover effect for ion-segment itself */
+ion-segment:hover {
+  background-color: goldenrod,darkgoldenrod;
+
+}
+/* Remove the blue border on ion-segment-button when clicked */
+.segmentbutton ion-segment-button:focus {
+  outline: none;
+}
+.segmentlabel :hover{
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+
+  font-weight: bold;
+  color: #007bff;
+direction: ltr;
+
+
+}
+

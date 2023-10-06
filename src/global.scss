@@ -37,10 +37,12 @@ ion-menu.md ion-content {
     --padding-bottom: 20px;
 }
 
-
+ion-menu ion-header{
+    background-image: linear-gradient(to right, #ff9966, #ff5e62);
+}
 
 ion-menu.md ion-list {
-    color: goldenrod;
+    color: #fff;
 }
 
 ion-menu.md ion-note {}
@@ -51,6 +53,8 @@ ion-menu.md ion-note {
 
 ion-menu.md ion-list#inbox-list {
     // border-bottom: 1px solid var(--ion-color-step-150, #000000);
+    background-image: linear-gradient(to right, #ff9966, #ff5e62);
+
 }
 
 
@@ -59,20 +63,25 @@ ion-menu.md ion-item {
     --padding-end: 10px;
     // border-radius: 50px;
     // border-bottom: #000000 solid 1px;
+    color: #fff;
 }
 
 ion-menu.md ion-item.selected {
     --background: #f5f5dc;
     border-radius: 50px;
+    color: #000;
 }
 
 ion-menu.md ion-item.selected ion-icon {
     color: #525252;
+    border: #000 solid 1px;
 }
-
+.buttons ion-button{
+    background-color: radial-gradient(circle farthest-side, #fceabb, #f8b500);;
+}
 ion-menu.md ion-item ion-icon {
-    color: goldenrod;
-    border: #000000 solid 1.5px;
+    color: #fff;
+    border: #fff solid 1.5px;
     border-radius: 50%;
     padding: 5px;
 }
@@ -106,7 +115,7 @@ ion-menu.ios ion-item.selected ion-icon {
 
 ion-menu.ios ion-item ion-icon {
     font-size: 24px;
-    color: goldenrod;
+    color: red;
 }
 
 ion-menu.ios ion-note {
@@ -283,8 +292,17 @@ ion-toolbar ion-icon {
 ion-header ion-title {
     color: goldenrod;
     font-weight: bold;
+    
 }
 
+.dekstop-menu ion-title{
+    text-transform: uppercase;
+  background: linear-gradient(to right,purple, #73ff00, #d3e200 ,rgb(255, 2, 2), black , blue ,green);
+  background-clip: text;
+  color: transparent;
+  font-weight: bold; /* Adjust font styles as needed */
+  /* Add any other styles you want */
+}
 ion-card {
     position: relative;
     font-family: 'Times New Roman', Times, serif;
@@ -313,7 +331,7 @@ ion-item {
 }
 
 .toolbar {
-    background-color: #000000;
+    background: #000000;
 }
 
 ion-icon {
@@ -439,7 +457,7 @@ th {
 }
 
 ion-card-header {
-    border-bottom: 2px solid goldenrod;
+    border-bottom: 2px solid  #f11712;
     // width: 100%;
     // margin-top: -30px;
 }
@@ -451,7 +469,7 @@ ion-card-header ion-title {
 }
 
 ion-card-header .back {
-    color: goldenrod;
+    color: red;
     font-size: 24px;
     font-weight: bold;
 }
@@ -460,26 +478,54 @@ ion-card-header .back {
 
 .container ion-input {
     min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
+    color: #000;
+    background: skyblue;
+    font-weight: 600;
     outline-width: 2px;
     outline-style: initial;
+    border: solid 1px #000;
+border-radius: 4px;
+text-transform: uppercase;
 }
+.container ion-input label{
+    margin-left: 10px;
 
+}
+.container ion-textarea label{
+    margin-left: 10px;
+
+}
 .container ion-select {
+    text-transform: uppercase;
     min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
+    background: skyblue;
+    color: #000;
+    font-weight: 600;
     outline-color: goldenrod;
     outline-width: 2px;
     outline-style: initial;
 }
-
+.container option{
+    color: #000000;
+}
 .container select {
+    background: skyblue;
     min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
+    color: #000;
+    font-weight: 600;
+    //border-color: goldenrod;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+}
+.container ion-textarea {
+    text-transform: uppercase;
+    background: skyblue;
+    min-height: 35px;
+    color: #000;
+    font-weight: 600;
     //border-color: goldenrod;
     width: 100%;
     text-align: left;
@@ -494,3 +540,31 @@ ion-card-header .back {
 .back {
     margin-top: 15px;
 }
+
+.container ion-row span{
+    background: linear-gradient(to right, #ff6600, #ff3300);
+}
+.headinglabel ion-label{
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ff6600, #ff3300);
+    background-clip: text;
+    color: transparent;
+    font-weight: bold; /* Adjust font styles as needed */
+    /* Add any other styles you want */
+  margin: 3px;
+}
+ion-card{
+    // background-image: linear-gradient(to right, #141e30, #243b55);
+}
+// .gradient-button{
+//     background: linear-gradient(to right, #ff6600, #ff3300);
+//     color: white; /* Text color */
+//     /* Add any other button styles as needed */
+//   }
+  .custom-primary ion-button{
+    --background: transparent;
+    background-clip: text;
+    background: linear-gradient(to right, #ff6600, #ff3300);
+border-radius: 4px;
+  }
+
