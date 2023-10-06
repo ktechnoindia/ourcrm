@@ -122,7 +122,7 @@
           </ion-row>
           <ion-row style=" border: 2px solid goldenrod; margin-top: 20px;">
 
-            <ion-segment style="border-bottom: 2px solid goldenrod;" [(ngModel)]="selectTabs"  [ngModelOptions]="{standalone: true}">
+            <ion-segment style="border-bottom: 2px solid goldenrod;" [(ngModel)]="selectTabs">
               <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;"
                 value="General">
                 <ion-label>Attribute</ion-label>
@@ -264,7 +264,7 @@
 
               <ion-row>
                 <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
-                  <select [(ngModel)]="category"  [ngModelOptions]="{standalone: true}" >
+                  <select [(ngModel)]="category"  >
                     <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">--- Select Category ---</option>
                     <option value="">Non Stock(Asset)</option>
                     <option value="">Non Stock(Expense)</option>
@@ -275,7 +275,7 @@
                 </ion-col>
                 <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" [(ngModel)]="weightunit"  [ngModelOptions]="{standalone: true}" name="weightunit" type="text" label="Unit of Weigth :"
+                    <ion-input color="warning" [(ngModel)]="weightunit" name="weightunit" type="text" label="Unit of Weigth :"
                       label-placement="floating" fill="outline" ></ion-input>
                   </ion-row>
                  
@@ -285,14 +285,14 @@
               <ion-row style="margin-bottom: 20px;">
                 <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" [(ngModel)]="relailprofit"  [ngModelOptions]="{standalone: true}" name="relailprofit" type="text" label="Retailer Profit % :"
+                    <ion-input color="warning" [(ngModel)]="relailprofit" name="relailprofit" type="text" label="Retailer Profit % :"
                       label-placement="floating" fill="outline" ></ion-input>
                   </ion-row>
                  
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="warning" [(ngModel)]="delarprofit"  [ngModelOptions]="{standalone: true}" name="delarprofit" type="text" label="Delar Profit % : "
+                    <ion-input color="warning" [(ngModel)]="delarprofit" name="delarprofit" type="text" label="Delar Profit % : "
                       label-placement="floating" fill="outline" ></ion-input>
                   </ion-row>
                 
