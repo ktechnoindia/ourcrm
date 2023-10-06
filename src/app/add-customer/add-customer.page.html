@@ -22,9 +22,9 @@
         </div>
         <ion-grid>
 
-         
+
           <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
-            
+
             <ion-row>
               <ion-label style="font-size: 18px; font-weight: bold;">Contact Information :</ion-label>
             </ion-row>
@@ -39,34 +39,33 @@
                 <ion-row>
                   <ion-input [(ngModel)]="cname" color="warning" type="text" label=" Name :" label-placement="floating"
                     fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input type="text" label=" Name :" color="dark" label-placement="floating"
-                   ></ion-input>
+                  <ion-input type="text" label=" Name :" color="dark" label-placement="floating"></ion-input>
                 </ion-row>
 
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="customercode" color="warning"  type="number" label=" Customer Code :"
+                  <ion-input [(ngModel)]="customercode" color="warning" type="number" label=" Customer Code :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input  class="sign_input" type="number"color="dark" label=" Customer Code :"
-                    label-placement="floating"></ion-input>
+                  
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" color="warning"  type="number" label=" GSTIN :"
+                  <ion-input [(ngModel)]="gstin" color="warning" type="number" label=" GSTIN :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---SelectGroup Name ---</option>
-                  <ion-input  class="sign_input" type="number" label=" GSTIN :"
-                    label-placement="floating"color="dark"></ion-input>
+                  <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
+                    <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">
+                      ---SelectGroup Name ---</option>
+                  </select>
                 </ion-row>
               </ion-col>
+
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select class="select-width">
                   <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
@@ -83,45 +82,41 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="openingbalance" color="warning" class="sign_input" type="text" label=" Opening Balance :"
-                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Opening Balance :"
-                    label-placement="floating" ></ion-input>
+                  <ion-input [(ngModel)]="openingbalance" color="warning" class="sign_input" type="text"
+                    label=" Opening Balance :" label-placement="floating" fill="outline"
+                    [ngModelOptions]="{standalone: true}"></ion-input>
+                
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closingbalance " color="warning"  type="text" label=" Closing Balance :"
+                  <ion-input [(ngModel)]="closingbalance " color="warning" type="text" label=" Closing Balance :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Closing Balance :"
-                    label-placement="floating"></ion-input>
+                  
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="phone" color="warning"  type="number" label=" Mobile Number :"
+                  <ion-input [(ngModel)]="phone" color="warning" type="number" label=" Mobile Number :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="number" label=" Mobile Number :"
-                    label-placement="floating"></ion-input>
+                 
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="whatshappnumber" color="warning" type="number" label=" Whatsapp Number :" label-placement="floating"
+                  <ion-input [(ngModel)]="whatshappnumber" color="warning" type="number" label=" Whatsapp Number :"
+                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                 
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="email" color="warning" type="email" label="Email :" label-placement="floating"
                     fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" type="number" label=" WhatsApp Number :" label-placement="floating"
-                    ></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="email" color="warning"  type="email" label="Email :" label-placement="floating"
-                    fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="email" label="Email :" label-placement="floating"
-                  ></ion-input>
+                 
                 </ion-row>
 
               </ion-col>
@@ -136,91 +131,75 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
                 <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select Country---
-                <select class="select-width">
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
-                    value="India">---Select
-                    Country---
-                  </option>
-                  <option value="India">India</option>
-                  <option value="UK">UK</option>
-                  <option value="USA">USA</option>
-                </select>
+                    <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select
+                    Country---</option>
+                      <option value="India">India</option>
+                      <option value="UK">UK</option>
+                      <option value="USA">USA</option>
+                    </select>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
-                  <option >---Select State ---</option>
-                <select class="select-width">
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
-                    value="--Select--">
-                    ---Select
-                    State ---</option>
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                  <option value="Chandigarh">Chandigarh</option>
-                  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
-                  </option>
-                  <option value="Lakshadweep">Lakshadweep</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Puducherry">Puducherry</option>
-                </select>
+                  <option>---Select State ---</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
+                    </option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Puducherry">Puducherry</option>
+                  </select>
 
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-
                 <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
                   <option> ---Select City ---</option>
-                <select class="select-width">
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
-                    value="--Select--">
-                    ---Select City ---</option>
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Hyderabad">Hyderabad</option>
-                  <option value="Chennai">Chennai</option>
-                  <option value="Kolkata">Kolkata</option>
-                  <option value="Pune">Pune</option>
-                  <option value="Ahmedabad">Ahmedabad</option>
-                  <option value="Jaipur">Jaipur</option>
-                  <option value="Lucknow">Lucknow</option>
-                </select>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Lucknow">Lucknow</option>
+                  </select>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode" color="warning"  type="number" label=" PinCode  :"
+                  <ion-input [(ngModel)]="pincode" color="warning" type="number" label=" PinCode  :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="number" label=" PinCode  :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -228,10 +207,8 @@
             <ion-row>
               <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="fullname" color="warning"  type="text" label="Full Address :"
+                  <ion-input [(ngModel)]="fullname" color="warning" type="text" label="Full Address :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label="Full Address :"
-                    label-placement="floating" ></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -245,37 +222,29 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="taxnumber" color="warning"  type="number" label=" Tax Deducation No. :"
+                  <ion-input [(ngModel)]="taxnumber" color="warning" type="number" label=" Tax Deducation No. :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="number" label=" Tax Deducation No. :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="adharnumber" color="warning"  type="number" label="Aadhar No.:"
+                  <ion-input [(ngModel)]="adharnumber" color="warning" type="number" label="Aadhar No.:"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="number" label="Aadhar No.:"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="panumber" color="warning"  type="number" label=" PAN No. :"
+                  <ion-input [(ngModel)]="panumber" color="warning" type="number" label=" PAN No. :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" PAN No. :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="udayognumber" color="warning"  type="text" label=" Udayog Aadhar No. :"
+                  <ion-input [(ngModel)]="udayognumber" color="warning" type="text" label=" Udayog Aadhar No. :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Udayog Aadhar No. :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -293,8 +262,6 @@
                 <ion-row>
                   <ion-input [(ngModel)]="accountnumber" color="warning" type="number" label="A/C Number :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="number" label="A/C Number :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -302,8 +269,6 @@
                 <ion-row>
                   <ion-input [(ngModel)]="ifsc" color="warning" type="text" label="IFSC Code :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label="IFSC Code :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -311,8 +276,6 @@
                 <ion-row>
                   <ion-input [(ngModel)]="bankname" color="warning" type="text" label="Bank Name :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label="Bank Name :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -320,8 +283,6 @@
                 <ion-row>
                   <ion-input [(ngModel)]="branchname" color="warning" type="text" label=" Branch Name :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Branch Name :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -337,40 +298,30 @@
                 <ion-row>
                   <ion-input [(ngModel)]="creditperiod" color="warning" type="text" label=" Credit Period :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{ standalone: true }"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Credit Period :"
-                    label-placement="floating" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="creditlimit" color="warning"  type="text" label=" Credit Limit :"
+                  <ion-input [(ngModel)]="creditlimit" color="warning" type="text" label=" Credit Limit :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Credit Limit :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <select class="select-width" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
                   <option value="India">--- Sales Person ---</option>
-                <select class="select-width">
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
-                    value="India">Select Sales
-                    Person</option>
-                  <option value="India">Deepak</option>
-                  <option value="UK">Abhishel</option>
-                  <option value="USA">Ravi</option>
-                </select>
+                    <option value="India">Deepak</option>
+                    <option value="UK">Abhishel</option>
+                    <option value="USA">Ravi</option>
+                  </select>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="cardnumber" color="warning"  type="text" label=" Card Number :"
+                  <ion-input [(ngModel)]="cardnumber" color="warning" type="text" label=" Card Number :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label=" Card Number :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -378,17 +329,13 @@
                 <ion-row>
                   <ion-input [(ngModel)]="openingpoint" color="warning" type="text" label="Opening Point :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label="Opening Point :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
 
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closingpoint" color="warning"  type="text" label="Closing Point :"
+                  <ion-input [(ngModel)]="closingpoint" color="warning" type="text" label="Closing Point :"
                     label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
-                  <ion-input color="dark" class="sign_input" type="text" label="Closing Point :"
-                    label-placement="floating"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
