@@ -1,346 +1,343 @@
-<!-- <ion-header class="toolbar">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-item lines="none">
-      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-      <ion-title>Add Vendor</ion-title>
-    </ion-item>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <div class="container">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-        <ion-card-header>
-          <ion-item lines="none">
-            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-            <ion-title>Add Vendor</ion-title>
-          </ion-item>
-        </ion-card-header>
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;padding-top: 10px;">Add Vendor</ion-title>
+            </ion-item>
+            <ion-row style="justify-content: right;margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button color="warning">Edit</ion-button>
+                  <ion-button color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
+          </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
 
-          <ion-row>
-            <ion-label style="font-size: 18px; font-weight: bold;">Contact Information :</ion-label><span
-              style="width: 100%; height: 2px; background-color: black;"></span>
-          </ion-row>
+         
+          <form>
+            <ion-row class="headinglabel">
+              <ion-label style="font-size: 18px;">Contact Information :</ion-label><span
+                style="width: 100%; height: 2px;"></span>
+            </ion-row>
 
-          <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-             
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Vendor Code :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input type="text" label=" Name :" color="dark" label-placement="floating"
+                   ></ion-input>
+                </ion-row>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" GSTIN :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select
-                  Group Name ---</option>
-                <option value="daimond">Daimond</option>
-                <option value="star">Star</option>
-                <option value="silver">Silver</option>
-              </select>
-            </ion-col>
-          </ion-row>
-          
-          <!-- Third Row -->
-          <ion-row>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Opening Balance :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input  class="sign_input" type="number"color="dark" label=" Customer Code :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Closing Balance :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Mobile Number :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" WhatsApp Number :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="email" label="Email :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-              
-            </ion-col>
-
-          </ion-row>
-
-          <ion-row style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span
-              style="width: 100%; height: 2px; background-color: black;"></span>
-          </ion-row>
-
-          <ion-row>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="12">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select
-                  Country---
-                </option>
-                <option value="India">India</option>
-                <option value="UK">UK</option>
-                <option value="USA">USA</option>
-              </select>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="--Select--">---Select
-                  State ---</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand</option>
-                <option value="West Bengal">West Bengal</option>
-                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
-                </option>
-                <option value="Lakshadweep">Lakshadweep</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Puducherry">Puducherry</option>
-              </select>
-             
-            </ion-col>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-            
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="--Select--">---Select City ---</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Hyderabad">Hyderabad</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Pune">Pune</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Lucknow">Lucknow</option>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input  class="sign_input" type="number" label=" GSTIN :"
+                    label-placement="floating"color="dark"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select class="select-width">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                    value="India">---Select
+                    Group Name ---</option>
+                  <option value="daimond">Daimond</option>
+                  <option value="star">Star</option>
+                  <option value="silver">Silver</option>
                 </select>
-            </ion-col>
+              </ion-col>
+            </ion-row>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" PinCode  :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+            <!-- Third Row -->
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Opening Balance :"
+                    label-placement="floating" ></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row>
-            <ion-col  size="12" size-lg="12" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Full Address :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Closing Balance :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Registration :</ion-label><span
-              style="width: 100%; height: 2px; background-color: black;"></span>
-          </ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="number" label=" Mobile Number :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" type="number" label=" WhatsApp Number :" label-placement="floating"
+                    ></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="email" label="Email :" label-placement="floating"
+                  ></ion-input>
+                </ion-row>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label=" Tax Deducation No. :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label="Aadhar No.:"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            </ion-row>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" PAN No. :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span
+                style="width: 100%; height: 2px; background-color: black;"></span>
+            </ion-row>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Udayog Aadhar No. :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
+                <select class="select-width">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                    value="India">---Select
+                    Country---
+                  </option>
+                  <option value="India">India</option>
+                  <option value="UK">UK</option>
+                  <option value="USA">USA</option>
+                </select>
+              </ion-col>
 
-          </ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select class="select-width">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                    value="--Select--">
+                    ---Select
+                    State ---</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
+                  </option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Puducherry">Puducherry</option>
+                </select>
 
-        
-          <ion-row style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Bank Details :</ion-label><span
-              style="width: 100%; height: 2px; background-color: black;"></span>
-          </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
 
-          <ion-row>
+                <select class="select-width">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                    value="--Select--">
+                    ---Select City ---</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Lucknow">Lucknow</option>
+                </select>
+              </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label="A/C Number :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="number" label=" PinCode  :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="IFSC Code :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row>
+              <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label="Full Address :"
+                    label-placement="floating" ></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Bank Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Registration :</ion-label><span
+                style="width: 100%; height: 2px; background-color: black;"></span>
+            </ion-row>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Branch Name :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+            <ion-row>
 
-          </ion-row>
-          
-          <ion-row style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Other Details :</ion-label><span
-              style="width: 100%; height: 2px; background-color: black;"></span>
-          </ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="number" label=" Tax Deducation No. :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Credit Period :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Credit Limit :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="number" label="Aadhar No.:"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Select Sales
-                  Person</option>
-                <option value="India">Deepak</option>
-                <option value="UK">Abhishel</option>
-                <option value="USA">Ravi</option>
-              </select>
-            </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" PAN No. :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          </ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Udayog Aadhar No. :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row>
-
-            <ion-col class="row" size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Card Number :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Opening Point :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            
-            </ion-col>
-            <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Closing Point :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+            </ion-row>
 
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-row>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Bank Details :</ion-label><span
+                style="width: 100%; height: 2px; background-color: black;"></span>
+            </ion-row>
+
+            <ion-row>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="number" label="A/C Number :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label="IFSC Code :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label="Bank Name :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Branch Name :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Other Details :</ion-label><span
+                style="width: 100%; height: 2px; background-color: black;"></span>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Credit Period :"
+                    label-placement="floating" ></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Credit Limit :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+                <select class="select-width">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                    value="India">Select Sales
+                    Person</option>
+                  <option value="India">Deepak</option>
+                  <option value="UK">Abhishel</option>
+                  <option value="USA">Ravi</option>
+                </select>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row>
+
+              <ion-col class="row" size="12" size-lg="4" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label=" Card Number :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label="Opening Point :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+
+              </ion-col>
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input color="dark" class="sign_input" type="text" label="Closing Point :"
+                    label-placement="floating"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <ion-button>Delete</ion-button>
+              <ion-button>Preview</ion-button>
+              <ion-button>Close</ion-button>
+            </ion-row>
+          </form>
 
         </ion-grid>
       </ion-card-content>

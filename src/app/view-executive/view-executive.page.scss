@@ -83,11 +83,10 @@ option{
     text-align: center;
     color: #000;
 }
-.selects{
-    display: flex;
-    justify-content: end;
-    flex-direction: column;
-}
+// .selects{
+//     display: flex;
+//     flex-direction: column;
+// }
 select{
     border: solid 1.5px goldenrod;
     border-radius: 3px;

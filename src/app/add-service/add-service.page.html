@@ -18,32 +18,34 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Add Service</ion-title>
+              <ion-title style="text-align: center;padding-top: 15px;">Add Service</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right;margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button color="warning">Edit</ion-button>
+                  <ion-button color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
 
-          <ion-row style="margin-top: 5px;">
+
+          <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Service Code :"
-                  label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label=" Service Code :"
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---Select Service Type ---</option>
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                  value="Category">---Select Service Type ---</option>
                 <option value="">Stock</option>
                 <option value="">Non Stock(Asset)</option>
                 <option value="">Non Stock(Expense)</option>
@@ -52,9 +54,10 @@
               </select>
             </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---Select Stock Type ---
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
+                  value="Category">---Select Stock Type ---
                   :</option>
                 <option value="">Stock</option>
                 <option value="">Non Stock(Asset)</option>
@@ -64,9 +67,10 @@
               </select>
             </ion-col>
 
-            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---Select SAC Code ---</option>
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---Select
+                  SAC Code ---</option>
                 <option value="">121</option>
                 <option value="">2324232</option>
                 <option value="">21322</option>
@@ -75,22 +79,22 @@
               </select>
             </ion-col>
           </ion-row>
-        
+
           <ion-row>
-            <ion-col  size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-textarea color="warning" class="sign_input" type="text" label=" Item Description :"
-                  label-placement="floating" fill="outline"></ion-textarea>
+                <ion-textarea color="dark" class="sign_input" type="text" label=" Item Description :"
+                  label-placement="floating"></ion-textarea>
               </ion-row>
             </ion-col>
           </ion-row>
 
-          <ion-row style="justify-content: right;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
 
         </ion-grid>
