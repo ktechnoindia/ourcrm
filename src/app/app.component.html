@@ -203,28 +203,29 @@
 
     <!-- Tools -->
     <ion-segment *ngIf="activeSegment === 'segment7'">
-      <ion-segment-button value="item1">
-        Item 10
+      <ion-segment-button value="item1 "routerLink="/itemledger">
+       Item Ledger Report
       </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 11
+      <ion-segment-button value="item2" routerLink="/stockledger">
+        Stock Ledger
       </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 12
+      <ion-segment-button value="item3" routerLink="/serviceledger">
+        Service Ledger
+      </ion-segment-button>
+      <ion-segment-button value="item3" routerLink="/groupwisereport">
+        Group Wise Report
       </ion-segment-button>
     </ion-segment>
 
     <!-- Transaction -->
     <ion-segment *ngIf="activeSegment === 'segment8'">
-      <ion-segment-button value="item1">
-        Item 13
+      <ion-segment-button value="item1" routerLink="/">
+        Add Account
       </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 14
+      <ion-segment-button value="item2" routerLink="/">
+        Account Report
       </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 15
-      </ion-segment-button>
+     
     </ion-segment>
 
     <!-- Others -->

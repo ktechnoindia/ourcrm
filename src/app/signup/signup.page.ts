@@ -19,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class SignupPage implements OnInit {
   firstName: string = '';
   lastName: string = '';
-  phone:number=0;
+  phone:number|null = null;
   email: string = '';
   password: string = '';
   confirmpassword: string = '';
@@ -45,7 +45,7 @@ export class SignupPage implements OnInit {
           color:'danger'
         });
         toast.present();
-      }else if(this.phone == 0){
+      }else if(this.phone == null){
         const toast = await this.toastController.create({
           message:"Phone Number is required",
           duration:3000,
