@@ -5,39 +5,45 @@ td {
     text-align: center;
 }
 
-.container ion-input{
+
+.container ion-input {
     min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
     outline-width: 2px;
-outline-style: initial;
+    outline-style: initial;
 }
-.container ion-select{
+.container ion-textarea {
     min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-outline-style: initial;
-}
-.container ion-textarea{
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    outline-color: goldenrod;
-    outline-width: 2px;
-outline-style: initial;
-}
-.container select{
-    min-height: 35px;
-    color: goldenrod;
-    font-weight: 400;
-    //border-color: goldenrod;
-width: 100%;
-text-align: left;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    background: skyblue;
+
 }
 
+.container ion-select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
+}
+
+.container select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    //border-color: goldenrod;
+    width: 100%;
+    text-align: left
+}
+
+ng-template ion-button{
+    color: goldenrod;
+}
 .row{
     margin-top: 6px;
 

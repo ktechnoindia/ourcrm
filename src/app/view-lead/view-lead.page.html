@@ -18,25 +18,26 @@
           <ion-card-header >
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>View Lead</ion-title>
+              <ion-title style="text-align: center;padding-top: -10px;">View Lead</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right; margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
+          
           <ion-row style="margin-top: 25px;">
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
                 <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select Company Name ---</option>
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">---Select Company Name ---</option>
                     <option value="India">Mehta Infotech</option>
                   <option value="UK">Ktechno</option>
                   <option value="USA">Relyon</option>
@@ -44,7 +45,7 @@
             </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer Name :</option>
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">Customer Name :</option>
                     <option value="India">Deepak</option>
                   <option value="UK">Abhishel</option>
                   <option value="USA">Ravi</option>
@@ -53,15 +54,15 @@
 
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="From Date :"
-                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+                <ion-input color="dark" class="sign_input" type="date" label="From Date :"
+                  label-placement="floating"  id="startDate" name="startDate"></ion-input>
               </ion-row>
             </ion-col>
             
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="To Date :"
-                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                <ion-input color="dark" class="sign_input" type="date" label="To Date :"
+                  label-placement="floating" id="endDate" name="endDate"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -101,12 +102,12 @@
               </table>
             </div>
           </ion-row>
-          <ion-row style="justify-content: right;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
         </ion-grid>
       </ion-card-content>

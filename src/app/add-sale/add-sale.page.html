@@ -18,84 +18,87 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Add Sale</ion-title>
+              <ion-title style="text-align: center;padding-top: -10px;">Add Sale</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right;margin-top: -25px;">
+              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
+          
 
 
           <ion-row>
             <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Billing No. :"
-                  label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label=" Billing No. :"
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Billing Date :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Cash/Credit">
-                  Cash/Credit</option>
-                <option value="2">Cash</option>
-                <option value="3">Credit</option>
-              </select>
-            </ion-col>
-            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Customer Name  :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Order Date :"
-                  label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label=" Billing Date :"
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Order No.  :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" GSTIN  :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
-              <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
                 <select class="select-width">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Cash/Credit">
-                    Sales Person</option>
-                  <option value="2">Deepak</option>
-                  <option value="3">Ravi</option>
-                  <option value="3">Abhishek</option>
-                  <option value="3">Yogesh</option>
-
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
+                    Cash/Credit</option>
+                  <option value="2">Cash</option>
+                  <option value="3">Credit</option>
                 </select>
-              </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Customer Name  :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Order Date :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Order No.  :"
+                  label-placement="floating" ></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" GSTIN  :" label-placement="floating"
+                  ></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col class="row" size-lg="3" size-md="4" size-sm="6" size="6">
+                <ion-row>
+                  <select class="select-width">
+                    <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
+                      Sales Person</option>
+                    <option value="2">Deepak</option>
+                    <option value="3">Ravi</option>
+                    <option value="3">Abhishek</option>
+                    <option value="3">Yogesh</option>
+  
+                  </select>
+                </ion-row>
             </ion-col>
           </ion-row>
 
@@ -126,7 +129,7 @@
                     <input class="table_input" type="text">
                   </td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Item</option>
                       <option value="1">Milk</option>
@@ -135,7 +138,7 @@
                   </td>
                   <td>1</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Unit</option>
                       <option value="1">Credit</option>
@@ -151,7 +154,7 @@
                   <td>100</td>
                   <td>210</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;"  class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Tax Rate</option>
                       <option value="1">5%</option>
@@ -173,7 +176,7 @@
                     <input class="table_input" type="text">
                   </td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Item</option>
                       <option value="1">Milk</option>
@@ -182,7 +185,7 @@
                   </td>
                   <td>1</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Unit</option>
                       <option value="1">Credit</option>
@@ -198,7 +201,7 @@
                   <td>100</td>
                   <td>210</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Tax Rate</option>
                       <option value="1">5%</option>
@@ -220,7 +223,7 @@
                     <input class="table_input" type="text">
                   </td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Item</option>
                       <option value="1">Milk</option>
@@ -229,7 +232,7 @@
                   </td>
                   <td>1</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Unit</option>
                       <option value="1">Credit</option>
@@ -245,7 +248,7 @@
                   <td>100</td>
                   <td>210</td>
                   <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                    <select style="width: 100px;" class="table_select" aria-label="Default select example"
                       id="transaction">
                       <option selected>Tax Rate</option>
                       <option value="1">5%</option>
@@ -270,7 +273,7 @@
             </ion-col>
             <ion-col class="row" size-lg="4" size-md="12" size-sm="12" size="12">
               <div class="output">
-                <table>
+                <table style="border: none;">
                   <tr>
                     <th colspan="13">Discount Amount :</th>
                     <td colspan="2" > <input class="table_input"
@@ -298,12 +301,12 @@
 
           </ion-row>
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
 
         </ion-grid>

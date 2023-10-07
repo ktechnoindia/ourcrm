@@ -19,41 +19,42 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>View Quotation</ion-title>
+              <ion-title style="text-align: center;padding-top: -10px;">View Quotation</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right;margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
+          
           <ion-row  style="margin-top: 5px;">
             <ion-col  size-lg="4" size-md="6" size-sm="6" size="12">
-              <ion-radio style="margin-right: 15px;" color="warning" value="view_sale" name="month" labelPlacement="end"
+              <ion-radio style="margin-right: 15px;" color="dark" value="view_sale" name="month" labelPlacement="end"
                 alignment="start">Monthly</ion-radio>
-              <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="quartly"
+              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="quartly"
                 labelPlacement="end" alignment="start">Quartly</ion-radio>
-              <ion-radio color="warning" value="view_sale" name="year" labelPlacement="end"
+              <ion-radio color="dark" value="view_sale" name="year" labelPlacement="end"
                 alignment="start">Yearly</ion-radio>
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="From Date :"
-                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+                <ion-input color="dark" class="sign_input" type="date" label="From Date :"
+                  label-placement="floating" id="startDate" name="startDate"></ion-input>
               </ion-row>
            
             </ion-col>
             <ion-col  size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="To Date :"
-                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                <ion-input color="dark" class="sign_input" type="date" label="To Date :"
+                  label-placement="floating" id="endDate" name="endDate"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -102,12 +103,12 @@
             </div>
           </ion-row>
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
         </ion-grid>
       </ion-card-content>

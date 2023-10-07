@@ -33,38 +33,28 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button color="warning">Edit</ion-button>
-                <ion-button color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
           <form #executiveForm (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="role" [ngModelOptions]="{standalone: true}">
-                  <option value="Category">--- Select Role ---
+                  <option value="">--Select Role--
                   </option>
-                  <option value="1">--India--</option>
-                  <option value="1">--USA--</option>
-                  <option value="1">--Canada--</option>
+                  <option value="1">Sales Manager</option>
+                  <option value="1">Sale Exicutive</option>
+                  <option value="1">Developer</option>
                 </select>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="name" type="text" label=" Name :" label-placement="floating"
-                    fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="name" type="text" label=" Name :" label-placement="floating"
+                     [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="manager" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---
-                    Select Manager ---
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--
+                    Select Manager--
                   </option>
                   <option value="1">--India--</option>
                   <option value="1">--USA--</option>
@@ -73,8 +63,8 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="phone" type="text" label="Mobile No. :"
-                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="phone" type="text" label="Mobile No. :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -82,29 +72,29 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning"[(ngModel)]="email" type="email" label="Email :" label-placement="floating"
-                    fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark"[(ngModel)]="email" type="email" label="Email :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="whatshappnumber" type="number" label="WhatsApp No. :"
-                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="whatshappnumber" type="number" label="WhatsApp No. :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="panumber" type="number" label="PAN No. :"
-                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="panumber" type="number" label="PAN No. :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="commission" type="text" label="Commission :"
-                    label-placement="floating" fill="outline" [ngModelOptions]="{standalone: true}"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="commission" type="text" label="Commission :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -113,8 +103,8 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="ledger" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---
-                    Select Ledger ---
+                  <option style="background-color: rgb(253, 253, 253);font-weight: bold; font-size: 16px;" value="">--
+                    Select Ledger--
                   </option>
                   <option value="1">--India--</option>
                   <option value="1">--USA--</option>
@@ -123,12 +113,12 @@
               </ion-col>
             </ion-row>
 
-            <ion-row style="justify-content: right;">
-              <ion-button color="warning">New</ion-button>
-              <ion-button color="warning" type="submit">Save</ion-button>
-              <ion-button color="warning">Delete</ion-button>
-              <ion-button color="warning">Preview</ion-button>
-              <ion-button color="warning">Close</ion-button>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <ion-button>Delete</ion-button>
+              <ion-button>Preview</ion-button>
+              <ion-button>Close</ion-button>
             </ion-row>
           </form>
 

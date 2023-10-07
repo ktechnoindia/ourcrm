@@ -18,47 +18,48 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Quotation Update</ion-title>
+              <ion-title style="text-align: center;padding-top: -10px;">Quotation Update</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right;margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid class="add_quot">
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
+          
 
           <ion-row>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Quotation No :"
-                  label-placement="floating" fill="outline" ></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label="Quotation No :"
+                  label-placement="floating" ></ion-input>
               </ion-row>
              
             </ion-col>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="Quotation Date :"
-                  label-placement="floating" fill="outline" ></ion-input>
+                <ion-input color="dark" class="sign_input" type="date" label="Quotation Date :"
+                  label-placement="floating"  ></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select Quotation Group ---</option>
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select Quotation Group--</option>
                 <option value="2">Nirbahy</option>
                 <option value="3">Yogesh</option>
               </select>
           </ion-col>
           <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Tax Group :</option>
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">Tax Group :</option>
                 <option value="2">Nirbahy</option>
                 <option value="3">Yogesh</option>
               </select>
@@ -91,9 +92,9 @@
                     <input style="width: 50px;" class="table_input" type="number">
                   </td>
                   <td>
-                    <select style="width: 80px;" class="table_select" aria-label="Default select example"
+                    <select  class="table_select" aria-label="Default select example"
                       id="transaction">
-                      <option selected>--Select--</option>
+                      <option selected>Select</option>
                       <option value="1">Pack</option>
                       <option value="2">Liter</option>
                     </select>
@@ -105,9 +106,9 @@
                     <input style="width: 50px;" class="table_input" type="number">
                   </td>
                   <td>
-                    <select style="width: 80px;" class="table_select" aria-label="Default select example"
+                    <select  class="table_select" aria-label="Default select example"
                       id="transaction">
-                      <option selected>--Select--</option>
+                      <option selected>Select</option>
                       <option value="1">5%</option>
                       <option value="2">12%</option>
                       <option value="3">18%</option>
@@ -132,12 +133,12 @@
             </div>
           </ion-row>
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
 
         </ion-grid>
