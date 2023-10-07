@@ -32,7 +32,6 @@ export class LoginPage implements OnInit {
         message: "All felid is required",
         duration: 3000,
         color:'danger',
-        position: 'top'
       });
        toast.present();
     }else if(this.email === ""){
