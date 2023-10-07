@@ -28,119 +28,121 @@
             <ion-popover trigger="left-start" size="auto" side="left">
               <ng-template>
                 <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
+                <ion-button color="warning">Edit</ion-button>
+                <ion-button color="success">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
+          <form #updateQuoteForm="ngForm" (ngSubmit)="onSubmit()">
+            <ion-row>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="quoteNumber" name="quoteNumber" type="text" label="Quotation No :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
 
-          <ion-row>
-            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Quotation No :"
-                  label-placement="floating" fill="outline" ></ion-input>
-              </ion-row>
-             
-            </ion-col>
-            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="Quotation Date :"
-                  label-placement="floating" fill="outline" ></ion-input>
-              </ion-row>
-            </ion-col>
+              </ion-col>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="quateDate" name="quateDate" type="date" label="Quotation Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
 
-            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select Quotation Group ---</option>
-                <option value="2">Nirbahy</option>
-                <option value="3">Yogesh</option>
-              </select>
-          </ion-col>
-          <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Tax Group :</option>
-                <option value="2">Nirbahy</option>
-                <option value="3">Yogesh</option>
-              </select>
-          </ion-col>
-          
-          </ion-row>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select [(ngModel)]="quoteGroup" name="quoteGroup">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select
+                    Quotation Group ---</option>
+                  <option value="2">Nirbahy</option>
+                  <option value="3">Yogesh</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select [(ngModel)]="quateTax" name="quateTax">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Tax Group :
+                  </option>
+                  <option value="2">Nirbahy</option>
+                  <option value="3">Yogesh</option>
+                </select>
+              </ion-col>
 
-          <ion-row style="margin-top:5px;">
-            <div style="overflow-x:auto; width: 100%;">
-              <table>
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Item Description</th>
-                  <th>Quantity</th>
-                  <th>Unit</th>
-                  <th>Basic Rate</th>
-                  <th>Gross Amount</th>
-                  <th>Tax Rate</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>Total </th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <input style="width: 50px;" class="table_input" type="number">
-                  </td>
-                  <td>
-                    <input style="width: 50px;" class="table_input" type="number">
-                  </td>
-                  <td>
-                    <select style="width: 80px;" class="table_select" aria-label="Default select example"
-                      id="transaction">
-                      <option selected>--Select--</option>
-                      <option value="1">Pack</option>
-                      <option value="2">Liter</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input style="width: 50px;" class="table_input" type="number">
-                  </td>
-                  <td>
-                    <input style="width: 50px;" class="table_input" type="number">
-                  </td>
-                  <td>
-                    <select style="width: 80px;" class="table_select" aria-label="Default select example"
-                      id="transaction">
-                      <option selected>--Select--</option>
-                      <option value="1">5%</option>
-                      <option value="2">12%</option>
-                      <option value="3">18%</option>
-                      <option value="4">28%</option>
-                    </select>
-                  </td>
+            </ion-row>
 
-                  <td>
-                    <input style="width: 40px;" class="table_input" type="text">
-                  </td>
-                  <td>
-                    <input style="width: 40px;" class="table_input" type="text">
-                  </td>
+            <ion-row style="margin-top:5px;">
+              <div style="overflow-x:auto; width: 100%;">
+                <table>
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>Item Description</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Basic Rate</th>
+                    <th>Gross Amount</th>
+                    <th>Tax Rate</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>Total </th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <input style="width: 50px;" class="table_input" type="number">
+                    </td>
+                    <td>
+                      <input style="width: 50px;" class="table_input" type="number">
+                    </td>
+                    <td>
+                      <select style="width: 80px;" class="table_select" aria-label="Default select example"
+                        id="transaction">
+                        <option selected>--Select--</option>
+                        <option value="1">Pack</option>
+                        <option value="2">Liter</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input style="width: 50px;" class="table_input" type="number">
+                    </td>
+                    <td>
+                      <input style="width: 50px;" class="table_input" type="number">
+                    </td>
+                    <td>
+                      <select style="width: 80px;" class="table_select" aria-label="Default select example"
+                        id="transaction">
+                        <option selected>--Select--</option>
+                        <option value="1">5%</option>
+                        <option value="2">12%</option>
+                        <option value="3">18%</option>
+                        <option value="4">28%</option>
+                      </select>
+                    </td>
 
-                  <td>110</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </ion-row>
+                    <td>
+                      <input style="width: 40px;" class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input style="width: 40px;" class="table_input" type="text">
+                    </td>
 
-          <ion-row style="justify-content: right;margin-top: 20px;">
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>
-          </ion-row>
+                    <td>110</td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ion-row>
 
-        </ion-grid>
+            <ion-row style="justify-content: right;margin-top: 20px;">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning" type="submit">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Preview</ion-button>
+              <ion-button color="warning">Close</ion-button>
+            </ion-row>
+          </form>
+         </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>

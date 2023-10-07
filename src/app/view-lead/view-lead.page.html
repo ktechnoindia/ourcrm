@@ -33,9 +33,11 @@
               </ng-template>
             </ion-popover>
           </ion-row>
+          <form #viewLeadForm="ngForm" (ngSubmit)="onSubmit()" >
+
           <ion-row style="margin-top: 25px;">
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width">
+                <select [(ngModel)]="companyName" name="companyName">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select Company Name ---</option>
                     <option value="India">Mehta Infotech</option>
                   <option value="UK">Ktechno</option>
@@ -43,7 +45,7 @@
                 </select>
             </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width">
+                <select [(ngModel)]="cName" name="cName">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer Name :</option>
                     <option value="India">Deepak</option>
                   <option value="UK">Abhishel</option>
@@ -53,14 +55,14 @@
 
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="From Date :"
+                <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label="From Date :"
                   label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
               </ion-row>
             </ion-col>
             
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="To Date :"
+                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
                   label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
               </ion-row>
             </ion-col>
@@ -103,11 +105,13 @@
           </ion-row>
           <ion-row style="justify-content: right;">
             <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning" type="submit">Save</ion-button>
             <ion-button color="warning">Delete</ion-button>
             <ion-button color="warning">Preview</ion-button>
             <ion-button color="warning">Close</ion-button>
           </ion-row>
+        </form>
+
         </ion-grid>
       </ion-card-content>
     </ion-card>

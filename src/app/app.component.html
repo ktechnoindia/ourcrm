@@ -11,13 +11,13 @@
           <ion-label (click)="toggleSegment('segment1')">Company</ion-label>
           <ion-label (click)="toggleSegment('segment2')">Master</ion-label>
           <ion-label (click)="toggleSegment('segment3')">Lead Manager</ion-label>
-          <ion-label (click)="toggleSegment('segment4')">Service Invoicing</ion-label>
-          <ion-label (click)="toggleSegment('segment5')">Inventory</ion-label>
-          <ion-label (click)="toggleSegment('segment6')">Compliance</ion-label>
-          <ion-label (click)="toggleSegment('segment7')">Tools</ion-label>
-          <ion-label (click)="toggleSegment('segment8')">Transaction</ion-label>
-          <ion-label (click)="toggleSegment('segment9')">Others</ion-label>
-          <ion-label (click)="toggleSegment('segment10')">Support</ion-label>
+          <ion-label (click)="toggleSegment('segment4')">Quotation Manager</ion-label>
+          <ion-label (click)="toggleSegment('segment5')">Challan Manager</ion-label>
+          <ion-label (click)="toggleSegment('segment6')">Sales Manager</ion-label>
+          <ion-label (click)="toggleSegment('segment7')">Stock LEdger</ion-label>
+          <ion-label (click)="toggleSegment('segment8')">Account</ion-label>
+          <ion-label (click)="toggleSegment('segment9')">AMC</ion-label>
+          <ion-label (click)="toggleSegment('segment10')" routerLink="/login">login</ion-label>
 
         </div>
         
@@ -147,47 +147,56 @@
       <ion-segment-button value="choice2" routerLink="/view-lead">
         View Lead
       </ion-segment-button>
-      <ion-segment-button value="choice3">
-        Choice 3
+      <ion-segment-button value="choice3" routerLink="/transfer-lead">
+        Transfer Lead
+      </ion-segment-button>
+      <ion-segment-button value="choice4" routerLink="/follow-up">
+        Follow Up 
       </ion-segment-button>
     </ion-segment>
 
     <!-- Service Invoicing -->
     <ion-segment *ngIf="activeSegment === 'segment4'">
-      <ion-segment-button value="item1">
-        Item 1
+      <ion-segment-button value="item1" routerLink="/add-quot">
+        Add Quotation
       </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 2
+      <ion-segment-button value="item2" routerLink="/view-quot">
+        View Quotation
       </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 3
+      <ion-segment-button value="item3" routerLink="/update-quot">
+        Update Quotation
       </ion-segment-button>
     </ion-segment>
 
     <!-- Inventory -->
     <ion-segment *ngIf="activeSegment === 'segment5'">
-      <ion-segment-button value="item1">
-        Item 4
+      <ion-segment-button value="item1" routerLink="/dc-in">
+       DC-IN
       </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 5
+      <ion-segment-button value="item2" routerLink="/dc-out">
+       DC-OUT
       </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 6
+      <ion-segment-button value="item3" routerLink="/dc-in-report">
+       DC-IN-REPORT
+      </ion-segment-button>
+      <ion-segment-button value="item3" routerLink="/dc-out-report">
+        DC-OUT-REPORT
       </ion-segment-button>
     </ion-segment>
 
     <!-- Compliance -->
     <ion-segment *ngIf="activeSegment === 'segment6'">
-      <ion-segment-button value="item1">
-        Item 7
+      <ion-segment-button value="item1" routerLink="/add-sale">
+        Add Sale
       </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 8
+      <ion-segment-button value="item2" routerLink="/add-purchase">
+        Add Purchase
       </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 9
+      <ion-segment-button value="item3" routerLink="/view-sale">
+        View Sale
+      </ion-segment-button>
+      <ion-segment-button value="item3" routerLink="/view-purchase">
+        View Purchase
       </ion-segment-button>
     </ion-segment>
 
