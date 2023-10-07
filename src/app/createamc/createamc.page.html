@@ -33,17 +33,17 @@
               </ng-template>
             </ion-popover>
           </ion-row>
+          <form #createAmcForm="ngForm" (ngSubmit)="onSubmit()" >
           <ion-row style="margin-top: 5px;">
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Contract ID : "
+                <ion-input [(ngModel)]="contract" name="contract" color="warning"  type="text" label="Contract ID : "
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer Name
-                  :
+              <select [(ngModel)]="cname" name="cname" >
+                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer Name :
                 </option>
                 <option value="">Deepak</option>
                 <option value="">Ravi</option>
@@ -54,13 +54,13 @@
 
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="Start DAte :"
+                <ion-input color="warning" [(ngModel)]="startdate" name="startdate" type="date" label="Start Date :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="date" label="End Ddte :" label-placement="floating"
+                <ion-input color="warning" [(ngModel)]="endate" name="endate"  type="date" label="End Ddte :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -69,7 +69,7 @@
 
           <ion-row>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
+              <select [(ngModel)]="contractduration" name="contractduration" >
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Contract
                   Duration:
                 </option>
@@ -79,7 +79,7 @@
               </select>
             </ion-col>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
+              <select [(ngModel)]="cover" name="cover" >
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Covered
                   Services/Products :
                 </option>
@@ -89,7 +89,7 @@
               </select>
             </ion-col>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
+              <select [(ngModel)]="list" name="list" >
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">List of
                   Services/Products :
                 </option>
@@ -100,7 +100,7 @@
             </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="number" label="Contract Value :"
+                <ion-input color="warning" [(ngModel)]="contractvalue" name="contractvalue"  type="number" label="Contract Value :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -109,19 +109,19 @@
           <ion-row>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label=" Payment Terms :"
+                <ion-input color="warning" [(ngModel)]="contractvalue" name="payterms"  type="text" label=" Payment Terms :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="warning" class="sign_input" type="text" label="Service Level Agreements (SLAs) :"
+                <ion-input color="warning" [(ngModel)]="servicelevel" name="servicelevel" type="text" label="Service Level Agreements (SLAs) :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-              <select class="select-width">
+              <select [(ngModel)]="listsla" name="listsla" >
                 <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">List of SLAs
                 </option>
                 <option value="">Billing</option>
@@ -133,11 +133,12 @@
          
           <ion-row style="justify-content: right;margin-top: 20px;">
             <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
+            <ion-button color="warning" type="submit">Save</ion-button>
             <ion-button color="warning">Delete</ion-button>
             <ion-button color="warning">Preview</ion-button>
             <ion-button color="warning">Close</ion-button>
           </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

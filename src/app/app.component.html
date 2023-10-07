@@ -10,7 +10,7 @@
         <div class="segmentlabel">
           <ion-label (click)="toggleSegment('segment1')">Company</ion-label>
           <ion-label (click)="toggleSegment('segment2')">Master</ion-label>
-          <ion-label (click)="toggleSegment('segment3')">Accounts</ion-label>
+          <ion-label (click)="toggleSegment('segment3')">Lead Manager</ion-label>
           <ion-label (click)="toggleSegment('segment4')">Service Invoicing</ion-label>
           <ion-label (click)="toggleSegment('segment5')">Inventory</ion-label>
           <ion-label (click)="toggleSegment('segment6')">Compliance</ion-label>
@@ -141,11 +141,11 @@
     <!-- Accounts -->
 
     <ion-segment *ngIf="activeSegment === 'segment3'">
-      <ion-segment-button value="choice1">
-        Choice 1
+      <ion-segment-button value="choice1" routerLink="/add-lead">
+        Add Lead
       </ion-segment-button>
-      <ion-segment-button value="choice2">
-        Choice 2
+      <ion-segment-button value="choice2" routerLink="/view-lead">
+        View Lead
       </ion-segment-button>
       <ion-segment-button value="choice3">
         Choice 3
