@@ -20,7 +20,7 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;padding-top: 10px;">Add Prospect</ion-title>
             </ion-item>
-            <ion-grid>
+           
               <ion-row style="justify-content: right;">
                 <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
                 <ion-popover trigger="left-start" size="auto" side="left">
@@ -34,13 +34,13 @@
 
           </ion-card-header>
         </div>
-
+        <ion-grid>
         <ion-row>
-
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px; font-weight: bold;">Contact Information :</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
+
           <form #addprospectForm="ngForm" (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
@@ -420,31 +420,14 @@
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-
               </ion-row>
-
-              <ion-row style="margin: 5px auto;">
-                <ion-label style="font-size: 18px; font-weight: bold;">Attachments :</ion-label><span
-                  style="width: 100%; height: 2px; background-color: black;"></span>
-              </ion-row>
-              <ion-row>
-                <input type="file" id="fileUpload" [(ngModel)]="fileUpload" name="fileUpload">
-              </ion-row>
-              <ion-row style="justify-content: right;">
-                <ion-button color="warning">New</ion-button>
-                <ion-button color="warning" type="submit">Save</ion-button>
-                <ion-button color="warning">Delete</ion-button>
-                <ion-button color="warning">Preview</ion-button>
-                <ion-button color="warning">Close</ion-button>
-              </ion-row>
-          </form>
 
           <ion-row class="headinglabel" style="margin: 5px auto;">
             <ion-label style="font-size: 18px; font-weight: bold;">Attachments :</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
           <ion-row>
-            <input type="file" name="fileUpload" id="fileUpload">
+            <input type="file" id="fileUpload" [(ngModel)]="fileUpload" name="fileUpload">
           </ion-row>
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
@@ -453,7 +436,10 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
-          </ion-grid>
+            </ion-row>
+          </form>
+        </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>

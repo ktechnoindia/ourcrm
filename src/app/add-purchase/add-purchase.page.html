@@ -20,7 +20,7 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center; padding-top: -10px;">Add Purchase</ion-title>
             </ion-item>
-            <ion-grid>
+            
               <ion-row style="justify-content: right;">
                 <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
                 <ion-popover trigger="left-start" size="auto" side="left">
@@ -34,7 +34,7 @@
 
           </ion-card-header>
         </div>
-
+        <ion-grid>
         <form #addPurchaseForm="ngForm" (ngSubmit)="onSubmit()">
 
           <ion-row>
@@ -53,14 +53,11 @@
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <select [(ngModel)]="payment" name="payment">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Cash/Credit">
+                <option value="">
                   Cash/Credit</option>
                 <option value="2">Cash</option>
                 <option value="3">Credit</option>
               </select>
-              <ion-input color="dark" class="sign_input" type="date" label=" Billing Date   :"
-                label-placement="floating"></ion-input>
-
             </ion-col>
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
@@ -86,15 +83,16 @@
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <select [(ngModel)]="exicutive" name="exicutive">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Cash/Credit">
+                <option  value="">
                   Exicutive</option>
                 <option value="2">Deepak</option>
                 <option value="3">Ravi</option>
                 <option value="3">Abhishek</option>
                 <option value="3">Yogesh</option>
               </select>
-              <ion-input color="dark" type="number" label=" GSTIN  :" label-placement="floating"></ion-input>
+            </ion-col>
           </ion-row>
+        
 
           <ion-row style="margin-top: 10px;">
             <div class="scroll-container">

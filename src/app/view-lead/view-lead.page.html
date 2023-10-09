@@ -15,116 +15,104 @@
     <ion-card class="add_lead">
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
+          <ion-card-header >
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;padding-top: -10px;">View Lead</ion-title>
             </ion-item>
-            <ion-grid>
-              <ion-row style="justify-content: right;">
-                <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-                <ion-popover trigger="left-start" size="auto" side="left">
-                  <ng-template>
-                    <ion-button color="danger">Delete</ion-button>
-                    <ion-button color="warning">Edit</ion-button>
-                    <ion-button color="success">Save</ion-button>
-                  </ng-template>
-                </ion-popover>
-              </ion-row>
+            <ion-row style="justify-content: right;">
+              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
           </ion-card-header>
         </div>
-
-        <form #viewLeadForm="ngForm" (ngSubmit)="onSubmit()">
+        <ion-grid>
+          
+          <form #viewLeadForm="ngForm" (ngSubmit)="onSubmit()" >
 
           <ion-row style="margin-top: 25px;">
+           
+            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
+                <select class="select-width">
+                  <option style="background-color: rgb(0, 0, 0);font-weight: bold; font-size: 16px;" value="">---Select Company Name ---</option>
+                    <option value="India">Mehta Infotech</option>
+                  <option value="UK">Ktechno</option>
+                  <option value="USA">Relyon</option>
+                </select>
+            </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-              <select [(ngModel)]="companyName" name="companyName">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">---Select
-                  Company Name ---</option>
+                <select [(ngModel)]="cName" name="cName">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">Customer Name :</option>
+                  <option value="India">Deepak</option>
+                  <option value="UK">Abhishel</option>
+                  <option value="USA">Ravi</option>
+                </select>
+            </ion-col>
+            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" [(ngModel)]="fromDate" name="fromDate" type="date" label="To Date :"
+                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+              </ion-row>
+            </ion-col>
+           
+            <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
+                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+    
+          <ion-row>
+            <div style="overflow-x:auto; width: 100%;">
+              <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+              <table>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Company Name</th>
+                  <th>Customer Name</th>
+                  <th>Email ID</th>
+                  <th>Mobile No.</th>
+                  <th>State</th>
+                  <th>City </th>
+                  <th>Pincode</th>
+                  <th>Remark</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Mehta telicom</td>
+                  <td>Deepak Sharma</td>
+                  <td>deepusharma@gmail.com</td>
+                  <td>6367127145</td>
+                  <td>Rajasthan</td>
+                  <td>Jaipur</td>
+                  <td>303706</td>
+                  <td>I want Billing account</td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
+                  </td>
 
-                <ion-row style="margin-top: 25px;">
-                  <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                    <select class="select-width">
-                      <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
-                        ---Select Company Name ---</option>
-                      <option value="India">Mehta Infotech</option>
-                      <option value="UK">Ktechno</option>
-                      <option value="USA">Relyon</option>
-                    </select>
-                  </ion-col>
-                  <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                    <select [(ngModel)]="cName" name="cName">
-                      <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Customer
-                        Name :</option>
-                     
-                        <option value="India">Deepak</option>
-                        <option value="UK">Abhishel</option>
-                        <option value="USA">Ravi</option>
-                      </select>
-                  </ion-col>
-
-                  <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                    <ion-row>
-                      <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label="From Date :"
-                        label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
-                    
-                    </ion-row>
-                  </ion-col>
-
-                  <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                    <ion-row>
-                      <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
-                        label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
-                      
-                    </ion-row>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <div style="overflow-x:auto; width: 100%;">
-                    <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-                    <table>
-                      <tr>
-                        <th>Sr.No.</th>
-                        <th>Company Name</th>
-                        <th>Customer Name</th>
-                        <th>Email ID</th>
-                        <th>Mobile No.</th>
-                        <th>State</th>
-                        <th>City </th>
-                        <th>Pincode</th>
-                        <th>Remark</th>
-                        <th>Action</th>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Mehta telicom</td>
-                        <td>Deepak Sharma</td>
-                        <td>deepusharma@gmail.com</td>
-                        <td>6367127145</td>
-                        <td>Rajasthan</td>
-                        <td>Jaipur</td>
-                        <td>303706</td>
-                        <td>I want Billing account</td>
-                        <td>
-                          <ion-icon class="create" name="create"></ion-icon>
-                          <ion-icon class="delete" name="trash"></ion-icon>
-                        </td>
-
-                      </tr>
-                    </table>
-                  </div>
-                </ion-row>
-               
-                  <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                    <ion-button>New</ion-button>
-                    <ion-button type="submit">Save</ion-button>
-                    <ion-button>Delete</ion-button>
-                    <ion-button>Preview</ion-button>
-                    <ion-button>Close</ion-button>
-                  </ion-row>
-        </form>
-
+                </tr>
+              </table>
+            </div>
+          </ion-row>
+          
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

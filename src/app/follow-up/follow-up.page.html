@@ -20,17 +20,16 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;padding-top: -10px;">Lead Follow Up Window</ion-title>
             </ion-item>
-            <ion-row style="justify-content: right;margin-top:-25px ;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-row style="justify-content: right;">
+              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
               <ion-popover trigger="left-start" size="auto" side="left">
                 <ng-template>
                   <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
                 </ng-template>
               </ion-popover>
             </ion-row>
-
           </ion-card-header>
         </div>
         <ion-grid>
@@ -40,19 +39,8 @@
             </h6>
           </ion-row>
           
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left">
-              <ng-template>
-                <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
-              </ng-template>
-            </ion-popover>
           <ion-row class="headinglabel">
-            <ion-label>Follow-up Lead List
-              :
-            </ion-label>
+            <ion-label>Follow-up Lead List :</ion-label>
           </ion-row>
           <ion-row style="overflow-x:auto;">
             <table>
@@ -111,6 +99,7 @@
 
           <form #followUpForm="ngForm" (ngSubmit)="onSubmit()" >
           <ion-row>
+
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="warning" [(ngModel)]="leadName" name="leadName" type="text" label="Lead Name : "
@@ -120,31 +109,23 @@
 
             <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="companyName" name="companyName" type="text" label=" Comapny Name: "
+                <ion-input color="dark" [(ngModel)]="companyName" name="companyName" type="text" label=" Comapny Name: "
                   label-placement="floating" fill="outline"></ion-input>
-              
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="email" name="email" type="email" label=" Email :"
+                <ion-input color="dark" [(ngModel)]="email" name="email" type="email" label=" Email :"
                   label-placement="floating" fill="outline"></ion-input>
-            
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" class="sign_input" type="email" label=" Email :" label-placement="floating"
-                ></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="warning" [(ngModel)]="phoneNumber" name="phoneNumber" type="number" label=" Phone Number : "
+                <ion-input color="dark" [(ngModel)]="phoneNumber" name="phoneNumber" type="number" label=" Phone Number : "
                   label-placement="floating" fill="outline"></ion-input>
-               
+                
               </ion-row>
             </ion-col>
 
@@ -153,7 +134,7 @@
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="leadStatus" name="leadStatus" type="text" label=" Lead Status : "
+                <ion-input color="dark" [(ngModel)]="leadStatus" name="leadStatus" type="text" label=" Lead Status : "
                   label-placement="floating" fill="outline"></ion-input>
                
               </ion-row>
@@ -196,7 +177,8 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
-        </form>
+      
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

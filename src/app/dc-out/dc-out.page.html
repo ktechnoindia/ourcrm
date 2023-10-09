@@ -21,7 +21,7 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;padding-top: -10px;">DC-OUT Window </ion-title>
             </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
+            <ion-row >
               <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
               <ion-popover trigger="left-start" size="auto" side="left">
                 <ng-template>
@@ -42,7 +42,6 @@
                 <ion-row>
                   <ion-input color="warning" [(ngModel)]="voucherNumber" name="voucherNumber" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
-
                 </ion-row>
               </ion-col>
 
@@ -55,50 +54,40 @@
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="supplier" name="supplier">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Suppliers">
-                    ---Select Suppliers ---</option>
-
-            </ion-row>
-            </ion-col>
-
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row>
-                <select class="select-width">
-                  <option style="background-color: rgb(255, 252, 252);font-weight: bold; font-size: 16px;" value="">
-                    --Select Suppliers--</option>
+                  <option  value="">
+                    ---Select Suppliers ---
+                  </option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
-              </ion-row>
-            </ion-col>
+              </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="referenceNumber" name="referenceNumber">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Reference no.">
+                  <option value="">
                     ---Select Reference No. ---</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
-            </ion-col>
+              </ion-col>
 
-            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-              <select [(ngModel)]="payment" name="payment">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Reference no.">
-                </option>
-                <option value="2">Cash</option>
-                <option value="3">Credit</option>
-              </select>
-            </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <select [(ngModel)]="payment" name="payment">
+                  <option value="">
+                    --- Cash/Credit ---</option>
+                  <option value="2">Cash</option>
+                  <option value="3">Credit</option>
+                </select>
+              </ion-col>
 
-            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row>
-                <ion-textarea color="warning" [(ngModel)]="remark" name="remark" type="text" label="Remark :"
-                  label-placement="floating" fill="outline"></ion-textarea>
-
-              </ion-row>
-            </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-textarea color="warning" [(ngModel)]="remark" name="remark" type="text" label="Remark :"
+                    label-placement="floating" fill="outline"></ion-textarea>
+                </ion-row>
+              </ion-col>
             </ion-row>
 
             <ion-row style="margin-top: 10px;overflow-x: auto;">
