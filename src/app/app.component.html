@@ -1,7 +1,6 @@
-
 <ion-header class="dekstop-header">
   <ion-toolbar>
-   
+
     <div class="mymenu">
       <!-- <div class="drop">  
         <img src="../../assets/ktechno-removebg-preview.png" alt="">
@@ -10,19 +9,18 @@
         <div class="segmentlabel">
           <ion-label (click)="toggleSegment('segment1')">Company</ion-label>
           <ion-label (click)="toggleSegment('segment2')">Master</ion-label>
-          <ion-label (click)="toggleSegment('segment3')">Lead Manager</ion-label>
-          <ion-label (click)="toggleSegment('segment4')">Quotation Manager</ion-label>
-          <ion-label (click)="toggleSegment('segment5')">Challan Manager</ion-label>
-          <ion-label (click)="toggleSegment('segment6')">Sales Manager</ion-label>
-          <ion-label (click)="toggleSegment('segment7')">Stock LEdger</ion-label>
-          <ion-label (click)="toggleSegment('segment8')">Account</ion-label>
-          <ion-label (click)="toggleSegment('segment9')">AMC</ion-label>
-          <ion-label (click)="toggleSegment('segment10')" routerLink="/login">login</ion-label>
+          <ion-label (click)="toggleSegment('segment3')">LMS</ion-label>
+          <ion-label (click)="toggleSegment('segment4')">Transaction</ion-label>
+          <ion-label (click)="toggleSegment('segment5')">Accounts</ion-label>
+          <ion-label (click)="toggleSegment('segment6')">Reports</ion-label>
+          <ion-label (click)="toggleSegment('segment7')">AMC</ion-label>
+          <ion-label (click)="toggleSegment('segment8')">Others</ion-label>
+          <ion-label (click)="toggleSegment('segment9')">Support</ion-label>
 
         </div>
-        
 
-<!-- <div class="dropdown">
+
+        <!-- <div class="dropdown">
         <select (change)="navigateToRoute($event)">
           <option selected value="master">Master</option>
           <option value="add-customer">Add Customer</option>
@@ -101,178 +99,245 @@
         <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
       </div>
     </div> -->
-</div>
-</div>
-</ion-toolbar>
+      </div>
+    </div>
+  </ion-toolbar>
 
-<div>
-  <ion-row class="segmentbutton" style="justify-content: left;">
-    <!-- Master -->
-    <ion-segment *ngIf="activeSegment === 'segment2'">
-      <ion-segment-button value="add-customer" routerLink="/add-customer">
-        Add Customer
-      </ion-segment-button>
-      <ion-segment-button value="add-vendor" routerLink="/add-vendor">
-        Add Vendor
-      </ion-segment-button>
-      <ion-segment-button value="add-item" routerLink="/add-item">
-        Add Item
-      </ion-segment-button>
-      <ion-segment-button value="add-service" routerLink="/add-service">
-        Add Service
-      </ion-segment-button>
-      <ion-segment-button value="add-executive" routerLink="/add-executive">
-        Add Exicutive
-      </ion-segment-button>
-      <ion-segment-button value="hsn-manager" routerLink="/hsn-manager">
-        HSN Manager
-      </ion-segment-button>
-      <ion-segment-button value="add-prospect" routerLink="/add-prospect">
-        Add Prospect
-      </ion-segment-button>
-      <ion-segment-button value="item-master" routerLink="/item-master">
-        Item Master
-      </ion-segment-button>
-      <ion-segment-button value="amc-manager" routerLink="/amc-manager">
-        AMC
-      </ion-segment-button>
-    </ion-segment>
+  <div>
+    <ion-row class="segmentbutton" style="justify-content: left;" [(ngModel)]="activeSegment">
+      <!-- Company -->
+      <ion-segment *ngIf="activeSegment === 'segment1'">
+        <ion-segment-button value="createcompany" routerLink="/createcompany">
+          Create
+        </ion-segment-button>
+        <ion-segment-button value="opencompany" routerLink="/opencompany">
+          Open
+        </ion-segment-button>
+        <ion-segment-button value="closecompany" routerLink="/closecompany">
+          Close
+        </ion-segment-button>
+        <ion-segment-button value="setting" (click)="toggleSegment('Setting')">
+          <ion-row>
+            <ion-label>Satting</ion-label> <ion-icon style="margin-left: 25px;" name="chevron-down" color="dark"
+              size="small"></ion-icon>
+          </ion-row>
 
-    <!-- Accounts -->
-
-    <ion-segment *ngIf="activeSegment === 'segment3'">
-      <ion-segment-button value="choice1" routerLink="/add-lead">
-        Add Lead
-      </ion-segment-button>
-      <ion-segment-button value="choice2" routerLink="/view-lead">
-        View Lead
-      </ion-segment-button>
-      <ion-segment-button value="choice3" routerLink="/transfer-lead">
-        Transfer Lead
-      </ion-segment-button>
-      <ion-segment-button value="choice4" routerLink="/follow-up">
-        Follow Up 
-      </ion-segment-button>
-    </ion-segment>
-
-    <!-- Service Invoicing -->
-    <ion-segment *ngIf="activeSegment === 'segment4'">
-      <ion-segment-button value="item1" routerLink="/add-quot">
-        Add Quotation
-      </ion-segment-button>
-      <ion-segment-button value="item2" routerLink="/view-quot">
-        View Quotation
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/update-quot">
-        Update Quotation
-      </ion-segment-button>
-    </ion-segment>
-
-    <!-- Inventory -->
-    <ion-segment *ngIf="activeSegment === 'segment5'">
-      <ion-segment-button value="item1" routerLink="/dc-in">
-       DC-IN
-      </ion-segment-button>
-      <ion-segment-button value="item2" routerLink="/dc-out">
-       DC-OUT
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/dc-in-report">
-       DC-IN-REPORT
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/dc-out-report">
-        DC-OUT-REPORT
-      </ion-segment-button>
-    </ion-segment>
-
-    <!-- Compliance -->
-    <ion-segment *ngIf="activeSegment === 'segment6'">
-      <ion-segment-button value="item1" routerLink="/add-sale">
-        Add Sale
-      </ion-segment-button>
-      <ion-segment-button value="item2" routerLink="/add-purchase">
-        Add Purchase
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/view-sale">
-        View Sale
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/view-purchase">
-        View Purchase
-      </ion-segment-button>
-    </ion-segment>
+        </ion-segment-button>
+      </ion-segment>
 
 
-    <!-- Tools -->
-    <ion-segment *ngIf="activeSegment === 'segment7'">
-      <ion-segment-button value="item1 "routerLink="/itemledger">
-       Item Ledger Report
-      </ion-segment-button>
-      <ion-segment-button value="item2" routerLink="/stockledger">
-        Stock Ledger
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/serviceledger">
-        Service Ledger
-      </ion-segment-button>
-      <ion-segment-button value="item3" routerLink="/groupwisereport">
-        Group Wise Report
-      </ion-segment-button>
-    </ion-segment>
 
-    <!-- Transaction -->
-    <ion-segment *ngIf="activeSegment === 'segment8'">
-      <ion-segment-button value="item1" routerLink="/">
-        Add Account
-      </ion-segment-button>
-      <ion-segment-button value="item2" routerLink="/">
-        Account Report
-      </ion-segment-button>
-     
-    </ion-segment>
 
-    <!-- Others -->
-    <ion-segment *ngIf="activeSegment === 'segment9'">
-      <ion-segment-button value="item1">
-        Item 16
-      </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 17
-      </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 18
-      </ion-segment-button>
-    </ion-segment>
+      <!-- Master -->
+      <ion-segment *ngIf="activeSegment === 'segment2'" [(ngModel)]="activeSegment">
+        <ion-segment-button value="add-customer" routerLink="/add-customer">
+          Customer
+        </ion-segment-button>
+        <ion-segment-button value="add-vendor" routerLink="/add-vendor">
+          Supplier
+        </ion-segment-button>
+        <ion-segment-button value="Ledger" routerLink="/ledger">
+          Ledger
+        </ion-segment-button>
+        <ion-segment-button value="add-item" (click)="toggleSegment('Item')">
+          <ion-row>
+            <ion-label>Item</ion-label> <ion-icon style="margin-left: 25px;" name="chevron-down" color="dark"
+              size="small"></ion-icon>
+          </ion-row>
+        </ion-segment-button>
+        <ion-segment-button value="add-service" routerLink="/add-service">
+          Service
+        </ion-segment-button>
+        <ion-segment-button value="gst" routerLink="/gst">
+          GST
+        </ion-segment-button>
+        <ion-segment-button value="add-executive" (click)="toggleSegment('Executive')">
+         <ion-row>
+          <ion-label>Exicutive</ion-label> <ion-icon style="margin-left: 15px;" name="chevron-down" color="dark"
+          size="small"></ion-icon>
+         </ion-row>
+          </ion-segment-button>
+        <ion-segment-button value="transaction" routerLink="/transaction">
+          Transaction
+        </ion-segment-button>
+        <!-- <ion-segment-button value="add-prospect" routerLink="/add-prospect">
+          Add Prospect
+        </ion-segment-button>-->
 
-    <!-- Support -->
-    <ion-segment *ngIf="activeSegment === 'segment10'">
-      <ion-segment-button value="item1">
-        Item 20
-      </ion-segment-button>
-      <ion-segment-button value="item2">
-        Item 21
-      </ion-segment-button>
-      <ion-segment-button value="item3">
-        Item 22
-      </ion-segment-button>
-    </ion-segment>
+      </ion-segment>
 
-    <ion-segment *ngIf="activeSegment === 'segment1'">
-      <ion-segment-button value="item1">
-        New Company
-      </ion-segment-button>
-      <ion-segment-button value="item2">
-        Open Company
-      </ion-segment-button>
-      <ion-segment-button value="item3">
-        Close Company
-      </ion-segment-button>
-      <ion-segment-button value="item3">
-        Home
-      </ion-segment-button>
-    </ion-segment>
-  </ion-row>
-</div>
+      <!-- LMS -->
+
+      <ion-segment *ngIf="activeSegment === 'segment3'">
+        <ion-segment-button value="add-lead" routerLink="/add-lead">
+          Add New Lead
+        </ion-segment-button>
+        <ion-segment-button value="follow-up" routerLink="/follow-up">
+          Follow-Up
+        </ion-segment-button>
+        <ion-segment-button value="transfer-lead" routerLink="/transfer-lead">
+          Transfer Lead
+        </ion-segment-button>
+        <ion-segment-button value="view-lead" routerLink="/view-lead">
+          View Lead
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Transaction -->
+      <ion-segment *ngIf="activeSegment === 'segment4'">
+        <ion-segment-button value="quote-manager" routerLink="/quote-manager">
+          Quote
+        </ion-segment-button>
+        <ion-segment-button value="challan-manager" routerLink="/challan-manager">
+          Challan
+        </ion-segment-button>
+        <ion-segment-button value="sales-manager" routerLink="/sales-manager">
+          Sales
+        </ion-segment-button>
+        <ion-segment-button value="purchase" routerLink="/add-purchase">
+          Purchase
+        </ion-segment-button>
+
+      </ion-segment>
+
+      <!-- Accounts -->
+      <!--x   <ion-segment *ngIf="activeSegment === 'segment5'">
+        <ion-segment-button value="item1">
+          Item 4
+        </ion-segment-button>
+        <ion-segment-button value="item2">
+          Item 5
+        </ion-segment-button>
+        <ion-segment-button value="item3">
+          Item 6
+        </ion-segment-button>
+      </ion-segment>-->
+
+      <!-- Reports -->
+      <ion-segment *ngIf="activeSegment === 'segment6'">
+        <ion-segment-button value="view-sale" routerLink="/view-sale">
+          Sales Report
+        </ion-segment-button>
+        <ion-segment-button value="view-purchase" routerLink="/view-purchase">
+          Purchase Report
+        </ion-segment-button>
+        <ion-segment-button value="dc-in-report" routerLink="/dc-in-report">
+          DC-IN Report
+        </ion-segment-button>
+        <ion-segment-button value="dc-out-report" routerLink="/dc-out-report">
+          DC-OUT Report
+        </ion-segment-button>
+        <ion-segment-button value="stock-manager" routerLink="/stock-manager">
+          Stock Report
+        </ion-segment-button>
+        <ion-segment-button value="view-quot" routerLink="/view-quot">
+          Quotation Report
+        </ion-segment-button>
+
+      </ion-segment>
+
+
+      <!-- AMC -->
+      <ion-segment *ngIf="activeSegment === 'segment7'">
+        <ion-segment-button value="createamc" routerLink="/createamc">
+          Creat AMC
+        </ion-segment-button>
+        <ion-segment-button value="amcreport" routerLink="/amcreport">
+          AMC Report
+        </ion-segment-button>
+        <ion-segment-button value="pendingamc" routerLink="/pendingamc">
+          Pending AMC
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Other -->
+      <ion-segment *ngIf="activeSegment === 'segment8'">
+        <ion-segment-button value="item1">
+          Item 13
+        </ion-segment-button>
+        <ion-segment-button value="item2">
+          Item 14
+        </ion-segment-button>
+        <ion-segment-button value="item3">
+          Item 15
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Support -->
+      <ion-segment *ngIf="activeSegment === 'segment9'">
+        <ion-segment-button value="item1">
+          Item 16
+        </ion-segment-button>
+        <ion-segment-button value="item2">
+          Item 17
+        </ion-segment-button>
+        <ion-segment-button value="item3">
+          Item 18
+        </ion-segment-button>
+      </ion-segment>
+    </ion-row>
+    <!-- Setting -->
+    <ion-row class="newsegment">
+      <div>
+        <ion-segment *ngIf="activeSegment === 'Setting'">
+          <ion-segment-button value="editinfo" routerLink="/editinfo">
+            Edit Info.
+          </ion-segment-button>
+          <ion-segment-button value="usercreate" routerLink="/usercreate">
+            User Create
+          </ion-segment-button>
+          <ion-segment-button value="useredit" routerLink="/useredit">
+            User Edit
+          </ion-segment-button>
+          <ion-segment-button value="password" routerLink="/password">
+            Password
+          </ion-segment-button>
+
+        </ion-segment>
+      </div>
+      <div *ngIf="activeSegment === 'Item'">
+        <ion-segment>
+          <ion-segment-button value="add-item" routerLink="/add-item">
+            Add New Item
+          </ion-segment-button>
+          <ion-segment-button value="addgroup" routerLink="/addgroup">
+            Add Group
+          </ion-segment-button>
+          <ion-segment-button value="addattribute" routerLink="/addattribute">
+            Add Attribute
+          </ion-segment-button>
+          <ion-segment-button value="barcode" routerLink="/barcode">
+            Barcode
+          </ion-segment-button>
+          <ion-segment-button value="hsn-manager" routerLink="/hsn-manager">
+            HSN
+          </ion-segment-button>
+
+        </ion-segment>
+      </div>
+      <div *ngIf="activeSegment === 'Executive'">
+        <ion-segment>
+          <ion-segment-button value="add-item" routerLink="/add-executive">
+            Add New Exicutive
+          </ion-segment-button>
+          <ion-segment-button value="roleofexicutive" routerLink="/roleofexicutive">
+            Role OF Exicutive
+          </ion-segment-button>
+          <ion-segment-button value="add-attribute" routerLink="/">
+            List of Exicutive
+          </ion-segment-button>
+
+
+        </ion-segment>
+      </div>
+
+    </ion-row>
+  </div>
 
 </ion-header>
 
+
+<!-- Mobile Menu -->
 <ion-header class="toolbar">
   <ion-toolbar>
     <ion-buttons slot="start">
