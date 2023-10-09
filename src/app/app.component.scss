@@ -189,3 +189,16 @@ direction: ltr;
 
 }
 
+.newsegment ion-segment-button {
+  text-transform: uppercase;
+  background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );
+  border: 1px solid #000;
+  //background-clip: text;
+ // color: transparent;
+  font-weight: bold; /* Adjust font styles as needed */
+  /* Add any other styles you want */
+  //background-color: black;
+  min-height: 30px;
+  text-decoration: none;
+color: rgb(255, 255, 255);
+}

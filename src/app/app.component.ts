@@ -61,4 +61,10 @@ export class AppComponent {
       // Use the selectedPage value to navigate to the corresponding page
       this.navCtrl.navigateForward('/' + this.selectedPage);
     }
+    customPopoverOptions: any = {
+      header: 'Select an Option',
+      cssClass: 'custom-select-popover',
+      mode: 'ios', // You can change the mode to 'md' for Material Design
+      translucent: true, // Makes the dropdown background slightly transparent
+    };
 }

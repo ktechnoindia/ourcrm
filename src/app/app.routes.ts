@@ -213,7 +213,63 @@ export const routes: Routes = [
   {
     path: 'groupwisereport',
     loadComponent: () => import('./group-wise-report/group-wise-report.page').then(m => m.GroupWiseReportPage)
+  },  {
+    path: 'editinfo',
+    loadComponent: () => import('./editinfo/editinfo.page').then( m => m.EditinfoPage)
   },
+  {
+    path: 'usercreate',
+    loadComponent: () => import('./usercreate/usercreate.page').then( m => m.UsercreatePage)
+  },
+  {
+    path: 'useredit',
+    loadComponent: () => import('./useredit/useredit.page').then( m => m.UsereditPage)
+  },
+  {
+    path: 'password',
+    loadComponent: () => import('./password/password.page').then( m => m.PasswordPage)
+  },
+  {
+    path: 'addgroup',
+    loadComponent: () => import('./addgroup/addgroup.page').then( m => m.AddgroupPage)
+  },
+  {
+    path: 'addattribute',
+    loadComponent: () => import('./addattribute/addattribute.page').then( m => m.AddattributePage)
+  },
+  {
+    path: 'barcode',
+    loadComponent: () => import('./barcode/barcode.page').then( m => m.BarcodePage)
+  },
+  {
+    path: 'roleofexicutive',
+    loadComponent: () => import('./roleofexicutive/roleofexicutive.page').then( m => m.RoleofexicutivePage)
+  },
+  {
+    path: 'transaction',
+    loadComponent: () => import('./transaction/transaction.page').then( m => m.TransactionPage)
+  },
+  {
+    path: 'gst',
+    loadComponent: () => import('./gst/gst.page').then( m => m.GstPage)
+  },
+  {
+    path: 'ledger',
+    loadComponent: () => import('./ledger/ledger.page').then( m => m.LedgerPage)
+  },
+  {
+    path: 'createcompany',
+    loadComponent: () => import('./createcompany/createcompany.page').then( m => m.CreatecompanyPage)
+  },
+  {
+    path: 'opencompany',
+    loadComponent: () => import('./opencompany/opencompany.page').then( m => m.OpencompanyPage)
+  },
+  {
+    path: 'closecompany',
+    loadComponent: () => import('./closecompany/closecompany.page').then( m => m.ClosecompanyPage)
+  },
+
 
 
 
