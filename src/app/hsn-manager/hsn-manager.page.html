@@ -33,37 +33,28 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: right;">
-            <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-            <ion-popover trigger="left-start" size="auto" side="left" alignment="start">
-              <ng-template>
-                <ion-button style="color: black;" size="small" color="undefined">Delete</ion-button>
-                <ion-button style="color: black;" size="small" color="undefined">Edit</ion-button>
-                <ion-button style="color: black; " size="small" color="undefined">Save</ion-button>
-              </ng-template>
-            </ion-popover>
-          </ion-row>
+         
 
           <form #hsnManagerForm="ngForm" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode" color="warning" type="text" label="HSN Code :" label-placement="floating"
-                    fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode" color="dark" type="text" label="HSN Code :" label-placement="floating"
+                    ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="unit" name="unit" color="warning" class="sign_input" type="text" label="Unit :" label-placement="floating"
-                    fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="unit" name="unit" color="dark" class="sign_input" type="text" label="Unit :" label-placement="floating"
+                    ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="desc" name="desc" color="warning" class="sign_input" type="text" label="Description :"
-                    label-placement="floating" fill="outline"></ion-textarea>
+                  <ion-textarea [(ngModel)]="desc" name="desc" color="dark" class="sign_input" type="text" label="Description :"
+                    label-placement="floating"></ion-textarea>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -93,12 +84,12 @@
               </div>
             </ion-row>
 
-            <ion-row style="justify-content: right;margin-top: 20px;">
-              <ion-button color="warning">New</ion-button>
-              <ion-button color="warning" type="submit">Save</ion-button>
-              <ion-button color="warning">Delete</ion-button>
-              <ion-button color="warning">Preview</ion-button>
-              <ion-button color="warning">Close</ion-button>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <ion-button>Delete</ion-button>
+              <ion-button>Preview</ion-button>
+              <ion-button>Close</ion-button>
             </ion-row>
           </form>
 

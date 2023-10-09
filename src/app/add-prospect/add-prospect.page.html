@@ -18,8 +18,19 @@
           <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Add Prospect</ion-title>
+              <ion-title  style="text-align: center;padding-top: 10px;">Add Prospect</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right; margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button  color="warning">Edit</ion-button>
+                  <ion-button   color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
+  
           </ion-card-header>
         </div>
         <ion-grid>
@@ -35,6 +46,8 @@
           </ion-row>
 
           <ion-row>
+          
+          <ion-row class="headinglabel">
             <ion-label style="font-size: 18px; font-weight: bold;">Contact Information :</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
@@ -221,6 +234,193 @@
                 </ion-row>
               </ion-col>
 
+          <ion-row>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Full Name :"
+                  label-placement="floating" ></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Company Name :"
+                  label-placement="floating" ></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="number" label=" Phone Number :"
+                  label-placement="floating" ></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="email" label=" Email :" label-placement="floating"
+                  ></ion-input>
+              </ion-row>
+            </ion-col>
+            
+          </ion-row>
+
+          <ion-row class="headinglabel" style="margin: 5px auto;">
+            <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span
+              style="width: 100%; height: 2px; background-color: black;"></span>
+          </ion-row>
+
+          <ion-row>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <select class="select-width">
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select
+                  Country--
+                </option>
+                <option value="India">India</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+              </select>
+            </ion-col>
+
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <select class="select-width">
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select
+                  State--</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
+                </option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Puducherry">Puducherry</option>
+              </select>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <select class="select-width">
+                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--
+                  Select City--</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Lucknow">Lucknow</option>
+              </select>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="number" label=" PinCode  :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col  size="12">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label="Full Address :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="headinglabel">
+            <ion-label style="font-size: 18px; font-weight: bold;">Company Information :</ion-label><span
+              style="width: 100%; height: 2px; background-color: black;"></span>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="number" label=" Company Size  :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Industry Type :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label=" Website :" label-placement="floating"
+                  ></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="number" label=" Annual Revenue  :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="headinglabel" style="margin: 5px auto;">
+            <ion-label style="font-size: 18px; font-weight: bold;">Follow-Up Dates and Tasks :</ion-label><span
+              style="width: 100%; height: 2px; background-color: black;"></span>
+          </ion-row>
+
+          <ion-row>
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="Date" label="Follow-Up Date :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label="Lead Status :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label="Lead Score :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+
+             
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="text" label="Lead Owner :"
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
@@ -247,6 +447,20 @@
             </ion-row>
           </form>
 
+          <ion-row class="headinglabel" style="margin: 5px auto;">
+            <ion-label style="font-size: 18px; font-weight: bold;">Attachments :</ion-label><span
+              style="width: 100%; height: 2px; background-color: black;"></span>
+          </ion-row>
+          <ion-row>
+            <input type="file" name="fileUpload" id="fileUpload">
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>

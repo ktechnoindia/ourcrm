@@ -17,7 +17,5 @@ export class AccountManagerPage implements OnInit {
 
   ngOnInit() {
   }
-  goBack(){
-    this.router.navigate([""])
-  }
+  
 }

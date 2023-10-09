@@ -15,11 +15,22 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-item lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title>Lead Follow Up Window</ion-title>
+              <ion-title style="text-align: center;padding-top: -10px;">Lead Follow Up Window</ion-title>
             </ion-item>
+            <ion-row style="justify-content: right;margin-top:-25px ;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button color="warning">Edit</ion-button>
+                  <ion-button color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
+
           </ion-card-header>
         </div>
         <ion-grid>
@@ -38,6 +49,10 @@
                 <ion-button   color="success">Save</ion-button>
               </ng-template>
             </ion-popover>
+          <ion-row class="headinglabel">
+            <ion-label>Follow-up Lead List
+              :
+            </ion-label>
           </ion-row>
           <ion-row style="overflow-x:auto;">
             <table>
@@ -90,9 +105,8 @@
             </table>
 
           </ion-row>
-          <ion-row>
-            <h6 style="color: black;font-weight: bold; font-size: 18px; text-decoration: underline;">Lead Information :
-            </h6>
+          <ion-row class="headinglabel">
+            <ion-label >Lead Information :</ion-label>
           </ion-row>
 
           <form #followUpForm="ngForm" (ngSubmit)="onSubmit()" >
@@ -108,6 +122,8 @@
               <ion-row>
                 <ion-input color="warning" [(ngModel)]="companyName" name="companyName" type="text" label=" Comapny Name: "
                   label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label="Lead Name : "
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
 
@@ -115,12 +131,23 @@
               <ion-row>
                 <ion-input color="warning" [(ngModel)]="email" name="email" type="email" label=" Email :"
                   label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label=" Comapny Name: "
+                  label-placement="floating"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" class="sign_input" type="email" label=" Email :" label-placement="floating"
+                ></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="warning" [(ngModel)]="phoneNumber" name="phoneNumber" type="number" label=" Phone Number : "
                   label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="number" label=" Phone Number : "
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
 
@@ -131,6 +158,8 @@
               <ion-row>
                 <ion-input color="warning" [(ngModel)]="leadStatus" name="leadStatus" type="text" label=" Lead Status : "
                   label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" class="sign_input" type="text" label=" Lead Status : "
+                  label-placement="floating"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -169,6 +198,12 @@
             <ion-button color="warning">Delete</ion-button>
             <ion-button color="warning">Preview</ion-button>
             <ion-button color="warning">Close</ion-button>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
         </form>
         </ion-grid>

@@ -1,4 +1,4 @@
- <!-- <ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -13,110 +13,110 @@
 <ion-content>
   <div class="master_window">
     <ion-grid>
-   
-      <ion-row>
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-prospect']">
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="medkit"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Add Prospect</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-customer']">
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="woman"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Add Customer</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
+      <div class="cards">
+        <ion-row>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-prospect']">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-icon name="people"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Add Prospect</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-customer']">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-icon name="person-add"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Add Customer</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
 
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-vendor']">
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="walk"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Add Vendor</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-vendor']">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-icon name="person-add"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Add Vendor</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
 
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/hsn-manager']">
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="walk"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>HSN Manager</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-item']">
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="cart"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Add Item</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/hsn-manager']">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-icon name="desktop"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>HSN Manager</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+        </ion-row>
 
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-service']">
-              <ion-card-header>
-                <ion-card-title><ion-icon name="clipboard"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle> Add Service</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/add-executive']">
-              <ion-card-header>
-                <ion-card-title><ion-icon name="clipboard"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Add Executive</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
-        <ion-col  size-lg="3" size-md="4" size-sm="6" size="6">
-          <ion-card class="master">
-            <a [routerLink]="['/item-master']">
-              <ion-card-header>
-                <ion-card-title><ion-icon name="clipboard"></ion-icon>
-                </ion-card-title>
-                <ion-card-subtitle>Item Master</ion-card-subtitle>
-              </ion-card-header>
-            </a>
-          </ion-card>
-        </ion-col>
-      
-      </ion-row>
-      <!--<ion-row>
+        <ion-row>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-item']">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-icon name="bag-add"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Add Item</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-service']">
+                <ion-card-header>
+                  <ion-card-title><ion-icon name="add-circle"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle> Add Service</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/add-executive']">
+                <ion-card-header>
+                  <ion-card-title><ion-icon name="person-add"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Add Executive</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+          <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
+            <ion-card class="master">
+              <a [routerLink]="['/item-master']">
+                <ion-card-header>
+                  <ion-card-title><ion-icon name="clipboard"></ion-icon>
+                  </ion-card-title>
+                  <ion-card-subtitle>Item Master</ion-card-subtitle>
+                </ion-card-header>
+              </a>
+            </ion-card>
+          </ion-col>
+
+        </ion-row>
+        <!--<ion-row>
         <ion-col size="4" size-lg="4" size-md="4" size-sm="4" size="4">
           <ion-card class="master">
             <a href="./challan-manager">
@@ -130,6 +130,7 @@
           </ion-card>
         </ion-col>
       </ion-row>-->
+      </div>
     </ion-grid>
   </div>
 </ion-content>
