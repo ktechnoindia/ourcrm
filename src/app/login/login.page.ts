@@ -5,8 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastController } from '@ionic/angular'; 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment'; 
+
 
 
 @Component({
@@ -26,7 +25,7 @@ export class LoginPage implements OnInit {
    
    submitValue = false;
 
-   constructor(private navCtrl: NavController, private toastCtrl: ToastController,private httpclient: HttpClient){}
+   constructor(private navCtrl: NavController, private toastCtrl: ToastController){}
  
   async login(loginForm: NgForm){
      if(this.email === "" && this.phone === null && this.password === "" && this.confirmpassword === ""){

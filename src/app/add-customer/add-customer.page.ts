@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CountryService } from '../services/country.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -44,22 +48,54 @@ export class AddCustomerPage implements OnInit {
   openingpoint:number | null = null;
   closingpoint:number | null = null;
 
-
-
   submitValue=false;
-  constructor(private navCtrl: NavController,private router: Router,private toastCtrl: ToastController) { }
+  // selectedOption:string='';
+  countries: any[] = [];
 
-  segmentChanged(event: any) {
-    const selectedValue = event.detail.value;
-    // Handle the selected segment value here
-    console.log('Selected Segment Value:', selectedValue);
+  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) { }
+
+  loadCountries() {
+    this.countryService.getCountries().subscribe(
+      (data) => {
+         console.log(data);
+
+        if (Array.isArray(data)) {
+          this.countries = data;
+        } else {
+          console.error('API did not return an array of countries.');
+        }
+       
+      },
+      (error) => {
+        console.error('Error loading countries:', error);
+
+        if (error instanceof HttpErrorResponse) {
+          const errorMessage = 'HTTP Error occurred during the API request.';
+          console.error(errorMessage);
+
+          console.error('Status Code:', error.status);
+        } else {
+          console.error('Non-HTTP error occurred during the API request.');
+        }
+      }
+    );
   }
 
   ngOnInit() {
+    this.loadCountries();
   }
+
+  segmentChanged(event: any) {
+    const selectedValue = event.detail.value;
+  
+    console.log('Selected Segment Value:', selectedValue);
+  }
+
+  
   goBack() {
     this.router.navigate(['/master']); 
   }
+
   async onSubmit(form: NgForm) {
    if(this.cname === ""){
     const toast = await this.toastCtrl.create({
