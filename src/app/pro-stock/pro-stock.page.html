@@ -11,44 +11,34 @@
 </ion-header> -->
 
 <ion-content class="child_window" [fullscreen]="true">
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="padding-top:-10px;text-align:center ;">Pro Stock Window</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button  color="warning">Edit</ion-button>
-                  <ion-button   color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">Pro Stock Window</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
          
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 25px; font-weight: bold;">Item Information</ion-label><span
+          <ion-row class="headinglabel">
+            <ion-label>Item Information</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Code :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Short Name :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -57,13 +47,13 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-textarea  style="min-height: 35px;" color="dark" class="sign_input" type="text" label="Description :"
-                  label-placement="floating"></ion-textarea>
+                  label-placement="floating" fill="outline"></ion-textarea>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Group of Item :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -72,19 +62,19 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Product Type :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Catrgory :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 25px; font-weight: bold;">Stock Information</ion-label><span
+          <ion-row class="headinglabel">
+            <ion-label>Stock Information</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
 
@@ -92,13 +82,13 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Delivery Price :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="MRP Price :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -107,13 +97,13 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Customer Price : "
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Customer Tax % :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -122,19 +112,19 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="CSD % :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Additional Tax % :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 25px; font-weight: bold;">Item Stock</ion-label><span
+          <ion-row class="headinglabel" >
+            <ion-label>Item Stock</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
 
@@ -142,14 +132,14 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Opt. Quantity :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
 
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Opt. Price :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -158,13 +148,13 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="CL Quantity :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Avg. Price :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -173,19 +163,19 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Model SAP Code :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Model VIN No. :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 25px; font-weight: bold;">Account Integrations Link</ion-label><span
+          <ion-row class="headinglabel" >
+            <ion-label>Account Integrations Link</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
 
@@ -193,13 +183,13 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Transfer :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Sale A/c :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -208,32 +198,32 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Purchase A/c :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="CSD Sale A/c :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 25px; font-weight: bold;">Standard Features</ion-label><span
+          <ion-row class="headinglabel">
+            <ion-label>Standard Features</ion-label><span
               style="width: 100%; height: 2px; background-color: black;"></span>
           </ion-row>
           <ion-row>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Support Garrenty :"
-                  label-placement="floating" ></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="CGST :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -242,14 +232,14 @@
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="Warrenty Help :"
-                  label-placement="floating" ></ion-input>
+                  label-placement="floating" fill="outline" ></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col class="row" size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" class="sign_input" type="text" label="IGST :"
-                  label-placement="floating"></ion-input>
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>

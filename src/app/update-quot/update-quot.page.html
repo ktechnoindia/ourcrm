@@ -11,24 +11,14 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: -10px;">Quotation Update</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;">
-              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">Quotation Update Window</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -52,15 +42,15 @@
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="quoteGroup" name="quoteGroup">
-                  <option  value="">--- Select Quotation Group ---</option>
+                  <option  value="">--Select Quotation Group--</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="quateTax" name="quateTax">
-                  <option  value="">--- Tax Group ---</option>
+                <select [(ngModel)]="quateTax" name="quateTax" label="Tax Group">
+                  <option>--Tax Group--</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>

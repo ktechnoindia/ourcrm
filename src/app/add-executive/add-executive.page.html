@@ -11,24 +11,14 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: 10px;">Add Exicutive</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">Add Exicutive</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -48,7 +38,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="name" type="text" label=" Name :" label-placement="floating"
-                     [ngModelOptions]="{standalone: true}"></ion-input>
+                     [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
@@ -64,7 +54,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="phone" type="text" label="Mobile No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -73,28 +63,28 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark"[(ngModel)]="email" type="email" label="Email :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}"></ion-input>
+                    [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="whatshappnumber" type="number" label="WhatsApp No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="panumber" type="number" label="PAN No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="commission" type="text" label="Commission :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
 

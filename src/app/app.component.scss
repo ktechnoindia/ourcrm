@@ -376,6 +376,8 @@ ion-select::part(icon) {
 }
 .dropdown-list ul{
   flex-wrap: nowrap;
+  padding: 20px;
+
 }
 .dropdown_menu{
   height: 70px;
@@ -386,32 +388,32 @@ ion-select::part(icon) {
   margin: 0px;
 }
 
-// .sub-menu li:hover {
-//   background-color: #b8b8b8;
-//   width: 100%;
+.sub-menu li:hover {
+  background-color: #b8b8b8;
+  width: 100%;
 
-// }
-// /* Show the list when hovering over the title */
-// .dropdown:hover .sub-menu {
-//   display: block;
-//   color: #333;
-// }
+}
+/* Show the list when hovering over the title */
+.dropdown:hover .sub-menu {
+  display: block;
+  color: #333;
+}
 
-// /* Style list items */
-// .sub-menu li {
-//   padding: 8px;
-//   border-bottom: 1px solid #050505;
-//   color: #000;
-//   height: 100%;
-// }
-// /* Hide the list by default */
-// .sub-menu {
-//   display: none;
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   position: absolute;
-//   background-color: #ffffff;
-//   border: 1px solid #000000;
-//   width: 100%;
-// }
+/* Style list items */
+.sub-menu li {
+  padding: 8px;
+  border-bottom: 1px solid #050505;
+  color: #000;
+  height: 100%;
+}
+/* Hide the list by default */
+.sub-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  width: 100%;
+}
