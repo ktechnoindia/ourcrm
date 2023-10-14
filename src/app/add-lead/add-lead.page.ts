@@ -1,43 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+// add-lead.page.ts
+import { Component, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
+import { AppComponent } from '../app.component';
+
+
+
 @Component({
   selector: 'app-add-lead',
-  templateUrl: './add-lead.page.html',
-  styleUrls: ['./add-lead.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  templateUrl: 'add-lead.page.html',
+  styleUrls: ['add-lead.page.scss']
 })
-export class AddLeadPage implements OnInit {
+@NgModule({
+  declarations: [
+    // Your components here
+  ],
+  imports: [
+    IonicModule.forRoot(),
+    // Other modules
+  ],
+  bootstrap: [AppComponent],
+})
+export class AddLeadPage {
+  leadForm: FormGroup;
 
-  leadOwner: string = '';
-  cpName: string='';
-  cName: string = '';
-  country: string = '';
-  state: string = '';
-  city: string = '';
-  pinCode: number | null = null;
-  mapTO: string = '';
-  address: string = '';
-  productName: string = '';
-  reference: string = '';
-  email: string = '';
-  mobileNumber: number | null = null;
-  remark: string = '';
-
-  constructor(private router: Router, private toastCtrl: ToastController) { }
-
-  async onSubmit() {
-    
+  constructor(private formBuilder: FormBuilder, private toastController: ToastController) {
+    this.leadForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      companyName: [''],
+      leadSource: [''],
+      leadStatus: [''],
+      streetAddress: [''],
+      city: [''],
+      state: [''],
+      postalCode: [''],
+      country: ['']
+      // Define more fields here with their respective validation rules
+    });
   }
 
-  ngOnInit() {
-  }
-  goBack() {
-    this.router.navigate(['/lead-manager']); // Navigate back to the previous page
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
+  submitLead() {
+    if (this.leadForm.valid) {
+      // Here you would send the lead data to your backend for processing and storage
+      console.log('Submitting lead:', this.leadForm.value);
+      // Implement the backend connection here
+    } else {
+      this.presentToast('Please fill in all required fields and correct any validation errors.');
+    }
+  }
 }
