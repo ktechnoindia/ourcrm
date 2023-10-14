@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastController } from '@ionic/angular'; 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -18,7 +19,7 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
    email:string='';
-   phone:number = 0;
+   phone:number|null=null;
    password:string='';
    confirmpassword:string="";
    
@@ -27,14 +28,22 @@ export class LoginPage implements OnInit {
    constructor(private navCtrl: NavController, private toastCtrl: ToastController){}
  
   async login(loginForm: NgForm){
-    if(this.email === ""){
+     if(this.email === "" && this.phone === null && this.password === "" && this.confirmpassword === ""){
+      const toast = await this.toastCtrl.create({
+        message: "All felid is required",
+        duration: 3000,
+        color:'danger',
+      });
+       toast.present();
+    }else if(this.email === ""){
       const toast = await this.toastCtrl.create({
         message: "Email is required",
         duration: 3000,
-        color:'danger'
+        color:'danger',
+        
       });
        toast.present();
-    }else if(this.phone === 0){
+    }else if(this.phone === null){
       const toast = await this.toastCtrl.create({
         message: "Phone Number is required",
         duration: 3000,

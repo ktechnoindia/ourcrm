@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="container">
-    <ion-card class="dc_in">
+    <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -20,163 +20,126 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;padding-top: -10px;">DC-IN Window </ion-title>
             </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-row style="justify-content: right;">
+              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
               <ion-popover trigger="left-start" size="auto" side="left">
                 <ng-template>
                   <ion-button color="danger">Delete</ion-button>
-                  <ion-button  color="warning">Edit</ion-button>
-                  <ion-button   color="success">Save</ion-button>
+                  <ion-button color="warning">Edit</ion-button>
+                  <ion-button color="success">Save</ion-button>
                 </ng-template>
               </ion-popover>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-         
 
+          <form #dcInForm="ngForm" (ngSubmit)="onSubmit()">
+            <ion-row>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="voucherNumber" name="voucherNumber" type="text"
+                    label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="date" name="date" type="date" label=" Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row>
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="dark" class="sign_input" type="date" label="Voucher No. :"
-                  label-placement="floating" ></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="dark" class="sign_input" type="date" label=" Date :"
-                  label-placement="floating" ></ion-input>
-              </ion-row>
-            </ion-col>
-         
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-             <ion-row>
-              <select class="select-width">
-                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select Suppliers--
-                  :</option>
-                <option value="2">Nirbahy</option>
-                <option value="3">Yogesh</option>
-              </select>
-             </ion-row>
-            </ion-col>
-          </ion-row>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <select [(ngModel)]="supplier" name="supplier">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">
+                    ---Select Suppliers ---</option>
+                  <option value="2">Nirbahy</option>
+                  <option value="3">Yogesh</option>
+                </select>
+              </ion-col>
+            </ion-row>
 
-          <ion-row>
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-             <ion-row>
-              <select class="select-width">
-                <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select Reference No--</option>
-                <option value="2">Nirbahy</option>
-                <option value="3">Yogesh</option>
-              </select>
-             </ion-row>
-            </ion-col>
-          
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">             
-             <ion-row>
-              <select class="select-width">
-                <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">--Select Cash/Credit--</option>
-                <option value="2">Cash</option>
-                <option value="3">Credit</option>
-              </select>
-             </ion-row>
-            </ion-col>
-            <ion-col class="row" size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row >
-                <ion-textarea style="min-height: 35px;" color="dark" class="sign_input" type="text" label="Remark :"
-                  label-placement="floating"></ion-textarea>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+            <ion-row>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <select [(ngModel)]="referenceNumber" name="referenceNumber">
+                  <option  value="">
+                    ---Select Reference No ---</option>
+                  <option value="2">Nirbahy</option>
+                  <option value="3">Yogesh</option>
+                </select>
+              </ion-col>
 
-          <ion-row style="margin-top: 10px;">
-            <div class="scroll-container">
-              <table>
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Item Code</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Discount%</th>
-                  <th>Discount Amount</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <input class="table_input" type="text">
-                  </td>
-                  <td>
-                    <select class="table_select" aria-label="Default select example"
-                      id="transaction">
-                      <option selected>--Select--</option>
-                      <option value="1">Credit</option>
-                      <option value="2">Cash</option>
-                    </select>
-                  </td>
-                  <td>1</td>
-                  <td>100</td>
-                  <td>
-                    <input class="table_input" type="text">
-                  </td>
-                  <td>12</td>
-                  <td>18</td>
-                  <td>18</td>
-                  <td>110</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <select [(ngModel)]="payment" name="payment">
+                  <option  value="">---Select Cash/Credit ---</option>
+                  <option value="2">Cash</option>
+                  <option value="3">Credit</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-textarea color="warning" [(ngModel)]="remark" name="remark" type="text" label="Remark :"
+                    label-placement="floating" fill="outline"></ion-textarea>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-                </tr>
-              </table>
-            </div>
-          </ion-row>
-          <ion-row>
-            <ion-col size="8">
-            </ion-col>
-            <ion-col class="row" size-lg="4" size-md="12" size-sm="12" size="12">
-              <div class="output">
-                <table style="border: none;">
+            <ion-row style="margin-top: 10px;">
+              <div class="scroll-container">
+                <table>
                   <tr>
-                    <th colspan="13">Discount Amount :</th>
-                    <td colspan="2" > <input class="table_input"
-                        type="text">
-                    </td>
+                    <th>Sr.No.</th>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Discount%</th>
+                    <th>Discount Amount</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>Total</th>
+                    <th>Action</th>
                   </tr>
                   <tr>
-                    <th colspan="13" >Tax Amount : </th>
-                    <td colspan="2"> <input class="table_input" type="text">
+                    <td>1</td>
+                    <td>
+                      <input class="table_input" type="text">
                     </td>
-                  </tr>
-                  <tr>
-                    <th colspan="13">Round Off : </th>
-                    <td colspan="2"> <input class="table_input" type="text">
+                    <td>
+                      <select class="table_select" aria-label="Default select example" id="transaction">
+                        <option selected>--Select--</option>
+                        <option value="1">Credit</option>
+                        <option value="2">Cash</option>
+                      </select>
                     </td>
-                  </tr>
-                  <tr>
-                    <th colspan="13" >Grand Total : </th>
-                    <td colspan="2"> <input class="table_input" type="text">
+                    <td>1</td>
+                    <td>100</td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>12</td>
+                    <td>18</td>
+                    <td>18</td>
+                    <td>110</td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
                     </td>
                   </tr>
                 </table>
               </div>
-            </ion-col>
+            </ion-row>
 
-          </ion-row>
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row>
-
+                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                  <ion-button>New</ion-button>
+                  <ion-button type="submit">Save</ion-button>
+                  <ion-button>Delete</ion-button>
+                  <ion-button>Preview</ion-button>
+                  <ion-button>Close</ion-button>
+                </ion-row>
+              
+             
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

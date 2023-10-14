@@ -25,98 +25,96 @@
             <ion-popover trigger="left-start" size="auto" side="left">
               <ng-template>
                 <ion-button color="danger">Delete</ion-button>
-                <ion-button  color="warning">Edit</ion-button>
-                <ion-button   color="success">Save</ion-button>
+                <ion-button color="warning">Edit</ion-button>
+                <ion-button color="success">Save</ion-button>
               </ng-template>
             </ion-popover>
           </ion-row>
-        </ion-card-header>
-      </div>
-      <ion-grid class="add_sale">
-        <ion-row class="headinglabel">
-          <ion-label> SALE BOOK</ion-label>
-        </ion-row>
-        
-        <ion-row>
-          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="month" labelPlacement="end" alignment="start">Monthly</ion-radio>
-              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="quartly" labelPlacement="end" alignment="start">Quartly</ion-radio>
-              <ion-radio color="dark" value="view_sale" name="year" labelPlacement="end" alignment="start">Yearly</ion-radio>
-          </ion-col>
-        </ion-row>
-  
-        <ion-row>
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
-           <ion-row>
-            <ion-input color="dark" class="sign_input" type="date" label=" From Date  :" label-placement="floating"
-            ></ion-input>
+          <ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="month" labelPlacement="end"
+                alignment="start">Monthly</ion-radio>
+              <ion-radio style="margin-right: 10px;" color="warning" value="view_sale" name="quartly"
+                labelPlacement="end" alignment="start">Quartly</ion-radio>
+              <ion-radio color="warning" value="view_sale" name="year" labelPlacement="end"
+                alignment="start">Yearly</ion-radio>
+            </ion-col>
           </ion-row>
-          </ion-col>
-          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+          <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-input color="dark" class="sign_input" type="date" label=" To Date :" label-placement="floating"
-              ></ion-input>
-            </ion-row>
-           </ion-col>
-  
-        </ion-row>
-   
-        <ion-row style="margin-top: 30px;">
-          <div style="overflow-x:auto; width: 100%;">
-              <table style="width: 100%;">
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Item Code</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Rate</th>
-                  <th>Discount%</th>
-                  <th>Discount Amount</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    12
-                  </td>
-                  <td>
-                    <select style="width: 120px;" class="table_select" aria-label="Default select example"
-                      id="transaction">
-                      <option selected>-Select-</option>
-                      <option value="1">Credit</option>
-                      <option value="2">Cash</option>
-                    </select>
-                  </td>
-                  <td>1</td>
-                  <td>100</td>
-                  <td>
-                    56
-                  </td>
-                  <td>12</td>
-                  <td>18</td>
-                  <td>18</td>
-                  <td>110</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </div>
-        </ion-row>
-        <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-          <ion-button>New</ion-button>
-          <ion-button type="submit">Save</ion-button>
-          <ion-button>Delete</ion-button>
-          <ion-button>Preview</ion-button>
-          <ion-button>Close</ion-button>
-        </ion-row>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
 
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div>
+            </ion-row>
+
+            <ion-row style="margin-top: 30px;">
+              <div style="overflow-x:auto; width: 100%;">
+                <table style="width: 100%;">
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Discount%</th>
+                    <th>Discount Amount</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      12
+                    </td>
+                    <td>
+                      <select style="width: 120px;" class="table_select" aria-label="Default select example"
+                        id="transaction">
+                        <option selected>-Select-</option>
+                        <option value="1">Credit</option>
+                        <option value="2">Cash</option>
+                      </select>
+                    </td>
+                    <td>1</td>
+                    <td>100</td>
+                    <td>
+                      56
+                    </td>
+                    <td>12</td>
+                    <td>18</td>
+                    <td>18</td>
+                    <td>110</td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ion-row>
+
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <ion-button>Delete</ion-button>
+              <ion-button>Preview</ion-button>
+              <ion-button>Close</ion-button>
+            </ion-row>
+
+          </form>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

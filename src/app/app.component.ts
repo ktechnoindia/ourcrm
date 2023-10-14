@@ -5,13 +5,19 @@ import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CountryService } from './services/country.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule,FormsModule,],
+  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
+  providers: [
+    CountryService,
+  ],
 })
 export class AppComponent {
   activeSegment: string = '';

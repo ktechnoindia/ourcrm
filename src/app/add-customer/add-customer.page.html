@@ -24,12 +24,12 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+        
             <ion-row class="headinglabel">
               <ion-label style="font-size: 18px;">Contact Information :</ion-label><span
                 style="width: 100%; height: 2px;"></span>
             </ion-row>
-
+            <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
@@ -113,21 +113,16 @@
               <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
-
+           
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-                <!-- <label for="">Country</label> -->
-                <select fill="outline" label="Select Country" class="select-width" [(ngModel)]="selectedOption"
-                  [ngModelOptions]="{standalone: true}">
-                  <option selected style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;"
-                    value="">--Select
-                    Country--</option>
-                  <option value="India">India</option>
-                  <option value="UK">UK</option>
-                  <option value="USA">USA</option>
+                <select [(ngModel)]="selectedOption" name="country" value="">
+                  <option *ngFor="let country of countries" [value]="country.userId">
+                    {{ country.userId }}
+                  </option>
                 </select>
               </ion-col>
-
+              
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select fill="outline" class="select-width" [(ngModel)]="selectedOption"
                   [ngModelOptions]="{standalone: true}">
