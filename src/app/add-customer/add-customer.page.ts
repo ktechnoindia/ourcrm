@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
@@ -18,6 +18,7 @@ export class AddCustomerPage implements OnInit {
   selectTabs='address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
+
 
   cname:string='';
   customercode:number | null = null;
@@ -47,7 +48,8 @@ export class AddCustomerPage implements OnInit {
 
 
   submitValue=false;
-  constructor(private navCtrl: NavController,private router: Router,private toastCtrl: ToastController) { }
+  menuController: any;
+  constructor(private menu: MenuController,private navCtrl: NavController,private router: Router,private toastCtrl: ToastController) { }
 
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
@@ -243,5 +245,10 @@ export class AddCustomerPage implements OnInit {
   toggleSegment(segment: string) {
     this.activeSegment = segment;
   }
+  
+  closeMenu() {
+    this.menuController.close(); // Close the menu
+  }
+  
   
 }

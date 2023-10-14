@@ -49,18 +49,21 @@ ion-menu.md ion-note {
 }
 
 ion-menu.md ion-list#inbox-list {
-    // border-bottom: 1px solid var(--ion-color-step-150, #000000);
+     border-bottom: 1px solid var(--ion-color-step-150, #000000);
     background-image: linear-gradient(to right, #ff9966, #ff5e62);
 
 }
+.menu ion-button{
+background: none;
+}
+
 
 
 ion-menu.md ion-item {
     --padding-start: 10px;
     --padding-end: 10px;
-    // border-radius: 50px;
-    // border-bottom: #000000 solid 1px;
-    color: #fff;
+    border-radius: 50px;
+    border-bottom: #ffffff solid 1px;
 }
 
 ion-menu.md ion-item.selected {
@@ -77,8 +80,8 @@ ion-menu.md ion-item.selected ion-icon {
     background-color: radial-gradient(circle farthest-side, #fceabb, #f8b500);;
 }
 ion-menu.md ion-item ion-icon {
-    color: #fff;
-    border: #fff solid 1.5px;
+    color: #000;
+    border: #000 solid 1.5px;
     border-radius: 50%;
     padding: 5px;
 }
@@ -131,7 +134,7 @@ ion-note {
 }
 
 ion-icon :hover {
-    color: #000000;
+    color: #ff0000;
 }
 
 ion-menu-button {
@@ -278,13 +281,13 @@ ion-toolbar ion-icon {
 
 ion-header ion-title {
     font-weight: bold;
-    
+    color: rgb(0, 0, 0);
 }
 
 .dekstop-menu ion-title{
     text-transform: uppercase;
-  background: linear-gradient(to right,purple, #73ff00, #d3e200 ,rgb(255, 2, 2), black , blue ,green);
-  background-clip: text;
+    background: linear-gradient(to right, #434343 0%, black 100%);
+    background-clip: text;
   color: transparent;
   font-weight: bold; /* Adjust font styles as needed */
   /* Add any other styles you want */
@@ -314,6 +317,7 @@ ion-card {
 
 ion-item {
     --background: transparent;
+    
 }
 
 .toolbar {
@@ -386,8 +390,8 @@ table td
 }
 @media(max-width:950px){
     .toolbar{
-        display: block;
-        visibility: visible;
+        display: none;
+        visibility: hidden;
     }
     .container{
         margin-top: 10px;
@@ -428,17 +432,23 @@ table td
         min-width: 120px;
     }
 }
-
+@media(max-width:2500px){
+ .dekstop-header {
+       display: none;
+       visibility: hidden;
+ }
+ .second_header{
+    display: block;
+    visibility: visible;
+ }
+}
 
 @media(max-width:920px) {
-    .second_header {
-        display: block;
-    }
+    // .second_header {
+    //     display: block;
+    // }
 
-    .dekstop-header {
-        display: none;
-        visibility: hidden;
-    }
+   
     
     ion-content ion-card{
         margin-top: 0px;
@@ -446,7 +456,8 @@ table td
 }
 
 ion-card-header {
-    border-bottom: 2px solid  #f11712;
+    border-bottom: 2px solid  black;
+    ;
     // width: 100%;
     // margin-top: -30px;
 }
@@ -457,30 +468,30 @@ ion-card-header ion-title {
 }
 
 ion-card-header .back {
-    color: red;
+    color: black;
     font-size: 24px;
     font-weight: bold;
 }
 
 
 
-.container ion-input {
-    min-height: 35px;
-    color: #000;
-    background: skyblue;
-    font-weight: 600;
-    outline-width: 2px;
-    outline-style: initial;
-    border: solid 1px #000;
-border-radius: 4px;
-text-transform: uppercase;
-}
+// .container ion-input {
+//     min-height: 35px;
+//     color: #000;
+//     // background: skyblue;
+//     font-weight: 600;
+//     outline-width: 2px;
+//     outline-style: initial;
+//     border: solid 1px #000;
+// border-radius: 4px;
+// text-transform: uppercase;
+// }
 .container ion-input label{
-    margin-left: 10px;
+    // margin-left: 10px;
 
 }
 .container ion-textarea label{
-    margin-left: 10px;
+    // margin-left: 10px;
 
 }
 .container ion-select {
@@ -528,11 +539,11 @@ text-transform: uppercase;
 }
 
 .container ion-row span{
-    background: linear-gradient(to right, #ff6600, #ff3300);
+    background-image: linear-gradient(to right, #00b4db, #0083b0);
 }
 .headinglabel ion-label{
     text-transform: uppercase;
-    background: linear-gradient(to right, #ff6600, #ff3300);
+    background-image: linear-gradient(to right, #00b4db, #0083b0);
     background-clip: text;
     color: transparent;
     font-weight: bold; /* Adjust font styles as needed */
@@ -551,8 +562,8 @@ ion-card{
   .custom-primary ion-button{
     --background: transparent;
     background-clip: text;
-    background: linear-gradient(to right, #ff6600, #ff3300);
-border-radius: 4px;
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    border-radius: 4px;
   }
 
 
@@ -615,4 +626,89 @@ border: none;
         width: 85px;
         margin-left: -5px;
     }
+}
+.Customer ion-input {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    // outline-width: 2px;
+    // outline-style: initial;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+/* Style the container of the input */
+ion-input[fill="outline"] {
+    --border-color: #1a4174;
+    /* Outline border color */
+    --border-width: 1px;
+    /* Outline border width */
+    --border-radius: 4px;
+    /* Outline border radius */
+    --placeholder-color: #1a4174;
+    /* Placeholder text color */
+    box-shadow: 0 0 2px 2px #fffbfb;
+    /* Add a box shadow when focused */
+    --color: #1a4174;
+
+}
+
+/* Style the input itself */
+ion-input[fill="outline"] input {
+    border: none;
+    /* Remove the default input border */
+    border-radius: 4px;
+    /* Match the container's border radius */
+    padding: 10px;
+    /* Add some padding for better spacing */
+    font-size: 16px;
+    /* Adjust the font size as needed */
+}
+
+ion-input[fill="outline"] input:focus {
+    border-color: #1a4174;
+    /* Change the border color when focused */
+    // box-shadow: 0 0 5px #09d8bc; /* Add a box shadow when focused */
+    color: #1a4174;
+    /* Change the input text color when focused */
+}
+/* Change floating label color */
+/* Change floating label color */
+  
+
+.Customer ion-select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 1px;
+    outline-style: initial;
+}
+
+.Customer select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    //border-color: goldenrod;
+    width: 100%;
+    text-align: left;
+    border-color: #646464;
+    /* Change the border color when focused */
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: 0 0 2px 2px #fffbfb;
+    /* Add a box shadow when focused */
+color: #1a4174;
+    /* Change the input text color when focused */
+padding-left: 12px;
+font-family: 'Times New Roman', Times, serif;
+}
+
+ng-template ion-button {
+    color: goldenrod;
+}
+
+.Customer ion-input:focus{
+    --border-color: #1a4174;
 }

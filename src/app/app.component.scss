@@ -90,19 +90,21 @@ select option:checked {
 
 .mymenu {
   height: 60px;
-  padding-top: 15px;
+  // padding-top: 15px;
   // display: flex;
   justify-content: space-around;
   //align-items: start;
-//background-color: rgb(121, 121, 155);
+  //background-color: rgb(121, 121, 155);
   background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   //background-color:  linear-gradient(#c6ffdd, #fbd786, #f7797d);
 
 }
-ion-toolbar{
+
+ion-toolbar {
   background-image: linear-gradient(to right, #434343 0%, black 100%);
 
 }
+
 @media(max-width:950px) {
   .mymenu {
     visibility: hidden;
@@ -124,16 +126,17 @@ ion-segment {
 
 ion-segment-button {
   text-transform: uppercase;
-  background:  skyblue;
+  background: skyblue;
   border: 1px solid #000;
   //background-clip: text;
- // color: transparent;
-  font-weight: bold; /* Adjust font styles as needed */
+  // color: transparent;
+  font-weight: bold;
+  /* Adjust font styles as needed */
   /* Add any other styles you want */
   //background-color: black;
   min-height: 30px;
   text-decoration: none;
-color: #000000;
+  color: #000000;
 }
 
 .segmentbutton {
@@ -147,20 +150,23 @@ color: #000000;
   // margin-bottom: 15px;
   // min-width: 150px;
   text-transform: uppercase;
-  background: linear-gradient(to right,purple, black , blue ,green);
+  background: linear-gradient(to right, purple, black, blue, green);
   background-clip: text;
   color: transparent;
-  font-weight: bold; /* Adjust font styles as needed */
+  font-weight: bold;
+  /* Adjust font styles as needed */
   /* Add any other styles you want */
-margin: 3px;
-text-decoration-line: initial 1px solid white;
+  margin: 3px;
+  text-decoration-line: initial 1px solid white;
 }
-.segmentlabel{
-  --background-color:  linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+
+.segmentlabel {
+  --background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 }
+
 ion-toolbar {
-  height: 45px;
-  background-color: #434343;
+  // height: 55px;
+  --background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 }
 
 /* Remove hover effect for ion-segment-button */
@@ -171,34 +177,241 @@ ion-segment-button:hover {
 
 /* Remove hover effect for ion-segment itself */
 ion-segment:hover {
-  background-color: goldenrod,darkgoldenrod;
+  background-color: goldenrod, darkgoldenrod;
 
 }
+
 /* Remove the blue border on ion-segment-button when clicked */
 .segmentbutton ion-segment-button:focus {
   outline: none;
 }
-.segmentlabel :hover{
+
+.segmentlabel :hover {
   border-bottom: 2px solid black;
   border-top: 2px solid black;
 
   font-weight: bold;
   color: #007bff;
-direction: ltr;
+  direction: ltr;
 
 
 }
 
-.newsegment ion-segment-button {
+// .newsegment ion-segment-button {
+//   text-transform: uppercase;
+//   background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );
+//   border: 1px solid #000;
+//   //background-clip: text;
+//  // color: transparent;
+//   font-weight: bold; /* Adjust font styles as needed */
+//   /* Add any other styles you want */
+//   //background-color: black;
+//   min-height: 30px;
+//   text-decoration: none;
+// color: rgb(255, 255, 255);
+// }
+.segment {
+  width: 100%;
+  // height: 30px;
+}
+
+.segment ion-label {
   text-transform: uppercase;
-  background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
   border: 1px solid #000;
   //background-clip: text;
- // color: transparent;
-  font-weight: bold; /* Adjust font styles as needed */
+  // color: transparent;
+  font-weight: bold;
+  /* Adjust font styles as needed */
+  /* Add any other styles you want */
+  //background-color: black;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding: 3px 5px 3px 5px;
+}
+
+.segment select {
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+  border: 1px solid #000;
+  //background-clip: text;
+  // color: transparent;
+  font-weight: bold;
+  /* Adjust font styles as needed */
+  /* Add any other styles you want */
+  //background-color: black;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  max-width: 150px;
+  max-height: 35px;
+  padding: 5px 5px 4px 5px;
+}
+
+.segment option {
+  text-transform: uppercase;
+  background-color: #8e2de2;
+  border-bottom: 1px solid #000;
+  //background-clip: text;
+  // color: transparent;
+  font-weight: bold;
+  /* Adjust font styles as needed */
   /* Add any other styles you want */
   //background-color: black;
   min-height: 30px;
   text-decoration: none;
-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  width: auto;
+  padding: 2px 2px 2px 2px;
 }
+
+.segment ion-select {
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+  border: 1px solid #000;
+  //background-clip: text;
+  // color: transparent;
+  font-weight: bold;
+  /* Adjust font styles as needed */
+  /* Add any other styles you want */
+  //background-color: black;
+  min-height: 20px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  width: auto;
+  padding: 0px 2px 0px 2px;
+}
+
+
+.segment ion-select-option {
+  color: rgb(0, 0, 0);
+}
+
+ion-select::part(icon) {
+  color: rgb(255, 255, 255);
+  /* Change to your desired color */
+}
+
+/* Change the size of the icon */
+ion-select::part(icon) {
+  font-size: 28px;
+  /* Change to your desired size */
+}
+
+.ion-padding{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+/* Hide the list by default */
+.dropdown-list {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  width: 100%;
+}
+
+/* Style the title button */
+.dropdown-title {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 70px;
+  color: darkslateblue;
+}
+
+.dropdown-title :hover{
+  color: #000;
+}
+/* Show the list when hovering over the title */
+.dropdown:hover .dropdown-list {
+  display: block;
+  color: #333;
+}
+
+/* Style list items */
+.dropdown-list li {
+  padding: 8px;
+  border-bottom: 1px solid #050505;
+  color: #000;
+  height: 100%;
+}
+
+/* Style list item links */
+.dropdown-list a {
+  text-decoration: none;
+  color: #333;
+
+}
+
+/* Change the background color of list items on hover */
+.dropdown-list li:hover {
+  background-color: #b8b8b8;
+  width: 100%;
+}
+.dropdown{
+  padding: 4px;
+}
+.dropdown img{
+  height: 30px;
+  width: 30px;
+}
+.dropdown p{
+  font-size: 14px;
+}
+.dropdown p :hover{
+  color: #000;
+}
+.dropdown li{
+  width: 100%;
+}
+.dropdown_menu{
+  background-color: #fff;
+}
+.dropdown-list {
+  width: 260px;
+}
+.dropdown-list ul{
+  flex-wrap: nowrap;
+}
+.dropdown_menu{
+  height: 70px;
+  padding-top: -10px;
+}
+.dropdown button{
+  padding-top: -7px;
+  margin: 0px;
+}
+
+// .sub-menu li:hover {
+//   background-color: #b8b8b8;
+//   width: 100%;
+
+// }
+// /* Show the list when hovering over the title */
+// .dropdown:hover .sub-menu {
+//   display: block;
+//   color: #333;
+// }
+
+// /* Style list items */
+// .sub-menu li {
+//   padding: 8px;
+//   border-bottom: 1px solid #050505;
+//   color: #000;
+//   height: 100%;
+// }
+// /* Hide the list by default */
+// .sub-menu {
+//   display: none;
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+//   position: absolute;
+//   background-color: #ffffff;
+//   border: 1px solid #000000;
+//   width: 100%;
+// }
