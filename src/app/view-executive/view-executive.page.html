@@ -11,92 +11,81 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <ion-card class="hsn_manager">
-    <ion-card-content>
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-          <ion-title>View Executive</ion-title>
-        </ion-item>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row style="justify-content: right;">
-          <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-          <ion-popover trigger="left-start" size="auto" side="left">
-            <ng-template>
-              <ion-button color="danger">Delete</ion-button>
-              <ion-button  color="warning">Edit</ion-button>
-              <ion-button   color="success">Save</ion-button>
-            </ng-template>
-          </ion-popover>
-        </ion-row>
-        <ion-row style="justify-content: right;">
-          <ion-button color="warning">Go to Excel</ion-button>
-          <ion-button color="warning">
-           add
-          </ion-button>
-          <ion-button color="warning">
-           view
-          </ion-button>
-          <ion-button color="warning">
-            save
-          </ion-button>
-          <ion-button color="warning">
-cancel
-          </ion-button>
-        </ion-row>
+  <div class="container">
+    <ion-card class="hsn_manager">
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-item lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;padding-top: 10px;">View Exicutive</ion-title>
+            </ion-item>
+            <ion-row style="justify-content: right; margin-top: -25px;">
+              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+              <ion-popover trigger="left-start" size="auto" side="left">
+                <ng-template>
+                  <ion-button color="danger">Delete</ion-button>
+                  <ion-button color="warning">Edit</ion-button>
+                  <ion-button color="success">Save</ion-button>
+                </ng-template>
+              </ion-popover>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
 
-        <ion-row>
-          <ion-col size="12">
-            <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <div class="tables" style="overflow-x:auto;">
-            <div class="row">
-              <table>
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Name</th>
-                  <th>Phone No.</th>
-                  <th>Email ID</th>
-                  <th>Area</th>
-                  <th>PAN</th>
-                  <th>Group Name</th>
-                  <th>Commission %</th>
-                  <th>Lead ID</th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Naman</td>
-                  <td>1234567890</td>
-                  <td>example@gmail.com</td>
-                  <td>Jaipur</td>
-                  <td>1221323DSFSD3</td>
-                  <td>King</td>
-                  <td>5%</td>
-                  <td>123</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-
-                </tr>
-              </table>
-            </div>
-          </div>
-        </ion-row>
-        <ion-row>
-          <ion-col style="display: flex; justify-content: right; align-items: center;">  
-            <ion-button color="warning">New</ion-button>
-            <ion-button color="warning">Save</ion-button>
-            <ion-button color="warning">Delete</ion-button>
-            <ion-button color="warning">Preview</ion-button>
-            <ion-button color="warning">Close</ion-button>>
+          <ion-row>
+            <ion-col size="12">
+              <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
             </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+          </ion-row>
+          <ion-row>
+            <div class="tables" style="overflow-x:auto;">
+              <div class="row">
+                <table>
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>Name</th>
+                    <th>Phone No.</th>
+                    <th>Email ID</th>
+                    <th>Area</th>
+                    <th>PAN</th>
+                    <th>Group Name</th>
+                    <th>Commission %</th>
+                    <th>Lead ID</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Naman</td>
+                    <td>1234567890</td>
+                    <td>example@gmail.com</td>
+                    <td>Jaipur</td>
+                    <td>1221323DSFSD3</td>
+                    <td>King</td>
+                    <td>5%</td>
+                    <td>123</td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
+                    </td>
+
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col style="display: flex; justify-content: right; align-items: center;">
+              <ion-button color="warning">New</ion-button>
+              <ion-button color="warning">Save</ion-button>
+              <ion-button color="warning">Delete</ion-button>
+              <ion-button color="warning">Preview</ion-button>
+              <ion-button color="warning">Close</ion-button>>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

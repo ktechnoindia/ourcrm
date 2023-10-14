@@ -12,23 +12,51 @@
 </ion-header> -->
 <ion-content [fullscreen]="true">
   <div class="container">
-    <ion-card>
-      <ion-card-content>
-        <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="padding-top: -10px;">View Purchase</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+  <ion-card>
+    <ion-card-content>
+      <div class="dekstop-menu">
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-title style="padding-top:10px;">View Purchase</ion-title>
+          </ion-item>
+          <ion-row style="justify-content: right;margin-top: -25px;">
+            <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
+            <ion-popover trigger="left-start" size="auto" side="left">
+              <ng-template>
+                <ion-button color="danger">Delete</ion-button>
+                <ion-button  color="warning">Edit</ion-button>
+                <ion-button   color="success">Save</ion-button>
+              </ng-template>
+            </ion-popover>
+          </ion-row>
+        </ion-card-header>
+      </div>
+      <ion-grid class="add_sale">
+
+        <ion-row class="headinglabel">
+          <ion-label> PURCHASE BOOK</ion-label>
+         </ion-row>
+         
+         <ion-row>
+          <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="month" labelPlacement="end" alignment="start">Monthly</ion-radio>
+              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="quartly" labelPlacement="end" alignment="start">Quartly</ion-radio>
+              <ion-radio color="dark" value="view_sale" name="year" labelPlacement="end" alignment="start">Yearly</ion-radio>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+           <ion-row>
+            <ion-input color="dark" class="sign_input" type="date" label=" From Date  :" label-placement="floating"
+            ></ion-input>
+          </ion-row>
+          </ion-col>
+          <ion-col class="row" size-lg="6" size-md="6" size-sm="6" size="12">
+            <ion-row>
+              <ion-input color="dark" class="sign_input" type="date" label=" To Date :" label-placement="floating"
+            ></ion-input>
             </ion-row>
           </ion-card-header>
         </div>

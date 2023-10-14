@@ -23,6 +23,7 @@ export class AddCustomerPage implements OnInit {
   activeSegment: string = '';
   selectedPage: string = 'page1';
 
+
   cname:string='';
   customercode:number | null = null;
   gstin:number | null = null;
@@ -51,6 +52,7 @@ export class AddCustomerPage implements OnInit {
   submitValue=false;
   // selectedOption:string='';
   countries: any[] = [];
+  menuController: any;
 
   constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) { }
 
@@ -279,5 +281,10 @@ export class AddCustomerPage implements OnInit {
   toggleSegment(segment: string) {
     this.activeSegment = segment;
   }
+  
+  closeMenu() {
+    this.menuController.close(); // Close the menu
+  }
+  
   
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -23,6 +23,8 @@ export class AppComponent {
   activeSegment: string = '';
 
   selectedPage: string = 'add-customer';
+  
+  menuType: string = 'overlay';
 
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
@@ -39,9 +41,58 @@ export class AppComponent {
   ];
  
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  menu: any;
 
-  constructor(private navCtrl: NavController,private router: Router) { }
-  
+  constructor(private menuController: MenuController,private navCtrl: NavController,private router: Router) { }
+  navigateToPage() {
+    // Use a switch statement or if-else to navigate based on the selected value
+    switch (this.selectedPage) {
+      case 'editinfo':
+        this.navCtrl.navigateForward('/editinfo');
+        break;
+      case 'usercreate':
+        this.navCtrl.navigateForward('/usercreate');
+        break;
+      case 'useredit':
+        this.navCtrl.navigateForward('/useredit');
+        break;
+        case 'password':
+          this.navCtrl.navigateForward('/password');
+          break;
+          case 'add-item':
+          this.navCtrl.navigateForward('/add-item');
+          break;
+          case 'addgroup':
+          this.navCtrl.navigateForward('/addgroup');
+          break;
+          case 'addattribute':
+          this.navCtrl.navigateForward('/addattribute');
+          break;
+          case 'barcode':
+          this.navCtrl.navigateForward('/barcode');
+          break;
+          case 'hsn-manager':
+          this.navCtrl.navigateForward('/hsn-manager');
+          break;
+          case 'add-executive':
+          this.navCtrl.navigateForward('/add-executive');
+          break;
+          case 'roleofexicutive':
+          this.navCtrl.navigateForward('/roleofexicutive');
+          break;
+          case 'view-executive':
+          this.navCtrl.navigateForward('/view-executive');
+          break;
+
+      default:
+        // Handle default case or display an error message
+        break;
+    }
+  }
+  // navigateToPage() {
+  //   // Use the selectedPage value to navigate to the corresponding route
+  //   this.router.navigate([this.selectedPage]);
+  // }
   onDropdownChange(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
@@ -73,4 +124,18 @@ export class AppComponent {
       mode: 'ios', // You can change the mode to 'md' for Material Design
       translucent: true, // Makes the dropdown background slightly transparent
     };
+
+    openAnotherComponent() {
+      // Navigate to another component or perform your desired action here
+      // Example: Navigate to another page using Ionic's NavController
+      this.navCtrl.navigateForward('/another-page');
+    }
+    openFirst() {
+      this.menu.enable(true, 'first');
+      this.menu.open('first');
+    }
+    
+closeMenu() {
+  this.menuController.close(); // Close the menu
+}
 }

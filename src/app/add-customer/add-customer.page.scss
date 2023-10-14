@@ -1,39 +1,89 @@
+ion-menu-button {
+    justify-content: left;
+}
 
-.container ion-input {
+.Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
     // outline-color: goldenrod;
-    outline-width: 2px;
+    // outline-width: 2px;
+    // outline-style: initial;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+/* Style the container of the input */
+ion-input[fill="outline"] {
+    --border-color: #1a4174;
+    /* Outline border color */
+    --border-width: 1px;
+    /* Outline border width */
+    --border-radius: 4px;
+    /* Outline border radius */
+    --placeholder-color: #1a4174;
+    /* Placeholder text color */
+    box-shadow: 0 0 2px 2px #fffbfb;
+    /* Add a box shadow when focused */
+    --color: #1a4174;
+
+}
+
+/* Style the input itself */
+ion-input[fill="outline"] input {
+    border: none;
+    /* Remove the default input border */
+    border-radius: 4px;
+    /* Match the container's border radius */
+    padding: 10px;
+    /* Add some padding for better spacing */
+    font-size: 16px;
+    /* Adjust the font size as needed */
+}
+
+ion-input[fill="outline"] input:focus {
+    border-color: #1a4174;
+    /* Change the border color when focused */
+    // box-shadow: 0 0 5px #09d8bc; /* Add a box shadow when focused */
+    color: #1a4174;
+    /* Change the input text color when focused */
+}
+/* Change floating label color */
+/* Change floating label color */
+  
+
+.Customer ion-select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 1px;
     outline-style: initial;
 }
-.container ion-textarea {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    background: skyblue;
 
-}
-
-.container ion-select {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    outline-width: 2px;
-    outline-style: initial;
-}
-
-.container select {
+.Customer select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
     //border-color: goldenrod;
     width: 100%;
-    text-align: left
+    text-align: left;
+    border-color: #646464;
+    /* Change the border color when focused */
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: 0 0 2px 2px #fffbfb;
+    /* Add a box shadow when focused */
+color: #1a4174;
+    /* Change the input text color when focused */
+padding-left: 12px;
+font-family: 'Times New Roman', Times, serif;
 }
 
-ng-template ion-button{
+ng-template ion-button {
     color: goldenrod;
+}
+
+.Customer ion-input:focus{
+    --border-color: #1a4174;
 }
