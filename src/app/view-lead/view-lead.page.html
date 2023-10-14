@@ -11,24 +11,14 @@
 </ion-header> -->
 
 <ion-content>
-  <div class="container">
-    <ion-card class="add_lead">
+  <div class="Customer">
+    <ion-card >
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header >
-            <ion-item lines="none">
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: 10px;">View Lead</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;">
-              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button  color="warning">Edit</ion-button>
-                  <ion-button   color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">Lead Report</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -40,7 +30,7 @@
            
             <ion-col  size-lg="3" size-md="6" size-sm="6" size="12">
                 <select class="select-width">
-                  <option style="background-color: rgb(0, 0, 0);font-weight: bold; font-size: 16px;" value="">---Select Company Name ---</option>
+                  <option>---Select Company Name ---</option>
                     <option value="India">Mehta Infotech</option>
                   <option value="UK">Ktechno</option>
                   <option value="USA">Relyon</option>
@@ -48,7 +38,7 @@
             </ion-col>
             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="cName" name="cName">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">Customer Name :</option>
+                  <option>Customer Name :</option>
                   <option value="India">Deepak</option>
                   <option value="UK">Abhishel</option>
                   <option value="USA">Ravi</option>

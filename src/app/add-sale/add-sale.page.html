@@ -11,24 +11,14 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: -10px;">Add Sale</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;">
-              <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">Add Sale</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -266,8 +256,8 @@
               <ion-col size="8">
               </ion-col>
               <ion-col class="row" size-lg="4" size-md="12" size-sm="12" size="12">
-                <div class="output">
-                  <table>
+                <div class="output" >
+                  <table  style="border: none;">
                     <tr>
                       <th colspan="13">Discount Amount :</th>
                       <td colspan="2"> <input class="table_input" type="text">

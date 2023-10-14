@@ -294,15 +294,12 @@ ion-header ion-title {
 
 .dekstop-menu ion-title {
     text-transform: uppercase;
-    background: linear-gradient(to right, #434343 0%, black 100%);
-    background-clip: text;
-  color: transparent;
+color: #000;
   font-weight: bold; /* Adjust font styles as needed */
   /* Add any other styles you want */
 }
 
 ion-card {
-    position: relative;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -456,9 +453,8 @@ table td {
 
 ion-card-header {
     border-bottom: 2px solid  black;
-    ;
-    // width: 100%;
-    // margin-top: -30px;
+    width: 100%;
+margin-top: -20px;
 }
 
 ion-card-header ion-title {
@@ -470,11 +466,13 @@ ion-card-header .back {
     color: black;
     font-size: 24px;
     font-weight: bold;
+    margin-top: -5px;
 }
 
 ion-col {
     padding: 0 2px;
 }
+
 
 
 // .container ion-input {
@@ -711,6 +709,9 @@ ion-card{
         margin-left: -5px;
     }
 }
+.Customer{
+    margin-top: 70px;
+}
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -796,3 +797,81 @@ ng-template ion-button {
 .Customer ion-input:focus{
     --border-color: #1a4174;
 }
+.Customer ion-textarea {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    // outline-width: 2px;
+    // outline-style: initial;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+/* Style the container of the input */
+ion-textarea[fill="outline"] {
+    --border-color: #1a4174;
+    /* Outline border color */
+    --border-width: 1px;
+    /* Outline border width */
+    --border-radius: 4px;
+    /* Outline border radius */
+    --placeholder-color: #1a4174;
+    /* Placeholder text color */
+    box-shadow: 0 0 2px 2px #fffbfb;
+    /* Add a box shadow when focused */
+    --color: #1a4174;
+
+}
+
+/* Style the input itself */
+ion-textarea[fill="outline"] input {
+    border: none;
+    /* Remove the default input border */
+    border-radius: 4px;
+    /* Match the container's border radius */
+    padding: 10px;
+    /* Add some padding for better spacing */
+    font-size: 16px;
+    /* Adjust the font size as needed */
+}
+
+ion-textarea[fill="outline"] input:focus {
+    border-color: #1a4174;
+    /* Change the border color when focused */
+    // box-shadow: 0 0 5px #09d8bc; /* Add a box shadow when focused */
+    color: #1a4174;
+    /* Change the input text color when focused */
+}
+
+
+/* Change the background color of the search bar */
+.custom .searchbar-input {
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    border: solid 1.5px grey;
+    border-radius: 7px;
+
+  }
+  
+  /* Change the text color of the search bar */
+  .custom .searchbar-input {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  /* Change the placeholder color of the search bar */
+  .custom .searchbar-input::placeholder {
+    color: #ffffff;
+  }
+  
+  /* Change the icon color of the search bar */
+  .custom .searchbar-icon {
+    color: #ffffff;
+  }
+  
+  /* Change the color of the cancel button */
+  .custom .searchbar-clear-icon {
+    color: #ffffff;
+  }
+  
+ 

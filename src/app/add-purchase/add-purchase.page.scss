@@ -6,7 +6,7 @@ td {
 }
 
 
-.container ion-input {
+.Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -14,7 +14,7 @@ td {
     outline-width: 2px;
     outline-style: initial;
 }
-.container ion-textarea {
+.Customer ion-textarea {
     height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -23,7 +23,7 @@ td {
 
 }
 
-.container ion-select {
+.Customer ion-select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -32,7 +32,7 @@ td {
     outline-style: initial;
 }
 
-.container select {
+.Customer select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -44,20 +44,15 @@ td {
 ng-template ion-button{
     color: goldenrod;
 }
-table select {
-    background: none;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-}
+
 
 @media(max-width:540px) {
-    .container ion-input {
+    .Customer ion-input {
         min-height: 33px;
         text-align: center;
     }
 
-    .container ion-select {
+    .Customer ion-select {
         min-height: 33px;
         text-align: center;
     }
@@ -85,8 +80,9 @@ table select {
     overflow-x:auto
 }
 table tr td select{
-    border: solid 1px lightgray;
     color: darkgray;
     font-weight: 400;
     width: 100%;
+    padding: 3px;
+    margin: 3px;
 }

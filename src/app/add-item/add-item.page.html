@@ -1,25 +1,14 @@
 <ion-content [fullscreen]="true">
 <ion-content >
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: -10px;">Add Item</ion-title>
-            </ion-item>
-         
-              <ion-row style="justify-content: right;margin-top: -20px;">
-                <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-                <ion-popover trigger="left-start" size="auto" side="left">
-                  <ng-template>
-                    <ion-button color="danger">Delete</ion-button>
-                    <ion-button color="warning">Edit</ion-button>
-                    <ion-button color="success">Save</ion-button>
-                  </ng-template>
-                </ion-popover>
-              </ion-row>
+              <ion-title style="text-align: center;">Add Item</ion-title>
+            </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
@@ -28,7 +17,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="itemDesc" name="itemDesc" type="text"
-                    label=" Item Description :" label-placement="floating" fill="outline">
+                    label=" Item Description :" label-placement="floating" fill="outline" >
                 </ion-input>
                 </ion-row>
 

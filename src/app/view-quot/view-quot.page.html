@@ -1,36 +1,25 @@
-<ion-content [fullscreen]="true">
-  <div class="container">
+<ion-content>
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: 10px;">View Quotation</ion-title>
-            </ion-item>
-            <ion-grid>
-              <ion-row style="justify-content: right;">
-                <ion-icon id="left-start" size="large" name="ellipsis-vertical-outline"></ion-icon>
-                <ion-popover trigger="left-start" size="auto" side="left">
-                  <ng-template>
-                    <ion-button color="danger">Delete</ion-button>
-                    <ion-button color="warning">Edit</ion-button>
-                    <ion-button color="success">Save</ion-button>
-                  </ng-template>
-                </ion-popover>
-              </ion-row>
-            </ion-grid>
+              <ion-title style="text-align: center;">Quotation Report</ion-title>
+            </ion-row>
           </ion-card-header>
         </div>
+        <ion-grid>
         <form #viewQuoteForm="ngForm" (ngSubmit)="onSubmit()">
           <ion-row style="margin-top: 5px;">
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-              <ion-radio style="margin-right: 15px;" color="dark" value="view_sale" name="month"
+              <!-- <ion-radio style="margin-right: 15px;" color="dark" value="view_sale" name="month"
                 labelPlacement="end" alignment="start">Monthly</ion-radio>
               <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="quartly"
                 labelPlacement="end" alignment="start">Quartly</ion-radio>
               <ion-radio color="dark" value="view_sale" name="year" labelPlacement="end"
-                alignment="start">Yearly</ion-radio>
+                alignment="start">Yearly</ion-radio> -->
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
@@ -46,8 +35,10 @@
             </ion-col>
           </ion-row>
           <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+          </ion-row>
+          <ion-row>
             <div class="tables" style="overflow-x:auto; width: 100%;">
-              <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
               <table>
                 <tr>
                   <th>Sr.No.</th>
@@ -95,6 +86,8 @@
             <ion-button>Close</ion-button>
           </ion-row>
         </form>
+      </ion-grid>
+
       </ion-card-content>
     </ion-card>
   </div>

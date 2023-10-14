@@ -6,7 +6,7 @@ td {
 }
 
 
-.container ion-input {
+.Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -14,16 +14,16 @@ td {
     outline-width: 2px;
     outline-style: initial;
 }
-.container ion-textarea {
+.Customer ion-textarea {
     height: 35px;
     // color: goldenrod;
     // font-weight: 400;
     // outline-color: goldenrod;
-    background: skyblue;
+    // background: skyblue;
 
 }
 
-.container ion-select {
+.Customer ion-select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -32,7 +32,7 @@ td {
     outline-style: initial;
 }
 
-.container select {
+.Customer select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -52,12 +52,12 @@ table select {
 }
 
 @media(max-width:540px) {
-    .container ion-input {
+    .Customer ion-input {
         min-height: 33px;
         text-align: center;
     }
 
-    .container ion-select {
+    .Customer ion-select {
         min-height: 33px;
         text-align: center;
     }

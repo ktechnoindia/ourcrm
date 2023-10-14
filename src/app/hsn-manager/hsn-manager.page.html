@@ -11,24 +11,14 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <div class="container">
+  <div class="Customer">
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-item lines="none">
+          <ion-card-header >
+            <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;padding-top: 10px;">HSN Manager</ion-title>
-            </ion-item>
-            <ion-row style="justify-content: right;margin-top: -25px;">
-              <ion-icon id="left-start" size="large" color="danger" name="ellipsis-vertical-outline"></ion-icon>
-              <ion-popover trigger="left-start" size="auto" side="left">
-                <ng-template>
-                  <ion-button color="danger">Delete</ion-button>
-                  <ion-button color="warning">Edit</ion-button>
-                  <ion-button color="success">Save</ion-button>
-                </ng-template>
-              </ion-popover>
+              <ion-title style="text-align: center;">HSN Manager</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -41,20 +31,20 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="hsnCode"  name="hsnCode" color="dark" type="text" label="HSN Code :" label-placement="floating"
-                    ></ion-input>
+                  fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="unit" name="unit" color="dark" class="sign_input" type="text" label="Unit :" label-placement="floating"
-                    ></ion-input>
+                  fill="outline"  ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-textarea [(ngModel)]="desc" name="desc" color="dark" class="sign_input" type="text" label="Description :"
-                    label-placement="floating"></ion-textarea>
+                    label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>
             </ion-row>

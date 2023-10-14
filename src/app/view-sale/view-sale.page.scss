@@ -1,5 +1,5 @@
 
-.container ion-input {
+.Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -7,7 +7,7 @@
     outline-width: 2px;
     outline-style: initial;
 }
-.container ion-textarea {
+.Customer ion-textarea {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -16,7 +16,7 @@
 
 }
 
-.container ion-select {
+.Customer ion-select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -25,7 +25,7 @@
     outline-style: initial;
 }
 
-.container select {
+.Customer select {
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -39,4 +39,6 @@ ng-template ion-button{
 }
 table select{
     background: none;
+    padding: 3px;
+    margin: 3px;
 }
