@@ -268,12 +268,7 @@ ion-segment:hover {
   text-transform: uppercase;
   background-image: linear-gradient(to right, #8e2de2, #4a00e0);
   border: 1px solid #000;
-  //background-clip: text;
-  // color: transparent;
   font-weight: bold;
-  /* Adjust font styles as needed */
-  /* Add any other styles you want */
-  //background-color: black;
   min-height: 20px;
   text-decoration: none;
   color: rgb(255, 255, 255);
@@ -288,21 +283,13 @@ ion-segment:hover {
 
 ion-select::part(icon) {
   color: rgb(255, 255, 255);
-  /* Change to your desired color */
 }
 
-/* Change the size of the icon */
+
 ion-select::part(icon) {
   font-size: 28px;
-  /* Change to your desired size */
 }
 
-.ion-padding{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-/* Hide the list by default */
 .dropdown-list {
   display: none;
   list-style: none;
@@ -340,14 +327,12 @@ ion-select::part(icon) {
   height: 100%;
 }
 
-/* Style list item links */
 .dropdown-list a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
 
 }
 
-/* Change the background color of list items on hover */
 .dropdown-list li:hover {
   background-color: #b8b8b8;
   width: 100%;
@@ -372,46 +357,91 @@ ion-select::part(icon) {
   background-color: #fff;
 }
 .dropdown-list {
-  width: 260px;
+width: 160px;
 }
-.dropdown-list ul{
+.dropdown-list li{
   flex-wrap: nowrap;
+  background-color: grey;
+  color: #fff;
+}
+.right-dropdown li{
+  background-color: rgb(0, 0, 0);
+  color: #000000;
+  list-style: none;
 }
 .dropdown_menu{
   height: 70px;
-  padding-top: -10px;
+  
 }
 .dropdown button{
-  padding-top: -7px;
+ 
   margin: 0px;
 }
+.desktop_menu{
+  display: none;
+  background-color: #fff;
+  width: 140px;
+  // height: 100%;
+  margin-top: -25px;
+}
+.dropdown_menu{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.buttons{
+  display: none;
+}
 
-// .sub-menu li:hover {
-//   background-color: #b8b8b8;
-//   width: 100%;
+.dropdown_div{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.dropdown_menu1{
+  display: none;
+}
+@media(max-width:940px) {
+.dropdown_menu1{
+  display: block;
+  visibility: visible;
+}
+}
+@media(max-width:540px) {
+  .dropdown_menu{
+    display: block;
+  }
+  .dropdown_div{
+    display: none;
+    background-color: lightgray;
+    width: 150px;
+  }
+  .dropdown-list{
+    float: right;
+    left: 100px;
+    top: 0;
+    background: fixed;
+  }
+  .desktop_menu{
+    display: block;
+    background-color: #fff;
+  }
+  .desktop_menu img{
+    display: none;
+    visibility: hidden;
+  }
+  .desktop_menu p{
+    font-size: 18px;
+  }
+  .desktop_menu button{
+    width: 100%;
+  }
+  .buttons{
+    display: block;
+    float: left;
+    font-size: 30px;
+  }
+  
+}
 
-// }
-// /* Show the list when hovering over the title */
-// .dropdown:hover .sub-menu {
-//   display: block;
-//   color: #333;
-// }
 
-// /* Style list items */
-// .sub-menu li {
-//   padding: 8px;
-//   border-bottom: 1px solid #050505;
-//   color: #000;
-//   height: 100%;
-// }
-// /* Hide the list by default */
-// .sub-menu {
-//   display: none;
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   position: absolute;
-//   background-color: #ffffff;
-//   border: 1px solid #000000;
-//   width: 100%;
-// }

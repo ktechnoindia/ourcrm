@@ -329,9 +329,7 @@ ion-item {
     
 }
 
-.toolbar {
-    background: #000000;
-}
+
 
 
 
@@ -390,16 +388,10 @@ table td {
 }
 
 @media(max-width:2222px) {
-    .toolbar {
-        display: none;
-        visibility: hidden;
-    }
+   
 }
 @media(max-width:950px){
-    .toolbar{
-        display: none;
-        visibility: hidden;
-    }
+   
 
     .container {
         margin-top: 10px;

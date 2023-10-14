@@ -1,313 +1,12 @@
-<ion-header class="dekstop-header">
-  <ion-toolbar>
 
-    <div class="mymenu">
-      <!-- <div class="drop">  
-        <img src="../../assets/ktechno-removebg-preview.png" alt="">
-      </div>  -->
-      <div class="drop2">
-        <div class="segmentlabel">
-          <ion-label (click)="toggleSegment('segment1')">Company</ion-label>
-          <ion-label (click)="toggleSegment('segment2')">Master</ion-label>
-          <ion-label (click)="toggleSegment('segment3')">LMS</ion-label>
-          <ion-label (click)="toggleSegment('segment4')">Transaction</ion-label>
-          <ion-label (click)="toggleSegment('segment5')">Accounts</ion-label>
-          <ion-label (click)="toggleSegment('segment6')">Reports</ion-label>
-          <ion-label (click)="toggleSegment('segment7')">AMC</ion-label>
-          <ion-label (click)="toggleSegment('segment8')">Others</ion-label>
-          <ion-label (click)="toggleSegment('segment9')">Support</ion-label>
-
-        </div>
+ 
 
 
-        <!-- <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="master">Master</option>
-          <option value="add-customer">Add Customer</option>
-          <option value="add-vendor">Add Vender</option>
-          <option value="add-item">Add Item</option>
-          <option value="add-service">Add Service</option>
-          <option value="add-executive">Add Executive</option>
-          <option value="hsn-manager">HSN Manager</option>
-          <option value="item-master">Item Master</option>
-          <option value="add-prospect">Add Prospect</option>
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="lead-manager">Lead</option>
-          <option value="add-lead">Add Lead</option>
-          <option value="follow-up">Follow Up</option>
-          <option value="transfer-lead">Transfer Lead</option>
-          <option value="view-lead">View Lead</option>
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="quote-manager">Quote</option>
-          <option value="add-quot">Add Quotation</option>
-          <option value="view-quot">View Quotation</option>
-          <option value="update-quot">Update Quotation</option>
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="challan-manager">Challan</option>
-          <option value="dc-in">DC-IN</option>
-          <option value="dc-out">DC-OUT</option>
-          <option value="dc-in-report">DC-IN Report</option>
-          <option value="dc-out-report">DC-OUT Report</option>
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="sales-manager">Sales</option>
-          <option value="add-sale">Add Sale</option>
-          <option value="add-purchase">Add Purchase</option>
-          <option value="view-sale">View Sales</option>
-          <option value="view-purchase">View Purchase</option>
-          <option value="reports">Reports</option>
-
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="stock-manager">Stock </option>
-          <option value="itemledger">Item Ledger Report </option>
-          <option value="stockledger">Stock Ledger</option>
-          <option value="serviceledger">Service Ledger</option>
-          <option value="groupwisereport">Group Wise Report</option>
-        </select>
-      </div>
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="account-manager">Account </option>
-          <option value="addaccount">Add Account </option>
-          <option value="accountreport">Account Report</option>
-        </select>
-      </div>
-
-      <div class="dropdown">
-        <select (change)="navigateToRoute($event)">
-          <option selected value="amc-manager">AMC</option>
-          <option value="createamc">Creat AMC</option>
-          <option value="amcreport">AMC Report</option>
-          <option value="pendingamc">Pending AMC</option>
-        </select>
-      </div>
-      <div class="drop1">
-        <ion-button class="custom-button" [routerLink]="['/login']" color="success">Log Out</ion-button>
-      </div>
-    </div> -->
-      </div>
-    </div>
-  </ion-toolbar>
-
-  <!-- Comapany -->
-  <div class="segment" *ngIf="activeSegment === 'segment1'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label style="max-width: 150px;" value="createcompany" routerLink="/createcompany">Create</ion-label>
-      <ion-label style="max-width: 150px;" value="opencompany" routerLink="/opencompany">Open</ion-label>
-      <ion-label style="max-width: 150px;" value="closecompany" routerLink="/closecompany">Close</ion-label>
-
-      <ion-select interface="popover" label="Setting" id="pageSelect" [(ngModel)]="selectedPage"
-        (ionChange)="navigateToPage()">
-        <ion-select-option value="editinfo" [routerLink]="['/editinfo']">Edit Info.</ion-select-option>
-        <ion-select-option value="usercreate" [routerLink]="['/usercreate']">User Create</ion-select-option>
-        <ion-select-option value="useredit" [routerLink]="['/useredit']">User Edit</ion-select-option>
-        <ion-select-option value="password" [routerLink]="['/password']">Password</ion-select-option>
-      </ion-select>
-      <!-- <select label="Setting" name="pageSelect" id="pageSelect" [(ngModel)]="selectedPage" (change)="navigateToPage()">
-        <option value="editinfo">Edit Info.</option>
-        <option value="usercreate">User Create</option>
-        <option value="useredit">User Edit</option>
-        <option value="password">Password</option>
-      </select>-->
-    </ion-row>
-  </div>
-
-  <!--Master-->
-  <div class="segment" *ngIf="activeSegment === 'segment2'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label style="max-width: 150px;" value="add-customer" routerLink="/add-customer">Customer</ion-label>
-      <ion-label style="max-width: 150px;" value="add-vendor" routerLink="/add-vendor">Supplier</ion-label>
-      <ion-label style="max-width: 150px;" value="ledger" routerLink="/ledger">Ledger</ion-label>
-
-      <ion-select color="light" interface="popover" label="Item" id="pageSelect" [(ngModel)]="selectedPage"
-        (ionChange)="navigateToPage()">
-        <ion-select-option value="add-item" [routerLink]="['/add-item']">Add Item</ion-select-option>
-        <ion-select-option value="addgroup" [routerLink]="['/addgroup']">Add Group</ion-select-option>
-        <ion-select-option value="addattribute" [routerLink]="['/addattribute']">Add Attribute</ion-select-option>
-        <ion-select-option value="barcode" [routerLink]="['/barcode']">Barcode</ion-select-option>
-        <ion-select-option value="hsn-manager" [routerLink]="['/hsn-manager']">HSN</ion-select-option>
-      </ion-select>
-
-      <!-- <select name="pageSelect" id="pageSelect" [(ngModel)]="selectedPage" (change)="navigateToPage()">
-        <option value="add-item">Add New Item</option>
-        <option value="addgroup">Add Group</option>
-        <option value="addattribute">Add Attribute</option>
-        <option value="barcode">Barcode</option>
-        <option value="hsn-manager">HSN</option>
-      </select>-->
-
-      <ion-label style="max-width: 150px;" value="add-customer" routerLink="/add-service">Service</ion-label>
-      <ion-label style="max-width: 150px;" value="add-vendor" routerLink="/gst">GST</ion-label>
-      <ion-select color="light" interface="popover" label="Executive" id="pageSelect" [(ngModel)]="selectedPage"
-        (ionChange)="navigateToPage()">
-        <ion-select-option value="add-executive" [routerLink]="['/add-executive']">Add Executive</ion-select-option>
-        <ion-select-option value="roleofexicutive" [routerLink]="['/roleofexicutive']">Role Of
-          Executive</ion-select-option>
-        <ion-select-option value="view-executive" [routerLink]="['/view-executive']">List Of
-          Executive</ion-select-option>
-      </ion-select>
-
-      <!-- <select name="pageSelect" id="pageSelect" [(ngModel)]="selectedPage" (change)="navigateToPage()">
-        <option value="add-executive">Add New Executive</option>
-        <option value="roleofexicutive">Role Of Executive</option>
-        <option value="view-executive">List Of Executive</option>
-      </select>-->
-      <ion-label style="max-width: 150px;" value="transaction" routerLink="/transaction">Transaction</ion-label>
-    </ion-row>
-  </div>
-
-  <!--LMS-->
-  <div class="segment" *ngIf="activeSegment === 'segment3'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label value="add-lead" routerLink="/add-lead">Add New Lead</ion-label>
-      <ion-label value="follow-up" routerLink="/follow-up">Follow-Up</ion-label>
-      <ion-label value="transfer-lead" routerLink="/transfer-lead">Transfer Lead</ion-label>
-      <ion-label value="view-lead" routerLink="/view-lead">View Lead</ion-label>
-    </ion-row>
-  </div>
-
-  <!-- Transaction -->
-  <div class="segment" *ngIf="activeSegment === 'segment4'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label value="quote-manager" routerLink="/quote-manager">Quotation</ion-label>
-      <ion-label value="challan-manager" routerLink="/challan-manager">Challan</ion-label>
-      <ion-label value="sales-manager" routerLink="/sales-manager">Sales</ion-label>
-      <ion-label value="purchase" routerLink="/purchase">Purchase</ion-label>
-    </ion-row>
-  </div>
-  <!-- Accounts -->
-  <div class="segment" *ngIf="activeSegment === 'segment5'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label value="addaccount" routerLink="/addaccount">Add Account</ion-label>
-      <ion-label style="max-width: 200px;" value="accountreport" routerLink="/accountreport">Account Report</ion-label>
-    </ion-row>
-  </div>
-
-
-  <!-- Reports -->
-  <div class="segment" *ngIf="activeSegment === 'segment6'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label style="max-width: 200px;" value="view-sale" routerLink="/view-sale">Sales Report</ion-label>
-      <ion-label style="max-width: 200px;" value="view-purchase" routerLink="/view-purchase">Purchase Report</ion-label>
-      <ion-label style="max-width: 200px;" value="dc-in-report" routerLink="/dc-in-report">DC-IN Report</ion-label>
-      <ion-label style="max-width: 200px;" value="dc-out-report" routerLink="/dc-out-report">DC-OUT Report</ion-label>
-      <ion-label style="max-width: 200px;" value="view-quot" routerLink="/view-quot">Quotation Report</ion-label>
-      <ion-label style="max-width: 200px;" value="stock-manager" routerLink="/stock-manager">Stock Report</ion-label>
-    </ion-row>
-  </div>
-
-  <!-- AMC -->
-  <div class="segment" *ngIf="activeSegment === 'segment7'" [(ngModel)]="activeSegment">
-    <ion-row>
-      <ion-label value="createamc" routerLink="/createamc">Create AMC</ion-label>
-      <ion-label value="amcreport" routerLink="/amcreport">AMC Report</ion-label>
-      <ion-label value="pendingamc" routerLink="/pendingamc">Pending AMC</ion-label>
-    </ion-row>
-  </div>
-
-
-</ion-header>
-
-
-<!-- Mobile Menu -->
-<ion-header class="toolbar">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<!-- 
-<ion-menu side="start" contentId="main-content" >
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-item lines="none" [routerLink]="'/home'">
-        <ion-icon name="home"></ion-icon>
-        <ion-title>Dashboard</ion-title>
-      </ion-item>
-    </ion-toolbar>
-   
-  </ion-header>
-
-  <ion-content class="ion-padding"  [(ngModel)]="menuType">
-    <ion-list id="inbox-list" >
-
-      <ion-menu-toggle auto-hide="false">
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected" routerLink="./master" >
-          <ion-icon aria-hidden="true" name="globe" slot="start"></ion-icon>
-          <ion-label>Master</ion-label>
-          <select  label="Executive" id="pageSelect"[(ngModel)]="selectedPage" (ionChange)="navigateToPage()">
-            <option value="add-executive" [routerLink]="['/add-executive']">Add Executive</option>
-            <option value="roleofexicutive" [routerLink]="['/roleofexicutive']">Role Of Executive</option>
-            <option value="view-executive" [routerLink]="['/view-executive']">List Of Executive</option>
-          </select>
-        </ion-item>
-
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="./lead-manager">
-          <ion-icon aria-hidden="true" slot="start" name="layers"></ion-icon>
-          <ion-label>Lead Manger</ion-label>
-        </ion-item>
-
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="/quote-manager">
-          <ion-icon aria-hidden="true" slot="start" name="desktop"></ion-icon>
-          <ion-label>Quote Manager</ion-label>
-        </ion-item>
-
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="/challan-manager">
-          <ion-icon aria-hidden="true" slot="start" name="desktop"></ion-icon>
-          <ion-label>Challan Manager</ion-label>
-        </ion-item>
-
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="./sales-manager">
-          <ion-icon aria-hidden="true" slot="start" name="cart"></ion-icon>
-          <ion-label>Sales Manager</ion-label>
-        </ion-item>
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="/stock-manager">
-          <ion-icon aria-hidden="true" slot="start" name="clipboard"></ion-icon>
-          <ion-label>Stock Manager</ion-label>
-        </ion-item>
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="/account-manager">
-          <ion-icon aria-hidden="true" slot="start" name="calculator"></ion-icon>
-          <ion-label>Account Manager</ion-label>
-        </ion-item>
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected"
-          routerLink="/amc-manager">
-          <ion-icon aria-hidden="true" slot="start" name="newspaper"></ion-icon>
-          <ion-label>AMC Manager</ion-label>
-        </ion-item>
-
-        <ion-item routerDirection="root" lines="none" detail="false" routerLinkActive="selected" routerLink="/login">
-          <ion-icon aria-hidden="true" slot="start" name="key"></ion-icon>
-          <ion-label>Logout</ion-label>
-        </ion-item>
-
-      </ion-menu-toggle>
-    </ion-list>
-  </ion-content>
-</ion-menu> -->
-
-<ion-header class="dropdown_menu">
-  <div class="ion-padding" [(ngModel)]="menuType">
+<ion-header class="dropdown_menu" >
+  <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
+    <ion-icon name="menu"></ion-icon>
+  </ion-button>
+  <div class="ion-padding dropdown_div" [(ngModel)]="menuType">
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/desk.svg" alt="">
@@ -317,16 +16,13 @@
         <li><a routerLink="/createcompany">Create</a></li>
         <li><a routerLink="/opencompany">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
-        <li><a class="dropdown-title">Setting</a>
-          <ul>
-            <li><a routerLink="/editinfo">Edit Info.</a></li>
-            <li><a routerLink="/usercreate">User Create</a></li>
-            <li><a routerLink="/useredit">User Edit</a></li>
-            <li><a routerLink="/password">Password</a></li>
-
-          </ul>
-        </li>
-
+        <li (click)="toggleDropdown()">Setting >  </li>
+        <ul *ngIf="isDropdownOpen"  class="right-dropdown">
+          <li><a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a></li>
+          <li><a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a></li>
+          <li><a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a></li>
+          <li><a (click)="selectOption('Option 4')" routerLink="/password">Password</a></li>
+        </ul>
       </ul>
     </div>
     <div class="dropdown">
@@ -338,25 +34,23 @@
         <li><a routerLink="/add-customer">Add Customer</a></li>
         <li><a routerLink="/add-vendor">Add Supplier</a></li>
         <li><a routerLink="/ledger">Ledger</a></li>
-        <li>
-          <a routerLink="/add-item">Add Item</a>
-          <ul class="sub-menu">
-            <li><a routerLink="/add-item">Add New Item</a></li>
-            <li><a routerLink="/addgroup">Add Group</a></li>
-            <li><a routerLink="/addattribute">Add Attribute</a></li>
-            <li><a routerLink="/barcode">Barcode</a></li>
-            <li><a routerLink="/hsn-manager">HSN</a></li>
+        <li (click)="toggleDropdown2()">Add Item > </li>
+          <ul *ngIf="isDropdownOpen2"  class="right-dropdown">
+            <li><a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a></li>
+            <li><a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a></li>
+            <li><a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a></li>
+            <li><a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a></li>
+            <li><a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a></li>
           </ul>
-        </li>
+       
         <li><a routerLink="/add-service">Add Service</a></li>
         <li><a routerLink="/gst">GST</a></li>
-        <li>
-          <a routerLink="/add-executive">Add Executive</a>
-          <ul class="sub-menu">
-            <li><a routerLink="/add-executive">Add Executive</a></li>
-            <li><a routerLink="/roleofexicutive">Role OF Executive</a></li>
+        <li (click)="toggleDropdown3()"> Add Executive ></li>
+          <ul *ngIf="isDropdownOpen3"  class="right-dropdown">
+            <li><a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a></li>
+            <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
           </ul>
-        </li>
+        
         <li><a routerLink="/hsn-manager">HSN Manager</a></li>
         <li><a routerLink="/item-master">Item Master</a></li>
       </ul>
@@ -429,7 +123,129 @@
   </div>
 
 
-</ion-header>
+</ion-header>--> -->
+
+
+<ion-header class="desktop_menu" *ngIf="isMobileMenuOpen" >
+
+  <div class="ion-padding " [(ngModel)]="menuType">
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/desk.svg" alt="">
+        <p>Company</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/createcompany">Create</a></li>
+        <li><a routerLink="/opencompany">Open</a></li>
+        <li><a routerLink="closecompany">Close</a></li>
+        <li (click)="toggleDropdown()">Setting >  </li>
+        <ul *ngIf="isDropdownOpen"  class="right-dropdown">
+          <li><a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a></li>
+          <li><a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a></li>
+          <li><a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a></li>
+          <li><a (click)="selectOption('Option 4')" routerLink="/password">Password</a></li>
+        </ul>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/master.svg" alt="">
+        <p>Master</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/add-customer">Add Customer</a></li>
+        <li><a routerLink="/add-vendor">Add Supplier</a></li>
+        <li><a routerLink="/ledger">Ledger</a></li>
+        <li (click)="toggleDropdown2()">Add Item > </li>
+          <ul *ngIf="isDropdownOpen2"  class="right-dropdown">
+            <li><a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a></li>
+            <li><a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a></li>
+            <li><a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a></li>
+            <li><a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a></li>
+            <li><a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a></li>
+          </ul>
+       
+        <li><a routerLink="/add-service">Add Service</a></li>
+        <li><a routerLink="/gst">GST</a></li>
+        <li (click)="toggleDropdown3()"> Add Executive ></li>
+          <ul *ngIf="isDropdownOpen3"  class="right-dropdown">
+            <li><a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a></li>
+            <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
+          </ul>
+        
+        <li><a routerLink="/hsn-manager">HSN Manager</a></li>
+        <li><a routerLink="/item-master">Item Master</a></li>
+      </ul>
+    </div>
+    
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/lms.svg" alt="">
+        <p>LMS</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/add-lead">Add New Lead</a></li>
+        <li><a routerLink="/follow-up">Follow-Up</a></li>
+        <li><a routerLink="/transfer-lead">Transfer Lead</a></li>
+        <li><a routerLink="/view-lead">View Lead</a></li>
+
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/transaction.svg" alt="">
+        <p>Transaction</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/quote-manager">Quote</a></li>
+        <li><a routerLink="/dc-out">DC-IN</a></li>
+        <li><a routerLink="/dc-in">DC-OUT</a></li>
+        <li><a routerLink="/sales-manager">Sales</a></li>
+        <li><a routerLink="/purchase">Purchase</a></li>
+
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/bank.svg" alt="">
+        <p>Account</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/quote-manager">Add New</a></li>
+        <li><a routerLink="/dc-out">View Account</a></li>
+
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/reports.svg" alt="">
+        <p>Reports</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/view-sale">Sales Report</a></li>
+        <li><a routerLink="/view-purchase">Purchase Report</a></li>
+        <li><a routerLink="/dc-in-report">DC-IN Report</a></li>
+        <li><a routerLink="/dc-out-report">DC-OUT Report</a></li>
+        <li><a routerLink="/view-quot">Quotation Report</a></li>
+        <li><a routerLink="/stock-manager">Stock Report</a></li>
+
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/amc.svg" alt="">
+        <p>AMC</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/createamc">Create AMC</a></li>
+        <li><a routerLink="/amcreport">AMC Report</a></li>
+        <li><a routerLink="/pendingamc">Pending AMC</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+</ion-header>--> -->
 
 <ion-app>
   <ion-split-pane contentId="main-content">

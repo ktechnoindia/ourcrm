@@ -1,4 +1,4 @@
-<!-- <ion-header>
+<!--  <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,7 +8,7 @@
       <ion-title>Add Lead</ion-title>
     </ion-item>
   </ion-toolbar>
-</ion-header> -->
+</ion-header> 
 
 <ion-content>
   <div class="container">
@@ -34,10 +34,10 @@
         </div>
         <ion-grid>
 
-          <form #addLeadForm="ngForm" (ngSubmit)="onSubmit()">
+          <form >
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="leadOwner" name="leadOwner">
+                <select  name="leadOwner">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">--- Select
                     Lead Owner ---</option>
                     <option value="">Deepak</option>
@@ -48,7 +48,7 @@
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="leadOwner" name="leadOwner">
+                <select  name="leadOwner">
                   <option  value="">
                     --Select Lead Owner--
                   </option>
@@ -61,14 +61,14 @@
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="cpName" name="cpName" type="text" label=" Comapny Name: "
+                  <ion-input color="dark"  name="cpName" type="text" label=" Comapny Name: "
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="cName" name="cName" type="text" label="Customer Name :"
+                  <ion-input color="dark"  name="cName" type="text" label="Customer Name :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -113,7 +113,7 @@
             <ion-row>
               
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="country" name="country" >
+                <select  name="country" >
                   <option value="">--- Select Country ---</option>
                   <option value="India">India</option>
                   <option value="UK">UK</option>
@@ -121,7 +121,7 @@
                 </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="state" name="state">
+                <select  name="state">
                   <option value="">--- Select State ---</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
                   <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -155,7 +155,7 @@
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="city" name="city">
+                <select  name="city">
                   <option value="">--- Select City ---</option>
                   <option value="Ajmer">Ajmer</option>
                   <option value="Alwar">Alwar</option>
@@ -173,7 +173,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="pinCode" name="pinCode" type="number" label=" Pincode :"
+                  <ion-input color="dark"  name="pinCode" type="number" label=" Pincode :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -181,7 +181,7 @@
             <ion-row>
               <ion-col size-lg="12" size="12">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="address" name="address" label=" Address :"
+                  <ion-input color="dark"  name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -190,7 +190,7 @@
             <ion-row>
              
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="productName" name="productName">
+                <select  name="productName">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="pdtname">---
                     Select Product Name ---</option>
                   <option value="">Saral Billing </option>
@@ -199,7 +199,7 @@
                 </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="reference" name="reference">
+                <select  name="reference">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">---
                     Select
                     Reference ---</option>
@@ -210,7 +210,7 @@
                 </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="mapTO" name="mapTO">
+                <select  name="mapTO">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="" >--- Map
                     To---</option>
                   <option value="">Deepak</option>
@@ -221,23 +221,16 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea color="warning" [(ngModel)]="remark" name="remark" type="text" label=" Remark :"
+                  <ion-textarea color="warning"  name="remark" type="text" label=" Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>
 
             </ion-row>
 
-            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-              <ion-button>New</ion-button>
-              <ion-button type="submit">Save</ion-button>
-              <ion-button>Delete</ion-button>
-              <ion-button>Preview</ion-button>
-              <ion-button>Close</ion-button>
-            </ion-row>
           </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>
-</ion-content>
+</ion-content> -->

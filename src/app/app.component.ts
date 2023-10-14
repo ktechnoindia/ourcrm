@@ -21,10 +21,10 @@ import { CountryService } from './services/country.service';
 })
 export class AppComponent {
   activeSegment: string = '';
-
+  isMobileMenuOpen = false;
   selectedPage: string = 'add-customer';
   
-  menuType: string = 'overlay';
+  menuType: string = 'push';
 
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
@@ -138,4 +138,55 @@ export class AppComponent {
 closeMenu() {
   this.menuController.close(); // Close the menu
 }
+
+isDropdownOpen = false;
+isDropdownOpen2 = false;
+isDropdownOpen3 = false;
+isDropdownOpen4 = false;
+
+toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
+}
+toggleDropdown2() {
+  this.isDropdownOpen2 = !this.isDropdownOpen2;
+ 
+}
+toggleDropdown3() {
+  this.isDropdownOpen3 = !this.isDropdownOpen3;
+ 
+}toggleDropdown4() {
+  this.isDropdownOpen4 = !this.isDropdownOpen4;
+ 
+}
+
+selectOption(option: string) {
+  // Handle the selected option here (e.g., emit an event or set a variable).
+  console.log(`Selected: ${option}`);
+  this.isDropdownOpen = false; // Close the dropdown after selection.
+}
+selectOption2(option: string) {
+  // Handle the selected option here (e.g., emit an event or set a variable).
+  console.log(`Selected: ${option}`);
+  this.isDropdownOpen2 = false; // Close the dropdown after selection.
+}
+selectOption3(option: string) {
+  // Handle the selected option here (e.g., emit an event or set a variable).
+  console.log(`Selected: ${option}`);
+  this.isDropdownOpen3 = false; // Close the dropdown after selection.
+}
+selectOption4(option: string) {
+  // Handle the selected option here (e.g., emit an event or set a variable).
+  console.log(`Selected: ${option}`);
+  this.isDropdownOpen4 = false; // Close the dropdown after selection.
+}
+
+toggleMobileMenu() {
+  this.isMobileMenuOpen = !this.isMobileMenuOpen;
+}
+
+// Function to close the mobile menu
+closeMobileMenu() {
+  this.isMobileMenuOpen = false;
+}
+
 }
