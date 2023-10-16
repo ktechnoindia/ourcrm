@@ -1,28 +1,32 @@
-// add-lead.page.ts
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-lead',
-  templateUrl: 'add-lead.page.html',
-  styleUrls: ['add-lead.page.scss']
+  templateUrl: './add-lead.page.html',
+  styleUrls: ['./add-lead.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AddLeadPage {
-  leadForm: FormGroup;
+  router: any;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.leadForm = this.formBuilder.group({
-      leadOwner: ['', Validators.required],
-      cpName: ['', Validators.required],
-      cName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-    });
+  constructor() {}
+
+  ngOnInit() {
+    // Page initialization code goes here
+  }
+  goBack() {
+    this.router.navigate(['/master']); 
   }
 
-  onSubmit() {
-    if (this.leadForm.valid) {
-      // Perform form submission logic here
-    }
-  }
+  
 }
+
+
+
+

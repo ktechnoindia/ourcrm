@@ -1,4 +1,4 @@
- <!-- <ion-header>
+ <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,7 +8,7 @@
       <ion-title>Add Lead</ion-title>
     </ion-item>
   </ion-toolbar>
-</ion-header> ->
+</ion-header> 
 
 <ion-content>
   <div class="Customer">
@@ -17,19 +17,28 @@
         <div class="dekstop-menu">
           <ion-card-header >
             <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon> 
               <ion-title style="text-align: center;">Add Lead</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
 
-          <form #leadForm="ngForm" (ngSubmit)="onSubmit()">
+          <form >
             <ion-row>
-             
+             <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select  name="leadOwner">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">--- Select
+                    Lead Owner ---</option>
+                    <option value="">Deepak</option>
+                    <option value="">Ravi</option>
+                    <option value="">Nirbhay</option>
+                    <option value="">Abhishek</option>
+                </select>
+              </ion-col> 
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select formControlName="leadOwner" name="leadOwner">
+                <select  name="leadOwner">
                   <option  value="">
                     --Select Lead Owner--
                   </option>
@@ -43,21 +52,21 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark"  name="cpName" type="text" label=" Comapny Name: "
-                  formControlName="cpName"  label-placement="floating" fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark"  name="cName" type="text" label="Customer Name :"
-                  formControlName="cName"  label-placement="floating" fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width" formControlName="productName">
+                <select class="select-width">
                   <option  value="">
                     --Select Product Name--
                   </option>
@@ -67,7 +76,7 @@
                 </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width" formControlName="reference">
+                <select class="select-width">
                   <option value="">
                     --Select Reference--</option>
                   <option value="">Deepak</option>
@@ -80,13 +89,13 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark" class="sign_input" type="email" label="Email :"
-                  formControlName="email"  label-placement="floating" fill="outline" color="dark"></ion-input>
+                    label-placement="floating" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark" class="sign_input" type="number" label=" Mobile No."
-                  formControlName="mobileNumber"  label-placement="floating" fill="outline" color="dark"></ion-input>
+                    label-placement="floating" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -94,16 +103,15 @@
             <ion-row>
               
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select  name="country" formControlName="country" >
+                <select  name="country" >
                   <option value="">--- Select Country ---</option>
                   <option value="India">India</option>
                   <option value="UK">UK</option>
                   <option value="USA">USA</option>
                 </select>
               </ion-col>
-
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select  name="state" formControlName="state">
+                <select  name="state">
                   <option value="">--- Select State ---</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
                   <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -137,7 +145,7 @@
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select  name="city" formControlName="city">
+                <select  name="city">
                   <option value="">--- Select City ---</option>
                   <option value="Ajmer">Ajmer</option>
                   <option value="Alwar">Alwar</option>
@@ -153,29 +161,46 @@
                   <option value="Udaipur">Udaipur</option>
                 </select>
               </ion-col>
-
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark"  name="pinCode" type="number" label=" Pincode :"
-                  formControlName="pinCode" label-placement="floating" fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
             </ion-row>
-
             <ion-row>
               <ion-col size-lg="12" size="12">
                 <ion-row>
                   <ion-input color="dark"  name="address" label=" Address :"
-                  formControlName="address"  label-placement="floating" fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
 
             <ion-row>
- 
+             
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select  name="mapTO" formControlName="mapTO">
+                <select  name="productName">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="pdtname">---
+                    Select Product Name ---</option>
+                  <option value="">Saral Billing </option>
+                  <option value="">Saral Accounting</option>
+                  <option value="">GST</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select  name="reference">
+                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">---
+                    Select
+                    Reference ---</option>
+                  <option value="">Deepak</option>
+                  <option value="">Ravi</option>
+                  <option value="">Nirbhay</option>
+                  <option value="">Abhishek</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select  name="mapTO">
                   <option style="background-color: black;font-weight: bold; font-size: 16px;" value="" >--- Map
                     To---</option>
                   <option value="">Deepak</option>
@@ -184,11 +209,10 @@
                   <option value="">Abhishek</option>
                 </select>
               </ion-col>
-
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-textarea color="warning"  name="remark" type="text" label=" Remark :"
-                  formControlName="remark" label-placement="floating" fill="outline"></ion-textarea>
+                    label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>
 
@@ -199,4 +223,4 @@
       </ion-card-content>
     </ion-card>
   </div>
-</ion-content> -->
+</ion-content>
