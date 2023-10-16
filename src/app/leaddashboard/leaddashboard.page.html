@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>leaddashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <!-- <ion-card-header>
+      <ion-card-subtitle>Simple Column Chart</ion-card-subtitle>
+      <ion-card-title>Population of Largest U.S. Cities</ion-card-title>
+    </ion-card-header> -->
+    <div class="charts">
+      <ion-card>
+        <google-chart [data]="columnChart1"></google-chart>
+      </ion-card>
+      <ion-card>
+        <google-chart [data]="columnChart1"></google-chart>
+      </ion-card>
+    </div>
+   
+  </ion-card>
+</ion-content>

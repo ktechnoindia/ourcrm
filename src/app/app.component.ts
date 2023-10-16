@@ -23,8 +23,7 @@ export class AppComponent {
   activeSegment: string = '';
   isMobileMenuOpen = false;
   selectedPage: string = 'add-customer';
-  
-  menuType: string = 'push';
+ 
 
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
@@ -43,7 +42,10 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   menu: any;
 
-  constructor(private menuController: MenuController,private navCtrl: NavController,private router: Router) { }
+  constructor(private menuController: MenuController,private navCtrl: NavController,private router: Router) {
+   
+   }
+
   navigateToPage() {
     // Use a switch statement or if-else to navigate based on the selected value
     switch (this.selectedPage) {

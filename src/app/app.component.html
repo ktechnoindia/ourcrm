@@ -6,7 +6,7 @@
   <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
     <ion-icon name="menu"></ion-icon>
   </ion-button>
-  <div class="ion-padding dropdown_div" [(ngModel)]="menuType">
+  <div class="ion-padding dropdown_div" >
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/desk.svg" alt="">
@@ -60,14 +60,15 @@
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/lms.svg" alt="">
-        <p>LMS</p>
+        <p [routerLink]="['/leaddashboard']">LMS</p>
+
       </button>
       <ul class="dropdown-list">
         <li><a routerLink="/add-lead">Add New Lead</a></li>
         <li><a routerLink="/follow-up">Follow-Up</a></li>
         <li><a routerLink="/transfer-lead">Transfer Lead</a></li>
         <li><a routerLink="/view-lead">View Lead</a></li>
-
+        
       </ul>
     </div>
     <div class="dropdown">
@@ -124,12 +125,12 @@
   </div>
 
 
-</ion-header>--> -->
+</ion-header>
 
 
 <ion-header class="desktop_menu" *ngIf="isMobileMenuOpen" >
 
-  <div class="ion-padding " [(ngModel)]="menuType">
+  <div class="ion-padding " >
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/desk.svg" alt="">
@@ -182,14 +183,14 @@
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/lms.svg" alt="">
-        <p>LMS</p>
+        <p >LMS</p>
       </button>
       <ul class="dropdown-list">
         <li><a routerLink="/add-lead">Add New Lead</a></li>
         <li><a routerLink="/follow-up">Follow-Up</a></li>
         <li><a routerLink="/transfer-lead">Transfer Lead</a></li>
         <li><a routerLink="/view-lead">View Lead</a></li>
-
+       
       </ul>
     </div>
     <div class="dropdown">
@@ -245,8 +246,10 @@
     </div>
   </div>
 
+</ion-header>
 
-</ion-header>--> -->
+
+
 
 <ion-app>
   <ion-split-pane contentId="main-content">
