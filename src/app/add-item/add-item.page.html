@@ -32,7 +32,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectHSN" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;">--- Select HSN Code -- </option>
+                  <option>--Select HSN Code--</option>
                   <option value="daimond">Daimond</option>
                   <option value="star">Star</option>
                   <option value="silver">Silver</option>
@@ -41,7 +41,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectStock" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;">--- Select Stock Type ---</option>
+                  <option>--Select Stock Type--</option>
                   <option value="">Stock</option>
                   <option value="">Non Stock(Asset)</option>
                   <option value="">Non Stock(Expense)</option>
@@ -55,8 +55,7 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectPrimaryUnit" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">---
-                    Select Primary Unit ---</option>
+                  <option value="Stock type">--Select Primary Unit--</option>
                   <option value="">Non Stock(Asset)</option>
                   <option value="">Non Stock(Expense)</option>
                   <option value="">Service</option>
@@ -66,8 +65,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectAltUnit" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">---
-                    Select Alternate Unit ---</option>
+                  <option value="Stock type">--Select Alternate Unit--</option>
                   <option value="">Non Stock(Asset)</option>
                   <option value="">Non Stock(Expense)</option>
                   <option value="">Service</option>
@@ -76,8 +74,7 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectItemGroup" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">---
-                    Setect Item Group ---</option>
+                  <option value="Stock type">--Setect Item Group--</option>
                   <option value="">Non Stock(Asset)</option>
                   <option value="">Non Stock(Expense)</option>
                   <option value="">Service</option>
@@ -86,8 +83,7 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectGst" [ngModelOptions]="{standalone: true}">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Stock type">---
-                    Select GST Rate --- </option>
+                  <option value="Stock type">--Select GST Rate--</option>
                   <option value="1">3%</option>
                   <option value="1">5%</option>
                   <option value="1">8%</option>
@@ -194,7 +190,7 @@
 
               <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
 
-                <h1 style="text-align: center;">--- Quantity Levels ---</h1>
+                <h1 style="text-align: center;">--Quantity Levels--</h1>
                 <ion-row>
                   <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                     <ion-row>
@@ -249,7 +245,7 @@
 
               <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
                 <ion-row class="headinglabel">
-                  <ion-label style="text-align: center;">--- Quantity Levels ---</ion-label>
+                  <ion-label style="text-align: center;">--Quantity Levels--</ion-label>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -329,8 +325,7 @@
                 <ion-row>
                   <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                     <select [(ngModel)]="category">
-                      <option style="background-color: black;font-weight: bold; font-size: 16px;" value="Category">---
-                        Select Category ---</option>
+                      <option value="Category">--Select Category--</option>
                       <option value="">Non Stock(Asset)</option>
                       <option value="">Non Stock(Expense)</option>
                       <option value="">Service</option>

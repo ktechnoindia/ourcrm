@@ -713,6 +713,7 @@ ion-card{
     margin-top: 70px;
 }
 .Customer ion-input {
+    margin-top: 10px;
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -763,6 +764,7 @@ ion-input[fill="outline"] input:focus {
   
 
 .Customer ion-select {
+    margin-top: 10px;
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
@@ -773,6 +775,8 @@ ion-input[fill="outline"] input:focus {
 
 .Customer select {
     min-height: 35px;
+    margin-top: 10px;
+font-size: 20px;
     // color: goldenrod;
     // font-weight: 400;
     //border-color: goldenrod;
@@ -789,7 +793,10 @@ color: #1a4174;
 padding-left: 12px;
 font-family: 'Times New Roman', Times, serif;
 }
+.Customer option{
+    font-size: 18px;
 
+}
 ng-template ion-button {
     color: goldenrod;
 }
@@ -798,6 +805,7 @@ ng-template ion-button {
     --border-color: #1a4174;
 }
 .Customer ion-textarea {
+    margin-top: 10px;
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
