@@ -17,13 +17,14 @@
         <li><a routerLink="/opencompany">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
         <li (click)="toggleDropdown()">Setting >  </li>
-        <ul *ngIf="isDropdownOpen"  class="right-dropdown">
-          <li><a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a></li>
-          <li><a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a></li>
-          <li><a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a></li>
-          <li><a (click)="selectOption('Option 4')" routerLink="/password">Password</a></li>
-        </ul>
+        <div *ngIf="isDropdownOpen"  class="right-dropdown">
+          <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
+          <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
+          <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
+          <a (click)="selectOption('Option 4')" routerLink="/password">Password</a>
+        </div>
       </ul>
+      
     </div>
     <div class="dropdown">
       <button class="dropdown-title">
@@ -35,21 +36,21 @@
         <li><a routerLink="/add-vendor">Add Supplier</a></li>
         <li><a routerLink="/ledger">Ledger</a></li>
         <li (click)="toggleDropdown2()">Add Item > </li>
-          <ul *ngIf="isDropdownOpen2"  class="right-dropdown">
-            <li><a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a></li>
-            <li><a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a></li>
-            <li><a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a></li>
-            <li><a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a></li>
-            <li><a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a></li>
-          </ul>
+          <div *ngIf="isDropdownOpen2"  class="right-dropdown">
+            <a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a>
+            <a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a>
+            <a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a>
+            <a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a>
+            <a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a>
+          </div>
        
         <li><a routerLink="/add-service">Add Service</a></li>
         <li><a routerLink="/gst">GST</a></li>
         <li (click)="toggleDropdown3()"> Add Executive ></li>
-          <ul *ngIf="isDropdownOpen3"  class="right-dropdown">
-            <li><a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a></li>
-            <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
-          </ul>
+          <div *ngIf="isDropdownOpen3"  class="right-dropdown">
+            <a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a>
+            <a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a>
+          </div>
         
         <li><a routerLink="/hsn-manager">HSN Manager</a></li>
         <li><a routerLink="/item-master">Item Master</a></li>
@@ -134,17 +135,17 @@
         <img src="assets/desk.svg" alt="">
         <p>Company</p>
       </button>
-      <ul class="dropdown-list">
+      <ul class="dropdown-list drop_down">
         <li><a routerLink="/createcompany">Create</a></li>
         <li><a routerLink="/opencompany">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
-        <li (click)="toggleDropdown()">Setting >  </li>
-        <ul *ngIf="isDropdownOpen"  class="right-dropdown">
-          <li><a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a></li>
-          <li><a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a></li>
-          <li><a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a></li>
-          <li><a (click)="selectOption('Option 4')" routerLink="/password">Password</a></li>
-        </ul>
+        <li (click)="toggleDropdown()">Setting > </li>
+        <div *ngIf="isDropdownOpen"  class="right-dropdown ">
+          <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
+          <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
+          <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
+          <a (click)="selectOption('Option 4')" routerLink="/password">Password</a>
+        </div>
       </ul>
     </div>
     <div class="dropdown">
