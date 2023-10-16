@@ -85,8 +85,9 @@ table select {
     overflow-x:auto
 }
 table tr td select{
-    border: solid 1px lightgray;
     color: darkgray;
     font-weight: 400;
-    
+    border: none;
+    margin: 3px;
+    padding: 3px;
 }

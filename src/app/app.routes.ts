@@ -269,6 +269,10 @@ export const routes: Routes = [
     path: 'closecompany',
     loadComponent: () => import('./closecompany/closecompany.page').then( m => m.ClosecompanyPage)
   },
+  {
+    path: 'leadedit',
+    loadComponent: () => import('./leadedit/leadedit.page').then( m => m.LeadeditPage)
+  },
 
 
 

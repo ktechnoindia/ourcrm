@@ -23,9 +23,34 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          
           <ion-row>
-            <ion-searchbar></ion-searchbar>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+
+            </ion-col>
+            <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+              <ion-row>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                      label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                      label-placement="floating" fill="outline"></ion-input>
+
+                  </ion-row>
+                </ion-col>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+              <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-searchbar class="custom"></ion-searchbar>
           </ion-row>
           <ion-row>
             <div style="overflow-x:auto;width: 100%;">

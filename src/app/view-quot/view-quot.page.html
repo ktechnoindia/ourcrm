@@ -13,13 +13,8 @@
         <ion-grid>
         <form #viewQuoteForm="ngForm" (ngSubmit)="onSubmit()">
           <ion-row style="margin-top: 5px;">
-            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-              <!-- <ion-radio style="margin-right: 15px;" color="dark" value="view_sale" name="month"
-                labelPlacement="end" alignment="start">Monthly</ion-radio>
-              <ion-radio style="margin-right: 10px;" color="dark" value="view_sale" name="quartly"
-                labelPlacement="end" alignment="start">Quartly</ion-radio>
-              <ion-radio color="dark" value="view_sale" name="year" labelPlacement="end"
-                alignment="start">Yearly</ion-radio> -->
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+            
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
@@ -32,6 +27,9 @@
                 <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
                   label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
               </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+              <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
             </ion-col>
           </ion-row>
           <ion-row>

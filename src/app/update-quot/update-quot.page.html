@@ -40,19 +40,20 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <select [(ngModel)]="quoteGroup" name="quoteGroup">
-                  <option  value="">--Select Quotation Group--</option>
-                  <option value="2">Nirbahy</option>
-                  <option value="3">Yogesh</option>
+                  <option value="">--Select
+                   Customer Code--</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
                 </select>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="quateTax" name="quateTax" label="Tax Group">
-                  <option>--Tax Group--</option>
-                  <option value="2">Nirbahy</option>
-                  <option value="3">Yogesh</option>
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                <select [(ngModel)]="quateTax" name="quateTax">
+                  <option  value="">--Select Customer Name--</option>
+                  <option value="1">Nirbahy</option>
+                  <option value="2">Yogesh</option>
                 </select>
               </ion-col>
 
@@ -105,6 +106,13 @@
                       <option value="3">18%</option>
                       <option value="4">28%</option>
                     </select>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <ion-icon class="create" name="create"></ion-icon>
+                    <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
                   </tr>
                 </table>
