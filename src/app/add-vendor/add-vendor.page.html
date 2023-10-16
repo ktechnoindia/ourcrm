@@ -14,8 +14,8 @@
 
           <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             
-            <ion-row style="justify-content: center; ">
-              <ion-label style="font-size: 18px;text-align: center;color: slategray; ">-- : Contact Information : --</ion-label>
+            <ion-row class="headinglabel">
+              <ion-label>Contact Information</ion-label>
             </ion-row>
            
             <ion-row>
@@ -89,9 +89,11 @@
               </ion-col>
             </ion-row>
 
-            <ion-row style="justify-content: center; ">
-              <ion-label style="font-size: 18px;text-align: center;color: slategray; ">-- : Registration : --</ion-label>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                "></span>
             </ion-row>
+           
 
             <ion-row>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
@@ -178,10 +180,10 @@
               </ion-col>
             </ion-row>
 
-            <ion-row style="justify-content: center; ">
-              <ion-label style="font-size: 18px;text-align: center;color: slategray; ">-- : Registration : --</ion-label>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Registration :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                "></span>
             </ion-row>
-
             <ion-row>
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
@@ -214,75 +216,45 @@
 
             </ion-row>
 
-            <ion-row style="justify-content: center; ">
-              <ion-label style="font-size: 18px;text-align: center;color: slategray; ">-- : Bank Details : --</ion-label>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Bank Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                "></span>
             </ion-row>
             <ion-row>
 
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <input [(ngModel)]="accountnumber" color="dark" type="number" name="accountnumber" placeholder="Account Number" >
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <input [(ngModel)]="ifsc" color="dark" type="text" name="ifsc" placeholder="IFSC" >
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <input [(ngModel)]="bankname" color="dark" type="text" name="bankname" placeholder="Bank Name" >
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <input [(ngModel)]="branchname" color="dark" type="text" name="branchname" placeholder="Branch Name" >
-                </ion-row>
-              </ion-col>
-
-            </ion-row>
-
-            <ion-row style="justify-content: center; ">
-              <ion-label style="font-size: 18px;text-align: center;color: slategray; ">-- : Other Details : --</ion-label>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="accountnumber" color="dark" type="number" label="A/C Number :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [(ngModel)]="accountnumber" type="number" label="A/C Number :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="ifsc" color="dark" type="text" label="IFSC Code :"
-                    label-placement="floating"  [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [(ngModel)]="ifsc" type="text" label="IFSC Code :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="bankname" color="dark" type="text" label="Bank Name :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [(ngModel)]="bankname" type="text" label="Bank Name :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="branchname" color="dark" type="text" label=" Branch Name :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [(ngModel)]="branchname" type="text" label=" Branch Name :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-            </ion-row>
+            </ion-row>  
 
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label style="font-size: 18px; font-weight: bold;">Other Details :</ion-label><span
-                style="width: 100%; height: 2px; background-color: black;"></span>
+              <ion-label style="font-size: 18px; font-weight: bold;">Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                "></span>
             </ion-row>
 
             <ion-row>
@@ -308,30 +280,25 @@
                 </select>
               </ion-col>
 
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <input [(ngModel)]="cardnumber" color="dark"  type="text" name="cardnumber" placeholder="Card Number" >
-                </ion-row>
-              </ion-col>
             </ion-row>
 
             <ion-row style="margin-top: 5px;">
              
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="4" size-md="4" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="cardnumber" color="dark"  type="text" label=" Card Number :"
                     label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="4" size-md="4" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="openingpoint" color="dark" type="text" label="Opening Point :"
                     label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
                 </ion-row>
 
               </ion-col>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="4" size-md="4" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closingpoint" color="dark"  type="text" label="Closing Point :"
                     label-placement="floating"  [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>

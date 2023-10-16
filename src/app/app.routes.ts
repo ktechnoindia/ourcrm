@@ -273,6 +273,10 @@ export const routes: Routes = [
     path: 'leaddashboard',
     loadComponent: () => import('./leaddashboard/leaddashboard.page').then( m => m.LeaddashboardPage)
   },
+  {
+    path: 'leadedit',
+    loadComponent: () => import('./leadedit/leadedit.page').then( m => m.LeadeditPage)
+  },
 
 
 

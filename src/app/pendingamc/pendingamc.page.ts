@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class PendingamcPage implements OnInit {
-
+  formDate:string='';
+  toDate:string='';
   constructor(private router: Router) { }
 
   ngOnInit() {

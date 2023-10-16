@@ -44,28 +44,25 @@
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <select [(ngModel)]="quoteGroup" name="quoteGroup">
-                  <option value="">--- Select
-                    Quotation Group ---</option>
-                  <option value="2">Nirbahy</option>
-                  <option value="3">Yogesh</option>
+                  <option value="">--Select
+                   Customer Code--</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
                 </select>
               </ion-col>
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <select [(ngModel)]="quateTax" name="quateTax">
-                  <option  value="">--- Select
-                    Tax Group ---</option>
-                  <option value="2">Nirbahy</option>
-                  <option value="3">Yogesh</option>
+                  <option  value="">--Select Customer Name--</option>
+                  <option value="1">Nirbahy</option>
+                  <option value="2">Yogesh</option>
                 </select>
               </ion-col>
 
             </ion-row>
 
-            <ion-row>
+            <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
-                  <ion-row >
-                    <div class="scroll-container">
                       <table>
                         <tr>
                           <th>Sr.No.</th>
@@ -83,7 +80,7 @@
                         <tr>
                           <td>1</td>
                           <td>
-                            <input style="width: 50px;" class="table_input" type="number">
+                            <input style="width: 50px;" class="table_input" type="text">
                           </td>
                           <td>
                             <input style="width: 50px;" class="table_input" type="number">
@@ -127,8 +124,6 @@
                           </td>
                         </tr>
                       </table>
-                    </div>
-                  </ion-row>
               </div>
             </ion-row>
             <ion-row>
@@ -136,7 +131,7 @@
               </ion-col>
               <ion-col class="row" size-lg="4" size-md="12" size-sm="12" size="12">
                 <div class="output" >
-                  <table  style="border: none;">
+                  <table  style="border: none;margin-left: 25px;">
                     <tr>
                       <th colspan="13">Discount Amount :</th>
                       <td colspan="2"> <input class="table_input" type="text">

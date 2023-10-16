@@ -13,9 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AddLeadPage {
-  router: any;
 
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit() {
     // Page initialization code goes here
@@ -26,7 +25,3 @@ export class AddLeadPage {
 
   
 }
-
-
-
-

@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Component({
-  selector: 'app-ledger',
-  templateUrl: './ledger.page.html',
-  styleUrls: ['./ledger.page.scss'],
+  selector: 'app-leadedit',
+  templateUrl: './leadedit.page.html',
+  styleUrls: ['./leadedit.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class LedgerPage implements OnInit {
-
+export class LeadeditPage implements OnInit {
   constructor(private router:Router) { }
 
 

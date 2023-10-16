@@ -1,378 +1,392 @@
 <ion-content [fullscreen]="true">
-<ion-content >
-  <div class="Customer">
-    <ion-card>
-      <ion-card-content>
-        <div class="dekstop-menu">
-          <ion-card-header >
-            <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">Add Item</ion-title>
-            </ion-row>
-          </ion-card-header>
-        </div>
-        <ion-grid>
-          <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
-            <ion-row>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="itemDesc" name="itemDesc" type="text"
-                    label=" Item Description :" label-placement="floating" fill="outline" >
-                </ion-input>
-                </ion-row>
+  <ion-content>
+    <div class="Customer">
+      <ion-card>
+        <ion-card-content>
+          <div class="dekstop-menu">
+            <ion-card-header>
+              <ion-row lines="none">
+                <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+                <ion-title style="text-align: center;">Add Item</ion-title>
+              </ion-row>
+            </ion-card-header>
+          </div>
+          <ion-grid>
+            <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input color="dark" [(ngModel)]="itemDesc" name="itemDesc" type="text"
+                      label=" Item Description :" label-placement="floating" fill="outline">
+                    </ion-input>
+                  </ion-row>
 
-              </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="itemCode" [ngModelOptions]="{standalone: true}"
-                    name="itemCode" type="text" label=" Item code :" label-placement="floating"
-                    fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
+                </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input color="dark" [(ngModel)]="itemCode" [ngModelOptions]="{standalone: true}" name="itemCode"
+                      type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
 
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectHSN" [ngModelOptions]="{standalone: true}">
-                  <option>--Select HSN Code--</option>
-                  <option value="daimond">Daimond</option>
-                  <option value="star">Star</option>
-                  <option value="silver">Silver</option>
-                </select>
-              </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectHSN" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select HSN Code--</option>
+                    <option value="">123</option>
+                    <option value="">456</option>
+                    <option value="">789</option>
+                  </select>
+                </ion-col>
 
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectStock" [ngModelOptions]="{standalone: true}">
-                  <option>--Select Stock Type--</option>
-                  <option value="">Stock</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectStock" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select Stock Type--</option>
+                    <option value="">Raw Material</option>
+                    <option value="">Finish Goods</option>
+                    <option value="">Spare Parts</option>
+                    <option value="">Perishable Goods</option>
+                    <option value="">Digital Products</option>
+                  </select>
+                </ion-col>
 
-            </ion-row>
+              </ion-row>
 
-            <ion-row>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectPrimaryUnit" [ngModelOptions]="{standalone: true}">
-                  <option value="Stock type">--Select Primary Unit--</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-col>
+              <ion-row>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectPrimaryUnit" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select Primary Unit--</option>
+                    <option value="">Kilogram(kg)</option>
+                    <option value="">Gram(gm)</option>
+                    <option value="">Liter(lit)</option>
+                    <option value="">Meter(mtr)</option>
+                    <option value="">Kilogram(kg)</option>
+                    <option value="">Square Meter (m²)</option>
+                    <option value="">Cubic Meter (m³)</option>
+                    <option value="">Piece (Pcs.)</option>
+                    <option value="">Roll (RL)</option>
+                    <option value="">Set (ST)</option>
+                    <option value="">Pair (PR)</option>
+                    <option value="">Dozen (DZ)</option>
+                    <option value="">Each (EA)</option>
+                    <option value="">Box (BX)</option>
+                    <option value="">Case (CS)</option>
+                    <option value="">Hour (HR)</option>
 
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectAltUnit" [ngModelOptions]="{standalone: true}">
-                  <option value="Stock type">--Select Alternate Unit--</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectItemGroup" [ngModelOptions]="{standalone: true}">
-                  <option value="Stock type">--Setect Item Group--</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
-                </select>
-              </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectGst" [ngModelOptions]="{standalone: true}">
-                  <option value="Stock type">--Select GST Rate--</option>
-                  <option value="1">3%</option>
-                  <option value="1">5%</option>
-                  <option value="1">8%</option>
-                  <option value="1">10%</option>
-                  <option value="1">15%</option>
-                  <option value="1">18%</option>
-                </select>
-              </ion-col>
-            </ion-row>
+                  </select>
+                </ion-col>
 
-            <ion-row>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="openingbalance" [ngModelOptions]="{standalone: true}"
-                    name="openingbalance" type="text" label=" Opening Balance :" label-placement="floating"
-                    fill="outline"></ion-input>
-                </ion-row>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectAltUnit" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select Alternate Unit--</option>
+                    <option value="">Roll (RL)</option>
+                    <option value="">Bundle (BDL)</option>
+                    <option value="">Carton (CTN)</option>
+                    <option value="">Pack (PK)</option>
+                    <option value="">Pair (PR)</option>
+                    <option value="">Dozen (DZ)</option>
+                    <option value="">Case (CS)</option>
+                    <option value="">Bundle of 10 (BDL10)</option>
+                    <option value="">Square Feet (ft²)</option>
+                    <option value="">Cubic Feet (ft³)</option>
+                    <option value="">Hour (HR)</option>
+                    <option value="">Pallet (PLT)</option>
+                    <option value="">Custom Units</option>
 
-              </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="closingbalance" [ngModelOptions]="{standalone: true}"
-                    name="closingbalance" type="text" label=" Closing Balance :" label-placement="floating"
-                    fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
+                  </select>
+                </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectItemGroup" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Setect Item Group--</option>
+                    <option value="">Electronics</option>
+                    <option value="">Clothing</option>
+                    <option value="">Footwear</option>
+                    <option value="">Furniture</option>
+                    <option value="">Appliances</option>
+                    <option value="">Food and Groceries</option>
+                    <option value="">Hardware</option>
+                    <option value="">Books</option>
+                    <option value="">Toys and Games</option>
+                    <option value="">Health and Beauty</option>
+                    <option value="">Automotive</option>
+                    <option value="">Sports and Outdoors</option>
+                    <option value="">Jewelry</option>
+                    <option value="">Electrical Supplies</option>
+                    <option value="">Stationery and Office Supplies</option>
+                    <option value="">Pet Supplies</option>
+                    <option value="">Art and Craft</option>
+                    <option value="">Art and Craft</option>
+                    <option value="">Medical Supplies</option>
+                    <option value="">Custom Groups</option>
 
-            </ion-row>
-            <ion-row style=" border: 2px solid goldenrod; margin-top: 20px;">
+                  </select>
+                </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectGst" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select GST Rate--</option>
+                    <option value="1">3%</option>
+                    <option value="2">5%</option>
+                    <option value="3">12%</option>
+                    <option value="4">18%</option>
+                    <option value="5">28%</option>
+                  </select>
+                </ion-col>
+              </ion-row>
 
-              <ion-segment style="border-bottom: 2px solid goldenrod;" [(ngModel)]="selectTabs" name="selectTabs">
-                <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;"
-                  value="General">
-                  <ion-label>Attribute</ion-label>
-                </ion-segment-button>
-                <ion-segment-button style="border-right: 2px solid goldenrod;background: lightgreen; color: #fff;"
-                  value="Image">
-                  <ion-label>Image</ion-label>
-                </ion-segment-button>
-                <ion-segment-button style="border-right: 2px solid goldenrod; background: lightgreen; color: #fff;"
-                  value="Barcode">
-                  <ion-label>Barcode </ion-label>
-                </ion-segment-button>
-                <ion-segment-button value="Other" style="background: lightgreen; color: #fff;">
-                  <ion-label>Other Details</ion-label>
-                </ion-segment-button>
-              </ion-segment>
+              <ion-row>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input color="dark" [(ngModel)]="openingbalance" [ngModelOptions]="{standalone: true}"
+                      name="openingbalance" type="text" label=" Opening Balance :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
 
-              <div style="width: 100%; margin-bottom: 30px;" *ngIf="selectTabs == 'General'">
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="attr1" [ngModelOptions]="{standalone: true}" name="attr1"
-                        type="text" label=" Attribute 1 :" label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
+                </ion-col>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input color="dark" [(ngModel)]="closingbalance" [ngModelOptions]="{standalone: true}"
+                      name="closingbalance" type="text" label=" Closing Balance :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="attr2" [ngModelOptions]="{standalone: true}" name="attr2"
-                        type="text" label=" Attribute 2 :" label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
+              </ion-row>
+              <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
 
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="attr3" [ngModelOptions]="{standalone: true}" name="attr3"
-                        type="text" label=" Attribute 3 :" label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="attr4" [ngModelOptions]="{standalone: true}" name="attr4"
-                        type="text" label=" Attribute 4 :" label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                </ion-row>
-              </div>
+                <ion-segment style="border-bottom: 2px solid lightblue;" [(ngModel)]="selectTabs" name="selectTabs">
+                  <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
+                    value="General">
+                    <ion-label>Attribute</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
+                    value="Image">
+                    <ion-label>Image</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button style="border-right: 2px solid lightblue; background: #fff; color: #000000;"
+                    value="Barcode">
+                    <ion-label>Barcode </ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="Other"
+                    style="border-right: 2px solid lightblue; background: #fff; color: #000000;">
+                    <ion-label>Other Details</ion-label>
+                  </ion-segment-button>
+                </ion-segment>
 
-              <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
+                <div style="width: 100%; margin-bottom: 30px;" *ngIf="selectTabs == 'General'">
+                  <ion-row>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr1" [ngModelOptions]="{standalone: true}" name="attr1"
+                          type="text" label=" Attribute 1 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
 
-                <ion-row>
-                  <div class="images">
-                    <input class="file" type="file" (change)="onFileSelected($event)" accept="image/*" />
-                    <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
-                  </div>
-                </ion-row>
-              </div>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr2" [ngModelOptions]="{standalone: true}" name="attr2"
+                          type="text" label=" Attribute 2 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
 
-              <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Barcode'">
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="eanCode" [ngModelOptions]="{standalone: true}"
-                        name="eanCode" type="text" label=" EAN Code :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr3" [ngModelOptions]="{standalone: true}" name="attr3"
+                          type="text" label=" Attribute 3 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr4" [ngModelOptions]="{standalone: true}" name="attr4"
+                          type="text" label=" Attribute 4 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr5" [ngModelOptions]="{standalone: true}" name="attr5"
+                          type="text" label=" Attribute 5 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr6" [ngModelOptions]="{standalone: true}" name="attr6"
+                          type="text" label=" Attribute 6 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr7" [ngModelOptions]="{standalone: true}" name="attr7"
+                          type="text" label=" Attribute 7 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="attr8" [ngModelOptions]="{standalone: true}" name="attr8"
+                          type="text" label=" Attribute 8 :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </div>
 
-                  </ion-col>
-                </ion-row>
-              </div>
+                <div style="width: 100%;height: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
 
-              <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <div class="images">
+                        <input class="file" type="file" (change)="onFileSelected($event)" accept="image/*" />
+                        <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
+                      </div>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6" style="border: solid 1px lightblue;">
+                      <div></div>
+                    </ion-col>
+                  </ion-row>
+                </div>
 
-                <h1 style="text-align: center;">--Quantity Levels--</h1>
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="minimum" [ngModelOptions]="{standalone: true}"
-                        name="minimum" type="text" label="Minimum :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                </ion-row>
+                <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Barcode'">
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="eanCode" [ngModelOptions]="{standalone: true}"
+                          name="eanCode" type="text" label=" EAN Code :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
 
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="reorder" [ngModelOptions]="{standalone: true}"
-                        name="reorder" type="text" label="Re-order :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </div>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-textarea color="dark" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
-                        name="description" type="text" label=" Description :" label-placement="floating"
-                        fill="outline"></ion-textarea>
-                    </ion-row>
+                <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
+                  <ion-row class="headinglabel">
+                    <ion-label>Quantity Levels</ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="minimum" [ngModelOptions]="{standalone: true}"
+                          name="minimum" type="text" label="Minimum :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="reorder" [ngModelOptions]="{standalone: true}"
+                          name="reorder" type="text" label="Re-order :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
 
-                  </ion-col>
-                </ion-row>
-                <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+                    </ion-col>
+                  </ion-row>
 
-                <h1>Dimension & Weight</h1>
+                  <ion-row>
 
-                <ion-row>
-                  <div class="images">
-                    <input class="file" type="file" (change)="onFileSelected($event)" accept="image/*" />
-                    <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
-                  </div>
-                </ion-row>
-              </div>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-textarea color="dark" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
+                          name="description" type="text" label=" Description :" label-placement="floating"
+                          fill="outline"></ion-textarea>
+                      </ion-row>
 
-              <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Barcode'">
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="eanCode" [ngModelOptions]="{standalone: true}"
-                        name="eanCode" type="text" label=" EAN Code :" label-placement="floating"></ion-input>
-                    </ion-row>
+                    </ion-col>
+                  </ion-row>
 
-                  </ion-col>
-                </ion-row>
-              </div>
+                  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
 
-              <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
-                <ion-row class="headinglabel">
-                  <ion-label style="text-align: center;">--Quantity Levels--</ion-label>
-                </ion-row>
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="minimum" [ngModelOptions]="{standalone: true}"
-                        name="minimum" type="text" label="Minimum :" label-placement="floating">
-                      </ion-input>
-                    </ion-row>
+                  <ion-row class="headinglabel">
+                    <ion-label>Dimension & Weight</ion-label>
+                  </ion-row>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="reorder" [ngModelOptions]="{standalone: true}"
-                        name="reorder" type="text" label="Re-order :" label-placement="floating">
-                      </ion-input>
-                    </ion-row>
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="dimension" [ngModelOptions]="{standalone: true}"
+                          type="text" name="dimension" label="Dimension :" label-placement="floating"
+                          fill="outline"></ion-input>
 
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-textarea style="min-height: 35px;" color="dark" [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
-                        name="description" type="text" label=" Description :" label-placement="floating"></ion-textarea>
-                    </ion-row>
+                      </ion-row>
 
-                  </ion-col>
-                </ion-row>
-                <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="weight" [ngModelOptions]="{standalone: true}" name="weight"
+                          type="text" label="Weight :" label-placement="floating" fill="outline"></ion-input>
 
-                <ion-row class="headinglabel">
-                  <ion-label>Dimension & Weight</ion-label>
-                </ion-row>
+                      </ion-row>
 
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="dimension" [ngModelOptions]="{standalone: true}"
-                        type="text" name="dimension" label="Dimension :" label-placement="floating"
-                        fill="outline"></ion-input>
-                     
-                    </ion-row>
+                    </ion-col>
+                  </ion-row>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="weight" [ngModelOptions]="{standalone: true}"
-                        name="weight" type="text" label="Weight :" label-placement="floating"
-                        fill="outline"></ion-input>
-                     
-                    </ion-row>
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="brandname" [ngModelOptions]="{standalone: true}"
+                          name="brandname" type="text" label="Brand Name :" label-placement="floating"
+                          fill="outline"></ion-input>
 
-                  </ion-col>
-                </ion-row>
+                      </ion-row>
 
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="brandname" [ngModelOptions]="{standalone: true}"
-                        name="brandname" type="text" label="Brand Name :" label-placement="floating"
-                        fill="outline"></ion-input>
-                     
-                    </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="modelname" [ngModelOptions]="{standalone: true}"
+                          name="modelname" type="text" label=" Model name :" label-placement="floating"
+                          fill="outline"></ion-input>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="modelname" [ngModelOptions]="{standalone: true}"
-                        name="modelname" type="text" label=" Model name :" label-placement="floating"
-                        fill="outline"></ion-input>
-                     
-                    </ion-row>
-                  </ion-col>
-                </ion-row>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
 
-                <ion-row>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <select [(ngModel)]="category">
-                      <option value="Category">--Select Category--</option>
-                      <option value="">Non Stock(Asset)</option>
-                      <option value="">Non Stock(Expense)</option>
-                      <option value="">Service</option>
-                      <option value="">Capital</option>
-                    </select>
+                  <ion-row>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <select [(ngModel)]="category">
+                        <option value="Category">--Select Category--</option>
+                        <option value="">Non Stock(Asset)</option>
+                        <option value="">Non Stock(Expense)</option>
+                        <option value="">Service</option>
+                        <option value="">Capital</option>
+                      </select>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="weightunit" name="weightunit" type="text"
-                        label="Unit of Weigth :" label-placement="floating" fill="outline"></ion-input>
-                     
-                    </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="weightunit" name="weightunit" type="text"
+                          label="Unit of Weigth :" label-placement="floating" fill="outline"></ion-input>
 
-                  </ion-col>
-                </ion-row>
+                      </ion-row>
 
-                <ion-row style="margin-bottom: 20px;">
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="relailprofit" name="relailprofit" type="text"
-                        label="Retailer Profit % :" label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
+                    </ion-col>
+                  </ion-row>
 
-                  </ion-col>
-                  <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input color="dark" [(ngModel)]="delarprofit" name="delarprofit" type="text"
-                        label="Delar Profit % : " label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
+                  <ion-row style="margin-bottom: 20px;">
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="relailprofit" name="relailprofit" type="text"
+                          label="Retailer Profit % :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
 
-                  </ion-col>
-                </ion-row>
-              </div>
-            </ion-row>
+                    </ion-col>
+                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input color="dark" [(ngModel)]="delarprofit" name="delarprofit" type="text"
+                          label="Delar Profit % : " label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
 
-           
-            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-              <ion-button>New</ion-button>
-              <ion-button type="submit">Save</ion-button>
-              <ion-button>Delete</ion-button>
-              <ion-button>Preview</ion-button>
-              <ion-button>Close</ion-button>
-            </ion-row>
-          </form>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-  </div>
-</ion-content>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-row>
+
+
+              <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                <ion-button>New</ion-button>
+                <ion-button type="submit">Save</ion-button>
+                <ion-button>Delete</ion-button>
+                <ion-button>Preview</ion-button>
+                <ion-button>Close</ion-button>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>

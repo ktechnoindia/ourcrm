@@ -15,7 +15,7 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Add Service</ion-title>
@@ -23,43 +23,41 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          
+
           <form #serviceForm="ngForm" (ngSubmit)="onService()">
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="serviceCode" type="text" label=" Service Code :"
-                    label-placement="floating"[ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline"
+                    color="dark"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select class="select-width" [(ngModel)]="selectOption1" [ngModelOptions]="{standalone: true}" >
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select
-                    Service Type--</option>
-                  <option value="">Stock</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
+                <select class="select-width" [(ngModel)]="selectOption1" [ngModelOptions]="{standalone: true}">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
+                    --Select Service Type--</option>
+                  <option value="1">Service Type 1</option>
+                  <option value="2">Service Type 2</option>
+                  <option value="3">Service Type 3</option>
+                  <option value="4">Service Type 4</option>
                 </select>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select class="select-width" [(ngModel)]="selectOption2" [ngModelOptions]="{standalone: true}" >
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select
-                    Stock Type--</option>
-                  <option value="">Stock</option>
-                  <option value="">Non Stock(Asset)</option>
-                  <option value="">Non Stock(Expense)</option>
-                  <option value="">Service</option>
-                  <option value="">Capital</option>
+                <select class="select-width" [(ngModel)]="selectOption2" [ngModelOptions]="{standalone: true}">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
+                    --Select Stock Type--</option>
+                  <option value="1">Stock Type 1</option>
+                  <option value="2">Stock Type 2</option>
+                  <option value="3">Stock Type 3</option>
                 </select>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select class="select-width" [(ngModel)]="selectOption3" [ngModelOptions]="{standalone: true}"   >
-                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">--Select
-                    SAC Code--</option>
+                <select class="select-width" [(ngModel)]="selectOption3" [ngModelOptions]="{standalone: true}">
+                  <option style="background-color: rgb(255, 255, 255);font-weight: bold; font-size: 16px;" value="">
+                    --Select SAC Code--</option>
                   <option value="">121</option>
                   <option value="">2324232</option>
                   <option value="">21322</option>
@@ -72,8 +70,9 @@
             <ion-row>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea color="dark" [(ngModel)]="itemDesc"  type="text" label=" Item Description :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-textarea>
+                  <ion-textarea color="dark" [(ngModel)]="itemDesc" type="text" label=" Item Description :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline"
+                    color="dark"></ion-textarea>
                 </ion-row>
               </ion-col>
             </ion-row>

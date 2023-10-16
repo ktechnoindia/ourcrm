@@ -29,6 +29,10 @@ export class AddItemPage implements OnInit {
   attr2: string = '';
   attr3: string = '';
   attr4: string = '';
+  attr5: string = '';
+  attr6: string = '';
+  attr7: string = '';
+  attr8: string = '';
   eanCode: number | null = null;
   minimum: number | null = null;
   reorder: string = '';
