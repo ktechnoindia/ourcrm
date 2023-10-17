@@ -28,21 +28,20 @@
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="voucherNumber" name="voucherNumber" type="text"
+                  <ion-input  [(ngModel)]="voucherNumber" name="voucherNumber" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="warning" [(ngModel)]="date" name="date" type="date" label=" Date :"
+                  <ion-input [(ngModel)]="date" name="date" type="date" label=" Date :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="supplier" name="supplier">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="">
-                    ---Select Suppliers ---</option>
+                  <option  value="">---Select Suppliers ---</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
@@ -68,7 +67,7 @@
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea color="warning" [(ngModel)]="remark" name="remark" type="text" label="Remark :"
+                  <ion-textarea  [(ngModel)]="remark" name="remark" type="text" label="Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>

@@ -29,15 +29,15 @@
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="dark" class="sign_input" type="text" label="Contract ID : "
+                  <ion-input color="dark" type="text" label="Contract ID : "
                     label-placement="floating" fill="outline">
                   </ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width">
-                  <option style="background-color: rgb(0, 0, 0);font-weight: bold; font-size: 16px;" value="">Customer
-                    Name:</option>
+                <select color="dark" >
+                  <option  value="">--- Customer
+                    Name ---</option>
                   <option value="">Deepak</option>
                   <option value="">Ravi</option>
                   <option value="">Nirbhay</option>
@@ -47,8 +47,8 @@
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="startdate" name="startdate" type="date" label="Start Date :"
-                    label-placement="floating" fill="outline" class="sign_input"></ion-input>
+                  <ion-input  [(ngModel)]="startdate" name="startdate" type="date" label="Start Date :"
+                    label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
@@ -62,17 +62,17 @@
 
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="contractduration" name="contractduration">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Contract
-                  </option>
+                <select color="dark" [(ngModel)]="contractduration" name="contractduration">
+                  <option value="">--- Contract
+                  Duration ---</option>
                   <option value="">Monthly</option>
                   <option value="">Yearly</option>
                   <option value="">Quartterly</option>
                 </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="cover" name="cover">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">Covered
+                <select color="dark" [(ngModel)]="cover" name="cover">
+                  <option  value="">Covered
                   </option>
                       <option value="">Billing</option>
                       <option value="">Accounting</option>
@@ -80,8 +80,8 @@
                     </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="list" name="list">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">List of
+                <select color="dark" [(ngModel)]="list" name="list">
+                  <option value="">List of
                   </option>
                       <option value="">Billing</option>
                       <option value="">Accounting</option>
@@ -100,19 +100,19 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="contractvalue" name="payterms" type="text"
-                    label=" Payment Terms :" label-placement="floating" fill="outline" class="sign_input"></ion-input>
+                    label=" Payment Terms :" label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="servicelevel" name="servicelevel" type="text"
-                    label="Service Level Agreements (SLAs) :" label-placement="floating" fill="outline" class="sign_input"></ion-input>
+                    label="Service Level Agreements (SLAs) :" label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="listsla" name="listsla">
-                  <option style="background-color: black;font-weight: bold; font-size: 16px;" value="India">List of SLAs
+                <select color="dark" [(ngModel)]="listsla" name="listsla">
+                  <option  value="">List of SLAs
                       </option>
                       <option value="">Billing</option>
                       <option value="">Accounting</option>

@@ -213,7 +213,8 @@ export const routes: Routes = [
   {
     path: 'groupwisereport',
     loadComponent: () => import('./group-wise-report/group-wise-report.page').then(m => m.GroupWiseReportPage)
-  },  {
+  },
+  {
     path: 'editinfo',
     loadComponent: () => import('./editinfo/editinfo.page').then( m => m.EditinfoPage)
   },
@@ -268,15 +269,14 @@ export const routes: Routes = [
   {
     path: 'closecompany',
     loadComponent: () => import('./closecompany/closecompany.page').then( m => m.ClosecompanyPage)
+  },  {
+    path: 'leaddashboard',
+    loadComponent: () => import('./leaddashboard/leaddashboard.page').then( m => m.LeaddashboardPage)
   },
   {
     path: 'leadedit',
     loadComponent: () => import('./leadedit/leadedit.page').then( m => m.LeadeditPage)
   },
-
-
-
-
 
 
 
