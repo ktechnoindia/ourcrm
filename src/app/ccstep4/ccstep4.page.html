@@ -1,0 +1,70 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Create Company</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row class="headinglabel">
+            <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" name="accno" type="text" label="CIF No. :" label-placement="floating"
+                  fill="outline" max-length="20"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" name="ifsc" type="text" label="IFSC Code :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" name="bname" type="text" label="Bank Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" name="branchname" type="text" label="Branch Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input color="dark" name="upiid" type="text" label="UPI ID :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="custom-primary">
+            <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 4</p>
+            <ion-progress-bar value="1.0" buffer="100" style="height: 10px;"></ion-progress-bar>
+            <ion-button type="submit">Create & Next</ion-button>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

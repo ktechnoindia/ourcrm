@@ -881,5 +881,17 @@ ion-textarea[fill="outline"] input:focus {
   .custom .searchbar-clear-icon {
     color: #ffffff;
   }
+
+
+  //progress bar
+  ion-progress-bar::part(track) {
+    background: black;
+  }
   
- 
+  ion-progress-bar::part(progress) {
+    background: skyblue;
+  }
+  
+  ion-progress-bar::part(stream) {
+    background-image: radial-gradient(ellipse at center, #e475f3 0%, #e475f3 30%, transparent 30%);
+  }

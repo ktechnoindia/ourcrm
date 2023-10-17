@@ -1,0 +1,69 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Create Company</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row class="headinglabel">
+            <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+              <select fill="outline" class="select-width">
+                <option selected value=""> --Select Module--</option>
+                <option value="sales">Sales</option>
+                <option value="Purchase">Purchase</option>
+                <option value="Quotation">Quotation</option>
+                <option value="Challan">Challan</option>
+                <option value="LMS">LMS</option>
+                <option value="AMC">AMC</option>
+                <option value="all">All Above</option>
+              </select>
+            </ion-col>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+              <select fill="outline" class="select-width">
+                <option selected value=""> --Select Language--</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Punjabi">Punjabi</option>
+                <option value="Tamil">Tamil</option>
+                <option value="French">French</option>
+              </select>
+            </ion-col>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+              <select fill="outline" class="select-width">
+                <option selected value=""> --Select Currency--</option>
+                <option value="Rupees">Rupees</option>
+                <option value="Doller">Doller</option>
+                <option value="euro">Euro</option>
+               
+              </select>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row class="custom-primary">
+            <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 3</p>
+            <ion-progress-bar value="0.75" buffer=".75" style="height: 10px;"></ion-progress-bar>
+            <ion-button [routerLink]="['/ccstep4']">Create & Next</ion-button>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
