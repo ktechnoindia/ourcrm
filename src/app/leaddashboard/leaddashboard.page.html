@@ -1,23 +1,60 @@
-<ion-header [translucent]="true">
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>leaddashboard</ion-title>
+    <ion-menu-button></ion-menu-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card">
-    <!-- <ion-card-header>
-      <ion-card-subtitle>Simple Column Chart</ion-card-subtitle>
-      <ion-card-title>Population of Largest U.S. Cities</ion-card-title>
-    </ion-card-header> -->
-    <div class="charts">
-      <ion-card>
-        <google-chart [data]="columnChart1"></google-chart>
-      </ion-card>
-      <ion-card>
-        <google-chart [data]="columnChart1"></google-chart>
-      </ion-card>
+  <div class="ion-page charts">
+
+    <ion-card>
+      <google-chart [data]="columnChart1"></google-chart>
+    </ion-card>
+    <ion-card>
+      <google-chart [data]="columnChart1"></google-chart>
+    </ion-card>
+  </div>
+</ion-content> -->
+
+
+
+<ion-content>
+  <div class="deshboard">
+    <ion-searchbar></ion-searchbar>
+    <img src="../../assets/icon/view-sales.png" alt="">
+    <p>ktesdjfsdhfjsdhjfchno@gmail.com</p>
+    <ion-icon name="download"></ion-icon>
+  </div>
+  <div class=" charts">
+
+    <div class="lead_dash">
+      <h2>DashBoard</h2>
+      <a href="">Total Leads</a>
+      <a href=""> Lead Ratios</a>
+      <a href="">Lead Owners</a>
+      <a href="">Conversion Rate</a>
+
     </div>
-   
-  </ion-card>
+    <div class="chart_menu">
+      <div class="chart">
+        <google-chart [data]="columnChart1"></google-chart>
+      </div>
+
+      <div class="chart">
+        <google-chart [data]="pieChart"></google-chart>
+      </div>
+      <div class="chart">
+        <google-chart [data]="columnChart1"></google-chart>
+      </div>
+
+      <div class="chart1">
+        <google-chart [data]="lineChart"></google-chart>
+      </div>
+    </div>
+
+    
+
+  </div>
+
+
 </ion-content>

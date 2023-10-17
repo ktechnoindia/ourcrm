@@ -1,7 +1,4 @@
 
- 
-
-
 <ion-header class="dropdown_menu" >
   <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
     <ion-icon name="menu"></ion-icon>
@@ -54,15 +51,15 @@
             <a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a>
           </div>
         
-        <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
-        <li><a routerLink="/item-master">Item Master</a></li> -->
+        <li><a routerLink="/hsn-manager">HSN Manager</a></li>
+        <li><a routerLink="/item-master">Item Master</a></li> 
       </ul>
     </div>
     
     <div class="dropdown">
-      <button class="dropdown-title">
+      <button class="dropdown-title" [routerLink]="['/leaddashboard']">
         <img src="assets/lms.svg" alt="">
-        <p [routerLink]="['/leaddashboard']">LMS</p>
+        <p >LMS</p>
 
       </button>
       <ul class="dropdown-list">
@@ -180,8 +177,8 @@
             <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
           </ul>
         
-        <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
-        <li><a routerLink="/item-master">Item Master</a></li> -->
+       <li><a routerLink="/hsn-manager">HSN Manager</a></li>
+        <li><a routerLink="/item-master">Item Master</a></li> 
       </ul>
     </div>
     
