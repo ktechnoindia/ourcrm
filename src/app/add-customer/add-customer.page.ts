@@ -54,6 +54,7 @@ export class AddCustomerPage implements OnInit {
   countries: any[] = [];
   menuController: any;
 
+  
   constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) { }
 
   loadCountries() {
@@ -285,6 +286,17 @@ export class AddCustomerPage implements OnInit {
   closeMenu() {
     this.menuController.close(); // Close the menu
   }
-  
+  limitInputLength($event: { target: { value: string | any[]; }; preventDefault: () => void; }, maxLength = 10) {
+    if ($event.target.value.length >= maxLength) {
+      $event.preventDefault();
+      return;
+    }
+  }
+  limitInputLength1($event: { target: { value: string | any[]; }; preventDefault: () => void; }, maxLength = 20) {
+    if ($event.target.value.length >= maxLength) {
+      $event.preventDefault();
+      return;
+    }
+  }
   
 }

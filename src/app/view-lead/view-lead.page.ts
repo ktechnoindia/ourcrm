@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-view-lead',
   templateUrl: './view-lead.page.html',
   styleUrls: ['./view-lead.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink]
 })
 export class ViewLeadPage implements OnInit {
 
