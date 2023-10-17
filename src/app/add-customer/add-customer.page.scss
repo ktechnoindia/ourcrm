@@ -89,3 +89,14 @@ ng-template ion-button {
 .Customer ion-input:focus{
     --border-color: #1a4174;
 }
+
+.select-width{
+    min-height: 35px;
+    width: 100%;
+    text-align: left;
+    border-color: #646464;
+    /* Change the border color when focused */
+    border-radius: 4px;
+    border-width: 1px;
+    box-shadow: 0 0 2px 2px #fffbfb;
+}

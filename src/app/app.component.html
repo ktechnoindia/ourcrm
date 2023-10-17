@@ -1,8 +1,4 @@
-
- 
-
-
-<ion-header class="dropdown_menu" >
+<ion-header class="dropdown_menu">
   <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
     <ion-icon name="menu"></ion-icon>
   </ion-button>
@@ -16,15 +12,15 @@
         <li><a routerLink="/createcompany">Create</a></li>
         <li><a routerLink="/opencompany">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
-        <li (click)="toggleDropdown()">Setting >  </li>
-        <div *ngIf="isDropdownOpen"  class="right-dropdown">
+        <li (click)="toggleDropdown()">Setting > </li>
+        <div *ngIf="isDropdownOpen" class="right-dropdown">
           <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
           <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
           <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
           <a (click)="selectOption('Option 4')" routerLink="/password">Password</a>
         </div>
       </ul>
-      
+
     </div>
     <div class="dropdown">
       <button class="dropdown-title">
@@ -36,29 +32,31 @@
         <li><a routerLink="/add-vendor">Add Supplier</a></li>
         <li><a routerLink="/ledger">Ledger</a></li>
         <li (click)="toggleDropdown2()">Add Item > </li>
-          <div *ngIf="isDropdownOpen2"  class="right-dropdown">
-            <a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a>
-            <a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a>
-            <a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a>
-            <a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a>
-            <a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a>
-            <a (click)="selectOption2('Option 9')" routerLink="/item-master">Item Master</a>
+        <div *ngIf="isDropdownOpen2" class="right-dropdown">
+          <a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a>
+          <a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a>
+          <a (click)="selectOption2('Option 7')" routerLink="/addattribute">Add Attribute</a>
+          <a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a>
+          <a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a>
+          <a (click)="selectOption2('Option 10')" routerLink="/stock">Stock</a>
+          <a (click)="selectOption2('Option 11')" routerLink="/pro-stock">Pro Stock</a>
 
-          </div>
-       
+
+        </div>
+
         <li><a routerLink="/add-service">Add Service</a></li>
         <li><a routerLink="/gst">GST</a></li>
         <li (click)="toggleDropdown3()"> Add Executive ></li>
-          <div *ngIf="isDropdownOpen3"  class="right-dropdown">
-            <a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a>
-            <a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a>
-          </div>
-        
+        <div *ngIf="isDropdownOpen3" class="right-dropdown">
+          <a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a>
+          <a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a>
+        </div>
+
         <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
         <li><a routerLink="/item-master">Item Master</a></li> -->
       </ul>
     </div>
-    
+
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/lms.svg" alt="">
@@ -93,8 +91,8 @@
         <p>Account</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/quote-manager">Add New</a></li>
-        <li><a routerLink="/dc-out">View Account</a></li>
+        <li><a routerLink="/addaccount">Add New</a></li>
+        <li><a routerLink="/accountreport">View Account</a></li>
 
       </ul>
     </div>
@@ -130,7 +128,7 @@
 </ion-header>--> -->
 
 
-<ion-header class="desktop_menu" *ngIf="isMobileMenuOpen" >
+<ion-header class="desktop_menu" *ngIf="isMobileMenuOpen">
 
   <div class="ion-padding " [(ngModel)]="menuType">
     <div class="dropdown">
@@ -143,7 +141,7 @@
         <li><a routerLink="/opencompany">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
         <li (click)="toggleDropdown()">Setting > </li>
-        <div *ngIf="isDropdownOpen"  class="right-dropdown ">
+        <div *ngIf="isDropdownOpen" class="right-dropdown ">
           <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
           <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
           <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
@@ -161,29 +159,29 @@
         <li><a routerLink="/add-vendor">Add Supplier</a></li>
         <li><a routerLink="/ledger">Ledger</a></li>
         <li (click)="toggleDropdown2()">Add Item > </li>
-          <ul *ngIf="isDropdownOpen2"  class="right-dropdown">
-            <li><a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a></li>
-            <li><a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a></li>
-            <li><a (click)="selectOption2('Option 7')"routerLink="/addattribute">Add Attribute</a></li>
-            <li><a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a></li>
-            <li><a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a></li>
-            <li><a (click)="selectOption2('Option 9')" routerLink="/item-master">Item Master</a></li>
+        <ul *ngIf="isDropdownOpen2" class="right-dropdown">
+          <li><a (click)="selectOption2('Option 5')" routerLink="/add-item">Add New Item</a></li>
+          <li><a (click)="selectOption2('Option 6')" routerLink="/addgroup">Add Group</a></li>
+          <li><a (click)="selectOption2('Option 7')" routerLink="/addattribute">Add Attribute</a></li>
+          <li><a (click)="selectOption2('Option 8')" routerLink="/barcode">Barcode</a></li>
+          <li><a (click)="selectOption2('Option 9')" routerLink="/hsn-manager">HSN</a></li>
+          <li><a (click)="selectOption2('Option 10')" routerLink="/stock">Stock</a></li>
+          <li><a (click)="selectOption2('Option 11')" routerLink="/pro-stock">Pro Stock</a></li>
+        </ul>
 
-          </ul>
-       
         <li><a routerLink="/add-service">Add Service</a></li>
         <li><a routerLink="/gst">GST</a></li>
         <li (click)="toggleDropdown3()"> Add Executive ></li>
-          <ul *ngIf="isDropdownOpen3"  class="right-dropdown">
-            <li><a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a></li>
-            <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
-          </ul>
-        
+        <ul *ngIf="isDropdownOpen3" class="right-dropdown">
+          <li><a (click)="selectOption3('Option 10')" routerLink="/add-executive">Add Executive</a></li>
+          <li><a (click)="selectOption3('Option 11')" routerLink="/roleofexicutive">Role OF Executive</a></li>
+        </ul>
+
         <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
         <li><a routerLink="/item-master">Item Master</a></li> -->
       </ul>
     </div>
-    
+
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/lms.svg" alt="">
@@ -217,8 +215,8 @@
         <p>Account</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/quote-manager">Add New</a></li>
-        <li><a routerLink="/dc-out">View Account</a></li>
+        <li><a routerLink="/addaccount">Add New</a></li>
+        <li><a routerLink="/accountreport">View Account</a></li>
 
       </ul>
     </div>

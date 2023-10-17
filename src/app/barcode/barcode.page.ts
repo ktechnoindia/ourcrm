@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-barcode',
@@ -11,10 +12,14 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class BarcodePage implements OnInit {
+  constructor(private router:Router) { }
 
-  constructor() { }
 
   ngOnInit() {
+    // Page initialization code goes here
+  }
+  goBack() {
+    this.router.navigate(['/master']); 
   }
 
 }

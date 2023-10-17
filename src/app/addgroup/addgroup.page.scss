@@ -1,0 +1,40 @@
+
+
+.Customer ion-input {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
+}
+.Customer ion-textarea {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    // background: skyblue;
+
+}
+
+.Customer ion-select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
+}
+
+.Customer select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    //border-color: goldenrod;
+    width: 100%;
+    text-align: left
+}
+
+ng-template ion-button{
+    color: goldenrod;
+}
