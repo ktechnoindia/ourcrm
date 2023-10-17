@@ -334,7 +334,7 @@ ion-select::part(icon) {
 }
 
 .dropdown-list li:hover {
-  background-color: #b8b8b8;
+  background-color:  rgb(30, 19, 100);;
   width: 100%;
 }
 .dropdown{
@@ -361,8 +361,9 @@ width: 160px;
 }
 .dropdown-list li{
   flex-wrap: nowrap;
-  background-color: grey;
+  background-color: darkslateblue;
   color: #fff;
+  text-decoration: none;
 }
 .right-dropdown{
    width: 100%;
