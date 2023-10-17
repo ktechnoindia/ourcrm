@@ -106,15 +106,15 @@
            
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-                <select [(ngModel)]="selectedOption" name="country" value="">
-                  <option *ngFor="let country of countries" [value]="country.userId">
+                <select [(ngModel)]="selectedOption" name="country" value="" label-placement="floating" fill="outline">
+                  <option *ngFor="let country of countries" [value]="country.userId" >
                     {{ country.userId }}
                   </option>
                 </select>
               </ion-col>
               
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select fill="outline" class="select-width" [(ngModel)]="selectedOption"
+                <select fill="outline" class="select-width" [(ngModel)]="selectedOption" label-placement="floating"
                   [ngModelOptions]="{standalone: true}">
                   <option selected 
                     value="">--Select State--</option>
@@ -157,7 +157,8 @@
 
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select fill="outline" class="select-width" [(ngModel)]="selectedOption"
+                
+                <select class="select-width" [(ngModel)]="selectedOption" label-placement="floating" fill="outline"
                   [ngModelOptions]="{standalone: true}">
                   <option selected 
                     value=""> --Select City--</option>

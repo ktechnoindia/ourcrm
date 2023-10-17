@@ -17,7 +17,7 @@ export class ItemMasterPage implements OnInit {
   ngOnInit() {
   }
   goBack(){
-    this.router.navigate(["/master"])
+    this.router.navigate(["/item-master"])
   }
 
 }

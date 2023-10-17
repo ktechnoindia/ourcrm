@@ -1,13 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>opencompany</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">opencompany</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Open Company</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-searchbar></ion-searchbar>
+          </ion-row>
+<ion-row>
+  <div style="width: 100%;overflow-x:auto;">
+    <table style="width: 100%;">
+      <tr>
+        <th>Company Name</th>
+        <th>Company Type</th>
+        <th>Location</th>
+        <th>Contact Info.</th>
+        <th>Key Contacts</th>
+        <th>Industry</th>
+        <th>Company Description</th>
+        <th>Products / Services</th>
+        <th>Financial Info.</th>
+        <th>Customer Status</th>
+        <th>Lead Source</th>
+        <th>Social Media Link</th>
+        <th>Action</th>
+      </tr>
+    </table>
+  </div>
+</ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

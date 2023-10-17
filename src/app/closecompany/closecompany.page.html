@@ -1,13 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>closecompany</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Close Company</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          
+          <ion-row>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="companyname" type="text" label=" Company Name :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="companytype" type="text" label="Company Type:" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="companysize" type="text" label="Company Size:" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-textarea color="dark" name="companysize" type="text" label="Reason Of Closing the Company:" label-placement="floating"
+            fill="outline"></ion-textarea>
+          </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">closecompany</ion-title>
-    </ion-toolbar>
-  </ion-header>
+         
+
+
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
