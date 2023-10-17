@@ -325,16 +325,18 @@ ion-select::part(icon) {
   border-bottom: 1px solid #050505;
   color: #000;
   height: 100%;
+  background: skyblue;
+
 }
 
 .dropdown-list a {
   text-decoration: none;
-  color: #ffffff;
+  color: #000000;
 
 }
 
 .dropdown-list li:hover {
-  background-color: #b8b8b8;
+  background: skyblue;
   width: 100%;
 }
 .dropdown{
@@ -358,10 +360,12 @@ ion-select::part(icon) {
 }
 .dropdown-list {
 width: 160px;
+background: skyblue;
+
 }
 .dropdown-list li{
   flex-wrap: nowrap;
-  background-color: grey;
+  background: skyblue;
   color: #fff;
 }
 .right-dropdown{
@@ -372,12 +376,12 @@ width: 160px;
    flex-direction: column;
 }
 .right-dropdown a{
-  background-color: rgb(0, 0, 0);
- color: white;
+  background: rgb(198, 239, 255);
+ color: rgb(0, 0, 0);
   text-decoration: none;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(0, 0, 0);
   padding: 5px;
 }
 .drop_down{
