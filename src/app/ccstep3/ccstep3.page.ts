@@ -7,13 +7,14 @@ import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-createcompany',
-  templateUrl: './createcompany.page.html',
-  styleUrls: ['./createcompany.page.scss'],
+  selector: 'app-ccstep3',
+  templateUrl: './ccstep3.page.html',
+  styleUrls: ['./ccstep3.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,RouterLink,RouterModule]
 })
-export class CreatecompanyPage implements OnInit {
+export class Ccstep3Page implements OnInit {
+
   constructor(private router:Router) { }
 
 
@@ -21,7 +22,7 @@ export class CreatecompanyPage implements OnInit {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/ccstep2']); 
   }
 
 }

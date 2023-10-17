@@ -11,61 +11,36 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <ion-row class="headinglabel">
+            <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+          </ion-row>
           <ion-row>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
               <ion-row>
                 <ion-input color="dark" name="companyname" type="text" label=" Company Name :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="dark" name="companytype" type="text" label="Company Type:" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-row>
-                <ion-input color="dark" name="companysize" type="text" label="Company Size:" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row class="headinglabel">
-            <ion-label style="font-size: 18px;">Contact Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
-            "></span>
-          </ion-row>
-
-          <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input type="number" label=" Whatsapp Number :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" name="gstin" type="text" label="Company GSTIN :" label-placement="floating"
+                  fill="outline" max-length="15"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
           <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Address OD Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-label style="font-size: 18px; font-weight: bold;">Address Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
           </ion-row>
+
 
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
               <select name="country" value="">
                 <option value="">
-                  Select Country
+                 --Select Country--
                 </option>
                 <option value="">India</option>
                 <option value="">USA</option>
@@ -116,7 +91,7 @@
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
-                <option selected value=""> --Select City--</option>
+                <option selected value=""> --Select District--</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Delhi">Delhi</option>
                 <option value="Bangalore">Bangalore</option>
@@ -137,19 +112,37 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+            <ion-col size="12">
               <ion-row>
                 <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
+          </ion-row>
+          <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="text" label=" Industry  :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input type="number" label=" Whatsapp Number :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
 
-
+          <ion-row class="custom-primary">
+            <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 1</p>
+            <ion-progress-bar value="0.25" buffer=".25" style="height: 10px;"></ion-progress-bar>
+            <ion-button [routerLink]="['/ccstep2']">Create & Next</ion-button>
+          </ion-row>
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
