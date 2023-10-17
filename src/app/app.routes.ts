@@ -289,6 +289,10 @@ export const routes: Routes = [
     path: 'ccstep4',
     loadComponent: () => import('./ccstep4/ccstep4.page').then( m => m.Ccstep4Page)
   },
+  {
+    path: 'quotedashboard',
+    loadComponent: () => import('./quotedashboard/quotedashboard.page').then( m => m.QuotedashboardPage)
+  },
 
 
 
