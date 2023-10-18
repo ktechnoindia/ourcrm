@@ -27,11 +27,10 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="role" [ngModelOptions]="{standalone: true}">
-                  <option value="">--Select Role--
+                  <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypesid" >
+                    {{ roletypes.roletypename }}
                   </option>
-                  <option value="1">Sales Manager</option>
-                  <option value="1">Sale Exicutive</option>
-                  <option value="1">Developer</option>
+                
                 </select>
               </ion-col>
 
