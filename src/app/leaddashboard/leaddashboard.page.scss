@@ -1,124 +1,187 @@
-.charts {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    flex-wrap: wrap;
-    background-image: linear-gradient(to right, #00b4db, #24a6d1);
+.container_fluid{
     width: 100%;
-    height: 81.50%;
-}
-
-.chart {
-    margin: 20px;
-    background-color: white;
-}
-
-.lead_dash {
-    width: 20%;
-    background-color: white;
-    height: 600px;
-    margin-top: -70px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    background-image: linear-gradient(to right, #00b4db, #5abada);
-    padding: 10px;
-    flex-wrap: nowrap;
-}
-
-.lead_dash a {
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border: 1px solid white;
-    border-radius: 20px;
-    color: #fff;
-
-}
-
-.lead_dash a:hover {
-    background-color:white;
-    border-radius: 20px;
-   color: #00b4db;
-}
-
-.lead_dash h2 {
-    background-image: linear-gradient(to right, #00b4db, #15aadb);
-    width: 100%;
-    color: white;
-    text-align: center;
-    padding: 14px 10px 10px 10px;
-    border-bottom:1px solid white ;
-}
-
-.chart_menu {
-    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    margin-top: 100px;
+  
 }
+ion-content {
+    --ion-background-color: lightblue; /* Replace with your desired background color */
+  }
 
-.chart {
-    height: 200px;
-    width: 300px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+.table-container {
+    width: 100%; /* Set the width of the container */
+    height: 400px; /* Set the height of the container */
+    overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
+    overflow-y: scroll;
     padding: 20px;
-}
-
-.chart1{
-    height: 250px;
-    width: 50%;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: white;
     margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px; /* Enable vertical scrollbar when content overflows */
+    background-color: white;
+  }
+
+  /* Style the table inside the container */
+  table {
+    width: 1200px; 
+    padding: 20px;
+    border: none;
+  }
+
+  tr{
+    border: none;
+  }
+  th{
+    border: none;
+    width: 300px;
+    border-top: 1px solid rgb(199, 191, 191);
+    // border-bottom: 1px solid rgb(199, 191, 191);
+  }
+  td{
+    border: none;
+    width: 300px;
+    border-bottom: 1px solid rgb(199, 191, 191);
+    color: grey;
+    padding: 5px;
+    font-size: 15px;
+  }
+a{
+    text-decoration: none;
+    color: grey;
+}
+tr:hover{
+   background-color: rgb(224, 215, 215);
+}
+tr a:hover{
+    color: blue;
 }
 
-.deshboard {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    width: 86%;
-    height: 50px;
-    margin-left: 195px;
-    background-image: linear-gradient(to right, #83dcf0, #4acffc);
-    margin-top: 70px;
-}
 
-.deshboard img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
 
-.deshboard p {
-    color: white;
-    font-size: 14px;
-    margin-top: 20px;
-    margin-right: 50px;
-}
 
-ion-searchbar{
-    width: 60%;
-    max-height: 15px;
-}
 
-ion-icon{
-    color: white;
-    margin-right: 30px;
-    font-size: 25px;
-    border-bottom: 2px solid white;
-}
+// .charts {
+//     display: flex;
+//     justify-content: start;
+//     align-items: start;
+//     flex-wrap: wrap;
+//     background-image: linear-gradient(to right, #00b4db, #24a6d1);
+//     width: 100%;
+//     height: 81.50%;
+// }
+
+// .chart {
+//     margin: 20px;
+//     background-color: white;
+// }
+
+// .lead_dash {
+//     width: 20%;
+//     background-color: white;
+//     height: 600px;
+//     margin-top: -70px;
+//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+//     display: flex;
+//     justify-content: start;
+//     align-items: center;
+//     flex-direction: column;
+//     background-image: linear-gradient(to right, #00b4db, #5abada);
+//     padding: 10px;
+//     flex-wrap: nowrap;
+// }
+
+// .lead_dash a {
+//     text-align: center;
+//     text-decoration: none;
+//     font-size: 18px;
+//     padding: 10px;
+//     margin: 5px 0;
+//     width: 100%;
+//     border: 1px solid white;
+//     border-radius: 20px;
+//     color: #fff;
+
+// }
+
+// .lead_dash a:hover {
+//     background-color:white;
+//     border-radius: 20px;
+//    color: #00b4db;
+// }
+
+// .lead_dash h2 {
+//     background-image: linear-gradient(to right, #00b4db, #15aadb);
+//     width: 100%;
+//     color: white;
+//     text-align: center;
+//     padding: 14px 10px 10px 10px;
+//     border-bottom:1px solid white ;
+// }
+
+// .chart_menu {
+//     width: 80%;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-wrap: wrap;
+// }
+
+// .chart {
+//     height: 200px;
+//     width: 300px;
+//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+//     border-radius: 10px;
+//     padding: 20px;
+// }
+
+// .chart1{
+//     height: 250px;
+//     width: 50%;
+//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+//     border-radius: 10px;
+//     padding: 10px;
+//     background-color: white;
+//     margin: 20px;
+// }
+
+// .deshboard {
+//     display: flex;
+//     justify-content: right;
+//     align-items: center;
+//     width: 86%;
+//     height: 50px;
+//     margin-left: 195px;
+//     background-image: linear-gradient(to right, #83dcf0, #4acffc);
+//     margin-top: 70px;
+// }
+
+// .deshboard img {
+//     width: 40px;
+//     height: 40px;
+//     border-radius: 50%;
+//     object-fit: cover;
+//     margin-right: 10px;
+// }
+
+// .deshboard p {
+//     color: white;
+//     font-size: 14px;
+//     margin-top: 20px;
+//     margin-right: 50px;
+// }
+
+// ion-searchbar{
+//     width: 60%;
+//     max-height: 15px;
+// }
+
+// ion-icon{
+//     color: white;
+//     margin-right: 30px;
+//     font-size: 25px;
+//     border-bottom: 2px solid white;
+// }
 
 // ion-header{
 //     display: flex;
