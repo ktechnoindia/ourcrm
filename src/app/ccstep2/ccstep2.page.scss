@@ -1,4 +1,13 @@
-
+.Customer ion-card{
+    width: 50%;
+    margin-left: 25%;
+}
+@media(max-width:940px){
+    .Customer ion-card{
+        width: 100%;
+        margin-left: 0%;
+    }
+}
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;

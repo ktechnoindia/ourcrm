@@ -41,6 +41,19 @@
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectStock" [ngModelOptions]="{standalone: true}">
                     <option value="">--Select Stock Type--</option>
+                    <option value="">Stock</option>
+                    <option value="">Non-Stock</option>
+                    <option value="">Asset</option>
+                    <option value="">Service</option>
+                  </select>
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row>
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <select [(ngModel)]="selectStock" [ngModelOptions]="{standalone: true}">
+                    <option value="">--Select Item Type--</option>
                     <option value="">Raw Material</option>
                     <option value="">Finish Goods</option>
                     <option value="">Spare Parts</option>
@@ -48,10 +61,6 @@
                     <option value="">Digital Products</option>
                   </select>
                 </ion-col>
-
-              </ion-row>
-
-              <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectPrimaryUnit" [ngModelOptions]="{standalone: true}">
                     <option value="">--Select Primary Unit--</option>
@@ -120,6 +129,9 @@
 
                   </select>
                 </ion-col>
+              </ion-row>
+              <ion-row>
+
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" [ngModelOptions]="{standalone: true}">
                     <option value="">--Select GST Rate--</option>
@@ -130,9 +142,7 @@
                     <option value="5">28%</option>
                   </select>
                 </ion-col>
-              </ion-row>
 
-              <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input color="dark" [(ngModel)]="openingbalance" [ngModelOptions]="{standalone: true}"
