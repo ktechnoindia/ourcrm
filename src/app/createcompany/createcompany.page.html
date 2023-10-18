@@ -22,7 +22,7 @@
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" name="gstin" type="text" label="Company GSTIN :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
@@ -37,7 +37,7 @@
 
 
           <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
               <select name="country" value="">
                 <option value="">
                  --Select Country--
@@ -48,7 +48,7 @@
               </select>
             </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
                 <option selected value="">--Select State--</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -89,7 +89,7 @@
               </select>
 
             </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
                 <option selected value=""> --Select District--</option>
                 <option value="Mumbai">Mumbai</option>
@@ -105,36 +105,51 @@
               </select>
             </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
               <ion-row>
                 <ion-input type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12">
+            <ion-col size="12" size-lg="8" size-md="8" size-sm="12">
               <ion-row>
                 <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input type="number" label=" Whatsapp Number :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row class="headinglabel" style="margin: 10px auto;">
+            <ion-label style="font-size: 18px; font-weight: bold;">Attechment:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+              "></span>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
+              <ion-label>Upload Company Logo: </ion-label>
+              <ion-input style="padding: 10px;" type="file" name="image" id="imageUpload" accept="image/*"></ion-input>
+            </ion-col>
+            <ion-col class="date" size="12" size-lg="4" size-md="6" size-sm="6">
+            <ion-label>Starting From : </ion-label>
+            <ion-input type="date" placeholder="Enter Starting Date"></ion-input>
             </ion-col>
           </ion-row>
 

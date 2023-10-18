@@ -1,4 +1,13 @@
-
+.Customer ion-card{
+    width: 50%;
+    margin-left: 25%;
+}
+@media(max-width:940px){
+    .Customer ion-card{
+        width: 100%;
+        margin-left: 0%;
+    }
+}
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -6,6 +15,13 @@
     // outline-color: goldenrod;
     outline-width: 2px;
     outline-style: initial;
+}
+.date ion-input{
+    border: solid grey 1px;
+    min-height: 35px;
+    padding: 10px;
+    border-radius: 4px;
+
 }
 .Customer ion-textarea {
     min-height: 35px;
