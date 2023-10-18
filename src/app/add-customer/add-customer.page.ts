@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -8,15 +8,17 @@ import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CountryService } from '../services/country.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
   selectTabs='address';
@@ -51,37 +53,41 @@ export class AddCustomerPage implements OnInit {
 
   submitValue=false;
   // selectedOption:string='';
-  countries: any[] = [];
+  //countries: any[] = [];
+    countries$:Observable<any[]>
   menuController: any;
 
   
-  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) { }
+  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) {
+   // this.countries$ = new Observable<any[]>(); // Initialize the property in the constructor
+    this.countries$=this.countryService.getCountries();
+   }
 
   loadCountries() {
-    this.countryService.getCountries().subscribe(
-      (data) => {
-         console.log(data);
+    // this.countryService.getCountries().subscribe(
+    //   (data) => {
+    //      console.log(data);
 
-        if (Array.isArray(data)) {
-          this.countries = data;
-        } else {
-          console.error('API did not return an array of countries.');
-        }
+    //     if (Array.isArray(data)) {
+    //       this.countries = data;
+    //     } else {
+    //       console.error('API did not return an array of countries.');
+    //     }
        
-      },
-      (error) => {
-        console.error('Error loading countries:', error);
+    //   },
+    //   (error) => {
+    //     console.error('Error loading countries:', error);
 
-        if (error instanceof HttpErrorResponse) {
-          const errorMessage = 'HTTP Error occurred during the API request.';
-          console.error(errorMessage);
+    //     if (error instanceof HttpErrorResponse) {
+    //       const errorMessage = 'HTTP Error occurred during the API request.';
+    //       console.error(errorMessage);
 
-          console.error('Status Code:', error.status);
-        } else {
-          console.error('Non-HTTP error occurred during the API request.');
-        }
-      }
-    );
+    //       console.error('Status Code:', error.status);
+    //     } else {
+    //       console.error('Non-HTTP error occurred during the API request.');
+    //     }
+    //   }
+    // );
   }
 
   ngOnInit() {

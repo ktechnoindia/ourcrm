@@ -107,8 +107,8 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
                 <select [(ngModel)]="selectedOption" name="country" value="" label-placement="floating" fill="outline">
-                  <option *ngFor="let country of countries" [value]="country.userId" >
-                    {{ country.userId }}
+                  <option *ngFor="let country of countries$ | async" [value]="country.countryid" >
+                    {{ country.countryname }}
                   </option>
                 </select>
               </ion-col>
