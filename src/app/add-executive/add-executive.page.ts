@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { roletypesservice } from '../services/roletypes.service';
 
 
 @Component({
@@ -23,9 +25,15 @@ export class AddExecutivePage implements OnInit {
   panumber: string = '';
   commission: string = '';
   ledger: string = '';
+roletypes$:Observable<any[]>
+MenuController: any;
+  roletypesservice: any;
 
-  constructor(private router: Router, private toastCtrl: ToastController) { }
-
+ 
+  constructor(private router: Router, private toastCtrl: ToastController,private roletypes:roletypesservice) { 
+    this.roletypes$=this.roletypes.getroletypes();
+  }
+  
   async onSubmit() {
     if (this.role === '') {
       const toast = await this.toastCtrl.create({
