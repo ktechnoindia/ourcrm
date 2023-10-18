@@ -293,6 +293,10 @@ export const routes: Routes = [
     path: 'quotedashboard',
     loadComponent: () => import('./quotedashboard/quotedashboard.page').then( m => m.QuotedashboardPage)
   },
+  {
+    path: 'createunit',
+    loadComponent: () => import('./createunit/createunit.page').then( m => m.CreateunitPage)
+  },
 
 
 

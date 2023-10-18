@@ -1,0 +1,210 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Create Unit</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="igname" type="text" label="Unit Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="agname" type="text" label="Symbol/ Short Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-row>
+               <select name="" id="">
+                <option value="">Primary Unit</option>
+                <option value="meter">Meter (m)</option>
+                <option value="centimeter">Centimeter (cm)</option>
+                <option value="millimeter">Millimeter (mm)</option>
+                <option value="kilometer">Kilometer (km)</option>
+                <option value="inch">Inch (in)</option>
+                <option value="foot">Foot (ft)</option>
+                <option value="yard">Yard (yd)</option>
+                <option value="squaremeter">Square Meter (m²)</option>
+                <option value="squarecentimeter">Square Centimeter (cm²)</option>
+                <option value="squarekilometer">Square Kilometer (km²)</option>
+                <option value="squareinch">Square Inch (in²)</option>
+                <option value="squarefoot">Square Foot (ft²)</option>
+                <option value="squareyard">Square Yard (yd²)</option>
+                <option value="acre">Acre (ac)</option>
+                <option value="liter">Liter (L)</option>
+                <option value="milliliter">Milliliter (mL)</option>
+                <option value="cubicmeter">Cubic Meter (m³)</option>
+                <option value="cubiccentimeter">Cubic Centimeter (cm³)</option>
+                <option value="gallon">Gallon (gal)</option>
+                <option value="quart">Quart (qt)</option>
+                <option value="pint">Pint (pt)</option>
+                <option value="fluidounce">Fluid Ounce (fl oz)</option>
+                <option value="gram">Gram (g)</option>
+                <option value="kilogram">Kilogram (kg)</option>
+                <option value="milligram">Milligram (mg)</option>
+                <option value="ounce">Ounce (oz)</option>
+                <option value="pound">Pound (lb)</option>
+                <option value="ton">Ton (metric ton)</option>
+                <option value="second">Second (s)</option>
+                <option value="minute">Minute (min)</option>
+                <option value="hour">Hour (hr)</option>
+                <option value="day">Day (d)</option>
+                <option value="week">Week (wk)</option>
+                <option value="month">Month (mo)</option>
+                <option value="year">Year (yr)</option>
+                <option value="each">Each (ea)</option>
+                <option value="dozen">Dozen (dz)</option>
+                <option value="gross">Gross (gr)</option>
+                <option value="pair">Pair (pr)</option>
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+                               </select>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="consfact" type="text" label="Conversion Factor :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+               <select name="" id="">
+                <option value="">Decimal PLaces</option>
+                <option value="meter">Meter (m)</option>
+                <option value="centimeter">Centimeter (cm)</option>
+                <option value="millimeter">Millimeter (mm)</option>
+                <option value="kilometer">Kilometer (km)</option>
+                <option value="inch">Inch (in)</option>
+                <option value="foot">Foot (ft)</option>
+                <option value="yard">Yard (yd)</option>
+                <option value="squaremeter">Square Meter (m²)</option>
+                <option value="squarecentimeter">Square Centimeter (cm²)</option>
+                <option value="squarekilometer">Square Kilometer (km²)</option>
+                <option value="squareinch">Square Inch (in²)</option>
+                <option value="squarefoot">Square Foot (ft²)</option>
+                <option value="squareyard">Square Yard (yd²)</option>
+                <option value="acre">Acre (ac)</option>
+                <option value="liter">Liter (L)</option>
+                <option value="milliliter">Milliliter (mL)</option>
+                <option value="cubicmeter">Cubic Meter (m³)</option>
+                <option value="cubiccentimeter">Cubic Centimeter (cm³)</option>
+                <option value="gallon">Gallon (gal)</option>
+                <option value="quart">Quart (qt)</option>
+                <option value="pint">Pint (pt)</option>
+                <option value="fluidounce">Fluid Ounce (fl oz)</option>
+                <option value="gram">Gram (g)</option>
+                <option value="kilogram">Kilogram (kg)</option>
+                <option value="milligram">Milligram (mg)</option>
+                <option value="ounce">Ounce (oz)</option>
+                <option value="pound">Pound (lb)</option>
+                <option value="ton">Ton (metric ton)</option>
+                <option value="second">Second (s)</option>
+                <option value="minute">Minute (min)</option>
+                <option value="hour">Hour (hr)</option>
+                <option value="day">Day (d)</option>
+                <option value="week">Week (wk)</option>
+                <option value="month">Month (mo)</option>
+                <option value="year">Year (yr)</option>
+                <option value="each">Each (ea)</option>
+                <option value="dozen">Dozen (dz)</option>
+                <option value="gross">Gross (gr)</option>
+                <option value="pair">Pair (pr)</option>
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>                
+               </select>
+            </ion-col>
+            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <select name=""  id="uqcSelect">
+               <option value="">UQC or Unit </option>
+               <option value="UOM001">Each (EA)</option>
+               <option value="UOM002">Dozen (DZ)</option>
+               <option value="UOM003">Gross (GR)</option>
+               <option value="UOM004">Kilogram (KG)</option>
+               <option value="UOM005">Liter (L)</option>
+               <!-- Add more UQC and their corresponding units here -->        
+                    </select>
+            </ion-col>
+          </ion-row>
+          <ion-row >
+           <ion-searchbar class="custom"></ion-searchbar>
+          </ion-row>
+          <ion-row>
+            <div style="width: 100%; height: 100px;scroll-behavior: auto;" class="scroll-container">
+              <table >
+                <tr>
+                  <th>Unit Name</th>
+                  <th>Symbol/ Short Name</th>
+                  <th>Primary Unit</th>
+                  <th>Conversion Factor</th>
+                  <th>Decimal Places</th>
+                  <th>Uqc</th>
+                </tr>
+                <tr>
+                  <td>Kilogram</td>
+                  <td>kg</td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td>0</td>
+                  <td>2</td>
+                  <td>KGS</td>
+                </tr>
+                <tr>
+                  <td>Kgs</td>
+                  <td>kgs</td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td>0</td>
+                  <td>6</td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                </tr>
+                <tr>
+                  <td>Liter</td>
+                  <td>ltr</td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td>0</td>
+                  <td>2</td>
+                  <td>OTH</td>
+                </tr>
+                <tr>
+                  <td>Meter</td>
+                  <td>mt</td>
+                  <td>Centi Meter</td>
+                  <td>100</td>
+                  <td>2</td>
+                  <td>MTR</td>
+                </tr>
+                <tr>
+                  <td>Pcs</td>
+                  <td>ltr</td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>PCS</td>
+                </tr>
+              </table>
+            </div>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button>New</ion-button>
+            <ion-button type="submit">Save</ion-button>
+            <ion-button>Delete</ion-button>
+            <ion-button>Preview</ion-button>
+            <ion-button>Close</ion-button>
+          </ion-row>
+         
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

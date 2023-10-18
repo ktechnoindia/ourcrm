@@ -6,26 +6,50 @@
           <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">Add Group</ion-title>
+              <ion-title style="text-align: center;">Item Group</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="justify-content: center;">
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+          <ion-row>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="goBack" type="text" label="Group Name :" label-placement="floating"
+                <ion-input color="dark" name="igname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-          </ion-row>
-          <ion-row style="justify-content: center;">
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="dark" name="agname" type="text" label="Alternate Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
                 <ion-textarea color="dark" name="description" type="text" label=" Description :" label-placement="floating"
                   fill="outline"></ion-textarea>
               </ion-row>
             </ion-col>
+          </ion-row>
+          <ion-row >
+           <ion-searchbar class="custom"></ion-searchbar>
+          </ion-row>
+          <ion-row>
+            <div style="width: 100%;" class="scroll-container">
+              <table>
+                <tr>
+                  <th>Item Group Name</th>
+                  <th>Alternate Name</th>
+                  <th>Parent Group</th>
+                </tr>
+                <tr>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+                  <td><ion-input style="border: none;"></ion-input></td>
+
+                </tr>
+              </table>
+            </div>
           </ion-row>
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
@@ -34,6 +58,7 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
+         
         </ion-grid>
       </ion-card-content>
     </ion-card>
