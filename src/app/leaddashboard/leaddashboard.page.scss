@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 80px;
   
 }
 ion-content {
@@ -12,7 +12,7 @@ ion-content {
 
 .table-container {
     width: 100%; /* Set the width of the container */
-    height: 400px; /* Set the height of the container */
+    height: 500px; /* Set the height of the container */
     overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
     overflow-y: scroll;
     padding: 20px;
@@ -21,10 +21,13 @@ ion-content {
     border-radius: 10px; /* Enable vertical scrollbar when content overflows */
     background-color: white;
   }
-
+  .table-container p{
+    background-color: lightblue;
+    width: 100%;
+  }
   /* Style the table inside the container */
   table {
-    width: 1200px; 
+    width: 100%; 
     padding: 20px;
     border: none;
   }
@@ -56,8 +59,16 @@ tr:hover{
 tr a:hover{
     color: blue;
 }
-
-
+input[type="date"] {
+  border: none;
+  width: 150px;
+  background-color: transparent;
+}
+ion-searchbar{
+  --ion-background-color:transparent;
+  line-height: 14px;
+  width: 100%;
+}
 
 
 

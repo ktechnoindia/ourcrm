@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CountryService } from './services/country.service';
+
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MyService } from './myservice.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CountryService,
+   
+    MyService
   ],
 })
 export class AppComponent {
