@@ -6,22 +6,21 @@ import { GoogleChartInterface } from 'ng2-google-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 
+
 @Component({
-  selector: 'app-leaddashboard',
-  templateUrl: './leaddashboard.page.html',
-  styleUrls: ['./leaddashboard.page.scss'],
+  selector: 'app-quotedashboard',
+  templateUrl: './quotedashboard.page.html',
+  styleUrls: ['./quotedashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, Ng2GoogleChartsModule,],
- 
+  imports: [IonicModule, CommonModule, FormsModule,Ng2GoogleChartsModule,
+  ]
 })
-export class LeaddashboardPage implements OnInit {
+export class QuotedashboardPage implements OnInit {
 
-  menuType = 'push';
-
- 
   public columnChart1: GoogleChartInterface;
   public pieChart: GoogleChartInterface;
-  public lineChart: GoogleChartInterface;
+
+  // circleProgressModule: NgCircleProgressModule ;
 
   dataTable = [
     ['City', '2010 Population', '2000 Population'],
@@ -34,6 +33,16 @@ export class LeaddashboardPage implements OnInit {
 
   constructor() {
 
+  //  this.circleProgressModule= NgCircleProgressModule.forRoot({
+  //     // set defaults here
+  //     radius: 100,
+  //     outerStrokeWidth: 16,
+  //     innerStrokeWidth: 8,
+  //     outerStrokeColor: "#78C000",
+  //     innerStrokeColor: "#C7E596",
+  //     animationDuration: 300,
+      
+  //   })
 
     this.columnChart1 = {
       chartType: 'ColumnChart',
@@ -79,36 +88,10 @@ export class LeaddashboardPage implements OnInit {
       }
     };
 
-     this.lineChart = {
-      chartType: 'LineChart',
-      dataTable: [
-        ['Year', 'Lead'],
-        ['2010', 8175000],
-        ['2011', 8500000],
-        ['2012', 8700000],
-        ['2013', 9000000],
-        ['2014', 9200000],
-      ],
-      options: {
-        title: 'Lead Of the Years',
-        height: 220,
-        chartArea: { height: '50%' },
-        hAxis: {
-          title: 'Year',
-        },
-        vAxis: {
-          title: 'Lead',
-        },
-      },
-    };
+   
+   }
+
+  ngOnInit() {
   }
 
-ngOnInit() {
-
 }
-
-}
-
-
-
-

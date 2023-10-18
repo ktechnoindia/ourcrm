@@ -86,7 +86,7 @@
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="leadName" name="leadName" type="text" label="Lead Name : "
+                <ion-input color="dark" [(ngModel)]="leadName" name="leadName" type="text" label="Lead Name : "
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -107,8 +107,8 @@
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="phoneNumber" name="phoneNumber" type="number" label=" Phone Number : "
-                  label-placement="floating" fill="outline"></ion-input>
+                <ion-input color="dark" [(ngModel)]="phoneNumber" name="phoneNumber" type="tel" label=" Phone Number : "
+                  label-placement="floating" fill="outline" maxlength="10"></ion-input>
                 
               </ion-row>
             </ion-col>

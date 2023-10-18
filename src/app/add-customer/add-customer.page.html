@@ -31,16 +31,16 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="customercode" type="number" label=" Customer Code :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="customercode" type="text" label=" Customer Code :"
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" maxlength="5" ></ion-input>
 
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" type="number" label=" GSTIN :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="gstin" type="text" label=" GSTIN :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline" maxlength="15"  ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
@@ -75,8 +75,8 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="phone" type="number" label=" Mobile Number :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="phone" type="tel" label=" Mobile Number :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline" maxlength="10"  ></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -84,7 +84,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatshappnumber" type="number" label=" Whatsapp Number :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" maxlength="10" ></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -177,8 +177,8 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode" type="number" label=" PinCode  :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="pincode" type="tel" label=" PinCode  :" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -201,21 +201,21 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="taxnumber" type="number" label=" Tax Deducation No. :"
+                  <ion-input [(ngModel)]="taxnumber" type="text" label=" Tax Deducation No. :"
                     label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="adharnumber" type="number" label="Aadhar No.:" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="adharnumber" type="tel" label="Aadhar No.:" label-placement="floating"
+                    [ngModelOptions]="{standalone: true}" fill="outline" maxlength="12"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="panumber" type="number" label=" PAN No. :" label-placement="floating"
+                  <ion-input [(ngModel)]="panumber" type="text" label=" PAN No. :" label-placement="floating"
                     [ngModelOptions]="{standalone: true}" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -275,7 +275,7 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="creditperiod" type="text" label=" Credit Period :" label-placement="floating"
+                  <ion-input [(ngModel)]="creditperiod" type="tel" label=" Credit Period :" label-placement="floating"
                     [ngModelOptions]="{ standalone: true }" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>

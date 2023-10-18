@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CountryService } from './services/country.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
