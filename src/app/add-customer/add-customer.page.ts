@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyService } from '../myservice.service';
+import { CountryService } from '../countryservice.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -49,14 +51,18 @@ export class AddCustomerPage implements OnInit {
   submitValue = false;
 
   menuController: any;
+  countries$:Observable<any[]>
+  // constructor(private router: Router,
+  //   private toastCtrl: ToastController,
+  //   private myService: MyService
 
-  constructor(private router: Router,
-    private toastCtrl: ToastController,
-    private myService: MyService
+  // ) {
 
-  ) {
-
-  }
+  // }
+  constructor(private router: Router,private toastCtrl: ToastController,private myService: MyService,private countryService: CountryService) {
+    // this.countries$ = new Observable<any[]>(); // Initialize the property in the constructor
+     this.countries$=this.countryService.getCountries();
+    }
 
   ngOnInit() {
 

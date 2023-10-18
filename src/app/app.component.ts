@@ -9,8 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
-
+import { CountryService } from './countryservice.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,7 +19,9 @@ import { roletypesservice } from './services/roletypes.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-  roletypesservice,
+   
+    MyService,
+    CountryService,roletypesservice,
   ],
 })
 export class AppComponent {
