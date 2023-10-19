@@ -23,7 +23,7 @@ import { CountryService } from './services/country.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CountryService,roletypesservice,StateService,DistrictsService,MyService
+    CountryService,roletypesservice,StateService,DistrictsService,
   ],
 })
 export class AppComponent {
