@@ -76,8 +76,10 @@ export class AddCustomerPage implements OnInit {
   
   constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+        this.districts$= new Observable<any[]>(); // Initialize the property in the constructor
+
     this.countries$=this.countryService.getCountries();
-    this.districts$=this.districtservice.getDistricts(1);
+   // this.districts$=this.districtservice.getDistricts(1);
    }
    onCountryChange() {
     console.log('selected value' + this.selectedOption);
