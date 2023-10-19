@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-add-lead',
@@ -13,8 +15,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AddLeadPage {
+ 
+  constructor(private router:Router,
+   ) {
 
-  constructor(private router:Router) {}
+   
+  }
 
   ngOnInit() {
     // Page initialization code goes here

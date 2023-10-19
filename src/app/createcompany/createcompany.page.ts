@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-createcompany',
   templateUrl: './createcompany.page.html',
@@ -14,7 +16,13 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink,RouterModule]
 })
 export class CreatecompanyPage implements OnInit {
-  constructor(private router:Router) { }
+
+  constructor(private router:Router,
+    ) 
+    {
+ 
+
+     }
 
 
   ngOnInit() {

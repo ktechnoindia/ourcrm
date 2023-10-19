@@ -7,12 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CountryService } from './services/country.service';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { roletypesservice } from './services/roletypes.service';
+
+
 import { StateService } from './services/state.service';
 import { DistrictsService } from './services/districts.service';
 
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { MyService } from './myservice.service';
+import { roletypesservice } from './services/roletypes.service';
+import { CountryService } from './countryservice.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

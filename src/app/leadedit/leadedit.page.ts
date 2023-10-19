@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {  Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-leadedit',
@@ -12,7 +14,14 @@ import {  Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class LeadeditPage implements OnInit {
-  constructor(private router:Router) { }
+
+
+
+  constructor(private router:Router,
+     ) 
+  {
+
+   }
 
 
   ngOnInit() {

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-roleofexicutive',
   templateUrl: './roleofexicutive.page.html',
@@ -12,7 +13,13 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class RoleofexicutivePage implements OnInit {
-  constructor(private router:Router) { }
+
+ 
+  constructor(private router:Router,
+    ) 
+    {
+    
+     }
 
 
   ngOnInit() {

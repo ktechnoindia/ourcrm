@@ -42,6 +42,7 @@ export class AddVendorPage implements OnInit {
 
   submitValue=false;
 
+  
   constructor(private router: Router,private toastCtrl:ToastController) { }
 
 
