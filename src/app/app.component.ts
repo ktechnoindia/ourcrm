@@ -15,7 +15,7 @@ import { DistrictsService } from './services/districts.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
-import { CountryService } from './countryservice.service';
+import { CountryService } from './services/country.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
