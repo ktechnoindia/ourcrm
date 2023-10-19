@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { GsttypeService } from '../services/gsttype.service';
+import { UnitnameService } from '../services/unitname.service';
 
 @Component({
   selector: 'app-add-item',
@@ -23,6 +26,7 @@ export class AddItemPage implements OnInit {
   selectAltUnit: string = '';
   selectItemGroup: string = '';
   selectGst: string = '';
+  selectunitname:string = '';
   openingbalance: number | null = null;
   closingbalance: number | null = null;
   attr1: string = '';
@@ -45,9 +49,14 @@ export class AddItemPage implements OnInit {
   weightunit: number | null = null;
   relailprofit: number | null = null;
   delarprofit: number | null = null;
-
-
-  constructor(private router: Router, private toastCtrl: ToastController) { }
+  selectGstservice:any;
+  selectGst$: any;
+  unitname$:any;
+  unitname!: string; 
+constructor(private router: Router, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService) {   
+     this.selectGst$=this.gstsrvs.getgsttype();
+     this.unitname$=this.unittype.getunits();
+  }
 
   async onSubmit() {
    if(this.itemDesc===''){

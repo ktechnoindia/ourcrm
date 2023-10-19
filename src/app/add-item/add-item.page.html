@@ -62,25 +62,12 @@
                   </select>
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectPrimaryUnit" [ngModelOptions]="{standalone: true}">
-                    <option value="">--Select Primary Unit--</option>
-                    <option value="">Kilogram(kg)</option>
-                    <option value="">Gram(gm)</option>
-                    <option value="">Liter(lit)</option>
-                    <option value="">Meter(mtr)</option>
-                    <option value="">Kilogram(kg)</option>
-                    <option value="">Square Meter (m²)</option>
-                    <option value="">Cubic Meter (m³)</option>
-                    <option value="">Piece (Pcs.)</option>
-                    <option value="">Roll (RL)</option>
-                    <option value="">Set (ST)</option>
-                    <option value="">Pair (PR)</option>
-                    <option value="">Dozen (DZ)</option>
-                    <option value="">Each (EA)</option>
-                    <option value="">Box (BX)</option>
-                    <option value="">Case (CS)</option>
-                    <option value="">Hour (HR)</option>
-
+                  
+                  <select [(ngModel)]="unitname"  [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
+                      {{ unitname.unitname }}
+                    </option>
+                    
                   </select>
                 </ion-col>
 
@@ -133,13 +120,12 @@
               <ion-row>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectGst" [ngModelOptions]="{standalone: true}">
-                    <option value="">--Select GST Rate--</option>
-                    <option value="1">3%</option>
-                    <option value="2">5%</option>
-                    <option value="3">12%</option>
-                    <option value="4">18%</option>
-                    <option value="5">28%</option>
+                 
+                  <select [(ngModel)]="selectGst"  [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                      {{ gsttype.gstname }}
+                    </option>
+                    
                   </select>
                 </ion-col>
 

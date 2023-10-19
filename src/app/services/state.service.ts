@@ -12,7 +12,7 @@ export class StateService {
 
   constructor(private http: HttpClient) {}
 
-  getStates(stateid:number): Observable<any> {
-    return this.http.get(environment.apibaseurl+environment.fetchallstate+'/'+stateid);
+  getStates(countryid:number): Observable<any> {
+    return this.http.get(environment.apibaseurl+environment.fetchallstate+'/'+countryid);
   }
 }

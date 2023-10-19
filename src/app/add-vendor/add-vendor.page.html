@@ -121,6 +121,9 @@
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Puducherry">Puducherry</option>
                 </select>
                 <div *ngIf="form && form.get('state')?.hasError('required') && form.get('state').touched" class="error-message">
                   State is required.
@@ -135,6 +138,7 @@
                   </option>
                 </select>
               </ion-col>
+
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="pincode" [ngModelOptions]="{standalone: true}"  type="tel" label=" PinCode  :"

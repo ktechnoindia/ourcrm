@@ -1,57 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+
 import { Observable } from 'rxjs';
-import { CountryService } from '../services/country.service';
-import { StateService } from '../services/state.service';
-import { DistrictsService } from '../services/districts.service';
 
 @Component({
   selector: 'app-createcompany',
   templateUrl: './createcompany.page.html',
   styleUrls: ['./createcompany.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink,RouterModule],
+  providers: [DatePipe],
+
 })
 export class CreatecompanyPage implements OnInit {
-  selectedCountry: any;
-  selectedState: any;
-  selectedDistrict: any;
+  rdate:string | undefined ='' ;
 
-  countries$: Observable<any[]>
-  states$: Observable<any[]>;
-  districts$: Observable<any[]>
-  constructor(private router: Router, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService
-  ) {
+  constructor(private router:Router,private datePipe: DatePipe,
+    ) 
+    {
+      this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
 
-    this.countries$ = this.countryservice.getCountries();
-    this.states$ = this.stateservice.getStates(1);
-    this.districts$ = this.districtservice.getDistricts(1)
-  }
-
-  onCountryChange(){
-    console.log('selected Value' + this.selectedCountry);
-    this.districts$ = this.countryservice.getCountries();
-  }
-  onStateChange(){
-    console.log('selected Value' + this.selectedState);
-    this.states$=this.stateservice.getStates(1);
-  }
-  onDistrictChange(){
-    console.log('selected Value' + this.selectedDistrict);
-    this.districts$=this.districtservice.getDistricts(1);
-  }
-
+     }
+     getCurrentDate(){
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+      const yyyy = today.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
 
   ngOnInit() {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']);
+    this.router.navigate(['/master']); 
   }
 
 }

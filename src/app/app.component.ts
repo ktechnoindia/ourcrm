@@ -16,6 +16,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
 import { CountryService } from './services/country.service';
+import { GsttypeService } from './services/gsttype.service';
+import { UnitnameService } from './services/unitname.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -23,7 +25,7 @@ import { CountryService } from './services/country.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CountryService,roletypesservice,StateService,DistrictsService,MyService
+    CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {
