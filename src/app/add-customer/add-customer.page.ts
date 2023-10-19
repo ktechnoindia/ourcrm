@@ -73,7 +73,7 @@ export class AddCustomerPage implements OnInit {
   //   private toastCtrl: ToastController,
   //   private myService: MyService
 
-  
+   
   constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$=this.countryService.getCountries();
