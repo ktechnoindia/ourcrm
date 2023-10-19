@@ -40,7 +40,7 @@
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
               <select name="country" value="">
                 <option value="">
-                 --Select Country--
+                  --Select Country--
                 </option>
                 <option value="">India</option>
                 <option value="">USA</option>
@@ -105,7 +105,7 @@
               </select>
             </ion-col>
 
-            
+
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
@@ -145,26 +145,31 @@
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
               <ion-label>Upload Company Logo: </ion-label>
-              <ion-input style="padding: 10px;" type="file" name="image" id="imageUpload" accept="image/*"></ion-input>
+              <label for="file-upload" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Choose File
+            </label>
             </ion-col>
-            <ion-col class="date" size="12" size-lg="4" size-md="6" size-sm="6">
-            <ion-label>Starting From : </ion-label>
-            <ion-input type="date" placeholder="Enter Starting Date"></ion-input>
+            <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
+              <ion-label>Starting From : </ion-label>
+              <input type="file" id="file-upload" name="file" accept="image/*">
+              
+                <ion-input type="date" placeholder="Enter Starting Date" class="custom-date-input" [(ngModel)]="rdate"></ion-input>
             </ion-col>
           </ion-row>
+         
 
           <ion-row class="custom-primary">
             <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 1</p>
             <ion-progress-bar value="0.25" buffer=".25" style="height: 10px;"></ion-progress-bar>
             <ion-button [routerLink]="['/ccstep2']">Create & Next</ion-button>
           </ion-row>
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
             <ion-button>Delete</ion-button>
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
       </ion-card-content>
     </ion-card>
