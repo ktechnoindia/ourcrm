@@ -82,7 +82,8 @@ export class AddCustomerPage implements OnInit {
 
    onDistrictChange() {
     console.log('selected value' + this.selectedDistrict);
-    this.districts$ = this.districtservice.getDistricts(1);
+    // this.districts$ = this.districtservice.getDistricts(1);
+    this.districts$ = this.districtservice.getDistricts(this.selectedState);
    }
 
   ngOnInit() {
