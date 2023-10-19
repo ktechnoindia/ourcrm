@@ -85,7 +85,7 @@ export class AddCustomerPage implements OnInit {
    }
    onStateChange() {
     console.log('selected value' + this.selectedState);
-    this.districts$ = this.districtservice.getDistricts(1);
+    this.districts$ = this.districtservice.getDistricts(this.selectedState);
    }
   loadCountries() {
     // this.countryService.getCountries().subscribe(
