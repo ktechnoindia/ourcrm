@@ -106,15 +106,15 @@
            
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-                <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option *ngFor="let country of countries$ | async" [value]="country.countryid">
+                <select [(ngModel)]="selectedCountry" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
+                  <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
                   
                 </select>
               </ion-col>
               
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6" *ngIf="selectedOption">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6" >
                 <select [(ngModel)]="selectedState" name="state" label-placement="floating" (change)="onStateChange()">
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
@@ -122,12 +122,10 @@
                 </select>
               </ion-col>
            
-            
-           
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6" >
                 
-                <select class="select-width" [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline"
-                  [ngModelOptions]="{standalone: true}">
+                <select  [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline"
+                  (change)="onDistrictChange()">
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid" >
                     {{ district.districtname }}
                   </option>
@@ -137,7 +135,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="pincode" type="tel" label=" PinCode  :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline" ></ion-input>
+                    name="pincode" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>

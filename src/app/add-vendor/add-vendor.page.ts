@@ -4,6 +4,10 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { StateService } from '../services/state.service';
+import { DistrictsService } from '../services/districts.service';
+import { CountryService } from '../services/country.service';
 
 @Component({
   selector: 'app-add-vendor',
@@ -14,6 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AddVendorPage implements OnInit {
   selectTabs='address';
+
+  selectedState: any;
+  selectedDistrict:any;
+  selectedCountry: any;
 
   cname:string='';
   vendorcode:number | null = null;
@@ -41,9 +49,30 @@ export class AddVendorPage implements OnInit {
   closingpoint:number | null = null;
 
   submitValue=false;
-
+  countries$:Observable<any[]>
+  states$: Observable<any[]>;
+  districts$:Observable<any[]>
   
-  constructor(private router: Router,private toastCtrl:ToastController) { }
+  constructor(private router: Router,private toastCtrl:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+
+    this.states$=this.stateservice.getStates(1)
+    this.countries$=this.countryservice.getCountries();
+    this.districts$=this.districtservice.getDistricts(1);
+   }
+
+   onCountryChange() {
+    console.log('selected value' + this.selectedCountry);
+    this.countries$ = this.countryservice.getCountries();
+   }
+   onStateChange() {
+    console.log('selected value' + this.selectedState);
+    this.states$ = this.stateservice.getStates(1);
+   }
+
+   onDistrictChange() {
+    console.log('selected value' + this.selectedDistrict);
+    this.districts$ = this.districtservice.getDistricts(1);
+   }
 
 
   async onSubmit(form: NgForm) {

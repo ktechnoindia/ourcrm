@@ -6,11 +6,8 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { MyService } from '../myservice.service';
+import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
@@ -32,6 +29,7 @@ export class AddCustomerPage implements OnInit {
   selectedPage: string = 'page1';
   selectedState: any;
   selectedDistrict:any;
+  selectedCountry: any;
 
   cname: string = '';
   customercode: number | null = null;
@@ -62,57 +60,30 @@ export class AddCustomerPage implements OnInit {
 
   submitValue=false;
   // selectedOption:string='';
-  //countries: any[] = [];
     countries$:Observable<any[]>
-    states$:Observable<any[]>
+    states$: Observable<any[]>;
     districts$:Observable<any[]>
-  menuController: any;
-  myService: any;
+    menuController: any;
   
-  // constructor(private router: Router,
-  //   private toastCtrl: ToastController,
-  //   private myService: MyService
-
   
-  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
-    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-    this.countries$=this.countryService.getCountries();
+  constructor(private router: Router,private toastCtrl: ToastController, private myService: MyService,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+  this.states$=this.stateservice.getStates(1)
+    this.countries$=this.countryservice.getCountries();
     this.districts$=this.districtservice.getDistricts(1);
    }
    onCountryChange() {
-    console.log('selected value' + this.selectedOption);
-    this.states$ = this.stateservice.getStates(1);
+    console.log('selected value' + this.selectedCountry);
+    this.countries$ = this.countryservice.getCountries();
    }
    onStateChange() {
     console.log('selected value' + this.selectedState);
+    this.states$ = this.stateservice.getStates(1);
+   }
+
+   onDistrictChange() {
+    console.log('selected value' + this.selectedDistrict);
     this.districts$ = this.districtservice.getDistricts(1);
    }
-  loadCountries() {
-    // this.countryService.getCountries().subscribe(
-    //   (data) => {
-    //      console.log(data);
-
-    //     if (Array.isArray(data)) {
-    //       this.countries = data;
-    //     } else {
-    //       console.error('API did not return an array of countries.');
-    //     }
-       
-    //   },
-    //   (error) => {
-    //     console.error('Error loading countries:', error);
-
-    //     if (error instanceof HttpErrorResponse) {
-    //       const errorMessage = 'HTTP Error occurred during the API request.';
-    //       console.error(errorMessage);
-
-    //       console.error('Status Code:', error.status);
-    //     } else {
-    //       console.error('Non-HTTP error occurred during the API request.');
-    //     }
-    //   }
-    // );
-  }
 
   ngOnInit() {
 
