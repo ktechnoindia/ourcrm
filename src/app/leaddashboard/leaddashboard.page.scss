@@ -12,13 +12,24 @@ ion-content {
 
 .table-container {
     width: 100%; /* Set the width of the container */
-    height: 500px; /* Set the height of the container */
-    overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
-    overflow-y: scroll;
+    height: 550px; /* Set the height of the container */
+    // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
+    // overflow-y: scroll;
     padding: 20px;
     margin: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px; /* Enable vertical scrollbar when content overflows */
+    background-color: white;
+  }
+  .scroll-container {
+    width: 100%; /* Set the width of the container */
+    height: 300px; /* Set the height of the container */
+    overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
+    overflow-y: scroll;
+    // padding: 20px;
+    // margin: 20px;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    // border-radius: 10px; /* Enable vertical scrollbar when content overflows */
     background-color: white;
   }
   .table-container p{
@@ -30,6 +41,7 @@ ion-content {
     width: 100%; 
     padding: 20px;
     border: none;
+    border: 1px solid grey;
   }
 
   tr{
@@ -69,6 +81,11 @@ ion-searchbar{
   line-height: 14px;
   width: 100%;
 }
+ion-input {
+ 
+ --ion-height: 20px;
+}
+
 
 
 

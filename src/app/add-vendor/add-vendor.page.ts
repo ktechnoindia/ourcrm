@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
+import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-vendor',
@@ -17,11 +19,12 @@ import { CountryService } from '../services/country.service';
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class AddVendorPage implements OnInit {
-  selectTabs='address';
+  // form: FormGroup;
 
-  selectedState: any;
-  selectedDistrict:any;
+  selectTabs='address';
   selectedCountry: any;
+  selectedState:any;
+  selectedDistrict: any;
 
   cname:string='';
   vendorcode:number | null = null;
@@ -52,13 +55,26 @@ export class AddVendorPage implements OnInit {
   countries$:Observable<any[]>
   states$: Observable<any[]>;
   districts$:Observable<any[]>
+  form: any;
+  submitted = false;
   
-  constructor(private router: Router,private toastCtrl:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+  constructor(private router: Router,private formBuilder: FormBuilder,private toastController:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) 
+  {
+    this.form = this.formBuilder.group({
+      cname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      vendorcode: ['', [Validators.required, Validators.maxLength(5)]],
+      gstin: ['', [Validators.required, Validators.maxLength(15)]],
+
+      phone: ['', [Validators.required, Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      state:['',[Validators.required]],
+    });
 
     this.states$=this.stateservice.getStates(1)
     this.countries$=this.countryservice.getCountries();
     this.districts$=this.districtservice.getDistricts(1);
    }
+
 
    onCountryChange() {
     console.log('selected value' + this.selectedCountry);
@@ -73,187 +89,22 @@ export class AddVendorPage implements OnInit {
     console.log('selected value' + this.selectedDistrict);
     this.districts$ = this.districtservice.getDistricts(1);
    }
-
-
-  async onSubmit(form: NgForm) {
-    if(this.cname === ""){
-     const toast = await this.toastCtrl.create({
-       message:"Name is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.vendorcode === null){
-     const toast = await this.toastCtrl.create({
-       message:"Vendor code is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.gstin === null){
-     const toast = await this.toastCtrl.create({
-       message:"GSTIN is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.selectedOption === ''){
-     const toast = await this.toastCtrl.create({
-       message:"Select Group Name is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.openingbalance === null){
-     const toast = await this.toastCtrl.create({
-       message:"Opening Balance is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.closingbalance === null){
-     const toast = await this.toastCtrl.create({
-       message:"Closing Balance is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.phone === null){
-     const toast = await this.toastCtrl.create({
-       message:"Phone Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.whatshappnumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Whatshapp Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.email === ''){
-     const toast = await this.toastCtrl.create({
-       message:"Email is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.pincode === null){
-     const toast = await this.toastCtrl.create({
-       message:"Pin Code is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.fullname === ''){
-     const toast = await this.toastCtrl.create({
-       message:"Full Name is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.taxnumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Tax Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.adharnumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Adhar Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.panumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"PAN Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.udayognumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Udyog Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.accountnumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Account Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.ifsc === null){
-     const toast = await this.toastCtrl.create({
-       message:"IFSC Code is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.bankname === ''){
-     const toast = await this.toastCtrl.create({
-       message:"Bank Name is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.branchname === ''){
-     const toast = await this.toastCtrl.create({
-       message:"Branch Name is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.creditperiod === null){
-     const toast = await this.toastCtrl.create({
-       message:"Credit Period is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.creditlimit === null){
-     const toast = await this.toastCtrl.create({
-       message:"Credit Limit is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.cardnumber === null){
-     const toast = await this.toastCtrl.create({
-       message:"Card Number is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.openingpoint === null){
-     const toast = await this.toastCtrl.create({
-       message:"Opening Point is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else if(this.closingpoint === null){
-     const toast = await this.toastCtrl.create({
-       message:"Closing Point is required",
-       duration:3000,
-       color:'danger'
-     });
-     toast.present()
-    }else{
-     const toast = await this.toastCtrl.create({
-       message: "Successfully !",
-       duration: 3000,
-       color:'success'
-     });
-      toast.present();
-      this.submitValue=true
-   }
-   }
+    
+    onSubmit() {
+      if (this.form.valid) {
+        console.log('Form submitted:', this.form.value);
+      } else {
+        // If the form is not valid, display error messages
+        Object.keys(this.form.controls).forEach(controlName => {
+          const control = this.form.get(controlName);
+          if (control.invalid) {
+            control.markAsTouched();
+          }
+        });
+      }
+    }
+  
+ 
 
 
   ngOnInit() {
