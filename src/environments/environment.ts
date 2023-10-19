@@ -7,6 +7,8 @@ export const environment = {
   fetchallstate:'getStates',
   fetchalldistrict:'getDistricts',
   fetchroletypes:'getRoleTypes',
+  fetchgsttypes:'getGSTTypes',
+  fetchunits:'getUnits',
 };
 
 
