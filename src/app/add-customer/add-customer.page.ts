@@ -11,6 +11,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { StateService } from '../services/state.service';
+import { DistrictsService } from '../services/districts.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -24,6 +26,8 @@ export class AddCustomerPage implements OnInit {
   selectTabs='address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
+  selectedState: any;
+  selectedDistrict:any;
 
 
   cname:string='';
@@ -55,14 +59,24 @@ export class AddCustomerPage implements OnInit {
   // selectedOption:string='';
   //countries: any[] = [];
     countries$:Observable<any[]>
+    states$:Observable<any[]>
+    districts$:Observable<any[]>
   menuController: any;
 
   
-  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService) {
-   // this.countries$ = new Observable<any[]>(); // Initialize the property in the constructor
+  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$=this.countryService.getCountries();
+    this.districts$=this.districtservice.getDistricts(1);
    }
-
+   onCountryChange() {
+    console.log('selected value' + this.selectedOption);
+    this.states$ = this.stateservice.getStates(1);
+   }
+   onStateChange() {
+    console.log('selected value' + this.selectedState);
+    this.districts$ = this.districtservice.getDistricts(1);
+   }
   loadCountries() {
     // this.countryService.getCountries().subscribe(
     //   (data) => {
