@@ -18,6 +18,11 @@ import { roletypesservice } from './services/roletypes.service';
 import { CountryService } from './services/country.service';
 import { GsttypeService } from './services/gsttype.service';
 import { UnitnameService } from './services/unitname.service';
+import { IndustrytypeService } from './services/industrytype.service';
+import { HsnService } from './services/hsn.service';
+import { BusinesstypeService } from './services/businesstype.service';
+import { CgsttypeService } from './services/cgsttype.service';
+import { SegmentService } from './services/segment.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -25,7 +30,7 @@ import { UnitnameService } from './services/unitname.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+    SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {

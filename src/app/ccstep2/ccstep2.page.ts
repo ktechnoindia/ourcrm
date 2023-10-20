@@ -5,6 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { IndustrytypeService } from '../services/industrytype.service';
+import { CgsttypeService } from '../services/cgsttype.service';
+import { BusinesstypeService } from '../services/businesstype.service';
+import { SegmentService } from '../services/segment.service';
 
 @Component({
   selector: 'app-ccstep2',
@@ -14,8 +18,22 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink,RouterModule]
 })
 export class Ccstep2Page implements OnInit {
-
-  constructor(private router:Router) { }
+industry$:any;
+selectindustry:string = '';
+industry!:string;
+companytype$:any;
+companytype!:string;
+businesstype$:any;
+businesstype!:string;
+segmenttype$:any;
+segmenttype!:string;
+  constructor(private router:Router,private industry1:IndustrytypeService,private cmptype:CgsttypeService,private bustype:BusinesstypeService,private segment1:SegmentService) {
+   this.industry$=this.industry1.getindustrytype();
+   this.companytype$=this.cmptype.getcgtype();
+   this.businesstype$=this.bustype.getbusinesstype();
+   this.segmenttype$=this.segment1.getsegments();
+   }
+  
 
 
   ngOnInit() {

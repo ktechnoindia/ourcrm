@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
+import { HsnService } from '../services/hsn.service';
 
 @Component({
   selector: 'app-add-item',
@@ -53,9 +54,12 @@ export class AddItemPage implements OnInit {
   selectGst$: any;
   unitname$:any;
   unitname!: string; 
-constructor(private router: Router, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService) {   
+  hsnname$:any;
+  hsnname!:string;
+constructor(private router: Router, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
+     this.hsnname$=this.hsname1.gethsnservice();
   }
 
   async onSubmit() {

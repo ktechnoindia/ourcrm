@@ -17,52 +17,35 @@
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">Industry</option>
-                <option value="Footwear">Footwear</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Electronics">Electronics</option>
+              <select [(ngModel)]="industry"  [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
+                  {{ industry.industrytypename }}
+                </option>
+                
               </select>
             </ion-col>
 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">Type Of Business</option>
-                <option value="Sole Proprietorship">Sole Proprietorship</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Limited Liability Company (LLC)">Limited Liability Company (LLC)</option>
-                <option value="S Corporation (S Corp)">S Corporation (S Corp)</option>
-                <option value="Nonprofit Organization">Nonprofit Organization</option>
-                <option value="Cooperative (Co-op)">Cooperative (Co-op)</option>
-                <option value="Limited Partnership (LP)">Limited Partnership (LP)</option>
-                <option value="Professional Corporation (PC)">Professional Corporation (PC)</option>
-                <option value="B Corporation (Benefit Corporation)">B Corporation (Benefit Corporation)</option>
-
+              <select [(ngModel)]="businesstype"  [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
+                  {{ businesstype.businesstypename }}
+                </option>
+                
               </select>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">Segment</option>
-                <option value="Private Company">Private Company</option>
-                <option value="Public Company">Public Company</option>
-                <option value="Government-Owned Company ">Government-Owned Company </option>
-                <option value="Cooperative">Cooperative</option>
-                <option value="Nonprofit Organization">Nonprofit Organization</option>
-                <option value="Financial Company">Financial Company</option>
-                <option value="Service Company">Service Company</option>
-                <option value="Retail Company">Retail Company</option>
-                <option value="E-commerce Company">E-commerce Company</option>
-                <option value="Local Business">Local Business</option>
-                <option value="National Business">National Business</option>
-                <option value="International Business">International Business</option>
-                <option value="Private Company">Private Company</option>
-
+              <select [(ngModel)]="segmenttype"  [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
+                  {{ segmenttype.segmentname }}
+                </option>
+                
               </select>
             </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            
+            
+            <!-- <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
                 <option selected value="">Sub-Segment</option>
                 <option value="Private Company">Private Company</option>
@@ -80,34 +63,16 @@
                 <option value="Private Company">Private Company</option>
 
               </select>
-            </ion-col>
+            </ion-col> -->
             
-          </ion-row>
-          <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">Type Of Company</option>
-                <option value="Sole Proprietorship">Sole Proprietorship</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Limited Liability Company (LLC)">Limited Liability Company (LLC)</option>
-                <option value="S Corporation (S Corp)">S Corporation (S Corp)</option>
-                <option value="Nonprofit Organization">Nonprofit Organization</option>
-                <option value="Cooperative (Co-op)">Cooperative (Co-op)</option>
-                <option value="Limited Partnership (LP)">Limited Partnership (LP)</option>
-                <option value="Professional Corporation (PC)">Professional Corporation (PC)</option>
-                <option value="B Corporation (Benefit Corporation)">B Corporation (Benefit Corporation)</option>
-
+              <select [(ngModel)]="companytype"  [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
+                  {{ companytype.gsttypename }}
+                </option>
+                
               </select>
             </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">GST or Taxtype</option>
-                <option value="GST">GST</option>
-                <option value="Non-GST">Non-GST</option>
-              </select>
-            </ion-col>
-          </ion-row>
-          <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input color="dark" name="panno" type="text" label="PAN No. :" label-placement="floating"
@@ -119,17 +84,9 @@
                 <ion-input color="dark" name="tanno" type="text" label="TAN No. :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
-            </ion-col>
-           
-            
+            </ion-col>     
           </ion-row>
           
-          
-        
-
-      
-
-
           <ion-row class="custom-primary">
             <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 2</p>
             <ion-progress-bar value="0.5" buffer=".5" style="height: 10px;"></ion-progress-bar>
