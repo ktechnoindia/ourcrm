@@ -11,23 +11,30 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
           <ion-row style="justify-content: center;">
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="fname" type="text" label="Full Name :" label-placement="floating"
+                <ion-input [(ngModel)]="fname" formControlName="fname"  name="fullname" type="text" label="Full Name :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('fname')?.hasError('required') && form.get('fname').touched" class="error-message">
+                    Full Name is required.
+                  </div>
               </ion-row>
             </ion-col>
          
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="email" type="email" label=" Email :" label-placement="floating"
+                <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('email')?.hasError('required') && form.get('email').touched" class="error-message">
+                    Email is required.
+                  </div>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -39,21 +46,24 @@
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="Password" type="Password" label="Password :" label-placement="floating"
+                <ion-input [(ngModel)]="password" formControlName="password" name="pass" type="password" label="Password :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('password')?.hasError('password') && form.get('address').touched" class="error-message">
+                    Password is required.
+                  </div>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="Password" type="Password" label="Confrum Password :" label-placement="floating"
+                <ion-input [(ngModel)]="confrimpassword" formControlName="confrimpassword" color="dark" name="confrimpass" type="password" label="Confrum Password :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('confrimpassword')?.hasError('required') && form.get('confrimpassword').touched" class="error-message">
+                    Confim Password is required.
+                  </div>
               </ion-row>
             </ion-col>
           </ion-row>
 
-
-
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button>New</ion-button>
               <ion-button type="submit">Save</ion-button>
@@ -61,7 +71,7 @@
               <!-- <ion-button>Preview</ion-button> -->
               <ion-button>Close</ion-button>
             </ion-row>
-          </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

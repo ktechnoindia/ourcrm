@@ -11,6 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
@@ -18,13 +19,13 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="accno" type="text" label="CIF No. :" label-placement="floating"
+                <ion-input [(ngModel)]="accno" formControlName="accno" name="accountno" type="text" label="CIF No. :" label-placement="floating"
                   fill="outline" max-length="20"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="ifsc" type="text" label="IFSC Code :" label-placement="floating"
+                <ion-input [(ngModel)]="ifsc" formControlName="ifsc" name="ifscode" type="text" label="IFSC Code :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -32,13 +33,16 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="bname" type="text" label="Bank Name :" label-placement="floating"
+                <ion-input [(ngModel)]="bname" formControlName="bname" name="bankname" type="text" label="Bank Name :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('bname')?.hasError('required') && form.get('bname').touched" class="error-message">
+                Bank Name is required.
+              </div>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="branchname" type="text" label="Branch Name :" label-placement="floating"
+                <ion-input [(ngModel)]="branchname" formControlName="branchname" name="brchname" type="text" label="Branch Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -47,7 +51,7 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="upiid" type="text" label="UPI ID :" label-placement="floating"
+                <ion-input [(ngModel)]="upiid" formControlName="upiid" name="upi" type="text" label="UPI ID :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -65,6 +69,7 @@
             <!-- <ion-button>Preview</ion-button> -->
             <ion-button>Close</ion-button>
           </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

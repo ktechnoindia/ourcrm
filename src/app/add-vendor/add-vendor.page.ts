@@ -64,7 +64,6 @@ export class AddVendorPage implements OnInit {
       cname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       vendorcode: ['', [Validators.required, Validators.maxLength(5)]],
       gstin: ['', [Validators.required, Validators.maxLength(15)]],
-
       phone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       state:['',[Validators.required]],

@@ -6,21 +6,27 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
+import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.page.html',
   styleUrls: ['./add-item.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule],
 
 })
 export class AddItemPage implements OnInit {
   selectTabs = 'address';
+  form:any;
+  submitted=false;
 
   itemDesc: string = '';
   itemCode: number | null = null;
   selectHSN: string = '';
+  selectItem:string = '';
   selectStock: string = '';
   selectPrimaryUnit: string = '';
   selectAltUnit: string = '';
@@ -52,196 +58,39 @@ export class AddItemPage implements OnInit {
   selectGstservice:any;
   selectGst$: any;
   unitname$:any;
-  unitname!: string; 
-constructor(private router: Router, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService) {   
+ 
+
+constructor(private router: Router, private formBuilder:FormBuilder, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
+
+     this.form = this.formBuilder.group({
+      itemDesc:['',[Validators.required]],
+      itemCode:['',[Validators.required]],
+      selectItem:['',[Validators.required]],
+      selectStock:['',[Validators.required]],
+      selectItemGroup:['',[Validators.required]],
+      selectGst:['',[Validators.required]],
+      unitname: [''],
+      selectAltUnit:[''],
+      openingbalance:[''],
+      closingbalance:[''],
+      selectHSN:[''],
+      unitname$:['']
+    })
   }
 
-  async onSubmit() {
-   if(this.itemDesc===''){
-    const toast = await this.toastCtrl.create({
-      message:"Item Description is required",
-      duration:3000,
-      color:'danger',
-    });
-      toast.present();
-   }else if(this.itemCode==null){
-    const toast = await this.toastCtrl.create({
-      message:"Item Code is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectHSN==''){
-    const toast = await this.toastCtrl.create({
-      message:"Select HSN Code is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectStock==null){
-    const toast = await this.toastCtrl.create({
-      message:"Select Stock is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectPrimaryUnit==''){
-    const toast = await this.toastCtrl.create({
-      message:"Select Primary Unit is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectAltUnit==''){
-    const toast = await this.toastCtrl.create({
-      message:"Select Alternate Unit is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectItemGroup==''){
-    const toast = await this.toastCtrl.create({
-      message:"Select Item Group is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.selectGst==''){
-    const toast = await this.toastCtrl.create({
-      message:"Select GST Code is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.openingbalance==null){
-    const toast = await this.toastCtrl.create({
-      message:"Opening Balance is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.closingbalance==null){
-    const toast = await this.toastCtrl.create({
-      message:"Closing Balance is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.attr1==''){
-    const toast = await this.toastCtrl.create({
-      message:"Attr1 is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.attr2==''){
-    const toast = await this.toastCtrl.create({
-      message:"Attr2 is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.attr3==''){
-    const toast = await this.toastCtrl.create({
-      message:"Attr3 is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.attr4==''){
-    const toast = await this.toastCtrl.create({
-      message:"Attr4 is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.eanCode==null){
-    const toast = await this.toastCtrl.create({
-      message:"EAN Code is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.minimum==null){
-    const toast = await this.toastCtrl.create({
-      message:"Minimum is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.reorder==''){
-    const toast = await this.toastCtrl.create({
-      message:"Re-Order is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.description==null){
-    const toast = await this.toastCtrl.create({
-      message:"Description is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.dimension==''){
-    const toast = await this.toastCtrl.create({
-      message:"Dimesion is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.weight==null){
-    const toast = await this.toastCtrl.create({
-      message:"Weight is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.brandname==''){
-    const toast = await this.toastCtrl.create({
-      message:"Item Code is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.modelname==''){
-    const toast = await this.toastCtrl.create({
-      message:"Model is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.category==''){
-    const toast = await this.toastCtrl.create({
-      message:"Category is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.weightunit==null){
-    const toast = await this.toastCtrl.create({
-      message:"Weight Unit is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.relailprofit==null){
-    const toast = await this.toastCtrl.create({
-      message:"Retailer Profit is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }else if(this.delarprofit==null){
-    const toast = await this.toastCtrl.create({
-      message:"Delar Profit is required",
-      duration:3000,
-      color:'danger'
-    });
-    toast.present();
-   }
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Selected Value' + this.form.value);
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
+    }
   }
 
   ngOnInit() {

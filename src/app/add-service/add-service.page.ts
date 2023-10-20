@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -14,63 +15,41 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AddServicePage implements OnInit {
   serviceCode:number | null= null;
-  selectOption1:string='';
-  selectOption2:string='';
-  selectOption3:string='';
+  service:string='';
+  stocktype:string='';
+  sacode:string='';
   itemDesc:string='';
 
-  constructor(private router: Router,private toastCtrl:ToastController) { }
+  form:any;
+  submitted=false;
+
+  constructor(private router: Router, private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
+    this.form = this.formBuilder.group({
+      serviceCode:['',[Validators.required]],
+      service:['',[Validators.required]],
+      stocktype:['',[Validators.required]],
+      sacode:['',[Validators.required]],
+      itemDesc:['']
+    })
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Selected Value' + this.form.value);
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
+    }
+  }
 
   ngOnInit() {
   }
   goBack() {
     this.router.navigate(['/master']); // Navigate back to the previous page
-  }
- async onService(){
-      if(this.serviceCode === null){
-        const toast = await this.toastCtrl.create({
-          message:"Service Code is required",
-          duration:3000,
-          color:'danger'
-        });
-        toast.present()
-      }else if(this.selectOption1===""){
-        const toast = await this.toastCtrl.create({
-          message:"Stock is required",
-          duration:3000,
-          color:'danger'
-        });
-        toast.present()
-      }else if(this.selectOption2===""){
-        const toast = await this.toastCtrl.create({
-          message:"Sdd is required",
-          duration:3000,
-          color:'danger'
-        });
-        toast.present()
-      }else if(this.itemDesc===''){
-        const toast = await this.toastCtrl.create({
-          message:"Item Description is required",
-          duration:3000,
-          color:'danger'
-        });
-        toast.present()
-      }else if(this.selectOption3===""){
-        const toast = await this.toastCtrl.create({
-          message:"Stk is required",
-          duration:3000,
-          color:'danger'
-        });
-        toast.present()
-      }else{
-        const toast = await this.toastCtrl.create({
-          message:"Successfully !",
-          duration:3000,
-          color:'success'
-        });
-        toast.present()
-        
-      }
   }
 
 }
