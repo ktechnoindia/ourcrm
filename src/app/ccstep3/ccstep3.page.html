@@ -12,22 +12,46 @@
         </div>
         <ion-grid>
           <ion-row class="headinglabel">
-            <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-label style="font-size: 18px;">Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value=""> --Select Module--</option>
-                <option value="sales">Sales</option>
-                <option value="Purchase">Purchase</option>
-                <option value="Quotation">Quotation</option>
-                <option value="Challan">Challan</option>
-                <option value="LMS">LMS</option>
-                <option value="AMC">AMC</option>
-                <option value="all">All Above</option>
-              </select>
+
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>Sales</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>Purchase</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>Quotation</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>Challan</ion-label>
+              </ion-item>
             </ion-col>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+             
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>LMS</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>AMC</ion-label>
+              </ion-item>
+              <ion-item line="none">
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-label>All Of The Above</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
                 <option selected value=""> --Select Language--</option>
@@ -38,15 +62,13 @@
                 <option value="French">French</option>
               </select>
             </ion-col>
-          </ion-row>
-          <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select fill="outline" class="select-width">
                 <option selected value=""> --Select Currency--</option>
                 <option value="Rupees">Rupees</option>
                 <option value="Doller">Doller</option>
                 <option value="euro">Euro</option>
-               
+
               </select>
             </ion-col>
 
