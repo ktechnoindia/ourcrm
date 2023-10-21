@@ -44,12 +44,11 @@
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select class="select-width" fill="outline">
-                  <option value="">
-                    Select Group Name</option>
-                  <option value="daimond">Daimond</option>
-                  <option value="star">Star</option>
-                  <option value="silver">Silver</option>
+                <select [(ngModel)]="custtype"  [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
+                    {{ custtype.customertypename }}
+                  </option>
+                  
                 </select>
 
               </ion-col>
@@ -246,14 +245,12 @@
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                <select fill="outline" class="select-width" [(ngModel)]="selectedOption"
-                  [ngModelOptions]="{standalone: true}">
-                  <option value="">
-                    Select Sales Person</option>
-                  <option value="">Deepak</option>
-                  <option value="">Abhishek</option>
-                  <option value="">Ravi</option>
-                  <option value="">Yogesh</option>
+                <select [(ngModel)]="executive"  [ngModelOptions]="{standalone: true}">
+                  <option value="name">abhishek</option>
+                  <!-- <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
+                   -->
                 </select>
               </ion-col>
             </ion-row>

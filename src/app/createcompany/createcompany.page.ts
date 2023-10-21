@@ -7,7 +7,9 @@ import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CountryService } from '../services/country.service';
+import { StateService } from '../services/state.service';
+import { DistrictsService } from '../services/districts.service';
 
 @Component({
   selector: 'app-createcompany',
@@ -19,53 +21,39 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 })
 export class CreatecompanyPage implements OnInit {
-  rdate: string | undefined = '';
-  gstin:string='';
-  cpyname: string = '';
-  state: string = '';
-  address: string = '';
-  phone:string='';
-  wpnumber:string='';
-  email:string='';
-  date:string='';
-  pinCode:string='';
-  selectedCountry:string='';
-  selectedState:string='';
-  selectedDistrict:string='';
-  form: any;
-  submitted = false;
-
-  constructor(private router: Router, private datePipe: DatePipe, private formBuilder: FormBuilder
-  ) {
-    this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
-
-    this.form = formBuilder.group({
-      cpyname: ['', [Validators.required]],
-      selectedCountry: ['', [Validators.required]],
-      selectedDistrict: ['', [Validators.required]],
-      selectedState: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      gstin:[''],
-      phone:[''],
-      wpnumber:[''],
-      email:[''],
-  date:[''],
-  pinCode:[''],
-
-    })
-
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
+  rdate:string | undefined ='' ;
+  selectedState: any;
+  selectedDistrict:any;
+  selectedOption: string = '';
+  countries$:Observable<any[]>
+  states$:Observable<any[]>
+  districts$:Observable<any[]>
+  countryService: any;
+  districtservice: any;
+  stateservice: any;
+  constructor(private router:Router,private datePipe: DatePipe,private country:CountryService,private state:StateService,private districts:DistrictsService
+    ) 
+    {
+      this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
+      this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+      this.countries$=this.country.getCountries();
+      this.districts$=this.districts.getDistricts(1);
+     }
+     onCountryChange() {
+      console.log('selected value' + this.selectedOption);
+      this.states$ = this.state.getStates(1);this.states$ = this.stateservice.getStates(1);
+     }
+     onStateChange() {
+      console.log('selected value' + this.selectedState);
+      this.districts$ = this.districts.getDistricts(this.selectedState);
+     }
+   
+     getCurrentDate(){
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+      const yyyy = today.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
     }
   }
 

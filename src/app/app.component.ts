@@ -23,6 +23,9 @@ import { HsnService } from './services/hsn.service';
 import { BusinesstypeService } from './services/businesstype.service';
 import { CgsttypeService } from './services/cgsttype.service';
 import { SegmentService } from './services/segment.service';
+import { CustomerService } from './services/customer.service';
+import { ExecutiveService } from './services/executive.service';
+import { CustomertypeService } from './services/customertype.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -30,7 +33,7 @@ import { SegmentService } from './services/segment.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+    CustomertypeService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {
