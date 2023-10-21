@@ -9,4 +9,9 @@ export const environment = {
   fetchdistrict:'getdistrict',
   fetchgsttypes:'getGSTTypes',
   fetchunits:'getUnits',
+  fetchhsn:'getHSNNames',
+  fetchcgtype:'getCGSTTypes',
+  fetchsegment:'getSegments',
+  fetchindustrytype:'getIndustryTypes',
+  fetchbusinesstype:'getBusinessTypes',
 };

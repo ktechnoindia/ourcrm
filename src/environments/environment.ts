@@ -9,6 +9,11 @@ export const environment = {
   fetchroletypes:'getRoleTypes',
   fetchgsttypes:'getGSTTypes',
   fetchunits:'getUnits',
+  fetchhsn:'getHSNNames',
+  fetchcgtype:'getCGSTTypes',
+  fetchsegment:'getSegments',
+  fetchindustrytype:'getIndustryTypes',
+  fetchbusinesstype:'getBusinessTypes',
 };
 
 

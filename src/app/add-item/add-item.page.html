@@ -36,11 +36,11 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectHSN" name="hsn" formControlName="selectHSN">
-                    <option value="">--Select HSN Code--</option>
-                    <option value="">123</option>
-                    <option value="">456</option>
-                    <option value="">789</option>
+                  <select [(ngModel)]="hsnname"  [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
+                      {{ hsnname.hsnname }}
+                    </option>
+                    
                   </select>
                 </ion-col>
 

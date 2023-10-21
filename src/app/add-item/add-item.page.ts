@@ -6,9 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { HsnService } from '../services/hsn.service';
 
 @Component({
   selector: 'app-add-item',
@@ -58,26 +56,13 @@ export class AddItemPage implements OnInit {
   selectGstservice:any;
   selectGst$: any;
   unitname$:any;
- 
-
-constructor(private router: Router, private formBuilder:FormBuilder, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService) {   
+  unitname!: string; 
+  hsnname$:any;
+  hsnname!:string;
+constructor(private router: Router, private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
-
-     this.form = this.formBuilder.group({
-      itemDesc:['',[Validators.required]],
-      itemCode:['',[Validators.required]],
-      selectItem:['',[Validators.required]],
-      selectStock:['',[Validators.required]],
-      selectItemGroup:['',[Validators.required]],
-      selectGst:['',[Validators.required]],
-      unitname: [''],
-      selectAltUnit:[''],
-      openingbalance:[''],
-      closingbalance:[''],
-      selectHSN:[''],
-      unitname$:['']
-    })
+     this.hsnname$=this.hsname1.gethsnservice();
   }
 
   onSubmit() {
