@@ -23,24 +23,24 @@
           </ion-card-header>
         </div>
         <ion-grid>
-        <form #addPurchaseForm="ngForm" (ngSubmit)="onSubmit()">
+          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
 
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="billNumber" name="billNumber" type="number" label=" Billing No.  :"
+                <ion-input [(ngModel)]="billNumber" formControlName="billNumber"  name="billno" type="number" label=" Billing No.  :"
                   label-placement="floating" fill="outline"></ion-input>
 
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="billDate" name="billDate" type="date" label=" Billing Date   :"
+                <ion-input  [(ngModel)]="billDate" formControlName="billDate"  name="billdate" type="date" label=" Billing Date   :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <select [(ngModel)]="payment" name="payment">
+              <select [(ngModel)]="payment" formControlName="payment"  name="pyt">
                 <option value="">
                   Cash/Credit</option>
                 <option value="2">Cash</option>
@@ -50,7 +50,7 @@
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="supplier" name="supplier" type="text" label="  Supplier  :"
+                <ion-input [(ngModel)]="supplier" formControlName="supplier"  name="spler" type="text" label="  Supplier  :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -59,18 +59,18 @@
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="voucherNumber" name="voucherNumber" type="number"
+                <ion-input  [(ngModel)]="voucherNumber" formControlName="voucherNumber"  name="vouchno" type="number"
                   label="  Voucher No.  :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="gstin" name="gstin" type="number" label=" GSTIN  :"
+                <ion-input  [(ngModel)]="gstin" formControlName="gstin"  name="gstincode" type="number" label=" GSTIN  :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <select [(ngModel)]="exicutive" name="exicutive">
+              <select [(ngModel)]="exicutive" formControlName="exicutive"  name="exct">
                 <option  value="">
                   Exicutive</option>
                 <option value="2">Deepak</option>

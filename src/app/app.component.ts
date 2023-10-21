@@ -16,6 +16,16 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
 import { CountryService } from './services/country.service';
+import { GsttypeService } from './services/gsttype.service';
+import { UnitnameService } from './services/unitname.service';
+import { IndustrytypeService } from './services/industrytype.service';
+import { HsnService } from './services/hsn.service';
+import { BusinesstypeService } from './services/businesstype.service';
+import { CgsttypeService } from './services/cgsttype.service';
+import { SegmentService } from './services/segment.service';
+import { CustomerService } from './services/customer.service';
+import { ExecutiveService } from './services/executive.service';
+import { CustomertypeService } from './services/customertype.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -23,7 +33,7 @@ import { CountryService } from './services/country.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CountryService,roletypesservice,StateService,DistrictsService,
+    CustomertypeService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {

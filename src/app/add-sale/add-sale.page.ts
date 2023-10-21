@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-add-sale',
   templateUrl: './add-sale.page.html',
   styleUrls: ['./add-sale.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class AddSalePage implements OnInit {
+
+  form:any;
 
   billNumber: number | null = null;
   billDate: string = '';
@@ -21,75 +25,31 @@ export class AddSalePage implements OnInit {
   gstin: number | null = null;
   salePerson: string = '';
 
-  constructor(private router: Router, private toastCtrl: ToastController) { }
-
-  async onSubmit() {
-    if (this.billNumber == null) {
-      const toast = await this.toastCtrl.create({
-        message: "Bill Number is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.billDate===''){
-      const toast = await this.toastCtrl.create({
-        message: "Bill Date is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.payment===''){
-      const toast = await this.toastCtrl.create({
-        message: "Credit/Debit is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.cName===''){
-      const toast = await this.toastCtrl.create({
-        message: "Customer Name is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.orderDate===''){
-      const toast = await this.toastCtrl.create({
-        message: "Order Date is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.orderNumber===null){
-      const toast = await this.toastCtrl.create({
-        message: "Order Number is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.gstin===null){
-      const toast = await this.toastCtrl.create({
-        message: "GSTIN is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if(this.salePerson===''){
-      const toast = await this.toastCtrl.create({
-        message: "Sale Person is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message: "Successfully !",
-        duration: 3000,
-        color: 'success'
-      });
-      toast.present();
+  constructor(private router: Router,private formBuilder:FormBuilder, private toastCtrl: ToastController) {
+    this.form = this.formBuilder.group({
+      billNumber:['',[Validators.required]],
+      billDate:['',[Validators.required]],
+      payment:['',[Validators.required]],
+      cName:['',[Validators.required]],
+      orderDate:['',[Validators.required]],
+      orderNumber:['',[Validators.required]],
+      gstin:[''],
+      salePerson:[''],
+   })
+   }
+   onSubmit() {
+    if (this.form.valid) {
+      console.log('Selected Value' + this.form.value);
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
     }
   }
-
+  
   ngOnInit() {
   }
   goBack() {

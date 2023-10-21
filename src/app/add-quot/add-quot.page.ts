@@ -26,7 +26,8 @@ export class AddQuotPage implements OnInit {
       const toast = await this.toastCtrl.create({
         message: "Quatation Number is required",
         duration: 3000,
-        color: 'danger'
+        color: 'danger',
+        
       });
       toast.present();
     }else if(this.quateDate===''){
@@ -54,7 +55,8 @@ export class AddQuotPage implements OnInit {
       const toast = await this.toastCtrl.create({
         message: "Successfully !",
         duration: 3000,
-        color: 'success'
+        color: 'success',
+        position:'top'
       });
       toast.present();
     }

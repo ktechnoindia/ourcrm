@@ -11,17 +11,24 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="exname" type="text" label=" Exicutive Name :" label-placement="floating"
+                <ion-input [(ngModel)]="exname" formControlName="exname"   name="exicutname" type="text" label=" Exicutive Name :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('exname')?.hasError('required') && form.get('exname').touched" class="error-message">
+                    Exicutive Name is required.
+                  </div>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="extilte" type="text" label="Exicutive Title:" label-placement="floating"
+                <ion-input [(ngModel)]="extilte" formControlName="extilte"  name="excuttilte" type="text" label="Exicutive Title:" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('extilte')?.hasError('required') && form.get('extilte').touched" class="error-message">
+                    Exicutive Title is required.
+                  </div>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -33,19 +40,22 @@
           <ion-row>
                       <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="phone" formControlName="phone"  name="mobileno"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone').touched" class="error-message">
+                  Monile Number is required.
+                </div>
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Whatsapp Number :" label-placement="floating"
+                <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber"  name="whatshappnumber"  type="number" label=" Whatsapp Number :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="email" formControlName="email"  name="emails"  type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -57,7 +67,7 @@
 
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-              <select name="country" value="">
+              <select name="country" formControlName="selectedCountry" [(ngModel)]="selectedCountry" >
                 <option value="">
                  Select Country
                 </option>
@@ -65,10 +75,13 @@
                 <option value="">USA</option>
                 <option value="">Uk</option>
               </select>
+              <div *ngIf="form && form.get('selectedCountry')?.hasError('required') && form.get('selectedCountry').touched" class="error-message">
+                Country is required.
+              </div>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select fill="outline" [(ngModel)]="selectedState" formControlName="selectedState"  name="state" >
                 <option selected value="">--Select State--</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -106,10 +119,12 @@
                 <option value="Delhi">Delhi</option>
                 <option value="Puducherry">Puducherry</option>
               </select>
-
+              <div *ngIf="form && form.get('selectedState')?.hasError('required') && form.get('selectedState').touched" class="error-message">
+                State is required.
+              </div>
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select fill="outline" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict"  name="city" >
                 <option selected value=""> --Select City--</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Delhi">Delhi</option>
@@ -122,23 +137,28 @@
                 <option value="Jaipur">Jaipur</option>
                 <option value="Lucknow">Lucknow</option>
               </select>
+              <div *ngIf="form && form.get('selectedDistrict')?.hasError('required') && form.get('selectedDistrict').touched" class="error-message">
+                District is required.
+              </div>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="pinCode" formControlName="pinCode"  name="pcode"  type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress"  name="address"  type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                <div *ngIf="form && form.get('fulladdress')?.hasError('required') && form.get('fulladdress').touched" class="error-message">
+                  Address is required.
+                </div>
               </ion-row>
             </ion-col>
           </ion-row>
-
-
+          
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
@@ -146,6 +166,7 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

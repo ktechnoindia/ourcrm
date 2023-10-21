@@ -100,3 +100,8 @@ ng-template ion-button {
     border-width: 1px;
     box-shadow: 0 0 2px 2px #fffbfb;
 }
+
+ion-input[type=number]::part(input){
+    -webkit-appearance: none;
+    margin: 0;
+}

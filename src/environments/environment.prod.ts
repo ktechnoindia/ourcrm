@@ -7,4 +7,11 @@ export const environment = {
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchstate:'getStates',
   fetchdistrict:'getdistrict',
+  fetchgsttypes:'getGSTTypes',
+  fetchunits:'getUnits',
+  fetchhsn:'getHSNNames',
+  fetchcgtype:'getCGSTTypes',
+  fetchsegment:'getSegments',
+  fetchindustrytype:'getIndustryTypes',
+  fetchbusinesstype:'getBusinessTypes',
 };

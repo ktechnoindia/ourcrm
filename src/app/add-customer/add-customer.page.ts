@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
@@ -14,10 +13,9 @@ import { Observable, throwError } from 'rxjs';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
-
-
-
-
+import { CustomerService, cust } from '../services/customer.service';
+import { CustomertypeService } from '../services/customertype.service';
+import { ExecutiveService } from '../services/executive.service';
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.page.html',
@@ -31,62 +29,73 @@ export class AddCustomerPage implements OnInit {
   activeSegment: string = '';
   selectedPage: string = 'page1';
   selectedState: any;
-  selectedDistrict:any;
+  selectedDistrict: any;
 
-  cname: string = '';
+  name: string = '';
   customercode: number | null = null;
-  gstin: number | null = null;
+  customer_code:string='';
   selectedOption: string = '';
-  openingbalance: number | null = null;
-  closingbalance: number | null = null;
-  phone: number | null = null;
-  whatshappnumber: number | null = null;
-  email: string = '';
-  pincode: number | null = null;
-  fullname: string = '';
-  taxnumber: number | null = null;
-  adharnumber: number | null = null;
-  panumber: number | null = null;
-  udayognumber: number | null = null;
-  accountnumber: number | null = null;
-  ifsc: number | null = null;
-  bankname: string = '';
-  branchname: string = '';
-  creditperiod: number | null = null;
-  creditlimit: number | null = null;
-  cardnumber: number | null = null;
-  openingpoint: number | null = null;
-  closingpoint: number | null = null;
+  opening_balance: number | null = null;
+  closing_balance: number | null = null;
+  mobile: number | null = null;
+  whatsapp_number:string='';
+  address: string = '';
+  gstin:string='';
+  email:string='';
+  select_sales_person:string='';
+  pincode:number | null=null;
+  tdn: number | null = null;
+  aadhar_no: number | null = null;
+  pan_no: number | null = null;
+  udhyog_aadhar: number | null = null;
+  account_number: string="";
+  ifsc_code: number | null = null;
+  bank_name: string = '';
+  branch_name: string = '';
+  credit_period: number | null = null;
+  credit_limit: number | null = null;
+  card_number: number | null = null;
+  opening_point: number | null = null;
+  closing_point: number | null = null;
+  district:any;
+  country:any;
+  state:any;
+  select_group:number | null=null;
 
-  
-
-  submitValue=false;
+  submitValue = false;
   // selectedOption:string='';
   //countries: any[] = [];
-    countries$:Observable<any[]>
-    states$:Observable<any[]>
-    districts$:Observable<any[]>
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
   menuController: any;
-  myService: any;
-  
+  custtype$: any;
+  custtype!: string;
+  executive$: any;
+  executive!: string;
+
   // constructor(private router: Router,
   //   private toastCtrl: ToastController,
   //   private myService: MyService
 
-  
-  constructor(private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+
+  constructor(private custtp: CustomertypeService, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-    this.countries$=this.countryService.getCountries();
-    this.districts$=this.districtservice.getDistricts(1);
-   }
-   onCountryChange() {
+    this.countries$ = this.countryService.getCountries();
+    this.districts$ = this.districtservice.getDistricts(1);
+    this.custtype$ = this.custtp.getcustomertype();
+    this.executive$ = this.execut.getexecutive();
+
+  }
+  onCountryChange() {
     console.log('selected value' + this.selectedOption);
     this.states$ = this.stateservice.getStates(1);
-   }
-   onStateChange() {
+  }
+  onStateChange() {
     console.log('selected value' + this.selectedState);
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
-   }
+  }
+
   loadCountries() {
     // this.countryService.getCountries().subscribe(
     //   (data) => {
@@ -97,7 +106,7 @@ export class AddCustomerPage implements OnInit {
     //     } else {
     //       console.error('API did not return an array of countries.');
     //     }
-       
+
     //   },
     //   (error) => {
     //     console.error('Error loading countries:', error);
@@ -129,35 +138,10 @@ export class AddCustomerPage implements OnInit {
   }
 
   onSubmit(myform: NgForm) {
-    const formData = {
-      cname: this.cname,
-      customercode: this.customercode,
-      gstin: this.gstin,
-      selectedOption: this.selectedOption,
-      openingbalance: this.openingbalance,
-      closingbalance: this.closingbalance,
-      phone: this.phone,
-      whatshappnumber: this.whatshappnumber,
-      email: this.email,
-      pincode: this.pincode,
-      fullname: this.fullname,
-      taxnumber: this.taxnumber,
-      adharnumber: this.adharnumber,
-      panumber: this.panumber,
-      udayognumber: this.udayognumber,
-      accountnumber: this.accountnumber,
-      ifsc: this.ifsc,
-      bankname: this.bankname,
-      branchname: this.branchname,
-      creditperiod: this.creditperiod,
-      creditlimit: this.creditlimit,
-      cardnumber: this.cardnumber,
-      openingpoint: this.openingpoint,
-      closingpoint: this.closingpoint
-
-    };
-
-    this.myService.postData(formData).subscribe(
+    
+    console.log('Your form data : ', myform.value);
+    let custdata:cust={name:myform.value.name,customer_code:myform.value.customer_code,gstin:myform.value.gstin,select_group:myform.value.select_group,opening_balance:myform.value.opening_balance,closing_balance:myform.value.closing_balance,mobile:myform.value.mobile,whatsapp_number:myform.value.whatsapp_number,email:myform.value.email,country:myform.value.country,state:myform.value.state,district:myform.value.district,pincode:myform.value.pincode,address:myform.value.address,tdn:myform.value.tdn,aadhar_no:myform.value.aadhar_no,pan_no:myform.value.pan_no,udhyog_aadhar:myform.value.udhyog_aadhar,account_number:myform.value.account_number,ifsc_code:myform.value.ifsc_code,bank_name:myform.value.bank_name,branch_name:myform.value.branch_name,credit_period:myform.value.credit_period,credit_limit:myform.value.credit_limit,select_sales_person:myform.value.select_sales_person,card_number:myform.value.card_number,opening_point:myform.value.opening_point,closing_point:myform.value.closing_point};
+    this.myService.createCustomer(custdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed

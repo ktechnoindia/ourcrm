@@ -23,25 +23,29 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form #executiveForm (ngSubmit)="onSubmit()">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="role" [ngModelOptions]="{standalone: true}">
+                <select [ngModel]="role" formControlName="role"  name="roletype">
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypesid" >
                     {{ roletypes.roletypename }}
-                  </option>
-                
+                  </option>   
                 </select>
+                <div *ngIf="form && form.get('role')?.hasError('required') && form.get('role').touched" class="error-message">
+                  Role is required.
+                </div>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="name" type="text" label=" Name :" label-placement="floating"
-                     [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="name" formControlName="name"  name="names" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
+                  <div *ngIf="form && form.get('name')?.hasError('required') && form.get('name').touched" class="error-message">
+                    Service Type is required.
+                  </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="manager" [ngModelOptions]="{standalone: true}">
+                <select [ngModel]="manager" formControlName="manager"  name="managertype">
                   <option value="">--Select Manager--
                   </option>
                   <option value="1">Deepak</option>
@@ -50,11 +54,17 @@
                   <option value="1">Nirbhay</option>
                   <option value="1">Ravi</option>
                 </select>
+                <div *ngIf="form && form.get('manager')?.hasError('required') && form.get('manager').touched" class="error-message">
+                  Manager is required.
+                </div>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="phone" type="text" label="Mobile No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="phone" formControlName="phone"  name="mobile" type="text" label="Mobile No. :"
+                    label-placement="floating" fill="outline" ></ion-input>
+                    <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone').touched" class="error-message">
+                      Service Type is required.
+                    </div>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -62,43 +72,45 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark"[(ngModel)]="email" type="email" label="Email :" label-placement="floating"
-                    [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="email" formControlName="email"  name="emails" type="email" label="Email :" label-placement="floating"
+                     fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="whatshappnumber" type="number" label="WhatsApp No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="wpnumber" formControlName="wpnumber"  name="whatshappnumber" type="number" label="WhatsApp No. :"
+                    label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="panumber" type="number" label="PAN No. :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="panumber" formControlName="panumber"  name="pnumber" type="number" label="PAN No. :"
+                    label-placement="floating"  fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="commission" type="text" label="Commission :"
-                    label-placement="floating" [ngModelOptions]="{standalone: true}" fill="outline" color="dark"></ion-input>
+                  <ion-input [ngModel]="commission" formControlName="commission"  name="commiss" type="text" label="Commission :"
+                    label-placement="floating"  fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
-
             </ion-row>
 
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="ledger" [ngModelOptions]="{standalone: true}">
+                <select [ngModel]="ledger" formControlName="ledger"  name="ledgertype">
                   <option value="">--Select Ledger--
                   </option>
                   <option value="1">Stock ledger</option>
                   <option value="1">Sales ledger</option>
                   <option value="1">Purchase ledger</option>
                 </select>
+                <div *ngIf="form && form.get('ledger')?.hasError('required') && form.get('ledger').touched" class="error-message">
+                  Service Type is required.
+                </div>
               </ion-col>
             </ion-row>
 
@@ -110,7 +122,6 @@
               <ion-button>Close</ion-button>
             </ion-row>
           </form>
-
         </ion-grid>
       </ion-card-content>
     </ion-card>
