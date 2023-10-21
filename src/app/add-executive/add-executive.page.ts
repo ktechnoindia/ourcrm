@@ -5,7 +5,7 @@ import { IonicModule, MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -17,9 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AddExecutivePage implements OnInit {
 
-  
-  form:any;
-  submitted=false;
+
+  form: any;
+  submitted = false;
 
   role: string = '';
   name: string = '';
@@ -31,27 +31,27 @@ export class AddExecutivePage implements OnInit {
   commission: string = '';
   ledger: string = '';
 
-roletypes$:Observable<any[]>
-MenuController: any;
+  roletypes$: Observable<any[]>
+  MenuController: any;
   roletypesservice: any;
 
- 
-  constructor(private router: Router,private formBuilder:FormBuilder, private toastCtrl: ToastController,private roletypes:roletypesservice) { 
-    this.roletypes$=this.roletypes.getroletypes();
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+    this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
-      role:['',[Validators.required]],
-      name:['',[Validators.required]],
-      manager:['',[Validators.required]],
-      phone:['',[Validators.required]],
-      ledger:['',[Validators.required]],
+      role: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      manager: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      ledger: ['', [Validators.required]],
       commission: [''],
-      panumber:[''],
-      wpnumber:[''],
-      email:['']
+      panumber: [''],
+      wpnumber: [''],
+      email: ['']
     })
   }
-  
+
   onSubmit() {
     if (this.form.valid) {
       console.log('Selected Value' + this.form.value);

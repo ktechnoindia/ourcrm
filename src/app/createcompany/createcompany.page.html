@@ -42,7 +42,7 @@
 
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
-              <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
+              <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
                 <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                   {{ country.countryname }}
                 </option>
@@ -54,7 +54,7 @@
             </ion-col>
 
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <select [(ngModel)]="selectedState" name="state" label-placement="floating" (change)="onStateChange()">
+              <select [(ngModel)]="selectedState" formControlName="selectedState" name="state" label-placement="floating" (change)="onStateChange()">
                 <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                   {{ state.statename }}
                 </option>
@@ -62,8 +62,7 @@
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 
-              <select class="select-width" [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline"
-                [ngModelOptions]="{standalone: true}">
+              <select  [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district" label-placement="floating" fill="outline">
                 <option *ngFor="let district of (districts$ | async)" [value]="district.districtid" >
                   {{ district.districtname }}
                 </option>
@@ -123,7 +122,7 @@
               <ion-label>Starting From : </ion-label>
               <input type="file" id="file-upload" name="file" accept="image/*">
               
-                <ion-input  [(ngModel)]="date" formControlName="date" name="startdate" type="date" placeholder="Enter Starting Date" class="custom-date-input" ></ion-input>
+                <ion-input  [(ngModel)]="rdate" formControlName="rdate" name="startdate" type="date" placeholder="Enter Starting Date" class="custom-date-input" ></ion-input>
             </ion-col>
           </ion-row>
          
