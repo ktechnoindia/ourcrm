@@ -29,7 +29,7 @@ export class AddCustomerPage implements OnInit {
   activeSegment: string = '';
   selectedPage: string = 'page1';
   selectedState: any;
-  selectedDistrict:any;
+  selectedDistrict: any;
 
   name: string = '';
   customercode: number | null = null;
@@ -62,43 +62,41 @@ export class AddCustomerPage implements OnInit {
   state:any;
   select_group:number | null=null;
 
-  
-
-  submitValue=false;
+  submitValue = false;
   // selectedOption:string='';
   //countries: any[] = [];
-    countries$:Observable<any[]>
-    states$:Observable<any[]>
-    districts$:Observable<any[]>
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
   menuController: any;
-  custtype$:any;
-  custtype!:string;
-  executive$:any;
-  executive!:string;
-  
+  custtype$: any;
+  custtype!: string;
+  executive$: any;
+  executive!: string;
+
   // constructor(private router: Router,
   //   private toastCtrl: ToastController,
   //   private myService: MyService
 
-   
-  constructor(private custtp:CustomertypeService,private execut:ExecutiveService   ,private myService:CustomerService,private router: Router,private toastCtrl: ToastController,private countryService: CountryService, private stateservice: StateService,private districtservice:DistrictsService) {
+
+  constructor(private custtp: CustomertypeService, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-    this.countries$=this.countryService.getCountries();
-    this.districts$=this.districtservice.getDistricts(1);
-    this.custtype$=this.custtp.getcustomertype();
-    this.executive$=this.execut.getexecutive();
-    
-   }
-   onCountryChange() {
+    this.countries$ = this.countryService.getCountries();
+    this.districts$ = this.districtservice.getDistricts(1);
+    this.custtype$ = this.custtp.getcustomertype();
+    this.executive$ = this.execut.getexecutive();
+
+  }
+  onCountryChange() {
     console.log('selected value' + this.selectedOption);
     this.states$ = this.stateservice.getStates(1);
-   }
-   onStateChange() {
+  }
+  onStateChange() {
     console.log('selected value' + this.selectedState);
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
-   }
- 
-   loadCountries() {
+  }
+
+  loadCountries() {
     // this.countryService.getCountries().subscribe(
     //   (data) => {
     //      console.log(data);
@@ -108,7 +106,7 @@ export class AddCustomerPage implements OnInit {
     //     } else {
     //       console.error('API did not return an array of countries.');
     //     }
-       
+
     //   },
     //   (error) => {
     //     console.error('Error loading countries:', error);

@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-executive',
@@ -16,98 +16,54 @@ import { roletypesservice } from '../services/roletypes.service';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AddExecutivePage implements OnInit {
+
+
+  form: any;
+  submitted = false;
+
   role: string = '';
   name: string = '';
   manager: string = '';
   phone: number | null = null;
   email: string = '';
-  whatshappnumber: number | null = null;
+  wpnumber: number | null = null;
   panumber: string = '';
   commission: string = '';
   ledger: string = '';
-roletypes$:Observable<any[]>
-MenuController: any;
+
+  roletypes$: Observable<any[]>
+  MenuController: any;
   roletypesservice: any;
 
- 
-  constructor(private router: Router, private toastCtrl: ToastController,private roletypes:roletypesservice) { 
-    this.roletypes$=this.roletypes.getroletypes();
-  }
-  
-  async onSubmit() {
-    if (this.role === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Role is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.name === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Name is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.manager === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Manager is required",
-        duration: 3000,
-        color: 'danger'
-      })
-      toast.present();
-    } else if (this.phone === null) {
-      const toast = await this.toastCtrl.create({
-        message: 'Phone Number is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.email === '') {
-      const toast = await this.toastCtrl.create({
-        message: 'Email is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.whatshappnumber === null) {
-      const toast = await this.toastCtrl.create({
-        message: 'Whatshapp Number is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.panumber === '') {
-      const toast = await this.toastCtrl.create({
-        message: 'PAN Number is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.commission === '') {
-      const toast = await this.toastCtrl.create({
-        message: 'Commission is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.ledger === '') {
-      const toast = await this.toastCtrl.create({
-        message: 'Ledger is required',
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message: 'SuccessFully !',
-        duration: 3000,
-        color: 'success'
-      });
-      toast.present();
-    }
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+    this.roletypes$ = this.roletypes.getroletypes();
+
+    this.form = this.formBuilder.group({
+      role: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      manager: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      ledger: ['', [Validators.required]],
+      commission: [''],
+      panumber: [''],
+      wpnumber: [''],
+      email: ['']
+    })
   }
 
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Selected Value' + this.form.value);
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
+    }
+  }
 
   ngOnInit() {
   }

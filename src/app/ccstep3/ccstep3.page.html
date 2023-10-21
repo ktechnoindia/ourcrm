@@ -11,6 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
@@ -61,15 +62,20 @@
                 <option value="Tamil">Tamil</option>
                 <option value="French">French</option>
               </select>
+              <div *ngIf="form && form.get('language')?.hasError('required') && form.get('language').touched" class="error-message">
+                Language is required.
+              </div>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
                 <option selected value=""> --Select Currency--</option>
                 <option value="Rupees">Rupees</option>
                 <option value="Doller">Doller</option>
                 <option value="euro">Euro</option>
-
               </select>
+              <div *ngIf="form && form.get('currency')?.hasError('required') && form.get('currency').touched" class="error-message">
+                Currency is required.
+              </div>
             </ion-col>
 
           </ion-row>
@@ -77,8 +83,9 @@
           <ion-row class="custom-primary">
             <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 3</p>
             <ion-progress-bar value="0.75" buffer=".75" style="height: 10px;"></ion-progress-bar>
-            <ion-button [routerLink]="['/ccstep4']">Create & Next</ion-button>
+            <ion-button type="submit" [routerLink]="['/ccstep4']">Create & Next</ion-button>
           </ion-row>
+        </form>
           <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>

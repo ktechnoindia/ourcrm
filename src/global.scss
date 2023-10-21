@@ -25,6 +25,13 @@
     height: 92vh;
 
 }
+
+.error-message {
+    color: rgb(230, 67, 67);
+    font-size: 14px;
+  }
+
+  
 ion-item {
     --background-hover: var(--background);
     --ripple-color: transparent;
