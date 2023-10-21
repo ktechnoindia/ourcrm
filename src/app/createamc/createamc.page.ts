@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,99 +15,50 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class CreateamcPage implements OnInit {
-  contract:string='';
-  cname:string='';
+
+  form:any; 
+
+  contactid:string='';
+  cName:string='';
+  payterms:string='';
   startdate:string='';
   endate:string='';
-  contractduration:string='';  
+  contactdur:string='';  
   cover:string='';
   list:string='';
   contractvalue:string='';
   servicelevel:string='';
   listsla:string='';
 
-  constructor(private router: Router,private toastCtrl:ToastController) { }
-
-  async onSubmit() {
-    if (this.contract === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Contract is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    } else if (this.cname === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Name is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.startdate === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Start Date is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.endate === '') {
-      const toast = await this.toastCtrl.create({
-        message: "End Date is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.contractduration === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Contract Duration is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.cover === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Cover is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.list === '') {
-      const toast = await this.toastCtrl.create({
-        message: "List is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.contractvalue === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Contrat Value is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.servicelevel === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Service Level is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else if (this.listsla === '') {
-      const toast = await this.toastCtrl.create({
-        message: "List SLA is required",
-        duration: 3000,
-        color: 'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message: "Successfully",
-        duration: 3000,
-        color: 'success'
-      });
-      toast.present();
-    }
+  constructor(private router: Router,private toastCtrl:ToastController,private formBuilder:FormBuilder,) { 
+    this.form = this.formBuilder.group({
+      contactid:['',[Validators.required]],
+      cName:['',[Validators.required]],
+      billDate:['',[Validators.required]],
+      startdate:['',[Validators.required]],
+      endate:['',[Validators.required]],
+      contactdur:['',[Validators.required]],
+      contractvalue:['',[Validators.required]],
+      cover:[''],
+      list:[''],
+      servicelevel:[''],
+      listsla:[''],
+      payterms:['']
+   })
   }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Selected Value' + this.form.value);
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
+    }
+  } 
 
   ngOnInit() {
   }
