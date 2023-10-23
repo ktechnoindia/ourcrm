@@ -7,11 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
 import { StateService } from './services/state.service';
 import { DistrictsService } from './services/districts.service';
-
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
@@ -27,6 +24,10 @@ import { CustomerService } from './services/customer.service';
 import { ExecutiveService } from './services/executive.service';
 import { CustomertypeService } from './services/customertype.service';
 import { VendorService } from './services/vendor.service';
+import { LegderService } from './services/legder.service';
+import { AddserviceService } from './services/addservice.service';
+import { GstService } from './services/gst.service';
+import { AddexecutiveService } from './services/addexecutive.service';
 
 
 
@@ -37,7 +38,7 @@ import { VendorService } from './services/vendor.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [
-    CustomertypeService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+    CustomertypeService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {

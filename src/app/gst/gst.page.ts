@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import  {GstService,gststore} from '../services/gst.service';
+
 @Component({
   selector: 'app-gst',
   templateUrl: './gst.page.html',
@@ -14,55 +16,73 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class GstPage implements OnInit {
 
-  form:any;
+  myform:FormGroup;
   submitted=false;
 
-  sname:string='';
-  gstcode:string='';
-  invoicedate:string='';
-  invoiceno:string='';
-  name:string='';
-  customercode:string='';
-  phone:string='';
-  wpnumber:string='';
+  service_name:string='';
+  gst_code:string='';
+  invoice_date:string='';
+  invoice_number:string='';
+  customer_code:string='';
+  phone_number:string='';
+  whatshapp_number:string='';
   email:string='';
+  name:string='';
   selectedCountry:string='';
   selectedState:string='';
   selectedDistrict:string='';
-  pincode:string='';
-  fulladdress:string='';
+  pin_code:string='';
+  address:string='';
   
-  constructor(private router:Router,private formBuilder:FormBuilder,) { 
-    this.form = this.formBuilder.group({
-      sname:['',[Validators.required]],
-      invoicedate:['',[Validators.required]],
-      invoiceno:['',[Validators.required]],
-      customercode:['',[Validators.required]],
+  constructor(private router:Router,private gstService:GstService,private formBuilder:FormBuilder,) { 
+    this.myform = this.formBuilder.group({
+      service_name:['',[Validators.required]],
+      invoice_date:['',[Validators.required]],
+      invoice_number:['',[Validators.required]],
+      customer_code:['',[Validators.required]],
       selectedCountry:['',[Validators.required]],
       selectedState:['',[Validators.required]],
       selectedDistrict:['',[Validators.required]],
-      fulladdress:['',[Validators.required]],
-      wpnumber: [''],
+      address:['',[Validators.required]],
+      whatshapp_number: [''],
       name:[''],
-      phone:[''],
+      phone_number:[''],
       email:[''],
-      gstcode:[''],
-      pincode:['']
+      gst_code:[''],
+      pin_code:['']
     })
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
-    }
-  }
+  onSubmit(myform: any) {
+    // if (this.myform) {
+    console.log('Your form data : ', myform.value);
+    let gstdata:gststore={
+      service_name: myform.value.service_name, invoice_date: myform.value.invoice_date, invoice_number: myform.value.invoice_number, customer_code: myform.value.customer_code, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict,
+      gst_code: myform.value.gst_code,
+      phone_number: myform.value.phone_number,
+      whatshapp_number: myform.value.whatsapp_number,
+      email: myform.value.email,
+      name: myform.value.name,
+      pin_code: myform.value.pin_code,
+      address: myform.value.address
+    };
+    this.gstService.createGst(gstdata,'','').subscribe(
+     (response:any) => {
+          console.log('POST Request falied',response);
+     },
+     (error:any) => {
+          console.log('POST Request falied',error);
+     }
+    )
+  // } else {
+  //   Object.keys(this.myform.controls).forEach(controlName => {
+  //     const control = this.myform.get(controlName);
+  //     if (control.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   })
+  // }
+}
 
   ngOnInit() {
     // Page initialization code goes here

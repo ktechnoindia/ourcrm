@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, MenuController, ToastController } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddexecutiveService,execut } from '../services/addexecutive.service';
 
 @Component({
   selector: 'app-add-executive',
@@ -15,19 +16,19 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
+
 export class AddExecutivePage implements OnInit {
 
-
-  form: any;
+  myform: any;
   submitted = false;
 
   role: string = '';
   name: string = '';
   manager: string = '';
-  phone: number | null = null;
+  phone_number: number | null = null;
   email: string = '';
-  wpnumber: number | null = null;
-  panumber: string = '';
+  whatshapp_number: number | null = null;
+  pan_number: string = '';
   commission: string = '';
   ledger: string = '';
 
@@ -36,34 +37,67 @@ export class AddExecutivePage implements OnInit {
   roletypesservice: any;
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+  constructor(private router: Router,private addExecutiveService:AddexecutiveService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
 
-    this.form = this.formBuilder.group({
+    this.myform = this.formBuilder.group({
       role: ['', [Validators.required]],
       name: ['', [Validators.required]],
       manager: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone_number: ['', [Validators.required]],
       ledger: ['', [Validators.required]],
       commission: [''],
-      panumber: [''],
-      wpnumber: [''],
+      pan_number: [''],
+      whatshapp_number: [''],
       email: ['']
     })
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
-    }
+  // onSubmit(myform:any) {
+  //   if (this.myform) {
+  //     console.log('Selected Value' + myform.value);
+  //     let executdata:execut = {role:myform.value.role,name:myform.value.name,manager:myform.value.manager,phone_number:myform.value.phone_number,email:myform.value.email,whatshapp_number:myform.value.whatsapp_number,pan_number:myform.value.pan_number,commission:myform.value.commission,ledger:myform.value.commission}
+  //     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
+  //       (response:any) => {
+  //            console.log('POST Request successful',response);
+  //       },
+  //       (error:any)=>{
+  //            console.log('POST Request failed',error);
+  //       }
+  //     )
+  //   } else {
+  //     Object.keys(this.myform.controls).forEach(controlName => {
+  //       const control = this.myform.get(controlName);
+  //       if (control.invalid) {
+  //         control.markAsTouched();
+  //       }
+  //     })
+  //   }
+  // }
+
+  onSubmit(myform: any) {
+    if (this.myform) {
+    console.log('Your form data : ', myform.value);
+    let executdata:execut={role:myform.value.role,name:myform.value.name,manager:myform.value.manager,phone_number:myform.value.phone_number,email:myform.value.email,whatshapp_number:myform.value.whatsapp_number,pan_number:myform.value.pan_number,commission:myform.value.commission,ledger:myform.value.commission};
+    this.addExecutiveService.createExecutive(executdata,'','').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        // Handle the response as needed
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        // Handle the error as needed
+      }
+    );
+  } else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control.invalid) {
+        control.markAsTouched();
+      }
+    })
   }
+}
 
   ngOnInit() {
   }

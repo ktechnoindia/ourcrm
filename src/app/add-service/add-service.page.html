@@ -24,20 +24,20 @@
         </div>
         <ion-grid>
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform)">
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="serviceCode" formControlName="serviceCode" name="sercode"  type="text" label=" Service Code :"
+                  <ion-input [ngModel]="service_code" [ngModelOptions]="{standalone:true}" name="sercode"  type="text" label=" Service Code :"
                     label-placement="floating" fill="outline"
                     color="dark"></ion-input>
-                    <div *ngIf="form && form.get('serviceCode')?.hasError('required') && form.get('serviceCode').touched" class="error-message">
+                    <div *ngIf="myform && myform.get('serviceCode')?.hasError('required') && myform.get('serviceCode').touched" class="error-message">
                       Service Type is required.
                     </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="service" formControlName="service" name="servicetype">
+                <select [ngModel]="service_type" [ngModelOptions]="{standalone:true}" name="servicetype">
                   <option  value="">
                     --Select Service Type--</option>
                   <option value="1">Service Type 1</option>
@@ -45,26 +45,26 @@
                   <option value="3">Service Type 3</option>
                   <option value="4">Service Type 4</option>
                 </select>
-                <div *ngIf="form && form.get('service')?.hasError('required') && form.get('service').touched" class="error-message">
+                <div *ngIf="myform && myform.get('service')?.hasError('required') && myform.get('service').touched" class="error-message">
                   Service Type is required.
                 </div>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="stocktype" formControlName="stocktype" name="stock">
+                <select [ngModel]="stock_type" [ngModelOptions]="{standalone:true}" name="stock">
                   <option  value="">
                     --Select Stock Type--</option>
                   <option value="1">Stock Type 1</option>
                   <option value="2">Stock Type 2</option>
                   <option value="3">Stock Type 3</option>
                 </select>
-                <div *ngIf="form && form.get('stocktype')?.hasError('required') && form.get('stocktype').touched" class="error-message">
+                <div *ngIf="myform && myform.get('stocktype')?.hasError('required') && myform.get('stocktype').touched" class="error-message">
                   Stock Type is required.
                 </div>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="sacode" formControlName="sacode" name="saccode">
+                <select [ngModel]="sac_code" [ngModelOptions]="{standalone:true}" name="saccode">
                   <option  value="">
                     --Select SAC Code--</option>
                   <option value="">121</option>
@@ -73,7 +73,7 @@
                   <option value="">2312</option>
                   <option value="">1313</option>
                 </select>
-                <div *ngIf="form && form.get('sacode')?.hasError('required') && form.get('sacode').touched" class="error-message">
+                <div *ngIf="myform && myform.get('sacode')?.hasError('required') && myform.get('sacode').touched" class="error-message">
                   SAC code Type is required.
                 </div>
               </ion-col>
@@ -82,7 +82,7 @@
             <ion-row>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea color="dark" [(ngModel)]="itemDesc" formControlName="itemDesc"  type="text" label=" Item Description :"
+                  <ion-textarea color="dark" [(ngModel)]="item_description" [ngModelOptions]="{standalone:true}"  type="text" label=" Item Description :"
                     label-placement="floating" name="itemdescr" fill="outline"
                     color="dark"></ion-textarea>
                 </ion-row>
