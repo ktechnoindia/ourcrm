@@ -11,11 +11,11 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form)" >
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="name" formControlName="name"   name="names" type="text" label="Name :"
+                <ion-input [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  name="names" type="text" label="Name :"
                 label-placement="floating" fill="outline"></ion-input>
                 <div *ngIf="form && form.get('name')?.hasError('required') && form.get('name').touched" class="error-message">
                   Name is required.
@@ -24,7 +24,7 @@
             </ion-col> 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <select fill="outline" name="grouptype"  [(ngModel)]="groupname" formControlName="groupname" >
+                <select fill="outline" name="grouptype"  [(ngModel)]="group_name" [ngModelOptions]="{standalone: true}" >
                   <option value="">-- Group Name --</option>
                   <option value="">Group 1</option>
                   <option value="">Group 2</option>
@@ -37,13 +37,13 @@
             </ion-col> 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="aname" formControlName="aname" name="altname" type="text" label="Alternate Name :"
+                <ion-input [(ngModel)]="alternate_name" [ngModelOptions]="{standalone: true}" name="altname" type="text" label="Alternate Name :"
                 label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col> 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="vendcode" formControlName="vendcode"  name="vcode" type="text" label="Vendor Code:"
+                <ion-input [(ngModel)]="vender_code" [ngModelOptions]="{standalone: true}"  name="vcode" type="text" label="Vendor Code:"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col> 
@@ -52,28 +52,28 @@
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="gstin" formControlName="gstin"  name="gstincode" type="text" label=" GSTIN :"
+                <ion-input [(ngModel)]="gstin" [ngModelOptions]="{standalone: true}"  name="gstincode" type="text" label=" GSTIN :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col> 
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="opbalance" formControlName="opbalance"  name="openingbalance" type="text" label=" Opening Balance :"
+                <ion-input [(ngModel)]="opening_balance" [ngModelOptions]="{standalone: true}"  name="openingbalance" type="text" label=" Opening Balance :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col> 
           
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="clsbalance" formControlName="clsbalance" name="closingbalance" type="text" label="Closing Balance :"
+                <ion-input [(ngModel)]="closing_balance" [ngModelOptions]="{standalone: true}" name="closingbalance" type="text" label="Closing Balance :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col> 
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="address" formControlName="address"  name="fulladdress" type="text" label="Address :"
+                <ion-input [(ngModel)]="address" [ngModelOptions]="{standalone: true}"  name="fulladdress" type="text" label="Address :"
                   label-placement="floating" fill="outline"></ion-input>
                   <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address').touched" class="error-message">
                     Address is required.

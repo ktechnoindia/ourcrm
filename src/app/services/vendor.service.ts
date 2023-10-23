@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 export interface vend{
-  name:string;
+      name:string;
       vendor_code: string;
       gstin: string;
       select_group: number;

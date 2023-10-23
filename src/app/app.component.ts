@@ -7,11 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
 import { StateService } from './services/state.service';
 import { DistrictsService } from './services/districts.service';
-
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MyService } from './myservice.service';
 import { roletypesservice } from './services/roletypes.service';
@@ -29,6 +26,12 @@ import { CustomertypeService } from './services/customertype.service';
 import { VendorService } from './services/vendor.service';
 import { LeadService } from './services/lead.service';
 import { FollowupService } from './services/followup.service';
+import { LegderService } from './services/legder.service';
+import { AddserviceService } from './services/addservice.service';
+import { GstService } from './services/gst.service';
+import { AddexecutiveService } from './services/addexecutive.service';
+
+
 
 @Component({
   selector: 'app-root',
@@ -36,9 +39,9 @@ import { FollowupService } from './services/followup.service';
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
-  providers: [FollowupService,
-    CustomertypeService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,LeadService
-  ]
+  providers: [FollowupService,LeadService,
+    CustomertypeService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+  ],
 })
 export class AppComponent {
   activeSegment: string = '';
