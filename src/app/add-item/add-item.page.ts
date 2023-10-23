@@ -17,7 +17,8 @@ import { FormBuilder,Validators } from '@angular/forms';
 
 })
 export class AddItemPage implements OnInit {
-  selectTabs = 'address';
+  // selectTabs = 'address';
+  type: string = 'all';
   form:any;
   submitted=false;
 
@@ -79,6 +80,14 @@ constructor(private router: Router, private formBuilder:FormBuilder,private toas
       hsnname: [''],
       openingbalance: [''],
       closingbalance: [''],
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
     })
 
   }
