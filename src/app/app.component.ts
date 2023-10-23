@@ -27,8 +27,8 @@ import { CustomerService } from './services/customer.service';
 import { ExecutiveService } from './services/executive.service';
 import { CustomertypeService } from './services/customertype.service';
 import { VendorService } from './services/vendor.service';
-
-
+import { LeadService } from './services/lead.service';
+import { FollowupService } from './services/followup.service';
 
 @Component({
   selector: 'app-root',
@@ -36,9 +36,9 @@ import { VendorService } from './services/vendor.service';
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
-  providers: [
-    CustomertypeService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
-  ],
+  providers: [FollowupService,
+    CustomertypeService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,LeadService
+  ]
 })
 export class AppComponent {
   activeSegment: string = '';

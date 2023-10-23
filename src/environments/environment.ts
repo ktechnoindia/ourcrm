@@ -18,8 +18,9 @@ export const environment = {
   addcust:'customer',
   addvend:'vendor',
   fetchexecutive:'getExecutives',
-  fetchcustomertype:'getCustomertypes'
-
+  fetchcustomertype:'getCustomertypes',
+  addlead:'lead',
+  addfollowup:'followup',
 };
 
 
