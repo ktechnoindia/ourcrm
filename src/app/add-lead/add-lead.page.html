@@ -28,7 +28,7 @@
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="catPerson"   [ngModelOptions]="{standalone:true}" name="contactPerson"  name="contactPerson" type="text" label=" Contact Person: "
+                  <ion-input [(ngModel)]="catPerson"  name="contactPerson"  type="text" label=" Contact Person: "
                     label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('catPerson')?.hasError('required') && form.get('catPerson').touched" class="error-message">
                       Contact Person is required.
@@ -38,7 +38,7 @@
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="phone"   [ngModelOptions]="{standalone:true}" name="mobileno" type="tel" label="Mobile No. :"
+                  <ion-input  [(ngModel)]="phone"    name="mobileno" type="tel" label="Mobile No. :"
                     label-placement="floating" fill="outline" maxlength="10"></ion-input>
                     <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone').touched" class="error-message">
                       Mobile Number is required.
@@ -47,13 +47,13 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="whatshappnumber"   [ngModelOptions]="{standalone:true}" name="wpnumber"   label="WhatsApp No. :"
+                  <ion-input  [(ngModel)]="whatshappnumber"   name="wpnumber"   label="WhatsApp No. :"
                     label-placement="floating" fill="outline" maxlength="10"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="emails"   [ngModelOptions]="{standalone:true}" name="email"   type="email" label="Email :"  label-placement="floating" fill="outline" ></ion-input>
+                  <ion-input  [(ngModel)]="emails"   name="email"   type="email" label="Email :"  label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -61,7 +61,7 @@
             <ion-row>
               
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedCountry" [ngModelOptions]="{standalone:true}" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
+                <select [(ngModel)]="selectedCountry" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -79,7 +79,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 
-                <select [(ngModel)]="selectedState" [ngModelOptions]="{standalone:true}" name="state" label-placement="floating" (change)="onStateChange()">
+                <select [(ngModel)]="selectedState"  name="state" label-placement="floating" (change)="onStateChange()">
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -90,7 +90,7 @@
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select  [(ngModel)]="selectedDistrict" [ngModelOptions]="{standalone:true}" name="district" label-placement="floating" fill="outline" >
+                <select  [(ngModel)]="selectedDistrict"  name="district" label-placement="floating" fill="outline" >
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid" >
                     {{ district.districtname }}
                   </option>
@@ -101,7 +101,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="pncode"  [ngModelOptions]="{standalone:true}"  name="pinCode" type="number" label=" Pincode :"
+                  <ion-input  [(ngModel)]="pncode"    name="pinCode" type="number" label=" Pincode :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -109,7 +109,7 @@
             <ion-row>
               <ion-col size-lg="12" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="fulladdress"   [ngModelOptions]="{standalone:true}"  name="address" label=" Address :"
+                  <ion-input  [(ngModel)]="fulladdress"   name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('fulladdress')?.hasError('required') && form.get('fulladdress').touched" class="error-message">
                       Full Address is required.
@@ -121,7 +121,7 @@
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <select  [(ngModel)]="lscore"  [ngModelOptions]="{standalone:true}"  name="leadscore">
+                  <select  [(ngModel)]="lscore"   name="leadscore">
                     <option  value="" >Select Lead Source</option>
                     <option value="onlineAdvertising">Online Advertising</option>
                     <option value="socialMedia">Social Media</option>
@@ -140,7 +140,7 @@
              
              
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select  [(ngModel)]="lassign" [ngModelOptions]="{standalone:true}" name="leadassign">
+                <select  [(ngModel)]="lassign"  name="leadassign">
                   <option  value="" >Lead Assign To</option>
                   <option value="">Deepak</option>
                   <option value="">Ravi</option>
@@ -154,7 +154,7 @@
               
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="rmark"  name="remark"type="text" [ngModelOptions]="{standalone:true}"label=" Remark :"
+                  <ion-textarea [(ngModel)]="rmark"  name="remark"type="text" label=" Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>              

@@ -19,15 +19,21 @@ export const environment = {
   fetchcustomertype:'getCustomertypes',
   addcust:'customer',
   addvend:'vendor',
-  fetchexecutive:'getExecutives',
-  fetchcustomertype:'getCustomertypes',
+  // fetchexecutive:'getExecutives',
+  // fetchcustomertype:'getCustomertypes',
   addlead:'lead',
   addfollowup:'followup',
   addledger:'ledger',
   addservice:'service',
   addgst:'gst',
   addexecutive:'executive',
-
+editlead:'editlead',
+adddcin:'dcin',
+adddcout:'dcout',
+addsales:'sales',
+addpurchase:'purchase',
+addquote:'quotation',
+addupquote:'upquote',
 };
 
 

@@ -30,28 +30,32 @@ import { LegderService } from './services/legder.service';
 import { AddserviceService } from './services/addservice.service';
 import { GstService } from './services/gst.service';
 import { AddexecutiveService } from './services/addexecutive.service';
-
-
-
+import { EditleadService } from './services/editlead.service';
+import { DcinService } from './services/dcin.service';
+import { DcoutService } from './services/dcout.service';
+import { SalesService } from './services/sales.service';
+import { PurchaseService } from './services/purchase.service';
+import { QuotationService } from './services/quotation.service';
+import { UpdatequoteService } from './services/updatequote.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
-  providers: [FollowupService,LeadService,
-    CustomertypeService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+  imports: [IonicModule, RouterLink, RouterLinkActive, NgApexchartsModule, CommonModule, RouterModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  providers: [FollowupService, LeadService, EditleadService, DcinService, DcoutService, SalesService, PurchaseService, QuotationService,UpdatequoteService,
+    CustomertypeService, AddexecutiveService, GstService, AddserviceService, LegderService, VendorService, ExecutiveService, CustomerService, SegmentService, CgsttypeService, BusinesstypeService, HsnService, GsttypeService, IndustrytypeService, CountryService, roletypesservice, StateService, DistrictsService, GsttypeService, UnitnameService,
   ],
 })
 export class AppComponent {
   activeSegment: string = '';
   isMobileMenuOpen = false;
   selectedPage: string = 'add-customer';
- 
+
 
   public appPages = [
     { title: 'Master', url: '../master', icon: 'globe' },
-    { title: 'Lead Manager', url: '../lead-manager', icon: 'layers'},
+    { title: 'Lead Manager', url: '../lead-manager', icon: 'layers' },
     { title: 'Quote Manager', url: '../quote-manager', icon: 'desktop' },
     { title: 'HSN Manager', url: '../hsn-manager', icon: 'desktop' },
     { title: 'Challan Manager', url: '../challan-manager', icon: 'desktop' },
@@ -62,13 +66,13 @@ export class AppComponent {
     { title: 'Logout', url: '../login', icon: 'key' },
 
   ];
- 
+
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   menu: any;
 
-  constructor(private menuController: MenuController,private navCtrl: NavController,private router: Router) {
-   
-   }
+  constructor(private menuController: MenuController, private navCtrl: NavController, private router: Router) {
+
+  }
 
   navigateToPage() {
     // Use a switch statement or if-else to navigate based on the selected value
@@ -82,33 +86,33 @@ export class AppComponent {
       case 'useredit':
         this.navCtrl.navigateForward('/useredit');
         break;
-        case 'password':
-          this.navCtrl.navigateForward('/password');
-          break;
-          case 'add-item':
-          this.navCtrl.navigateForward('/add-item');
-          break;
-          case 'addgroup':
-          this.navCtrl.navigateForward('/addgroup');
-          break;
-          case 'addattribute':
-          this.navCtrl.navigateForward('/addattribute');
-          break;
-          case 'barcode':
-          this.navCtrl.navigateForward('/barcode');
-          break;
-          case 'hsn-manager':
-          this.navCtrl.navigateForward('/hsn-manager');
-          break;
-          case 'add-executive':
-          this.navCtrl.navigateForward('/add-executive');
-          break;
-          case 'roleofexicutive':
-          this.navCtrl.navigateForward('/roleofexicutive');
-          break;
-          case 'view-executive':
-          this.navCtrl.navigateForward('/view-executive');
-          break;
+      case 'password':
+        this.navCtrl.navigateForward('/password');
+        break;
+      case 'add-item':
+        this.navCtrl.navigateForward('/add-item');
+        break;
+      case 'addgroup':
+        this.navCtrl.navigateForward('/addgroup');
+        break;
+      case 'addattribute':
+        this.navCtrl.navigateForward('/addattribute');
+        break;
+      case 'barcode':
+        this.navCtrl.navigateForward('/barcode');
+        break;
+      case 'hsn-manager':
+        this.navCtrl.navigateForward('/hsn-manager');
+        break;
+      case 'add-executive':
+        this.navCtrl.navigateForward('/add-executive');
+        break;
+      case 'roleofexicutive':
+        this.navCtrl.navigateForward('/roleofexicutive');
+        break;
+      case 'view-executive':
+        this.navCtrl.navigateForward('/view-executive');
+        break;
 
       default:
         // Handle default case or display an error message
@@ -122,7 +126,7 @@ export class AppComponent {
   onDropdownChange(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue) {
-  
+
       this.router.navigate([selectedValue]);
     }
   }
@@ -131,88 +135,88 @@ export class AppComponent {
     // Navigate to the selected route
     this.router.navigate([selectedValue]);
   }
-  goBack(){
+  goBack() {
     this.router.navigate(["/"])
   }
-    //router of segment
-    toggleSegment(segment: string) {
-      this.activeSegment = segment;
-    }
-    
+  //router of segment
+  toggleSegment(segment: string) {
+    this.activeSegment = segment;
+  }
+
   //pages connect
-    segmentChanged() {
-      // Use the selectedPage value to navigate to the corresponding page
-      this.navCtrl.navigateForward('/' + this.selectedPage);
-    }
-    customPopoverOptions: any = {
-      header: 'Select an Option',
-      cssClass: 'custom-select-popover',
-      mode: 'ios', // You can change the mode to 'md' for Material Design
-      translucent: true, // Makes the dropdown background slightly transparent
-    };
+  segmentChanged() {
+    // Use the selectedPage value to navigate to the corresponding page
+    this.navCtrl.navigateForward('/' + this.selectedPage);
+  }
+  customPopoverOptions: any = {
+    header: 'Select an Option',
+    cssClass: 'custom-select-popover',
+    mode: 'ios', // You can change the mode to 'md' for Material Design
+    translucent: true, // Makes the dropdown background slightly transparent
+  };
 
-    openAnotherComponent() {
-      // Navigate to another component or perform your desired action here
-      // Example: Navigate to another page using Ionic's NavController
-      this.navCtrl.navigateForward('/another-page');
-    }
-    openFirst() {
-      this.menu.enable(true, 'first');
-      this.menu.open('first');
-    }
-    
-closeMenu() {
-  this.menuController.close(); // Close the menu
-}
+  openAnotherComponent() {
+    // Navigate to another component or perform your desired action here
+    // Example: Navigate to another page using Ionic's NavController
+    this.navCtrl.navigateForward('/another-page');
+  }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 
-isDropdownOpen = false;
-isDropdownOpen2 = false;
-isDropdownOpen3 = false;
-isDropdownOpen4 = false;
+  closeMenu() {
+    this.menuController.close(); // Close the menu
+  }
 
-toggleDropdown() {
-  this.isDropdownOpen = !this.isDropdownOpen;
-}
-toggleDropdown2() {
-  this.isDropdownOpen2 = !this.isDropdownOpen2;
- 
-}
-toggleDropdown3() {
-  this.isDropdownOpen3 = !this.isDropdownOpen3;
- 
-}toggleDropdown4() {
-  this.isDropdownOpen4 = !this.isDropdownOpen4;
- 
-}
+  isDropdownOpen = false;
+  isDropdownOpen2 = false;
+  isDropdownOpen3 = false;
+  isDropdownOpen4 = false;
 
-selectOption(option: string) {
-  // Handle the selected option here (e.g., emit an event or set a variable).
-  console.log(`Selected: ${option}`);
-  this.isDropdownOpen = false; // Close the dropdown after selection.
-}
-selectOption2(option: string) {
-  // Handle the selected option here (e.g., emit an event or set a variable).
-  console.log(`Selected: ${option}`);
-  this.isDropdownOpen2 = false; // Close the dropdown after selection.
-}
-selectOption3(option: string) {
-  // Handle the selected option here (e.g., emit an event or set a variable).
-  console.log(`Selected: ${option}`);
-  this.isDropdownOpen3 = false; // Close the dropdown after selection.
-}
-selectOption4(option: string) {
-  // Handle the selected option here (e.g., emit an event or set a variable).
-  console.log(`Selected: ${option}`);
-  this.isDropdownOpen4 = false; // Close the dropdown after selection.
-}
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  toggleDropdown2() {
+    this.isDropdownOpen2 = !this.isDropdownOpen2;
 
-toggleMobileMenu() {
-  this.isMobileMenuOpen = !this.isMobileMenuOpen;
-}
+  }
+  toggleDropdown3() {
+    this.isDropdownOpen3 = !this.isDropdownOpen3;
 
-// Function to close the mobile menu
-closeMobileMenu() {
-  this.isMobileMenuOpen = false;
-}
+  } toggleDropdown4() {
+    this.isDropdownOpen4 = !this.isDropdownOpen4;
+
+  }
+
+  selectOption(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen = false; // Close the dropdown after selection.
+  }
+  selectOption2(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen2 = false; // Close the dropdown after selection.
+  }
+  selectOption3(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen3 = false; // Close the dropdown after selection.
+  }
+  selectOption4(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen4 = false; // Close the dropdown after selection.
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  // Function to close the mobile menu
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+  }
 
 }
