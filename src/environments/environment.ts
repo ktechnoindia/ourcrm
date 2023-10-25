@@ -19,14 +19,19 @@ export const environment = {
   fetchcustomertype:'getCustomertypes',
   addcust:'customer',
   addvend:'vendor',
-  fetchexecutive:'getExecutives',
-  fetchcustomertype:'getCustomertypes',
   addlead:'lead',
   addfollowup:'followup',
   addledger:'ledger',
   addservice:'service',
   addgst:'gst',
   addexecutive:'executive',
+  addroleofexecutive:'roleofexecutive',
+  addaccount:'accounts',
+  addcreateamc:'createamc',
+  additem:'item',
+  addgroup:'group',
+  addUnit:'createunit',
+  addHsn:'hsn',
 
 };
 

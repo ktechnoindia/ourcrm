@@ -30,7 +30,12 @@ import { LegderService } from './services/legder.service';
 import { AddserviceService } from './services/addservice.service';
 import { GstService } from './services/gst.service';
 import { AddexecutiveService } from './services/addexecutive.service';
-
+import { RoleofexecutiveService } from './services/roleofexecutive.service';
+import { AddaccountserviceService } from './services/addaccountservice.service';
+import { CreateamcService } from './services/createamc.service';
+import { AdditemService } from './services/additem.service';
+import { AddgroupService } from './services/addgroup.service';
+import { CreateunitService } from './services/createunit.service';
 
 
 @Component({
@@ -40,7 +45,7 @@ import { AddexecutiveService } from './services/addexecutive.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [FollowupService,LeadService,
-    CustomertypeService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+    CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {

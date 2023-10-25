@@ -53,7 +53,7 @@ export class GstPage implements OnInit {
     })
   }
 
-  onSubmit(myform: any) {
+  onSubmit(myform: NgForm) {
     // if (this.myform) {
     console.log('Your form data : ', myform.value);
     let gstdata:gststore={

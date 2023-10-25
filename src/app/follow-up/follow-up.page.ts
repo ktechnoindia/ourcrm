@@ -22,14 +22,14 @@ export class FollowUpPage implements OnInit {
   phoneNumber: number | null = null;
   leadStatus: string = '';
 
-  constructor(private myService : MyService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService) { }
+  constructor( private router: Router, private toastCtrl: ToastController, private followup : FollowupService) { }
 
 
   onSubmit(myform: NgForm) {
     console.log('Your form data : ', myform.value);
     let followuptable:followuptable={leadName:myform.value.leadName,companyName:myform.value.companyName,email:myform.value.email,phoneNumber:myform.value.phoneNumber,leadStatus:myform.value.leadStatus};
 
-    this.myService.createfollowup(followuptable, '', '').subscribe(
+    this.followup.createfollowup(followuptable, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed

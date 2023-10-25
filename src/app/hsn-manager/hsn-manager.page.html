@@ -25,25 +25,25 @@
         <ion-grid>
          
 
-          <form #hsnManagerForm="ngForm" (ngSubmit)="onSubmit()">
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
 
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode" color="dark" type="text" label="HSN Code :" label-placement="floating"
+                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode"  type="text" label="HSN Code :" label-placement="floating"
                   fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="unit" name="unit" color="dark" class="sign_input" type="text" label="Unit :" label-placement="floating"
+                  <ion-input [(ngModel)]="unit" name="unit" type="text" label="Unit :" label-placement="floating"
                   fill="outline"  ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="desc" name="desc" color="dark" class="sign_input" type="text" label="Description :"
+                  <ion-textarea [(ngModel)]="desc" name="desc"  type="text" label="Description :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>

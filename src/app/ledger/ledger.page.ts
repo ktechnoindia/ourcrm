@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
@@ -43,8 +43,8 @@ export class LedgerPage implements OnInit {
     })
   }
 
-  onSubmit(form: any) {
-    if (this.form.valid) {
+  onSubmit(form: NgForm) {
+    if (this.form) {
     console.log('Your form data : ', form.value);
     let ledgdata:ledg={
       name: form.value.name,
