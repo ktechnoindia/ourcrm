@@ -36,7 +36,13 @@ import { CreateamcService } from './services/createamc.service';
 import { AdditemService } from './services/additem.service';
 import { AddgroupService } from './services/addgroup.service';
 import { CreateunitService } from './services/createunit.service';
-
+import { DcinService } from './services/dcin.service';
+import { DcoutService } from './services/dcout.service';
+import { SalesService } from './services/sales.service';
+import { PurchaseService } from './services/purchase.service';
+import { QuotationService } from './services/quotation.service';
+import { UpdatequoteService } from './services/updatequote.service';
+import { EditleadService } from './services/editlead.service';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +50,7 @@ import { CreateunitService } from './services/createunit.service';
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
-  providers: [FollowupService,LeadService,
+  providers: [FollowupService,LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,
     CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
