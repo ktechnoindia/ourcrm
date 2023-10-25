@@ -24,7 +24,7 @@
         </div>
         <ion-grid class="add_quot">
          
-          <form #updateQuoteForm="ngForm" (ngSubmit)="onSubmit()">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
             <ion-row>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
@@ -78,44 +78,50 @@
                 <tr>
                   <td>1</td>
                   <td>
-                    <input style="width: 50px;" class="table_input" type="number">
+                    <input [(ngModel)]="description" name="description" style="width: 50px;" class="table_input" type="text">
                   </td>
                   <td>
-                    <input style="width: 50px;" class="table_input" type="number">
+                    <input [(ngModel)]="quantity" name="quantity" style="width: 50px;" class="table_input" type="number">
                   </td>
                   <td>
-                    <select  class="table_select" aria-label="Default select example"
+                    <select [(ngModel)]="unit" name="unit" style="width: 80px;" class="table_select" aria-label="Default select example"
                       id="transaction">
-                      <option selected>Select</option>
+                      <option selected>--Select--</option>
                       <option value="1">Pack</option>
                       <option value="2">Liter</option>
                     </select>
                   </td>
                   <td>
-                    <input style="width: 50px;" class="table_input" type="number">
+                    <input [(ngModel)]="basicrate" name="basicrate" style="width: 50px;" class="table_input" type="number">
                   </td>
                   <td>
-                    <input style="width: 50px;" class="table_input" type="number">
+                    <input [(ngModel)]="grossrate" name="grossrate" style="width: 50px;" class="table_input" type="number">
                   </td>
                   <td>
-                    <select  class="table_select" aria-label="Default select example"
+                    <select [(ngModel)]="taxrate" name="taxrate" style="width: 80px;" class="table_select" aria-label="Default select example"
                       id="transaction">
-                      <option selected>Select</option>
+                      <option selected>--Select--</option>
                       <option value="1">5%</option>
                       <option value="2">12%</option>
                       <option value="3">18%</option>
                       <option value="4">28%</option>
                     </select>
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+
+                  <td>
+                    <input [(ngModel)]="CGST" name="CGST" style="width: 40px;" class="table_input" type="text">
+                  </td>
+                  <td>
+                    <input  [(ngModel)]="SGST" name="SGST" style="width: 40px;" class="table_input" type="text">
+                  </td>
+
+                  <td>110</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
-                  </tr>
-                </table>
+                </tr>
+              </table>
               </div>
             </ion-row>
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">

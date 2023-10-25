@@ -24,11 +24,11 @@
         </div>
         <ion-grid>
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="voucherNumber" formControlName="voucherNumber"  name="vouchno" type="text"
+                  <ion-input  [(ngModel)]="voucherNumber"  name="vouchno" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('voucherNumber')?.hasError('required') && form.get('voucherNumber').touched" class="error-message">
                       Voucher Number is required.
@@ -37,7 +37,7 @@
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="date" formControlName="date"  name="datetype" type="date" label=" Date :"
+                  <ion-input [(ngModel)]="datetype"  name="date" type="date" label=" Date :"
                     label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('date')?.hasError('required') && form.get('date').touched" class="error-message">
                       Date is required.
@@ -46,7 +46,7 @@
               </ion-col>
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="supplier" formControlName="supplier"  name="suppliertype">
+                <select [(ngModel)]="suppliertype" name="supplier">
                   <option  value="">---Select Suppliers ---</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
@@ -59,7 +59,7 @@
 
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="referenceNumber" formControlName="referenceNumber"  name="referNumber">
+                <select [(ngModel)]="referenceNumber"  name="referNumber">
                   <option  value="">
                     --Select Reference No. --</option>
                   <option value="1">1</option>
@@ -71,7 +71,7 @@
               </ion-col>
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="payment" formControlName="payment"  name="pty">
+                <select [(ngModel)]="payment"name="pty">
                   <option  value="">---Select Cash/Credit ---</option>
                   <option value="2">Cash</option>
                   <option value="3">Credit</option>
@@ -82,7 +82,7 @@
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea  [(ngModel)]="remark" formControlName="remark"  name="rmark" type="text" label="Remark :"
+                  <ion-textarea  [(ngModel)]="remark"  name="rmark" type="text" label="Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>
@@ -110,7 +110,7 @@
                       <input class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="table_select" aria-label="Default select example" id="transaction">
+                      <select [(ngModel)]="item" name="item" class="table_select" aria-label="Default select example" id="transaction">
                         <option selected>--Select--</option>
                         <option value="1">Credit</option>
                         <option value="2">Cash</option>

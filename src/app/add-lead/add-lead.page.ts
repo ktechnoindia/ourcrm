@@ -42,7 +42,7 @@ export class AddLeadPage {
   states$: Observable<any[]>
   districts$: Observable<any[]>
 
-  constructor(private router:Router,private formBuilder: FormBuilder, private myService : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
+  constructor(private router:Router,private formBuilder: FormBuilder, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
    ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -106,7 +106,7 @@ export class AddLeadPage {
     console.log('Your form data : ', myform.value);
     let leaddata:leadstore={catPerson:myform.value.catPerson,phone:myform.value.phone,whatshappnumber:myform.value.whatshappnumber,emails:myform.value.emails,selectedCountry:myform.value.selectedCountry,selectedState:myform.value.selectedState,selectedDistrict:myform.value.selectedDistrict,pncode:myform.value.pncode,fulladdress:myform.value.fulladdress,lscore:myform.value.lscore,lassign:myform.value.lassign,rmark:myform.value.rmark};
 
-    this.myService.createLead(leaddata,'','').subscribe(
+    this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
