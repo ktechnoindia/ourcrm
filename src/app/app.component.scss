@@ -197,19 +197,6 @@ ion-segment:hover {
 
 }
 
-// .newsegment ion-segment-button {
-//   text-transform: uppercase;
-//   background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% );
-//   border: 1px solid #000;
-//   //background-clip: text;
-//  // color: transparent;
-//   font-weight: bold; /* Adjust font styles as needed */
-//   /* Add any other styles you want */
-//   //background-color: black;
-//   min-height: 30px;
-//   text-decoration: none;
-// color: rgb(255, 255, 255);
-// }
 .segment {
   width: 100%;
   // height: 30px;
@@ -411,7 +398,6 @@ background: skyblue;
 .buttons{
   display: none;
 }
-
 .dropdown_div{
   display: flex;
   justify-content: left;
@@ -459,8 +445,5 @@ background: skyblue;
     display: block;
     float: left;
     font-size: 30px;
-  }
- 
+  } 
 }
-
-
