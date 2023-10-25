@@ -12,14 +12,14 @@
             </ion-card-header>
           </div>
           <ion-grid>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <form #form="ngForm" (ngSubmit)="onSubmit(form)">
               <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc"  name="itemDescs" type="text"
+                    <ion-input [(ngModel)]="itemDesc" name="itemDesc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
                     </ion-input>
-                    <div *ngIf="form && form.get('itemDesc')?.hasError('required') && form.get('itemDesc').touched" class="error-message">
+                    <div *ngIf="form && form.controls['itemDesc']?.hasError('required') && form.controls['itemDesc'].touched" class="error-message">
                       Item Description is required.
                     </div>
                   </ion-row>
@@ -27,16 +27,16 @@
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="itemCode" formControlName="itemCode"   name="itemcode"
+                    <ion-input [(ngModel)]="itemCode" name="itemCode"
                       type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
-                      <div *ngIf="form && form.get('itemCode')?.hasError('required') && form.get('itemCode').touched" class="error-message">
+                      <div *ngIf="form && form.controls['itemCode']?.hasError('required') && form.controls['itemCode'].touched" class="error-message">
                         Item Code is required.
                       </div>
                   </ion-row>
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="hsnname"  formControlName="hsnname" name="hsn">
+                  <select [(ngModel)]="hsnname"  name="hsnname">
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
@@ -45,14 +45,14 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectStock"  name="stock" formControlName="selectStock">
+                  <select [(ngModel)]="selectStock"  name="selectStock">
                     <option value="">--Select Stock Type--</option>
                     <option value="">Stock</option>
                     <option value="">Non-Stock</option>
                     <option value="">Asset</option>
                     <option value="">Service</option>
                   </select>
-                  <div *ngIf="form && form.get('selectStock')?.hasError('required') && form.get('selectStock').touched" class="error-message">
+                  <div *ngIf="form && form.controls['selectStock']?.hasError('required') && form.controls['selectStock'].touched" class="error-message">
                     Stock Type is required.
                   </div>
                 </ion-col>
@@ -61,7 +61,7 @@
 
               <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectItem" name="item" formControlName="selectItem">
+                  <select [(ngModel)]="selectItem" name="selectItem">
                     <option value="">--Select Item Type--</option>
                     <option value="">Raw Material</option>
                     <option value="">Finish Goods</option>
@@ -69,12 +69,12 @@
                     <option value="">Perishable Goods</option>
                     <option value="">Digital Products</option>
                   </select>
-                  <div *ngIf="form && form.get('selectItem')?.hasError('required') && form.get('selectItem').touched" class="error-message">
+                  <div *ngIf="form && form.controls['selectItem']?.hasError('required') && form.controls['selectItem'].touched" class="error-message">
                     Item Type is required.
                   </div>
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="unitname$" formControlName="unitname$" name="unit" >
+                  <select [(ngModel)]="unitname$" name="unitname$" >
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
                     </option>
@@ -82,7 +82,7 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectAltUnit" formControlName="selectAltUnit" name="altunit" >
+                  <select [(ngModel)]="selectAltUnit" name="selectAltUnit">
                     <option value="">--Select Alternate Unit--</option>
                     <option value="">Roll (RL)</option>
                     <option value="">Bundle (BDL)</option>
@@ -101,7 +101,7 @@
                   </select>
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectItemGroup" name="itemGoup" formControlName="selectItemGroup">
+                  <select [(ngModel)]="selectItemGroup" name="selectItemGroup">
                     <option value="">--Setect Item Group--</option>
                     <option value="">Electronics</option>
                     <option value="">Clothing</option>
@@ -124,44 +124,46 @@
                     <option value="">Medical Supplies</option>
                     <option value="">Custom Groups</option>
                   </select>
-                  <div *ngIf="form && form.get('selectItemGroup')?.hasError('required') && form.get('selectItemGroup').touched" class="error-message">
+                  <div *ngIf="form && form.controls['selectItemGroup']?.hasError('required') && form.controls['selectItemGroup'].touched" class="error-message">
                     Item Group Type is required.
                   </div>
                 </ion-col>
               </ion-row>
+
               <ion-row>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectGst" name="gst" formControlName="selectGst">
+                  <select [(ngModel)]="selectGst" name="selectGst">
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
                     </option>
                   </select>
-                  <div *ngIf="form && form.get('selectGst')?.hasError('required') && form.get('selectGst').touched" class="error-message">
+                  <div *ngIf="form && form.controls['selectGst']?.hasError('required') && form.controls['selectGst'].touched" class="error-message">
                      GST is required.
                   </div>
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance"  name="openbalance" type="text" label=" Opening Balance :" label-placement="floating"
+                    <ion-input [(ngModel)]="openingbalance" name="openingbalance" type="text" label=" Opening Balance :" label-placement="floating"
                       fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance"  name="closebalance" type="text" label=" Closing Balance :" label-placement="floating"
+                    <ion-input [(ngModel)]="closingbalance" name="closingbalance" type="text" label=" Closing Balance :" label-placement="floating"
                       fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
 
               </ion-row>
               <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
-                <!-- [(ngModel)]="selectTabs" -->
-                <ion-segment style="border-bottom: 2px solid lightblue;"  name="selectTabs">
+
+                <ion-toolbar>
+                <ion-segment style="border-bottom: 2px solid lightblue;" name="type" [(ngModel)]="type" >
                   <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
-                    value="General">
+                    value="all">
                     <ion-label>Attribute</ion-label>
                   </ion-segment-button>
                   <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
@@ -177,120 +179,140 @@
                     <ion-label>Other Details</ion-label>
                   </ion-segment-button>
                 </ion-segment>
+                </ion-toolbar>
 
-                <div style="width: 100%; margin-bottom: 30px;" *ngIf="selectTabs == 'General'">
+                <ng-container [ngSwitch]="type">
+                <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
                   <ion-row>
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr1" formControlName="attr1" name="atta"
+                        <ion-input [(ngModel)]="attr1" name="attr1"
                           type="text" label=" Attribute 1 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
-
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr2" formControlName="attr2" name="attrb"
+                        <ion-input [(ngModel)]="attr2" name="attr2"
                           type="text" label=" Attribute 2 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
-
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr3" formControlName="attr3" name="attrc"
+                        <ion-input [(ngModel)]="attr3" name="attr3"
                           type="text" label=" Attribute 3 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr4" formControlName="attr4" name="attrd"
+                        <ion-input [(ngModel)]="attr4" name="attr4"
                           type="text" label=" Attribute 4 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
+
                   <ion-row>
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr5" formControlName="attr5" name="attre"
+                        <ion-input [(ngModel)]="attr5" name="attr5"
                           type="text" label=" Attribute 5 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr6" formControlName="attr6" name="attrf"
+                        <ion-input [(ngModel)]="attr6" name="attr6"
                           type="text" label=" Attribute 6 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr7" formControlName="attr7" name="attrg"
+                        <ion-input [(ngModel)]="attr7" name="attr7"
                           type="text" label=" Attribute 7 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="attr8" formControlName="attr8" name="attrh"
+                        <ion-input [(ngModel)]="attr8" name="attr8"
                           type="text" label=" Attribute 8 :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
                 </div>
 
-                <div style="width: 100%;height: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Image'">
+                <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
 
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <div class="images">
-                        <input class="file" type="file" (change)="onFileSelected($event)" accept="image/*" />
+                        <!-- <input class="file"  type="file" (change)="onFileSelected($event)" accept="image/*" /> -->
+                        <input class="file"  type="file"  (change)="onFileSelected($event)" accept="image/*" />
                         <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
                       </div>
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6" style="border: solid 1px lightblue;">
                       <div></div>
                     </ion-col>
+
                   </ion-row>
                 </div>
 
-                <div style="width: 100%; margin: 0 auto;" *ngIf="selectTabs == 'Barcode'">
-                  <ion-row>
+                <div style="width: 100%; margin: 0 auto;"*ngSwitchCase="'Barcode'">
+                  <ion-row style="margin-bottom: 10px;">
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input formControlName="eanCode" [(ngModel)]="eanCode"
-                          name="encode" type="text" label=" EAN Code :" label-placement="floating"
+                        <ion-input name="eanCode" [(ngModel)]="eanCode"
+                          type="text" label=" EAN Code :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
                   </ion-row>
                 </div>
 
-                <div style="width: 100%; margin: 10px auto;" *ngIf="selectTabs == 'Other'">
+                <div style="width: 100%; margin: 10px auto;" *ngSwitchCase="'Other'">
+
                   <ion-row class="headinglabel">
                     <ion-label>Quantity Levels</ion-label>
                   </ion-row>
+
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input formControlName="minimum" [(ngModel)]="minimum"
-                          name="min" type="text" label="Minimum :" label-placement="floating"
+                        <ion-input name="minimum" [(ngModel)]="minimum"
+                          type="text" label="Minimum :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input formControlName="reorder" [(ngModel)]="reorder"
-                          name="order" type="text" label="Re-order :" label-placement="floating"
+                        <ion-input name="reorder" [(ngModel)]="reorder"
+                          type="text" label="Re-order :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
 
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-textarea formControlName="description" [(ngModel)]="description"
-                          name="descr" type="text" label=" Description :" label-placement="floating"
+                        <ion-textarea name="description" [(ngModel)]="description"
+                          type="text" label=" Description :" label-placement="floating"
                           fill="outline"></ion-textarea>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
 
                   <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
@@ -300,75 +322,86 @@
                   </ion-row>
 
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input formControlName="dimension" [(ngModel)]="dimension"
-                          type="text" name="dimen" label="Dimension :" label-placement="floating"
+                        <ion-input name="dimension" [(ngModel)]="dimension"
+                          type="text"  label="Dimension :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input formControlName="weight" name="wgt" [(ngModel)]="weight"
+                        <ion-input name="weight" [(ngModel)]="weight"
                           type="text" label="Weight :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
 
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input color="dark" formControlName="brandname"  [(ngModel)]="brandname"
-                          name="bdname" type="text" label="Brand Name :" label-placement="floating"
+                        <ion-input name="brandname"  [(ngModel)]="brandname"
+                          type="text" label="Brand Name :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input color="dark" formControlName="modelname" [(ngModel)]="modelname"
-                          name="mdlname" type="text" label=" Model name :" label-placement="floating"
+                        <ion-input name="modelname" [(ngModel)]="modelname"
+                           type="text" label=" Model name :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
 
                   <ion-row>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                      <select name="cty" formControlName="category" [(ngModel)]="category">
+                      <select name="category" [(ngModel)]="category">
                         <option value="Category">--Select Category--</option>
                         <option value="">Non Stock(Asset)</option>
                         <option value="">Non Stock(Expense)</option>
                         <option value="">Service</option>
                         <option value="">Capital</option>
                       </select>
-
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="weightunit" formControlName="weightunit" name="wgtunit" type="text"
+                        <ion-input [(ngModel)]="weightunit" name="weightunit" type="text"
                           label="Unit of Weigth :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
 
                   <ion-row style="margin-bottom: 20px;">
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="relailprofit" formControlName="relailprofit" name="rprofit" type="text"
+                        <ion-input [(ngModel)]="relailprofit" name="relailprofit" type="text"
                           label="Retailer Profit % :" label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
-
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input [(ngModel)]="delarprofit" formControlName="delarprofit" name="dprofit" type="text"
+                        <ion-input [(ngModel)]="delarprofit" name="delarprofit" type="text"
                           label="Delar Profit % : " label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+
                   </ion-row>
                 </div>
-              </ion-row>
+              </ng-container>
 
+              </ion-row>
               <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
                 <ion-button>New</ion-button>
                 <ion-button type="submit">Save</ion-button>
@@ -382,3 +415,4 @@
       </ion-card>
     </div>
   </ion-content>
+</ion-content>

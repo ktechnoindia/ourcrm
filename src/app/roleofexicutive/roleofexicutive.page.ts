@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RoleofexecutiveService, roleofexecut } from '../services/roleofexecutive.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class RoleofexicutivePage implements OnInit {
   pinCode: string = '';
   fulladdress: string = '';
 
-  constructor(private router:Router,private formBuilder:FormBuilder,) 
+  constructor(private router:Router,private roleExecuitveService:RoleofexecutiveService,private formBuilder:FormBuilder,) 
     {
       this.form = this.formBuilder.group({
         exname:['',[Validators.required]],
@@ -47,18 +48,41 @@ export class RoleofexicutivePage implements OnInit {
       })
      }
 
-     onSubmit() {
-      if (this.form.valid) {
-        console.log('Selected Value' + this.form.value);
-      } else {
-        Object.keys(this.form.controls).forEach(controlName => {
-          const control = this.form.get(controlName);
-          if (control.invalid) {
-            control.markAsTouched();
-          }
-        })
-      }
+     onSubmit(form: NgForm) {
+      if (this.form) {
+      console.log('Your form data : ', form.value);
+      let roleexecutdata:roleofexecut={
+        exname: form.value.exname,
+        extilte: form.value.extilte,
+        phone: form.value.phone,
+        selectedCountry: form.value.selectedCountry,
+        selectedState: form.value.selectedState,
+        selectedDistrict: form.value.selectedDistrict,
+        fulladdress: form.value.fulladdress,
+        email: form.value.email,
+        wpnumber:form.value.email,
+        pinCode:form.value.pinCode
+      };
+      this.roleExecuitveService.createRoleofExecutive(roleexecutdata,'','').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          // Handle the response as needed
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          // Handle the error as needed
+        }
+      );
+    } else {
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control.invalid) {
+          control.markAsTouched();
+        }
+      })
     }
+  }
+    
 
 
   ngOnInit() {

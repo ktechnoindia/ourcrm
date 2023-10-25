@@ -23,29 +23,29 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="role" formControlName="role"  name="roletype">
+                <select [ngModel]="role" name="roletype">
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypesid" >
                     {{ roletypes.roletypename }}
                   </option>   
                 </select>
-                <div *ngIf="form && form.get('role')?.hasError('required') && form.get('role').touched" class="error-message">
+                <div *ngIf="myform && myform.controls['role']?.hasError('required') && myform.controls['role'].touched" class="error-message">
                   Role is required.
                 </div>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="name" formControlName="name"  name="names" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
-                  <div *ngIf="form && form.get('name')?.hasError('required') && form.get('name').touched" class="error-message">
-                    Service Type is required.
+                  <ion-input [ngModel]="name"   name="names" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
+                  <div *ngIf="myform && myform.controls['name']?.hasError('required') && myform.controls['name'].touched" class="error-message">
+                    Name is required.
                   </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="manager" formControlName="manager"  name="managertype">
+                <select [ngModel]="manager"  name="managertype">
                   <option value="">--Select Manager--
                   </option>
                   <option value="1">Deepak</option>
@@ -54,15 +54,15 @@
                   <option value="1">Nirbhay</option>
                   <option value="1">Ravi</option>
                 </select>
-                <div *ngIf="form && form.get('manager')?.hasError('required') && form.get('manager').touched" class="error-message">
+                <div *ngIf="myform && myform.controls['manager']?.hasError('required') && myform.controls['manager'].touched" class="error-message">
                   Manager is required.
                 </div>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="phone" formControlName="phone"  name="mobile" type="text" label="Mobile No. :"
+                  <ion-input [ngModel]="phone_number"  name="mobile" type="text" label="Mobile No. :"
                     label-placement="floating" fill="outline" ></ion-input>
-                    <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone').touched" class="error-message">
+                    <div *ngIf="myform && myform.controls['phone']?.hasError('required') && myform.controls['phone'].touched" class="error-message">
                       Service Type is required.
                     </div>
                 </ion-row>
@@ -72,28 +72,28 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="email" formControlName="email"  name="emails" type="email" label="Email :" label-placement="floating"
+                  <ion-input [ngModel]="email"   name="emails" type="email" label="Email :" label-placement="floating"
                      fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="wpnumber" formControlName="wpnumber"  name="whatshappnumber" type="number" label="WhatsApp No. :"
+                  <ion-input [ngModel]="whatshapp_number"   name="wpnumber" type="number" label="WhatsApp No. :"
                     label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="panumber" formControlName="panumber"  name="pnumber" type="number" label="PAN No. :"
+                  <ion-input [ngModel]="pan_number"   name="pnumber" type="number" label="PAN No. :"
                     label-placement="floating"  fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="commission" formControlName="commission"  name="commiss" type="text" label="Commission :"
+                  <ion-input [ngModel]="commission"   name="commiss" type="text" label="Commission :"
                     label-placement="floating"  fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
@@ -101,14 +101,14 @@
 
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="ledger" formControlName="ledger"  name="ledgertype">
+                <select [ngModel]="ledger"   name="ledgertype">
                   <option value="">--Select Ledger--
                   </option>
                   <option value="1">Stock ledger</option>
                   <option value="1">Sales ledger</option>
                   <option value="1">Purchase ledger</option>
                 </select>
-                <div *ngIf="form && form.get('ledger')?.hasError('required') && form.get('ledger').touched" class="error-message">
+                <div *ngIf="myform && myform.controls['ledger']?.hasError('required') && myform.controls['ledger'].touched" class="error-message">
                   Service Type is required.
                 </div>
               </ion-col>

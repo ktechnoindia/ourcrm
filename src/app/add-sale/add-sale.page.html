@@ -25,11 +25,11 @@
         <ion-grid>
 
 
-          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
             <ion-row>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="text"
+                  <ion-input [(ngModel)]="billNumber" name="billno" type="text"
                     label=" Billing No. :" label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('billNumber')?.hasError('required') && form.get('billNumber').touched" class="error-message">
                       Bill Number is required.
@@ -38,7 +38,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="billDate"  formControlName="billDate" name="billdate" type="date" label=" Billing Date :"
+                  <ion-input  [(ngModel)]="billDate"  name="billdate" type="date" label=" Billing Date :"
                     label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('billDate')?.hasError('required') && form.get('billDate').touched" class="error-message">
                       Bill Date is required.
@@ -47,7 +47,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="cName"  formControlName="cName" name="customName" type="text"
+                  <ion-input [(ngModel)]="cName"  name="customerName" type="text"
                     label=" Customer Name:" label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('cName')?.hasError('required') && form.get('cName').touched" class="error-message">
                       Customer Name is required.
@@ -55,7 +55,7 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
-                <select [(ngModel)]="payment"  formControlName="payment" name="pyt">
+                <select [(ngModel)]="payment"  name="pyt">
                   <option value="">
                     --- Cash/Credit ---
                   </option>
@@ -72,7 +72,7 @@
             <ion-row>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="orderDate"  formControlName="orderDate" name="orDate" type="date" label=" Order Date :"
+                  <ion-input  [(ngModel)]="orderDate"  name="orDate" type="date" label=" Order Date :"
                     label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('orderDate')?.hasError('required') && form.get('orderDate').touched" class="error-message">
                       Order Date is required.
@@ -81,7 +81,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="orderNumber"  formControlName="orderNumber" name="orderno" type="text"
+                  <ion-input  [(ngModel)]="orderNumber" name="orderno" type="text"
                     label=" Order No.  :" label-placement="floating" fill="outline"></ion-input>
                     <div *ngIf="form && form.get('orderNumber')?.hasError('required') && form.get('orderNumber').touched" class="error-message">
                       Order Number is required.
@@ -90,12 +90,12 @@
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="gstin"  formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
+                  <ion-input  [(ngModel)]="gstin" name="gstincode" type="text" label=" GSTIN  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
-                <select [(ngModel)]="salePerson"  formControlName="salePerson" name="sperson">
+                <select [(ngModel)]="salePerson"name="sperson">
                   <option  value="">
                     Sales Person</option>
                   <option value="2">Deepak</option>
@@ -135,7 +135,7 @@
                       <input class="table_input" type="text">
                     </td>
                     <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
+                      <select  [(ngModel)]="item"name=item style="width: 100px;" class="table_select" aria-label="Default select example"
                         id="transaction">
                         <option selected>Item</option>
                         <option value="1">Milk</option>
@@ -144,7 +144,7 @@
                     </td>
                     <td>1</td>
                     <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
+                      <select  [(ngModel)]="unit" name="unit" style="width: 100px;" class="table_select" aria-label="Default select example"
                         id="transaction">
                         <option selected>Unit</option>
                         <option value="1">Credit</option>
@@ -160,7 +160,7 @@
                     <td>100</td>
                     <td>210</td>
                     <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
+                      <select  [(ngModel)]="taxrate" name="taxrate" style="width: 100px;" class="table_select" aria-label="Default select example"
                         id="transaction">
                         <option selected>Tax Rate</option>
                         <option value="1">5%</option>
@@ -176,100 +176,7 @@
                       <ion-icon class="delete" name="trash"></ion-icon>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Item</option>
-                        <option value="1">Milk</option>
-                        <option value="2">Cake</option>
-                      </select>
-                    </td>
-                    <td>1</td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Unit</option>
-                        <option value="1">Credit</option>
-                        <option value="2">Cash</option>
-                      </select>
-                    </td>
-                    <td>100</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>12</td>
-                    <td>10%</td>
-                    <td>100</td>
-                    <td>210</td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Tax Rate</option>
-                        <option value="1">5%</option>
-                        <option value="2">10%</option>
-                        <option value="3">15%</option>
-                        <option value="4">18%</option>
-                      </select>
-                    </td>
-                    <td>18</td>
-                    <td>110</td>
-                    <td>
-                      <ion-icon class="create" name="create"></ion-icon>
-                      <ion-icon class="delete" name="trash"></ion-icon>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Item</option>
-                        <option value="1">Milk</option>
-                        <option value="2">Cake</option>
-                      </select>
-                    </td>
-                    <td>1</td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Unit</option>
-                        <option value="1">Credit</option>
-                        <option value="2">Cash</option>
-                      </select>
-                    </td>
-                    <td>100</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>12</td>
-                    <td>10%</td>
-                    <td>100</td>
-                    <td>210</td>
-                    <td>
-                      <select style="width: 100px;" class="table_select" aria-label="Default select example"
-                        id="transaction">
-                        <option selected>Tax Rate</option>
-                        <option value="1">5%</option>
-                        <option value="2">10%</option>
-                        <option value="3">15%</option>
-                        <option value="4">18%</option>
-                      </select>
-                    </td>
-                    <td>18</td>
-                    <td>110</td>
-                    <td>
-                      <ion-icon class="create" name="create"></ion-icon>
-                      <ion-icon class="delete" name="trash"></ion-icon>
-                    </td>
-                  </tr>
+
                 </table> 
               </div>
             </ion-row>

@@ -182,7 +182,7 @@ ion-menu-button {
 
 .card2 {
     --background: transparent;
-    border: 1px solid white;
+    // border: 1px solid white;
     padding: 5px 10px;
 }
 
@@ -200,15 +200,17 @@ ion-menu-button {
     --background: transparent;
     margin-top: 100px;
     text-align: center;
-    border: 1px solid white;
+    // border: 1px solid rgb(9, 45, 245);
     padding: 5px 10px;
 }
-
+.card4 ion-input{
+    box-shadow: none;
+}
 
 .home_buttons {
-    background-color: #000000;
-    color: white;
-    border: 1px solid goldenrod;
+    background-color: white;
+    color: #000;
+    // border: 1px solid goldenrod;
     border-radius: 3px;
     margin: 20px auto;
     transition: all 0.5s ease-out;
@@ -217,8 +219,8 @@ ion-menu-button {
 
 .home_buttons:hover {
 
-    background-color: #fff;
-    color: #000000;
+    background-color: #000000;
+    color: #fff;
 }
 
 .master_window {

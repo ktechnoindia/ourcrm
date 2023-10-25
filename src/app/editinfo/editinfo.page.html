@@ -11,6 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform)">
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
@@ -18,13 +19,13 @@
           <ion-row>
             <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="companyname" type="text" label=" Company Name :"
+                <ion-input [(ngModel)]="company_name" [ngModelOptions]="{standalone:true}" type="text" label=" Company Name :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" name="gstin" type="text" label="Company GSTIN :" label-placement="floating"
+                <ion-input [(ngModel)]="gstin" [ngModelOptions]="{standalone:true}" name="gstin" type="text" label="Company GSTIN :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
             </ion-col>
@@ -38,7 +39,7 @@
 
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
-              <select name="country" value="">
+              <select name="country" [(ngModel)]="country" [ngModelOptions]="{standalone:true}">
                 <option value="">
                   --Select Country--
                 </option>
@@ -49,7 +50,7 @@
             </ion-col>
 
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select name="state" [(ngModel)]="state" [ngModelOptions]="{standalone:true}">
                 <option selected value="">--Select State--</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -90,7 +91,7 @@
 
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select name="district" [(ngModel)]="district" [ngModelOptions]="{standalone:true}">
                 <option selected value=""> --Select District--</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Delhi">Delhi</option>
@@ -104,43 +105,39 @@
                 <option value="Lucknow">Lucknow</option>
               </select>
             </ion-col>
-
-
           </ion-row>
+
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
               <ion-row>
-                <ion-input type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input   [(ngModel)]="pincode" [ngModelOptions]="{standalone:true}" type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="8" size-md="8" size-sm="12">
               <ion-row>
-                <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="address" [ngModelOptions]="{standalone:true}" type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="mobile_number" [ngModelOptions]="{standalone:true}" type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="number" label=" Whatsapp Number :" label-placement="floating"
+                <ion-input [(ngModel)]="whatsap_number" [ngModelOptions]="{standalone:true}" type="number" label=" Whatsapp Number :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="email" [ngModelOptions]="{standalone:true}" type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
-
-
-
 
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
@@ -149,6 +146,7 @@
             <!-- <ion-button>Preview</ion-button> -->
             <ion-button>Close</ion-button>
           </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

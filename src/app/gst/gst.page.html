@@ -11,31 +11,31 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
           <ion-row>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="sname" formControlName="sname"  name="servicename" type="text" label=" Service Name :" label-placement="floating"
+                <ion-input [(ngModel)]="service_name"   name="service_name" type="text" label=" Service Name :" label-placement="floating"
                   fill="outline"></ion-input>
                   
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="gstcode" formControlName="gstcode"  name="gst" type="text" label="GST Code:" label-placement="floating"
+                <ion-input [(ngModel)]="gst_code"  name="gst_code" type="text" label="GST Code:" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="invoicedate" formControlName="invoicedate"  name="invoidate" type="date" label=" Invoice Date :"
+                <ion-input [(ngModel)]="invoice_date"  name="invoice_date" type="date" label=" Invoice Date :"
                   label-placement="floating" fill="outline"></ion-input>
                 
               </ion-row>
             </ion-col>
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="invoiceno" formControlName="invoiceno"  name="invoicenumber" type="text" label="Invoice Number :" label-placement="floating"
+                <ion-input [(ngModel)]="invoice_number"    name="invoice_number" type="text" label="Invoice Number :" label-placement="floating"
                   fill="outline"></ion-input>
                  
               </ion-row>
@@ -50,25 +50,25 @@
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
 
-                <ion-input [(ngModel)]="name" formControlName="name" name="names" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
+                <ion-input [(ngModel)]="name"  name="name" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
               </ion-row>
 
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="customercode" formControlName="customercode" name="customcode"  type="number" label=" Customer Code :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="customer_code"   name="customer_code"  type="number" label=" Customer Code :" label-placement="floating" fill="outline"></ion-input>
 
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="phone_number"  name="phone_number"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="whatshappnumber"  type="number" label=" Whatsapp Number :" label-placement="floating"
+                <ion-input [(ngModel)]="whatshapp_number"  name="whatshapp_number"  type="number" label=" Whatsapp Number :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -76,7 +76,7 @@
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="email" formControlName="email" name="emails"  type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="email"  name="email"  type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -88,7 +88,7 @@
 
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-              <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country" >
+              <select [(ngModel)]="selectedCountry"  name="selectedCountry" >
                 <option value="">
                  Select Country
                 </option>
@@ -100,7 +100,7 @@
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select fill="outline" [(ngModel)]="selectedState" formControlName="selectedState" name="state" >
+              <select fill="outline" [(ngModel)]="selectedState"   name="selectedState" >
                 <option selected value="">--Select State--</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -141,7 +141,7 @@
              
             </ion-col>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select fill="outline" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district" >
+              <select fill="outline" [(ngModel)]="selectedDistrict"  name="selectedDistrict" >
                 <option selected value=""> --Select City--</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Delhi">Delhi</option>
@@ -159,7 +159,7 @@
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="pincode" formControlName="pincode" name="pinCode"  type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="pin_code"  name="pin_code"  type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -167,7 +167,7 @@
           <ion-row>
             <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="fulladdress"  formControlName="fulladdress" name="address"  type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="address"    name="address"  type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
                 
               </ion-row>
             </ion-col>

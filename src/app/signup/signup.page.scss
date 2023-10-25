@@ -2,14 +2,17 @@
     margin-top: 70px;
 }
 .signup ion-input{
-    min-height: 40px;
-    color: goldenrod;
+    min-height: 35px;
+    margin-bottom: 10px;
+
+    // color: goldenrod;
     font-weight: 400;
 }
 .signup select{
-    min-height: 40px;
-    color: goldenrod;
+    min-height: 35px;
+    // color: goldenrod;
     font-weight: 400;
+    background-color: skyblue;
 }
 .signup select :hover{
     border-color: gold;

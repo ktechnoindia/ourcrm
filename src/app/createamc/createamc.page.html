@@ -24,21 +24,21 @@
         </div>
         <ion-grid>
 
-          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form  #form="ngForm" (ngSubmit)="onSubmit(form)">
            
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="contactid" formControlName="contactid"  name="contid" type="text" label="Contract ID : "
+                  <ion-input [(ngModel)]="contactid" name="contactid" type="text" label="Contract ID : "
                     label-placement="floating" fill="outline">
                   </ion-input>
-                  <div *ngIf="form && form.get('contactid')?.hasError('required') && form.get('contactid').touched" class="error-message">
+                  <div *ngIf="form && form.controls['contactid']?.hasError('required') && form.controls['contactid'].touched" class="error-message">
                     Contract Id is required.
                   </div>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="cName" formControlName="cName"  name="customname" >
+                <select [(ngModel)]="cName"   name="cName" >
                   <option  value="">--- Customer
                     Name ---</option>
                   <option value="">Deepak</option>
@@ -46,25 +46,25 @@
                   <option value="">Nirbhay</option>
                   <option value="">Abhishek</option>
                 </select>
-                <div *ngIf="form && form.get('cName')?.hasError('required') && form.get('cName').touched" class="error-message">
+                <div *ngIf="form && form.controls['cName']?.hasError('required') && form.controls['cName'].touched" class="error-message">
                   Customer Name is required.
                 </div>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="startdate" formControlName="startdate"  name="sdate" type="date" label="Start Date :"
+                  <ion-input  [(ngModel)]="startdate"  name="startdate" type="date" label="Start Date :"
                     label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
-                <div *ngIf="form && form.get('startdate')?.hasError('required') && form.get('startdate').touched" class="error-message">
+                <div *ngIf="form && form.controls['startdate']?.hasError('required') && form.controls['startdate'].touched" class="error-message">
                   Start Date is required.
                 </div>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="endate" formControlName="endate"  name="edate" type="date" label="End Ddte :"
+                  <ion-input [(ngModel)]="endate"  name="endate" type="date" label="End Ddte :"
                     label-placement="floating" fill="outline" class="sign_input"></ion-input>
-                    <div *ngIf="form && form.get('endate')?.hasError('required') && form.get('endate').touched" class="error-message">
+                    <div *ngIf="form && form.controls['endate']?.hasError('required') && form.controls['endate'].touched" class="error-message">
                       End Date is required.
                     </div>
                 </ion-row>
@@ -74,19 +74,19 @@
 
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="contactdur" formControlName="contactdur"  name="contactduration">
+                <select [(ngModel)]="contactdur"   name="contactdur">
                   <option value="">--- Contract
                   Duration ---</option>
                   <option value="">Monthly</option>
                   <option value="">Yearly</option>
                   <option value="">Quartterly</option>
                 </select>
-                <div *ngIf="form && form.get('contactdur')?.hasError('required') && form.get('contactdur').touched" class="error-message">
+                <div *ngIf="form && form.controls['contactdur']?.hasError('required') && form.controls['contactdur'].touched" class="error-message">
                   Contract Duration is required.
                 </div>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="cover" formControlName="cover"  name="covers">
+                <select [(ngModel)]="cover"   name="cover">
                   <option  value="">Covered
                   </option>
                       <option value="">Billing</option>
@@ -95,7 +95,7 @@
                     </select>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="list" formControlName="list"  name="lists">
+                <select [(ngModel)]="list"   name="list">
                   <option value="">List of
                   </option>
                       <option value="">Billing</option>
@@ -105,9 +105,9 @@
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="contractvalue" formControlName="contractvalue"  name="contract" type="number"
+                  <ion-input [(ngModel)]="contractvalue"  name="contractvalue" type="number"
                     label="Contract Value :" label-placement="floating" fill="outline" ></ion-input>
-                    <div *ngIf="form && form.get('contractvalue')?.hasError('required') && form.get('contractvalue').touched" class="error-message">
+                    <div *ngIf="form && form.controls['contractvalue']?.hasError('required') && form.controls['contractvalue'].touched" class="error-message">
                       Contract Value is required.
                     </div>
                 </ion-row>
@@ -117,19 +117,19 @@
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="payterms" formControlName="payterms" name="payt" type="text"
+                  <ion-input [(ngModel)]="payterms"  name="payterms" type="text"
                     label=" Payment Terms :" label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="servicelevel" formControlName="servicelevel" name="slevel" type="text"
+                  <ion-input [(ngModel)]="servicelevel"  name="servicelevel" type="text"
                     label="Service Level Agreements (SLAs) :" label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="listsla" formControlName="listsla" name="listla">
+                <select [(ngModel)]="listsla"  name="listsla">
                   <option  value="">List of SLAs
                       </option>
                       <option value="">Billing</option>

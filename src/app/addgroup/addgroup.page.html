@@ -11,22 +11,23 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
           <ion-row>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="igname" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input [(ngModel)]="igname" name="igname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="agname" type="text" label="Alternate Name :" label-placement="floating"
+                <ion-input [(ngModel)]="agname"  name="agname" type="text" label="Alternate Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
-                <ion-textarea color="dark" name="description" type="text" label=" Description :" label-placement="floating"
+                <ion-textarea [(ngModel)]="description"  name="description" type="text" label=" Description :" label-placement="floating"
                   fill="outline"></ion-textarea>
               </ion-row>
             </ion-col>
@@ -58,7 +59,7 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
-         
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>
