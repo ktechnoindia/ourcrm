@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule,FormBuilder, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FollowupService, followuptable } from '../services/followup.service';
 import { MyService } from '../myservice.service';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-follow-up',
   templateUrl: './follow-up.page.html',
   styleUrls: ['./follow-up.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class FollowUpPage implements OnInit {
   selectTabs = 'address';
@@ -21,13 +22,22 @@ export class FollowUpPage implements OnInit {
   email: string = '';
   phoneNumber: number | null = null;
   leadStatus: string = '';
+myform:FormGroup;
+  constructor(private followService : FollowupService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder) { 
+   this.myform = this.formBuilder.group({
+    leadName:['',[Validators.required]],
+    companyName:['',[Validators.required]],
+    email:[''],
+    phoneNumber:[''],
+    leadStatus:['']
+   })
 
-  constructor(private followService : FollowupService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService) { }
+  }
 
 
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let followuptable:followuptable={leadName:myform.value.leadName,companyName:myform.value.companyName,email:myform.value.email,phoneNumber:myform.value.phoneNumber,leadStatus:myform.value.leadStatus};
+  onSubmit() {
+    console.log('Your form data : ', this.myform.value);
+    let followuptable:followuptable={leadName:this.myform.value.leadName,companyName:this.myform.value.companyName,email:this.myform.value.email,phoneNumber:this.myform.value.phoneNumber,leadStatus:this.myform.value.leadStatus};
 
     this.followService.createfollowup(followuptable, '', '').subscribe(
       (response: any) => {

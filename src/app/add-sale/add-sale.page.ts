@@ -16,7 +16,7 @@ import { SalesService, salesstore } from '../services/sales.service';
 })
 export class AddSalePage implements OnInit {
 
-  form: any;
+  form: FormGroup;
 
   billNumber: number | null = null;
   billDate: string = '';
@@ -40,11 +40,14 @@ export class AddSalePage implements OnInit {
       orderNumber: ['', [Validators.required]],
       gstin: [''],
       salePerson: [''],
+      taxrate: [''],
+      unit: [''],
+      item: [''],
     })
   }
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let salesdata: salesstore = { billNumber: myform.value.billNumber, billDate: myform.value.billDate, cName: myform.value.cName, orderDate: myform.value.orderDate, payment: myform.value.payment, orderNumber: myform.value.orderNumber, item: myform.value.item, gstin: myform.value.gstin, salePerson: myform.value.salePerson, taxrate: myform.value.taxrate, unit: myform.value.unit, };
+  onSubmit() {
+    console.log('Your form data : ', this.form.value);
+    let salesdata: salesstore = { billNumber: this.form.value.billNumber, billDate: this.form.value.billDate, cName: this.form.value.cName, orderDate: this.form.value.orderDate, payment: this.form.value.payment, orderNumber: this.form.value.orderNumber, item: this.form.value.item, gstin: this.form.value.gstin, salePerson: this.form.value.salePerson, taxrate: this.form.value.taxrate, unit: this.form.value.unit, };
 
     this.sales.createsale(salesdata, '', '').subscribe(
       (response: any) => {

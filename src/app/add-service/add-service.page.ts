@@ -21,7 +21,7 @@ export class AddServicePage implements OnInit {
   sac_code:string='';
   item_description:string='';
 
-  myform:any;
+  myform:FormGroup;
   submitted=false;
 
   constructor(private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
@@ -34,10 +34,11 @@ export class AddServicePage implements OnInit {
     })
   }
 
-  onSubmit(myform: NgForm) {
+  onSubmit() {
     if (this.myform) {
-    console.log('Your form data : ', myform.value);
-    let servicedata:serv={service_code:myform.value.service_code,service_type:myform.value.service_type,stock_type:myform.value.stock_type,sac_code:myform.value.sac_code,item_description:myform.value.item_description,};
+      this.submitted=true;
+    console.log('Your form data : ', this.myform.value);
+    let servicedata:serv={service_code:this.myform.value.service_code,service_type:this.myform.value.service_type,stock_type:this.myform.value.stock_type,sac_code:this.myform.value.sac_code,item_description:this.myform.value.item_description,};
     this.addService.createService(servicedata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
@@ -48,14 +49,7 @@ export class AddServicePage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+  } 
 }
 
   // onSubmit(form:any) {

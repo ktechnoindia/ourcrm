@@ -19,7 +19,7 @@ import { AddexecutiveService,execut } from '../services/addexecutive.service';
 
 export class AddExecutivePage implements OnInit {
 
-  myform: any;
+  form: FormGroup;
   submitted = false;
 
   role: string = '';
@@ -40,7 +40,7 @@ export class AddExecutivePage implements OnInit {
   constructor(private router: Router,private addExecutiveService:AddexecutiveService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
 
-    this.myform = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       role: ['', [Validators.required]],
       name: ['', [Validators.required]],
       manager: ['', [Validators.required]],
@@ -75,10 +75,10 @@ export class AddExecutivePage implements OnInit {
   //   }
   // }
 
-  onSubmit(form: any) {
-    if (this.myform) {
-    console.log('Your form data : ', form.value);
-    let executdata:execut={role:form.value.role,name:form.value.name,manager:form.value.manager,phone_number:form.value.phone_number,email:form.value.email,whatshapp_number:form.value.whatsapp_number,pan_number:form.value.pan_number,commission:form.value.commission,ledger:form.value.commission};
+  onSubmit() {
+    if (this.form.invalid) {
+    console.log('Your form data : ', this.form.value);
+    let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.commission};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
@@ -89,14 +89,15 @@ export class AddExecutivePage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+    }
+  // } else {
+  //   Object.keys(this.form.controls).forEach(controlName => {
+  //     const control = this.form.get(controlName);
+  //     if (control.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   })
+  // }
 }
 
   ngOnInit() {

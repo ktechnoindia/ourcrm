@@ -18,7 +18,7 @@ import { RoleofexecutiveService, roleofexecut } from '../services/roleofexecutiv
 export class RoleofexicutivePage implements OnInit {
 
    
-  form:any;
+  form:FormGroup;
   submitted=false;
 
   exname: string = '';
@@ -48,20 +48,20 @@ export class RoleofexicutivePage implements OnInit {
       })
      }
 
-     onSubmit(form: NgForm) {
+     onSubmit() {
       if (this.form) {
-      console.log('Your form data : ', form.value);
+      console.log('Your form data : ', this.form.value);
       let roleexecutdata:roleofexecut={
-        exname: form.value.exname,
-        extilte: form.value.extilte,
-        phone: form.value.phone,
-        selectedCountry: form.value.selectedCountry,
-        selectedState: form.value.selectedState,
-        selectedDistrict: form.value.selectedDistrict,
-        fulladdress: form.value.fulladdress,
-        email: form.value.email,
-        wpnumber:form.value.email,
-        pinCode:form.value.pinCode
+        exname: this.form.value.exname,
+        extilte: this.form.value.extilte,
+        phone: this.form.value.phone,
+        selectedCountry: this.form.value.selectedCountry,
+        selectedState: this.form.value.selectedState,
+        selectedDistrict: this.form.value.selectedDistrict,
+        fulladdress: this.form.value.fulladdress,
+        email: this.form.value.email,
+        wpnumber:this.form.value.email,
+        pinCode:this.form.value.pinCode
       };
       this.roleExecuitveService.createRoleofExecutive(roleexecutdata,'','').subscribe(
         (response: any) => {
@@ -73,14 +73,8 @@ export class RoleofexicutivePage implements OnInit {
           // Handle the error as needed
         }
       );
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
-    }
+    } 
+    
   }
     
 

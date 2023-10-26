@@ -19,7 +19,7 @@ import { CountryService } from '../services/country.service';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AddLeadPage {
-  form: any;
+  form: FormGroup;
   submitted = false;
 
   catPerson:string='';
@@ -102,9 +102,10 @@ export class AddLeadPage {
     // );
   }
 
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let leaddata:leadstore={catPerson:myform.value.catPerson,phone:myform.value.phone,whatshappnumber:myform.value.whatshappnumber,emails:myform.value.emails,selectedCountry:myform.value.selectedCountry,selectedState:myform.value.selectedState,selectedDistrict:myform.value.selectedDistrict,pncode:myform.value.pncode,fulladdress:myform.value.fulladdress,lscore:myform.value.lscore,lassign:myform.value.lassign,rmark:myform.value.rmark};
+  onSubmit() {
+    if(this.form){
+    console.log('Your form data : ', this.form.value);
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,phone:this.form.value.phone,whatshappnumber:this.form.value.whatshappnumber,emails:this.form.value.emails,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,fulladdress:this.form.value.fulladdress,lscore:this.form.value.lscore,lassign:this.form.value.lassign,rmark:this.form.value.rmark};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {
@@ -116,6 +117,7 @@ export class AddLeadPage {
         // Handle the error as needed
       }
     );
+    }
 
 
     // if (this.form.valid) {

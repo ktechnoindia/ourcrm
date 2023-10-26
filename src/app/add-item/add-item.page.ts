@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ import { AdditemService,item } from '../services/additem.service';
 export class AddItemPage implements OnInit {
   // selectTabs = 'address';
   type: string = 'all';
-  form:any;
+  myform:FormGroup;
   submitted=false;
 
   itemDesc: string = '';
@@ -44,6 +44,7 @@ export class AddItemPage implements OnInit {
   attr7: string = '';
   attr8: string = '';
   eanCode: number | null = null;
+  files:string='';
   minimum: number | null = null;
   reorder: string = '';
   description: string = '';
@@ -66,7 +67,7 @@ constructor(private router: Router, private itemService:AdditemService,private f
      this.unitname$=this.unittype.getunits();
      this.hsnname$=this.hsname1.gethsnservice();
 
-     this.form = this.formBuilder.group({
+     this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
       itemCode: ['', [Validators.required]],
       selectItem: ['', [Validators.required]],
@@ -89,51 +90,62 @@ constructor(private router: Router, private itemService:AdditemService,private f
       attr6: [''],
       attr7: [''],
       attr8: [''],
-      
+      eanCode: [''],
+      minimum: [''],
+      reorder: [''],
+      description: [''],
+      dimension: [''],
+      weight: [''],
+      brandname: [''],
+      modelname: [''],
+      category: [''],
+      relailprofit: [''],
+      delarprofit: [''],
+      files:['']
     })
 
   }
   
-  onSubmit(myform: NgForm) {
-    if (this.form) {
-    console.log('Your form data : ', myform.value);
-    let itemdata:item={itemDesc:myform.value.itemDesc,
-      itemCode:myform.value.itemCode,
-      selectItem:myform.value.selectItem,
-      selectStock:myform.value.selectStock,
-      selectItemGroup:myform.value.selectItemGroup,
-      selectGst:myform.value.selectGst,
-      selectHSN:myform.value.selectHSN,
-      selectPrimaryUnit:myform.value.selectPrimaryUnit,
-      selectAltUnit:myform.value.selectAltUnit,
-      selectunitname:myform.value.selectunitname,
-      openingbalance:myform.value.openingbalance,
-      closingbalance:myform.value.closingbalance,
-      attr1:myform.value.attr1,
-      attr2:myform.value.attr2,
-      attr3:myform.value.attr3,
-      attr4:myform.value.attr4,
-      attr5:myform.value.attr5,
-      attr6:myform.value.attr6,
-      attr7:myform.value.attr7,
-      attr8:myform.value.attr8,
-      eanCode:myform.value.eanCode,
-      minimum:myform.value.minimum,
-      reorder:myform.value.reorder,
-      description:myform.value.description,
-      dimension:myform.value.dimension,
-      weight:myform.value.weight,
-      brandname:myform.value.brandname,
-      modelname:myform.value.modelname,
-      category:myform.value.category,
-      weightunit:myform.value.weightunit,
-      relailprofit:myform.value.relailprofit,
-      delarprofit:myform.value.delarprofit,
-      selectGstservice:myform.value.selectGstservice,
-      unitname$:myform.value.unitname,
-      hsnname:myform.value.hsnname,
-      
-      
+  onSubmit() {
+   
+    if (this.myform.invalid) {
+      this.submitted=true;
+    console.log('Your form data : ', this.myform.value);
+    let itemdata:item={itemDesc:this.myform.value.itemDesc,
+      itemCode:this.myform.value.itemCode,
+      selectItem:this.myform.value.selectItem,
+      selectStock:this.myform.value.selectStock,
+      selectItemGroup:this.myform.value.selectItemGroup,
+      selectGst:this.myform.value.selectGst,
+      selectHSN:this.myform.value.selectHSN,
+      selectPrimaryUnit:this.myform.value.selectPrimaryUnit,
+      selectAltUnit:this.myform.value.selectAltUnit,
+      selectunitname:this.myform.value.selectunitname,
+      openingbalance:this.myform.value.openingbalance,
+      closingbalance:this.myform.value.closingbalance,
+      attr1:this.myform.value.attr1,
+      attr2:this.myform.value.attr2,
+      attr3:this.myform.value.attr3,
+      attr4:this.myform.value.attr4,
+      attr5:this.myform.value.attr5,
+      attr6:this.myform.value.attr6,
+      attr7:this.myform.value.attr7,
+      attr8:this.myform.value.attr8,
+      eanCode:this.myform.value.eanCode,
+      minimum:this.myform.value.minimum,
+      reorder:this.myform.value.reorder,
+      description:this.myform.value.description,
+      dimension:this.myform.value.dimension,
+      weight:this.myform.value.weight,
+      brandname:this.myform.value.brandname,
+      modelname:this.myform.value.modelname,
+      category:this.myform.value.category,
+      weightunit:this.myform.value.weightunit,
+      relailprofit:this.myform.value.relailprofit,
+      delarprofit:this.myform.value.delarprofit,
+      selectGstservice:this.myform.value.selectGstservice,
+      unitname$:this.myform.value.unitname,
+      hsnname:this.myform.value.hsnname,
       };
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {
@@ -145,14 +157,8 @@ constructor(private router: Router, private itemService:AdditemService,private f
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+  } 
+  
 }
 
   ngOnInit() {

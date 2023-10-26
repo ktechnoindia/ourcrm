@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,26 +13,26 @@ import { HsnService,hsn } from '../services/hsn.service';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class HsnManagerPage implements OnInit {
-  hsnCode: number | null = null;
-  unit: number | null = null;
+  hsnCode: string='';
+  unit:string='';
   desc: string = '';
-  form: any;
+  form: FormGroup;
 
   constructor(private router: Router, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
       hsnCode: ['', [Validators.required]],
       unit: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
+      desc: [''],
   })
   }
 
-  onSubmit(myform: NgForm) {
+  onSubmit() {
     if (this.form) {
-    console.log('Your form data : ', myform.value);
+    console.log('Your form data : ', this.form.value);
     let hsndata:hsn={
-     hsnCode:myform.value.hsnCode,
-     unit:myform.value.unit,
-     desc:myform.value.unit,
+     hsnCode:this.form.value.hsnCode,
+     unit:this.form.value.unit,
+     desc:this.form.value.unit,
     };
     this.hsnService.createHSN(hsndata,'','').subscribe(
       (response: any) => {
@@ -44,13 +44,6 @@ export class HsnManagerPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
   }
 }
 

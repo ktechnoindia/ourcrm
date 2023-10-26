@@ -53,18 +53,18 @@ export class GstPage implements OnInit {
     })
   }
 
-  onSubmit(myform: NgForm) {
-    // if (this.myform) {
-    console.log('Your form data : ', myform.value);
+  onSubmit() {
+    if (this.myform) {
+    console.log('Your form data : ', this.myform.value);
     let gstdata:gststore={
-      service_name: myform.value.service_name, invoice_date: myform.value.invoice_date, invoice_number: myform.value.invoice_number, customer_code: myform.value.customer_code, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict,
-      gst_code: myform.value.gst_code,
-      phone_number: myform.value.phone_number,
-      whatshapp_number: myform.value.whatsapp_number,
-      email: myform.value.email,
-      name: myform.value.name,
-      pin_code: myform.value.pin_code,
-      address: myform.value.address
+      service_name: this.myform.value.service_name, invoice_date: this.myform.value.invoice_date, invoice_number: this.myform.value.invoice_number, customer_code: this.myform.value.customer_code, selectedCountry: this.myform.value.selectedCountry, selectedState: this.myform.value.selectedState, selectedDistrict: this.myform.value.selectedDistrict,
+      gst_code: this.myform.value.gst_code,
+      phone_number: this.myform.value.phone_number,
+      whatshapp_number: this.myform.value.whatsapp_number,
+      email: this.myform.value.email,
+      name: this.myform.value.name,
+      pin_code: this.myform.value.pin_code,
+      address: this.myform.value.address
     };
     this.gstService.createGst(gstdata,'','').subscribe(
      (response:any) => {
@@ -74,7 +74,8 @@ export class GstPage implements OnInit {
           console.log('POST Request falied',error);
      }
     )
-  // } else {
+   } 
+  //else {
   //   Object.keys(this.myform.controls).forEach(controlName => {
   //     const control = this.myform.get(controlName);
   //     if (control.invalid) {

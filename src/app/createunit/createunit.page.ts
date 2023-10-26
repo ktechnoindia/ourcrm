@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CreateunitService, unit } from '../services/createunit.service';
@@ -20,26 +20,29 @@ export class CreateunitPage implements OnInit {
   conversion_fact:string='';
   decimal_place:string='';
   uqc_unit:string='';
-  form: any;
+  form: FormGroup;
 
   constructor(private router:Router,private formBuilder:FormBuilder,private unitService:CreateunitService) { 
     this.form = this.formBuilder.group({
-      igname: ['', [Validators.required]],
-      agname: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+  unit_name:['',[Validators.required]],
+  short_name:[''],
+  primary_unit:[''],
+  conversion_fact:[''],
+  decimal_place:[''],
+  uqc_unit:[''],
   })
   }
 
-  onSubmit(myform: NgForm) {
+  onSubmit() {
     if (this.form) {
-    console.log('Your form data : ', myform.value);
+    console.log('Your form data : ', this.form.value);
     let unitdata:unit={
-      unit_name:myform.value.unit_name,
-      short_name:myform.value.short_name,
-      primary_unit:myform.value.primary_unit,
-      conversion_fact:myform.value.conversion_fact,
-      decimal_place:myform.value.decimal_place,
-      uqc_unit:myform.value.uqc_unit,
+      unit_name:this.form.value.unit_name,
+      short_name:this.form.value.short_name,
+      primary_unit:this.form.value.primary_unit,
+      conversion_fact:this.form.value.conversion_fact,
+      decimal_place:this.form.value.decimal_place,
+      uqc_unit:this.form.value.uqc_unit,
     };
     this.unitService.createUnit(unitdata,'','').subscribe(
       (response: any) => {
@@ -51,14 +54,7 @@ export class CreateunitPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+  } 
 }
 
   ngOnInit() {

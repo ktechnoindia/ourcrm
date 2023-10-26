@@ -24,20 +24,20 @@
         </div>
         <ion-grid>
 
-          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+          <form  [formGroup]="myform" (ngSubmit)="onSubmit()">
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="service_code"  name="sercode"  type="text" label=" Service Code :"
+                  <ion-input [ngModel]="service_code" formControlName="service_code"  name="sercode"  type="text" label=" Service Code :"
                     label-placement="floating" fill="outline"
                     color="dark"></ion-input>
                     <div *ngIf="myform && myform.controls['serviceCode']?.hasError('required') && myform.controls['serviceCode'].touched" class="error-message">
-                      Service Type is required.
+                      Service Code is required.
                     </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="service_type" name="servicetype">
+                <select [ngModel]="service_type" formControlName="service_type" name="servicetype">
                   <option  value="">
                     --Select Service Type--</option>
                   <option value="1">Service Type 1</option>
@@ -51,7 +51,7 @@
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="stock_type"  name="stock">
+                <select [ngModel]="stock_type" formControlName="stock_type" name="stock">
                   <option  value="">
                     --Select Stock Type--</option>
                   <option value="1">Stock Type 1</option>
@@ -64,7 +64,7 @@
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [ngModel]="sac_code"  name="saccode">
+                <select [ngModel]="sac_code" formControlName="sac_code" name="saccode">
                   <option  value="">
                     --Select SAC Code--</option>
                   <option value="">121</option>
@@ -82,7 +82,7 @@
             <ion-row>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea color="dark" [(ngModel)]="item_description"  type="text" label=" Item Description :"
+                  <ion-textarea [(ngModel)]="item_description" formControlName="item_description"  type="text" label=" Item Description :"
                     label-placement="floating" name="itemdescr" fill="outline"
                     color="dark"></ion-textarea>
                 </ion-row>

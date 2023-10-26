@@ -27,7 +27,7 @@ export class LedgerPage implements OnInit {
   closing_balance:string='';
   
 
-  form:any;
+  form:FormGroup;
   submitted=false;
 
   constructor(private router:Router, private formBuilder:FormBuilder,private ledgService:LegderService) { 
@@ -42,19 +42,24 @@ export class LedgerPage implements OnInit {
       closing_balance:[''],
     })
   }
+  
 
-  onSubmit(form: NgForm) {
-    if (this.form) {
-    console.log('Your form data : ', form.value);
+  onSubmit() {
+    
+    if (this.form.invalid) {
+    
+      this.submitted=true;
+    console.log('Your form data : ', this.form.value);
+  
     let ledgdata:ledg={
-      name: form.value.name,
-      group_name: form.value.group_name,
-      address: form.value.address,
-      alternate_name: form.value.alternate_name,
-      vender_code: form.value.vender_code,
-      gstin: form.value.gstin,
-      opening_balance: form.value.opening_balance,
-      closing_balance: form.value.closing_balance,
+      name: this.form.value.name,
+      group_name: this.form.value.group_name,
+      address: this.form.value.address,
+      alternate_name: this.form.value.alternate_name,
+      vender_code: this.form.value.vender_code,
+      gstin: this.form.value.gstin,
+      opening_balance: this.form.value.opening_balance,
+      closing_balance: this.form.value.closing_balance,
     };
     this.ledgService.createLdeger(ledgdata,'','').subscribe(
       (response: any) => {
@@ -66,14 +71,15 @@ export class LedgerPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
   }
+ //  else {
+  //   Object.keys(this.form.controls).forEach(controlName => {
+  //     const control = this.form.get(controlName);
+  //     if (control.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   })
+  // }
 }
   
 
@@ -85,3 +91,7 @@ export class LedgerPage implements OnInit {
   }
 
 }
+function markAsTouched() {
+  throw new Error('Function not implemented.');
+}
+
