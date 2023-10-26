@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
-
+import { NgForm } from '@angular/forms';
+import { CreatecompanyService, companystore } from '../services/createcompany.service';
 @Component({
   selector: 'app-createcompany',
   templateUrl: './createcompany.page.html',
@@ -35,6 +36,7 @@ export class CreatecompanyPage implements OnInit {
   pinCode:string='';
   gstin:string='';
   cpyname:string='';
+logo:string='';
 
   countries$:Observable<any[]>
   states$:Observable<any[]>
@@ -42,7 +44,8 @@ export class CreatecompanyPage implements OnInit {
   countryService: any;
   districtservice: any;
   stateservice: any;
-  constructor(private router:Router,private formBuilder:FormBuilder,private datePipe: DatePipe,private country:CountryService,private state:StateService,private districts:DistrictsService
+  company: any;
+  constructor(private createcompany : CreatecompanyService  , private router:Router,private formBuilder:FormBuilder,private datePipe: DatePipe,private country:CountryService,private state:StateService,private districts:DistrictsService
     ) 
     {
       // this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
@@ -69,19 +72,60 @@ export class CreatecompanyPage implements OnInit {
     
   }
   
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
+  onSubmit(myform: NgForm) {
+    console.log('Your form data : ', myform.value);
+    let companydata: companystore = {
+      cpyname: myform.value.cpyname, gstin: myform.value.gstin, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict, pinCode: myform.value.pinCode, address: myform.value.address, phone: myform.value.phone, wpnumber: myform.value.wpnumber, email: myform.value.email, logo: myform.value.logo, rdate: myform.value.rdate,
+      industry: '',
+      businesstype: '',
+      segmenttype: '',
+      companytype: '',
+      pannumber: '',
+      tanno: '',
+      sales: '',
+      purchase: '',
+      quotation: '',
+      challan: '',
+      lms: '',
+      amc: '',
+      alloftheabove: '',
+      language: '',
+      currency: '',
+      bname: '',
+      accno: '',
+      ifsc: '',
+      branchname: '',
+      upiid: ''
+    };
+
+    this.company.createcompany(companydata, '', '').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        // Handle the response as needed
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        // Handle the error as needed
+      }
+    );
+
+
+
+
+
+  // onSubmit() {
+  //   if (this.form.valid) {
+  //     console.log('Selected Value' + this.form.value);
+  //   } else {
+  //     Object.keys(this.form.controls).forEach(controlName => {
+  //       const control = this.form.get(controlName);
+  //       if (control.invalid) {
+  //         control.markAsTouched();
+  //       }
+  //     })
+  //   }
+  // }
     }
-  }
-  
      onCountryChange() {
       console.log('selected value' + this.selectedCountry);
       this.states$ = this.state.getStates(1);this.states$ = this.stateservice.getStates(1);

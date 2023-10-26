@@ -24,6 +24,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddVendorPage implements OnInit {
   // form: FormGroup;
+  type: string = 'all';
+  selectedSalutation: string='';
+  companyName: string='';
 
   selectTabs='address';
   selectedCountry: any;
@@ -135,7 +138,18 @@ export class AddVendorPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } 
+  } else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control.invalid) {
+        control.markAsTouched();
+      }
+    })
+  }
+  console.log('Form submitted with data:', {
+    salutation: this.selectedSalutation,
+    companyName: this.companyName,
+  });
 }
   
   ngOnInit() {

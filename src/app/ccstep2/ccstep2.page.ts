@@ -10,6 +10,9 @@ import { CgsttypeService } from '../services/cgsttype.service';
 import { BusinesstypeService } from '../services/businesstype.service';
 import { SegmentService } from '../services/segment.service';
 import { FormBuilder } from '@angular/forms';
+import { CreatecompanyService, companystore } from '../services/createcompany.service';
+import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-ccstep2',
   templateUrl: './ccstep2.page.html',
@@ -32,7 +35,10 @@ businesstype$:any;
 businesstype!:string;
 segmenttype$:any;
 segmenttype!:string;
-  constructor(private router:Router,private formBulider:FormBuilder,private industry1:IndustrytypeService,private cmptype:CgsttypeService,private bustype:BusinesstypeService,private segment1:SegmentService) {
+  company: any;
+  
+
+  constructor(private createcompany : CreatecompanyService  ,private router:Router,private formBulider:FormBuilder,private industry1:IndustrytypeService,private cmptype:CgsttypeService,private bustype:BusinesstypeService,private segment1:SegmentService) {
    this.industry$=this.industry1.getindustrytype();
    this.companytype$=this.cmptype.getcgtype();
    this.businesstype$=this.bustype.getbusinesstype();
@@ -49,18 +55,52 @@ segmenttype!:string;
     })
    }
 
-onSubmit(){
-  if(this.form.valid){
-    console.log('selected Value'+ this.form.value);
-  }else{
-    Object.keys(this.form.controls).forEach(controlName =>{
-      const control = this.form.get(controlName);
-      if(control.invalid){
-        control.markAsTouched();
+   onSubmit(myform: NgForm) {
+    console.log('Your form data : ', myform.value);
+    let companydata: companystore = {
+      cpyname: myform.value.cpyname, gstin: myform.value.gstin, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict, pinCode: myform.value.pinCode, address: myform.value.address, phone: myform.value.phone, wpnumber: myform.value.wpnumber, email: myform.value.email, logo: myform.value.logo, rdate: myform.value.rdate,
+      industry: myform.value.industry, businesstype: myform.value.businesstype, segmenttype: myform.value.segmenttype, companytype: myform.value.companytype, pannumber: myform.value.pannumber, tanno: myform.value.tanno,
+      sales: '',
+      purchase: '',
+      quotation: '',
+      challan: '',
+      lms: '',
+      amc: '',
+      alloftheabove: '',
+      language: '',
+      currency: '',
+      bname: '',
+      accno: '',
+      ifsc: '',
+      branchname: '',
+      upiid: ''
+    };
+    this.company.createcompany(companydata, '', '').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        // Handle the response as needed
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        // Handle the error as needed
       }
-    })
-  }
-}
+    );
+
+    }
+
+
+// onSubmit(){
+//   if(this.form.valid){
+//     console.log('selected Value'+ this.form.value);
+//   }else{
+//     Object.keys(this.form.controls).forEach(controlName =>{
+//       const control = this.form.get(controlName);
+//       if(control.invalid){
+//         control.markAsTouched();
+//       }
+//     })
+//   }}
+
   ngOnInit() {
     // Page initialization code goes here
   }

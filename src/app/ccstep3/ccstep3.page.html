@@ -11,8 +11,8 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
-          <ion-row class="headinglabel">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+            <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
           </ion-row>
@@ -20,41 +20,41 @@
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
 
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="Sales" slot="start" [(ngModel)]="sales" name="sales"></ion-checkbox>
                 <ion-label>Sales</ion-label>
               </ion-item>
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="Purchase" slot="start" [(ngModel)]="purchase" name="purchase"></ion-checkbox>
                 <ion-label>Purchase</ion-label>
               </ion-item>
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="Quotation" slot="start" [(ngModel)]="quotation" name="quotation"></ion-checkbox>
                 <ion-label>Quotation</ion-label>
               </ion-item>
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="Challan" slot="start" [(ngModel)]="challan" name="challan"></ion-checkbox>
                 <ion-label>Challan</ion-label>
               </ion-item>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
              
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="LMS" slot="start" [(ngModel)]="lms" name="lms"></ion-checkbox>
                 <ion-label>LMS</ion-label>
               </ion-item>
               <ion-item>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox  aria-label="AMC" slot="start" [(ngModel)]="amc" name="amc"></ion-checkbox>
                 <ion-label>AMC</ion-label>
               </ion-item>
               <ion-item line="none">
-                <ion-checkbox slot="start"></ion-checkbox>
-                <ion-label>All Of The Above</ion-label>
+                <ion-checkbox slot="start" [(ngModel)]="alloftheabove" name="alloftheabove"  aria-label="All Of The Above"></ion-checkbox>
+                <ion-label >All Of The Above</ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
+              <select fill="outline" class="select-width" [(ngModel)]="language" name="language">
                 <option selected value=""> --Select Language--</option>
                 <option value="English">English</option>
                 <option value="Hindi">Hindi</option>
@@ -67,7 +67,7 @@
               </div>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
+              <select fill="outline" [(ngModel)]="currency" name="currencytype">
                 <option selected value=""> --Select Currency--</option>
                 <option value="Rupees">Rupees</option>
                 <option value="Doller">Doller</option>
@@ -83,16 +83,11 @@
           <ion-row class="custom-primary">
             <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 3</p>
             <ion-progress-bar value="0.75" buffer=".75" style="height: 10px;"></ion-progress-bar>
-            <ion-button type="submit" [routerLink]="['/ccstep4']">Create & Next</ion-button>
+            <ion-button type="submit">Create <ion-icon name="cloud-download" size="small" slot="end"></ion-icon></ion-button>
+            <ion-button [routerLink]="['/ccstep4']">Next<ion-icon name="arrow-forward-circle" size="small" slot="end"></ion-icon></ion-button>
+            <!-- <ion-button type="submit" [routerLink]="['/ccstep4']">Create & Next</ion-button> -->
           </ion-row>
         </form>
-          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row> -->
         </ion-grid>
       </ion-card-content>
     </ion-card>

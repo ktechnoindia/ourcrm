@@ -11,65 +11,67 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
-          <ion-row class="headinglabel">
-            <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
-            "></span>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="accno" formControlName="accno" name="accountno" type="text" label="CIF No. :" label-placement="floating"
-                  fill="outline" max-length="20"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="ifsc" formControlName="ifsc" name="ifscode" type="text" label="IFSC Code :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="bname" formControlName="bname" name="bankname" type="text" label="Bank Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('bname')?.hasError('required') && form.get('bname').touched" class="error-message">
-                Bank Name is required.
-              </div>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="branchname" formControlName="branchname" name="brchname" type="text" label="Branch Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="upiid" formControlName="upiid" name="upi" type="text" label="UPI ID :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+            <ion-row class="headinglabel">
+              <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="accno" name="accountno" type="text" label="Account No. :"
+                    label-placement="floating" fill="outline" max-length="20"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="ifsc" name="ifscode" type="text" label="IFSC Code :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="bname" name="bankname" type="text" label="Bank Name :"
+                    label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('bname')?.hasError('required') && form.get('bname').touched"
+                    class="error-message">
+                    Bank Name is required.
+                  </div>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="branchname" name="brchname" type="text" label="Branch Name :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
 
-          <ion-row class="custom-primary">
-            <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 4</p>
-            <ion-progress-bar value="1.0" buffer="100" style="height: 10px;"></ion-progress-bar>
-            <!-- <ion-button type="submit">Create & Next</ion-button> -->
-          </ion-row>
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <!-- <ion-button>Delete</ion-button> -->
-            <!-- <ion-button>Preview</ion-button> -->
-            <ion-button>Close</ion-button>
-          </ion-row>
-        </form>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="upiid" name="upiid" type="text" label="UPI ID :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="custom-primary">
+              <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 4</p>
+              <ion-progress-bar value="1.0" buffer="100" style="height: 10px;"></ion-progress-bar>
+              <!-- <ion-button type="submit">Create & Next</ion-button> -->
+            </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <!-- <ion-button>Delete</ion-button> -->
+              <!-- <ion-button>Preview</ion-button> -->
+              <ion-button>Close</ion-button>
+            </ion-row>
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

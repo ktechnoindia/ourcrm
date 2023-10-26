@@ -42,6 +42,7 @@ import { SalesService } from './services/sales.service';
 import { PurchaseService } from './services/purchase.service';
 import { QuotationService } from './services/quotation.service';
 import { UpdatequoteService } from './services/updatequote.service';
+import { CreatecompanyService } from './services/createcompany.service';
 import { EditleadService } from './services/editlead.service';
 
 @Component({
@@ -50,7 +51,7 @@ import { EditleadService } from './services/editlead.service';
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
-  providers: [FollowupService,LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,
+  providers: [FollowupService,LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
     CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
