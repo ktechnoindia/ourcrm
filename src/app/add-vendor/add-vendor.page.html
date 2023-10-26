@@ -19,9 +19,30 @@
             </ion-row>
            
             <ion-row>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="1" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="name"   [ngModelOptions]="{standalone: true}" type="text" label=" Name :" label-placement="floating"
+                  <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="salutation">
+                    <option value="">Salutation</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="M/S">M/S</option>
+                  </select>
+                </ion-row>
+                
+              </ion-col>
+              <div >
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row style="margin-top: -22px;margin-bottom: 0px;">
+                  <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}" label-placement="floating"label="Company Name :" 
+                  fill="outline" name="companyName" color="dark"></ion-input>
+                  <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
+                  </ion-row>
+                </ion-col>
+              </div>
+              
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="name"   [ngModelOptions]="{standalone: true}" type="text" label="Contact Person Name :" label-placement="floating"
                   name="customername" fill="outline" ></ion-input>
                   <div *ngIf="myform && myform.get('name')?.hasError('required') && myform.get('name').touched" class="error-message">
                     Name is required.
@@ -29,7 +50,7 @@
                 </ion-row>
 
               </ion-col>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="vendor_code"  formControlName="vendor_code"  type="text" label=" Vendor Code :"
                     label-placement="floating" name="vcode" fill="outline"  maxlength="5"></ion-input>
@@ -39,7 +60,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin"  [ngModelOptions]="{standalone: true}" type="text" label=" GSTIN :"
                     label-placement="floating" name="gstincode" fill="outline"  maxlength="15"></ion-input>
@@ -48,7 +69,7 @@
                     </div>
                 </ion-row>
               </ion-col>
-              <ion-col size="6" size="auto" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size="auto" size-lg="2" size-md="6" size-sm="6">
                 <select  [(ngModel)]="select_group" name="select_group"  [ngModelOptions]="{standalone: true}">
                   <option  value="">-- Group Name --</option>
                   <option value="daimond">Daimond</option>

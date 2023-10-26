@@ -21,6 +21,27 @@
             </ion-row>
             <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             <ion-row>
+              <ion-col size="12" size-lg="1" size-md="2" size-sm="2">
+                <ion-row>
+                  <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="salutation">
+                    <option value="">Salutation</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="M/S">M/S</option>
+                  </select>
+                </ion-row>
+                
+              </ion-col>
+              
+              <div >
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row style="margin-top: -22px;margin-bottom: 0px;">
+                  <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}" label-placement="floating"label="Company Name :" 
+                  fill="outline" name="companyName" required></ion-input>
+                  <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
+                  </ion-row>
+                </ion-col>
+              </div>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
 
@@ -29,27 +50,31 @@
                 </ion-row>
 
               </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+             
+              <ion-col size="12" size-lg="2" size-md="4" size-sm="4">
                 <ion-row>
                   <ion-input [(ngModel)]="customer_code" name="customer_code"type="text" label=" Customer Code :"
                     label-placement="floating"  fill="outline" maxlength="5" ></ion-input>
 
                 </ion-row>
               </ion-col>
-
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" name="gstin" type="text" label=" GSTIN :" label-placement="floating"
                      fill="outline" maxlength="15"  ></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="select_group" name="select_group"  >
-                  <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
-                    {{ custtype.customertypename }}
-                  </option>
-                  
-                </select>
+              <ion-col size="12" size-lg="2" size-md="6" size-sm="6" class="dropdown">
+                  <!-- <label for="">Customer Type</label> -->
+                  <select [(ngModel)]="select_group" name="select_group"  >
+                    <label for="">https://api.example.com/countries</label>
+                    <option value="" selected>Customer Type</option>
+                    <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
+                      {{ custtype.customertypename }}
+                    </option>
+                    
+                  </select>
+               
 
               </ion-col>
             </ion-row>

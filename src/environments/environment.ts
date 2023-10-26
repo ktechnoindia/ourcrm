@@ -34,6 +34,7 @@ addsales:'sales',
 addpurchase:'purchase',
 addquote:'quotation',
 addupquote:'upquote',
+addcompany : 'company',
 };
 
 

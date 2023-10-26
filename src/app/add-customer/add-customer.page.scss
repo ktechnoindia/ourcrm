@@ -105,3 +105,20 @@ ion-input[type=number]::part(input){
     -webkit-appearance: none;
     margin: 0;
 }
+
+.dropdown ion-item{
+border: 1px solid #646464;
+max-height: 35px;
+border-radius: 4px;
+color: grey;
+font-family: 'Times New Roman', Times, serif;
+padding: 0px;
+width: 100%;
+border-width: 1px;
+select{
+    border: none;
+    background: transparent;
+    width: 100%;
+}
+
+}

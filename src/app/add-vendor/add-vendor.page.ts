@@ -24,6 +24,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddVendorPage implements OnInit {
   // form: FormGroup;
+  type: string = 'all';
+  selectedSalutation: string='';
+  companyName: string='';
 
   selectTabs='address';
   selectedCountry: any;
@@ -142,6 +145,10 @@ export class AddVendorPage implements OnInit {
       }
     })
   }
+  console.log('Form submitted with data:', {
+    salutation: this.selectedSalutation,
+    companyName: this.companyName,
+  });
 }
   
   ngOnInit() {

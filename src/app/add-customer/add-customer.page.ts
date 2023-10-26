@@ -25,6 +25,9 @@ import { ExecutiveService } from '../services/executive.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
+  selectedSalutation: string='';
+  companyName: string='';
+  
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
@@ -151,7 +154,12 @@ export class AddCustomerPage implements OnInit {
         // Handle the error as needed
       }
     );
+    console.log('Form submitted with data:', {
+      salutation: this.selectedSalutation,
+      companyName: this.companyName,
+    });
   }
+
 
   // async onSubmit(form: NgForm) {
   //  if(this.cname === ""){
