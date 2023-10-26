@@ -21,7 +21,7 @@
             <ion-row>
               <ion-col size="12" size-lg="1" size-md="6" size-sm="6">
                 <ion-row>
-                  <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="salutation">
+                  <select [(ngModel)]="selectedSalutation" formControlName="selectedSalutation" name="salutation">
                     <option value="">Salutation</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
@@ -33,8 +33,8 @@
               <div >
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row style="margin-top: -22px;margin-bottom: 0px;">
-                  <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}" label-placement="floating"label="Company Name :" 
-                  fill="outline" name="companyName" color="dark"></ion-input>
+                  <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName" formControlName="companyName" label-placement="floating"label="Company Name :" 
+                  fill="outline" name="company_name" color="dark"></ion-input>
                   <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
                   </ion-row>
                 </ion-col>
@@ -42,7 +42,7 @@
               
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="name"   [ngModelOptions]="{standalone: true}" type="text" label="Contact Person Name :" label-placement="floating"
+                  <ion-input [(ngModel)]="name"   formControlName="name" type="text" label="Contact Person Name :" label-placement="floating"
                   name="customername" fill="outline" ></ion-input>
                   <div *ngIf="myform && myform.controls['name']?.hasError('required') && myform.controls['name'].touched" class="error-message">
                     Name is required.
