@@ -11,14 +11,15 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <ion-row class="headinglabel">
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+            <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Rejistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="industry"  [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="industry" name="industry">
+                <option disabled value=""> --Industry Type--</option>
                 <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                   {{ industry.industrytypename }}
                 </option>
@@ -30,7 +31,8 @@
             </ion-col>
 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="businesstype"  [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="businesstype" name="businesstype">
+                <option disabled value=""> --Bussiness Type--</option>
                 <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                   {{ businesstype.businesstypename }}
                 </option>
@@ -43,7 +45,8 @@
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="segmenttype"  [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="segmenttype" name="segmenttype" >
+                <option disabled value=""> --Segment Type--</option>
                 <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                   {{ segmenttype.segmentname }}
                 </option>
@@ -51,17 +54,9 @@
               </select>
             </ion-col>
             
-            
-            <!-- <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">Sub-Segment</option>
-               <option value="general">General</option>
-
-              </select>
-            </ion-col> -->
-            
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="companytype"  [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="companytype" name="gsttype">
+                <option disabled value=""> --GST Type--</option>
                 <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                   {{ companytype.gsttypename }}
                 </option>
@@ -70,42 +65,25 @@
             </ion-col> 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [ngModel]="pannumber" formControlName="pannumber" name="pano"type="text" label="PAN No. :" label-placement="floating"
+                <ion-input [ngModel]="pannumber" name="pano"type="text" label="PAN No. :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
             </ion-col>
-            <!-- <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select fill="outline" class="select-width">
-                <option selected value="">GST or Taxtype</option>
-                <option value="GST">GST</option>
-                <option value="Non-GST">Non-GST</option>
-              </select>
-            </ion-col> -->
-          </ion-row>
-          <ion-row>
-           
-           
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [ngModel]="tanumber" formControlName="tanumber"  name="tanno" type="text" label="TAN No. :" label-placement="floating"
+                <ion-input color="dark"  [ngModel]="tanumber"  name="tanno" type="text" label="TAN No. :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
-            </ion-col>     
+            </ion-col>   
           </ion-row>
           
           <ion-row class="custom-primary">
             <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 2</p>
             <ion-progress-bar value="0.5" buffer=".5" style="height: 10px;"></ion-progress-bar>
-            <ion-button type="submit" [routerLink]="['/ccstep3']">Create & Next</ion-button>
+            <ion-button type="submit">Create <ion-icon name="cloud-download" size="small" slot="end"></ion-icon></ion-button>
+            <ion-button [routerLink]="['/ccstep3']">Next<ion-icon name="arrow-forward-circle" size="small" slot="end"></ion-icon></ion-button>
           </ion-row>
         </form>
-          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row> -->
         </ion-grid>
       </ion-card-content>
     </ion-card>

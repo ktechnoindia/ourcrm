@@ -30,7 +30,9 @@ name:string;
     card_number: string;
     opening_point: number;
     closing_point: number;
-}
+    selectedSalutation: string;
+    companyName: string;
+  }
 @Injectable({
   providedIn: 'root'
 })
