@@ -81,33 +81,39 @@
             <ion-label >Lead Information :</ion-label>
           </ion-row>
 
-          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
+          <form [formGroup]="myform" (ngSubmit)="onSubmit()" >
           <ion-row>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="leadName" name="leadName" type="text" label="Lead Name : "
+                <ion-input  [(ngModel)]="leadName" formControlName="leadName" name="lead_name" type="text" label="Lead Name : "
                   label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="myform && myform.controls['leadName']?.hasError('required') && myform.controls['leadName'].touched" class="error-message">
+                    Lead Name is required.
+                  </div>
               </ion-row>
             </ion-col>
 
             <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="companyName" name="companyName" type="text" label=" Comapny Name: "
+                <ion-input  [(ngModel)]="companyName" formControlName="companyName" name="company_name" type="text" label=" Comapny Name: "
+                  label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="myform && myform.controls['companyName']?.hasError('required') && myform.controls['companyName'].touched" class="error-message">
+                    Company Name is required.
+                  </div>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input  [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
 
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="email" name="email" type="email" label=" Email :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="dark" [(ngModel)]="phoneNumber" name="phoneNumber" type="tel" label=" Phone Number : "
+                <ion-input  [(ngModel)]="phoneNumber" formControlName="phoneNumber" name="phone_number" type="tel" label=" Phone Number : "
                   label-placement="floating" fill="outline" maxlength="10"></ion-input>
                 
               </ion-row>
@@ -118,7 +124,7 @@
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark" [(ngModel)]="leadStatus" name="leadStatus" type="text" label=" Lead Status : "
+                <ion-input  [(ngModel)]="leadStatus" formControlName="leadStatus" name="lead_status" type="text" label=" Lead Status : "
                   label-placement="floating" fill="outline"></ion-input>
                
               </ion-row>

@@ -24,34 +24,34 @@
         </div>
         <ion-grid>
 
-          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="voucherNumber"  name="vouchno" type="text"
+                  <ion-input  [(ngModel)]="voucherNumber" formControlName="voucherNumber" name="vouchno" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('voucherNumber')?.hasError('required') && form.get('voucherNumber').touched" class="error-message">
+                    <div *ngIf="form && form.get('voucherNumber')?.hasError('required') && form.get('voucherNumber')?.touched" class="error-message">
                       Voucher Number is required.
                     </div>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="datetype" name="date" type="date" label=" Date :"
+                  <ion-input [(ngModel)]="datetype" formControlName="datetype" name="date" type="date" label=" Date :"
                     label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('date')?.hasError('required') && form.get('date').touched" class="error-message">
+                    <div *ngIf="form && form.get('date')?.hasError('required') && form.get('date')?.touched" class="error-message">
                       Date is required.
                     </div>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="suppliertype"  name="supplier">
+                <select [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
                   <option  value="">---Select Suppliers ---</option>
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
-                <div *ngIf="form && form.get('supplier')?.hasError('required') && form.get('supplier').touched" class="error-message">
+                <div *ngIf="form && form.get('supplier')?.hasError('required') && form.get('supplier')?.touched" class="error-message">
                   Supplier is required.
                 </div>
               </ion-col>
@@ -59,30 +59,30 @@
 
             <ion-row>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="referenceNumber"  name="refernceNumber">
+                <select [(ngModel)]="referenceNumber" formControlName="referenceNumber" name="refernceNumber">
                   <option  value="">
                     --Select Reference No. --</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                 </select>
-                <div *ngIf="form && form.get('referenceNumber')?.hasError('required') && form.get('referenceNumber').touched" class="error-message">
+                <div *ngIf="form && form.get('referenceNumber')?.hasError('required') && form.get('referenceNumber')?.touched" class="error-message">
                   Reference Number is required.
                 </div>
               </ion-col>
 
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <select [(ngModel)]="payment" name="pty" >
+                <select [(ngModel)]="payment" formControlName="payment" name="pty" >
                   <option  value="">---Select Cash/Credit ---</option>
                   <option value="2">Cash</option>
                   <option value="3">Credit</option>
                 </select>
-                <div *ngIf="form && form.get('payment')?.hasError('required') && form.get('payment').touched" class="error-message">
+                <div *ngIf="form && form.get('payment')?.hasError('required') && form.get('payment')?.touched" class="error-message">
                   Payment is required.
                 </div>
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea  [(ngModel)]="remark"  name="remark" type="text" label="Remark :" 
+                  <ion-textarea  [(ngModel)]="remark" formControlName="remark" name="remark" type="text" label="Remark :" 
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>

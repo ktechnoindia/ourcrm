@@ -25,25 +25,31 @@
         <ion-grid>
          
 
-          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 5px;">
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="hsnCode"  name="hsnCode"  type="text" label="HSN Code :" label-placement="floating"
+                  <ion-input [(ngModel)]="hsnCode" formControlName="hsnCode"  name="hsn_code"  type="text" label="HSN Code :" label-placement="floating"
                   fill="outline" ></ion-input>
+                  <div *ngIf="form && form.controls['hsnCode']?.hasError('required') && form.controls['hsnCode'].touched" class="error-message">
+                    HSn Code is required.
+                  </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="unit" name="unit" type="text" label="Unit :" label-placement="floating"
+                  <ion-input [(ngModel)]="unit" formControlName="unit" name="units" type="text" label="Unit :" label-placement="floating"
                   fill="outline"  ></ion-input>
+                  <div *ngIf="form && form.controls['unit']?.hasError('required') && form.controls['unit'].touched" class="error-message">
+                    Unit is required.
+                  </div>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="desc" name="desc"  type="text" label="Description :"
+                  <ion-textarea [(ngModel)]="desc" formControlName="desc" name="description"  type="text" label="Description :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
               </ion-col>

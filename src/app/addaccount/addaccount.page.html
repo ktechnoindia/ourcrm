@@ -24,7 +24,7 @@
         </div>
         <ion-grid>
          
-          <form  #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
 
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px; font-weight: bold;">Account Information :</ion-label><span
@@ -34,7 +34,7 @@
           <ion-row>
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="acName"  name="acName" type="text" label=" Account Name :"
+                <ion-input  [(ngModel)]="acName" formControlName="acName" name="ac_Name" type="text" label=" Account Name :"
                   label-placement="floating"fill="outline"></ion-input>
                   <div *ngIf="form && form.controls['acName']?.hasError('required') && form.controls['acName'].touched" class="error-message">
                     Account Name is required.
@@ -43,7 +43,7 @@
             </ion-col>
             <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="acid"  name="accountid" type="text" label=" Account ID :"
+                <ion-input  [(ngModel)]="acid" formControlName="acid" name="accountid" type="text" label=" Account ID :"
                   label-placement="floating" fill="outline"></ion-input>
                   <div *ngIf="form && form.controls['acid']?.hasError('required') && form.controls['acid'].touched" class="error-message">
                     Account Id is required.
@@ -53,7 +53,7 @@
 
             <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="actype"  name="accounttype" type="text" label=" Account Type :"
+                <ion-input  [(ngModel)]="actype" formControlName="actype" name="accounttype" type="text" label=" Account Type :"
                   label-placement="floating" fill="outline"></ion-input>
                   <div *ngIf="form && form.controls['actype']?.hasError('required') && form.controls['actype'].touched" class="error-message">
                     Account Type is required.
@@ -63,7 +63,7 @@
             </ion-col>
             <ion-col  size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="industry"  name="industrytype" type="text" label=" Industry :" label-placement="floating"
+                <ion-input  [(ngModel)]="industry" formControlName="industry" name="industrytype" type="text" label=" Industry :" label-placement="floating"
                 fill="outline"></ion-input>
                 <div *ngIf="form && form.controls['industry']?.hasError('required') && form.controls['industry'].touched" class="error-message">
                   Industry is required.
@@ -82,19 +82,19 @@
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="12">
               <ion-row>
-                <ion-input  [(ngModel)]="priycontact"  name="primaryac" type="text" label=" Primary Contact Name :" label-placement="floating"
+                <ion-input  [(ngModel)]="priycontact" formControlName="priycontact" name="primaryac" type="text" label=" Primary Contact Name :" label-placement="floating"
                 fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col  size="12" size-lg="4" size-md="6" size-sm="12">
               <ion-row>
-                <ion-input [(ngModel)]="email"  name="emails" type="Email" label=" Email :" label-placement="floating"
+                <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="Email" label=" Email :" label-placement="floating"
                 fill="outline" ></ion-input>
               </ion-row>
             </ion-col>
             <ion-col  size="12" size-lg="4" size-md="6" size-sm="12">
               <ion-row>
-                <ion-input [(ngModel)]="phone" name="mobileno" type="text" label=" Phone Number :" label-placement="floating"
+                <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text" label=" Phone Number :" label-placement="floating"
                 fill="outline"></ion-input>
                 <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone'].touched" class="error-message">
                   Phone Number is required.
@@ -110,7 +110,7 @@
           <ion-row>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="acmanager"  name="acmanage" type="text" label="Account Manager Name:"
+                <ion-input  [(ngModel)]="acmanager" formControlName="acmanager" name="acmanage" type="text" label="Account Manager Name:"
                   label-placement="floating" fill="outline"></ion-input>
                   <div *ngIf="form && form.controls['acmanager']?.hasError('required') && form.controls['acmanager'].touched" class="error-message">
                     Acoount Manager is required.
@@ -119,13 +119,13 @@
             </ion-col>
             <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input  [(ngModel)]="assignteam"  name="assign" type="text" label="Assigned Team:"
+                <ion-input  [(ngModel)]="assignteam" formControlName="assignteam" name="assign" type="text" label="Assigned Team:"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>    
             </ion-col>
             <ion-col  size="12" size-lg="4" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [(ngModel)]="acstatus"  name="status" type="text" label="Account Status :"
+                <ion-input [(ngModel)]="acstatus" formControlName="acstatus" name="status" type="text" label="Account Status :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>

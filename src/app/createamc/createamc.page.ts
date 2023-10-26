@@ -17,7 +17,7 @@ import { CreateamcService,amc } from '../services/createamc.service';
 })
 export class CreateamcPage implements OnInit {
 
-  form:any; 
+  form:FormGroup; 
 
   contactid:string='';
   cName:string='';
@@ -47,10 +47,10 @@ export class CreateamcPage implements OnInit {
    })
   }
 
-  onSubmit(myform: NgForm) {
+  onSubmit() {
     if (this.form) {
-    console.log('Your form data : ', myform.value);
-    let amcdata:amc={contactid:myform.value.contactid,cName:myform.value.cName,startdate:myform.value.startdate,endate:myform.value.endate,contactdur:myform.value.contactdur,contractvalue:myform.value.contractvalue,cover:myform.value.cover,list:myform.value.list,servicelevel:myform.value.servicelevel,listsla:myform.value.listsla,payterms:myform.value.payterms};
+    console.log('Your form data : ', this.form.value);
+    let amcdata:amc={contactid: this.form.value.contactid,cName: this.form.value.cName,startdate: this.form.value.startdate,endate: this.form.value.endate,contactdur: this.form.value.contactdur,contractvalue: this.form.value.contractvalue,cover: this.form.value.cover,list: this.form.value.list,servicelevel: this.form.value.servicelevel,listsla: this.form.value.listsla,payterms: this.form.value.payterms};
     this.amcService.createAMC(amcdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
@@ -61,14 +61,7 @@ export class CreateamcPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+  } 
 }
 
 

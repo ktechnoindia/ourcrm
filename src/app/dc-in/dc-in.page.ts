@@ -17,14 +17,15 @@ import { NgForm } from '@angular/forms';
 })
 export class DcInPage implements OnInit {
 
-  voucherNumber: number | null = null;
+  voucherNumber: string='';
   datetype: string = '';
   suppliertype: string = '';
-  referenceNumber: number | null = null;
+  referenceNumber: string='';
   payment: string = '';
   remark: string = '';
   item: string = '';
-  form: any;
+
+  form: FormGroup;
   submitted = false;
 
   constructor(private router: Router, private toastCtrl: ToastController, private formBuilder: FormBuilder, private dcin: DcinService,) {
@@ -38,10 +39,9 @@ export class DcInPage implements OnInit {
     })
   }
 
-
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let dcindata: dcinstore = {datetype: myform.value.datetype, voucherNumber: myform.value.voucherNumber,suppliertype: myform.value.suppliertype,referenceNumber: myform.value.referenceNumber, payment: myform.value.payment, remark: myform.value.remark, item: myform.value.item };
+  onSubmit() {
+    console.log('Your form data : ', this.form.value);
+    let dcindata: dcinstore = {datetype: this.form.value.datetype, voucherNumber: this.form.value.voucherNumber,suppliertype: this.form.value.suppliertype,referenceNumber: this.form.value.referenceNumber, payment: this.form.value.payment, remark: this.form.value.remark, item: this.form.value.item };
 
     this.dcin.createdcin(dcindata, '', '').subscribe(
       (response: any) => {

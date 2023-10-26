@@ -17,31 +17,33 @@ import { NgForm } from '@angular/forms';
 })
 export class DcOutPage implements OnInit {
 
-  voucherNumber: number | null = null;
+  voucherNumber: string='';
   datetype: string = '';
   suppliertype: string = '';
-  referenceNumber: number | null = null;
+  referenceNumber: string='';
   payment: string = '';
   remark: string = '';
   item: string = '';
-  form:any;
+
+  form:FormGroup;
   submitted = false;
 
   constructor(private router: Router, private toastCtrl: ToastController, private formBuilder:FormBuilder,private dcin: DcoutService) { 
     this.form = this.formBuilder.group({
       voucherNumber:['',[Validators.required]],
-      date:['',[Validators.required]],
-      supplier:['',[Validators.required]],
+      datetype:['',[Validators.required]],
+      suppliertype:['',[Validators.required]],
       referenceNumber:['',[Validators.required]],
       payment:['',[Validators.required]],
-      remark:['']
+      remark:[''],
+      item:['']
     })
   }
 
  
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let dcoutdata: dcoutstore = {datetype: myform.value.datetype, voucherNumber: myform.value.voucherNumber,suppliertype: myform.value.suppliertype,referenceNumber: myform.value.referenceNumber, payment: myform.value.payment, remark: myform.value.remark, item: myform.value.item };
+  onSubmit() {
+    console.log('Your form data : ', this.form.value);
+    let dcoutdata: dcoutstore = {datetype:  this.form.value.datetype, voucherNumber:  this.form.value.voucherNumber,suppliertype:  this.form.value.suppliertype,referenceNumber:  this.form.value.referenceNumber, payment:  this.form.value.payment, remark:  this.form.value.remark, item:  this.form.value.item };
 
     this.dcin.createdcout(dcoutdata, '', '').subscribe(
       (response: any) => {

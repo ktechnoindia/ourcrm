@@ -16,7 +16,7 @@ import { AddaccountserviceService,act } from '../services/addaccountservice.serv
 })
 export class AddaccountPage implements OnInit {
 
-  form:any;
+  form:FormGroup;
 
   acName: string = '';
   acid: string = '';
@@ -43,10 +43,10 @@ export class AddaccountPage implements OnInit {
    })
    }
 
-   onSubmit(myform: NgForm) {
+   onSubmit() {
     if (this.form) {
-    console.log('Your form data : ', myform.value);
-    let accountdata:act={acName:myform.value.acName,acid:myform.value.acid,actype:myform.value.actype,industry:myform.value.industry,phone:myform.value.phone,acmanager:myform.value.acmanager,priycontact:myform.value.priycontact,email:myform.value.email,assignteam:myform.value.assignteam,acstatus:myform.value.acstatus};
+    console.log('Your form data : ', this.form.value);
+    let accountdata:act={acName:this.form.value.acName,acid:this.form.value.acid,actype:this.form.value.actype,industry:this.form.value.industry,phone:this.form.value.phone,acmanager:this.form.value.acmanager,priycontact:this.form.value.priycontact,email:this.form.value.email,assignteam:this.form.value.assignteam,acstatus:this.form.value.acstatus};
     this.accountService.createAccount(accountdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
@@ -57,14 +57,7 @@ export class AddaccountPage implements OnInit {
         // Handle the error as needed
       }
     );
-  } else {
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control.invalid) {
-        control.markAsTouched();
-      }
-    })
-  }
+  } 
 }
 
 
