@@ -30,7 +30,12 @@ import { LegderService } from './services/legder.service';
 import { AddserviceService } from './services/addservice.service';
 import { GstService } from './services/gst.service';
 import { AddexecutiveService } from './services/addexecutive.service';
-import { EditleadService } from './services/editlead.service';
+import { RoleofexecutiveService } from './services/roleofexecutive.service';
+import { AddaccountserviceService } from './services/addaccountservice.service';
+import { CreateamcService } from './services/createamc.service';
+import { AdditemService } from './services/additem.service';
+import { AddgroupService } from './services/addgroup.service';
+import { CreateunitService } from './services/createunit.service';
 import { DcinService } from './services/dcin.service';
 import { DcoutService } from './services/dcout.service';
 import { SalesService } from './services/sales.service';
@@ -38,14 +43,16 @@ import { PurchaseService } from './services/purchase.service';
 import { QuotationService } from './services/quotation.service';
 import { UpdatequoteService } from './services/updatequote.service';
 import { CreatecompanyService } from './services/createcompany.service';
+import { EditleadService } from './services/editlead.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, NgApexchartsModule, CommonModule, RouterModule, FormsModule, HttpClientModule, ReactiveFormsModule],
-  providers: [FollowupService, LeadService, EditleadService, DcinService, DcoutService, SalesService, PurchaseService, QuotationService,UpdatequoteService,CreatecompanyService,
-    CustomertypeService, AddexecutiveService, GstService, AddserviceService, LegderService, VendorService, ExecutiveService, CustomerService, SegmentService, CgsttypeService, BusinesstypeService, HsnService, GsttypeService, IndustrytypeService, CountryService, roletypesservice, StateService, DistrictsService, GsttypeService, UnitnameService,
+  imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
+  providers: [FollowupService,LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
+    CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
   ],
 })
 export class AppComponent {

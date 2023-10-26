@@ -11,22 +11,23 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form  #form="ngForm" (ngSubmit)="onSubmit(form)" >
           <ion-row>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="igname" type="text" label="Unit Name :" label-placement="floating"
+                <ion-input [(ngModel)]="unit_name" name="unit_name" type="text" label="Unit Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="agname" type="text" label="Symbol/ Short Name :" label-placement="floating"
+                <ion-input  [(ngModel)]="short_name" name="short_name" type="text" label="Symbol/ Short Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
               <ion-row>
-               <select name="" id="">
+               <select name="primary_unit"  [(ngModel)]="primary_unit">
                 <option value="">Primary Unit</option>
                 <option value="meter">Meter (m)</option>
                 <option value="centimeter">Centimeter (cm)</option>
@@ -70,17 +71,17 @@
                 <option value="celsius">Celsius (°C)</option>
                 <option value="fahrenheit">Fahrenheit (°F)</option>
                 <option value="kelvin">Kelvin (K)</option>
-                               </select>
+              </select>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="consfact" type="text" label="Conversion Factor :" label-placement="floating"
+                <ion-input  [(ngModel)]="conversion_fact" name="conversion_fact" type="text" label="Conversion Factor :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-               <select name="" id="">
+               <select name="decimal_place" [(ngModel)]="decimal_place">
                 <option value="">Decimal PLaces</option>
                 <option value="meter">Meter (m)</option>
                 <option value="centimeter">Centimeter (cm)</option>
@@ -127,7 +128,7 @@
                </select>
             </ion-col>
             <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-              <select name=""  id="uqcSelect">
+              <select name="uqc_unit"  [(ngModel)]="uqc_unit">
                <option value="">UQC or Unit </option>
                <option value="UOM001">Each (EA)</option>
                <option value="UOM002">Dozen (DZ)</option>
@@ -202,7 +203,7 @@
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>
-         
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

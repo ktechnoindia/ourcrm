@@ -75,10 +75,10 @@ export class AddExecutivePage implements OnInit {
   //   }
   // }
 
-  onSubmit(myform: any) {
+  onSubmit(form: any) {
     if (this.myform) {
-    console.log('Your form data : ', myform.value);
-    let executdata:execut={role:myform.value.role,name:myform.value.name,manager:myform.value.manager,phone_number:myform.value.phone_number,email:myform.value.email,whatshapp_number:myform.value.whatsapp_number,pan_number:myform.value.pan_number,commission:myform.value.commission,ledger:myform.value.commission};
+    console.log('Your form data : ', form.value);
+    let executdata:execut={role:form.value.role,name:form.value.name,manager:form.value.manager,phone_number:form.value.phone_number,email:form.value.email,whatshapp_number:form.value.whatsapp_number,pan_number:form.value.pan_number,commission:form.value.commission,ledger:form.value.commission};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

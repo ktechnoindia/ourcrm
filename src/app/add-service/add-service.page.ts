@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
@@ -34,7 +34,7 @@ export class AddServicePage implements OnInit {
     })
   }
 
-  onSubmit(myform: any) {
+  onSubmit(myform: NgForm) {
     if (this.myform) {
     console.log('Your form data : ', myform.value);
     let servicedata:serv={service_code:myform.value.service_code,service_type:myform.value.service_type,stock_type:myform.value.stock_type,sac_code:myform.value.sac_code,item_description:myform.value.item_description,};
