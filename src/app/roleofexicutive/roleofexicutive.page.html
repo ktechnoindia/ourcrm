@@ -6,7 +6,7 @@
           <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">Role Of Exicutive</ion-title>
+              <ion-title style="text-align: center;">Create Role</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
@@ -18,7 +18,7 @@
                 <ion-input [(ngModel)]="exname" formControlName="exname" name="ex_name" type="text" label=" Exicutive Name :" label-placement="floating"
                   fill="outline"></ion-input>
                   <div *ngIf="form && form.controls['exname']?.hasError('required') && form.controls['exname'].touched" class="error-message">
-                    Exicutive Name is required.
+                    Executive Name is required.
                   </div>
               </ion-row>
             </ion-col>
