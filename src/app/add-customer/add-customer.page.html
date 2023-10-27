@@ -1,45 +1,46 @@
-
-
-<ion-content >
+<ion-content>
   <div class="Customer">
     <ion-card>
       <ion-card-content>
 
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Add Customer</ion-title>
+              <div  class="custom-primary">
+                <ion-button [routerLink]="['/viewcustomer']">View Customer</ion-button>
+              </div>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
-        
-            <ion-row class="headinglabel">
-              <ion-label style="font-size: 18px;">Contact Information :</ion-label><span
-                style="width: 100%; height: 2px;"></span>
-            </ion-row>
-            <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+
+          <ion-row class="headinglabel">
+            <ion-label style="font-size: 18px;">Contact Information :</ion-label><span
+              style="width: 100%; height: 2px;"></span>
+          </ion-row>
+          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
             <ion-row>
               <ion-col size="12" size-lg="1" size-md="2" size-sm="2">
                 <ion-row>
                   <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="title">
                     <option value="" disabled selected>Title</option> <!-- Default option -->
-                    <option value="">Title</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
                     <option value="M/S">M/S</option>
                   </select>
                 </ion-row>
-                
+
               </ion-col>
-              
-              <div >
+
+              <div>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row style="margin-top: -22px;margin-bottom: 0px;">
-                  <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}" label-placement="floating"label="Company Name :" 
-                  fill="outline" name="companyName" required></ion-input>
-                  <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
+                    <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName"
+                      [ngModelOptions]="{standalone: true}" label-placement="floating" label="Company Name :"
+                      fill="outline" name="companyName" required></ion-input>
+                    <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
                   </ion-row>
                 </ion-col>
               </div>
@@ -47,35 +48,34 @@
                 <ion-row>
 
                   <ion-input [(ngModel)]="name" name="name" type="text" label=" Name :" label-placement="floating"
-                     fill="outline" color="dark" class="sign_input"></ion-input>
+                    fill="outline" color="dark" class="sign_input"></ion-input>
                 </ion-row>
 
               </ion-col>
-             
+
               <ion-col size="12" size-lg="2" size-md="4" size-sm="4">
                 <ion-row>
-                  <ion-input [(ngModel)]="customer_code" name="customer_code"type="text" label=" Customer Code :"
-                    label-placement="floating"  fill="outline" maxlength="5" ></ion-input>
+                  <ion-input [(ngModel)]="customer_code" name="customer_code" type="text" label=" Customer Code :"
+                    label-placement="floating" fill="outline" maxlength="5"></ion-input>
 
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" name="gstin" type="text" label=" GSTIN :" label-placement="floating"
-                     fill="outline" maxlength="15"  ></ion-input>
+                    fill="outline" maxlength="15"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="2" size-md="6" size-sm="6" class="dropdown">
-                  <!-- <label for="">Customer Type</label> -->
-                  <select [(ngModel)]="select_group" name="select_group"  >
-                    <label for="">https://api.example.com/countries</label>
-                    <option value="" selected>Customer Type</option>
-                    <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
-                      {{ custtype.customertypename }}
-                    </option>
-                    
-                  </select>
-               
+                <!-- <label for="">Customer Type</label> -->
+                <select [(ngModel)]="select_group" name="select_group">
+                  <option value="" disabled selected>Customer Type</option> <!-- Default option -->
+                  <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
+                    {{ custtype.customertypename }}
+                  </option>
+
+                </select>
+
 
               </ion-col>
             </ion-row>
@@ -84,24 +84,24 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_balance" name="opening_balance" class="sign_input" type="text" label=" Opening Balance :"
-                    label-placement="floating"  fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="opening_balance" name="opening_balance" class="sign_input" type="text"
+                    label=" Opening Balance :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_balance "name="closing_balance" type="text" label=" Closing Balance :"
-                    label-placement="floating"  fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="closing_balance " name="closing_balance" type="text"
+                    label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="mobile" name="mobile" type="tel" label=" Mobile Number :" label-placement="floating"
-                     fill="outline" maxlength="10"  ></ion-input>
+                  <ion-input [(ngModel)]="mobile" name="mobile" type="tel" label=" Mobile Number :"
+                    label-placement="floating" fill="outline" maxlength="10"></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -109,14 +109,34 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatsapp_number" name="whatsapp_number" type="text" label=" Whatsapp Number :"
-                    label-placement="floating"  fill="outline" maxlength="10" ></ion-input>
+                    label-placement="floating" fill="outline" maxlength="10"></ion-input>
 
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="email" name="email"type="email" label="Email :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="email" name="email" type="email" label="Email :" label-placement="floating"
+                    fill="outline"></ion-input>
+
+                </ion-row>
+
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <select name="" id="">
+                    <option value="" disabled selected>Default Discount</option> <!-- Default option -->
+                    <option value="5">5%</option>
+                    <option value="8">8%</option>
+                    <option value="10">10%</option>
+                    <option value="12">12%</option>
+                    <option value="15">15%</option>
+                    <option value="18">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="90">90%</option>
+                  </select>
 
                 </ion-row>
 
@@ -129,28 +149,32 @@
               <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
-           
+
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-                <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
+                <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline"
+                  (change)="onCountryChange()">
                   <option value="" disabled selected>Country</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
-                  
+
                 </select>
               </ion-col>
-              
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6" >
-                <select [(ngModel)]="selectedState" name="state" label-placement="floating" (change)="onStateChange()">
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedState" name="state" label-placement="floating" fill="outline"
+                  (change)="onStateChange()">
+                  <option value="" disabled selected>State</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
                 </select>
               </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">           
-                <select  [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline" >
-                  <option *ngFor="let district of districts$ | async" [value]="district.districtid" >
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline">
+                  <option value="" disabled selected>District</option> <!-- Default option -->
+                  <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
                 </select>
@@ -158,8 +182,8 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode" type="tel" name="pincode" label=" PinCode  :" label-placement="floating"
-                     fill="outline" ></ion-input>
+                  <ion-input [(ngModel)]="pincode" type="tel" name="pincode" label=" PinCode  :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -167,8 +191,60 @@
             <ion-row>
               <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="address" name="address" type="text" label="Full Address :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="address" name="address" type="text" label="Full Address :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Shipping Address :</ion-label>
+              <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                "></span>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
+                <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline"
+                  (change)="onCountryChange()">
+                  <option value="" disabled selected>Country</option> <!-- Default option -->
+                  <option *ngFor="let country of countries$ | async" [value]="country.countryid">
+                    {{ country.countryname }}
+                  </option>
+
+                </select>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedState" name="state" label-placement="floating" fill="outline"
+                  (change)="onStateChange()">
+                  <option value="" disabled selected>State</option> <!-- Default option -->
+                  <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                    {{ state.statename }}
+                  </option>
+                </select>
+              </ion-col>
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline">
+                  <option value="" disabled selected>District</option> <!-- Default option -->
+                  <option *ngFor="let district of districts$ | async" [value]="district.districtid">
+                    {{ district.districtname }}
+                  </option>
+                </select>
+              </ion-col>
+
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="pincode" type="tel" name="pincode" label=" PinCode  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="address" name="address" type="text" label="Full Address :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -183,28 +259,28 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="tdn" name="tdn" type="text" label=" Tax Deducation No. :"
-                    label-placement="floating"  fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="aadhar_no" name="aadhar_no" type="tel" label="Aadhar No.:" label-placement="floating"
-                     fill="outline" maxlength="12"></ion-input>
+                  <ion-input [(ngModel)]="aadhar_no" name="aadhar_no" type="tel" label="Aadhar No.:"
+                    label-placement="floating" fill="outline" maxlength="12"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pan_no" name="pan_no" type="text" label=" PAN No. :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="pan_no" name="pan_no" type="text" label=" PAN No. :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="udhyog_aadhar" name="udhyog_aadhar" type="text" label=" Udayog Aadhar No. :"
-                    label-placement="floating"  fill="outline"></ion-input>
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -220,29 +296,29 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="account_number" name="account_number" type="text" label="A/C Number :" label-placement="floating"
-                   fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="account_number" name="account_number" type="text" label="A/C Number :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="ifsc_code" name="ifsc_code" type="text" label="IFSC Code :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="ifsc_code" name="ifsc_code" type="text" label="IFSC Code :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="bank_name" name="bank_name" type="text" label="Bank Name :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="bank_name" name="bank_name" type="text" label="Bank Name :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="branch_name" name="branch_name" type="text" label=" Branch Name :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="branch_name" name="branch_name" type="text" label=" Branch Name :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -256,19 +332,20 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_period" name="credit_period" type="tel" label=" Credit Period :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="credit_period" name="credit_period" type="tel" label=" Credit Period :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_limit" name="credit_limit" type="text" label=" Credit Limit :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="credit_limit" name="credit_limit" type="text" label=" Credit Limit :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                <select [(ngModel)]=" select_sales_person" name="select_sales_person" >
+                <select [(ngModel)]=" select_sales_person" name="select_sales_person">
+                  <option value="" disabled selected>Executive Name</option> <!-- Default option -->
                   <option value="name">abhishek</option>
                   <!-- <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -281,26 +358,26 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="card_number" name="card_number" type="text" label=" Card Number :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="card_number" name="card_number" type="text" label=" Card Number :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_point" name="opening_point" type="text" label="Opening Point :" label-placement="floating"
-                   fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="opening_point" name="opening_point" type="text" label="Opening Point :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
 
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_point" name="closing_point" type="text" label="Closing Point :" label-placement="floating"
-                     fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="closing_point" name="closing_point" type="text" label="Closing Point :"
+                    label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
-        
+
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button>New</ion-button>
               <ion-button type="submit">Save</ion-button>

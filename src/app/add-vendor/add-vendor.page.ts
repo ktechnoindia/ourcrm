@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
@@ -12,6 +12,8 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { VendorService,vend } from '../services/vendor.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { ExecutiveService } from '../services/executive.service';
+import { CustomertypeService } from '../services/customertype.service';
 
 
 @Component({
@@ -19,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './add-vendor.page.html',
   styleUrls: ['./add-vendor.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,HttpClientModule],
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,HttpClientModule,RouterLink, RouterModule,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddVendorPage implements OnInit {
@@ -68,8 +70,14 @@ export class AddVendorPage implements OnInit {
   districts$:Observable<any[]>
   myform: FormGroup;
   submitted = false;
+
+  executive$: any;
+  executive!: string;
+  custtype$: any;
+  custtype!: string;
   
-  constructor(private https:HttpClient,private router: Router,private vendService:VendorService,private formBuilder: FormBuilder,private toastController:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) 
+  
+  constructor(private custtp: CustomertypeService,private execut: ExecutiveService,private https:HttpClient,private router: Router,private vendService:VendorService,private formBuilder: FormBuilder,private toastController:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) 
   {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -107,6 +115,9 @@ export class AddVendorPage implements OnInit {
     this.states$=this.stateservice.getStates(1)
     this.countries$=this.countryservice.getCountries();
     this.districts$=this.districtservice.getDistricts(1);
+    this.executive$ = this.execut.getexecutive();
+    this.custtype$ = this.custtp.getcustomertype();
+
    }
 
 

@@ -37,6 +37,7 @@ export class CreatecompanyPage implements OnInit {
   gstin:string='';
   cpyname:string='';
 logo:string='';
+website:string='';
 
   countries$:Observable<any[]>
   states$:Observable<any[]>
@@ -65,7 +66,8 @@ logo:string='';
         wpnumber:[''],
         pinCode:[''],
         gstin:[''],
-      logo:['']
+      logo:[''],
+      website:['']
      })
     
   }
@@ -76,7 +78,7 @@ logo:string='';
   onSubmit() {
     console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
-      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,website:this.form.value.website,
       industry: '',
       businesstype: '',
       segmenttype: '',

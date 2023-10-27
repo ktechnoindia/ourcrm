@@ -73,7 +73,8 @@ segmenttype!:string;
       accno: '',
       ifsc: '',
       branchname: '',
-      upiid: ''
+      upiid: '',
+      website: ''
     };
     this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {

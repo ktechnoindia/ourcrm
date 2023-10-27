@@ -34,7 +34,7 @@ export interface companystore {
   ifsc:string;
   branchname:string;
   upiid:string;
-
+website:string;
 
 }
 

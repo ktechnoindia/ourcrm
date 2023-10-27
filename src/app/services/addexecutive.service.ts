@@ -12,6 +12,7 @@ export interface execut{
   pan_number: number;
   commission: string;
   ledger: string;
+  excode:string;
 }
 
 @Injectable({

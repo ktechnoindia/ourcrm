@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { ExecutiveService } from '../services/executive.service';
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink, RouterModule,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
