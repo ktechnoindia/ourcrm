@@ -34,6 +34,7 @@ export class AddLeadPage {
   lscore:string='';
   lassign:string='';
   rmark:string='';
+  selectpd:string='';
 
   selectedState: any;
   selectedDistrict: any;
@@ -62,6 +63,7 @@ export class AddLeadPage {
       whatshappnumber:[''],
       emails:[''],
       rmark:[''],
+      selectpd:[''],
 
     });
    

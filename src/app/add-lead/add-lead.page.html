@@ -153,6 +153,18 @@
                   Lead Assign is required.
                </div>
               </ion-col>
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+                <select  [(ngModel)]="selectpd" formControlName="selectpd"  name="selectproduct">
+                  <option value="" disabled selected>Select Product</option> <!-- Default option -->
+                  <option value="">P1</option>
+                  <option value="">p3</option>
+                  <option value="">p2</option>
+                  <option value="">p4</option>
+                </select>
+                <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
+                  Select Product is required.
+               </div>
+              </ion-col>
               
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
