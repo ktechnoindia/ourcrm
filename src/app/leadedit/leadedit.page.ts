@@ -38,7 +38,7 @@ export class LeadeditPage implements OnInit {
   rmark:string='';
 
   selectedState: any;
-  selectedDistrict: any;
+  selectedDistrict: string='';
 
   countries$: Observable<any[]>
   states$: Observable<any[]>

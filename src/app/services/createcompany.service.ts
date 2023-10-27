@@ -34,8 +34,16 @@ export interface companystore {
   ifsc:string;
   branchname:string;
   upiid:string;
-
-
+website:string;
+selectedCountry1: string;
+  selectedState1: number;
+  selectedDistrict1 : string;
+  pinCode1 : string;
+  address1 : string;
+  phone1 : string;
+  wpnumber1 : string;
+  email1 : string;
+  website1:string;
 }
 
 @Injectable({

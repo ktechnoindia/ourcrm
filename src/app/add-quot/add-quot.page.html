@@ -44,7 +44,7 @@
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <select [(ngModel)]="quoteGroup" name="quoteGroup">
-                  <option value="">--Quote Group--</option>
+                  <option value="" disabled selected>Quote Group</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
                 </select>
@@ -52,7 +52,7 @@
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <select [(ngModel)]="quateTax" name="quateTax">
-                  <option value="">--Quote Tax--</option>
+                  <option value="" disabled selected>Quote Tax</option> <!-- Default option -->
                               <option value="1">5%</option>
                               <option value="2">12%</option>
                               <option value="3">18%</option>

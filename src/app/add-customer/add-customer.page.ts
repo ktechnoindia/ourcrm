@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { ExecutiveService } from '../services/executive.service';
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink, RouterModule,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
@@ -32,7 +32,7 @@ export class AddCustomerPage implements OnInit {
   activeSegment: string = '';
   selectedPage: string = 'page1';
   selectedState: any;
-  selectedDistrict: any;
+  selectedDistrict: string='';
 
   name: string = '';
   customercode: number | null = null;
@@ -64,6 +64,13 @@ export class AddCustomerPage implements OnInit {
   country:any;
   state:any;
   select_group:number | null=null;
+
+
+  selectedOption1:string='';
+selectedState1:string='';
+selectedDistrict1:string='';
+pincode1:string='';
+address1:string='';
 
   submitValue = false;
   // selectedOption:string='';
@@ -143,7 +150,7 @@ export class AddCustomerPage implements OnInit {
   onSubmit(myform: NgForm) {
     
     console.log('Your form data : ', myform.value);
-    let custdata:cust={name:myform.value.name,customer_code:myform.value.customer_code,gstin:myform.value.gstin,select_group:myform.value.select_group,opening_balance:myform.value.opening_balance,closing_balance:myform.value.closing_balance,mobile:myform.value.mobile,whatsapp_number:myform.value.whatsapp_number,email:myform.value.email,country:myform.value.country,state:myform.value.state,district:myform.value.district,pincode:myform.value.pincode,address:myform.value.address,tdn:myform.value.tdn,aadhar_no:myform.value.aadhar_no,pan_no:myform.value.pan_no,udhyog_aadhar:myform.value.udhyog_aadhar,account_number:myform.value.account_number,ifsc_code:myform.value.ifsc_code,bank_name:myform.value.bank_name,branch_name:myform.value.branch_name,credit_period:myform.value.credit_period,credit_limit:myform.value.credit_limit,select_sales_person:myform.value.select_sales_person,card_number:myform.value.card_number,opening_point:myform.value.opening_point,closing_point:myform.value.closing_point,selectedSalutation:myform.value.selectedSalutation,companyName:myform.value.companyName};
+    let custdata:cust={name:myform.value.name,customer_code:myform.value.customer_code,gstin:myform.value.gstin,select_group:myform.value.select_group,opening_balance:myform.value.opening_balance,closing_balance:myform.value.closing_balance,mobile:myform.value.mobile,whatsapp_number:myform.value.whatsapp_number,email:myform.value.email,country:myform.value.country,state:myform.value.state,district:myform.value.district,pincode:myform.value.pincode,address:myform.value.address,tdn:myform.value.tdn,aadhar_no:myform.value.aadhar_no,pan_no:myform.value.pan_no,udhyog_aadhar:myform.value.udhyog_aadhar,account_number:myform.value.account_number,ifsc_code:myform.value.ifsc_code,bank_name:myform.value.bank_name,branch_name:myform.value.branch_name,credit_period:myform.value.credit_period,credit_limit:myform.value.credit_limit,select_sales_person:myform.value.select_sales_person,card_number:myform.value.card_number,opening_point:myform.value.opening_point,closing_point:myform.value.closing_point,selectedSalutation:myform.value.selectedSalutation,companyName:myform.value.companyName,country1:myform.value.country1,state1:myform.value.state1,district1:myform.value.district1,pincode1:myform.value.pincode1,address1:myform.value.address1};
     this.myService.createCustomer(custdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

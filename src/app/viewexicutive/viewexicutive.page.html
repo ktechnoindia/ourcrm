@@ -1,0 +1,117 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Executive</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto;width: 100%;height: 350px;">
+                  <table style="overflow-x:auto;width: 100%;">
+                    <tr>
+                      <th style="width: 100px !important;">Select</th>
+                      <th style="width: 100px;">Sr. No.</th>
+                      <th style="width: 100px;">Executive Code</th>
+                      <th style="width: 100px;">Executive Name</th>
+                      <th style="width: 100px;">Executive Role</th>
+                      <th style="width: 100px;">Email</th>
+                      <th style="width: 100px;">Phone Number</th>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>1</td>
+                      <td>EXEC001</td>
+                      <td>John Doe</td>
+                      <td>Sales Manager</td>
+                      <td>johndoe@example.com</td>
+                      <td>1234567890</td>
+                    </tr>
+                    
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>2</td>
+                      <td>EXEC002</td>
+                      <td>Jane Smith</td>
+                      <td>Account Executive</td>
+                      <td>janesmith@example.com</td>
+                      <td>9876543210</td>
+                    </tr>
+                    
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>3</td>
+                      <td>EXEC003</td>
+                      <td>Alice Johnson</td>
+                      <td>Marketing Specialist</td>
+                      <td>alicejohnson@example.com</td>
+                      <td>1234567892</td>
+                    </tr>
+                    
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>4</td>
+                      <td>EXEC004</td>
+                      <td>Bob Anderson</td>
+                      <td>Customer Support</td>
+                      <td>bobanderson@example.com</td>
+                      <td>9876543211</td>
+                    </tr>
+                    
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>5</td>
+                      <td>EXEC005</td>
+                      <td>Eve Williams</td>
+                      <td>Product Manager</td>
+                      <td>evewilliams@example.com</td>
+                      <td>1234567891</td>
+                    </tr>
+                    
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+
+
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

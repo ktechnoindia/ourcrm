@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddgroupService,group } from '../services/addgroup.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-addgroup',
@@ -20,26 +21,37 @@ export class AddgroupPage implements OnInit {
   igname:string='';
   agname:string='';
   description:string='';
+  parentgroup:number=0; 
+  subscription: Subscription = new Subscription();
+  itemgroups$: Observable<any[]>
+
+
 
   constructor(private router:Router,private formBuilder:FormBuilder,private groupService:AddgroupService) {
     this.form = this.formBuilder.group({
       igname: ['', [Validators.required]],
       agname: [''],
       description: [''],
+      parentgroup:[''],
+
   })
+  this.itemgroups$ = this.groupService.getAllGroups(1);
+
    }
 
    onSubmit() {
     if (this.form) {
     console.log('Your form data : ', this.form.value);
     let groupdata:group={
-      igname: this.form.value.igname,
-      agname: this.form.value.agname,
-      description: this.form.value.description,
+      itemgroupname: this.form.value.igname, 
+      parentgroupid: this.form.value.parentgroup,
+      companyid: 1,
     };
-    this.groupService.createGroup(groupdata,'','').subscribe(
+    this.subscription=this.groupService.createGroup(groupdata,'','').subscribe(
       (response: any) => {
+       if(response.status){
         console.log('POST request successful', response);
+       }
         // Handle the response as needed
       },
       (error: any) => {
@@ -56,5 +68,9 @@ export class AddgroupPage implements OnInit {
   goBack() {
     this.router.navigate(['/master']); 
   }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+  }  }
 
 }

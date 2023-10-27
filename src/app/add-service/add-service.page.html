@@ -38,8 +38,8 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="service_type" formControlName="service_type" name="servicetype">
-                  <option  value="">
-                    --Select Service Type--</option>
+                  <option value="" disabled selected>Select Service Type</option> <!-- Default option -->
+
                   <option value="1">Service Type 1</option>
                   <option value="2">Service Type 2</option>
                   <option value="3">Service Type 3</option>
@@ -52,8 +52,8 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="stock_type" formControlName="stock_type" name="stock">
-                  <option  value="">
-                    --Select Stock Type--</option>
+                  <option value="" disabled selected>Select Stock Type</option> <!-- Default option -->
+
                   <option value="1">Stock Type 1</option>
                   <option value="2">Stock Type 2</option>
                   <option value="3">Stock Type 3</option>
@@ -65,8 +65,8 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="sac_code" formControlName="sac_code" name="saccode">
-                  <option  value="">
-                    --Select SAC Code--</option>
+                  <option value="" disabled selected>Select SAC Type</option> <!-- Default option -->
+
                   <option value="">121</option>
                   <option value="">2324232</option>
                   <option value="">21322</option>
