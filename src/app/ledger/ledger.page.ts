@@ -24,7 +24,8 @@ import { LegderService, ledg } from '../services/legder.service';
 })
 export class LedgerPage implements OnInit {
 
-  
+  selectedSalutation: string='';
+  companyName: string='';
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
@@ -44,10 +45,10 @@ export class LedgerPage implements OnInit {
   email:string='';
   select_sales_person:string='';
   pincode:number | null=null;
-  // tdn: number | null = null;
-  // aadhar_no: number | null = null;
-  // pan_no: number | null = null;
-  // udhyog_aadhar: number | null = null;
+  tdn: number | null = null;
+  aadhar_no: number | null = null;
+  pan_no: number | null = null;
+  udhyog_aadhar: number | null = null;
   account_number: string="";
   ifsc_code: number | null = null;
   bank_name: string = '';
@@ -105,16 +106,16 @@ form:any;
       district:[''],
       pincode:[''],
       address:[''],
-      // tdn:[''],
-      // aadhar_no:[''],
-      // pan_no:[''],
-      // udhyog_aadhar:[''],
+      tdn:[''],
+      aadhar_no:[''],
+      pan_no:[''],
+      udhyog_aadhar:[''],
       account_number:[''],
       ifsc_code:[''],
       bank_name:[''],
       branch_name:[''],
-      // credit_period:[''],
-      // credit_limit:[''],
+      credit_period:[''],
+      credit_limit:[''],
       select_sales_person:[''],
       card_number:[''],
       opening_point:[''],
@@ -188,7 +189,7 @@ form:any;
   onSubmit() {
     
     console.log('Your form data : ', this.myform.value);
-    let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1};
+    let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udayognumber,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period};
     this.ledger.createLdeger(ledgerdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
