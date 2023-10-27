@@ -5,6 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
+import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-hsn-manager',
   templateUrl: './hsn-manager.page.html',
@@ -17,6 +18,8 @@ export class HsnManagerPage implements OnInit {
   unit:string='';
   desc: string = '';
   form: FormGroup;
+  hsnCode$: Observable<any[]>;
+  subscription: Subscription = new Subscription();
 
   constructor(private router: Router, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
@@ -24,19 +27,23 @@ export class HsnManagerPage implements OnInit {
       unit: ['', [Validators.required]],
       desc: [''],
   })
+  this.hsnCode$ = this.hsnService.gethsnservice(1);
   }
 
   onSubmit() {
     if (this.form) {
     console.log('Your form data : ', this.form.value);
     let hsndata:hsn={
-     hsnCode:this.form.value.hsnCode,
-     unit:this.form.value.unit,
-     desc:this.form.value.unit,
+      hsnCode: this.form.value.hsncode,
+      unit: this.form.value.unit,
+      companyid: 1,
+      desc: this.form.value.desc,
     };
-    this.hsnService.createHSN(hsndata,'','').subscribe(
+    this.subscription=this.hsnService.createHSN(hsndata,'','').subscribe(
       (response: any) => {
+       if(response.status){
         console.log('POST request successful', response);
+       }
         // Handle the response as needed
       },
       (error: any) => {
@@ -44,45 +51,18 @@ export class HsnManagerPage implements OnInit {
         // Handle the error as needed
       }
     );
-  }
+  } 
 }
 
-  // async onSubmit() {
-  //   if (this.hsnCode === null) {
-  //     const toast = await this.toastCtrl.create({
-  //       message: "HSN Code is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.unit===null){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Unit is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.desc===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Description is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else{
-  //       const toast = await this.toastCtrl.create({
-  //         message: "Successffully",
-  //         duration: 3000,
-  //         color: 'success'
-  //       });
-  //       toast.present();
-  //   }
-  // }
-
   ngOnInit() {
+    // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(["/master"])
+    this.router.navigate(['/master']); 
   }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+  }  }
 
 }

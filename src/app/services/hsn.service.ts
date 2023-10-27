@@ -8,6 +8,7 @@ export interface hsn{
   hsnCode: number;
   unit: number;
   desc: string;
+  companyid:number;
 }
 
 
@@ -15,11 +16,12 @@ export interface hsn{
   providedIn: 'root'
 })
 export class HsnService {
+  
 
   constructor(private httpclient: HttpClient) {}
 
-  gethsnservice(): Observable<any> {
-    return this.httpclient.get(environment.apibaseurl+environment.fetchhsn);
+  gethsnservice(companyid:number): Observable<any> {
+    return this.httpclient.get(environment.apibaseurl+environment.fetchhsn+'?companyid='+companyid);
   }
 
   createHSN(hsnmanager:hsn,key:string,user:string){
