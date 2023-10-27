@@ -11,7 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row class="headinglabel">
               <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
@@ -19,9 +19,9 @@
             <ion-row>
               <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="cpyname" name="companyname" type="text"
+                  <ion-input [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
                     label=" Company Name :" label-placement="floating" fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('cpyname')?.hasError('required') && form.get('cpyname').touched"
+                  <div *ngIf="form && form.get('cpyname')?.hasError('required') && form.get('cpyname')?.touched"
                     class="error-message">
                     Company Name is required.
                   </div>
@@ -29,7 +29,7 @@
               </ion-col>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" name="gstincode" type="text"
+                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text"
                     label="Company GSTIN :" label-placement="floating" fill="outline" max-length="15"></ion-input>
                 </ion-row>
               </ion-col>
@@ -43,7 +43,7 @@
 
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
-                <select [(ngModel)]="selectedCountry" name="country"
+                <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
@@ -51,14 +51,14 @@
 
                 </select>
                 <div
-                  *ngIf="form && form.get('selectedCountry')?.hasError('required') && form.get('selectedCountry').touched"
+                  *ngIf="form && form.get('selectedCountry')?.hasError('required') && form.get('selectedCountry')?.touched"
                   class="error-message">
                   Country is required.
                 </div>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
-                <select [(ngModel)]="selectedState" name="state"
+                <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
@@ -67,14 +67,14 @@
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
 
-                <select [(ngModel)]="selectedDistrict" name="district"
+                <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
                 </select>
                 <div
-                  *ngIf="form && form.get('selectedDistrict')?.hasError('required') && form.get('selectedDistrict').touched"
+                  *ngIf="form && form.get('selectedDistrict')?.hasError('required') && form.get('selectedDistrict')?.touched"
                   class="error-message">
                   District is required.
                 </div>
@@ -84,15 +84,15 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="pinCode" name="pcode" type="number"
+                  <ion-input [(ngModel)]="pinCode" formControlName="pinCode" name="pcode" type="number"
                     label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="8" size-md="8" size-sm="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="address" type="text" name="fulladdress"
+                  <ion-input [(ngModel)]="address" formControlName="address" type="text" name="fulladdress"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address').touched"
+                  <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address')?.touched"
                     class="error-message">
                     Name is required.
                   </div>
@@ -102,20 +102,20 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="phone" name="mobileno" type="number"
+                  <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="number"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="wpnumber" name="whatshappnumber" type="number"
+                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="whatshappnumber" type="number"
                     label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="email"  name="emails" type="email" label="Email :"
+                  <ion-input [(ngModel)]="email" formControlName="email"  name="emails" type="email" label="Email :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -125,16 +125,17 @@
               "></span>
             </ion-row>
             <ion-row>
-              <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
-                <ion-label>Upload Company Logo: </ion-label>
-                <label [(ngModel)]="logo" name="logo"  for="file-upload" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Choose File
+              <ion-col  size="12" size-lg="4" size-md="6" size-sm="6" class="date">
+                <ion-label>Select Image :</ion-label>
+                <label for="fileInput" class="custom-file-upload">
+                  Choose a file
                 </label>
+                <input type="file" [ngModel]="logo" formControlName="logo" name="logo_img" id="fileInput" style="display: none;">
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
                 <ion-label>Starting From : </ion-label>
                 <input type="file" id="file-upload" name="file" accept="image/*">
-                <ion-input [(ngModel)]="rdate" name="startdate" type="date"
+                <ion-input [(ngModel)]="rdate" formControlName="rdate" name="startdate" type="date"
                   placeholder="Enter Starting Date" class="custom-date-input"></ion-input>
               </ion-col>
             </ion-row>

@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreatecompanyService, companystore } from '../services/createcompany.service';
 import { NgForm } from '@angular/forms';
@@ -15,35 +15,38 @@ import { NgForm } from '@angular/forms';
   templateUrl: './ccstep4.page.html',
   styleUrls: ['./ccstep4.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink,RouterModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink, RouterModule, ReactiveFormsModule]
 })
 export class Ccstep4Page implements OnInit {
-bname:string='';
-accno:string='';
-ifsc:string='';
-branchname:string='';
-upiid:string='';
+  bname: string = '';
+  accno: string = '';
+  ifsc: string = '';
+  branchname: string = '';
+  upiid: string = '';
 
-bankForm: string='';
+  bankForm: string = '';
 
-  form:any;
-submitted=false;
-  company: any;
-  constructor(private createcompany : CreatecompanyService ,private router:Router,private formBuilder:FormBuilder) { 
-    this.form= this.formBuilder.group({
-      bname:['',[Validators.required]],
-      accno:[''],
-      ifsc:[''],
-      branchname:[''],
-      upiid:[''],
+  form: FormGroup;
+  submitted = false;
+  
+
+  constructor(private createcompany: CreatecompanyService, private router: Router, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      bname: ['', [Validators.required]],
+      accno: [''],
+      ifsc: [''],
+      branchname: [''],
+      upiid: [''],
     })
   }
 
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
-    let companydata: companystore = {cpyname: myform.value.cpyname, gstin: myform.value.gstin,selectedCountry: myform.value.selectedCountry,selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict, pinCode: myform.value.pinCode, address: myform.value.address,phone: myform.value.phone,wpnumber: myform.value.wpnumber,email: myform.value.email ,logo: myform.value.logo ,rdate: myform.value.rdate 
-,industry: myform.value.industry,businesstype: myform.value.businesstype,segmenttype: myform.value.segmenttype,companytype: myform.value.companytype,pannumber: myform.value.pannumber,tanno: myform.value.tanno,sales: myform.value.sales,purchase: myform.value.purchase,quotation: myform.value.quotation,challan: myform.value.challan,lms: myform.value.lms,amc: myform.value.amc,alloftheabove: myform.value.alloftheabove,language: myform.value.language,currency: myform.value.currency,bname: myform.value.bname,accno: myform.value.accno,ifsc: myform.value.ifsc,branchname: myform.value.branchname,upiid: myform.value.upiid};
-    this.company.createcompany(companydata, '', '').subscribe(
+  onSubmit() {
+    console.log('Your form data : ', this.form.value);
+    let companydata: companystore = {
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate
+      , industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno, sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency, bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid
+    };
+    this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
@@ -54,7 +57,7 @@ submitted=false;
       }
     );
 
-    }
+  }
 
   // onSubmit(){
   //   if(this.form.valid){
@@ -74,7 +77,7 @@ submitted=false;
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/ccstep2']); 
+    this.router.navigate(['/ccstep2']);
   }
 
 }

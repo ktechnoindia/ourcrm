@@ -11,41 +11,41 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <ion-row class="headinglabel">
             <ion-label style="font-size: 18px;">Rejistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="industry" name="industry">
+              <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
                 <option disabled value=""> --Industry Type--</option>
                 <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                   {{ industry.industrytypename }}
                 </option>
                 
               </select>
-              <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry').touched" class="error-message">
+              <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry')?.touched" class="error-message">
                 Industry is required.
               </div>
             </ion-col>
 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="businesstype" name="businesstype">
+              <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
                 <option disabled value=""> --Bussiness Type--</option>
                 <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                   {{ businesstype.businesstypename }}
                 </option>
                 
               </select>
-              <div *ngIf="form && form.get('business')?.hasError('required') && form.get('business').touched" class="error-message">
+              <div *ngIf="form && form.get('businesstype')?.hasError('required') && form.get('businesstype')?.touched" class="error-message">
                 Business is required.
               </div>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="segmenttype" name="segmenttype" >
+              <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment" >
                 <option disabled value=""> --Segment Type--</option>
                 <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                   {{ segmenttype.segmentname }}
@@ -55,7 +55,7 @@
             </ion-col>
             
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <select [(ngModel)]="companytype" name="gsttype">
+              <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
                 <option disabled value=""> --GST Type--</option>
                 <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                   {{ companytype.gsttypename }}
@@ -65,13 +65,13 @@
             </ion-col> 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input [ngModel]="pannumber" name="pano"type="text" label="PAN No. :" label-placement="floating"
+                <ion-input [ngModel]="pannumber" formControlName="pannumber" name="pano"type="text" label="PAN No. :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-row>
-                <ion-input color="dark"  [ngModel]="tanumber"  name="tanno" type="text" label="TAN No. :" label-placement="floating"
+                <ion-input color="dark"  [ngModel]="tanumber" formControlName="tanumber" name="tanno" type="text" label="TAN No. :" label-placement="floating"
                   fill="outline" max-length="15"></ion-input>
               </ion-row>
             </ion-col>   

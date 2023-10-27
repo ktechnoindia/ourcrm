@@ -23,7 +23,7 @@ import { CreatecompanyService, companystore } from '../services/createcompany.se
 })
 export class CreatecompanyPage implements OnInit {
 
-  form:any;
+  form:FormGroup;
 
   rdate:string ='' ;
   selectedState: any;
@@ -65,6 +65,7 @@ logo:string='';
         wpnumber:[''],
         pinCode:[''],
         gstin:[''],
+      logo:['']
      })
     
   }
@@ -72,10 +73,10 @@ logo:string='';
     
   }
   
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
+  onSubmit() {
+    console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
-      cpyname: myform.value.cpyname, gstin: myform.value.gstin, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict, pinCode: myform.value.pinCode, address: myform.value.address, phone: myform.value.phone, wpnumber: myform.value.wpnumber, email: myform.value.email, logo: myform.value.logo, rdate: myform.value.rdate,
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,
       industry: '',
       businesstype: '',
       segmenttype: '',
@@ -98,7 +99,7 @@ logo:string='';
       upiid: ''
     };
 
-    this.company.createcompany(companydata, '', '').subscribe(
+    this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed

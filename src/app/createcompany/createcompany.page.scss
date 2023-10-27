@@ -8,6 +8,21 @@
         margin-left: 0%;
     }
 }
+
+.custom-file-upload {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #2980b9;
+  }
+  
+
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;

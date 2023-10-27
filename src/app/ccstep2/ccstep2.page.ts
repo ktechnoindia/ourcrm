@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -22,7 +22,7 @@ import { NgForm } from '@angular/forms';
 })
 export class Ccstep2Page implements OnInit {
 
-  form:any;
+  form:FormGroup;
   tanumber:string='';
   pannumber:string='';
 
@@ -46,20 +46,20 @@ segmenttype!:string;
    
     this.form= this.formBulider.group({
       industry:['',[Validators.required]],
-      business:['',[Validators.required]],
-      segment:['',[Validators.required]],
-      company:['',[Validators.required]],
+      businesstype:['',[Validators.required]],
+      segmenttype:['',[Validators.required]],
+      companytype:['',[Validators.required]],
       gsttax:['',[Validators.required]],
       pannumber:[''],
       tanumber:['']
     })
    }
 
-   onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
+   onSubmit() {
+    console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
-      cpyname: myform.value.cpyname, gstin: myform.value.gstin, selectedCountry: myform.value.selectedCountry, selectedState: myform.value.selectedState, selectedDistrict: myform.value.selectedDistrict, pinCode: myform.value.pinCode, address: myform.value.address, phone: myform.value.phone, wpnumber: myform.value.wpnumber, email: myform.value.email, logo: myform.value.logo, rdate: myform.value.rdate,
-      industry: myform.value.industry, businesstype: myform.value.businesstype, segmenttype: myform.value.segmenttype, companytype: myform.value.companytype, pannumber: myform.value.pannumber, tanno: myform.value.tanno,
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,
+      industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno,
       sales: '',
       purchase: '',
       quotation: '',
@@ -75,7 +75,7 @@ segmenttype!:string;
       branchname: '',
       upiid: ''
     };
-    this.company.createcompany(companydata, '', '').subscribe(
+    this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
