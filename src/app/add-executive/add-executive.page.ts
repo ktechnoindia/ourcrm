@@ -8,13 +8,14 @@ import { roletypesservice } from '../services/roletypes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddexecutiveService,execut } from '../services/addexecutive.service';
-
+import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-add-executive',
   templateUrl: './add-executive.page.html',
   styleUrls: ['./add-executive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule]
 })
 
 export class AddExecutivePage implements OnInit {
@@ -35,7 +36,7 @@ export class AddExecutivePage implements OnInit {
   roletypes$: Observable<any[]>
   MenuController: any;
   roletypesservice: any;
-
+  excode:string='';
 
   constructor(private router: Router,private addExecutiveService:AddexecutiveService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
@@ -78,7 +79,7 @@ export class AddExecutivePage implements OnInit {
   onSubmit() {
     if (this.form.invalid) {
     console.log('Your form data : ', this.form.value);
-    let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.commission};
+    let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.ledger,excode:this.form.value.excode};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

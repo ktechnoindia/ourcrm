@@ -58,7 +58,17 @@ export class Ccstep3Page implements OnInit {
       accno: '',
       ifsc: '',
       branchname: '',
-      upiid: ''
+      upiid: '',
+      website: '',
+      selectedCountry1: '',
+      selectedState1: 0,
+      selectedDistrict1: '',
+      pinCode1: '',
+      address1: '',
+      phone1: '',
+      wpnumber1: '',
+      email1: '',
+      website1: ''
     };
     this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {

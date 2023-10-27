@@ -19,7 +19,7 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
-                <option disabled value=""> --Industry Type--</option>
+                <option value="" disabled selected>Select Industry Type</option> <!-- Default option -->
                 <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                   {{ industry.industrytypename }}
                 </option>
@@ -32,7 +32,7 @@
 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
-                <option disabled value=""> --Bussiness Type--</option>
+                <option value="" disabled selected>Select Business Type</option> <!-- Default option -->
                 <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                   {{ businesstype.businesstypename }}
                 </option>
@@ -46,7 +46,7 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment" >
-                <option disabled value=""> --Segment Type--</option>
+                <option value="" disabled selected>Select Segment Type</option> <!-- Default option -->
                 <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                   {{ segmenttype.segmentname }}
                 </option>
@@ -56,7 +56,7 @@
             
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
-                <option disabled value=""> --GST Type--</option>
+                <option value="" disabled selected>Select GST Type</option> <!-- Default option -->
                 <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                   {{ companytype.gsttypename }}
                 </option>

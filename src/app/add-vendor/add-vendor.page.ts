@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
@@ -12,6 +12,8 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { VendorService,vend } from '../services/vendor.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { ExecutiveService } from '../services/executive.service';
+import { CustomertypeService } from '../services/customertype.service';
 
 
 @Component({
@@ -19,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './add-vendor.page.html',
   styleUrls: ['./add-vendor.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,HttpClientModule],
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,HttpClientModule,RouterLink, RouterModule,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddVendorPage implements OnInit {
@@ -32,6 +34,12 @@ export class AddVendorPage implements OnInit {
   selectedCountry: any;
   selectedState:any;
   selectedDistrict: any;
+
+  selectedOption1:string='';
+selectedState1:string='';
+selectedDistrict1:string='';
+pincode1:string='';
+address1:string='';
 
   name:string='';
   vendor_code:number | null = null;
@@ -68,8 +76,17 @@ export class AddVendorPage implements OnInit {
   districts$:Observable<any[]>
   myform: FormGroup;
   submitted = false;
+
+  executive$: any;
+  executive!: string;
+  custtype$: any;
+  custtype!: string;
   
-  constructor(private https:HttpClient,private router: Router,private vendService:VendorService,private formBuilder: FormBuilder,private toastController:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) 
+  country1:string='';
+  state1:string='';
+  district1:string='';
+  
+  constructor(private custtp: CustomertypeService,private execut: ExecutiveService,private https:HttpClient,private router: Router,private vendService:VendorService,private formBuilder: FormBuilder,private toastController:ToastController,private countryservice: CountryService, private stateservice: StateService,private districtservice:DistrictsService) 
   {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -101,12 +118,20 @@ export class AddVendorPage implements OnInit {
       opening_point:[''],
       closing_point:[''],
       selectedSalutation:[''],
-      companyName:['']
+      companyName:[''],
+      country1:[''],
+      state1:[''],
+      district1:[''],
+      pincode1:[''],
+      address1:[''],
     });
 
     this.states$=this.stateservice.getStates(1)
     this.countries$=this.countryservice.getCountries();
     this.districts$=this.districtservice.getDistricts(1);
+    this.executive$ = this.execut.getexecutive();
+    this.custtype$ = this.custtp.getcustomertype();
+
    }
 
 
@@ -128,7 +153,7 @@ export class AddVendorPage implements OnInit {
     if (this.myform) {
       this.submitted=true;
     console.log('Your form data : ', this.myform.value);
-    let venddata:vend={name:this.myform.value.name,vendor_code:this.myform.value.vendor_code,gstin:this.myform.value.gstin,select_group:this.myform.value.select_group,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udhyog_aadhar,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,credit_period:this.myform.value.credit_period,credit_limit:this.myform.value.credit_limit,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName};
+    let venddata:vend={name:this.myform.value.name,vendor_code:this.myform.value.vendor_code,gstin:this.myform.value.gstin,select_group:this.myform.value.select_group,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udhyog_aadhar,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,credit_period:this.myform.value.credit_period,credit_limit:this.myform.value.credit_limit,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1};
     this.vendService.createVendor(venddata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

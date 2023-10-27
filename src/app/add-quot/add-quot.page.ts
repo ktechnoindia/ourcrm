@@ -18,7 +18,7 @@ export class AddQuotPage implements OnInit {
   quoteNumber: number | null = null;
   quateDate: string = '';
   quoteGroup: string = '';
-  quateTax: number | null = null;
+  quateTax:string='';
   taxrate: string = '';
   unit: string = '';
   item: string = '';

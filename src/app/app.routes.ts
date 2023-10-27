@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ViewExecutivePage } from './view-executive/view-executive.page';
 
 
 export const routes: Routes = [
@@ -28,10 +27,7 @@ export const routes: Routes = [
     path: 'amc-manager',
     loadComponent: () => import('./amc-manager/amc-manager.page').then(m => m.AmcManagerPage)
   },
-  {
-    path: 'view-executive',
-    component: ViewExecutivePage,
-  },
+
   { path: 'lead-manager', loadComponent: () => import('./lead-manager/lead-manager.page').then(m => m.LeadManagerPage) },
 
   {
@@ -159,10 +155,6 @@ export const routes: Routes = [
     loadComponent: () => import('./view-quot/view-quot.page').then(m => m.ViewQuotPage)
   },
   {
-    path: 'view-executive',
-    loadComponent: () => import('./view-executive/view-executive.page').then(m => m.ViewExecutivePage)
-  },
-  {
     path: 'update-quot',
     loadComponent: () => import('./update-quot/update-quot.page').then(m => m.UpdateQuotPage)
   },
@@ -269,7 +261,8 @@ export const routes: Routes = [
   {
     path: 'closecompany',
     loadComponent: () => import('./closecompany/closecompany.page').then( m => m.ClosecompanyPage)
-  },  {
+  },
+  {
     path: 'leaddashboard',
     loadComponent: () => import('./leaddashboard/leaddashboard.page').then( m => m.LeaddashboardPage)
   },
@@ -297,6 +290,18 @@ export const routes: Routes = [
     path: 'createunit',
     loadComponent: () => import('./createunit/createunit.page').then( m => m.CreateunitPage)
   },
+  {
+    path: 'viewexicutive',
+    loadComponent: () => import('./viewexicutive/viewexicutive.page').then( m => m.ViewexicutivePage)
+  },  {
+    path: 'viewcustomer',
+    loadComponent: () => import('./viewcustomer/viewcustomer.page').then( m => m.ViewcustomerPage)
+  },
+  {
+    path: 'viewsupplier',
+    loadComponent: () => import('./viewsupplier/viewsupplier.page').then( m => m.ViewsupplierPage)
+  },
+
 
 
 
