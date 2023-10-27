@@ -2,8 +2,8 @@
 export const environment = {
   production: false,
   apibaseurl: 'http://103.154.184.66:8000/masters/',
-  apiactionurl: 'http://103.154.184.66:8000/actions/',
-  fetchallcountries: 'getCountries', // Replace with your API's base URL
+  apiactionurl:'http://103.154.184.66:8000/actions/',
+  fetchallcountries:'getCountries', // Replace with your API's base URL
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchallstate: 'getStates',
   fetchalldistrict: 'getDistricts',
@@ -39,10 +39,11 @@ addcompany : 'company',
   addaccount: 'accounts',
   addcreateamc: 'createamc',
   additem: 'item',
-  addgroup: 'group',
+  addgroup: 'saveItemGroup',
   addUnit: 'createunit',
   addHsn: 'hsn',
   addcomapny:'createcompany',
+  fetchallitemgroups:'getItemGroups'
 };
 
 
