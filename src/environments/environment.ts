@@ -43,7 +43,8 @@ addcompany : 'company',
   addUnit: 'createunit',
   addHsn: 'hsn',
   addcomapny:'createcompany',
-  fetchallitemgroups:'getItemGroups'
+  fetchallitemgroups:'getItemGroups',
+  fetchallcust: 'get_customers',
 };
 
 

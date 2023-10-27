@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface cust{
 name:string;
@@ -46,5 +47,9 @@ export class CustomerService {
   constructor(private httpclient:HttpClient) { }
   createCustomer(customer:cust,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addcust,customer,{headers:{'key':key,'user':user}})
+  }
+  fetchallCustomer(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallcust+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-viewcustomer',
@@ -14,8 +17,14 @@ import { Router } from '@angular/router';
 export class ViewcustomerPage implements OnInit {
   formDate:string='';
   toDate:string='';
+  customers$: Observable<any[]>
 
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private custservice:CustomerService) { 
+    const compid='1';
+
+    this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid),'','');
+    console.log(this.customers$);
+  }
 
   async onSubmit(){
     if(this.formDate===''){

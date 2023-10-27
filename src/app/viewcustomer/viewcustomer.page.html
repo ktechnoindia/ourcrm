@@ -71,9 +71,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>CUST001</td>
+                      <tr *ngFor="let customer of customers$ | async; let i = index">
+
+                        <td>{{ i + 1 }}</td>
+                        <td>{{customer.name}}</td>
                         <td>John Doe</td>
                         <td>ABCD1234E</td>
                         <td>1234567890</td>
