@@ -22,9 +22,9 @@
             
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <select  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
-               <!--  <option value="0" disabled selected>Parent Group</option>  
+                <option value="0" disabled selected>Parent Group</option>  
                 <option value="1">1</option>
-                <option value="2">Ravi</option>
+                 <!--<option value="2">Ravi</option>
                 <option value="3">Nirbhay</option>
                 <option value="4">Abhishek</option> -->
                 <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
