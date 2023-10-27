@@ -22,11 +22,14 @@
             
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <select  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
-                <option value="" disabled selected>Parent Group</option> <!-- Default option -->
-                <option value="">1</option>
-                <option value="">Ravi</option>
-                <option value="">Nirbhay</option>
-                <option value="">Abhishek</option>
+               <!--  <option value="0" disabled selected>Parent Group</option>  
+                <option value="1">1</option>
+                <option value="2">Ravi</option>
+                <option value="3">Nirbhay</option>
+                <option value="4">Abhishek</option> -->
+                <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                  {{ itemgroup.itemgroupname }}
+                </option>
               </select>
               <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
                 Lead Assign is required.
@@ -44,12 +47,11 @@
                   <th>Group Name</th>
                   <th>Parent Group</th>
                 </tr>
-                <tr>
-                  <td><ion-input style="border: none;"></ion-input></td>
-                  <td><ion-input style="border: none;"></ion-input></td>
-                  <td><ion-input style="border: none;"></ion-input></td>
-
-                </tr>
+                <tr *ngFor="let itemgroup of itemgroups$ | async; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><ion-input style="border: none;">{{ itemgroup.itemgroupname }}</ion-input></td>
+                  <td><ion-input style="border: none;">{{ itemgroup.parentgroupid }}</ion-input></td>
+                 </tr>
               </table>
             </div>
           </ion-row>
