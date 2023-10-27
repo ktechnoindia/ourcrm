@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { GoogleChartInterface } from 'ng2-google-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { RouterLink } from '@angular/router';
+
 
 
 @Component({
@@ -11,17 +12,14 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
   templateUrl: './leaddashboard.page.html',
   styleUrls: ['./leaddashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, Ng2GoogleChartsModule,],
+  imports: [IonicModule, CommonModule, FormsModule, Ng2GoogleChartsModule,RouterLink,],
  
 })
 export class LeaddashboardPage implements OnInit {
 
   menuType = 'push';
-
- 
-  public columnChart1: GoogleChartInterface;
-  public pieChart: GoogleChartInterface;
-  public lineChart: GoogleChartInterface;
+  public number: number = 1000;
+  
 
   dataTable = [
     ['City', '2010 Population', '2000 Population'],
@@ -34,73 +32,6 @@ export class LeaddashboardPage implements OnInit {
 
   constructor() {
 
-
-    this.columnChart1 = {
-      chartType: 'ColumnChart',
-      dataTable: [
-        ['City', '2010 Lead'],
-        ['New York City, NY', 8175000],
-        ['Los Angeles, CA', 3792000],
-        ['Chicago, IL', 2695000],
-        ['Houston, TX', 2099000],
-        ['Philadelphia, PA', 1526000]
-      ],
-      //opt_firstRowIsData: true,
-      options: {
-        title: 'Lead Manager',
-        height: 150,
-        chartArea: { height: '150' },
-        hAxis: {
-          title: 'Total Lead',
-          minValue: 0
-        },
-        vAxis: {
-          title: 'City'
-        }
-      },
-    };
-
-
-    this.pieChart = {
-      chartType: 'PieChart',
-      dataTable: [
-        ['Task', 'Lead per Day'],
-        ['Work', 11],
-        ['Eat', 2],
-        ['Commute', 2],
-        ['Watch TV', 2],
-        ['Sleep', 7]
-      ],
-      //opt_firstRowIsData: true,
-      options: {
-        'title': 'Lead ',
-        height: 150,
-        width: '100%'
-      }
-    };
-
-     this.lineChart = {
-      chartType: 'LineChart',
-      dataTable: [
-        ['Year', 'Lead'],
-        ['2010', 8175000],
-        ['2011', 8500000],
-        ['2012', 8700000],
-        ['2013', 9000000],
-        ['2014', 9200000],
-      ],
-      options: {
-        title: 'Lead Of the Years',
-        height: 220,
-        chartArea: { height: '50%' },
-        hAxis: {
-          title: 'Year',
-        },
-        vAxis: {
-          title: 'Lead',
-        },
-      },
-    };
   }
 
 ngOnInit() {

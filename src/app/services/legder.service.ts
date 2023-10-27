@@ -1,19 +1,44 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-
-
 export interface ledg{
-  name:string;
-  group_name:string;
-  address:string;
-  alternate_name:string;
-  vender_code:string;
-  gstin:string;
-  opening_balance:string;
-  closing_balance:string;
- 
-}
+lname:string;
+    ledger_code: string;
+    gstin: string;
+    lgroup_name: string;
+    opening_balance: number;
+    closing_balance: number;
+    mobile: string;
+    whatsapp_number: string;
+    email:string;
+    country: number;
+    state: number
+    district: number;
+    pincode: string;
+    address: string;
+    tdn: string;
+    aadhar_no: string;
+    pan_no: string;
+    udhyog_aadhar: string;
+    account_number: string;
+    ifsc_code: string;
+    bank_name: string;
+    branch_name: string;
+    credit_period: number;
+    credit_limit: number;
+    select_sales_person: string;
+    card_number: string;
+    opening_point: number;
+    closing_point: number;
+    selectedSalutation: string;
+    companyName: string;
+    
+    country1: number;
+    state1: number
+    district1: number;
+    pincode1: string;
+    address1: string;
+  }
 
 @Injectable({
   providedIn: 'root'

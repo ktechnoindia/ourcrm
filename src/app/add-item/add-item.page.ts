@@ -9,6 +9,7 @@ import { UnitnameService } from '../services/unitname.service';
 import { HsnService } from '../services/hsn.service';
 import { FormBuilder,Validators } from '@angular/forms';
 import { AdditemService,item } from '../services/additem.service';
+import { AddgroupService } from '../services/addgroup.service';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.page.html',
@@ -62,11 +63,13 @@ export class AddItemPage implements OnInit {
   unitname!: string; 
   hsnname$:any;
   hsnname!:string;
-constructor(private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
+  itemgroups$: Observable<any[]>
+  
+constructor(private groupService:AddgroupService, private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
      this.hsnname$=this.hsname1.gethsnservice();
-
+     this.itemgroups$ = this.groupService.getAllGroups(1);
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
       itemCode: ['', [Validators.required]],

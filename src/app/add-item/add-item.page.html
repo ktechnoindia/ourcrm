@@ -103,26 +103,10 @@
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
                     <option value="">--Setect Item Group--</option>
-                    <option value="">Electronics</option>
-                    <option value="">Clothing</option>
-                    <option value="">Footwear</option>
-                    <option value="">Furniture</option>
-                    <option value="">Appliances</option>
-                    <option value="">Food and Groceries</option>
-                    <option value="">Hardware</option>
-                    <option value="">Books</option>
-                    <option value="">Toys and Games</option>
-                    <option value="">Health and Beauty</option>
-                    <option value="">Automotive</option>
-                    <option value="">Sports and Outdoors</option>
-                    <option value="">Jewelry</option>
-                    <option value="">Electrical Supplies</option>
-                    <option value="">Stationery and Office Supplies</option>
-                    <option value="">Pet Supplies</option>
-                    <option value="">Art and Craft</option>
-                    <option value="">Art and Craft</option>
-                    <option value="">Medical Supplies</option>
-                    <option value="">Custom Groups</option>
+                    
+                    <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                      {{ itemgroup.itemgroupname }}
+                    </option>
                   </select>
                   <div *ngIf="myform && myform.controls['selectItemGroup']?.hasError('required') && myform.controls['selectItemGroup']?.touched" class="error-message">
                     Item Group Type is required.

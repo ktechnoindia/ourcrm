@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface vend{
       name:string;
-      vendor_code: string;
+      customer_code: string;
       gstin: string;
       select_group: number;
       opening_balance: number;

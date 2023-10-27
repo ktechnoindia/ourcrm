@@ -1,8 +1,8 @@
 
 export const environment = {
   production: false,
-  apibaseurl: 'http://localhost:8000/masters/',
-  apiactionurl:'http://localhost:8000/actions/',
+  apibaseurl: 'http://103.154.184.66:8000/masters/',
+  apiactionurl:'http://103.154.184.66:8000/actions/',
   fetchallcountries:'getCountries', // Replace with your API's base URL
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchallstate: 'getStates',
