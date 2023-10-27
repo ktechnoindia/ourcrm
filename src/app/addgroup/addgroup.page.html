@@ -19,17 +19,18 @@
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
+            
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-              <ion-row>
-                <ion-input [(ngModel)]="agname" formControlName="agname"  name="alternate_name" type="text" label="Alternate Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-row>
-                <ion-textarea [(ngModel)]="description" formControlName="description" name="descr_iption" type="text" label=" Description :" label-placement="floating"
-                  fill="outline"></ion-textarea>
-              </ion-row>
+              <select  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
+                <option value="" disabled selected>Parent Group</option> <!-- Default option -->
+                <option value="">1</option>
+                <option value="">Ravi</option>
+                <option value="">Nirbhay</option>
+                <option value="">Abhishek</option>
+              </select>
+              <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
+                Lead Assign is required.
+             </div>
             </ion-col>
           </ion-row>
           <ion-row >
@@ -39,8 +40,8 @@
             <div style="width: 100%;" class="scroll-container">
               <table>
                 <tr>
-                  <th>Item Group Name</th>
-                  <th>Alternate Name</th>
+                  <th>SR.NO</th>
+                  <th>Group Name</th>
                   <th>Parent Group</th>
                 </tr>
                 <tr>

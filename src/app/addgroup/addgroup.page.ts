@@ -20,12 +20,14 @@ export class AddgroupPage implements OnInit {
   igname:string='';
   agname:string='';
   description:string='';
+  parentgroup:string='';
 
   constructor(private router:Router,private formBuilder:FormBuilder,private groupService:AddgroupService) {
     this.form = this.formBuilder.group({
       igname: ['', [Validators.required]],
       agname: [''],
       description: [''],
+      parentgroup:[''],
   })
    }
 
