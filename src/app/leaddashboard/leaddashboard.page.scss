@@ -1,39 +1,102 @@
+ion-content{
+  --ion-width:100%;
+  // --ion-background-color:lightgrey;
+  --margin-top:100px;
+}
+ion-header{
+  margin-bottom: 75px;
+}
+.dash{
+  border-bottom: 1px solid grey;
+  padding: 5px;
+  display: flex;
+  justify-content: end;
+}
+
+.gamil{
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+.lead_icon{
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid lightblue;
+  padding: 20px 0;
+  border-radius: 3px;
+}
+ion-col{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.lead_nav{
+  margin: 20px;
+}
+
+.navigation{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: end;
+}
+.navigation > div{
+  // background-color: lightblue;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+}
+
+.navigation a{
+  float: right;
+  padding: 20px;
+  background-color: lightblue;
+  width: 100%;
+  margin: 5px;
+}
+
+ion-icon{
+  color: lightblue;
+  padding:0 5px;
+  font-size: 30px;
+}
+
+
+
 .container_fluid{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 80px;
-  
 }
-ion-content {
-    --ion-background-color: lightblue; /* Replace with your desired background color */
-  }
 
 .table-container {
     width: 100%; /* Set the width of the container */
-    height: 550px; /* Set the height of the container */
+    height: 400px; /* Set the height of the container */
     // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
     // overflow-y: scroll;
     padding: 20px;
-    margin: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px; /* Enable vertical scrollbar when content overflows */
     background-color: white;
   }
   .scroll-container {
-    width: 100%; /* Set the width of the container */
+    width: 1500px; /* Set the width of the container */
     height: 300px; /* Set the height of the container */
     overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
     overflow-y: scroll;
-    // padding: 20px;
-    // margin: 20px;
-    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    // border-radius: 10px; /* Enable vertical scrollbar when content overflows */
     background-color: white;
   }
   .table-container p{
-    background-color: lightblue;
+    // background-color: lightblue;
+    font-size: 23px;
+    border-bottom: 1px solid lightblue;
     width: 100%;
   }
   /* Style the table inside the container */
@@ -89,130 +152,3 @@ ion-input {
 
 
 
-// .charts {
-//     display: flex;
-//     justify-content: start;
-//     align-items: start;
-//     flex-wrap: wrap;
-//     background-image: linear-gradient(to right, #00b4db, #24a6d1);
-//     width: 100%;
-//     height: 81.50%;
-// }
-
-// .chart {
-//     margin: 20px;
-//     background-color: white;
-// }
-
-// .lead_dash {
-//     width: 20%;
-//     background-color: white;
-//     height: 600px;
-//     margin-top: -70px;
-//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-//     display: flex;
-//     justify-content: start;
-//     align-items: center;
-//     flex-direction: column;
-//     background-image: linear-gradient(to right, #00b4db, #5abada);
-//     padding: 10px;
-//     flex-wrap: nowrap;
-// }
-
-// .lead_dash a {
-//     text-align: center;
-//     text-decoration: none;
-//     font-size: 18px;
-//     padding: 10px;
-//     margin: 5px 0;
-//     width: 100%;
-//     border: 1px solid white;
-//     border-radius: 20px;
-//     color: #fff;
-
-// }
-
-// .lead_dash a:hover {
-//     background-color:white;
-//     border-radius: 20px;
-//    color: #00b4db;
-// }
-
-// .lead_dash h2 {
-//     background-image: linear-gradient(to right, #00b4db, #15aadb);
-//     width: 100%;
-//     color: white;
-//     text-align: center;
-//     padding: 14px 10px 10px 10px;
-//     border-bottom:1px solid white ;
-// }
-
-// .chart_menu {
-//     width: 80%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     flex-wrap: wrap;
-// }
-
-// .chart {
-//     height: 200px;
-//     width: 300px;
-//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-//     border-radius: 10px;
-//     padding: 20px;
-// }
-
-// .chart1{
-//     height: 250px;
-//     width: 50%;
-//     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-//     border-radius: 10px;
-//     padding: 10px;
-//     background-color: white;
-//     margin: 20px;
-// }
-
-// .deshboard {
-//     display: flex;
-//     justify-content: right;
-//     align-items: center;
-//     width: 86%;
-//     height: 50px;
-//     margin-left: 195px;
-//     background-image: linear-gradient(to right, #83dcf0, #4acffc);
-//     margin-top: 70px;
-// }
-
-// .deshboard img {
-//     width: 40px;
-//     height: 40px;
-//     border-radius: 50%;
-//     object-fit: cover;
-//     margin-right: 10px;
-// }
-
-// .deshboard p {
-//     color: white;
-//     font-size: 14px;
-//     margin-top: 20px;
-//     margin-right: 50px;
-// }
-
-// ion-searchbar{
-//     width: 60%;
-//     max-height: 15px;
-// }
-
-// ion-icon{
-//     color: white;
-//     margin-right: 30px;
-//     font-size: 25px;
-//     border-bottom: 2px solid white;
-// }
-
-// ion-header{
-//     display: flex;
-//     flex-direction: column;
-//     flex-wrap: wrap;
-// }
