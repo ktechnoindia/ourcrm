@@ -18,13 +18,23 @@ ion-header{
   font-size: 14px;
 }
 .lead_icon{
-  margin: 10px;
+  margin: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid lightblue;
-  padding: 20px 0;
-  border-radius: 3px;
+  border: 2px solid rgb(0, 191, 255);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px 0px #51c9b9;
+  background-color: #a2eee4;
+  width: 100%;
+}
+.lead_icon ion-icon{
+  color: black;
+  font-size: 26px;
+}
+.lead_icon :hover{
+  background-color: rgb(255, 255, 255);
 }
 ion-col{
   display: flex;
@@ -84,11 +94,11 @@ ion-icon{
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px; /* Enable vertical scrollbar when content overflows */
-    background-color: white;
+    background-color: rgb(179, 241, 243);
   }
   .scroll-container {
     width: 1500px; /* Set the width of the container */
-    height: 300px; /* Set the height of the container */
+    height: 250px; /* Set the height of the container */
     overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
     overflow-y: scroll;
     background-color: white;
@@ -100,11 +110,12 @@ ion-icon{
     width: 100%;
   }
   /* Style the table inside the container */
-  table {
+ .table-container table {
     width: 100%; 
     padding: 20px;
     border: none;
     border: 1px solid grey;
+    height: 200px;
   }
 
   tr{
@@ -150,5 +161,23 @@ ion-input {
 }
 
 
-
-
+.icon-container{
+  width: 100%; /* Set the width of the container */
+  height: 300px; /* Set the height of the container */
+  // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
+  // overflow-y: scroll;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px; /* Enable vertical scrollbar when content overflows */
+  background-color: rgb(169, 252, 241);
+}
+.navigation_container{
+  width: 100%; /* Set the width of the container */
+  height: 300px; /* Set the height of the container */
+  // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
+  // overflow-y: scroll;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px; /* Enable vertical scrollbar when content overflows */
+  background-color: rgb(169, 252, 241);
+}
