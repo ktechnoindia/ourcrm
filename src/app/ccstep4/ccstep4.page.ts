@@ -44,8 +44,17 @@ export class Ccstep4Page implements OnInit {
   onSubmit() {
     console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
-      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate
-      , industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno, sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency, bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,website:this.form.value.website
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,
+      industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno, sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency, bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid, website: this.form.value.website,
+      selectedCountry1: '',
+      selectedState1: 0,
+      selectedDistrict1: '',
+      pinCode1: '',
+      address1: '',
+      phone1: '',
+      wpnumber1: '',
+      email1: '',
+      website1: ''
     };
     this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {

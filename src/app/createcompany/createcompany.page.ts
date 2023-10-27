@@ -27,7 +27,7 @@ export class CreatecompanyPage implements OnInit {
 
   rdate:string ='' ;
   selectedState: any;
-  selectedDistrict:any;
+  selectedDistrict:string='';
   selectedCountry: string = '';
   email:string='';
   wpnumber:string='';
@@ -38,6 +38,15 @@ export class CreatecompanyPage implements OnInit {
   cpyname:string='';
 logo:string='';
 website:string='';
+selectedState1: string='';
+selectedDistrict1:string='';
+selectedCountry1: string = '';
+email1:string='';
+wpnumber1:string='';
+phone1:string='';
+address1:string='';
+pinCode1:string='';
+website1:string='';
 
   countries$:Observable<any[]>
   states$:Observable<any[]>
@@ -67,7 +76,16 @@ website:string='';
         pinCode:[''],
         gstin:[''],
       logo:[''],
-      website:['']
+      website:[''],
+      website1:[''],
+      selectedState1: [''],
+selectedDistrict1:[''],
+selectedCountry1: [''],
+email1:[''],
+wpnumber1:[''],
+phone1:[''],
+address1:[''],
+pinCode1:[''],
      })
     
   }
@@ -78,7 +96,7 @@ website:string='';
   onSubmit() {
     console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
-      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,website:this.form.value.website,
+      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate,website:this.form.value.website,website1:this.form.value.website1,selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
       industry: '',
       businesstype: '',
       segmenttype: '',

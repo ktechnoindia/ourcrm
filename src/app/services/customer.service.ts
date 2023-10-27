@@ -32,6 +32,11 @@ name:string;
     closing_point: number;
     selectedSalutation: string;
     companyName: string;
+    country1: number;
+    state1: number
+    district1: number;
+    pincode1: string;
+    address1: string;
   }
 @Injectable({
   providedIn: 'root'

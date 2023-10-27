@@ -163,7 +163,7 @@
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedState" name="state" label-placement="floating" fill="outline"
+                <select [(ngModel)]="selectedState"type="text" name="state" label-placement="floating" fill="outline"
                   (change)="onStateChange()">
                   <option value="" disabled selected>State</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
@@ -204,7 +204,7 @@
 
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-                <select [(ngModel)]="selectedOption" name="country" label-placement="floating" fill="outline"
+                <select [(ngModel)]="selectedOption1" name="country1" label-placement="floating" fill="outline"
                   (change)="onCountryChange()">
                   <option value="" disabled selected>Country</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
@@ -215,7 +215,7 @@
               </ion-col>
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedState" name="state" label-placement="floating" fill="outline"
+                <select [(ngModel)]="selectedState1" name="state1" label-placement="floating" fill="outline"
                   (change)="onStateChange()">
                   <option value="" disabled selected>State</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
@@ -224,7 +224,7 @@
                 </select>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedDistrict" name="district" label-placement="floating" fill="outline">
+                <select [(ngModel)]="selectedDistrict1" name="district1" label-placement="floating" fill="outline">
                   <option value="" disabled selected>District</option> <!-- Default option -->
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
@@ -234,7 +234,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode" type="tel" name="pincode" label=" PinCode  :"
+                  <ion-input [(ngModel)]="pincode1" type="tel" name="pincode1" label=" PinCode  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -243,7 +243,7 @@
             <ion-row>
               <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="address" name="address" type="text" label="Full Address :"
+                  <ion-input [(ngModel)]="address1" name="address1" type="text" label="Full Address :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
