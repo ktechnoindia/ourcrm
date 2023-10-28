@@ -45,7 +45,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>Country</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select Country ---</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -61,7 +61,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
                 <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>State</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select State ---</option>
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -71,7 +71,7 @@
 
                 <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
-                  <option value="" disabled selected>District</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select District ---</option>
 
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
@@ -140,7 +140,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry1" formControlName="selectedCountry1" name="country1"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>Country</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select Country ---</option>
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -156,7 +156,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
                 <select [(ngModel)]="selectedState1" formControlName="selectedState1" name="state1"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>State</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select State ---</option>
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -166,7 +166,7 @@
 
                 <select [(ngModel)]="selectedDistrict1" formControlName="selectedDistrict1" name="district1"
                   label-placement="floating" fill="outline">
-                  <option value="" disabled selected>District</option> <!-- Default option -->
+                  <option value="" disabled selected>---Select District ---</option>
 
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}

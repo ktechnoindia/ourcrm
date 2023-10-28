@@ -15,57 +15,68 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
-               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon> 
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Add Lead</ion-title>
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
 
-          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size-lg="9" size-md="6" size-sm="6" size="12">
-                <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="companyname" type="text" label="Company Name:" label-placement="floating" fill="outline"></ion-input>
-                <div *ngIf="form && form.controls['catPerson']?.hasError('required') && form.controls['catPerson']?.touched" class="error-message">
+                <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="companyname" type="text"
+                  label="Company Name:" label-placement="floating" fill="outline"></ion-input>
+                <div
+                  *ngIf="form && form.controls['catPerson']?.hasError('required') && form.controls['catPerson']?.touched"
+                  class="error-message">
                   Company Name is required.
                 </div>
               </ion-col>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="contactPerson" type="text" label="Contact Person:" label-placement="floating" fill="outline"></ion-input>
-                <div *ngIf="form && form.controls['catPerson']?.hasError('required') && form.controls['catPerson']?.touched" class="error-message">
+                <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="contactPerson" type="text"
+                  label="Contact Person:" label-placement="floating" fill="outline"></ion-input>
+                <div
+                  *ngIf="form && form.controls['catPerson']?.hasError('required') && form.controls['catPerson']?.touched"
+                  class="error-message">
                   Contact Person is required.
                 </div>
               </ion-col>
             </ion-row>
-              <ion-row>
-    <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-      <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="tel" label="Mobile No.:" label-placement="floating" fill="outline" maxlength="10"></ion-input>
-      <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone']?.touched" class="error-message">
-        Mobile Number is required.
-      </div>
-    </ion-col>
-    <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-      <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email:" label-placement="floating" fill="outline"></ion-input>
-    </ion-col>
-    <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-     
-        <ion-input  [(ngModel)]="emails" formControlName="emails"  name="email"   type="email" label="Email :"  label-placement="floating" fill="outline" ></ion-input>
-   
+            <ion-row>
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+                <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="tel" label="Mobile No.:"
+                  label-placement="floating" fill="outline" maxlength="10"></ion-input>
+                <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone']?.touched"
+                  class="error-message">
+                  Mobile Number is required.
+                </div>
               </ion-col>
-              
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+                <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email:"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+
+                <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email :"
+                  label-placement="floating" fill="outline"></ion-input>
+
+              </ion-col>
+
             </ion-row>
 
             <ion-row>
-              
-              <ion-col  size-lg="4" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country" label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>Select Country</option> <!-- Default option -->
+
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+                <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
+                  label-placement="floating" fill="outline" (change)="onCountryChange()">
+                  <option value="" disabled selected>--- Select Country ---</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
-                  
+
                 </select>
                 <!-- <select   [(ngModel)]="selectedCountry"   formControlName="selectedCountry" name="country"   >
                   <option value="">--- Select Country ---</option>
@@ -73,51 +84,61 @@
                   <option value="UK">UK</option>
                   <option value="USA">USA</option>
                 </select> -->
-                <div *ngIf="form && form.controls['selectedCountry']?.hasError('required') && form.controls['selectedCountry']?.touched" class="error-message">
+                <div
+                  *ngIf="form && form.controls['selectedCountry']?.hasError('required') && form.controls['selectedCountry']?.touched"
+                  class="error-message">
                   Country is required.
-               </div>
+                </div>
               </ion-col>
-              <ion-col  size-lg="4" size-md="6" size-sm="6" size="12">
-                
-                <select [(ngModel)]="selectedState" formControlName="selectedState" name="state" label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>Select State</option> <!-- Default option -->
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+
+                <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
+                  label-placement="floating" (change)="onStateChange()">
+                  <option value="" disabled selected>--- Select State ---</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
                 </select>
-                <div *ngIf="form && form.controls['selectedState']?.hasError('required') && form.controls['selectedState']?.touched" class="error-message">
+                <div
+                  *ngIf="form && form.controls['selectedState']?.hasError('required') && form.controls['selectedState']?.touched"
+                  class="error-message">
                   State is required.
-               </div>
+                </div>
               </ion-col>
 
-              <ion-col  size-lg="4" size-md="6" size-sm="6" size="12">
-                <select  [(ngModel)]="selectedDistrict"  formControlName="selectedDistrict" name="district" label-placement="floating" fill="outline" >
-                  <option value="" disabled selected>Select District</option> <!-- Default option -->
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+                <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
+                  label-placement="floating" fill="outline">
+                  <option value="" disabled selected>--- Select District ---</option> <!-- Default option -->
 
-                  <option *ngFor="let district of districts$ | async" [value]="district.districtid" >
+                  <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
                 </select>
-                <div *ngIf="form && form.controls['selectedDistrict']?.hasError('required') && form.controls['selectedDistrict']?.touched" class="error-message">
+                <div
+                  *ngIf="form && form.controls['selectedDistrict']?.hasError('required') && form.controls['selectedDistrict']?.touched"
+                  class="error-message">
                   District is required.
-               </div>
+                </div>
               </ion-col>
-              
+
             </ion-row>
             <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="pncode" formControlName="pncode" name="pinCode" type="number" label=" Pincode :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="pncode" formControlName="pncode" name="pinCode" type="number"
+                    label=" Pincode :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="9" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="fulladdress"  formControlName="fulladdress" name="address" label=" Address :"
+                  <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.controls['fulladdress']?.hasError('required') && form.controls['fulladdress']?.touched" class="error-message">
-                      Full Address is required.
-                   </div>
+                  <div
+                    *ngIf="form && form.controls['fulladdress']?.hasError('required') && form.controls['fulladdress']?.touched"
+                    class="error-message">
+                    Full Address is required.
+                  </div>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -125,8 +146,8 @@
             <ion-row>
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <select  [(ngModel)]="lscore" formControlName="lscore"  name="leadscore">
-                    <option value="" disabled selected>Select Lead Source</option> <!-- Default option -->
+                  <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
+                    <option value="" disabled selected>--- Select Lead Source ---</option> <!-- Default option -->
                     <option value="onlineAdvertising">Online Advertising</option>
                     <option value="socialMedia">Social Media</option>
                     <option value="referrals">Referrals</option>
@@ -136,56 +157,59 @@
                     <option value="coldCalling">Cold Calling</option>
                     <option value="contentMarketing">Content Marketing</option>
                   </select>
-                  <div *ngIf="form && form.controls['lscore']?.hasError('required') && form.controls['lscore']?.touched" class="error-message">
+                  <div *ngIf="form && form.controls['lscore']?.hasError('required') && form.controls['lscore']?.touched"
+                    class="error-message">
                     Lead Score is required.
-                 </div>
+                  </div>
                 </ion-row>
               </ion-col>
-             
-             
+
+
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-                <select  [(ngModel)]="lassign" formControlName="lassign"  name="leadassign">
-                  <option value="" disabled selected>Lead Assign To</option> <!-- Default option -->
+                <select [(ngModel)]="lassign" formControlName="lassign" name="leadassign">
+                  <option value="" disabled selected>--- Lead Assign To ---</option> <!-- Default option -->
                   <option value="">Deepak</option>
                   <option value="">Ravi</option>
                   <option value="">Nirbhay</option>
                   <option value="">Abhishek</option>
                 </select>
-                <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
+                <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched"
+                  class="error-message">
                   Lead Assign is required.
-               </div>
+                </div>
               </ion-col>
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-                <select  [(ngModel)]="selectpd" formControlName="selectpd"  name="selectproduct">
-                  <option value="" disabled selected>Select Product</option> <!-- Default option -->
+                <select [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">
+                  <option value="" disabled selected>--- Select Product ---</option> <!-- Default option -->
                   <option value="">P1</option>
                   <option value="">p3</option>
                   <option value="">p2</option>
                   <option value="">p4</option>
                 </select>
-                <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
+                <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched"
+                  class="error-message">
                   Select Product is required.
-               </div>
+                </div>
               </ion-col>
-              
+
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="rmark" formControlName="rmark" name="remark"type="text" label=" Remark :"
+                  <ion-textarea [(ngModel)]="rmark" formControlName="rmark" name="remark" type="text" label=" Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
-              </ion-col>              
+              </ion-col>
             </ion-row>
 
             <ion-row>
-            <ion-col>
-              <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                <ion-button>New</ion-button>
-                <ion-button type="submit">Save</ion-button>
-                <ion-button>Delete</ion-button>
-                <ion-button>Preview</ion-button>
-                <ion-button>Close</ion-button>
-              </ion-row>
-            </ion-col>
+              <ion-col>
+                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                  <ion-button>New</ion-button>
+                  <ion-button type="submit">Save</ion-button>
+                  <ion-button>Delete</ion-button>
+                  <ion-button>Preview</ion-button>
+                  <ion-button>Close</ion-button>
+                </ion-row>
+              </ion-col>
             </ion-row>
           </form>
         </ion-grid>

@@ -27,7 +27,7 @@
             <ion-row>
               <ion-col size="12" size-lg="1" size-md="6" size-sm="6">
                 <select [ngModel]="role" name="roletype" formControlName="role">
-                  <option value="" disabled selected>Role</option> <!-- Default option -->
+                  <option value="" disabled selected>--- Role ---</option> <!-- Default option -->
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypesid" >
                     
                     {{ roletypes.roletypename }}
@@ -56,7 +56,7 @@
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="manager"  formControlName="manager" name="managertype">
-                  <option value="" disabled selected>Select Manager</option> <!-- Default option -->
+                  <option value="" disabled selected>--- Select Manager ---</option> <!-- Default option -->
                   <option value="1">Deepak</option>
                   <option value="1">Yogesh</option>
                   <option value="1">Abhishek</option>
@@ -111,7 +111,7 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="ledger"  formControlName="ledger"  name="ledgertype">
-                  <option value="" disabled selected>Select ledger</option> <!-- Default option -->
+                  <option value="" disabled selected>--- Select ledger ---</option> <!-- Default option -->
 
                   <option value="1">Stock ledger</option>
                   <option value="1">Sales ledger</option>

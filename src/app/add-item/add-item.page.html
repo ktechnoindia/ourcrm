@@ -37,6 +37,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
+                    <option value="" disabled selected>---Select HSN  ---</option>
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
@@ -46,7 +47,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectStock" formControlName="selectStock" name="select_Stock">
-                    <option value="">--Select Stock Type--</option>
+                    <option value="">--- Select Stock Type ---</option>
                     <option value="">Stock</option>
                     <option value="">Non-Stock</option>
                     <option value="">Asset</option>
@@ -62,7 +63,7 @@
               <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItem" formControlName="selectItem" name="select_Item">
-                    <option value="">--Select Item Type--</option>
+                    <option value="">--- Select Item Type ---</option>
                     <option value="">Raw Material</option>
                     <option value="">Finish Goods</option>
                     <option value="">Spare Parts</option>
@@ -75,6 +76,7 @@
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="unitname$" formControlName="unitname$" name="unit_name$" >
+                    <option value="" disabled selected>---Select Unit Name ---</option>
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
                     </option>
@@ -83,7 +85,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectAltUnit" formControlName="selectAltUnit" name="select_AltUnit">
-                    <option value="">--Select Alternate Unit--</option>
+                    <option value="">--- Select Alternate Unit ---</option>
                     <option value="">Roll (RL)</option>
                     <option value="">Bundle (BDL)</option>
                     <option value="">Carton (CTN)</option>
@@ -102,7 +104,7 @@
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
-                    <option value="">--Setect Item Group--</option>
+                    <option value="">--- Setect Item Group ---</option>
                     
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
@@ -118,6 +120,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
+                    <option value="" disabled selected>---Select GST ---</option>
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
                     </option>
