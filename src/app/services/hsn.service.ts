@@ -5,10 +5,10 @@ import { environment } from 'src/environments/environment';
 
 
 export interface hsn{
-  hsncode: string;
-  unit: string;
-  desc: string;
-  companyid:number;
+  hsncode: string,
+  unit: string,
+  desc: string,
+  companyid:number,
 }
 
 
@@ -19,12 +19,12 @@ export class HsnService {
 
   constructor(private httpclient: HttpClient) {}
 
-  gethsnservice(): Observable<any> {
-    return this.httpclient.get(environment.apibaseurl+environment.fetchhsn);
+  getHSNNames(companyid:number): Observable<any> {
+    return this.httpclient.get(environment.apibaseurl+environment.fetchhsn+'?companyid='+companyid);
   }
 
-  createHSN(hsn:hsn,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addHsn,hsn,{headers:{'key':key,'user':user}})
+  createHSN(hsnService:hsn,key:string,user:string){
+    return this.httpclient.post(environment.apiactionurl+environment.addHsn,hsnService,{headers:{'key':key,'user':user}})
   }
 
 }

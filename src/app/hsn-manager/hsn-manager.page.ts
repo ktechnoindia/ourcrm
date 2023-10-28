@@ -14,27 +14,27 @@ import { Observable } from 'rxjs';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class HsnManagerPage implements OnInit {
-  hsnCode: string='';
+  hsncode: string='';
   unit:string='';
   desc: string = '';
   form: FormGroup;
-  hsnCode$: Observable<any[]>
+  hsncode$: Observable<any[]>
   
 
   constructor(private router: Router, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
-      hsnCode: ['', [Validators.required]],
+      hsncode: ['', [Validators.required]],
       unit: ['', [Validators.required]],
       desc: [''],
   })
-  this.hsnCode$ = this.hsnService.gethsnservice();
+  this.hsncode$ = this.hsnService.getHSNNames(1);
   }
 
   onSubmit() {
     if (this.form) {
     console.log('Your form data : ', this.form.value);
     let hsndata:hsn={
-     hsncode:this.form.value.hsnCode,
+     hsncode:this.form.value.hsncode,
      unit:this.form.value.unit,
      desc:this.form.value.desc,
      companyid: 1,
