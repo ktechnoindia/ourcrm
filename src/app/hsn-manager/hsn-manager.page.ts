@@ -39,9 +39,11 @@ export class HsnManagerPage implements OnInit {
      desc:this.form.value.desc,
      companyid: 1,
     };
-    this.hsnService.createHSN(hsndata,'','').subscribe(
+    this.subscription=this.hsnService.createHSN(hsndata,'','').subscribe(
       (response: any) => {
+       if(response.status){
         console.log('POST request successful', response);
+       }
         // Handle the response as needed
       },
       (error: any) => {
@@ -49,45 +51,18 @@ export class HsnManagerPage implements OnInit {
         // Handle the error as needed
       }
     );
-  }
+  } 
 }
 
-  // async onSubmit() {
-  //   if (this.hsnCode === null) {
-  //     const toast = await this.toastCtrl.create({
-  //       message: "HSN Code is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.unit===null){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Unit is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.desc===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Description is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else{
-  //       const toast = await this.toastCtrl.create({
-  //         message: "Successffully",
-  //         duration: 3000,
-  //         color: 'success'
-  //       });
-  //       toast.present();
-  //   }
-  // }
-
   ngOnInit() {
+    // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(["/master"])
+    this.router.navigate(['/master']); 
   }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+  }  }
 
 }
