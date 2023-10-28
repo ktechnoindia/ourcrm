@@ -71,29 +71,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td style="width: 100px;">1</td>
-                        <td style="width: 50px;">CUST001</td>
-                        <td style="width: 50px;">John Doe</td>
-                        <td style="width: 50px;">ABCD1234E</td>
-                        <td style="width: 50px;">1234567890</td>
-                        <td style="width: 50px;">9876543210</td>
-                        <td style="width: 150px;">johndoe@example.com</td>
-                        <td style="width: 50px">India</td>
-                        <td style="width: 100px">Maharashtra</td>
-                        <td style="width: 50px">Pune</td>
-                        <td style="width: 50px">411001</td>
-                        <td style="width: 150px">123 Main Street, City</td>
-                        <td style="width: 50px">123456789012</td>
-                        <td style="width: 50px">ABCDE1234F</td>
-                        <td style="width: 50px">UAN0123456</td>
-                        <td style="width: 150px">1234567890123456</td>
-                        <td style="width: 100px">9876543210</td>
-                        <td style="width: 100px">MyBank</td>
-                        <td style="width: 100px">City Branch</td>
-                        <td style="width: 130px">1234-5678-9012-3456</td>
-                        <td style="width: 100px">30 days</td>
-                        <td style="width: 50px">$1000</td>
+                      <tr *ngFor="let customer of customers$ | async; let i = index">
+
+                        <td>{{ i + 1 }}</td>
+                        <td>{{customer.customer_code}}</td>
+                        <td>{{customer.name}}</td>                       
+                        <td>{{customer.gstin}}</td>
+                        <td>{{customer.mobile}}</td>
+                        <td>9876543210</td>
+                        <td>johndoe@example.com</td>
+                        <td>India</td>
+                        <td>{{customer.statename}}</td>
+                        <td>Pune</td>
+                        <td>411001</td>
+                        <td>123 Main Street, City</td>
+                        <td>123456789012</td>
+                        <td>ABCDE1234F</td>
+                        <td>UAN0123456</td>
+                        <td>1234567890123456</td>
+                        <td>9876543210</td>
+                        <td>MyBank</td>
+                        <td>City Branch</td>
+                        <td>1234-5678-9012-3456</td>
+                        <td>30 days</td>
+                        <td>$1000</td>
                       </tr>
                       <!-- <tr>
                         <td>2</td>

@@ -41,11 +41,10 @@ addcompany : 'company',
   additem: 'item',
   addgroup: 'saveItemGroup',
   addUnit: 'createunit',
-  addHsn: 'hsn',
+  addHsn: 'insert_hsn',
   addcomapny:'createcompany',
   fetchallitemgroups:'getItemGroups',
-  
-  
+  fetchallcust: 'get_customers',
 };
 
 

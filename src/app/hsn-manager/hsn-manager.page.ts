@@ -5,7 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-hsn-manager',
   templateUrl: './hsn-manager.page.html',
@@ -18,8 +18,8 @@ export class HsnManagerPage implements OnInit {
   unit:string='';
   desc: string = '';
   form: FormGroup;
-  hsnCode$: Observable<any[]>;
-  subscription: Subscription = new Subscription();
+  hsnCode$: Observable<any[]>
+  
 
   constructor(private router: Router, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
@@ -27,17 +27,17 @@ export class HsnManagerPage implements OnInit {
       unit: ['', [Validators.required]],
       desc: [''],
   })
-  this.hsnCode$ = this.hsnService.gethsnservice(1);
+  this.hsnCode$ = this.hsnService.gethsnservice();
   }
 
   onSubmit() {
     if (this.form) {
     console.log('Your form data : ', this.form.value);
     let hsndata:hsn={
-      hsnCode: this.form.value.hsncode,
-      unit: this.form.value.unit,
-      companyid: 1,
-      desc: this.form.value.desc,
+     hsncode:this.form.value.hsnCode,
+     unit:this.form.value.unit,
+     desc:this.form.value.desc,
+     companyid: 1,
     };
     this.subscription=this.hsnService.createHSN(hsndata,'','').subscribe(
       (response: any) => {

@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 
 
 export interface hsn{
-  hsnCode: number;
-  unit: number;
+  hsncode: string;
+  unit: string;
   desc: string;
   companyid:number;
 }
@@ -24,8 +24,8 @@ export class HsnService {
     return this.httpclient.get(environment.apibaseurl+environment.fetchhsn+'?companyid='+companyid);
   }
 
-  createHSN(hsnmanager:hsn,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addHsn,hsnmanager,{headers:{'key':key,'user':user}})
+  createHSN(hsn:hsn,key:string,user:string){
+    return this.httpclient.post(environment.apiactionurl+environment.addHsn,hsn,{headers:{'key':key,'user':user}})
   }
 
 }
