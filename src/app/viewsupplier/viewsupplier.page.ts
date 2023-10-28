@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { VendorService } from '../services/vendor.service';
+import { Observable } from 'rxjs';
+import { EncryptionService } from '../services/encryption.service';
 @Component({
   selector: 'app-viewsupplier',
   templateUrl: './viewsupplier.page.html',
@@ -14,8 +17,14 @@ export class ViewsupplierPage implements OnInit {
 
   formDate:string='';
   toDate:string='';
+  vendors$: Observable<any[]>
 
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
+    const compid='1';
+
+    this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
+    console.log(this.vendors$);
+  }
 
   async onSubmit(){
     if(this.formDate===''){

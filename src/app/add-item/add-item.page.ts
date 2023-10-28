@@ -68,7 +68,7 @@ export class AddItemPage implements OnInit {
 constructor(private groupService:AddgroupService, private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
-     this.hsnname$=this.hsname1.gethsnservice(1);
+     this.hsnname$=this.hsname1.getHSNNames(1);
      this.itemgroups$ = this.groupService.getAllGroups(1);
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],

@@ -20,7 +20,7 @@ export class HsnService {
 
   constructor(private httpclient: HttpClient) {}
 
-  gethsnservice(companyid:number): Observable<any> {
+  getHSNNames(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apibaseurl+environment.fetchhsn+'?companyid='+companyid);
   }
 

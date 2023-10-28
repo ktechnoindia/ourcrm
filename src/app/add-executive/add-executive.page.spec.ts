@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { AddExecutivePage } from './add-executive.page';
 
 describe('AddExecutivePage', () => {

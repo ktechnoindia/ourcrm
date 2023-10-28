@@ -45,6 +45,7 @@ addcompany : 'company',
   addcomapny:'createcompany',
   fetchallitemgroups:'getItemGroups',
   fetchallcust: 'get_customers',
+  fetchallvend:'get_vendors',
 };
 
 

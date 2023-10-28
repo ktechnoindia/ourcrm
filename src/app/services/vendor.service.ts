@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface vend{
       name:string;
@@ -12,9 +13,9 @@ export interface vend{
       mobile: string;
       whatsapp_number: string;
       email:string;
-      country: number;
-      state: number
-      district: number;
+      country: string;
+      state: string
+      district: string;
       pincode: string;
       address: string;
       tdn: string;
@@ -48,5 +49,10 @@ export interface vend{
     constructor(private httpclient:HttpClient) { }
   createVendor(vendor:vend,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addvend,vendor,{headers:{'key':key,'user':user}})
+  }
+
+  fetchallVendor(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallvend+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
   }

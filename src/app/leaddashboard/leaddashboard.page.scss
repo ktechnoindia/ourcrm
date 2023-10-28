@@ -23,19 +23,17 @@ ion-header{
   justify-content: space-between;
   align-items: center;
   border: 2px solid rgb(0, 191, 255);
-  padding: 5px;
+  padding: 10px 0px;
   border-radius: 5px;
   box-shadow: 1px 2px 4px 0px #51c9b9;
   background-color: #a2eee4;
-  width: 100%;
+  width: 100px;
 }
 .lead_icon ion-icon{
   color: black;
   font-size: 26px;
 }
-.lead_icon :hover{
-  background-color: rgb(255, 255, 255);
-}
+
 ion-col{
   display: flex;
   flex-direction: column;
@@ -58,22 +56,37 @@ ion-col{
   justify-content: end;
   align-items: end;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
   height: 100%;
 }
 
 .navigation a{
   float: right;
-  padding: 20px;
+  padding: 10px;
   background-color: lightblue;
-  width: 100%;
+  width: 400px;
   margin: 5px;
 }
 
+
+ion-label:hover{
+  background-color: #a2eee4;
+}
+ion-icon{
+  background-color: #a2eee4;
+}
 ion-icon{
   color: lightblue;
   padding:0 5px;
   font-size: 30px;
+}
+
+.lead_details{
+  margin: 0 20px;
+}
+
+.table_data{
+  padding: 10px;
 }
 
 
@@ -126,6 +139,7 @@ ion-icon{
     width: 300px;
     border-top: 1px solid rgb(199, 191, 191);
     // border-bottom: 1px solid rgb(199, 191, 191);
+    background-color: lightgray;
   }
   td{
     border: none;
@@ -156,14 +170,13 @@ ion-searchbar{
   width: 100%;
 }
 ion-input {
- 
  --ion-height: 20px;
 }
 
 
 .icon-container{
   width: 100%; /* Set the width of the container */
-  height: 300px; /* Set the height of the container */
+  // height: 270px; /* Set the height of the container */
   // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
   // overflow-y: scroll;
   padding: 20px;

@@ -47,8 +47,9 @@
                     <thead>
                       <tr>
                         <th style="width: 50px;">Sr. No.</th>
-                        <th>Code</th>
+                       
                         <th>Name</th>
+                        <th>Code</th>
                         <th>GSTIN</th>
                         <th>Mobile No.</th>
                         <th>WhatsApp No.</th>
@@ -56,8 +57,9 @@
                         <th>Country</th>
                         <th>State</th>
                         <th>District</th>
-                        <th>Pincode</th>
+                        
                         <th>Full Address</th>
+                        <th>Pincode</th>
                         <th>Aadhar No.</th>
                         <th>PAN No.</th>
                         <th>Udhyog Aadhar No.</th>
@@ -71,31 +73,31 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>VEND001</td>
-                        <td>John Doe</td>
-                        <td>ABCD1234E</td>
-                        <td>1234567890</td>
-                        <td>9876543210</td>
-                        <td>johndoe@example.com</td>
-                        <td>India</td>
-                        <td>Maharashtra</td>
-                        <td>Pune</td>
-                        <td>411001</td>
-                        <td>123 Main Street, City</td>
-                        <td>123456789012</td>
-                        <td>ABCDE1234F</td>
-                        <td>UAN0123456</td>
-                        <td>1234567890123456</td>
-                        <td>9876543210</td>
-                        <td>MyBank</td>
-                        <td>City Branch</td>
-                        <td>1234-5678-9012-3456</td>
-                        <td>30 days</td>
-                        <td>$1000</td>
+                      <tr *ngFor="let vendoer of vendors$ | async; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{vendoer.name}}</td>
+                        <td>{{vendoer.vendor_code}}</td>
+                        <td>{{vendoer.gstin}}</td>
+                        <td>{{vendoer.mobile}}</td>
+                        <td>{{vendoer.whatsapp_number}}</td>
+                        <td>{{vendoer.email}}</td>
+                        <td>{{vendoer.country}}</td>
+                        <td>{{vendoer.state}}</td>
+                        <td>{{vendoer.district}}</td>
+                        <td>{{vendoer.address}}</td>
+                        <td>{{vendoer.pincode}}</td>
+                        <td>{{vendoer.aadhar_no}}</td>
+                        <td>{{vendoer.pan_no}}</td>
+                        <td>{{vendoer.udhyog_aadhar}}</td>
+                        <td>{{vendoer.account_number}}</td>
+                        <td>{{vendoer.ifsc_code}}</td>
+                        <td>{{vendoer.bank_name}}</td>
+                        <td>{{vendoer.branch_name}}</td>
+                        <td>{{vendoer.card_number}}</td>
+                        <td>{{vendoer.credit_period}}</td>
+                        <td>{{vendoer.credit_limit}}</td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>2</td>
                         <td>VEND002</td>
                         <td>Jane Smith</td>
@@ -118,9 +120,9 @@
                         <td>5678-9012-3456-7890</td>
                         <td>45 days</td>
                         <td>$1500</td>
-                      </tr>
+                      </tr> -->
                     
-                      <tr>
+                      <!-- <tr>
                         <td>3</td>
                         <td>VEND003</td>
                         <td>Alice Johnson</td>
@@ -143,7 +145,7 @@
                         <td>4321-8765-0987-2345</td>
                         <td>60 days</td>
                         <td>$2000</td>
-                      </tr>
+                      </tr> -->
 
                     </tbody>
 
