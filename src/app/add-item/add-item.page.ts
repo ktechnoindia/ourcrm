@@ -20,7 +20,7 @@ import { AddgroupService } from '../services/addgroup.service';
 })
 export class AddItemPage implements OnInit {
   // selectTabs = 'address';
-  type: string = 'all';
+  type = 'address';
   myform:FormGroup;
   submitted=false;
 
@@ -107,6 +107,10 @@ constructor(private groupService:AddgroupService, private router: Router, privat
       files:['']
     })
 
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
   }
   
   onSubmit() {
