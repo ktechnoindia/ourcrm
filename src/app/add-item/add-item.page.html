@@ -145,7 +145,7 @@
               <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
 
                 <ion-toolbar>
-                <ion-segment style="border-bottom: 2px solid lightblue;" name="type"  >
+                <ion-segment style="border-bottom: 2px solid lightblue;" name="type" [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable >
                   <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
                     value="all">
                     <ion-label>Attribute</ion-label>
