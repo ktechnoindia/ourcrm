@@ -61,14 +61,14 @@ export class AddItemPage implements OnInit {
   selectGst$: any;
   unitname$:any;
   unitname!: string; 
-  hsnname$:any;
-  hsnname!:string;
+  hsnname$:Observable<any[]>
+  hsnname:string='';
   itemgroups$: Observable<any[]>
   
-constructor(private groupService:AddgroupService, private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsname1:HsnService) {   
+constructor(private groupService:AddgroupService, private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
-     this.hsnname$=this.hsname1.getHSNNames(1);
+     this.hsnname$=this.hsnservices.getHSNNames(1);
      this.itemgroups$ = this.groupService.getAllGroups(1);
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
@@ -114,42 +114,44 @@ constructor(private groupService:AddgroupService, private router: Router, privat
     if (this.myform.invalid) {
       this.submitted=true;
     console.log('Your form data : ', this.myform.value);
-    let itemdata:item={itemDesc:this.myform.value.itemDesc,
-      itemCode:this.myform.value.itemCode,
-      selectItem:this.myform.value.selectItem,
-      selectStock:this.myform.value.selectStock,
-      selectItemGroup:this.myform.value.selectItemGroup,
-      selectGst:this.myform.value.selectGst,
-      selectHSN:this.myform.value.selectHSN,
-      selectPrimaryUnit:this.myform.value.selectPrimaryUnit,
-      selectAltUnit:this.myform.value.selectAltUnit,
-      selectunitname:this.myform.value.selectunitname,
-      openingbalance:this.myform.value.openingbalance,
-      closingbalance:this.myform.value.closingbalance,
-      attr1:this.myform.value.attr1,
-      attr2:this.myform.value.attr2,
-      attr3:this.myform.value.attr3,
-      attr4:this.myform.value.attr4,
-      attr5:this.myform.value.attr5,
-      attr6:this.myform.value.attr6,
-      attr7:this.myform.value.attr7,
-      attr8:this.myform.value.attr8,
-      eanCode:this.myform.value.eanCode,
-      minimum:this.myform.value.minimum,
-      reorder:this.myform.value.reorder,
-      description:this.myform.value.description,
-      dimension:this.myform.value.dimension,
-      weight:this.myform.value.weight,
-      brandname:this.myform.value.brandname,
-      modelname:this.myform.value.modelname,
-      category:this.myform.value.category,
-      weightunit:this.myform.value.weightunit,
-      relailprofit:this.myform.value.relailprofit,
-      delarprofit:this.myform.value.delarprofit,
-      selectGstservice:this.myform.value.selectGstservice,
-      unitname$:this.myform.value.unitname,
-      hsnname:this.myform.value.hsnname,
-      };
+    let itemdata:item={
+      itemDesc: this.myform.value.itemDesc,
+      itemCode: this.myform.value.itemCode,
+      selectItem: this.myform.value.selectItem,
+      selectStock: this.myform.value.selectStock,
+      selectItemGroup: this.myform.value.selectItemGroup,
+      selectGst: this.myform.value.selectGst,
+      selectHSN: this.myform.value.selectHSN,
+      selectPrimaryUnit: this.myform.value.selectPrimaryUnit,
+      selectAltUnit: this.myform.value.selectAltUnit,
+      selectunitname: this.myform.value.selectunitname,
+      openingbalance: this.myform.value.openingbalance,
+      closingbalance: this.myform.value.closingbalance,
+      attr1: this.myform.value.attr1,
+      attr2: this.myform.value.attr2,
+      attr3: this.myform.value.attr3,
+      attr4: this.myform.value.attr4,
+      attr5: this.myform.value.attr5,
+      attr6: this.myform.value.attr6,
+      attr7: this.myform.value.attr7,
+      attr8: this.myform.value.attr8,
+      eanCode: this.myform.value.eanCode,
+      minimum: this.myform.value.minimum,
+      reorder: this.myform.value.reorder,
+      description: this.myform.value.description,
+      dimension: this.myform.value.dimension,
+      weight: this.myform.value.weight,
+      brandname: this.myform.value.brandname,
+      modelname: this.myform.value.modelname,
+      category: this.myform.value.category,
+      weightunit: this.myform.value.weightunit,
+      relailprofit: this.myform.value.relailprofit,
+      delarprofit: this.myform.value.delarprofit,
+      selectGstservice: this.myform.value.selectGstservice,
+      unitname$: this.myform.value.unitname,
+      hsnname$: this.myform.value.hsnname,
+      hsnname: this.myform.value.hsnname,
+    };
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

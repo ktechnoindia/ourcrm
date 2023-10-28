@@ -39,6 +39,7 @@ export interface item{
   delarprofit: number;
   selectGstservice:any;
   unitname$:any;
+  hsnname$:any;
   hsnname:string;
  
 }
