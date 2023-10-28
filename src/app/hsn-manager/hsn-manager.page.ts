@@ -5,7 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-hsn-manager',
   templateUrl: './hsn-manager.page.html',
@@ -18,6 +18,8 @@ export class HsnManagerPage implements OnInit {
   unit:string='';
   desc: string = '';
   form: FormGroup;
+  subscription: Subscription = new Subscription();
+
   hsncode$: Observable<any[]>
   
 
