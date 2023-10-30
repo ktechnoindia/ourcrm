@@ -301,6 +301,14 @@ export const routes: Routes = [
     path: 'viewsupplier',
     loadComponent: () => import('./viewsupplier/viewsupplier.page').then( m => m.ViewsupplierPage)
   },
+  {
+    path: 'masterdashboard',
+    loadComponent: () => import('./masterdashboard/masterdashboard.page').then( m => m.MasterdashboardPage)
+  },
+  {
+    path: 'transcationdashboard',
+    loadComponent: () => import('./transcationdashboard/transcationdashboard.page').then( m => m.TranscationdashboardPage)
+  },
 
 
 

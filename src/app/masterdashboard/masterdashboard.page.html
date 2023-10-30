@@ -1,0 +1,640 @@
+
+
+<ion-header>
+
+</ion-header>
+<ion-content class="container_fluid">
+  <div class="dash">
+    <ion-label class="gamil"> <img width="25px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user">
+      Ktechnocrm@gmail.com</ion-label>
+  </div>
+
+  <div class="lead_nav">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+          <div class="icon-container">
+
+            <ion-row>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Customer</ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Supplier</ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="transgender"></ion-icon>
+                <ion-label>Ledger</ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Item</ion-label>
+
+              </ion-col>
+            </ion-row>
+            <ion-row >
+              
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Service</ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>GST </ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Exective </ion-label>
+
+              </ion-col>
+              <ion-col class="lead_icon line">
+                <ion-icon name="person-add"></ion-icon>
+                <ion-label>Role </ion-label>
+
+              </ion-col>
+            </ion-row>
+            
+          </div>
+        </ion-col>
+        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+          <div class="icon-container">
+            <ion-row>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/add-customer']">Add Customer</a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/add-vendor']">Add Supplier</a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/ledger']">Add Ledger</a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/add-item']">Add Item</a>
+              </ion-col>
+              </ion-row>
+          
+            <ion-row>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/add-service']">Add Service </a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/gst']">GST</a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/add-executive']">Add Exective</a>
+              </ion-col>
+              <ion-col class="lead_icon">
+                <a [routerLink]="['/roleofexicutive']">Role </a>
+              </ion-col>
+            </ion-row>
+          
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <ion-row class="lead_details">
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Customer </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th >Sr No.</th>
+                <th>Code </th>
+                <th>Name</th>
+                <th>GSTIN</th>
+                <th>Mobile No.</th>
+                <th>Whatshapp No.</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Pin Code</th>
+                <th>Address</th>
+                <th>Adhar No.</th>
+                <th>PAN No.</th>
+                <th>Uadyog No.</th>
+                <th>Account No.</th>
+                <th>Ifsc Code</th>
+                <th>Bank Name</th>
+                <th>Branch Name</th>
+                <th>Card No.</th>
+                <th>Credit Period</th>
+                <th>Credit Limit</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private</td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private </td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private </td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Supplier </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th >Sr No.</th>
+                <th>Code </th>
+                <th>Name</th>
+                <th>GSTIN</th>
+                <th>Mobile No.</th>
+                <th>Whatshapp No.</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Pin Code</th>
+                <th>Address</th>
+                <th>Adhar No.</th>
+                <th>PAN No.</th>
+                <th>Uadyog No.</th>
+                <th>Account No.</th>
+                <th>Ifsc Code</th>
+                <th>Bank Name</th>
+                <th>Branch Name</th>
+                <th>Card No.</th>
+                <th>Credit Period</th>
+                <th>Credit Limit</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private</td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private</td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>45</td>
+                <td>Ktechno</td>
+                <td>91</td>
+                <td>9787482342</td>
+                <td>8394390489</td>
+                <td>ktechno@gmail.com</td>
+                <td>India</td>
+                <td>Rajasthan</td>
+                <td>Jaipur</td>
+                <td>332713</td>
+                <td>Ktechno Private</td>
+                <td>30494534534534</td>
+                <td>34583489539444</td>
+                <td>39480395443534</td>
+                <td>39480395443534</td>
+                <td>495</td>
+                <td>SBI</td>
+                <td>Neemkathana</td>
+                <td>200348239923</td>
+                <td>5000</td>
+                <td>200000</td>
+                
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="lead_details">
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Ledger </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Lead Name</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Lead Source</th>
+                <th>Lead Owner</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Item </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Lead Name</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Lead Source</th>
+                <th>Lead Owner</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="lead_details">
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Service </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Lead Name</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Lead Source</th>
+                <th>Lead Owner</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p> Exective </p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Lead Name</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Lead Source</th>
+                <th>Lead Owner</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><a href="">Ktechnodsks</a></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Ktechno Private Ltd.</td>
+                <td><a href="">ktechno@gmail.com</a></td>
+                <td>+91 993893849</td>
+                <td>Thnn sndsf</td>
+                <td>jdjfdjghj</td>
+                <td>jdjfdjghj</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
