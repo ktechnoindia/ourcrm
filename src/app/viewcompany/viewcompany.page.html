@@ -1,0 +1,168 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Company</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col> -->
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                  <table style="width: 100%;overflow-x:auto;">
+                    <thead>
+                      <tr >
+                        <th style="background-color: azure;" colspan="4">Company</th>
+                        <th style="background-color: azure;" colspan="9">Address : 1</th>
+                        <th style="background-color: azure;" colspan="9">Address : 2</th>
+                        <th style="background-color: azure;" colspan="8">Rejistration</th>
+                        <th style="background-color: azure;" colspan="8">Mobiles</th>
+                        <th style="background-color: azure;" colspan="5">Bank Details</th>
+
+
+
+
+                      </tr>
+                      <tr>
+                        <th style="width: 50px;">Sr. No.</th>
+                        <th>Comany Name</th>
+                        <th>Company Code</th>
+                        <th>Company GSTIN</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>District</th>
+                        <th>Pincode</th>
+                        <th>Address</th>
+                        <th>Mobile No.</th>
+                        <th>WhatsApp No.</th>
+                        <th>Email</th>
+                        <th>Website URl</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>District</th>
+                        <th>Pincode</th>
+                        <th>Address</th>
+                        <th>Mobile No.</th>
+                        <th>WhatsApp No.</th>
+                        <th>Email</th>
+                        <th>Website URl</th>
+                        <th>Image</th>
+                        <th>Starting Date</th>
+                        <th>Industry Type</th>
+                        <th>Business Type</th>
+                        <th>Segment Type</th>
+                        <th>GST Type</th>
+                        <th>PAN No.</th>
+                        <th>TAN No.</th>
+                        <th>Sales</th>
+                        <th>Purchase</th>
+                        <th>Quotation</th>
+                        <th>Challan</th>
+                        <th>LMS</th>
+                        <th>AMC</th>
+                        <th>ALL Modules</th>
+                        <th>Curreny</th>
+                        <th>Account No.</th>
+                        <th>IFSC Code</th>
+                        <th>Bank Name</th>
+                        <th>Branch Name</th>
+                        <th>UPI ID</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let company of Companys$ | async; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{company.cpyname}}</td>
+                        <td>{{i + 1}}</td>
+                        <td>{{company.gstin}}</td>
+                        <td>{{company.selectedCountry}}</td>
+                        <td>{{company.selectedState}}</td>
+                        <td>{{company.selectedDistrict}}</td>
+                        <td>{{company.pinCode}}</td>
+                        <td>{{company.address}}</td>
+                        <td>{{company.phone}}</td>
+                        <td>{{company.wpnumber}}</td>
+                        <td>{{company.email}}</td>
+                        <td>{{company.website}}</td>
+                        <td>{{company.selectedCountry1}}</td>
+                        <td>{{company.selectedState1}}</td>
+                        <td>{{company.selectedDistrict1}}</td>
+                        <td>{{company.pinCode1}}</td>
+                        <td>{{company.address1}}</td>
+                        <td>{{company.phone1}}</td>
+                        <td>{{company.wpnumber1}}</td>
+                        <td>{{company.email1}}</td>
+                        <td>{{company.website1}}</td>
+                        <td>{{company.logo}}</td>
+                        <td>{{company.rdate}}</td>
+                        <td>{{company.industry}}</td>
+                        <td>{{company.businesstype}}</td>
+                        <td>{{company.segmenttype}}</td>
+                        <td>{{company.companytype}}</td>
+                        <td>{{company.pannumber}}</td>
+                        <td>{{company.tanumber}}</td>
+                        <td>{{company.sales}}</td> 
+                        <td>{{company.purchase}}</td> 
+                        <td>{{company.quotation}}</td> 
+                        <td>{{company.challan}}</td> 
+                        <td>{{company.lms}}</td> 
+                        <td>{{company.amc}}</td> 
+                        <td>{{company.alloftheabove}}</td> 
+                        <td>{{company.language}}</td> 
+                        <td>{{company.currency}}</td> 
+                        <td>{{company.accno}}</td> 
+                        <td>{{company.ifsc}}</td> 
+                        <td>{{company.bname}}</td> 
+                        <td>{{company.branchname}}</td> 
+                        <td>{{company.upiid}}</td> 
+
+                      </tr>
+                      
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

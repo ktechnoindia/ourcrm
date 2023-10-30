@@ -301,6 +301,18 @@ export const routes: Routes = [
     path: 'viewsupplier',
     loadComponent: () => import('./viewsupplier/viewsupplier.page').then( m => m.ViewsupplierPage)
   },
+  {
+    path: 'viewitem',
+    loadComponent: () => import('./viewitem/viewitem.page').then( m => m.ViewitemPage)
+  },
+  {
+    path: 'viewcompany',
+    loadComponent: () => import('./viewcompany/viewcompany.page').then( m => m.ViewcompanyPage)
+  },
+  {
+    path: 'viewservice',
+    loadComponent: () => import('./viewservice/viewservice.page').then( m => m.ViewservicePage)
+  },
 
 
 

@@ -17,6 +17,8 @@ export const environment = {
   fetchbusinesstype: 'getBusinessTypes',
   fetchexecutive: 'getExecutives',
   fetchcustomertype: 'getCustomertypes',
+  fetchitemtype:'getItemTypes',
+  fetchstocktype:'getStockTypes',
   addcust: 'customer',
   addvend: 'vendor',
   // fetchexecutive:'getExecutives',
@@ -46,6 +48,10 @@ addcompany : 'company',
   fetchallitemgroups:'getItemGroups',
   fetchallcust: 'get_customers',
   fetchallvend:'get_vendors',
+  fetchallitem:'get_items',
+  fetchallcompany:'get_companys',
+  fetchallservice:'get_service'
+
 };
 
 

@@ -1,0 +1,115 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Item</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col> -->
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                  <table style="width: 100%;overflow-x:auto;">
+                    <thead>
+                      <tr>
+                        <th style="width: 50px;">Sr. No.</th>
+                        <th>Name</th>
+                        <th>Item Code</th>
+                        <th>Item Description</th>
+                        <th>HSN No.</th>
+                        <th>Stock Type</th>
+                        <th>Item Type</th>
+                        <th>Unit Name</th>
+                        <th>Item Group</th>
+                        <th>GST %</th>
+                        <th>Opening Balance</th>
+                        <th>Closing Balance</th>
+                        <th>Attribute :1</th>
+                        <th>Attribute :2</th>
+                        <th>Attribute :3</th>
+                        <th>Attribute :4</th>
+                        <th>Attribute :5</th>
+                        <th>Attribute :6</th>
+                        <th>Attribute :7</th>
+                        <th>Attribute :8</th>
+                        <th>Image</th>
+                        <th>Barcode</th>
+                        <th>Minimum Level</th>
+                        <th>Maximum Level</th>
+                        <th>Re-order</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of items$ | async; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.itemDesc}}</td>
+                        <td>{{item.itemCode}}</td>
+                        <td>{{item.hsnname}}</td>
+                        <td>{{item.selectStock}}</td>
+                        <td>{{item.selectItem}}</td>
+                        <td>{{item.unitname}}</td>
+                        <td>{{item.selectItemGroup}}</td>
+                        <td>{{item.selectGst}}</td>
+                        <td>{{item.openingbalance}}</td>
+                        <td>{{item.closingbalance}}</td>
+                        <td>{{item.attr1}}</td>
+                        <td>{{item.attr2}}</td>
+                        <td>{{item.attr3}}</td>
+                        <td>{{item.attr4}}</td>
+                        <td>{{item.attr5}}</td>
+                        <td>{{item.attr6}}</td>
+                        <td>{{item.attr7}}</td>
+                        <td>{{item.attr8}}</td>
+                        <td>{{item.files}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>{{item.minimum}}</td> 
+                        <td>{{item.maximum}}</td> 
+                        <td>{{item.reorder}}</td> 
+
+                      </tr>
+                    </tbody>
+
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

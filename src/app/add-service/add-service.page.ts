@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddserviceService,serv } from '../services/addservice.service';
@@ -12,7 +12,7 @@ import { AddserviceService,serv } from '../services/addservice.service';
   templateUrl: './add-service.page.html',
   styleUrls: ['./add-service.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterLink, RouterModule,]
 })
 export class AddServicePage implements OnInit {
   service_code:string='';
