@@ -293,7 +293,8 @@ export const routes: Routes = [
   {
     path: 'viewexicutive',
     loadComponent: () => import('./viewexicutive/viewexicutive.page').then( m => m.ViewexicutivePage)
-  },  {
+  },
+  {
     path: 'viewcustomer',
     loadComponent: () => import('./viewcustomer/viewcustomer.page').then( m => m.ViewcustomerPage)
   },
@@ -308,6 +309,19 @@ export const routes: Routes = [
   {
     path: 'transcationdashboard',
     loadComponent: () => import('./transcationdashboard/transcationdashboard.page').then( m => m.TranscationdashboardPage)
+  
+  },
+  {
+    path: 'viewitem',
+    loadComponent: () => import('./viewitem/viewitem.page').then( m => m.ViewitemPage)
+  },
+  {
+    path: 'viewcompany',
+    loadComponent: () => import('./viewcompany/viewcompany.page').then( m => m.ViewcompanyPage)
+  },
+  {
+    path: 'viewservice',
+    loadComponent: () => import('./viewservice/viewservice.page').then( m => m.ViewservicePage)
   },
 
 

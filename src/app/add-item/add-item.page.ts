@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
@@ -10,12 +10,16 @@ import { HsnService } from '../services/hsn.service';
 import { FormBuilder,Validators } from '@angular/forms';
 import { AdditemService,item } from '../services/additem.service';
 import { AddgroupService } from '../services/addgroup.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ChangeDetectionStrategy } from '@angular/compiler';
+import { StocktypeService } from '../services/stocktype.service';
+import { ItemtypeService } from '../services/itemtype.service';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.page.html',
   styleUrls: ['./add-item.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,HttpClientModule,RouterLink, RouterModule,],
 
 })
 export class AddItemPage implements OnInit {
@@ -28,9 +32,9 @@ export class AddItemPage implements OnInit {
   itemCode: number | null = null;
   selectHSN: string = '';
   selectItem:string = '';
-  selectStock: string = '';
+  selectitemtype:string='';
   selectPrimaryUnit: string = '';
-  selectAltUnit: string = '';
+  // selectAltUnit: string = '';
   selectItemGroup: string = '';
   selectGst: string = '';
   selectunitname:string = '';
@@ -44,32 +48,43 @@ export class AddItemPage implements OnInit {
   attr6: string = '';
   attr7: string = '';
   attr8: string = '';
-  eanCode: number | null = null;
+  barcode: number | null = null;
   files:string='';
   minimum: number | null = null;
+  maximum: number | null = null;
   reorder: string = '';
-  description: string = '';
-  dimension: string = '';
-  weight: number | null = null;
-  brandname: string = '';
-  modelname: string = '';
-  category: string = '';
-  weightunit: number | null = null;
-  relailprofit: number | null = null;
-  delarprofit: number | null = null;
+  // dimension: string = '';
+  // weight: number | null = null;
+  // brandname: string = '';
+  // modelname: string = '';
+  // category: string = '';
+  // weightunit: number | null = null;
+  // relailprofit: number | null = null;
+  // delarprofit: number | null = null;
   selectGstservice:any;
   selectGst$: any;
+  selectStock:string='';
   unitname$:any;
   unitname!: string; 
   hsnname$:Observable<any[]>
   hsnname:string='';
-  itemgroups$: Observable<any[]>
   
-constructor(private groupService:AddgroupService, private router: Router, private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
+  stocktypename$:Observable<any[]>
+  stocktypename:string='';
+  itemtypename$:Observable<any[]>
+  itemtypename:string='';
+  itemgroups$: Observable<any[]>
+
+
+  
+  
+constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
      this.hsnname$=this.hsnservices.getHSNNames(1);
      this.itemgroups$ = this.groupService.getAllGroups(1);
+     this.stocktypename$=this.stocktype1.getStockTypes(1);
+     this.itemtypename$=this.itemtype1.getItemTypes(1);
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
       itemCode: ['', [Validators.required]],
@@ -77,12 +92,11 @@ constructor(private groupService:AddgroupService, private router: Router, privat
       selectStock: ['', [Validators.required]],
       selectItemGroup: ['', [Validators.required]],
       selectGst: [''],
-      panumber: [''],
-      wpnumber: [''],
-      email: [''],
       unitname$: [''],
-      selectAltUnit: [''],
+      // selectAltUnit: [''],
       hsnname: [''],
+      stocktypename: [''],
+      itemtypename: [''],
       openingbalance: [''],
       closingbalance: [''],
       attr1: [''],
@@ -93,17 +107,17 @@ constructor(private groupService:AddgroupService, private router: Router, privat
       attr6: [''],
       attr7: [''],
       attr8: [''],
-      eanCode: [''],
+      barcode: [''],
       minimum: [''],
+      maximum: [''],
       reorder: [''],
-      description: [''],
-      dimension: [''],
-      weight: [''],
-      brandname: [''],
-      modelname: [''],
-      category: [''],
-      relailprofit: [''],
-      delarprofit: [''],
+      // dimension: [''],
+      // weight: [''],
+      // brandname: [''],
+      // modelname: [''],
+      // category: [''],
+      // relailprofit: [''],
+      // delarprofit: [''],
       files:['']
     })
 
@@ -126,8 +140,10 @@ constructor(private groupService:AddgroupService, private router: Router, privat
       selectItemGroup: this.myform.value.selectItemGroup,
       selectGst: this.myform.value.selectGst,
       selectHSN: this.myform.value.selectHSN,
+      itemtypename: this.myform.value.itemtypename,
+      stocktypename:this.myform.value.stocktypename,
       selectPrimaryUnit: this.myform.value.selectPrimaryUnit,
-      selectAltUnit: this.myform.value.selectAltUnit,
+      // selectAltUnit: this.myform.value.selectAltUnit,
       selectunitname: this.myform.value.selectunitname,
       openingbalance: this.myform.value.openingbalance,
       closingbalance: this.myform.value.closingbalance,
@@ -139,22 +155,25 @@ constructor(private groupService:AddgroupService, private router: Router, privat
       attr6: this.myform.value.attr6,
       attr7: this.myform.value.attr7,
       attr8: this.myform.value.attr8,
-      eanCode: this.myform.value.eanCode,
+      barcode: this.myform.value.barcode,
       minimum: this.myform.value.minimum,
+      maximum: this.myform.value.maximum,
       reorder: this.myform.value.reorder,
-      description: this.myform.value.description,
-      dimension: this.myform.value.dimension,
-      weight: this.myform.value.weight,
-      brandname: this.myform.value.brandname,
-      modelname: this.myform.value.modelname,
-      category: this.myform.value.category,
-      weightunit: this.myform.value.weightunit,
-      relailprofit: this.myform.value.relailprofit,
-      delarprofit: this.myform.value.delarprofit,
+      // description: this.myform.value.description,
+      // dimension: this.myform.value.dimension,
+      // weight: this.myform.value.weight,
+      // brandname: this.myform.value.brandname,
+      // modelname: this.myform.value.modelname,
+      // category: this.myform.value.category,
+      // weightunit: this.myform.value.weightunit,
+      // relailprofit: this.myform.value.relailprofit,
+      // delarprofit: this.myform.value.delarprofit,
       selectGstservice: this.myform.value.selectGstservice,
       unitname$: this.myform.value.unitname,
       hsnname$: this.myform.value.hsnname,
       hsnname: this.myform.value.hsnname,
+      stocktypename$: this.myform.value.stocktypename,
+      itemtypename$: this.myform.value.itemtypename,
     };
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {

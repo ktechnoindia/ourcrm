@@ -7,6 +7,9 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Create Company</ion-title>
+              <div  class="custom-primary">
+                <ion-button [routerLink]="['/viewcompany']">View Company</ion-button>
+              </div>
             </ion-row>
           </ion-card-header>
         </div>
@@ -57,6 +60,7 @@
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
+
             </ion-row>
 
             <ion-row class="custom-primary">

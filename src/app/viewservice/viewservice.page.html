@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Service</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col> -->
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                  <table style="width: 100%;overflow-x:auto;">
+                    <thead>
+                      <tr>
+                        <th style="width: 50px">Sr. No.</th>
+                        <th style="width: 50px">Service Code</th>
+                        <th style="width: 100px">Service Type</th>
+                        <th style="width: 100px">Stock Type</th>
+                        <th style="width: 100px">SAC Type</th>
+                        <th style="width: 100px">Description</th>
+                    
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                  <tr *ngFor="let service of services$ | async; let i = index">
+
+                        <td>{{ i + 1 }}</td>
+                        <td>{{service.service_code}}</td>
+                        <td>{{service.service_type}}</td>                       
+                        <td>{{service.stock_type}}</td>
+                        <td>{{service.sac_code}}</td>
+                        <td>{{service.item_description}}</td>
+                      
+                      </tr>
+                     
+                     
+                                            
+                    </tbody>
+
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

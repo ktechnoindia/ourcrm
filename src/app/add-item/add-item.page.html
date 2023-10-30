@@ -8,6 +8,9 @@
               <ion-row lines="none">
                 <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
                 <ion-title style="text-align: center;">Add Item</ion-title>
+                <div  class="custom-primary">
+                  <ion-button [routerLink]="['/viewitem']">View Item</ion-button>
+                </div>
               </ion-row>
             </ion-card-header>
           </div>
@@ -46,13 +49,13 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectStock" formControlName="selectStock" name="select_Stock">
-                    <option value="">--- Select Stock Type ---</option>
-                    <option value="">Stock</option>
-                    <option value="">Non-Stock</option>
-                    <option value="">Asset</option>
-                    <option value="">Service</option>
+                  <select [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
+                    <option value="" disabled selected>---Select Stock Type  ---</option>
+                    <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
+                      {{ stocktypename.stocktypename }}
+                    </option>
                   </select>
+                    
                   <div *ngIf="myform && myform.controls['selectStock']?.hasError('required') && myform.controls['selectStock']?.touched" class="error-message">
                     Stock Type is required.
                   </div>
@@ -62,28 +65,26 @@
 
               <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectItem" formControlName="selectItem" name="select_Item">
-                    <option value="">--- Select Item Type ---</option>
-                    <option value="">Raw Material</option>
-                    <option value="">Finish Goods</option>
-                    <option value="">Spare Parts</option>
-                    <option value="">Perishable Goods</option>
-                    <option value="">Digital Products</option>
+                  <select [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
+                    <option value="" disabled selected>---Select Item Type  ---</option>
+                    <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
+                      {{ itemtypename.itemtypename }}
+                    </option>
                   </select>
                   <div *ngIf="myform && myform.controls['selectItem']?.hasError('required') && myform.controls['selectItem']?.touched" class="error-message">
                     Item Type is required.
                   </div>
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="unitname$" formControlName="unitname$" name="unit_name$" >
-                    <option value="" disabled selected>---Select Unit Name ---</option>
+                  <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$" >
+                    <option value="" disabled selected>--- Select Unit Name ---</option>
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
                     </option>
                   </select>
                 </ion-col>
 
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <!-- <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectAltUnit" formControlName="selectAltUnit" name="select_AltUnit">
                     <option value="">--- Select Alternate Unit ---</option>
                     <option value="">Roll (RL)</option>
@@ -101,7 +102,7 @@
                     <option value="">Custom Units</option>
 
                   </select>
-                </ion-col>
+                </ion-col> -->
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
                     <option value="">--- Setect Item Group ---</option>
@@ -114,9 +115,7 @@
                     Item Group Type is required.
                   </div>
                 </ion-col>
-              </ion-row>
-
-              <ion-row>
+             
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
@@ -129,7 +128,9 @@
                      GST is required.
                   </div>
                 </ion-col>
+              </ion-row>
 
+              <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance" type="text" label=" Opening Balance :" label-placement="floating"
@@ -256,8 +257,8 @@
                   <ion-row style="margin-bottom: 10px;">
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                       <ion-row>
-                        <ion-input name="ean_Code" formControlName="eanCode" [(ngModel)]="eanCode"
-                          type="text" label=" EAN Code :" label-placement="floating"
+                        <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode"
+                          type="text" label=" Barcode :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
@@ -272,15 +273,22 @@
 
                   <ion-row>
 
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                       <ion-row>
                         <ion-input name="mini_mum" formControlName="minimum" [(ngModel)]="minimum"
                           type="text" label="Minimum :" label-placement="floating"
                           fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>
+                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                      <ion-row>
+                        <ion-input name="maxi_mum" formControlName="maximum" [(ngModel)]="maximum"
+                          type="text" label="Maximum :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
 
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                       <ion-row>
                         <ion-input name="re_order" formControlName="reorder" [(ngModel)]="reorder"
                           type="text" label="Re-order :" label-placement="floating"
@@ -290,19 +298,9 @@
 
                   </ion-row>
 
-                  <ion-row>
+                
 
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-textarea name="desc_ription" formControlName="description" [(ngModel)]="description"
-                          type="text" label=" Description :" label-placement="floating"
-                          fill="outline"></ion-textarea>
-                      </ion-row>
-                    </ion-col>
-
-                  </ion-row>
-
-                  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+                 <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
 
                   <ion-row class="headinglabel">
                     <ion-label>Dimension & Weight</ion-label>
@@ -384,7 +382,7 @@
                       </ion-row>
                     </ion-col>
 
-                  </ion-row>
+                  </ion-row> -->
                 </div>
               </ng-container>
 

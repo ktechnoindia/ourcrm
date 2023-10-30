@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './add-executive.page.html',
   styleUrls: ['./add-executive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule,RouterLink, RouterModule,]
 })
 
 export class AddExecutivePage implements OnInit {
@@ -107,7 +107,7 @@ export class AddExecutivePage implements OnInit {
     this.router.navigate(['/view-executive']); // Navigate to the target page
   }
   goBack() {
-    this.router.navigate(['/master']); // Navigate back to the previous page
+    this.router.navigate(['/add-executive']); // Navigate back to the previous page
   }
 
 

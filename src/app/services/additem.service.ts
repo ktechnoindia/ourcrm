@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 export interface item{
@@ -11,7 +12,7 @@ export interface item{
   selectItem:string;
   selectStock: string;
   selectPrimaryUnit: string;
-  selectAltUnit: string;
+  // selectAltUnit: string;
   selectItemGroup: string;
   selectGst: string;
   selectunitname:string;
@@ -25,23 +26,27 @@ export interface item{
   attr6: string;
   attr7: string ;
   attr8: string ;
-  eanCode: number;
+  barcode: number;
   minimum: number;
+  maximum: number;
   reorder: string;
-  description: string;
-  dimension: string ;
-  weight: number ;
-  brandname: string ;
-  modelname: string ;
-  category: string ;
-  weightunit: number;
-  relailprofit: number;
-  delarprofit: number;
+  // description: string;
+  // dimension: string ;
+  // weight: number ;
+  // brandname: string ;
+  // modelname: string ;
+  // category: string ;
+  // weightunit: number;
+  // relailprofit: number;
+  // delarprofit: number;
   selectGstservice:any;
   unitname$:any;
   hsnname$:any;
   hsnname:string;
- 
+  stocktypename$:any;
+  stocktypename:string;
+  itemtypename$:any;
+  itemtypename:string;
 }
 
 @Injectable({
@@ -52,5 +57,9 @@ export class AdditemService {
   constructor(private httpclient:HttpClient) { }
   createItem(items:item,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.additem,items,{headers:{'key':key,'user':user}})
+  }
+  fetchallItem(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallitem+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }
