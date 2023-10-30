@@ -13,18 +13,19 @@
         <ion-grid>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <ion-row class="headinglabel">
-            <ion-label style="font-size: 18px;">Rejistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-label style="font-size: 18px;">Resistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
           </ion-row>
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
-                <option value="" disabled selected>Select Industry Type</option> <!-- Default option -->
+                <option value="" disabled >---Select Industry  ---</option>
                 <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                   {{ industry.industrytypename }}
                 </option>
                 
               </select>
+              
               <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry')?.touched" class="error-message">
                 Industry is required.
               </div>
@@ -32,7 +33,7 @@
 
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
-                <option value="" disabled selected>Select Business Type</option> <!-- Default option -->
+                <option value="" disabled >---Select Business Type  ---</option>
                 <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                   {{ businesstype.businesstypename }}
                 </option>
@@ -46,7 +47,7 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment" >
-                <option value="" disabled selected>Select Segment Type</option> <!-- Default option -->
+                <option value="" disabled >Select Segment Type</option> <!-- Default option -->
                 <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                   {{ segmenttype.segmentname }}
                 </option>
@@ -56,7 +57,7 @@
             
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
-                <option value="" disabled selected>Select GST Type</option> <!-- Default option -->
+                <option value="" disabled >Select GST Type</option> <!-- Default option -->
                 <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                   {{ companytype.gsttypename }}
                 </option>

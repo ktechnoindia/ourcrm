@@ -69,7 +69,7 @@
               <ion-col size="12" size-lg="2" size-md="6" size-sm="6" class="dropdown">
                 <!-- <label for="">Customer Type</label> -->
                 <select [(ngModel)]="select_group" name="select_group">
-                  <option value="" disabled selected>---Select Customer Type ---</option>
+                  <option value="" disabled >---Select Customer Type ---</option>
                   <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
                     {{ custtype.customertypename }}
                   </option>
@@ -165,7 +165,7 @@
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <select [(ngModel)]="selectedState"type="text" name="state" label-placement="floating" fill="outline"
                   (change)="onStateChange()">
-                  <option value="" disabled selected>---Select State ---</option>
+                  <option value="" disabled >---Select State ---</option>
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>

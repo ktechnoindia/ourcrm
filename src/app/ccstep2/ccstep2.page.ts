@@ -25,16 +25,18 @@ export class Ccstep2Page implements OnInit {
   form:FormGroup;
   tanumber:string='';
   pannumber:string='';
+  industry: string = '';
+
 
 industry$:any;
 selectindustry:string = '';
-industry!:string;
+
 companytype$:any;
-companytype!:string;
+companytype:string='';
 businesstype$:any;
-businesstype!:string;
+businesstype:string='';
 segmenttype$:any;
-segmenttype!:string;
+segmenttype:string='';
   company: any;
   
 

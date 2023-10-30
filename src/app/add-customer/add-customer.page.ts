@@ -63,7 +63,7 @@ export class AddCustomerPage implements OnInit {
   district:any;
   country:any;
   state:any;
-  select_group:number | null=null;
+  select_group:string='';
 
 
   selectedOption1:string='';
