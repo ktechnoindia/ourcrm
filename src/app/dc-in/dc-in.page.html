@@ -26,7 +26,7 @@
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()" >
             <ion-row>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <ion-input  [(ngModel)]="voucherNumber" formControlName="voucherNumber" name="vouchno" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
@@ -35,7 +35,7 @@
                     </div>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="datetype" formControlName="datetype" name="date" type="date" label=" Date :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -45,7 +45,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
                   <option value="" disabled selected>Select Supplier</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
@@ -55,10 +55,8 @@
                   Supplier is required.
                 </div>
               </ion-col>
-            </ion-row>
 
-            <ion-row>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="referenceNumber" formControlName="referenceNumber" name="refernceNumber">
                   <option value="" disabled selected>Select Refrence No.</option> <!-- Default option -->
 
@@ -69,8 +67,10 @@
                   Reference Number is required.
                 </div>
               </ion-col>
+            </ion-row>
 
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="payment" formControlName="payment" name="pty" >
                   <option value="" disabled selected>Select Payment Mode</option> <!-- Default option -->
                   <option value="2">Cash</option>
@@ -80,7 +80,7 @@
                   Payment is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <ion-textarea  [(ngModel)]="remark" formControlName="remark" name="remark" type="text" label="Remark :" 
                     label-placement="floating" fill="outline"></ion-textarea>

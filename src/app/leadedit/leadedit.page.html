@@ -110,7 +110,7 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col size-lg="12" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input  [(ngModel)]="fulladdress"   name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -119,9 +119,6 @@
                    </div>
                 </ion-row>
               </ion-col>
-            </ion-row>
-
-            <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select  [(ngModel)]="lscore"   name="leadscore">
@@ -140,8 +137,7 @@
                  </div>
                 </ion-row>
               </ion-col>
-             
-             
+
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select  [(ngModel)]="lassign"  name="leadassign">
                   <option value="" disabled selected>--- Lead Assign To ---</option> <!-- Default option -->
@@ -154,6 +150,10 @@
                   Lead Assign is required.
                </div>
               </ion-col>
+
+            </ion-row>
+
+            <ion-row>
               
               <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
                 <ion-row>
@@ -165,7 +165,7 @@
 
             <ion-row>
             <ion-col>
-              <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-row class="custom-primary" style="justify-content: right;">
                 <ion-button>New</ion-button>
                 <ion-button type="submit">Save</ion-button>
                 <ion-button>Delete</ion-button>

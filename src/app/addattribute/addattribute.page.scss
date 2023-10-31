@@ -1,4 +1,8 @@
-
+.attribute{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -15,6 +19,8 @@
     // background: skyblue;
 
 }
+
+
 
 .Customer ion-select {
     min-height: 35px;

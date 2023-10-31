@@ -31,7 +31,7 @@
               <ion-col size="12" size-lg="1" size-md="6" size-sm="6">
                 <select [ngModel]="role" name="roletype" formControlName="role">
                   <option value="" disabled selected>--- Role ---</option> <!-- Default option -->
-                  <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypesid" >
+                  <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid" >
                     
                     {{ roletypes.roletypename }}
                   </option>   
@@ -43,10 +43,10 @@
               </ion-col>
               <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input  name="excode" type="text" label=" Executive Code :" label-placement="floating" fill="outline" ></ion-input>
-                  <!-- <div *ngIf="form && form.controls['excode']?.hasError('required') && form.controls['excode'].touched" class="error-message">
+                  <ion-input  [ngModel]="excode"   formControlName="excode" name="execuitvecode" type="text" label=" Executive Code :" label-placement="floating" fill="outline" ></ion-input>
+                  <div *ngIf="form && form.controls['excode']?.hasError('required') && form.controls['excode'].touched" class="error-message">
                     Exicutive Code is required.
-                  </div> -->
+                  </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">

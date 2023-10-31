@@ -26,7 +26,7 @@
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-col size-lg="9" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="companyname" type="text"
                   label="Company Name:" label-placement="floating" fill="outline"></ion-input>
                 <div
@@ -44,9 +44,7 @@
                   Contact Person is required.
                 </div>
               </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="tel" label="Mobile No.:"
                   label-placement="floating" fill="outline" maxlength="10"></ion-input>
                 <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone']?.touched"
@@ -54,22 +52,15 @@
                   Mobile Number is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email:"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-
-                <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email :"
-                  label-placement="floating" fill="outline"></ion-input>
-
-              </ion-col>
-
             </ion-row>
-
+           
             <ion-row>
 
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
                   <option value="" disabled selected>--- Select Country ---</option> <!-- Default option -->
@@ -90,7 +81,7 @@
                   Country is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
 
                 <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
@@ -106,7 +97,7 @@
                 </div>
               </ion-col>
 
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
                   <option value="" disabled selected>--- Select District ---</option> <!-- Default option -->
@@ -121,16 +112,17 @@
                   District is required.
                 </div>
               </ion-col>
-
-            </ion-row>
-            <ion-row>
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="pncode" formControlName="pncode" name="pinCode" type="number"
                     label=" Pincode :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="9" size-md="6" size-sm="6" size="12">
+
+            </ion-row>
+            <ion-row>
+              
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -141,10 +133,7 @@
                   </div>
                 </ion-row>
               </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
                     <option value="" disabled selected>--- Select Lead Source ---</option>
@@ -159,9 +148,7 @@
                   </div>
                 </ion-row>
               </ion-col>
-
-
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="lassign" formControlName="lassign" name="leadassign">
                   <option value="" disabled selected>--- Lead Assign To ---</option> <!-- Default option -->
                   <option value="">Deepak</option>
@@ -174,7 +161,11 @@
                   Lead Assign is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+            </ion-row>
+
+            <ion-row>
+
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">
                   <option value="" disabled selected>--- Select Product ---</option> <!-- Default option -->
                   <option value="">P1</option>
@@ -198,11 +189,9 @@
 
             <ion-row>
               <ion-col>
-                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                <ion-row class="custom-primary" style="justify-content: right;">
                   <ion-button>New</ion-button>
                   <ion-button type="submit">Save</ion-button>
-                  <ion-button>Delete</ion-button>
-                  <ion-button>Preview</ion-button>
                   <ion-button>Close</ion-button>
                 </ion-row>
               </ion-col>

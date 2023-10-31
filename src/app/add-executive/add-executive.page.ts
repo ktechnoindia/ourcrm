@@ -50,7 +50,8 @@ export class AddExecutivePage implements OnInit {
       commission: [''],
       pan_number: [''],
       whatshapp_number: [''],
-      email: ['']
+      email: [''],
+      excode:['']
     })
   }
 
@@ -77,7 +78,8 @@ export class AddExecutivePage implements OnInit {
   // }
 
   onSubmit() {
-    if (this.form.invalid) {
+    this.submitted=true;
+    if (this.form) {
     console.log('Your form data : ', this.form.value);
     let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.ledger,excode:this.form.value.excode};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(

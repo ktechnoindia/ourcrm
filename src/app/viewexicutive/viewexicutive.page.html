@@ -53,14 +53,18 @@
                       <th style="width: 100px;">Email</th>
                       <th style="width: 100px;">Phone Number</th>
                     </tr>
-                    <tr>
-                      <td style="width: 50px;"><input type="checkbox"></td>
-                      <td style="width: 30px;">1</td>
-                      <td style="width: 50px;">EXEC001</td>
-                      <td style="width: 50px;">John Doe</td>
-                      <td style="width: 50px;">Sales Manager</td>
-                      <td style="width: 50px;">johndoe@example.com</td>
-                      <td style="width: 50px;">1234567890</td>
+                    <tr *ngFor="let execute of executives$ | async; let i = index">
+                      <td style="width: 50px;">{{i + 1}}</td>
+                      <td style="width: 30px;">{{execute.role}}</td>
+                      <td style="width: 50px;">{{execute.name}}</td>
+                      <td style="width: 50px;">{{execute.manager}}</td>
+                      <td style="width: 50px;">{{execute.phone_number}}</td>
+                      <td style="width: 50px;">{{execute.email}}</td>
+                      <td style="width: 50px;">{{execute.whatshapp_number}}</td>
+                      <td>{{execute.pan_number}}</td>
+                      <td>{{execute.commission}}</td>
+                      <td>{{execute.ledger}}</td>
+                      <td>{{execute.excode}}</td>
                     </tr>
 <!--                     
                     <tr>
