@@ -119,14 +119,14 @@
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="email" formControlName="email"  name="emails" type="email" label="Email :"
+                  <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label="Email :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="website" formControlName="website" name="website" type="text" label="Website URL :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="website" formControlName="website" name="website" type="text"
+                    label="Website URL :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -220,8 +220,8 @@
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="website1" formControlName="website1" name="website1" type="text" label="Website URL :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="website1" formControlName="website1" name="website1" type="text"
+                    label="Website URL :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -230,12 +230,13 @@
               "></span>
             </ion-row>
             <ion-row>
-              <ion-col  size="12" size-lg="4" size-md="6" size-sm="6" class="date">
+              <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
                 <ion-label>Select Image :</ion-label>
                 <label for="fileInput" class="custom-file-upload">
                   Choose a file
                 </label>
-                <input type="file" [ngModel]="logo" formControlName="logo" name="logo_img" id="fileInput" style="display: none;">
+                <input type="file" [ngModel]="logo" formControlName="logo" name="logo_img" id="fileInput"
+                  style="display: none;">
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6" class="date">
                 <ion-label>Starting From : </ion-label>
@@ -244,14 +245,232 @@
                   placeholder="Enter Starting Date" class="custom-date-input"></ion-input>
               </ion-col>
             </ion-row>
-
-
             <ion-row class="custom-primary">
               <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 1</p>
               <ion-progress-bar value="0.25" buffer=".25" style="height: 10px;"></ion-progress-bar>
-              <ion-button type="submit">Create <ion-icon name="cloud-download" size="small" slot="end"></ion-icon></ion-button>
-              <ion-button [routerLink]="['/ccstep2']">Next<ion-icon name="arrow-forward-circle" size="small" slot="end"></ion-icon></ion-button>
+            </ion-row>
 
+            <!-- Step : 2-->
+            <ion-button (click)="toggleStep1()" >STEP : 2<ion-icon name="add-circle" size="small"
+                slot="end"></ion-icon></ion-button>
+            <div  *ngIf="step1">
+              <ion-row class="headinglabel">
+                <ion-label style="font-size: 18px;">Resistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+    "></span>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
+                    <option value="" disabled>---Select Industry ---</option>
+                    <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
+                      {{ industry.industrytypename }}
+                    </option>
+
+                  </select>
+
+                  <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry')?.touched"
+                    class="error-message">
+                    Industry is required.
+                  </div>
+                </ion-col>
+
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
+                    <option value="" disabled>---Select Business Type ---</option>
+                    <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
+                      {{ businesstype.businesstypename }}
+                    </option>
+
+                  </select>
+                  <div
+                    *ngIf="form && form.get('businesstype')?.hasError('required') && form.get('businesstype')?.touched"
+                    class="error-message">
+                    Business is required.
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
+                    <option value="" disabled>Select Segment Type</option> <!-- Default option -->
+                    <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
+                      {{ segmenttype.segmentname }}
+                    </option>
+
+                  </select>
+                </ion-col>
+
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
+                    <option value="" disabled>Select GST Type</option> <!-- Default option -->
+                    <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
+                      {{ companytype.gsttypename }}
+                    </option>
+
+                  </select>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [ngModel]="pannumber" formControlName="pannumber" name="pano" type="text"
+                      label="PAN No. :" label-placement="floating" fill="outline" max-length="15"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input color="dark" [ngModel]="tanumber" formControlName="tanumber" name="tanno" type="text"
+                      label="TAN No. :" label-placement="floating" fill="outline" max-length="15"></ion-input>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+           
+            <ion-row class="custom-primary">
+              <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 2</p>
+              <ion-progress-bar value="0.5" buffer=".5" style="height: 10px;"></ion-progress-bar>
+            </ion-row>
+          </div>
+            <!-- Step : 3-->
+            <ion-button (click)="toggleStep2()">STEP : 3<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
+            <div *ngIf="step2">
+              <ion-row class="headinglabel">
+                <ion-label style="font-size: 18px;">Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+              "></span>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+
+                  <ion-item>
+                    <ion-checkbox aria-label="Sales" slot="start" [(ngModel)]="sales" formControlName="sales"
+                      name="sale"></ion-checkbox>
+                    <ion-label>Sales</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox aria-label="Purchase" slot="start" [(ngModel)]="purchase" formControlName="purchase"
+                      name="purchases"></ion-checkbox>
+                    <ion-label>Purchase</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox aria-label="Quotation" slot="start" [(ngModel)]="quotation"
+                      formControlName="quotation" name="quotations"></ion-checkbox>
+                    <ion-label>Quotation</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox aria-label="Challan" slot="start" [(ngModel)]="challan" formControlName="challan"
+                      name="challans"></ion-checkbox>
+                    <ion-label>Challan</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+
+                  <ion-item>
+                    <ion-checkbox aria-label="LMS" slot="start" [(ngModel)]="lms" formControlName="lms"
+                      name="lmss"></ion-checkbox>
+                    <ion-label>LMS</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-checkbox aria-label="AMC" slot="start" [(ngModel)]="amc" formControlName="amc"
+                      name="amcs"></ion-checkbox>
+                    <ion-label>AMC</ion-label>
+                  </ion-item>
+                  <ion-item line="none">
+                    <ion-checkbox slot="start" [(ngModel)]="alloftheabove" formControlName="alloftheabove"
+                      name="allofabove" aria-label="All Of The Above"></ion-checkbox>
+                    <ion-label>All Of The Above</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select fill="outline" class="select-width" [(ngModel)]="language" formControlName="language"
+                    name="languages">
+                    <option value="" disabled selected>Select Language</option> <!-- Default option -->
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="French">French</option>
+                  </select>
+                  <div *ngIf="form && form.get('language')?.hasError('required') && form.get('language')?.touched"
+                    class="error-message">
+                    Language is required.
+                  </div>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <select fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
+                    <option value="" disabled selected>Select Currency</option> <!-- Default option -->
+                    <option value="Rupees">Rupees</option>
+                    <option value="Doller">Doller</option>
+                    <option value="euro">Euro</option>
+                  </select>
+                  <div *ngIf="form && form.get('currency')?.hasError('required') && form.get('currency')?.touched"
+                    class="error-message">
+                    Currency is required.
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row class="custom-primary">
+                <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 3</p>
+                <ion-progress-bar value="0.75" buffer=".75" style="height: 10px;"></ion-progress-bar>
+              </ion-row>
+            </div>
+            <!-- Step : 4-->
+            <ion-button (click)="toggleStep3()">STEP : 4<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
+            <div *ngIf="step3">
+              <ion-row class="headinglabel">
+                <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="accno" formControlName="accno" name="accountno" type="text"
+                      label="Account No. :" label-placement="floating" fill="outline" max-length="20"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="ifsc" formControlName="ifsc" name="ifscode" type="text" label="IFSC Code :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="bname" formControlName="bname" name="bankname" type="text"
+                      label="Bank Name :" label-placement="floating" fill="outline"></ion-input>
+                    <div *ngIf="form && form.get('bname')?.hasError('required') && form.get('bname')?.touched"
+                      class="error-message">
+                      Bank Name is required.
+                    </div>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="branchname" formControlName="branchname" name="brchname" type="text"
+                      label="Branch Name :" label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="upiid" formControlName="upiid" name="upi" type="text" label="UPI ID :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row class="custom-primary">
+                <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 4</p>
+                <ion-progress-bar value="1.0" buffer="100" style="height: 10px;"></ion-progress-bar>
+              </ion-row>
+            </div>
+
+            <ion-row class="custom-primary">
+              <ion-button type="submit">Create Company<ion-icon name="cloud-download" size="small"
+                  slot="end"></ion-icon></ion-button>
             </ion-row>
           </form>
           <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">

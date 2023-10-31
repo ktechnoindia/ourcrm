@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -15,7 +15,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './add-executive.page.html',
   styleUrls: ['./add-executive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule,RouterLink, RouterModule,]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule,RouterLink, RouterModule,],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AddExecutivePage implements OnInit {

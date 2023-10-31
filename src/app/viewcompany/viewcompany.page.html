@@ -49,8 +49,8 @@
                         <th style="background-color: azure;" colspan="4">Company</th>
                         <th style="background-color: azure;" colspan="9">Address : 1</th>
                         <th style="background-color: azure;" colspan="9">Address : 2</th>
-                        <th style="background-color: azure;" colspan="8">Rejistration</th>
-                        <th style="background-color: azure;" colspan="8">Mobiles</th>
+                        <th style="background-color: azure;" colspan="8">Registration</th>
+                        <th style="background-color: azure;" colspan="8">Modules</th>
                         <th style="background-color: azure;" colspan="5">Bank Details</th>
 
 
@@ -105,7 +105,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let company of Companys$ | async; let i = index">
+                    <tr *ngFor="let company of companys$ | async; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{company.cpyname}}</td>
                         <td>{{i + 1}}</td>

@@ -17,37 +17,16 @@ export class ViewcompanyPage implements OnInit {
 
   formDate:string='';
   toDate:string='';
-  Companys$: Observable<any[]>
+  companys$: Observable<any[]>
 
-  constructor(private additem : CreatecompanyService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
+  constructor(private createcomp : CreatecompanyService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
-    this.Companys$ = this.additem.fetchallCompany(encService.encrypt(compid),'','');
-    console.log(this.Companys$);
+    this.companys$ = this.createcomp.fetchallCompany(encService.encrypt(compid),'','');
+    console.log(this.companys$);
   }
 
   async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+  
   }
 
   ngOnInit() {
