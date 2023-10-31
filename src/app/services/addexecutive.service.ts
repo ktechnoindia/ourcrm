@@ -4,16 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface execut{
-  role: string;
-  name: string;
-  manager: string;
-  phone_number: number;
-  email: string ;
-  whatshapp_number: number;
-  pan_number: number;
-  commission: string;
+  roleid: number;
+  executivename: string;
+  emanager: string;
+  emobile: string;
+  eemail: string;
+  ewhatsapp: string;
+  epan: string;
+  ecommision: number;
   ledger: string;
-  excode:string;
+  companyid:number;
 }
 
 @Injectable({

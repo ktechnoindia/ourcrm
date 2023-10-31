@@ -9,6 +9,7 @@ export const environment = {
   fetchalldistrict:'getDistricts',
   fetchroletypes:'getRoleTypes',
   fetchgsttypes:'getGSTTypes',
+  addcompany: 'saveCompany',
   fetchunits:'getUnits',
   fetchhsn:'getHSNNames',
   fetchcgtype:'getCGSTTypes',
@@ -17,6 +18,9 @@ export const environment = {
   fetchbusinesstype:'getBusinessTypes',
   addcust:'customer',
   addvend:'vendor',
+  addexecutive: 'saveExecutive',
   fetchexecutive:'getExecutives',
-  fetchcustomertype:'getCustomertypes'
+  fetchcustomertype:'getCustomertypes',
+  fetchallcompany:'saveCompany',
+  fetchallexecuitve:'saveExecutive',
 };

@@ -24,35 +24,36 @@ export class AddExecutivePage implements OnInit {
   form: FormGroup;
   submitted = false;
 
-  role: string = '';
-  name: string = '';
-  manager: string = '';
-  phone_number: number | null = null;
-  email: string = '';
-  whatshapp_number: number | null = null;
-  pan_number: string = '';
-  commission: string = '';
+  roleid: number = 0;
+  executivename: string = '';
+  emanager: string = '';
+  emobile: string='';
+  eemail: string = '';
+  ewhatsapp: string='';
+  epan: string = '';
+  ecommision: number=0;
   ledger: string = '';
-
+  companyid:number=0;
+  
   roletypes$: Observable<any[]>
   MenuController: any;
   roletypesservice: any;
-  excode:string='';
+ 
 
   constructor(private router: Router,private addExecutiveService:AddexecutiveService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
-      role: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      manager: ['', [Validators.required]],
-      phone_number: ['', [Validators.required]],
+      roleid: ['', [Validators.required]],
+      executivename: ['', [Validators.required]],
+      emanager: ['', [Validators.required]],
+      emobile: ['', [Validators.required]],
       ledger: ['', [Validators.required]],
-      commission: [''],
-      pan_number: [''],
-      whatshapp_number: [''],
-      email: [''],
-      excode:['']
+      ecommision: [''],
+      epan: [''],
+      ewhatsapp: [''],
+      eemail: [''],
+      companyid:['']
     })
   }
 
@@ -82,7 +83,7 @@ export class AddExecutivePage implements OnInit {
     this.submitted=true;
     if (this.form) {
     console.log('Your form data : ', this.form.value);
-    let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.ledger,excode:this.form.value.excode};
+    let executdata:execut={roleid:this.form.value.roleid,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:this.form.value.companyid};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

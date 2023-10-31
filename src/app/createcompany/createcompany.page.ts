@@ -35,9 +35,9 @@ export class CreatecompanyPage implements OnInit {
 
   form: FormGroup;
   rdate: string = '';
-  selectedState: any;
-  selectedDistrict: string = '';
-  selectedCountry: string = '';
+  selectedState: number=0;
+  selectedDistrict: number=0;
+  selectedCountry: number=0;
   email: string = '';
   wpnumber: string = '';
   phone: string = '';
@@ -47,9 +47,9 @@ export class CreatecompanyPage implements OnInit {
   cpyname: string = '';
   logo: string = '';
   website: string = '';
-  selectedState1: string = '';
-  selectedDistrict1: string = '';
-  selectedCountry1: string = '';
+  selectedState1: number=0;
+  selectedDistrict1: number=0;
+  selectedCountry1: number=0;
   email1: string = '';
   wpnumber1: string = '';
   phone1: string = '';
@@ -68,28 +68,28 @@ export class CreatecompanyPage implements OnInit {
   //Step: 2
   tanumber: string = '';
   pannumber: string = '';
-  industry: string = '';
+  industry:number=0;
 
   industry$: any;
-  selectindustry: string = '';
+  selectindustry: number=0;
 
   companytype$: any;
-  companytype: string = '';
+  companytype: number=0;
   businesstype$: any;
-  businesstype: string = '';
+  businesstype: number=0;
   segmenttype$: any;
-  segmenttype: string = '';
+  segmenttype: number=0;
 
   //step : 3 
-  language: string = '';
-  currency: string = '';
-  sales = false;
-  purchase= false;
-  quotation = false;
-  lms = false;
-  challan =false;
-  amc = false ;
-  alloftheabove = false;
+  language:number=0;
+  currency:number=0;
+  sales:string='';
+  purchase:string='';
+  quotation:string='';
+  lms :string='';
+  challan :string='';
+  amc:string='';
+  alloftheabove:string='';
   submitted = false;
 
   //step : 4
@@ -126,6 +126,7 @@ export class CreatecompanyPage implements OnInit {
       rdate: [''],
       wpnumber: [''],
       pinCode: [''],
+      tanno:[''],
       gstin: [''],
       logo: [''],
       website: [''],
@@ -221,7 +222,8 @@ export class CreatecompanyPage implements OnInit {
   }
   onCountryChange() {
     console.log('selected value' + this.selectedCountry);
-    this.states$ = this.state.getStates(1); this.states$ = this.stateservice.getStates(1);
+    this.states$ = this.state.getStates(1);
+    //  this.states$ = this.stateservice.getStates(1);
   }
   onStateChange() {
     console.log('selected value' + this.selectedState);
