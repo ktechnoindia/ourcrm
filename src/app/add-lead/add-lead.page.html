@@ -147,8 +147,9 @@
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
+                    <option value="" disabled selected>--- Select Lead Source ---</option>
                     <option *ngFor="let leadsourcetype of leadsourcetype$ | async" [value]="leadsourcetype.leadsourcetypeid">
-                      {{ leadsourcetype.leadsourcetypename }}
+                      {{ leadsourcetype.leadsourcename }}
                     </option>
   
                   </select>
