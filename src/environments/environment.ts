@@ -17,6 +17,7 @@ export const environment = {
   fetchbusinesstype: 'getBusinessTypes',
   fetchexecutive: 'getExecutives',
   fetchcustomertype: 'getCustomertypes',
+  fetchleadsource:'getLeadSources',
   fetchitemtype:'getItemTypes',
   fetchstocktype:'getStockTypes',
   addallexecutive:'executive',

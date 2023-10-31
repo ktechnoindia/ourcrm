@@ -11,6 +11,7 @@ import { LeadService ,leadstore } from '../services/lead.service';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
+import { LeadsourceService } from '../services/leadsource.service';
 @Component({ 
   selector: 'app-add-lead',
   templateUrl: './add-lead.page.html',
@@ -42,13 +43,15 @@ export class AddLeadPage {
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
-
-  constructor(private router:Router,private formBuilder: FormBuilder, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
+  leadsourcetype$: any;
+  leadsourcetype!: string;
+  constructor(private router:Router,private formBuilder: FormBuilder,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
    ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
+    this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 

@@ -147,15 +147,11 @@
               <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
-                    <option value="" disabled selected>--- Select Lead Source ---</option> <!-- Default option -->
-                    <option value="onlineAdvertising">Online Advertising</option>
-                    <option value="socialMedia">Social Media</option>
-                    <option value="referrals">Referrals</option>
-                    <option value="websiteInquiry">Website Inquiry</option>
-                    <option value="emailCampaign">Email Campaign</option>
-                    <option value="tradeShows">Trade Shows</option>
-                    <option value="coldCalling">Cold Calling</option>
-                    <option value="contentMarketing">Content Marketing</option>
+                    <option value="" disabled selected>--- Select Lead Source ---</option>
+                    <option *ngFor="let leadsourcetype of leadsourcetype$ | async" [value]="leadsourcetype.leadsourcetypeid">
+                      {{ leadsourcetype.leadsourcename }}
+                    </option>
+  
                   </select>
                   <div *ngIf="form && form.controls['lscore']?.hasError('required') && form.controls['lscore']?.touched"
                     class="error-message">

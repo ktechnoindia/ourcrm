@@ -23,7 +23,7 @@
 
     </div>
     <div class="dropdown">
-      <button class="dropdown-title">
+      <button class="dropdown-title" [routerLink]="['/masterdashboard']">
         <img src="assets/master.svg" alt="">
         <p>Master</p>
       </button>
@@ -74,12 +74,12 @@
       </ul>
     </div>
     <div class="dropdown">
-      <button class="dropdown-title" [routerLink]="['/quotedashboard']">
+      <button class="dropdown-title" [routerLink]="['/transcationdashboard']">
         <img src="assets/transaction.svg" alt="">
         <p>Transaction</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/quote-manager">Quote</a></li>
+        <li><a routerLink="/add-quot">Quote</a></li>
         <li><a routerLink="/dc-in">DC-IN</a></li>
         <li><a routerLink="/dc-out">DC-OUT</a></li>
         <li><a routerLink="/add-sale">Sales</a></li>
