@@ -270,18 +270,18 @@ export const routes: Routes = [
     path: 'leadedit',
     loadComponent: () => import('./leadedit/leadedit.page').then( m => m.LeadeditPage)
   },
-  {
-    path: 'ccstep2',
-    loadComponent: () => import('./ccstep2/ccstep2.page').then( m => m.Ccstep2Page)
-  },
-  {
-    path: 'ccstep3',
-    loadComponent: () => import('./ccstep3/ccstep3.page').then( m => m.Ccstep3Page)
-  },
-  {
-    path: 'ccstep4',
-    loadComponent: () => import('./ccstep4/ccstep4.page').then( m => m.Ccstep4Page)
-  },
+  // {
+  //   path: 'ccstep2',
+  //   loadComponent: () => import('./ccstep2/ccstep2.page').then( m => m.Ccstep2Page)
+  // },
+  // {
+  //   path: 'ccstep3',
+  //   loadComponent: () => import('./ccstep3/ccstep3.page').then( m => m.Ccstep3Page)
+  // },
+  // {
+  //   path: 'ccstep4',
+  //   loadComponent: () => import('./ccstep4/ccstep4.page').then( m => m.Ccstep4Page)
+  // },
   {
     path: 'quotedashboard',
     loadComponent: () => import('./quotedashboard/quotedashboard.page').then( m => m.QuotedashboardPage)
@@ -293,7 +293,8 @@ export const routes: Routes = [
   {
     path: 'viewexicutive',
     loadComponent: () => import('./viewexicutive/viewexicutive.page').then( m => m.ViewexicutivePage)
-  },  {
+  },
+  {
     path: 'viewcustomer',
     loadComponent: () => import('./viewcustomer/viewcustomer.page').then( m => m.ViewcustomerPage)
   },

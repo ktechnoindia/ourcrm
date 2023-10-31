@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ExecutiveService {
+  
   constructor(private http: HttpClient) {}
   
   getexecutive(): Observable<any> {

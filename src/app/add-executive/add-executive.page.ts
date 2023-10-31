@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -15,7 +15,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './add-executive.page.html',
   styleUrls: ['./add-executive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule,RouterLink, RouterModule,]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink, RouterModule, ReactiveFormsModule,RouterLink, RouterModule,],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AddExecutivePage implements OnInit {
@@ -50,7 +51,8 @@ export class AddExecutivePage implements OnInit {
       commission: [''],
       pan_number: [''],
       whatshapp_number: [''],
-      email: ['']
+      email: [''],
+      excode:['']
     })
   }
 
@@ -77,7 +79,7 @@ export class AddExecutivePage implements OnInit {
   // }
 
   onSubmit() {
-    if (this.form.invalid) {
+    if (this.form) {
     console.log('Your form data : ', this.form.value);
     let executdata:execut={role:this.form.value.role,name:this.form.value.name,manager:this.form.value.manager,phone_number:this.form.value.phone_number,email:this.form.value.email,whatshapp_number:this.form.value.whatsapp_number,pan_number:this.form.value.pan_number,commission:this.form.value.commission,ledger:this.form.value.ledger,excode:this.form.value.excode};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
