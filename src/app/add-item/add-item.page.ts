@@ -141,7 +141,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       selectGst: this.myform.value.selectGst,
       selectHSN: this.myform.value.selectHSN,
       itemtypename: this.myform.value.itemtypename,
-      stocktypename:this.myform.value.stocktypename,
+      stocktypename: this.myform.value.stocktypename,
       selectPrimaryUnit: this.myform.value.selectPrimaryUnit,
       // selectAltUnit: this.myform.value.selectAltUnit,
       selectunitname: this.myform.value.selectunitname,
@@ -174,6 +174,9 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       hsnname: this.myform.value.hsnname,
       stocktypename$: this.myform.value.stocktypename,
       itemtypename$: this.myform.value.itemtypename,
+      unitname: '',
+      itemtype: '',
+      stocktype: ''
     };
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {

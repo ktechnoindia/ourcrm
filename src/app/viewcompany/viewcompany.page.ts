@@ -19,9 +19,9 @@ export class ViewcompanyPage implements OnInit {
   toDate:string='';
   companys$: Observable<any[]>
 
-  constructor(private createcomp : CreatecompanyService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
+  constructor(private createcompany : CreatecompanyService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
-    this.companys$ = this.createcomp.fetchallCompany(encService.encrypt(compid),'','');
+    this.companys$ = this.createcompany.fetchallCompany(encService.encrypt(compid),'','');
     console.log(this.companys$);
   }
 
@@ -31,6 +31,9 @@ export class ViewcompanyPage implements OnInit {
 
   ngOnInit() {
   }
+
+
+  
 goBack(){
   this.router.navigate(["/createcompany"])
 }

@@ -10,14 +10,18 @@
       </button>
       <ul class="dropdown-list">
         <li><a routerLink="/createcompany">Create</a></li>
-        <li><a routerLink="/opencompany">Open</a></li>
+        <li><a [routerLink]="['/viewcompany']">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown">
-          <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
           <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
+          <!-- <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a> -->
           <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
-          <a (click)="selectOption('Option 4')" routerLink="/password">Password</a>
+          <a (click)="selectOption('Option 4')" routerLink="/password"> Create Password</a>
+          <a (click)="selectOption('Option 5')" routerLink="/changepassword">Change Password</a>
+          <a (click)="selectOption('Option 6')" routerLink="/loginpage">Login</a>
+
+
         </div>
       </ul>
 
@@ -140,14 +144,16 @@
       </button>
       <ul class="dropdown-list drop_down">
         <li><a routerLink="/createcompany">Create</a></li>
-        <li><a routerLink="/opencompany">Open</a></li>
+        <li><a [routerLink]="['/viewcompany']">Open</a></li>
         <li><a routerLink="closecompany">Close</a></li>
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown ">
-          <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a>
           <a (click)="selectOption('Option 2')" routerLink="/usercreate">User Create</a>
+          <!-- <a (click)="selectOption('Option 1')" routerLink="/editinfo">Edit Info.</a> -->
           <a (click)="selectOption('Option 3')" routerLink="/useredit">User Edit</a>
           <a (click)="selectOption('Option 4')" routerLink="/password">Password</a>
+          <a (click)="selectOption('Option 5')" routerLink="/changepassword">Change Password</a>
+          <a (click)="selectOption('Option 6')" routerLink="/loginpage">Login</a>
         </div>
       </ul>
     </div>

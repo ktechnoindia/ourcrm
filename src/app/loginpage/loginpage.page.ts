@@ -5,44 +5,40 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PasswordService, passdata } from '../services/password.service';
+import { LoginService, logindata } from '../services/login.service';
 
 @Component({
-  selector: 'app-password',
-  templateUrl: './password.page.html',
-  styleUrls: ['./password.page.scss'],
+  selector: 'app-loginpage',
+  templateUrl: './loginpage.page.html',
+  styleUrls: ['./loginpage.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterLink, RouterModule, ReactiveFormsModule],
 })
-export class PasswordPage implements OnInit {
-
-  createpass: string = '';
-  cunfpass: string = '';
+export class LoginpagePage implements OnInit {
+  username:string='';
+  password:string='';
 
   form: FormGroup;
   submitted = false;
   subscription: any;
-  passcreate: any;
-  constructor(private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
+  logincreate: any;
+
+  constructor(private login : LoginService,private router:Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      createpass: ['', [Validators.required]],
-      cunfpass: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     })
-  }
-  ngOnInit() {
-    // Page initialization code goes here
   }
 
   onSubmit() {
     if (this.form) {
       console.log('Your form data : ', this.form.value);
-      let passtore: passdata = {
-        createpass: this.form.value.createpass,
-        cunfpass: this.form.value.cunfpass,
-        oldpass: this.form.value.oldpass,
-        newpass: this.form.value.newpass,
+      let loginstore: logindata = {
+        username: this.form.value.username,
+        password: this.form.value.password,
+       
       };
-      this.passcreate.createpass(passtore, '', '').subscribe(
+      this.logincreate.createlogin(loginstore, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);
@@ -56,9 +52,9 @@ export class PasswordPage implements OnInit {
       );
     }
   }
-
-  goBack() {
-    this.router.navigate(['/master']);
+  ngOnInit() {
   }
-
+  goBack() {
+    this.router.navigate(['/master']); 
+  }
 }
