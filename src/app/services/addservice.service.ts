@@ -5,10 +5,10 @@ import { Observable } from 'rxjs';
 
 export interface serv{
   service_code:string;
-  service_type:string;
-  stock_type:string;
+  service_name:string;
+  gst:string;
   sac_code:string;
-  item_description:string;
+  description:string;
 }
 
 

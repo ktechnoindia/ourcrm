@@ -6,6 +6,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddserviceService,serv } from '../services/addservice.service';
+import { GsttypeService } from '../services/gsttype.service';
 
 @Component({
   selector: 'app-add-service',
@@ -16,21 +17,26 @@ import { AddserviceService,serv } from '../services/addservice.service';
 })
 export class AddServicePage implements OnInit {
   service_code:string='';
-  service_type:string='';
-  stock_type:string='';
+  service_name:string='';
+  gst:string='';
   sac_code:string='';
-  item_description:string='';
+  description:string='';
 
+  form:any;
   myform:FormGroup;
   submitted=false;
+  selectGst$: any;
+  selectGst: string = '';
 
-  constructor(private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
+  constructor(private gstsrvs:GsttypeService,private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
+    this.selectGst$=this.gstsrvs.getgsttype();
+
     this.myform = this.formBuilder.group({
       service_code:['',[Validators.required]],
-      service_type:['',[Validators.required]],
-      stock_type:['',[Validators.required]],
+      service_name:['',[Validators.required]],
+      selectGst:['',[Validators.required]],
       sac_code:['',[Validators.required]],
-      item_description:['']
+      description:['']
     })
   }
 
@@ -38,7 +44,7 @@ export class AddServicePage implements OnInit {
     if (this.myform) {
       this.submitted=true;
     console.log('Your form data : ', this.myform.value);
-    let servicedata:serv={service_code:this.myform.value.service_code,service_type:this.myform.value.service_type,stock_type:this.myform.value.stock_type,sac_code:this.myform.value.sac_code,item_description:this.myform.value.item_description,};
+    let servicedata:serv={service_code:this.myform.value.service_code,service_name:this.myform.value.service_name,gst:this.myform.value.gst,sac_code:this.myform.value.sac_code,description:this.myform.value.description,};
     this.addService.createService(servicedata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

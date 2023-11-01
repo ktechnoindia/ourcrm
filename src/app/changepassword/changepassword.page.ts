@@ -8,39 +8,38 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordService, passdata } from '../services/password.service';
 
 @Component({
-  selector: 'app-password',
-  templateUrl: './password.page.html',
-  styleUrls: ['./password.page.scss'],
+  selector: 'app-changepassword',
+  templateUrl: './changepassword.page.html',
+  styleUrls: ['./changepassword.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterLink, RouterModule, ReactiveFormsModule],
 })
-export class PasswordPage implements OnInit {
-
-  createpass: string = '';
+export class ChangepasswordPage implements OnInit {
+  oldpass: string = '';
+  newpass: string = '';
   cunfpass: string = '';
 
   form: FormGroup;
   submitted = false;
   subscription: any;
   passcreate: any;
+
   constructor(private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
-      createpass: ['', [Validators.required]],
+      oldpass: ['', [Validators.required]],
+      newpass: ['', [Validators.required]],
       cunfpass: ['', [Validators.required]],
     })
-  }
-  ngOnInit() {
-    // Page initialization code goes here
   }
 
   onSubmit() {
     if (this.form) {
       console.log('Your form data : ', this.form.value);
       let passtore: passdata = {
-        createpass: this.form.value.createpass,
-        cunfpass: this.form.value.cunfpass,
         oldpass: this.form.value.oldpass,
         newpass: this.form.value.newpass,
+        cunfpass: this.form.value.cunfpass,
+        createpass: this.form.value.createpass,
       };
       this.passcreate.createpass(passtore, '', '').subscribe(
         (response: any) => {
@@ -56,9 +55,9 @@ export class PasswordPage implements OnInit {
       );
     }
   }
-
-  goBack() {
-    this.router.navigate(['/master']);
+  ngOnInit() {
   }
-
+  goBack() {
+    this.router.navigate(['/master']); 
+  }
 }

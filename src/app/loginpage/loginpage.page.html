@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Login</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <ion-row style="justify-content: center;">
+            <ion-col size="12">
+              <ion-row>
+                <ion-input [(ngModel)]="username" formControlName="username"  color="dark" name="username" type="text" label="User Name:" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row style="justify-content: center;">
+            <ion-col size="12">
+              <ion-row>
+                <ion-input [(ngModel)]="password" formControlName="password"  color="dark" name="password" type="Password" label="Password :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+              <ion-checkbox style="margin-top: 5px;" [indeterminate]="true"></ion-checkbox>
+              <ion-label> I agree to the terms and conditions</ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="custom-primary" style="justify-content: center;margin-top: 20px;">
+            <ion-button type="submit">Login</ion-button>
+          </ion-row>
+          </form>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

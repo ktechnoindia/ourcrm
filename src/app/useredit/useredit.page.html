@@ -12,43 +12,54 @@
         </div>
         <ion-grid>
           <ion-row style="justify-content: center;">
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="dark" name="fname" type="text" label="Full Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-         
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="dark" name="email" type="email" label=" Email :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row >
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="dark" name="Password" type="Password" label="Password :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input color="dark" name="Password" type="Password" label="Confrum Password :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
+
+            <ion-searchbar class="custom"></ion-searchbar>
+            <ion-row style="margin: 0 auto; width: 100%;">
+              <div style="overflow:auto; width: 100%;">
+                <table style="width: 100%;">
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>UserCode</th>
+                    <th>UserName</th>
+                    <th>Father Name</th>
+                    <th>Mobile </th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>User001</td>
+                    <td>John Doe</td>
+                    <td>Michael Doe</td>
+                    <td>123-456-7890</td>
+                    <td>john.doe@example.com</td>
+                    <td>Admin</td>
+                    <td>
+                      <!-- Add action buttons or links for the first row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>User002</td>
+                    <td>Jane Smith</td>
+                    <td>William Smith</td>
+                    <td>987-654-3210</td>
+                    <td>jane.smith@example.com</td>
+                    <td>User</td>
+                    <td>
+                      <!-- Add action buttons or links for the second row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+
+                  </tr>
+                </table>
+              </div>
+            </ion-row>
+
           </ion-row>
 
 

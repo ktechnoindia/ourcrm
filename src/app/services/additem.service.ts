@@ -12,7 +12,6 @@ export interface item{
   selectItem:string;
   selectStock: string;
   selectPrimaryUnit: string;
-  // selectAltUnit: string;
   selectItemGroup: string;
   selectGst: string;
   selectunitname:string;
@@ -30,7 +29,20 @@ export interface item{
   minimum: number;
   maximum: number;
   reorder: string;
-  // description: string;
+  selectGstservice:any;
+  hsnname:string;
+  stocktypename:string;
+  itemtypename:string;
+  unitname:string;
+itemtype:string;
+stocktype:string;
+
+  unitname$:any;
+  hsnname$:any;
+  itemtypename$:any;
+  stocktypename$:any;
+
+   // description: string;
   // dimension: string ;
   // weight: number ;
   // brandname: string ;
@@ -39,14 +51,6 @@ export interface item{
   // weightunit: number;
   // relailprofit: number;
   // delarprofit: number;
-  selectGstservice:any;
-  unitname$:any;
-  hsnname$:any;
-  hsnname:string;
-  stocktypename$:any;
-  stocktypename:string;
-  itemtypename$:any;
-  itemtypename:string;
 }
 
 @Injectable({

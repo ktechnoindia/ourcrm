@@ -53,7 +53,10 @@ export const environment = {
   fetchallservice: 'get_service',
   fetchallexecuitve:'saveExecutive',
   fetchallcompany:'saveCompany',
-
+  addattribute : 'attribute',
+adduser:'adduser',
+addpass:'password',
+addlogin:'login',
 };
 
 

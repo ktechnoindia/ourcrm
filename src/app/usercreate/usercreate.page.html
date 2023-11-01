@@ -11,58 +11,117 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
-          <ion-row style="justify-content: center;">
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="inputs">
               <ion-row>
-                <ion-input [(ngModel)]="fname" formControlName="fname"  name="fullname" type="text" label="Full Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('fname')?.hasError('required') && form.get('fname').touched" class="error-message">
-                    Full Name is required.
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">User Code :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <ion-input [(ngModel)]="usercode" formControlName="usercode" name="usercode" type="text"
+                    placeholder="Enter User Code"></ion-input>
+                </ion-col>
+                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
+                  label-placement="floating" fill="outline"></ion-input> -->
+                <div *ngIf="form && form.get('usercode')?.hasError('required') && form.get('usercode').touched"
+                  class="error-message">
+                  User Code is required.
+                </div>
+              </ion-row>
+            </div>
+            <div class="inputs">
+              <ion-row>
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">User Name :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <ion-input [(ngModel)]="fname" formControlName="fname" name="fullname" type="text"
+                    placeholder="Enter Full Name"></ion-input>
+                </ion-col>
+                <!-- <ion-input [(ngModel)]="fname" formControlName="fname"  name="fullname" type="text" label="Full Name :" label-placement="floating"
+                  fill="outline"></ion-input> -->
+                <div *ngIf="form && form.get('fname')?.hasError('required') && form.get('fname').touched"
+                  class="error-message">
+                  Full Name is required.
+                </div>
+              </ion-row>
+            </div>
+
+            <div class="inputs">
+              <ion-row>
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">Father Name :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <ion-input [(ngModel)]="fathname" formControlName="fathname" name="fathname" type="text"
+                    placeholder="Enter Father name"></ion-input>
+                </ion-col>
+                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
+                    label-placement="floating" fill="outline"></ion-input> -->
+                <div *ngIf="form && form.get('fathname')?.hasError('required') && form.get('fathname').touched"
+                    class="error-message">
+                    Father Name is required.
                   </div>
               </ion-row>
-            </ion-col>
-         
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+            </div>
+
+            <div class="inputs">
               <ion-row>
-                <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('email')?.hasError('required') && form.get('email').touched" class="error-message">
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">Phone No. :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text"
+                    placeholder="Enter Mobile Number"></ion-input>
+                </ion-col>
+                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
+                    label-placement="floating" fill="outline"></ion-input> -->
+                <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone').touched"
+                    class="error-message">
+                    Phone is required.
+                  </div>
+              </ion-row>
+            </div>
+            <div class="inputs">
+              <ion-row>
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">Email :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email"
+                    placeholder="Enter your email"></ion-input>
+                </ion-col>
+                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
+                    label-placement="floating" fill="outline"></ion-input> -->
+                <div *ngIf="form && form.get('email')?.hasError('required') && form.get('email').touched"
+                    class="error-message">
                     Email is required.
                   </div>
               </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
+            </div>
+
+            <div class="inputs">
               <ion-row>
-                <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row >
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="password" formControlName="password" name="pass" type="password" label="Password :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('password')?.hasError('password') && form.get('address').touched" class="error-message">
-                    Password is required.
+                <ion-col size="4" size-lg="2" size-md="2" size-sm="2">
+                  <ion-label for="" class="custom-label">Role :</ion-label>
+                </ion-col>
+                <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
+                  <select [ngModel]="roleid" name="roletype" formControlName="roleid">
+                    <option value="" disabled selected>--- Role ---</option> <!-- Default option -->
+                    <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid" >
+                      
+                      {{ roletypes.roletypename }}
+                    </option>   
+                  </select>
+                </ion-col>
+                <div *ngIf="form && form.get('roleid')?.hasError('required') && form.get('roleid').touched"
+                    class="error-message">
+                    Role is required.
                   </div>
               </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="confrimpassword" formControlName="confrimpassword" color="dark" name="confrimpass" type="password" label="Confrum Password :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('confrimpassword')?.hasError('required') && form.get('confrimpassword').touched" class="error-message">
-                    Confim Password is required.
-                  </div>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+            </div>
+
+
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button>New</ion-button>
@@ -71,7 +130,7 @@
               <!-- <ion-button>Preview</ion-button> -->
               <ion-button>Close</ion-button>
             </ion-row>
-        </form>
+          </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

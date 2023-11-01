@@ -47,3 +47,16 @@ ng-template ion-button{
         margin-left: 0%;
     }
 }
+.inputs{
+    margin-top: 20px;
+}
+.inputs ion-input{
+    border: solid 1px grey;
+    border-radius: 4px;
+    margin-top: -10px;
+}
+.inputs select{
+    border: solid 1px grey;
+    border-radius: 4px;
+    margin-top: -10px;
+}
