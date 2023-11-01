@@ -13,6 +13,7 @@ import { CountryService } from '../services/country.service';
 import { CustomertypeService } from '../services/customertype.service';
 import { ExecutiveService } from '../services/executive.service';
 import { LegderService, ledg } from '../services/legder.service';
+import { FormValidationService } from '../form-validation.service';
 
 @Component({
   selector: 'app-ledger',
@@ -90,7 +91,7 @@ form:any;
   //   private toastCtrl: ToastController,
   //   private myService: MyService
 
-  constructor(private toastController:ToastController,private https:HttpClient,private formBuilder: FormBuilder,private custtp: CustomertypeService, private execut: ExecutiveService, private ledger: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
+  constructor(private toastController:ToastController,private formService:FormValidationService,private https:HttpClient,private formBuilder: FormBuilder,private custtp: CustomertypeService, private execut: ExecutiveService, private ledger: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       ledger_code: ['', [Validators.required, Validators.maxLength(5)]],
@@ -153,237 +154,56 @@ form:any;
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
   }
 
-  loadCountries() {
-    // this.countryService.getCountries().subscribe(
-    //   (data) => {
-    //      console.log(data);
-
-    //     if (Array.isArray(data)) {
-    //       this.countries = data;
-    //     } else {
-    //       console.error('API did not return an array of countries.');
-    //     }
-
-    //   },
-    //   (error) => {
-    //     console.error('Error loading countries:', error);
-
-    //     if (error instanceof HttpErrorResponse) {
-    //       const errorMessage = 'HTTP Error occurred during the API request.';
-    //       console.error(errorMessage);
-
-    //       console.error('Status Code:', error.status);
-    //     } else {
-    //       console.error('Non-HTTP error occurred during the API request.');
-    //     }
-    //   }
-    // );
-  }
-
-  
-
   goBack() {
     this.router.navigate(['/master']);
   }
 
-  onSubmit() {
-    
-    console.log('Your form data : ', this.myform.value);
-    let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udayognumber,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period};
-    this.ledger.createLdeger(ledgerdata,'','').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        // Handle the response as needed
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+  async onSubmit(){
+      const fields = {lname:this.lname,ledger_code:this.ledger_code,gstin:this.gstin,email:this.email} 
+      const isValid = await this.formService.validateForm(fields);
+      if(isValid){
+        this.formService.showSuccessAlert();
+        console.log('Your form data : ', this.myform.value);
+        let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udayognumber,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period};
+        this.ledger.createLdeger(ledgerdata,'','').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            this.formService.showSuccessAlert();
+          },
+          (error: any) => {
+            console.error('POST request failed', error);
+            this.formService.showFailedAlert();
+          }
+        );
+      }else {
+        //If the form is not valid, display error messages
+        Object.keys(this.myform.controls).forEach(controlName => {
+          const control = this.myform.get(controlName);
+          if (control?.invalid) {
+            control.markAsTouched();
+          }
+        });
       }
-    );
-  
   }
-
-
-  // async onSubmit(form: NgForm) {
-  //  if(this.cname === ""){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Name is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.customercode === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Customer code is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.gstin === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"GSTIN is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.selectedOption === ''){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Select Group Name is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.openingbalance === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Opening Balance is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.closingbalance === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Closing Balance is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.phone === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Phone Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.whatshappnumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Whatshapp Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.email === ''){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Email is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.pincode === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Pin Code is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.fullname === ''){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Full Name is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.taxnumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Tax Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.adharnumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Adhar Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.panumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"PAN Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.udayognumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Udyog Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.accountnumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Account Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.ifsc === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"IFSC Code is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.bankname === ''){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Bank Name is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.branchname === ''){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Branch Name is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.creditperiod === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Credit Period is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.creditlimit === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Credit Limit is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.cardnumber === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Card Number is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.openingpoint === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Opening Point is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else if(this.closingpoint === null){
-  //   const toast = await this.toastCtrl.create({
-  //     message:"Closing Point is required",
-  //     duration:3000,
-  //     color:'danger'
-  //   });
-  //   toast.present()
-  //  }else{
-  //   const toast = await this.toastCtrl.create({
-  //     message: "Successfully !",
-  //     duration: 3000,
-  //     color:'success'
-  //   });
-  //    toast.present();
-  //    this.submitValue=true
-  // }
+  // onSubmit() {
+    
+    // console.log('Your form data : ', this.myform.value);
+    // let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udayognumber,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period};
+    // this.ledger.createLdeger(ledgerdata,'','').subscribe(
+    //   (response: any) => {
+    //     console.log('POST request successful', response);
+    //     // Handle the response as needed
+    //   },
+    //   (error: any) => {
+    //     console.error('POST request failed', error);
+    //     // Handle the error as needed
+    //   }
+    // );
+  
   // }
 
+
+ 
   toggleSegment(segment: string) {
     this.activeSegment = segment;
   }

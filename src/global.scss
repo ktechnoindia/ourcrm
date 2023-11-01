@@ -17,7 +17,45 @@
 .main {
     width: 100%; 
 }
+.my-custom-alert {
+    --ion-background-color: white;
+    // --ion-color-primary: darkblue;
 
+  }
+.alert_button{
+   --ion-padding: 10px 20px ;
+    --ion-background-color: blue;
+    color: black;
+    border: 1px solid #0083b0;
+}  
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+/* Example styles for customizing alert buttons */
+.custom-alert-button {
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #3498db; /* Change the background color */
+    border: 2px solid #2980b9; /* Add a border with custom color */
+    color: #fff; /* Change the text color */
+    border-radius: 10px; /* Add rounded corners */
+  }
+  
+  .custom-alert-button.secondary {
+    background-color: #3498db; /* Customize secondary button color */
+    // border: 1px solid grey;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  /* Example styles for alert content */
+  .custom-alert-content {
+    background-color: #ecf0f1; /* Change alert content background color */
+    padding: 20px; /* Add padding to alert content */
+    border-radius: 10px; /* Add rounded corners */
+    color: #333; /* Change text color */
+  }
+  
 .mars{
     margin: 50px 100px 0 100px;
     border: 1px solid grey;

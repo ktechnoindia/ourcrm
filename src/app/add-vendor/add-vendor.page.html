@@ -87,14 +87,14 @@
             <ion-row style="margin-top: 5px;">
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="text" label=" Opening Balance :"
+                  <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number" label=" Opening Balance :"
                     label-placement="floating" name="openbal" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance"  type="text" label=" Closing Balance :"
+                  <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance"  type="number" label=" Closing Balance :"
                     label-placement="floating" name="closingbal" fill="outline"  ></ion-input>
                 </ion-row>
               </ion-col>
@@ -111,7 +111,7 @@
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="tel" label=" Whatsapp Number :" label-placement="floating"
+                  <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text" label=" Whatsapp Number :" label-placement="floating"
                    name="wpnumber" fill="outline"  maxlength="10"></ion-input>
                 </ion-row>
               </ion-col>
@@ -164,7 +164,7 @@
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode" formControlName="pincode" type="tel" label=" PinCode  :"
+                  <ion-input [(ngModel)]="pincode" formControlName="pincode" type="text" label=" PinCode  :"
                     label-placement="floating" name="pcode" fill="outline"    inputmode="numeric"
                     ></ion-input>
                 </ion-row>
@@ -216,7 +216,7 @@
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pincode1" formControlName="pincode1" type="tel" label=" PinCode  :"
+                  <ion-input [(ngModel)]="pincode1" formControlName="pincode1" type="number" label=" PinCode  :"
                     label-placement="floating" name="pcode" fill="outline"    inputmode="numeric"
                     ></ion-input>
                 </ion-row>
@@ -311,13 +311,13 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_period" formControlName="credit_period" type="text" label=" Credit Period :"
+                  <ion-input [(ngModel)]="credit_period" formControlName="credit_period" type="number" label=" Credit Period :"
                   name="cperiod"  label-placement="floating" fill="outline" ></ion-input>
                   </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_limit" formControlName="credit_limit" type="text" label=" Credit Limit :"
+                  <ion-input [(ngModel)]="credit_limit" formControlName="credit_limit" type="number" label=" Credit Limit :"
                     label-placement="floating" name="climit" fill="outline" ></ion-input>
                     </ion-row>
               </ion-col>
@@ -344,14 +344,14 @@
 
               <ion-col size="6" size-lg="4" size-md="4" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_point" formControlName="opening_point" type="text" label="Opening Point :"
+                  <ion-input [(ngModel)]="opening_point" formControlName="opening_point" type="number" label="Opening Point :"
                     label-placement="floating" name="openpoint" fill="outline" ></ion-input>
                      </ion-row>
 
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="4" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_point" formControlName="closing_point" type="text" label="Closing Point :"
+                  <ion-input [(ngModel)]="closing_point" formControlName="closing_point" type="number" label="Closing Point :"
                     label-placement="floating"  name="closepoint" fill="outline" ></ion-input>
                     </ion-row>
               </ion-col>
