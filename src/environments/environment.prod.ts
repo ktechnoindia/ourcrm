@@ -25,4 +25,7 @@ export const environment = {
   fetchallcompany:'saveCompany',
   fetchallexecuitve:'saveExecutive',
   fetchallledger:'saveLedger',
+  fetchallservice: 'saveservices',
+  addservice: 'saveservices',
+
 };
