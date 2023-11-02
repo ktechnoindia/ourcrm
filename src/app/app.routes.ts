@@ -334,6 +334,8 @@ export const routes: Routes = [
   {
     path: 'viewledger',
     loadComponent: () => import('./viewledger/viewledger.page').then( m => m.ViewledgerPage)
+  },
+  {
     path: 'roleassign',
     loadComponent: () => import('./roleassign/roleassign.page').then( m => m.RoleassignPage)
   },

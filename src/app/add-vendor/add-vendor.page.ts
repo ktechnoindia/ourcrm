@@ -204,7 +204,7 @@ export class AddVendorPage implements OnInit {
       );
       setTimeout(() => {
         // Reset the form and clear input fields
-        this.myform.reset();
+        this.myform.reset()
       }, 1000); 
       
     }  else {

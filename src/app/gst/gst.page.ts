@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import  {GstService,gststore} from '../services/gst.service';
-
+import { FormValidationService } from '../form-validation.service';
 @Component({
   selector: 'app-gst',
   templateUrl: './gst.page.html',
@@ -34,7 +34,7 @@ export class GstPage implements OnInit {
   pin_code:string='';
   address:string='';
   
-  constructor(private router:Router,private gstService:GstService,private formBuilder:FormBuilder,) { 
+  constructor(private router:Router,private gstService:GstService,private formService:FormValidationService,private formBuilder:FormBuilder,) { 
     this.myform = this.formBuilder.group({
       service_name:['',[Validators.required]],
       invoice_date:['',[Validators.required]],
@@ -53,8 +53,10 @@ export class GstPage implements OnInit {
     })
   }
 
-  onSubmit() {
-    if (this.myform) {
+  async onSubmit() {
+    const fields = {service_name:this.service_name,gst_code:this.gst_code,selectedState:this.selectedState,phone_number:this.phone_number,}
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.myform.value);
     let gstdata:gststore={
       service_name: this.myform.value.service_name, invoice_date: this.myform.value.invoice_date, invoice_number: this.myform.value.invoice_number, customer_code: this.myform.value.customer_code, selectedCountry: this.myform.value.selectedCountry, selectedState: this.myform.value.selectedState, selectedDistrict: this.myform.value.selectedDistrict,
@@ -69,20 +71,26 @@ export class GstPage implements OnInit {
     this.gstService.createGst(gstdata,'','').subscribe(
      (response:any) => {
           console.log('POST Request falied',response);
+          this.formService.showSuccessAlert();
      },
      (error:any) => {
           console.log('POST Request falied',error);
+          this.formService.showFailedAlert();
      }
-    )
+    );
+    setTimeout(() => {
+      // Reset the form and clear input fields
+      this.myform.reset()
+    }, 1000);
    } 
-  //else {
-  //   Object.keys(this.myform.controls).forEach(controlName => {
-  //     const control = this.myform.get(controlName);
-  //     if (control.invalid) {
-  //       control.markAsTouched();
-  //     }
-  //   })
-  // }
+  else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    })
+  }
 }
 
   ngOnInit() {
