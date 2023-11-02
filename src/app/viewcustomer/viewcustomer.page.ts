@@ -6,18 +6,21 @@ import { Router } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { CustomerService } from '../services/customer.service';
-
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @Component({
   selector: 'app-viewcustomer',
   templateUrl: './viewcustomer.page.html',
   styleUrls: ['./viewcustomer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,
+  ]
 })
 export class ViewcustomerPage implements OnInit {
   formDate:string='';
   toDate:string='';
   customers$: Observable<any[]>
+
+  searchText:string='';
 
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private custservice:CustomerService) { 
     const compid='1';

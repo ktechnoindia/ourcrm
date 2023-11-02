@@ -322,7 +322,8 @@ export const routes: Routes = [
   {
     path: 'viewservice',
     loadComponent: () => import('./viewservice/viewservice.page').then( m => m.ViewservicePage)
-  },  {
+  },
+  {
     path: 'loginpage',
     loadComponent: () => import('./loginpage/loginpage.page').then( m => m.LoginpagePage)
   },
@@ -334,7 +335,7 @@ export const routes: Routes = [
     path: 'roleassign',
     loadComponent: () => import('./roleassign/roleassign.page').then( m => m.RoleassignPage)
   },
-
+  
 
 
 

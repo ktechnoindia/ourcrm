@@ -6,14 +6,19 @@ import { Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @Component({
   selector: 'app-viewsupplier',
   templateUrl: './viewsupplier.page.html',
   styleUrls: ['./viewsupplier.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,
+    // Ng2SearchPipeModule
+  ]
 })
 export class ViewsupplierPage implements OnInit {
+  searchText:string='';
 
   formDate:string='';
   toDate:string='';

@@ -12,10 +12,10 @@
 
           <ion-grid>
             <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
-              <!-- <ion-row>
+              <ion-row>
                 <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
                 </ion-col>
-               <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
                   <ion-row>
                     <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                       <ion-row>
@@ -34,16 +34,16 @@
                 </ion-col>
                 <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
                   <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-                </ion-col>
-              </ion-row> -->
+                </ion-col> -->
+              </ion-row>
 
               <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" showCancelButton="focus"  ></ion-searchbar>
               </ion-row>
 
               <ion-row class="Executive">
                 <div style="overflow-x:auto; width: 100% ;height: 350px;">
-                  <table style="width: 100%;overflow-x:auto;">
+                  <table style="width: 100%;overflow-x:auto;"  class="table tabel-hover table-striped">
                     <thead>
                       <tr>
                         <th style="width: 50px">Sr. No.</th>
@@ -56,25 +56,26 @@
                         <th style="width: 100px">Country</th>
                         <th style="width: 100px">State</th>
                         <th style="width: 100px">District</th>
-                        <th style="width: 100px">Pincode</th>
-                        <th style="width: 100px">Full Address</th>
-                        <th style="width: 100px">Aadhar No.</th>
-                        <th style="width: 100px">PAN No.</th>
-                        <th style="width: 100px">Udhyog Aadhar No.</th>
-                        <th style="width: 100px">Account No.</th>
-                        <th style="width: 100px">IFSC Code</th>
-                        <th style="width: 100px">Bank Name</th>
-                        <th style="width: 100px">Branch Name</th>
-                        <th style="width: 100px">Card No.</th>
-                        <th style="width: 100px">Credit Period</th>
-                        <th style="width: 100px">Credit Limit</th>
+                          <th style="width: 100px">Pincode</th>
+                          <th style="width: 100px">Full Address</th>
+                          <th style="width: 100px">Aadhar No.</th>
+                          <th style="width: 100px">PAN No.</th>
+                          <th style="width: 100px">Udhyog Aadhar No.</th>
+                          <th style="width: 100px">Account No.</th>
+                          <th style="width: 100px">IFSC Code</th>
+                          <th style="width: 100px">Bank Name</th>
+                          <th style="width: 100px">Branch Name</th>
+                          <th style="width: 100px">Card No.</th>
+                          <th style="width: 100px">Credit Period</th>
+                          <th style="width: 100px">Credit Limit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let customer of customers$ | async; let i = index">
+
                         <td>{{ i + 1 }}</td>
                         <td>{{customer.customer_code}}</td>
-                        <td>{{customer.name}}</td>
+                        <td>{{customer.name}}</td>                       
                         <td>{{customer.gstin}}</td>
                         <td>{{customer.mobile}}</td>
                         <td>{{customer.whatsapp_number}}</td>
@@ -144,7 +145,7 @@
                         <td>60 days</td>
                         <td>$2000</td>
                       </tr> -->
-
+                                            
                     </tbody>
 
                   </table>
