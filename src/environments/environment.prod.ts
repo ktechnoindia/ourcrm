@@ -23,4 +23,7 @@ export const environment = {
   fetchcustomertype:'getCustomertypes',
   fetchallcompany:'saveCompany',
   fetchallexecuitve:'saveExecutive',
+  fetchallservice: 'saveservices',
+  addservice: 'saveservices',
+
 };

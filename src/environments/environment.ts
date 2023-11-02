@@ -27,7 +27,7 @@ export const environment = {
   addlead: 'lead',
   addfollowup: 'followup',
   addledger: 'ledger',
-  addservice: 'service',
+  addservice: 'saveservices',
   addgst: 'gst',
   addexecutive: 'saveExecutive',
   editlead: 'editlead',
@@ -50,13 +50,14 @@ export const environment = {
   fetchallcust: 'get_customers',
   fetchallvend: 'get_vendors',
   fetchallitem: 'get_items',
-  fetchallservice: 'get_service',
-  fetchallexecuitve:'saveExecutive',
+  fetchallservice: 'saveservices',
+  fetchallexecuitve:'saveExecutive', 
   fetchallcompany:'saveCompany',
   addattribute : 'attribute',
 adduser:'adduser',
 addpass:'password',
 addlogin:'login',
+
 };
 
 

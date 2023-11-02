@@ -9,6 +9,8 @@ export interface serv{
   gst:string;
   sac_code:string;
   description:string;
+  companyid:number,
+
 }
 
 

@@ -330,6 +330,10 @@ export const routes: Routes = [
     path: 'changepassword',
     loadComponent: () => import('./changepassword/changepassword.page').then( m => m.ChangepasswordPage)
   },
+  {
+    path: 'roleassign',
+    loadComponent: () => import('./roleassign/roleassign.page').then( m => m.RoleassignPage)
+  },
 
 
 

@@ -18,23 +18,21 @@ import { GsttypeService } from '../services/gsttype.service';
 export class AddServicePage implements OnInit {
   service_code:string='';
   service_name:string='';
-  gst:string='';
   sac_code:string='';
   description:string='';
-
   form:any;
   myform:FormGroup;
   submitted=false;
-  selectGst$: any;
-  selectGst: string = '';
+  gst$: any;
+  gst: string = '';
 
   constructor(private gstsrvs:GsttypeService,private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
-    this.selectGst$=this.gstsrvs.getgsttype();
+    this.gst$=this.gstsrvs.getgsttype();
 
     this.myform = this.formBuilder.group({
       service_code:['',[Validators.required]],
       service_name:['',[Validators.required]],
-      selectGst:['',[Validators.required]],
+      gst:['',[Validators.required]],
       sac_code:['',[Validators.required]],
       description:['']
     })
@@ -44,7 +42,10 @@ export class AddServicePage implements OnInit {
     if (this.myform) {
       this.submitted=true;
     console.log('Your form data : ', this.myform.value);
-    let servicedata:serv={service_code:this.myform.value.service_code,service_name:this.myform.value.service_name,gst:this.myform.value.gst,sac_code:this.myform.value.sac_code,description:this.myform.value.description,};
+    let servicedata:serv={
+      service_code: this.myform.value.service_code, service_name: this.myform.value.service_name, gst: this.myform.value.gst, sac_code: this.myform.value.sac_code, description: this.myform.value.description,
+    companyid: 1,
+    };
     this.addService.createService(servicedata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);

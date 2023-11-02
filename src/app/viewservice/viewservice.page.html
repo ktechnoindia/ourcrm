@@ -47,10 +47,11 @@
                     <thead>
                       <tr>
                         <th style="width: 50px">Sr. No.</th>
-                        <th style="width: 50px">Service Code</th>
-                        <th style="width: 100px">Service Type</th>
-                        <th style="width: 100px">Stock Type</th>
-                        <th style="width: 100px">SAC Type</th>
+                        <th  style="width: 100px">Company ID</th>
+                        <th style="width: 100px">Service Code</th>
+                        <th style="width: 100px">Service Name</th>
+                        <th style="width: 100px">SAC  Code</th>
+                        <th style="width: 100px">GST %</th>
                         <th style="width: 100px">Description</th>
                     
                         
@@ -60,11 +61,12 @@
                   <tr *ngFor="let service of services$ | async; let i = index">
 
                         <td>{{ i + 1 }}</td>
+                        <td>{{service.companyid}}</td>
                         <td>{{service.service_code}}</td>
-                        <td>{{service.service_type}}</td>                       
-                        <td>{{service.stock_type}}</td>
+                        <td>{{service.service_name}}</td>                       
                         <td>{{service.sac_code}}</td>
-                        <td>{{service.item_description}}</td>
+                        <td>{{service.selectGst}}</td>
+                        <td>{{service.description}}</td>
                       
                       </tr>
                      
