@@ -39,7 +39,7 @@
                 </ion-col>
                 <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
                     label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="form && form.get('service_code')?.hasError('required') && form.get('service_code').touched"
+                <div *ngIf="myform && myform.controls['service_code']?.hasError('required') && myform.controls['service_code']?.touched"
                   class="error-message">
                   Service Code is required.
                 </div>
@@ -56,7 +56,7 @@
                 </ion-col>
                 <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
                     label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="form && form.get('service_name')?.hasError('required') && form.get('service_name').touched"
+                <div *ngIf="myform && myform.controls['service_name']?.hasError('required') && myform.controls['service_name']?.touched"
                   class="error-message">
                   Service name is required.
                 </div>
@@ -73,7 +73,7 @@
                     placeholder="Enter SAC Code"></ion-input>
                 </ion-col>
                 <div
-                  *ngIf="myform && myform.controls['sacode']?.hasError('required') && myform.controls['sacode'].touched"
+                  *ngIf="myform && myform.controls['sac_code']?.hasError('required') && myform.controls['sac_code']?.touched"
                   class="error-message">
                   SAC code is required.
                 </div>
@@ -93,7 +93,7 @@
                     </option>
                   </select>
                 </ion-col>
-                <div *ngIf="myform && myform.controls['select_Gst']?.hasError('required') && myform.controls['select_Gst'].touched"
+                <div *ngIf="myform && myform.controls['gst']?.hasError('required') && myform.controls['gst']?.touched"
                   class="error-message">
                   GST% is required.
                 </div>
@@ -110,7 +110,7 @@
                 </ion-col>
                 <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
                     label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="form && form.get('description')?.hasError('required') && form.get('description').touched"
+                <div *ngIf="myform && myform.controls['description']?.hasError('required') && myform.controls['description']?.touched"
                   class="error-message">
                   Description is required.
                 </div>

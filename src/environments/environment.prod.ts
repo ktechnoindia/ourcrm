@@ -18,11 +18,13 @@ export const environment = {
   fetchbusinesstype:'getBusinessTypes',
   addcust:'customer',
   addvend:'vendor',
+  addledger: 'saveLedger',
   addexecutive: 'saveExecutive',
   fetchexecutive:'getExecutives',
   fetchcustomertype:'getCustomertypes',
   fetchallcompany:'saveCompany',
   fetchallexecuitve:'saveExecutive',
+  fetchallledger:'saveLedger',
   fetchallservice: 'saveservices',
   addservice: 'saveservices',
 

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddexecutiveService,execut } from '../services/addexecutive.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { FormValidationService } from '../form-validation.service';
 @Component({
   selector: 'app-add-executive',
   templateUrl: './add-executive.page.html',
@@ -40,7 +41,7 @@ export class AddExecutivePage implements OnInit {
   roletypesservice: any;
  
 
-  constructor(private router: Router,private addExecutiveService:AddexecutiveService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+  constructor(private router: Router,private addExecutiveService:AddexecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
@@ -79,30 +80,36 @@ export class AddExecutivePage implements OnInit {
   //   }
   // }
 
-  onSubmit() {
-    this.submitted=true;
-    if (this.form) {
+  async onSubmit() {
+    const fields = {roleid:this.roleid,executivename:this.executivename,emanager:this.emanager,emobile:this.emobile,ledger:this.ledger}
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
     let executdata:execut={roleid:this.form.value.roleid,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:this.form.value.companyid};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
+        this.formService.showFailedAlert();
       }
     );
-    }
-  // } else {
-  //   Object.keys(this.form.controls).forEach(controlName => {
-  //     const control = this.form.get(controlName);
-  //     if (control.invalid) {
-  //       control.markAsTouched();
-  //     }
-  //   })
-  // }
+    setTimeout(() => {
+      // Reset the form and clear input fields
+      this.form.reset()
+    }, 1000); 
+    
+  }else {
+    //If the form is not valid, display error messages
+    Object.keys(this.form.controls).forEach(controlName => {
+      const control = this.form.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+  }
 }
 
   ngOnInit() {

@@ -26,7 +26,7 @@ import { CustomertypeService } from './services/customertype.service';
 import { VendorService } from './services/vendor.service';
 import { LeadService } from './services/lead.service';
 import { FollowupService } from './services/followup.service';
-import { LegderService } from './services/legder.service';
+import { LegderService } from './services/ledger.service';
 import { AddserviceService } from './services/addservice.service';
 import { GstService } from './services/gst.service';
 import { AddexecutiveService } from './services/addexecutive.service';

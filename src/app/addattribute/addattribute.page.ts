@@ -6,6 +6,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddattributeService, addattribute } from '../services/addattribute.service';
+import { FormValidationService } from '../form-validation.service';
 
 @Component({
   selector: 'app-addattribute',
@@ -16,15 +17,14 @@ import { AddattributeService, addattribute } from '../services/addattribute.serv
 })
 export class AddattributePage implements OnInit {
   type = 'address';
-
   attname: string = '';
-  attdetails: string = '';
-  myform: any;
+ 
+  myform: FormGroup;
   submitted = false;
 
-  constructor(private router: Router, private addatt: AddattributeService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(private router: Router, private addatt: AddattributeService,private formService:FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
-      attname: [''],
+      attname: ['',Validators.required],
       // attdetails: ['']
     })
 
@@ -35,25 +35,36 @@ export class AddattributePage implements OnInit {
   }
 
 
-  onSubmit() {
-    if (this.myform.invalid) {
+  async  onSubmit() {
+    const fields = {attname:this.attname}
+    const isValid = this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
       this.submitted = true;
       console.log('Your form data : ', this.myform.value);
       let attdata: addattribute = {
         attname: this.myform.value.attname,
-        // attdetails: this.myform.value.attdetails,
-
+        
       };
       this.addatt.createAttribute(attdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          // Handle the response as needed
+          this.formService.showSuccessAlert();
         },
         (error: any) => {
           console.error('POST request failed', error);
-          // Handle the error as needed
+          this.formService.showFailedAlert();
         }
       );
+      setTimeout(() => {
+        this.myform.reset();
+      }, 1000);
+    }else{
+      Object.keys(this.myform.controls).forEach(controlName =>{
+        const control = this.myform.get(controlName);
+        if(control?.invalid){
+          control.markAllAsTouched()
+        }
+      })
     }
 
   }

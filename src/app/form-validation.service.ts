@@ -9,7 +9,7 @@ export class FormValidationService {
   async validateForm(fields: { [key: string]: any }): Promise<boolean> {
     for (const key in fields) {
       if (fields[key].trim() === '') {
-        await this.showAlert('Error', 'Please fill in all fields.');
+        await this.showAlert('Error !', 'Please fill required fields.');
         return false;
       }
     }
@@ -17,11 +17,11 @@ export class FormValidationService {
   }
 
   async showSuccessAlert() {
-    await this.showAlert('Success', 'Form submitted successfully.');
+    await this.showAlert('Success !', 'Form submitted successfully.');
   }
 
   async showFailedAlert() {
-    await this.showAlert('Success', "Form don't successfully.");
+    await this.showAlert('Error !', "Form don't successfully.");
   }
 
   async showAlert(header:string,message:string) : Promise<void>{

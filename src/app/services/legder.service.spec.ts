@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LegderService } from './legder.service';
+import { LegderService } from './ledger.service';
 
 describe('LegderService', () => {
   let service: LegderService;

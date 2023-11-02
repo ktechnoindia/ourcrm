@@ -32,7 +32,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="hsncode" formControlName="hsncode"  name="hsn_code"  type="text" label="HSN Code :" label-placement="floating"
                   fill="outline" ></ion-input>
-                  <div *ngIf="form && form.controls['hsnCode']?.hasError('required') && form.controls['hsnCode'].touched" class="error-message">
+                  <div *ngIf="form && form.controls['hsncode']?.hasError('required') && form.controls['hsncode'].touched" class="error-message">
                     HSn Code is required.
                   </div>
                 </ion-row>
