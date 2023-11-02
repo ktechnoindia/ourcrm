@@ -6,9 +6,7 @@ export interface unit{
   unit_name:string;
   short_name:string;
   primary_unit:string;
-  conversion_fact:string;
   decimal_place:string;
-  uqc_unit:string;
 }
 
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface ledg{
 lname:string;
@@ -38,6 +39,7 @@ lname:string;
     district1: number;
     pincode1: string;
     address1: string;
+    companyid:number
   }
 
 @Injectable({
@@ -48,5 +50,10 @@ export class LegderService {
   constructor(private httpclient:HttpClient) { }
   createLdeger(ledger:ledg,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addledger,ledger,{headers:{'key':key,'user':user}})
+  }
+
+  fetchAllLedger(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallledger+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }

@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy } from '@angular/compiler';
 import { StocktypeService } from '../services/stocktype.service';
 import { ItemtypeService } from '../services/itemtype.service';
+import { FormValidationService } from '../form-validation.service';
+
+
+
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.page.html',
@@ -78,7 +82,7 @@ export class AddItemPage implements OnInit {
 
   
   
-constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
+constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
      this.hsnname$=this.hsnservices.getHSNNames(1);
@@ -127,9 +131,10 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
     console.log('Segment changed', ev);
   }
   
-  onSubmit() {
-   
-    if (this.myform.invalid) {
+ async onSubmit() {
+    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode,selectItemGroup:this.selectItemGroup,}
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
       this.submitted=true;
     console.log('Your form data : ', this.myform.value);
     let itemdata:item={
@@ -181,14 +186,26 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
+        this.formService.showFailedAlert();
       }
     );
-  } 
+    setTimeout(() => {
+      // Reset the form and clear input fields
+      this.myform.reset();
+    }, 1000); 
+  }  else {
+    //If the form is not valid, display error messages
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+  }
   
 }
 

@@ -202,6 +202,10 @@ export class AddVendorPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
+      setTimeout(() => {
+        // Reset the form and clear input fields
+        this.myform.reset();
+      }, 1000); 
       
     }  else {
        //If the form is not valid, display error messages

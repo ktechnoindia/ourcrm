@@ -26,7 +26,7 @@ export const environment = {
   // fetchcustomertype:'getCustomertypes',
   addlead: 'lead',
   addfollowup: 'followup',
-  addledger: 'ledger',
+  addledger: 'saveLedger',
   addservice: 'service',
   addgst: 'gst',
   addexecutive: 'saveExecutive',
@@ -53,10 +53,12 @@ export const environment = {
   fetchallservice: 'get_service',
   fetchallexecuitve:'saveExecutive',
   fetchallcompany:'saveCompany',
+  fetchallledger:'saveLedger',
   addattribute : 'attribute',
 adduser:'adduser',
 addpass:'password',
 addlogin:'login',
+
 };
 
 

@@ -330,6 +330,10 @@ export const routes: Routes = [
     path: 'changepassword',
     loadComponent: () => import('./changepassword/changepassword.page').then( m => m.ChangepasswordPage)
   },
+  {
+    path: 'viewledger',
+    loadComponent: () => import('./viewledger/viewledger.page').then( m => m.ViewledgerPage)
+  },
 
 
 

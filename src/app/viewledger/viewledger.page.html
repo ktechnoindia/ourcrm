@@ -1,0 +1,162 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Ledger</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col> -->
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                  <table style="width: 100%;overflow-x:auto;">
+                    <thead>
+                      <tr>
+                        <th style="width: 50px;">Sr. No.</th>
+
+                        <th>Ledger Name</th>
+                        <th>Ledger Code</th>
+                        <th>GSTIN</th>
+                        <th>Mobile No.</th>
+                        <th>Whatsapp No.</th>
+                        <th>Email</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>District</th>
+
+                        <th>Address</th>
+                        <th>Pincode</th>
+                        <th>Aadhar No.</th>
+                        <th>PAN No.</th>
+                        <th>Udhyog Aadhar</th>
+                        <th>Account No.</th>
+                        <th>IFSC Code</th>
+                        <th>Bank Name</th>
+                        <th>Branch Name</th>
+                        <th>Card No.</th>
+                        <th>Credit Period</th>
+                        <th>Credit Limit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ledger of ledgers$ | async; let i = index">
+                        <td>{{ i + 1}}</td>
+                        <td>{{ledger.companyid}}</td>
+                        <td>{{ledger.lname}}</td>
+                        <td>{{ledger.lcode}}</td>
+                        <td>{{ledger.ledger_code}}</td>
+                        <td>{{ledger.selectedOption}}</td>
+                        <td>{{ledger.opening_balance}}</td>
+                        <td>{{ledger.closing_balance}}</td>
+                        <td>{{ledger.mobile}}</td>
+                        <td>{{ledger.whatsapp_number}}</td>
+                        <td>{{ledger.address}}</td>
+                        <td>{{ledger.gstin}}</td>
+                        <td>{{ledger.email}}</td>
+                        <td>{{ledger.select_sales_person}}</td>
+                        <td>{{ledger.pincode}}</td>
+                        <td>{{ledger.tdn}}</td>
+                        <td>{{ledger.aadhar_no}}</td>
+                        <td>{{ledger.pan_no}}</td>
+                        <td>{{ledger.udhyog_aadhar}}</td>
+                        <td>{{ledger.account_number}}</td>
+                        <td>{{ledger.ifsc_code}}</td>
+                        <td>{{ledger.bank_name}}</td>
+                        <td>{{ledger.branch_name}}</td>
+                      </tr>
+                      <!-- <tr>
+                        <td>2</td>
+                        <td>VEND002</td>
+                        <td>Jane Smith</td>
+                        <td>EFGH5678I</td>
+                        <td>9876543211</td>
+                        <td>1234567891</td>
+                        <td>janesmith@example.com</td>
+                        <td>USA</td>
+                        <td>New York</td>
+                        <td>New York City</td>
+                        <td>10001</td>
+                        <td>456 Elm Street, Town</td>
+                        <td>876543210987</td>
+                        <td>FGHI5678J</td>
+                        <td>UAN9876543</td>
+                        <td>9876123456789876</td>
+                        <td>9876543210</td>
+                        <td>MyBank</td>
+                        <td>Downtown Branch</td>
+                        <td>5678-9012-3456-7890</td>
+                        <td>45 days</td>
+                        <td>$1500</td>
+                      </tr> -->
+
+                      <!-- <tr>
+                        <td>3</td>
+                        <td>VEND003</td>
+                        <td>Alice Johnson</td>
+                        <td>WXYZ1234A</td>
+                        <td>1234567892</td>
+                        <td>9876543212</td>
+                        <td>alicejohnson@example.com</td>
+                        <td>Canada</td>
+                        <td>Ontario</td>
+                        <td>Toronto</td>
+                        <td>M5V 2L9</td>
+                        <td>789 Oak Avenue, Village</td>
+                        <td>345678901234</td>
+                        <td>KLMN1234B</td>
+                        <td>UAN5432109</td>
+                        <td>5432567890123456</td>
+                        <td>9876543210</td>
+                        <td>Bank of Canada</td>
+                        <td>Main Branch</td>
+                        <td>4321-8765-0987-2345</td>
+                        <td>60 days</td>
+                        <td>$2000</td>
+                      </tr> -->
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
 import { Observable, Subscription } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
+
 @Component({
   selector: 'app-hsn-manager',
   templateUrl: './hsn-manager.page.html',
@@ -23,7 +25,7 @@ export class HsnManagerPage implements OnInit {
   hsncode$: Observable<any[]>
   
 
-  constructor(private router: Router, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
+  constructor(private router: Router,private formService:FormValidationService, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
       hsncode: ['', [Validators.required]],
       unit: ['', [Validators.required]],
@@ -32,8 +34,10 @@ export class HsnManagerPage implements OnInit {
   this.hsncode$ = this.hsnService.getHSNNames(1);
   }
 
-  onSubmit() {
-    if (this.form) {
+  async onSubmit() {
+    const fields = {hsncode:this.hsncode,unit:this.unit}
+    const isValid = await this.formService.validateForm(fields);
+    if ( await this.formService.validateForm(fields)){
     console.log('Your form data : ', this.form.value);
     let hsndata:hsn={
      hsncode:this.form.value.hsncode,
@@ -46,14 +50,24 @@ export class HsnManagerPage implements OnInit {
        if(response.status){
         console.log('POST request successful', response);
        }
-        // Handle the response as needed
+        this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
+        this.formService.showFailedAlert();
       }
     );
-  } 
+    setTimeout(() => {
+      this.form.reset();
+    },1000)
+  } else{
+    Object.keys(this.form.controls).forEach(controlName =>{
+      const control = this.form.get(controlName);
+      if(control?.invalid){
+        control.markAllAsTouched();
+      }
+    })
+  }
 }
 
   ngOnInit() {
