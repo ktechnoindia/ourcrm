@@ -188,6 +188,8 @@ export class AppComponent {
   isDropdownOpen2 = false;
   isDropdownOpen3 = false;
   isDropdownOpen4 = false;
+  isDropdownOpen5 = false;
+
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -203,7 +205,10 @@ export class AppComponent {
     this.isDropdownOpen4 = !this.isDropdownOpen4;
 
   }
+ toggleDropdown5() {
+  this.isDropdownOpen5 = !this.isDropdownOpen5;
 
+}
   selectOption(option: string) {
     // Handle the selected option here (e.g., emit an event or set a variable).
     console.log(`Selected: ${option}`);

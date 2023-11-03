@@ -80,7 +80,8 @@ export class AddItemPage implements OnInit {
   itemgroups$: Observable<any[]>
 
 
-  
+  selectedAttribute: string='';
+  attributes: string[] = [];
   
 constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
@@ -89,6 +90,8 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.itemgroups$ = this.groupService.getAllGroups(1);
      this.stocktypename$=this.stocktype1.getStockTypes(1);
      this.itemtypename$=this.itemtype1.getItemTypes(1);
+     this.selectedAttribute = 'default value';
+
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
       itemCode: ['', [Validators.required]],
@@ -123,8 +126,16 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       // relailprofit: [''],
       // delarprofit: [''],
       files:['']
+      
     })
 
+  }
+  addAttribute() {
+    this.attributes.push(''); // Add a new empty attribute
+  }
+  onAttributeChange() {
+    // Handle the selected attribute here
+    console.log('Selected Attribute:', this.selectedAttribute);
   }
 
   segmentChanged(ev: any) {
