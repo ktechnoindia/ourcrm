@@ -16,6 +16,8 @@ import { IndustrytypeService } from '../services/industrytype.service';
 import { CgsttypeService } from '../services/cgsttype.service';
 import { BusinesstypeService } from '../services/businesstype.service';
 import { SegmentService } from '../services/segment.service';
+import { FormValidationService } from '../form-validation.service';
+
 @Component({
   selector: 'app-createcompany',
   templateUrl: './createcompany.page.html',
@@ -26,7 +28,7 @@ import { SegmentService } from '../services/segment.service';
 
 })
 export class CreatecompanyPage implements OnInit {
- //buttons function
+  //buttons function
   step1: boolean = false;
   step2: boolean = false;
   step3: boolean = false;
@@ -35,9 +37,9 @@ export class CreatecompanyPage implements OnInit {
 
   form: FormGroup;
   rdate: string = '';
-  selectedState: number=0;
-  selectedDistrict: number=0;
-  selectedCountry: number=0;
+  selectedState: number = 0;
+  selectedDistrict: number = 0;
+  selectedCountry: number = 0;
   email: string = '';
   wpnumber: string = '';
   phone: string = '';
@@ -47,9 +49,9 @@ export class CreatecompanyPage implements OnInit {
   cpyname: string = '';
   logo: string = '';
   website: string = '';
-  selectedState1: number=0;
-  selectedDistrict1: number=0;
-  selectedCountry1: number=0;
+  selectedState1: number = 0;
+  selectedDistrict1: number = 0;
+  selectedCountry1: number = 0;
   email1: string = '';
   wpnumber1: string = '';
   phone1: string = '';
@@ -68,28 +70,28 @@ export class CreatecompanyPage implements OnInit {
   //Step: 2
   tanumber: string = '';
   pannumber: string = '';
-  industry:number=0;
+  industry: number = 0;
 
   industry$: any;
-  selectindustry: number=0;
+  selectindustry: number = 0;
 
   companytype$: any;
-  companytype: number=0;
+  companytype: number = 0;
   businesstype$: any;
-  businesstype: number=0;
+  businesstype: number = 0;
   segmenttype$: any;
-  segmenttype: number=0;
+  segmenttype: number = 0;
 
   //step : 3 
-  language:number=0;
-  currency:number=0;
-  sales:string='';
-  purchase:string='';
-  quotation:string='';
-  lms :string='';
-  challan :string='';
-  amc:string='';
-  alloftheabove:string='';
+  language: number = 0;
+  currency: number = 0;
+  sales: string = '';
+  purchase: string = '';
+  quotation: string = '';
+  lms: string = '';
+  challan: string = '';
+  amc: string = '';
+  alloftheabove: string = '';
   submitted = false;
 
   //step : 4
@@ -100,7 +102,7 @@ export class CreatecompanyPage implements OnInit {
   upiid: string = '';
   bankForm: string = '';
 
-  constructor(private createcompany: CreatecompanyService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
+  constructor(private createcompany: CreatecompanyService, private formService: FormValidationService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
     , private industry1: IndustrytypeService, private cmptype: CgsttypeService, private bustype: BusinesstypeService, private segment1: SegmentService) {
     // this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -126,7 +128,7 @@ export class CreatecompanyPage implements OnInit {
       rdate: [''],
       wpnumber: [''],
       pinCode: [''],
-      tanno:[''],
+      tanno: [''],
       gstin: [''],
       logo: [''],
       website: [''],
@@ -183,7 +185,11 @@ export class CreatecompanyPage implements OnInit {
     this.step3 = !this.step3;
   }
 
-  onSubmit() {
+ async onSubmit() {
+    const fields = { cpyname: this.cpyname, selectedCountry: this.selectedCountry, selectedState: this.selectedState,  selectedDistrict: this.selectedDistrict, address: this.address, rdate: this.rdate, industry: this.industry, businesstype: this.businesstype, language: this.language, currency: this.currency, bname: this.bname }
+
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
       cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate, website: this.form.value.website, website1: this.form.value.website1, selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
@@ -202,7 +208,18 @@ export class CreatecompanyPage implements OnInit {
         // Handle the error as needed
       }
     );
-
+    setTimeout(() => {
+      this.form.reset();
+    }, 1000);
+    }else {
+      //If the form is not valid, display error messages
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    }
 
 
 

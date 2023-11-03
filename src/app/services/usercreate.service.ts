@@ -4,10 +4,10 @@ import { environment } from 'src/environments/environment';
 
 export interface userdata{
   fname:string;
-  usercode:string;
+  usercode:number;
   fathname:string;
   email:string;
-  phone:string;
+  phone:number;
   roleid: number;
 }
 
@@ -19,6 +19,6 @@ export class UsercreateService {
   constructor(private httpclient: HttpClient) {}
 
   createuser(UsercreateService:userdata,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.adduser,user,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiactionurl+environment.adduser,UsercreateService,{headers:{'key':key,'user':user}})
   }
 }

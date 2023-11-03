@@ -66,6 +66,11 @@
                     {{ state.statename }}
                   </option>
                 </select>
+                <div
+                *ngIf="form && form.get('selectedState')?.hasError('required') && form.get('selectedState')?.touched"
+                class="error-message">
+                Country is required.
+              </div>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
 
@@ -108,6 +113,10 @@
                 <ion-row>
                   <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                    <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone')?.touched"
+                    class="error-message">
+                    Mobile Number is required.
+                  </div>
                 </ion-row>
               </ion-col>
 
@@ -146,11 +155,7 @@
                   </option>
 
                 </select>
-                <div
-                  *ngIf="form && form.get('selectedCountry1')?.hasError('required') && form.get('selectedCountry1')?.touched"
-                  class="error-message">
-                  Country is required.
-                </div>
+               
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
@@ -172,11 +177,7 @@
                     {{ district.districtname }}
                   </option>
                 </select>
-                <div
-                  *ngIf="form && form.get('selectedDistrict1')?.hasError('required') && form.get('selectedDistrict1')?.touched"
-                  class="error-message">
-                  District is required.
-                </div>
+              
               </ion-col>
 
             </ion-row>
@@ -191,10 +192,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="address1" type="text" formControlName="address1" name="fulladdress1"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address')?.touched"
-                    class="error-message">
-                    Name is required.
-                  </div>
+                  
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -243,6 +241,10 @@
                 <input type="file" id="file-upload" name="file" accept="image/*">
                 <ion-input [(ngModel)]="rdate" formControlName="rdate" name="startdate" type="date"
                   placeholder="Enter Starting Date" class="custom-date-input"></ion-input>
+                  <div *ngIf="form && form.get('rdate')?.hasError('required') && form.get('rdate')?.touched"
+                  class="error-message">
+                  Date is required.
+                </div>
               </ion-col>
             </ion-row>
             <ion-row class="custom-primary">
@@ -265,9 +267,7 @@
                     <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
                     </option>
-
                   </select>
-
                   <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry')?.touched"
                     class="error-message">
                     Industry is required.

@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { FollowupService, followuptable } from '../services/followup.service';
 import { MyService } from '../myservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormValidationService } from '../form-validation.service';
 @Component({
   selector: 'app-follow-up',
   templateUrl: './follow-up.page.html',
@@ -23,11 +24,11 @@ export class FollowUpPage implements OnInit {
   phoneNumber: number | null = null;
   leadStatus: string = '';
 myform:FormGroup;
-  constructor(private followService : FollowupService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder) { 
+  constructor(private followService : FollowupService,private formService:FormValidationService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder) { 
    this.myform = this.formBuilder.group({
     leadName:['',[Validators.required]],
     companyName:['',[Validators.required]],
-    email:[''],
+    email:['',Validators.email],
     phoneNumber:[''],
     leadStatus:['']
    })
@@ -35,7 +36,12 @@ myform:FormGroup;
   }
 
 
-  onSubmit() {
+  async onSubmit() {
+
+    const fields = {leadName:this.leadName,companyName:this.companyName}
+    const isValid = await this.formService.validateForm(fields);
+    if(await this.formService.validateForm(fields)){
+
     console.log('Your form data : ', this.myform.value);
     let followuptable:followuptable={leadName:this.myform.value.leadName,companyName:this.myform.value.companyName,email:this.myform.value.email,phoneNumber:this.myform.value.phoneNumber,leadStatus:this.myform.value.leadStatus};
 
@@ -48,7 +54,18 @@ myform:FormGroup;
         console.error('POST request failed', error);
         // Handle the error as needed
       }
-    );
+    );setTimeout(() => {
+      this.myform.reset();
+    }, 1000);
+    }else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    }
 
   // async onSubmit() {
   //   if (this.leadName === '') {
