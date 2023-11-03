@@ -52,6 +52,9 @@ export interface companystore {
   providedIn: 'root'
 })
 export class CreatecompanyService {
+  deleteCompany(arg0: string, keys: string, userid: void) {
+    throw new Error('Method not implemented.');
+  }
   fetchallservice(arg0: string, arg1: string, arg2: string): Observable<any[]> {
     throw new Error('Method not implemented.');
   }
