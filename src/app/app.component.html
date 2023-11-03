@@ -108,6 +108,16 @@
         <p>Reports</p>
       </button>
       <ul class="dropdown-list">
+        <li (click)="toggleDropdown5()"> Master Reports ></li>
+        <div *ngIf="isDropdownOpen5" class="right-dropdown">
+          <a (click)="selectOption3('Option 11')" routerLink="/viewcustomer">Cusomer List</a>
+          <a (click)="selectOption3('Option 12')" routerLink="/viewsupplier">Supplier List</a>
+          <a (click)="selectOption3('Option 13')" routerLink="/viewexicutive">Exicutive List</a>
+          <a (click)="selectOption3('Option 14')" routerLink="/viewitem">Item List</a>
+          <a (click)="selectOption3('Option 15')" routerLink="/viewservice">Service List</a>
+          <a (click)="selectOption3('Option 16')" routerLink="/viewledger">Ledger List</a>
+
+        </div>
         <li><a routerLink="/view-sale">Sales Report</a></li>
         <li><a routerLink="/view-purchase">Purchase Report</a></li>
         <li><a routerLink="/dc-in-report">DC-IN Report</a></li>
@@ -235,6 +245,16 @@
         <p>Reports</p>
       </button>
       <ul class="dropdown-list">
+        <li (click)="toggleDropdown5()"> Master Reports ></li>
+        <div *ngIf="isDropdownOpen5" class="right-dropdown">
+          <a (click)="selectOption3('Option 11')" routerLink="/viewcustomer">Cusomer List</a>
+          <a (click)="selectOption3('Option 12')" routerLink="/viewsupplier">Supplier List</a>
+          <a (click)="selectOption3('Option 13')" routerLink="/viewexicutive">Exicutive List</a>
+          <a (click)="selectOption3('Option 14')" routerLink="/viewitem">Item List</a>
+          <a (click)="selectOption3('Option 15')" routerLink="/viewservice">Service List</a>
+          <a (click)="selectOption3('Option 16')" routerLink="/viewledger">Ledger List</a>
+
+        </div>
         <li><a routerLink="/view-sale">Sales Report</a></li>
         <li><a routerLink="/view-purchase">Purchase Report</a></li>
         <li><a routerLink="/dc-in-report">DC-IN Report</a></li>

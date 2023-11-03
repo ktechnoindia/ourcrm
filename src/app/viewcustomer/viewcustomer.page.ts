@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
@@ -8,8 +8,6 @@ import { Observable } from 'rxjs';
 import { CustomerService } from '../services/customer.service';
 import { NavigationExtras } from '@angular/router';
 import { SessionService } from '../services/session.service';
-import { ReactiveFormsModule } from '@angular/forms';
-
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @Component({
@@ -17,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './viewcustomer.page.html',
   styleUrls: ['./viewcustomer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule
+  imports: [IonicModule, CommonModule, FormsModule,
   ]
 })
 export class ViewcustomerPage implements OnInit {
@@ -26,7 +24,37 @@ export class ViewcustomerPage implements OnInit {
   customers$: Observable<any[]>
 
   searchText:string='';
-  searchField: FormControl;
+  availableColumns: string[] = [
+    'Code',
+    'Name',
+    'GSTIN',
+    'Mobile No.',
+    'WhatsApp No.',
+    'Email',
+    'Country',
+    'State',
+    'District',
+    'Pincode',
+    'Full Address',
+    'Aadhar No.',
+    'PAN No.',
+    'Udhyog Aadhar No.',
+    'Account No.',
+    'IFSC Code',
+    'Bank Name',
+    'Branch Name',
+    'Card No.',
+    'Credit Period',
+    'Credit Limit',
+  ];
+  selectedColumns: string[] = [
+    'Code',
+    'Name',
+    'GSTIN',
+    'Mobile No.',
+    'WhatsApp No.',
+    'Email',
+  ];
 
 
   constructor(public session:SessionService,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private custservice:CustomerService) { 
@@ -35,10 +63,11 @@ export class ViewcustomerPage implements OnInit {
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid),'','');
     console.log(this.customers$);
 
-    this.searchField = new FormControl('');
-
+    this.customers$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+    
   }
-  
 
   async onSubmit(){
     if(this.formDate===''){
@@ -85,7 +114,6 @@ export class ViewcustomerPage implements OnInit {
   async openToast(msg:string) {  
     this.session.openToast(msg); 
    }  
-
    
 goBack(){
   this.router.navigate(["/add-customer"])

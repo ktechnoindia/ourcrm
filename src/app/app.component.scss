@@ -78,7 +78,7 @@ select option:checked {
 }
 
 .dropdown :hover {
-  color: #fff;
+  color: #000;
   border-bottom: rgb(255, 255, 255) solid 2px;
 }
 
@@ -358,18 +358,21 @@ background: skyblue;
 .right-dropdown{
    width: 100%;
    display: flex;
-   justify-content: center;
-   align-items: center;
    flex-direction: column;
 }
 .right-dropdown a{
-  background: rgb(198, 239, 255);
+  background: rgb(255, 255, 255);
  color: rgb(0, 0, 0);
   text-decoration: none;
   width: 100%;
   text-align: center;
   border-bottom: 1px solid rgb(0, 0, 0);
   padding: 5px;
+}
+.right-dropdown a :hover{
+color: #000;
+background: rgb(185, 228, 229);
+
 }
 .drop_down{
   margin-left: 20px;
