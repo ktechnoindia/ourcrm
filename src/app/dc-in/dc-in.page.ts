@@ -6,14 +6,13 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DcinService, dcinstore } from '../services/dcin.service';
-import { NgForm } from '@angular/forms';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-dc-in',
   templateUrl: './dc-in.page.html',
   styleUrls: ['./dc-in.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink]
 })
 export class DcInPage implements OnInit {
 
