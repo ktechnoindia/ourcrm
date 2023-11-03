@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
   selector: 'app-viewsupplier',

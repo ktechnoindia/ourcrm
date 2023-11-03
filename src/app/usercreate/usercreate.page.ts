@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { roletypesservice } from '../services/roletypes.service';
 import { Observable } from 'rxjs';
 import { UsercreateService, userdata } from '../services/usercreate.service';
+import { FormValidationService } from '../form-validation.service';
 
 
 @Component({
@@ -19,20 +20,19 @@ import { UsercreateService, userdata } from '../services/usercreate.service';
 })
 export class UsercreatePage implements OnInit {
   fname:string='';
-  usercode:string='';
+  usercode:number=0;
   fathname:string='';
   email:string='';
-  phone:string='';
+  phone:number=0;
   roleid: number = 0;
 
-  form:any;
+  form:FormGroup;
   roletypes$: Observable<any[]>
   submitted=false;
   subscription: any;
 
-  constructor(private usercreate : UsercreateService,  private router:Router,private formBuilder:FormBuilder, private roletypes: roletypesservice) { 
+  constructor(private usercreate : UsercreateService, private formService:FormValidationService, private router:Router,private formBuilder:FormBuilder, private roletypes: roletypesservice) { 
     this.roletypes$ = this.roletypes.getroletypes();
-
 
     this.form = this.formBuilder.group({
       fname:['',[Validators.required]],
@@ -45,8 +45,11 @@ export class UsercreatePage implements OnInit {
   }
 
   
-  onSubmit() {
-    if (this.form) {
+ async onSubmit() {
+  const fields = {fname:this.fname,usercode:this.usercode,fathname:this.fathname,phone:this.phone,email:this.email,roleid:this.roleid}
+  const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+
     console.log('Your form data : ', this.form.value);
     let userstore:userdata={
      fname:this.form.value.fname,
@@ -58,9 +61,7 @@ export class UsercreatePage implements OnInit {
     };
     this.usercreate.createuser(userstore,'','').subscribe(
       (response: any) => {
-       if(response.status){
         console.log('POST request successful', response);
-       }
         // Handle the response as needed
       },
       (error: any) => {
@@ -68,7 +69,18 @@ export class UsercreatePage implements OnInit {
         // Handle the error as needed
       }
     );
-  } 
+    setTimeout(() => {
+      this.form.reset();
+    }, 1000);
+  } else {
+    //If the form is not valid, display error messages
+    Object.keys(this.form.controls).forEach(controlName => {
+      const control = this.form.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+  }
 }
 
 

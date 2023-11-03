@@ -6,7 +6,7 @@ import { AlertController } from '@ionic/angular';
 export class FormValidationService {
 
   constructor(private alertController: AlertController) { }
-  async validateForm(fields: { [key: string]: any }): Promise<boolean> {
+  async validateForm(fields: { [key: string]:any }): Promise<boolean> {
     for (const key in fields) {
       if (fields[key].trim() === '') {
         await this.showAlert('Error !', 'Please fill required fields.');

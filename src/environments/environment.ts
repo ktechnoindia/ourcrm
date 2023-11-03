@@ -37,7 +37,7 @@ export const environment = {
   addpurchase: 'purchase',
   addquote: 'quotation',
   addupquote: 'saveupquote',
-  addcompany: 'savecompany',
+  addcompany: 'saveCompany',
   addroleofexecutive: 'roleofexecutive',
   addaccount: 'accounts',
   addcreateamc: 'createamc',

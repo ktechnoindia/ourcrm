@@ -12,6 +12,7 @@ import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
+import { FormValidationService } from '../form-validation.service';
 @Component({ 
   selector: 'app-add-lead',
   templateUrl: './add-lead.page.html',
@@ -45,7 +46,7 @@ export class AddLeadPage {
   districts$: Observable<any[]>
   leadsourcetype$: any;
   leadsourcetype!: string;
-  constructor(private router:Router,private formBuilder: FormBuilder,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
+  constructor(private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
    ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -80,49 +81,38 @@ export class AddLeadPage {
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
   }
 
-  loadCountries() {
-    // this.countryService.getCountries().subscribe(
-    //   (data) => {
-    //      console.log(data);
+  
+ async onSubmit() {
+    const fields = {catPerson:this.catPerson,phone:this.phone,selectedCountry:this.selectedCountry,selectedState:this.selectedState,selectedDistrict:this.selectedDistrict,fulladdress:this.fulladdress,lscore:this.lscore,selectpd:this.selectpd}
 
-    //     if (Array.isArray(data)) {
-    //       this.countries = data;
-    //     } else {
-    //       console.error('API did not return an array of countries.');
-    //     }
-
-    //   },
-    //   (error) => {
-    //     console.error('Error loading countries:', error);
-
-    //     if (error instanceof HttpErrorResponse) {
-    //       const errorMessage = 'HTTP Error occurred during the API request.';
-    //       console.error(errorMessage);
-
-    //       console.error('Status Code:', error.status);
-    //     } else {
-    //       console.error('Non-HTTP error occurred during the API request.');
-    //     }
-    //   }
-    // );
-  }
-
-  onSubmit() {
-    if(this.form){
+    const isValid = await this.formService.validateForm(fields);
+    if(await this.formService.validateForm(fields)){
+      
     console.log('Your form data : ', this.form.value);
     let leaddata:leadstore={catPerson:this.form.value.catPerson,phone:this.form.value.phone,whatshappnumber:this.form.value.whatshappnumber,emails:this.form.value.emails,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,fulladdress:this.form.value.fulladdress,lscore:this.form.value.lscore,lassign:this.form.value.lassign,rmark:this.form.value.rmark};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+       this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
+        this.formService.showFailedAlert();
       }
     );
-    }
+    setTimeout(() => {
+      this.form.reset();
+    }, 1000);
+    } else {
+        // If the form is not valid, display error messages
+        Object.keys(this.form.controls).forEach(controlName => {
+          const control = this.form.get(controlName);
+          if (control?.invalid) {
+            control.markAsTouched();
+          }
+        });
+      }
 
 
     // if (this.form.valid) {
