@@ -45,7 +45,7 @@
                 <div style="overflow-x:auto; width: 100% ;height: 350px;">
                   <table style="width: 100%;overflow-x:auto;">
                     <thead>
-                      <tr >
+                      <tr>
                         <th style="background-color: azure;" colspan="4">Company</th>
                         <th style="background-color: azure;" colspan="9">Address : 1</th>
                         <th style="background-color: azure;" colspan="9">Address : 2</th>
@@ -102,7 +102,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let company of companys$ | async; let i = index">
+                      <tr *ngFor="let company of companys$ | async; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{company.cpyname}}</td>
                         <td>{{i + 1}}</td>
@@ -133,23 +133,26 @@
                         <td>{{company.companytype}}</td>
                         <td>{{company.pannumber}}</td>
                         <td>{{company.tanumber}}</td>
-                        <td>{{company.sales}}</td> 
-                        <td>{{company.purchase}}</td> 
-                        <td>{{company.quotation}}</td> 
-                        <td>{{company.challan}}</td> 
-                        <td>{{company.lms}}</td> 
-                        <td>{{company.amc}}</td> 
-                        <td>{{company.alloftheabove}}</td> 
-                        <td>{{company.language}}</td> 
-                        <td>{{company.currency}}</td> 
-                        <td>{{company.accno}}</td> 
-                        <td>{{company.ifsc}}</td> 
-                        <td>{{company.bname}}</td> 
-                        <td>{{company.branchname}}</td> 
-                        <td>{{company.upiid}}</td> 
-
+                        <td>{{company.sales}}</td>
+                        <td>{{company.purchase}}</td>
+                        <td>{{company.quotation}}</td>
+                        <td>{{company.challan}}</td>
+                        <td>{{company.lms}}</td>
+                        <td>{{company.amc}}</td>
+                        <td>{{company.alloftheabove}}</td>
+                        <td>{{company.language}}</td>
+                        <td>{{company.currency}}</td>
+                        <td>{{company.accno}}</td>
+                        <td>{{company.ifsc}}</td>
+                        <td>{{company.bname}}</td>
+                        <td>{{company.branchname}}</td>
+                        <td>{{company.upiid}}</td>
+                        <td class="Action">
+                          <!-- <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> -->
+                            <ion-icon color="primary" icon-only clear (click)="editcompany(company)" name="create"></ion-icon>
+                        </td>
                       </tr>
-                      
+
 
                     </tbody>
 

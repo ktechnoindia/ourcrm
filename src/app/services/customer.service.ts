@@ -43,6 +43,9 @@ name:string;
   providedIn: 'root'
 })
 export class CustomerService {
+  deleteCustomer(arg0: string, keys: string, userid: void) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private httpclient:HttpClient) { }
   createCustomer(customer:cust,key:string,user:string){
