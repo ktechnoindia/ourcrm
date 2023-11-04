@@ -5,7 +5,7 @@
         <div class="dekstop-menu">
           <ion-card-header>
             <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-icon (click)="goBack()" class="back" name="arrow-back" ></ion-icon>
               <ion-title style="text-align: center;">Role Assign</ion-title>
             </ion-row>
           </ion-card-header>
@@ -17,6 +17,7 @@
                 <tr>
                   <th style="width: 50px;">Select</th>
                   <th style="width: 200px;">Module Name</th>
+                  <th style="width: 50px;">All</th>
                   <th style="width: 50px;">New</th>
                   <th style="width: 50px;">View</th>
                   <th style="width: 50px;">Edit</th>
@@ -31,10 +32,12 @@
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td>Purchase</td>
+                  <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
@@ -49,10 +52,12 @@
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td>Challan</td>
+                  <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
@@ -67,10 +72,12 @@
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td><ion-checkbox></ion-checkbox></td>
-                                    <td>AMC</td>
+                  <td>AMC</td>
+                  <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
@@ -85,10 +92,22 @@
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
                   <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox></ion-checkbox></td>
                 </tr>
 
               </table>
             </div>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit" id="open-loading">Save</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Role Assigning..."
+                [duration]="1000"></ion-loading>
+              <!-- <ion-button>Delete</ion-button> -->
+              <!-- <ion-button>Preview</ion-button> -->
+              <ion-button>Close</ion-button>
+            </ion-row>
           </ion-row>
 
 

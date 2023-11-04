@@ -338,7 +338,11 @@ export const routes: Routes = [
   {
     path: 'roleassign',
     loadComponent: () => import('./roleassign/roleassign.page').then( m => m.RoleassignPage)
+  },  {
+    path: 'setting',
+    loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
   },
+
   
 
 

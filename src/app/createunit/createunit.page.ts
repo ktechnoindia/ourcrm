@@ -69,7 +69,7 @@ export class CreateunitPage implements OnInit {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/item-master']); 
   }
 
 }

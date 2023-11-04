@@ -58,6 +58,6 @@ export class ChangepasswordPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/setting']); 
   }
 }

@@ -5,7 +5,8 @@
         <div class="dekstop-menu">
           <ion-card-header>
             <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-icon (click)="goBack()" class="back" name="arrow-back" id="open-loading"></ion-icon>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Loading..." [duration]="1000"></ion-loading>
               <ion-title style="text-align: center;">Login</ion-title>
             </ion-row>
           </ion-card-header>
@@ -32,7 +33,9 @@
           </ion-row>
 
           <ion-row class="custom-primary" style="justify-content: center;margin-top: 20px;">
-            <ion-button type="submit">Login</ion-button>
+            <ion-button type="submit" id="open-loading1">Login</ion-button>
+            <ion-loading class="custom-loading" trigger="open-loading1" message="Loading..." [duration]="1000"></ion-loading>
+
           </ion-row>
           </form>
         </ion-grid>

@@ -41,8 +41,7 @@
                 <ion-col size="8">
                   <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
                 </ion-col>
-                <ion-col size="4">
-
+                <ion-col size="4" class="filter">
                   <ion-select [(ngModel)]="selectedColumns" [ngModelOptions]="{standalone: true}" multiple="true">
                     <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ col }}</ion-select-option>
                   </ion-select>

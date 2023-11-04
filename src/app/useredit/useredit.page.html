@@ -5,7 +5,7 @@
         <div class="dekstop-menu">
           <ion-card-header>
             <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-icon (click)="goBack()" class="back" name="arrow-back" ></ion-icon>
               <ion-title style="text-align: center;">User Edit</ion-title>
             </ion-row>
           </ion-card-header>
@@ -67,7 +67,8 @@
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button>New</ion-button>
-              <ion-button type="submit">Save</ion-button>
+              <ion-button type="submit" id="open-loading">Save</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Editing..." [duration]="1000"></ion-loading>
               <!-- <ion-button>Delete</ion-button> -->
               <!-- <ion-button>Preview</ion-button> -->
               <ion-button>Close</ion-button>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { SalesService, salesstore } from '../services/sales.service';
@@ -12,7 +12,7 @@ import { SalesService, salesstore } from '../services/sales.service';
   templateUrl: './add-sale.page.html',
   styleUrls: ['./add-sale.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterModule]
 })
 export class AddSalePage implements OnInit {
 

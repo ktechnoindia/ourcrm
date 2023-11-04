@@ -19,6 +19,11 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Add Quotation</ion-title>
+              <div  class="custom-primary">
+                <ion-button [routerLink]="['/view-quot']" id="open-loading5">View Quotation</ion-button>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Quotation Showing ..." [duration]="1000"></ion-loading>
+
+              </div>
             </ion-row>
           </ion-card-header>
         </div>
@@ -158,13 +163,19 @@
               </ion-col>
             </ion-row>
 
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button id="open-loading">New</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+              <ion-button type="submit" id="open-loading1">Save</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading1" message="Quotation Adding..." [duration]="1000"></ion-loading>
+              <ion-button id="open-loading2">Delete</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
+              <ion-button id="open-loading3">Preview</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+              <ion-button id="open-loading4">Close</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+
+            </ion-row>
 
           </form>
         </ion-grid>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
 import { NgForm } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add-quot.page.html',
   styleUrls: ['./add-quot.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterModule]
 })
 export class AddQuotPage implements OnInit {
 

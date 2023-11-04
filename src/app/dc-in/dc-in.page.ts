@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DcinService, dcinstore } from '../services/dcin.service';
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './dc-in.page.html',
   styleUrls: ['./dc-in.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink,RouterModule]
 })
 export class DcInPage implements OnInit {
 

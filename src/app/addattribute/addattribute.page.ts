@@ -70,7 +70,7 @@ export class AddattributePage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/master']);
+    this.router.navigate(['/item-master']);
   }
 
 }
