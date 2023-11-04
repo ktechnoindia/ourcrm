@@ -22,7 +22,7 @@ export class AddServicePage implements OnInit {
   sac_code:string='';
   description:string='';
   myform:FormGroup;
-  submitted=false;
+
   gst$: any;
   gst: string = '';
 
@@ -39,14 +39,14 @@ export class AddServicePage implements OnInit {
   }
 
   async onSubmit() {
-    const  fields = {service_code:this.service_code,service_name:this.service_name,gst:this.gst,sac_code:this.sac_code,description:this.description}
-    // const isValid = this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    // const  fields = {service_code:this.service_code,service_name:this.service_name,gst:this.gst,sac_code:this.sac_code,description:this.description}
+    // const isValid = await this.formService.validateForm(fields);
+    // if (await this.formService.validateForm(fields)) {
     
     console.log('Your form data : ', this.myform.value);
     let servicedata:serv={
       service_code: this.myform.value.service_code, service_name: this.myform.value.service_name, gst: this.myform.value.gst, sac_code: this.myform.value.sac_code, description: this.myform.value.description,
-    companyid: 1,
+      companyid: 1,
     };
     this.addService.createService(servicedata,'','').subscribe(
       (response: any) => {
@@ -63,15 +63,15 @@ export class AddServicePage implements OnInit {
       this.myform.reset();
     }, 1000);
 
-  }else {
-    //If the form is not valid, display error messages
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control?.invalid) {
-        control.markAllAsTouched();
-      }
-    });
-  }
+  // }else {
+  //   //If the form is not valid, display error messages
+  //   Object.keys(this.myform.controls).forEach(controlName => {
+  //     const control = this.myform.get(controlName);
+  //     if (control?.invalid) {
+  //       control.markAllAsTouched();
+  //     }
+  //   });
+  // }
 }
 
   // onSubmit(form:any) {

@@ -18,11 +18,11 @@ export class ViewservicePage implements OnInit {
   formDate:string='';
   toDate:string='';
   services$: Observable<any[]> 
-  company_id:string='';
+
 
   constructor(private additem : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
-    const compid='1';
-    this.services$ = this.additem.fetchallservice(encService.encrypt(compid),'','');
+    const companyid='1';
+    this.services$ = this.additem.fetchallservice(encService.encrypt(companyid),'','');
     console.log(this.services$);
   }
 

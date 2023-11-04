@@ -126,30 +126,32 @@
           </ion-row>
 
           <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-              <select [(ngModel)]="selectedOption" formControlName="selectedOption" name="country" label-placement="floating" fill="outline"
-                (change)="onCountryChange()">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select [(ngModel)]="country" formControlName="country" name="selectedCountry" label-placement="floating" fill="outline" (change)="onCountryChange()">
                 <option value="" disabled selected>---Select Country ---</option>
-                <option *ngFor="let country of countries$ | async" [value]="country.countryid">
+                <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
                   {{ country.countryname }}
                 </option>
-
               </select>
             </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select [(ngModel)]="selectedState" formControlName="selectedState"type="text" name="state" label-placement="floating" fill="outline"
-                (change)="onStateChange()">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select [(ngModel)]="state" formControlName="state" name="state" label-placement="floating" (change)="onStateChange()">
                 <option value="" disabled selected>---Select State ---</option>
                 <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                   {{ state.statename }}
                 </option>
               </select>
+              <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
+                State is required.
+                </div>
             </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict"name="district" label-placement="floating" fill="outline">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+
+            <select  [(ngModel)]="district" formControlName="district" name="district" label-placement="floating" fill="outline"
+                (change)="onDistrictChange()">
                 <option value="" disabled selected>---Select District ---</option>
-                <option *ngFor="let district of districts$ | async" [value]="district.districtid">
+                <option *ngFor="let district of (districts$ | async)" [value]="district.districtid" >
                   {{ district.districtname }}
                 </option>
               </select>
@@ -178,35 +180,36 @@
           </ion-row>
 
           <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-              <select [(ngModel)]="selectedOption1" name="country1" formControlName="selectedOption1" label-placement="floating" fill="outline"
-                (change)="onCountryChange()">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select [(ngModel)]="country1" formControlName="country1" name="selectedCountry1" label-placement="floating" fill="outline" (change)="onCountryChange()">
                 <option value="" disabled selected>---Select Country ---</option>
-                <option *ngFor="let country of countries$ | async" [value]="country.countryid">
+                <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
                   {{ country.countryname }}
                 </option>
-
               </select>
             </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select [(ngModel)]="selectedState1" name="state1" formControlName="selectedState1" label-placement="floating" fill="outline"
-                (change)="onStateChange()">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select [(ngModel)]="state1" formControlName="state1" name="selectedState1" label-placement="floating" (change)="onStateChange()">
                 <option value="" disabled selected>---Select State ---</option>
                 <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                   {{ state.statename }}
                 </option>
               </select>
+              <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
+                State is required.
+                </div>
             </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select [(ngModel)]="selectedDistrict1" name="district1" formControlName="selectedDistrict1" label-placement="floating" fill="outline">
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+
+            <select  [(ngModel)]="district1" formControlName="district1" name="selectedDistrict1" label-placement="floating" fill="outline"
+                (change)="onDistrictChange()">
                 <option value="" disabled selected>---Select District ---</option>
-                <option *ngFor="let district of districts$ | async" [value]="district.districtid">
+                <option *ngFor="let district of (districts$ | async)" [value]="district.districtid" >
                   {{ district.districtname }}
                 </option>
               </select>
             </ion-col>
-
             <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
               <ion-row>
                 <ion-input [(ngModel)]="pincode1" formControlName="pincode1" type="tel" name="pincode1" label=" PinCode  :"

@@ -13,7 +13,7 @@ lname:string;
     whatsapp_number: string;
     email:string;
     country: number;
-    state: number
+    state: number;
     district: number;
     pincode: string;
     address: string;
@@ -35,7 +35,7 @@ lname:string;
     companyName: string;
     
     country1: number;
-    state1: number
+    state1: number;
     district1: number;
     pincode1: string;
     address1: string;
