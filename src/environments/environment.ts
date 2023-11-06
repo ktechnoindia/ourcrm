@@ -49,7 +49,7 @@ export const environment = {
   fetchallitemgroups: 'getItemGroups',
   fetchallcust: 'get_customers',
   fetchallvend: 'get_vendors',
-  fetchallitem: 'item',
+  fetchallitem: 'get_items',
   fetchallservice: 'saveservices',
   fetchallexecuitve:'saveExecutive', 
   fetchallcompany:'saveCompany',
