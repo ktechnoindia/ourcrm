@@ -45,7 +45,7 @@ export class AddCustomerPage implements OnInit {
   address: string = '';
   gstin:string='';
   email:string='';
-  select_sales_person:string='';
+  select_sales_person:number=0;
   pincode:string='';
   tdn: number | null = null;
   aadhar_no: number | null = null;

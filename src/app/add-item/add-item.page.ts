@@ -41,7 +41,7 @@ export class AddItemPage implements OnInit {
   // selectAltUnit: string = '';
   selectItemGroup: string = '';
   selectGst: string = '';
-  selectunitname:string = '';
+  unitname:number=0;
   openingbalance: number | null = null;
   closingbalance: number | null = null;
   attr1: string = '';
@@ -69,7 +69,7 @@ export class AddItemPage implements OnInit {
   selectGst$: any;
   selectStock:string='';
   unitname$:any;
-  unitname!: string; 
+  // unitname!: string; 
   hsnname$:Observable<any[]>
   hsnname:string='';
   

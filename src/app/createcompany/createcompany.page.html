@@ -149,7 +149,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry1" formControlName="selectedCountry1" name="country1"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>---Select Country ---</option>
+                  <option value="0">---Select Country ---</option>
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -161,7 +161,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
                 <select [(ngModel)]="selectedState1" formControlName="selectedState1" name="state1"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>---Select State ---</option>
+                  <option value="0" >---Select State ---</option>
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>

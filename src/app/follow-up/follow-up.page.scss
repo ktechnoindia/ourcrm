@@ -4,7 +4,6 @@ table{
 td {
     text-align: center;
 }
-
 table ion-input{
 background: none;
 border: none;
@@ -22,7 +21,7 @@ border: none;
     // color: goldenrod;
     // font-weight: 400;
     // outline-color: goldenrod;
-    background: skyblue;
+    // background: skyblue;
 
 }
 
@@ -47,4 +46,8 @@ border: none;
 ng-template ion-button{
     color: goldenrod;
 }
-
+@media(max-width:940px){
+    .followuplist ion-card{
+height: 500;
+    }
+}

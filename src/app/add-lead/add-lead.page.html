@@ -19,9 +19,10 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Add Lead</ion-title>
-              <div  class="custom-primary">
+              <div class="custom-primary">
                 <ion-button [routerLink]="['/view-lead']" id="open-loading5">View Lead</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading5" message="Lead Showing ..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Lead Showing ..."
+                  [duration]="1000"></ion-loading>
 
               </div>
             </ion-row>
@@ -31,7 +32,7 @@
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="companyname" type="text"
                   label="Company Name:" label-placement="floating" fill="outline"></ion-input>
                 <div
@@ -40,7 +41,7 @@
                   Company Name is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="contactPerson" type="text"
                   label="Contact Person:" label-placement="floating" fill="outline"></ion-input>
                 <div
@@ -49,7 +50,9 @@
                   Contact Person is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+            </ion-row>
+            <ion-row>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="tel" label="Mobile No.:"
                   label-placement="floating" fill="outline" maxlength="10"></ion-input>
                 <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone']?.touched"
@@ -57,22 +60,20 @@
                   Mobile Number is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-input [(ngModel)]="emails" formControlName="emails" name="email" type="email" label="Email:"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-col>
             </ion-row>
-           
-            <ion-row>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+            <ion-row>
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>--- Select Country ---</option> <!-- Default option -->
+                  <option value="0">--- Select Country ---</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
-
                 </select>
                 <!-- <select   [(ngModel)]="selectedCountry"   formControlName="selectedCountry" name="country"   >
                   <option value="">--- Select Country ---</option>
@@ -86,11 +87,11 @@
                   Country is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
 
                 <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>--- Select State ---</option> <!-- Default option -->
+                  <option value="0" >--- Select State ---</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -102,10 +103,10 @@
                 </div>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
-                  <option value="" disabled selected>--- Select District ---</option> <!-- Default option -->
+                  <option value="0" >--- Select District ---</option> <!-- Default option -->
 
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
@@ -117,17 +118,17 @@
                   District is required.
                 </div>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="pncode" formControlName="pncode" name="pinCode" type="number"
                     label=" Pincode :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
-            </ion-row>
-            <ion-row>
-              
-              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="8" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -138,14 +139,18 @@
                   </div>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+            </ion-row>
+            <ion-row>
+
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
                     <option value="" disabled selected>--- Select Lead Source ---</option>
-                    <option *ngFor="let leadsourcetype of leadsourcetype$ | async" [value]="leadsourcetype.leadsourcetypeid">
+                    <option *ngFor="let leadsourcetype of leadsourcetype$ | async"
+                      [value]="leadsourcetype.leadsourcetypeid">
                       {{ leadsourcetype.leadsourcename }}
                     </option>
-  
+
                   </select>
                   <div *ngIf="form && form.controls['lscore']?.hasError('required') && form.controls['lscore']?.touched"
                     class="error-message">
@@ -153,13 +158,13 @@
                   </div>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="lassign" formControlName="lassign" name="leadassign">
-                  <option value="" disabled selected>--- Lead Assign To ---</option> <!-- Default option -->
-                  <option value="">Deepak</option>
-                  <option value="">Ravi</option>
-                  <option value="">Nirbhay</option>
-                  <option value="">Abhishek</option>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <select [(ngModel)]=" select_sales_person" name="select_sales_person" [ngModelOptions]="{standalone: true}">
+                  <option value="0">---Select Executive Name ---</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
+                   
                 </select>
                 <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched"
                   class="error-message">
@@ -170,7 +175,7 @@
 
             <ion-row>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <select [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">
                   <option value="" disabled selected>--- Select Product ---</option> <!-- Default option -->
                   <option value="">P1</option>
@@ -178,13 +183,14 @@
                   <option value="">p2</option>
                   <option value="">p4</option>
                 </select>
-                <div *ngIf="form && form.controls['selectpd']?.hasError('required') && form.controls['selectpd']?.touched"
+                <div
+                  *ngIf="form && form.controls['selectpd']?.hasError('required') && form.controls['selectpd']?.touched"
                   class="error-message">
                   Select Product is required.
                 </div>
               </ion-col>
 
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-textarea [(ngModel)]="rmark" formControlName="rmark" name="remark" type="text" label=" Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>
@@ -194,11 +200,14 @@
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button id="open-loading">New</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Adding..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Adding..."
+                [duration]="1000"></ion-loading>
               <ion-button id="open-loading4">Close</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
 
             </ion-row>
           </form>

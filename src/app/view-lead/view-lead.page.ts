@@ -5,6 +5,8 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { ExecutiveService } from '../services/executive.service';
+
 @Component({
   selector: 'app-view-lead',
   templateUrl: './view-lead.page.html',
@@ -14,24 +16,21 @@ import { RouterLink } from '@angular/router';
 })
 export class ViewLeadPage implements OnInit {
 
-  companyName: string = '';
-  cName: string = '';
+  select_sales_person:number=0;
+  executive$: any;
+  executive: string='';
   fromDate: string = '';
   toDate: string = '';
 
-  constructor(private router: Router, private toastCtrl: ToastController) { }
+  constructor(private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController) {
+    this.executive$ = this.execut.getexecutive();
+
+   }
 
   async onSubmit() {
-    if (this.companyName === '') {
+   if(this.executive$===''){
       const toast = await this.toastCtrl.create({
-        message: "Company Name is Required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.cName===''){
-      const toast = await this.toastCtrl.create({
-        message:"Customer Name is required",
+        message:"Executive  Name is required",
         duration:3000,
         color:'danger'
       });

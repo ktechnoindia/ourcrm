@@ -13,33 +13,64 @@
         <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
           <div class="icon-container">
 
-            <ion-row>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>Add Lead</ion-label>
-
-              </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>View Lead</ion-label>
-
-              </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="transgender"></ion-icon>
-                <ion-label>Transfer Lead</ion-label>
-
-              </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>Add Lead</ion-label>
-
-              </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>Add Lead</ion-label>
-
-              </ion-col>
-            </ion-row>
+            <ion-row class="headinglabel">
+                <ion-label>Last 30 Days Leads :</ion-label>
+              </ion-row>
+              <ion-row class="leadscard">
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: rgb(212, 165, 165);">
+                    <ion-title>10</ion-title>
+                    <ion-label>
+                      New Lead
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: lightcyan;">
+                    <ion-title>10 %</ion-title>
+                    <ion-label>
+                      Engagement
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: lightgreen;">
+                    <ion-title>100%</ion-title>
+                    <ion-label>
+                      Active Leads
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+              <ion-row class="headinglabel">
+                <ion-label>Overall Leads :</ion-label>
+              </ion-row>
+              <ion-row class="leadscard">
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: lightgray;">
+                    <ion-title>1020</ion-title>
+                    <ion-label>
+                      Total Leads
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: lightcyan;">
+                    <ion-title>0 %</ion-title>
+                    <ion-label>
+                      Engagement
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: lightgreen;">
+                    <ion-title>99%</ion-title>
+                    <ion-label>
+                      Active Leads
+                    </ion-label>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
            
           </div>
         </ion-col>
@@ -59,8 +90,7 @@
                 <a [routerLink]="['/transfer-lead']">Transfer Lead</a>
               </ion-col>
               </ion-row>
-             
-          </div>
+                       </div>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -70,7 +100,7 @@
     <ion-row class="lead_details">
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>User Wise Lead</p>
+          <p>Top New Lead</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
             <table>
@@ -204,143 +234,3 @@
   </ion-grid>
 
 </ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<ion-content class="custom-content">
-
-  <div class="container_fluid">
-
-    <div class="table-container">
-      <p>Today's Lead</p>
-      <ion-row>
-        <ion-col>
-          <ion-input color="warning" name="formDate" type="date" label=" From Date  :"
-          label-placement="floating" fill="outline"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-input color="warning" name="formDate" type="date" label=" From Date  :"
-          label-placement="floating" fill="outline"></ion-input>
-        </ion-col>
-        <ion-col>
-          <ion-button size="medium"  >Okoo</ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-searchbar></ion-searchbar>
-      <div class="scroll-container">
-      <table>
-        <tr>
-          <th><input  type="checkbox" name=""></th>
-          <th>Lead Name</th>
-          <th>Company Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Lead Source</th>
-          <th>Lead Owner</th>
-        </tr>
-        <tr >
-          <td><input type="checkbox" name=""></td>
-          <td><a href="">Ktechnodsks</a></td>
-          <td>Ktechno Private Ltd.</td>
-          <td><a href="">ktechno@gmail.com</a></td>
-          <td>+91 993893849</td>
-          <td>Thnn sndsf</td>
-          <td>jdjfdjghj</td>
-
-        </tr>
-        <tr>
-          <td><input type="checkbox" name=""></td>
-          <td><a href="">Ktechnodsks</a></td>
-          <td>Ktechno Private Ltd.</td>
-          <td><a href="">ktechno@gmail.com</a></td>
-          <td>+91 993893849</td>
-          <td>Thnn sndsf</td>
-          <td>jdjfdjghj</td>
-
-        </tr>
-        <tr>
-          <td><input type="checkbox" name=""></td>
-          <td>Ktechno Private Ltd.</td>
-          <td><a href="">ktechno@gmail.com</a></td>
-          <td>+91 993893849</td>
-          <td>Thnn sndsf</td>
-          <td>jdjfdjghj</td>
-          <td>jdjfdjghj</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" name=""></td>
-          <td>Ktechno Private Ltd.</td>
-          <td><a href="">ktechno@gmail.com</a></td>
-          <td>+91 993893849</td>
-          <td>Thnn sndsf</td>
-          <td>jdjfdjghj</td>
-          <td>jdjfdjghj</td>
-        </tr>
-      </table>
-    </div>
-    <ion-row>
-      <ion-col size="12" size-lg="10" >
-
-      </ion-col>
-      <ion-col size="12" size-lg="2">
-        <ion-button>ok</ion-button>
-        <ion-button>cancel</ion-button>
-      </ion-col>
-    </ion-row>
-    </div>
-
-     <div class="table-container">
-      <p style="background-color: lightblue;">My Meeting's</p>
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>From </th>
-          <th>To</th>
-          <th>Related To </th>
-          <th>Contact Name</th>
-          
-        </tr>
-        <tr>
-          <td><a href="">Ktechnodsks</a></td>
-          <td><input type="date" name="from" > </td>
-          <td><input type="date" name="from" > </td>
-          <td>+91 993893849</td>
-          <td>Thnn sndsf</td>
-         
-        </tr>
-      </table>
-    </div> 
-  </div>
-
-</ion-content>-->

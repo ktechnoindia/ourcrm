@@ -13,7 +13,7 @@ export interface leadstore {
   pncode: number;
   fulladdress : string;
   lscore : string;
-  lassign : string;
+  select_sales_person : string;
   rmark : string;
 }
 @Injectable({
