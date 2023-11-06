@@ -20,9 +20,9 @@ export class ViewservicePage implements OnInit {
   services$: Observable<any[]> 
 
 
-  constructor(private additem : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
-    const companyid='1';
-    this.services$ = this.additem.fetchallservice(encService.encrypt(companyid),'','');
+  constructor(private addService : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
+    const compid='1';
+    this.services$ = this.addService.fetchallservice(encService.encrypt(compid),'','');
     console.log(this.services$);
   }
 

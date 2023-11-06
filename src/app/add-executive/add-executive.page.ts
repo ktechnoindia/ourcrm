@@ -26,15 +26,16 @@ export class AddExecutivePage implements OnInit {
   submitted = false;
 
   roleid: number = 0;
+  excode:string='';
   executivename: string = '';
   emanager: string = '';
   emobile: string='';
   eemail: string = '';
   ewhatsapp: string='';
   epan: string = '';
-  ecommision: number=0;
+  ecommision: string='';
   ledger: string = '';
-  companyid:number=0;
+  companyid=1;
   
   roletypes$: Observable<any[]>
   MenuController: any;
@@ -46,6 +47,7 @@ export class AddExecutivePage implements OnInit {
 
     this.form = this.formBuilder.group({
       roleid: ['', [Validators.required]],
+      excode:['',[Validators.required]],
       executivename: ['', [Validators.required]],
       emanager: ['', [Validators.required]],
       emobile: ['', [Validators.required]],
@@ -54,7 +56,7 @@ export class AddExecutivePage implements OnInit {
       epan: [''],
       ewhatsapp: [''],
       eemail: [''],
-      companyid:['']
+     
     })
   }
 
@@ -81,11 +83,11 @@ export class AddExecutivePage implements OnInit {
   // }
 
   async onSubmit() {
-    const fields = {roleid:this.roleid,executivename:this.executivename,emanager:this.emanager,emobile:this.emobile,ledger:this.ledger}
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    // const fields = {roleid:this.roleid,executivename:this.executivename,emanager:this.emanager,emobile:this.emobile,ledger:this.ledger}
+    // const isValid = await this.formService.validateForm(fields);
+    // if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
-    let executdata:execut={roleid:this.form.value.roleid,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:this.form.value.companyid};
+    let executdata:execut={roleid:this.form.value.roleid,excode:this.form.value.excode,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:1};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
@@ -101,15 +103,15 @@ export class AddExecutivePage implements OnInit {
       this.form.reset()
     }, 1000); 
     
-  }else {
-    //If the form is not valid, display error messages
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
-  }
+  // }else {
+  //   //If the form is not valid, display error messages
+  //   Object.keys(this.form.controls).forEach(controlName => {
+  //     const control = this.form.get(controlName);
+  //     if (control?.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   });
+  // }
 }
 
   ngOnInit() {
