@@ -198,7 +198,7 @@ export class CreatecompanyPage implements OnInit {
       bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,
     };
 
-    this.createcompany.createcomapany(companydata, '', '').subscribe(
+    this.createcompany.createCompany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
        this.formService.showSuccessAlert();
@@ -220,22 +220,6 @@ export class CreatecompanyPage implements OnInit {
         }
       });
     }
-
-
-
-
-    // onSubmit() {
-    //   if (this.form.valid) {
-    //     console.log('Selected Value' + this.form.value);
-    //   } else {
-    //     Object.keys(this.form.controls).forEach(controlName => {
-    //       const control = this.form.get(controlName);
-    //       if (control.invalid) {
-    //         control.markAsTouched();
-    //       }
-    //     })
-    //   }
-    // }
   }
   onCountryChange() {
     console.log('selected value' + this.selectedCountry);
