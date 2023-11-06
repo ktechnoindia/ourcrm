@@ -122,7 +122,7 @@ export class CreatecompanyPage implements OnInit {
       selectedState: ['', [Validators.required]],
       selectedDistrict: ['', [Validators.required]],
       address: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required,Validators.maxLength(10)]],
       cpyname: ['', [Validators.required]],
       email: [''],
       rdate: [''],
@@ -201,11 +201,11 @@ export class CreatecompanyPage implements OnInit {
     this.createcompany.createcomapany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+       this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
+        this.formService.showFailedAlert();
       }
     );
     setTimeout(() => {

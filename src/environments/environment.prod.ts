@@ -18,6 +18,8 @@ export const environment = {
   fetchbusinesstype:'getBusinessTypes',
   addcust:'customer',
   addvend:'vendor',
+  additem: 'item',
+  addgroup: 'saveItemGroups',
   addledger: 'saveLedger',
   addexecutive: 'saveExecutive',
   fetchexecutive:'getExecutives',
@@ -26,6 +28,8 @@ export const environment = {
   fetchallexecuitve:'saveExecutive',
   fetchallledger:'saveLedger',
   fetchallservice: 'saveservices',
+  fetchallitem: 'get_items',
+  fetchallitemgroups: 'getItemGroups',
   addservice: 'saveservices',
 
 };

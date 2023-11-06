@@ -140,7 +140,7 @@ export class AddVendorPage implements OnInit {
   }
   onStateChange() {
     console.log('selected value' + this.selectedState);
-    this.states$ = this.stateservice.getStates(1);
+    this.districts$ = this.districtservice.getDistricts(this.selectedState);
   }
 
   onDistrictChange() {
