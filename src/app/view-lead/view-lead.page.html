@@ -27,37 +27,30 @@
           <form #viewLeadForm="ngForm" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 25px;">
-
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select-width">
-                  <option>---Select Company Name ---</option>
-                  <option value="India">Mehta Infotech</option>
-                  <option value="UK">Ktechno</option>
-                  <option value="USA">Relyon</option>
+              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+                <select [(ngModel)]=" select_sales_person" name="select_sales_person">
+                  <option value="0">Search By Executive Name</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
+                   
                 </select>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select [(ngModel)]="cName" name="cName">
-                  <option value="">--- Customer Name ---</option>
-                  <option value="India">Deepak</option>
-                  <option value="UK">Abhishel</option>
-                  <option value="USA">Ravi</option>
-                </select>
-              </ion-col>
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="fromDate" name="fromDate" type="date" label="To Date :"
                     label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
                     label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+               <ion-col size-lg="3" size-md="3" size-sm="3" size="6"
+                class="custom-primary">
                 <ion-row>
                   <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
                   <ion-button style="justify-content: right; margin-top: 10px;" expand="block"  [routerLink]="['/leadedit']">Edit Lead</ion-button>

@@ -65,7 +65,7 @@ export class AddVendorPage implements OnInit {
   branch_name: string = '';
   credit_period: number=0;
   credit_limit: number=0;
-  select_sales_person: number=0;
+
   card_number: string = '';
   opening_point: number=0;
   closing_point: number=0;
@@ -77,14 +77,16 @@ export class AddVendorPage implements OnInit {
   myform: FormGroup;
   submitted = false;
 
-  executive$: any;
-  executive!: string;
+
   custtype$: any;
   custtype!: string;
 
   country1: number=0;
   state1:number=0;
   district1: number=0;
+  select_sales_person:number=0;
+  executive$: any;
+  executive: string='';
 
   constructor(private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({

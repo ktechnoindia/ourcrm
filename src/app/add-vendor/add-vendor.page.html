@@ -325,11 +325,12 @@
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                <select [(ngModel)]="select_sales_person" formControlName="select_sales_person" name="sOption" >
-                  <option value="0">---Select Sales Person---</option> <!-- Default option with value 0 -->
-                  <option value="India">Deepak</option>
-                  <option value="UK">Abhishel</option>
-                  <option value="USA">Ravi</option>
+                <select [(ngModel)]=" select_sales_person" name="select_sales_person" [ngModelOptions]="{standalone: true}">
+                  <option value="0">---Select Executive Name ---</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
+                   
                 </select>
                </ion-col>
 

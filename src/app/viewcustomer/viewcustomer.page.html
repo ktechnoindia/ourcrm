@@ -51,7 +51,7 @@
 
               <ion-row class="Executive">
                 <div style="overflow-x:auto; width: 100% ;height: 350px;">
-                  <!-- <table>
+                  <table>
                     <thead>
                       <tr>
                         <th *ngFor="let col of selectedColumns">{{ col }}</th>
@@ -59,13 +59,13 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let customer of customers$ | async; let i = index">
-                        <td *ngFor="let col of selectedColumns">
+                        <td *ngFor="let col of selectedColumns" style="width: 100px;">
                           {{ customer[col] }}
                         </td>
                       </tr>
                     </tbody>
-                  </table> -->
-                   <table style="width: 100%;overflow-x:auto;"  >
+                  </table>
+                 <!--  <table style="width: 100%;overflow-x:auto;"  >
                     <thead>
                       <tr>
                         <th style="width: 50px">Sr. No.</th>
@@ -119,7 +119,7 @@
                         <td>{{customer.credit_period}}</td>
                         <td>{{customer.credit_limit}}</td>
                         <td class="Action">
-                          <!-- <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> 
+                          <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> 
                          <ion-icon color="primary" icon-only clear (click)="editcustomer(customer)" name="create"></ion-icon>
                         </td>
                       </tr>
@@ -173,9 +173,9 @@
                         <td>$2000</td>
                       </tr> 
                                             
-                    </tbody>-->
+                    </tbody>
 
-                  </table> 
+                  </table> -->
                 </div>
               </ion-row>
             </form>
