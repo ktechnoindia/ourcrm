@@ -26,7 +26,7 @@
               <ion-col size="12" size-lg="1" size-md="2" size-sm="2">
                 <ion-row>
                   <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="title">
-                    <option value="" disabled selected>--- Title ---</option>
+                    <option value=  >---Select Title ---</option>
                     <option value="Mr.">Mr.</option>
                     <option value="Mrs.">Mrs.</option>
                     <option value="M/S">M/S</option>
@@ -62,8 +62,8 @@
             </ion-col>
             <ion-col size-lg="2" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <select fill="outline" name="lgrouptype" formControlName="lgroup_name" [(ngModel)]="lgroup_name" >
-                  <option value="" disabled selected>---Ledger Group Name ---</option>
+                <select fill="outline" name="lgroup_name" formControlName="lgroup_name" [(ngModel)]="lgroup_name" >
+                  <option value="0"  >---Select Group Name ---</option>
                   <option value="">Group 1</option>
                   <option value="">Group 2</option>
                   <option value="">Group 3</option>

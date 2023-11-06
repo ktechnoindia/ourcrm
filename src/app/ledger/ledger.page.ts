@@ -40,7 +40,7 @@ district:number=0;
   selectedOption: number = 0;
   opening_balance: number=0;
   closing_balance: number=0;
- mobile:string='';
+  mobile: string='';
   whatsapp_number:string='';
   address: string = '';
   gstin:string='';
@@ -161,7 +161,7 @@ form:any;
    
       const fields = {lname:this.lname,ledger_code:this.ledger_code,gstin:this.gstin,email:this.email} 
       const isValid = await this.formService.validateForm(fields);
-      if(await this.formService.validateForm(fields)){
+      if(isValid){
         
         console.log('Your form data : ', this.myform.value);
         let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udhyog_aadhar,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period,companyid:1};

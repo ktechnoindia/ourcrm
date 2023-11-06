@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 
 export interface group{
-  itemgroupname: string,
+  groupname: string,
   companyid: number,
   parentgroupid: number
 }

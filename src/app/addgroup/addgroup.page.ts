@@ -18,7 +18,7 @@ import { FormValidationService } from '../form-validation.service';
 export class AddgroupPage implements OnInit {
 
   form:FormGroup;
-
+  groupname:string='';
   igname:string='';
   agname:string='';
   description:string='';
@@ -46,7 +46,7 @@ export class AddgroupPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
     let groupdata:group={
-      itemgroupname: this.form.value.igname, 
+      groupname: this.form.value.igname, 
       parentgroupid: this.form.value.parentgroup,
       companyid: 1,
     };
