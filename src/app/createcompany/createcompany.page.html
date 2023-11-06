@@ -48,7 +48,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>---Select Country ---</option> <!-- Default option -->
+                  <option value="0">---Select Country---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -64,7 +64,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
                 <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>---Select State ---</option>
+                  <option value="0">---Select State---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -79,7 +79,7 @@
 
                 <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
-                  <option value="" disabled selected>---Select District ---</option>
+                  <option value="0">---Select District---</option> <!-- Default option with value 0 -->
 
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
@@ -152,7 +152,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry1" formControlName="selectedCountry1" name="country1"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="" disabled selected>---Select Country ---</option>
+                  <option value="0">---Select Country---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -164,7 +164,7 @@
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
                 <select [(ngModel)]="selectedState1" formControlName="selectedState1" name="state1"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>---Select State ---</option>
+                  <option value="0">---Select State---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -174,7 +174,7 @@
 
                 <select [(ngModel)]="selectedDistrict1" formControlName="selectedDistrict1" name="district1"
                   label-placement="floating" fill="outline">
-                  <option value="" disabled selected>---Select District ---</option>
+                  <option value="0">---Select District---</option> <!-- Default option with value 0 -->
 
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
@@ -266,7 +266,7 @@
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
-                    <option value="" disabled>---Select Industry ---</option>
+                    <option value="0">---Select Industry Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
                     </option>
@@ -279,7 +279,7 @@
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
-                    <option value="" disabled>---Select Business Type ---</option>
+                    <option value="0">---Select Business Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                       {{ businesstype.businesstypename }}
                     </option>
@@ -295,7 +295,7 @@
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
-                    <option value="" disabled>Select Segment Type</option> <!-- Default option -->
+                    <option value="0">---Select Segment Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                       {{ segmenttype.segmentname }}
                     </option>
@@ -305,7 +305,7 @@
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
-                    <option value="" disabled>Select GST Type</option> <!-- Default option -->
+                    <option value="0">---Select Company Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                       {{ companytype.gsttypename }}
                     </option>
@@ -385,7 +385,7 @@
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select fill="outline" class="select-width" [(ngModel)]="language" formControlName="language"
                     name="languages">
-                    <option value="" disabled selected>Select Language</option> <!-- Default option -->
+                    <option value="0">---Select Language---</option> <!-- Default option with value 0 -->
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
                     <option value="Punjabi">Punjabi</option>
@@ -399,7 +399,7 @@
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
-                    <option value="" disabled selected>Select Currency</option> <!-- Default option -->
+                    <option value="0">---Select Currency---</option> <!-- Default option with value 0 -->
                     <option value="Rupees">Rupees</option>
                     <option value="Doller">Doller</option>
                     <option value="euro">Euro</option>
