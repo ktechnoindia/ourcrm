@@ -11,24 +11,25 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
           <ion-row style="justify-content: center;">
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="barcodeaddress" type="text" label="Barcode Address :" label-placement="floating"
+                <ion-input [(ngModel)]="barcodeaddress" formControlName="barcodeaddress" name="baraddress" type="text" label="Barcode Address :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
         
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-input color="dark" name="sacno" type="text" label="SAC Number :" label-placement="floating"
+                <ion-input [(ngModel)]="sacnumber" formControlName="sacnumber"  name="sacno" type="text" label="SAC Number :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
           
             <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
               <ion-row>
-                <ion-textarea color="dark" name="description" type="text" label=" Description :" label-placement="floating"
+                <ion-textarea [(ngModel)]="description" formControlName="description"  name="desc" type="text" label=" Description :" label-placement="floating"
                   fill="outline"></ion-textarea>
               </ion-row>
             </ion-col>
@@ -68,6 +69,7 @@
             <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
 
           </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </ion-card>

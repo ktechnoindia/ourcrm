@@ -3,23 +3,65 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BarcodeService, bar } from '../services/barcode.service';
+import { FormValidationService } from '../form-validation.service';
 @Component({
   selector: 'app-barcode',
   templateUrl: './barcode.page.html',
   styleUrls: ['./barcode.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class BarcodePage implements OnInit {
-  constructor(private router:Router) { }
 
+  form: FormGroup;
+  barcodeaddress: string = '';
+  sacnumber: string = '';
+  description: string = '';
+  constructor(private router: Router, private formBuilder: FormBuilder, private barcodeService: BarcodeService, private formService: FormValidationService) {
+    this.form = formBuilder.group({
+      barcodeaddress: [''],
+      sacnumber: [''],
+      description: [''],
+    })
+  }
 
+  async onSubmit() {
+    const fields = {};
+    const isValid = await this.formService.validateForm(fields);
+    if(await this.formService.validateForm(fields)){
+      const barcodedata:bar={
+        barcodeaddress:this.form.value.barcodeaddress,sacnumber:this.form.value.sacnumber,description:this.form.value.description
+      }
+      this.barcodeService.createBarcode(barcodedata,'','').subscribe(
+        (response:any)=>{
+          console.log('Post request Successfully',response);
+          this.formService.showSuccessAlert();
+        },
+        (error:any)=>{
+          console.log('Post request Failed',error);
+          this.formService.showFailedAlert();
+        }
+      );
+      setTimeout(() => {
+        this.form.reset();
+      }, 1000);
+    }else{
+      Object.keys(this.form.controls).forEach(controlName =>{
+        const control = this.form.get(controlName);
+        if(control?.invalid){
+          control.markAllAsTouched();
+        }
+      })
+    }
+  }
   ngOnInit() {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/item-master']); 
+    this.router.navigate(['/item-master']);
   }
 
 }

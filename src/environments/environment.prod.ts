@@ -32,5 +32,6 @@ export const environment = {
   fetchallitemgroups: 'getItemGroups',
   addservice: 'saveservices',
   addHsn: 'insert_hsn',
-
+  addattribute : 'attribute',
+  addbarcode:'barcode',
 };
