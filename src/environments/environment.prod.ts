@@ -31,5 +31,6 @@ export const environment = {
   fetchallitem: 'get_items',
   fetchallitemgroups: 'getItemGroups',
   addservice: 'saveservices',
+  addHsn: 'insert_hsn',
 
 };

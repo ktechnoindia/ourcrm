@@ -38,28 +38,28 @@ district:number=0;
   lcode: number=0;
   ledger_code:string='';
   selectedOption: number = 0;
-  opening_balance: number | null = null;
-  closing_balance: number | null = null;
-  mobile: number | null = null;
+  opening_balance: number=0;
+  closing_balance: number=0;
+ mobile:string='';
   whatsapp_number:string='';
   address: string = '';
   gstin:string='';
   email:string='';
   select_sales_person:string='';
-  pincode:number | null=null;
-  tdn: number | null = null;
-  aadhar_no: number | null = null;
-  pan_no: number | null = null;
+  pincode:string='';
+  tdn: string='';
+  aadhar_no: string='';
+  pan_no: string='';
   udhyog_aadhar:string='';
   account_number: string="";
-  ifsc_code: number | null = null;
+  ifsc_code: string='';
   bank_name: string = '';
   branch_name: string = '';
-  credit_period: number | null = null;
-  credit_limit: number | null = null;
-  card_number: number | null = null;
-  opening_point: number | null = null;
-  closing_point: number | null = null;
+  credit_period: number=0;
+  credit_limit: number=0;
+  card_number: string='';
+  opening_point: number=0;
+  closing_point: number=0;
   lgroup_name:string='';
 
   country1:number=0;
@@ -161,7 +161,7 @@ form:any;
    
       const fields = {lname:this.lname,ledger_code:this.ledger_code,gstin:this.gstin,email:this.email} 
       const isValid = await this.formService.validateForm(fields);
-      if(isValid){
+      if(await this.formService.validateForm(fields)){
         
         console.log('Your form data : ', this.myform.value);
         let ledgerdata:ledg={lname:this.myform.value.lname,ledger_code:this.myform.value.ledger_code,gstin:this.myform.value.gstin,lgroup_name:this.myform.value.lgroup_name,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udhyog_aadhar,credit_limit:this.myform.value.credit_limit,credit_period:this.myform.value.credit_period,companyid:1};

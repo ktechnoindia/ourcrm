@@ -18,6 +18,9 @@
               <ion-row>
                 <ion-input [(ngModel)]="username" formControlName="username"  color="dark" name="username" type="text" label="User Name:" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.controls['username']?.hasError('required') && form.controls['username'].touched" class="error-message">
+                    User Name is required
+                  </div>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -26,6 +29,9 @@
               <ion-row>
                 <ion-input [(ngModel)]="password" formControlName="password"  color="dark" name="password" type="Password" label="Password :" label-placement="floating"
                   fill="outline"></ion-input>
+                  <div *ngIf="form && form.controls['password']?.hasError('required') && form.controls['password'].touched" class="error-message">
+                   Password is required
+                  </div>
               </ion-row>
               <ion-checkbox style="margin-top: 5px;" [indeterminate]="true"></ion-checkbox>
               <ion-label> I agree to the terms and conditions</ion-label>
