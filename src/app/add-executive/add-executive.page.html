@@ -31,7 +31,7 @@
             <ion-row>
               <ion-col size="12" size-lg="1" size-md="6" size-sm="6">
                 <select [ngModel]="roleid" name="roletype" formControlName="roleid">
-                  <option value="" disabled selected>--- Role ---</option> <!-- Default option -->
+                  <option value="0">--- Role ---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid" >
                     
                     {{ roletypes.roletypename }}

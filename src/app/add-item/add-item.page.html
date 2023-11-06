@@ -42,7 +42,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
-                    <option value="" disabled selected>---Select HSN  ---</option>
+                    <option value="">---Select HSN ---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
@@ -52,7 +52,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
-                    <option value="" disabled selected>---Select Stock Type  ---</option>
+                    <option value="">---Select Stock Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
                     </option>
@@ -68,7 +68,7 @@
               <ion-row>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
-                    <option value="" disabled selected>---Select Item Type  ---</option>
+                    <option value="">---Select Item Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
                     </option>
@@ -79,7 +79,7 @@
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$" >
-                    <option value="" disabled selected>--- Select Unit Name ---</option>
+                    <option value="0">---Select Unit Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
                     </option>
@@ -107,8 +107,7 @@
                 </ion-col> -->
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
-                    <option value="">--- Setect Item Group ---</option>
-                    
+                    <option value="">---Select Item Group ---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
                     </option>
@@ -121,7 +120,7 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
-                    <option value="" disabled selected>---Select GST ---</option>
+                    <option value="">---Select GST Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
                     </option>

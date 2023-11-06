@@ -90,7 +90,7 @@
 
                 <select [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="" disabled selected>--- Select State ---</option> <!-- Default option -->
+                  <option value="0">---Select State---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -141,7 +141,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <select [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
-                    <option value="" disabled selected>--- Select Lead Source ---</option>
+                    <option value="">---Select Lead Source---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let leadsourcetype of leadsourcetype$ | async" [value]="leadsourcetype.leadsourcetypeid">
                       {{ leadsourcetype.leadsourcename }}
                     </option>
