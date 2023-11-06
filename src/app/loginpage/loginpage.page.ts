@@ -55,6 +55,6 @@ export class LoginpagePage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/setting']); 
   }
 }

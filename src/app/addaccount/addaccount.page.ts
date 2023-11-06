@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddaccountserviceService,act } from '../services/addaccountservice.service';
@@ -12,7 +12,7 @@ import { AddaccountserviceService,act } from '../services/addaccountservice.serv
   templateUrl: './addaccount.page.html',
   styleUrls: ['./addaccount.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
 })
 export class AddaccountPage implements OnInit {
 

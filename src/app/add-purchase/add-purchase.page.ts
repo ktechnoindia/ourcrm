@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './add-purchase.page.html',
   styleUrls: ['./add-purchase.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
 })
 export class AddPurchasePage implements OnInit {
 form:any;

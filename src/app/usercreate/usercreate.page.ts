@@ -88,7 +88,7 @@ export class UsercreatePage implements OnInit {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/setting']); 
   }
 
 }

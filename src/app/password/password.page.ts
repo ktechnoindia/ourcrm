@@ -58,7 +58,7 @@ export class PasswordPage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/master']);
+    this.router.navigate(['/setting']);
   }
 
 }

@@ -235,7 +235,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
     }
   }
   goBack() {
-    this.router.navigate(['/master']); // Navigate back to the previous page
+    this.router.navigate(['/item-master']); // Navigate back to the previous page
   }
 
 }

@@ -18,6 +18,6 @@ export class RoleassignPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/master']); // Navigate back to the previous page
+    this.router.navigate(['/setting']); // Navigate back to the previous page
   }
 }

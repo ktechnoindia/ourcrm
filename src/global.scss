@@ -942,3 +942,16 @@ ion-textarea[fill="outline"] input:focus {
   ion-progress-bar::part(stream) {
     background-image: radial-gradient(ellipse at center, #e475f3 0%, #e475f3 30%, transparent 30%);
   }
+
+
+  .filter ion-select{
+    border: solid 1px grey;
+    border-radius: 4px;
+  }
+
+  ion-loading.custom-loading {
+    --background: #e3edff;
+    --spinner-color: #1c6dff;
+  
+    color: #1c6dff;
+  }

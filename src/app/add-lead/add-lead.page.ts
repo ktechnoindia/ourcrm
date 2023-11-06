@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,12 +13,13 @@ import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
+
 @Component({ 
   selector: 'app-add-lead',
   templateUrl: './add-lead.page.html',
   styleUrls: ['./add-lead.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterModule]
 })
 export class AddLeadPage {
   form: FormGroup;

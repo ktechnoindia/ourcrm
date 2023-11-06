@@ -6,19 +6,17 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-item-ledger',
-  templateUrl: './item-ledger.page.html',
-  styleUrls: ['./item-ledger.page.scss'],
+  selector: 'app-setting',
+  templateUrl: './setting.page.html',
+  styleUrls: ['./setting.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,RouterModule]
 })
-export class ItemLedgerPage implements OnInit {
+export class SettingPage implements OnInit {
 
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
-goBack(){
-  this.router.navigate(["/stock-manager"]);
-}
+
 }
