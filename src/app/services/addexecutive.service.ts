@@ -12,7 +12,7 @@ export interface execut{
   eemail: string;
   ewhatsapp: string;
   epan: string;
-  ecommision: number;
+  ecommision: string;
   ledger: string;
   companyid:1;
 }

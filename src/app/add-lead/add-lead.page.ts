@@ -65,13 +65,13 @@ export class AddLeadPage {
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 
-      phone: ['', ],
-      selectedCountry: [''],
-      selectedState: ['', ],
-      selectedDistrict: ['', ],
-      fulladdress:['',],
-      lscore:['',],
-      select_sales_person:['',],
+      phone: ['', [Validators.required]],
+      selectedCountry: ['', [Validators.required]],
+      selectedState: ['', [Validators.required]],
+      selectedDistrict: ['', [Validators.required]],
+      fulladdress:['',[Validators.required]],
+      lscore:['',[Validators.required]],
+      select_sales_person:['',[Validators.required]],
       pncode:[''],
       whatshappnumber:[''],
       emails:[''],
@@ -92,7 +92,7 @@ export class AddLeadPage {
 
   
  async onSubmit() {
-    const fields = {catPerson:this.catPerson}
+    const fields = {catPerson:this.catPerson,phone:this.phone,selectedCountry:this.selectedCountry,selectedState:this.selectedState,selectedDistrict:this.selectedDistrict,fulladdress:this.fulladdress,lscore:this.lscore,selectpd:this.selectpd}
 
     const isValid = await this.formService.validateForm(fields);
     if(await this.formService.validateForm(fields)){
