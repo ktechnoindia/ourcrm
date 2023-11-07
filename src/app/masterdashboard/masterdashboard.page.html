@@ -37,54 +37,114 @@
             <ion-row class="leadscard">
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
-                  <ion-title>1000</ion-title>
-                  <ion-label>
+                  <ion-icon name="person-outline" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
                     Active Customer
                   </ion-label>
+                  <ion-title color="danger">1000</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
-                  <ion-title>323</ion-title>
-                  <ion-label>
+                  <ion-icon name="person" color="secondary"></ion-icon><br>
+                  <ion-label color="secondary">
                     Active Supplier
                   </ion-label>
+                  <ion-title color="secondary">323</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
-                  <ion-title>10</ion-title>
-                  <ion-label>
+                  <ion-icon name="bag-handle" color="#005a00"></ion-icon> <br>
+                  <ion-label color="#005a00">
                     Types of Services
                   </ion-label>
+                  <ion-title color="#005a00">10</ion-title>
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                  <ion-title>1020</ion-title>
-                  <ion-label>
+                  <ion-icon name="clipboard" color="danger"></ion-icon><br>
+                  <ion-label  color="danger">
                     Types of Item
                   </ion-label>
+                  <ion-title  color="danger">1020</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
-                  <ion-title>10</ion-title>
-                  <ion-label>
+                  <ion-icon name="people" color="dark"></ion-icon><br>
+                  <ion-label color="dark">
                     No. of Executive
                   </ion-label>
+                  <ion-title color="dark">10</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
-                  <ion-title>93</ion-title>
-                  <ion-label>
+                  <ion-icon name="newspaper" color="success"></ion-icon><br>
+                  <ion-label color="success">
                     Total Ledger
+                  </ion-label>
+                  <ion-title color="success">93</ion-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+                <ion-row class="headinglabel" style="text-align: center;">
+                  <ion-label color="dark">Manage Master :</ion-label>
+                </ion-row>
+            <ion-row class="leadsrouter">
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-customer']">
+                  <ion-icon name="person-add-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Add Customer
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-vendor']">
+                  <ion-icon name="person-add"></ion-icon><br>
+                  <ion-label color="success">
+                    Add Supplier
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-item']">
+                  <ion-icon name="bag-add-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Add Item
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-executive']">
+                  <ion-icon name="person-add-outline"></ion-icon><br>
+                  <ion-label color="success">
+                   Add Executive
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-service']">
+                  <ion-icon name="duplicate-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                   Add Service
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/ledger']">
+                  <ion-icon name="newspaper-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                   Add Ledger
                   </ion-label>
                 </ion-card>
               </ion-col>
             </ion-row>
+ 
           </div>
         </ion-row>
       </ion-grid>

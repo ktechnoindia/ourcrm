@@ -168,24 +168,29 @@ input[type="date"] {
   background-color: lightsteelblue;
 }
 .leadscard ion-card{
-  height: 80px;
+  height: 100px;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .leadscard ion-title{
   font-size: 26px;
-  color: black;
+  // color: black;
   font-weight: bolder;
+}
+.leadscard ion-icon{
+  font-size: 22px;
+  font-weight: bold;
+  padding-top: 4px;
 }
 .leadscard ion-label{
   font-size: 16px;
-  color: black;
   font-weight: bold;
+  color: purple;
 }
 .headinglabel ion-label{
   font-weight: bolder;
   text-decoration: underline;
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
 }
@@ -206,4 +211,19 @@ input[type="date"] {
 text-align: center;
 height: 40px;
 margin-top: 6px;
+}
+
+.leadsrouter ion-icon{
+  padding: 5px;
+  color: purple;
+}
+.leadsrouter  ion-label{
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: purple;
+}
+.leadsrouter ion-card{
+  margin: 10px;
+  width: 80%;
 }

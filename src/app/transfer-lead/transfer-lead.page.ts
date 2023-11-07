@@ -17,7 +17,7 @@ export class TransferLeadPage implements OnInit {
   ngOnInit() {
   }
   goBack(){
-    this.router.navigate(["/lead-manager"])
+    this.router.navigate(["/leaddashboard"])
   }
 
 }

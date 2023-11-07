@@ -245,6 +245,6 @@ export class AddVendorPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/master']); // Navigate back to the previous page
+    this.router.navigate(['/masterdashboard']); // Navigate back to the previous page
   }
 }

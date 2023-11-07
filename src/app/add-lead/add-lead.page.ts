@@ -141,7 +141,7 @@ export class AddLeadPage {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/leaddashboard']); 
   }
 
   
