@@ -27,7 +27,7 @@
               <ion-col size="12" size-lg="1" size-md="2" size-sm="2">
                 <ion-row>
                   <select [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="title">
-                    <option value="0"  >---Select Title ---</option>
+                    <option value=""  >--- Title ---</option>
                     <option value="">Mr.</option>
                     <option value="">Mrs.</option>
                     <option value="">M/S</option>
@@ -347,12 +347,11 @@
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <select [(ngModel)]=" select_sales_person" name="select_sales_person">
-                  <option value="">---Select Exective Name---</option> <!-- Default option with value 0 -->
-                  <option value="">abhishek</option>
-                  <!-- <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                  <option value="" disabled selected>---Select Executive Name ---</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
-                   -->
+                   
                 </select>
               </ion-col>
             </ion-row>

@@ -58,6 +58,7 @@ export const environment = {
 adduser:'adduser',
 addpass:'password',
 addlogin:'login',
+addbarcode:'barcode',
 
 };
 

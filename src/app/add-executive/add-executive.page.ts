@@ -24,6 +24,7 @@ export class AddExecutivePage implements OnInit {
   submitted = false;
 
   roleid: number = 0;
+  excode:string='';
   executivename: string = '';
   emanager: string = '';
   emobile: string = '';
@@ -48,6 +49,7 @@ export class AddExecutivePage implements OnInit {
 
     this.form = this.formBuilder.group({
       roleid: ['', [Validators.required]],
+      excode:['',[Validators.required]],
       executivename: ['', [Validators.required]],
       emanager: ['', [Validators.required]],
       emobile: ['', [Validators.required]],
@@ -81,7 +83,8 @@ export class AddExecutivePage implements OnInit {
         epan: this.form.value.epan,
         ecommision: this.form.value.ecommision,
         ledger: this.form.value.ledger,
-        companyid: this.form.value.companyid
+        companyid: this.form.value.companyid,
+        excode: ''
       };
 
       this.addExecutiveService.createExecutive(executData, '', '').subscribe(

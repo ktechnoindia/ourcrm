@@ -55,7 +55,9 @@
                     </tr>
                     <tr *ngFor="let execute of executives$ | async; let i = index">
                       <td style="width: 50px;">{{i + 1}}</td>
+                      <td>{{execute.companyid}}</td>
                       <td style="width: 30px;">{{execute.roleid}}</td>
+                      <td style="width: 50px;">{{execute.excode}}</td>
                       <td style="width: 50px;">{{execute.executivename}}</td>
                       <td style="width: 50px;">{{execute.emanager}}</td>
                       <td style="width: 50px;">{{execute.emobile}}</td>
@@ -64,7 +66,7 @@
                       <td>{{execute.epan}}</td>
                       <td>{{execute.ecommision}}</td>
                       <td>{{execute.ledger}}</td>
-                      <td>{{execute.companyid}}</td>
+                      
                     </tr>
 <!--                     
                     <tr>

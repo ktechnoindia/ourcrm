@@ -5,15 +5,16 @@ import { Observable } from 'rxjs';
 
 export interface execut{
   roleid: number;
+  excode:string;
   executivename: string;
   emanager: string;
   emobile: string;
   eemail: string;
   ewhatsapp: string;
   epan: string;
-  ecommision: number;
+  ecommision: string;
   ledger: string;
-  companyid:number;
+  companyid:1;
 }
 
 @Injectable({
