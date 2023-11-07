@@ -51,15 +51,14 @@ export const environment = {
   fetchallvend: 'get_vendors',
   fetchallitem: 'get_items',
   fetchallservice: 'saveservices',
-  fetchallexecuitve:'saveExecutive', 
-  fetchallcompany:'saveCompany',
-  fetchallledger:'saveLedger',
-  addattribute : 'attribute',
-adduser:'adduser',
-addpass:'password',
-addlogin:'login',
-addbarcode:'barcode',
-
+  fetchallexecuitve: 'saveExecutive',
+  fetchallcompany: 'saveCompany',
+  fetchallledger: 'saveLedger',
+  addattribute: 'attribute',
+  adduser: 'adduser',
+  addpass: 'password',
+  addlogin: 'login',
+  addbarcode: 'barcode',
 };
 
 

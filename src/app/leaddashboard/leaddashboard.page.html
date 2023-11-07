@@ -1,102 +1,142 @@
 <ion-header>
 
 </ion-header>
+
 <ion-content class="container_fluid">
-  <div class="dash">
-    <ion-label class="gamil"> <img width="25px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user">
-      Ktechnocrm@gmail.com</ion-label>
-  </div>
+  <ion-grid>
 
-  <div class="lead_nav">
-    <ion-grid>
-      <ion-row>
-        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-          <div class="icon-container">
+    <div class="dash">
+      <ion-title>
+        Lead Dashboard
+      </ion-title>
+      <ion-chip>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label class="gamil">Ktechnocrm@gmail.com</ion-label>
+      </ion-chip>
+    </div>
 
-            <ion-row class="headinglabel">
-                <ion-label>Last 30 Days Leads :</ion-label>
-              </ion-row>
-              <ion-row class="leadscard">
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center;background-color: rgb(212, 165, 165);">
-                    <ion-title>10</ion-title>
-                    <ion-label>
-                      New Lead
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center; background-color: lightcyan;">
-                    <ion-title>10 %</ion-title>
-                    <ion-label>
-                      Engagement
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center; background-color: lightgreen;">
-                    <ion-title>100%</ion-title>
-                    <ion-label>
-                      Active Leads
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-              </ion-row>
-              <ion-row class="headinglabel">
-                <ion-label>Overall Leads :</ion-label>
-              </ion-row>
-              <ion-row class="leadscard">
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center;background-color: lightgray;">
-                    <ion-title>1020</ion-title>
-                    <ion-label>
-                      Total Leads
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center; background-color: lightcyan;">
-                    <ion-title>0 %</ion-title>
-                    <ion-label>
-                      Engagement
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center; background-color: lightgreen;">
-                    <ion-title>99%</ion-title>
-                    <ion-label>
-                      Active Leads
-                    </ion-label>
-                  </ion-card>
-                </ion-col>
-              </ion-row>
-           
-          </div>
-        </ion-col>
-        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+    <div class="lead_nav">
+      <ion-grid>
+        <ion-row>
           <div class="icon-container">
             <ion-row>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/add-lead']">Add New Lead</a>
+              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row class="headinglabel" style="text-align: center;">
+                  <ion-label color="dark">Last 30 Days Leads :</ion-label>
+                </ion-row>
               </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/view-lead']">View All Lead</a>
+              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row class="headinglabel" style="text-align: center;">
+                  <ion-label color="dark">Overall Leads :</ion-label>
+                </ion-row>
               </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/edit-lead']">Edit Lead</a>
-              </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/transfer-lead']">Transfer Lead</a>
-              </ion-col>
-              </ion-row>
-                       </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+            </ion-row>
 
-  <ion-grid>
+            <ion-row class="leadscard">
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
+                  <ion-icon name="calendar-clear-sharp" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
+                    New Lead
+                  </ion-label>
+                  <ion-title color="danger">10</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
+                  <ion-icon name="hand-right-sharp" color="secondary"></ion-icon><br>
+                  <ion-label color="secondary">
+                    Engagement
+                  </ion-label>
+                  <ion-title color="secondary">10 %</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
+                  <ion-icon name="bag-check-sharp" color="#005a00"></ion-icon><br>
+                  <ion-label color="#005a00">
+                    Active Leads
+                  </ion-label>
+                  <ion-title color="#005a00">100%</ion-title>
+                </ion-card>
+              </ion-col>
+
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="albums-sharp" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
+                    Total Leads
+                  </ion-label>
+                  <ion-title color="danger">1020</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
+                  <ion-icon name="albums-sharp" color="dark"></ion-icon><br>
+                  <ion-label color="dark">
+                    Engagement
+                  </ion-label>
+                  <ion-title color="dark">0 %</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
+                <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
+                  <ion-icon name="star-sharp" color="success"></ion-icon><br>
+                  <ion-label color="success">
+                    Active Leads
+                  </ion-label>
+                  <ion-title color="success">99%</ion-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row class="headinglabel" style="text-align: center;">
+                  <ion-label color="dark">Leads Manage :</ion-label>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="leadsrouter">
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-lead']">
+                  <ion-icon name="bag-add-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Add New Lead
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/follow-up']">
+                  <ion-icon name="call-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Follow Up
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/transfer-lead']">
+                  <ion-icon name="share-social-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Transfer Lead
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/view-lead']">
+                  <ion-icon name="eye-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    View Lead
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </div>
+
     <ion-row class="lead_details">
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
@@ -115,51 +155,76 @@
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td><a href="">Ktechnodsks</a></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
+                <td>Rajesh Verma</td>
+                <td>IndianTech Solutions</td>
+                <td>Software Services</td>
+                <td>rajesh@example.com</td>
+                <td>(91) 98765-43210</td>
+                <td>Web</td>
+                <td>Anita Sharma</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Priya Patel</td>
+                <td>Bharat Enterprises</td>
+                <td>Consumer Electronics</td>
+                <td>priya@example.com</td>
+                <td>(91) 98765-12345</td>
+                <td>Referral</td>
+                <td>Ajay Gupta</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Vinod Kumar</td>
+                <td>India Systems Pvt. Ltd.</td>
+                <td>IT Services</td>
+                <td>vinod@example.com</td>
+                <td>(91) 12345-67890</td>
+                <td>Email Campaign</td>
+                <td>Sneha Dubey</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Amit Singh</td>
+                <td>Mumbai Traders</td>
+                <td>Retail</td>
+                <td>amit@example.com</td>
+                <td>(91) 77777-88888</td>
+                <td>Phone Call</td>
+                <td>Kavita Reddy</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Pooja Mehta</td>
+                <td>Delhi Developers</td>
+                <td>Software Services</td>
+                <td>pooja@example.com</td>
+                <td>(91) 88888-99999</td>
+                <td>Web</td>
+                <td>Sachin Kumar</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Rahul Sharma</td>
+                <td>Bengaluru Innovations</td>
+                <td>Hardware Manufacturing</td>
+                <td>rahul@example.com</td>
+                <td>(91) 98765-67890</td>
+                <td>Referral</td>
+                <td>Kirti Mishra</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Geeta Reddy</td>
+                <td>Hyderabad Ventures</td>
+                <td>Consulting</td>
+                <td>geeta@example.com</td>
+                <td>(91) 77777-55555</td>
+                <td>Email Campaign</td>
+                <td>Sanjay Verma</td>
+              </tr>
 
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td><a href="">Ktechnodsks</a></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
 
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
             </table>
           </div>
         </div>
@@ -174,6 +239,7 @@
                 <th><input type="checkbox" name=""></th>
                 <th>Lead Name</th>
                 <th>Company Name</th>
+                <th>Type Of Product</th>
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Lead Source</th>
@@ -181,51 +247,75 @@
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td><a href="">Ktechnodsks</a></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
+                <td>Rajesh Verma</td>
+                <td>IndianTech Solutions</td>
+                <td>Software Services</td>
+                <td>rajesh@example.com</td>
+                <td>(91) 98765-43210</td>
+                <td>Web</td>
+                <td>Anita Sharma</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Priya Patel</td>
+                <td>Bharat Enterprises</td>
+                <td>Consumer Electronics</td>
+                <td>priya@example.com</td>
+                <td>(91) 98765-12345</td>
+                <td>Referral</td>
+                <td>Ajay Gupta</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Vinod Kumar</td>
+                <td>India Systems Pvt. Ltd.</td>
+                <td>IT Services</td>
+                <td>vinod@example.com</td>
+                <td>(91) 12345-67890</td>
+                <td>Email Campaign</td>
+                <td>Sneha Dubey</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Amit Singh</td>
+                <td>Mumbai Traders</td>
+                <td>Retail</td>
+                <td>amit@example.com</td>
+                <td>(91) 77777-88888</td>
+                <td>Phone Call</td>
+                <td>Kavita Reddy</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Pooja Mehta</td>
+                <td>Delhi Developers</td>
+                <td>Software Services</td>
+                <td>pooja@example.com</td>
+                <td>(91) 88888-99999</td>
+                <td>Web</td>
+                <td>Sachin Kumar</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Rahul Sharma</td>
+                <td>Bengaluru Innovations</td>
+                <td>Hardware Manufacturing</td>
+                <td>rahul@example.com</td>
+                <td>(91) 98765-67890</td>
+                <td>Referral</td>
+                <td>Kirti Mishra</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>Geeta Reddy</td>
+                <td>Hyderabad Ventures</td>
+                <td>Consulting</td>
+                <td>geeta@example.com</td>
+                <td>(91) 77777-55555</td>
+                <td>Email Campaign</td>
+                <td>Sanjay Verma</td>
+              </tr>
 
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td><a href="">Ktechnodsks</a></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>Ktechno Private Ltd.</td>
-                <td><a href="">ktechno@gmail.com</a></td>
-                <td>+91 993893849</td>
-                <td>Thnn sndsf</td>
-                <td>jdjfdjghj</td>
-                <td>jdjfdjghj</td>
-              </tr>
             </table>
           </div>
         </div>
