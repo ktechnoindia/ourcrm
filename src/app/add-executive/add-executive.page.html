@@ -33,29 +33,21 @@
                 <select [ngModel]="roleid" name="roletype" formControlName="roleid">
                   <option value="0">--- Role ---</option> <!-- Default option -->
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid" >
-                    
                     {{ roletypes.roletypename }}
                   </option>   
-                  
                 </select>
-                <div *ngIf="form && form.controls['role']?.hasError('required') && form.controls['role']?.touched" class="error-message">
-                  Role is required.
-                </div>
+                
               </ion-col>
               <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input  [ngModel]="excode"   formControlName="excode" name="execuitvecode" type="text" label=" Executive Code :" label-placement="floating" fill="outline" ></ion-input>
-                  <div *ngIf="form && form.controls['excode']?.hasError('required') && form.controls['excode']?.touched" class="error-message">
-                    Exicutive Code is required.
-                  </div>
+                 
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="executivename"   formControlName="executivename" name="exectname" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
-                  <div *ngIf="form && form.controls['name']?.hasError('required') && form.controls['name']?.touched" class="error-message">
-                    Name is required.
-                  </div>
+                 
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
@@ -75,9 +67,7 @@
                 <ion-row>
                   <ion-input [ngModel]="emobile"  formControlName="emobile" name="mobile" type="text" label="Mobile No. :"
                     label-placement="floating" fill="outline" ></ion-input>
-                    <div *ngIf="form && form.controls['emobile']?.hasError('required') && form.controls['emobile']?.touched" class="error-message">
-                      Service Type is required.
-                    </div>
+                   
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -121,9 +111,7 @@
                   <option value="1">Sales ledger</option>
                   <option value="1">Purchase ledger</option>
                 </select>
-                <div *ngIf="form && form.controls['ledger']?.hasError('required') && form.controls['ledger']?.touched" class="error-message">
-                  Service Type is required.
-                </div>
+               
               </ion-col>
             </ion-row>
 
