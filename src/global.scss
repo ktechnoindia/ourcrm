@@ -389,30 +389,48 @@ ion-item {
 
 
 
+/* Apply these styles to remove borders from the table */
 table {
-    width: 100%;
     border-collapse: collapse;
-    border: 1px solid grey;
-    border-radius: 10px;
-}
+    width: 100%; /* Adjust the width as needed */
+  }
+  
+  th,
+  td {
+    padding: 3px 8px;
+    text-align: left;
+  }
+  tr th{
+    // border-left: solid .1px grey;
+    border-top: solid .1px grey;
 
-table th {
-    padding: 0px;
-    background-color: #b9f9fc;
-    border: 1px solid grey;
-    text-align: center;
-    font-size: 12px;
+  }
+   th {
+    background-color: lightsteelblue; /* Header background color */
+    color: #000;
     font-weight: bold;
 
-}
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+    border-bottom: solid .5px grey;
+    border-left: solid .1px grey;
+    border-right: solid .1px grey;
+    height: 30px;
 
-table td {
-    padding: 0px;
-    border: 1px solid grey;
-    text-align: center;
-font-size: 12px;
-}
+  }
+  
+ tr:nth-child(odd) {
+    background-color: #ffffff; /* Alternate row background color */
+    border-bottom: solid .5px grey;
+    border-left: solid .1px grey;
+    border-right: solid .1px grey;
+    height: 30px;
 
+  }
+  
+  /* Add more CSS styles as needed to match your CRM's design */
 .table_input {
     border: none;
     outline: none;

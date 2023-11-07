@@ -16,7 +16,6 @@ import { IndustrytypeService } from '../services/industrytype.service';
 import { CgsttypeService } from '../services/cgsttype.service';
 import { BusinesstypeService } from '../services/businesstype.service';
 import { SegmentService } from '../services/segment.service';
-import { FormValidationService } from '../form-validation.service';
 
 @Component({
   selector: 'app-createcompany',
@@ -70,17 +69,15 @@ export class CreatecompanyPage implements OnInit {
   //Step: 2
   tanumber: string = '';
   pannumber: string = '';
-  industry: number = 0;
 
+  industry: number|null = null;
   industry$: any;
-  selectindustry: number = 0;
-
   companytype$: any;
-  companytype: number = 0;
+  companytype:  number|null = null;
   businesstype$: any;
-  businesstype: number = 0;
+  businesstype:  number|null = null;
   segmenttype$: any;
-  segmenttype: number = 0;
+  segmenttype: number|null = null;
 
   //step : 3 
   language: number = 0;
@@ -102,7 +99,7 @@ export class CreatecompanyPage implements OnInit {
   upiid: string = '';
   bankForm: string = '';
 
-  constructor(private createcompany: CreatecompanyService, private formService: FormValidationService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
+  constructor(private createcompany: CreatecompanyService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
     , private industry1: IndustrytypeService, private cmptype: CgsttypeService, private bustype: BusinesstypeService, private segment1: SegmentService) {
     // this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -186,10 +183,7 @@ export class CreatecompanyPage implements OnInit {
   }
 
  async onSubmit() {
-    const fields = { cpyname: this.cpyname, selectedCountry: this.selectedCountry, selectedState: this.selectedState,  selectedDistrict: this.selectedDistrict, address: this.address, rdate: this.rdate, industry: this.industry, businesstype: this.businesstype, language: this.language, currency: this.currency, bname: this.bname }
-
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    if (this.form) {
     console.log('Your form data : ', this.form.value);
     let companydata: companystore = {
       cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate, website: this.form.value.website, website1: this.form.value.website1, selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
@@ -201,24 +195,22 @@ export class CreatecompanyPage implements OnInit {
     this.createcompany.createCompany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-       this.formService.showSuccessAlert();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        this.formService.showFailedAlert();
       }
     );
     setTimeout(() => {
       this.form.reset();
-    }, 1000);
-    }else {
-      //If the form is not valid, display error messages
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
-        }
-      });
+    }, 3000);
+    // }else {
+    //   //If the form is not valid, display error messages
+    //   Object.keys(this.form.controls).forEach(controlName => {
+    //     const control = this.form.get(controlName);
+    //     if (control?.invalid) {
+    //       control.markAsTouched();
+    //     }
+    //   });
     }
   }
   onCountryChange() {
