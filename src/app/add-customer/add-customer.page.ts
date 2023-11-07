@@ -144,7 +144,7 @@ address1:string='';
   }
 
   goBack() {
-    this.router.navigate(['/master']);
+    this.router.navigate(['/masterdashboard']);
   }
 
   onSubmit(myform: NgForm) {

@@ -37,50 +37,97 @@
             <ion-row class="leadscard">
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
-                  <ion-title>10</ion-title>
-                  <ion-label>
+                  <ion-icon name="calendar-clear-sharp" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
                     New Lead
                   </ion-label>
+                  <ion-title color="danger">10</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
-                  <ion-title>10 %</ion-title>
-                  <ion-label>
+                  <ion-icon name="hand-right-sharp" color="secondary"></ion-icon><br>
+                  <ion-label color="secondary">
                     Engagement
                   </ion-label>
+                  <ion-title color="secondary">10 %</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
-                  <ion-title>100%</ion-title>
-                  <ion-label>
+                  <ion-icon name="bag-check-sharp" color="#005a00"></ion-icon><br>
+                  <ion-label color="#005a00">
                     Active Leads
                   </ion-label>
+                  <ion-title color="#005a00">100%</ion-title>
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                  <ion-title>1020</ion-title>
-                  <ion-label>
+                  <ion-icon name="albums-sharp" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
                     Total Leads
                   </ion-label>
+                  <ion-title color="danger">1020</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
-                  <ion-title>0 %</ion-title>
-                  <ion-label>
+                  <ion-icon name="albums-sharp" color="dark"></ion-icon><br>
+                  <ion-label color="dark">
                     Engagement
                   </ion-label>
+                  <ion-title color="dark">0 %</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
                 <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
-                  <ion-title>99%</ion-title>
-                  <ion-label>
+                  <ion-icon name="star-sharp" color="success"></ion-icon><br>
+                  <ion-label color="success">
                     Active Leads
+                  </ion-label>
+                  <ion-title color="success">99%</ion-title>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row class="headinglabel" style="text-align: center;">
+                  <ion-label color="dark">Leads Manage :</ion-label>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="leadsrouter">
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-lead']">
+                  <ion-icon name="bag-add-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Add New Lead
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/follow-up']">
+                  <ion-icon name="call-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Follow Up
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/transfer-lead']">
+                  <ion-icon name="share-social-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    Transfer Lead
+                  </ion-label>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/view-lead']">
+                  <ion-icon name="eye-sharp"></ion-icon><br>
+                  <ion-label color="success">
+                    View Lead
                   </ion-label>
                 </ion-card>
               </ion-col>
@@ -176,8 +223,8 @@
                 <td>Email Campaign</td>
                 <td>Sanjay Verma</td>
               </tr>
-              
-              
+
+
             </table>
           </div>
         </div>
@@ -268,7 +315,7 @@
                 <td>Email Campaign</td>
                 <td>Sanjay Verma</td>
               </tr>
-              
+
             </table>
           </div>
         </div>
