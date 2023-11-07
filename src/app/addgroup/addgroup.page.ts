@@ -20,8 +20,8 @@ export class AddgroupPage implements OnInit {
   form: FormGroup;
 
   itemgroupname: string = '';
-  groupname: number = 0;
-  companyid=1;
+  groupname: string='';
+  companyid:number=1;
   subscription: Subscription = new Subscription();
   itemgroups$: Observable<any[]>
 

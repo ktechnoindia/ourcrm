@@ -160,6 +160,7 @@
                         <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
                           <option *ngFor="let attribute of attributes; let i = index" [value]="attribute">{{ 'Attribute ' + (i + 1) }}</option>
                         </select>
+
                       </ion-row>
                     </ion-col>
                   </ion-row>
@@ -178,9 +179,11 @@
                         <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
                       </div>
                     </ion-col>
+
                     <ion-col size="12" size-lg="6" size-md="6" size-sm="6" style="border: solid 1px lightblue;">
                       <div></div>
                     </ion-col>
+
                   </ion-row>
                 </div>
 
@@ -229,7 +232,8 @@
 
                   </ion-row>
 
-            
+                
+
                  <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
 
                   <ion-row class="headinglabel">

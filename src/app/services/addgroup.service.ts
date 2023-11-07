@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 
 export interface group{
   itemgroupname: string,
-  companyid: number,
-  groupname: number;
+  companyid: 1,
+  groupname: string;
 }
 
 @Injectable({

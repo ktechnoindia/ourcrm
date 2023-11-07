@@ -78,7 +78,7 @@ export class AddItemPage implements OnInit {
   itemtypename$:Observable<any[]>
   itemtypename:string='';
   itemgroups$: Observable<any[]>
-
+companyid=1;
 
   selectedAttribute: string='';
   attributes: string[] = [];

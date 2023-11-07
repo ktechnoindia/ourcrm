@@ -42,8 +42,8 @@
                 </tr>
                 <tr *ngFor="let itemgroup of itemgroups$ | async; let i = index">
                   <td>{{ i + 1 }}</td>
-                  <td><ion-input style="border: none;">{{ itemgroup.itemgroupname }}</ion-input></td>
-                  <td><ion-input style="border: none;">{{ itemgroup.groupname }}</ion-input></td>
+                  <td>{{ itemgroup.itemgroupname }}</td>
+                  <td>{{ itemgroup.groupname }}</td>
                  </tr>
               </table>
             </div>
