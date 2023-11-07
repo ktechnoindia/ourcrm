@@ -39,36 +39,6 @@ export class AddgroupPage implements OnInit {
     const fields = { itemgroupname: this.itemgroupname, }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-    console.log('Your form data : ', this.form.value);
-    let groupdata:group={
-      groupname: this.form.value.igname, 
-      parentgroupid: this.form.value.parentgroup,
-      companyid: 1,
-    };
-    this.subscription=this.groupService.createGroup(groupdata,'','').subscribe(
-      (response: any) => {
-       if(response.status){
-        console.log('POST request successful', response);
-       }
-        this.formService.showSuccessAlert();
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        this.formService.showFailedAlert();
-      }
-    );
-    setTimeout(() => {
-      // Reset the form and clear input fields
-      this.form.reset();
-    }, 1000); 
-  }   else {
-    //If the form is not valid, display error messages
-    Object.keys(this.form.controls).forEach(controlName => {
-      const control = this.form.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
       console.log('Your form data : ', this.form.value);
       let groupdata: group = {
         itemgroupname: this.form.value.itemgroupname,
