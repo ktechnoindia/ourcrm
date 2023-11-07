@@ -24,7 +24,10 @@
                 <ion-row>
                   <ion-input [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
                     label=" Company Name :" label-placement="floating" fill="outline"></ion-input>
-                
+                  <div *ngIf="form && form.get('cpyname')?.hasError('required') && form.get('cpyname')?.touched"
+                    class="error-message">
+                    Company Name is required.
+                  </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -49,7 +52,13 @@
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
+
                 </select>
+                <div
+                  *ngIf="form && form.get('selectedCountry')?.hasError('required') && form.get('selectedCountry')?.touched"
+                  class="error-message">
+                  Country is required.
+                </div>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
@@ -60,16 +69,27 @@
                     {{ state.statename }}
                   </option>
                 </select>
+                <div
+                *ngIf="form && form.get('selectedState')?.hasError('required') && form.get('selectedState')?.touched"
+                class="error-message">
+                Country is required.
+              </div>
               </ion-col>
-
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
+
                 <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
                   <option value="0">---Select District---</option> <!-- Default option with value 0 -->
+
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
                 </select>
+                <div
+                  *ngIf="form && form.get('selectedDistrict')?.hasError('required') && form.get('selectedDistrict')?.touched"
+                  class="error-message">
+                  District is required.
+                </div>
               </ion-col>
 
             </ion-row>
@@ -84,6 +104,10 @@
                 <ion-row>
                   <ion-input [(ngModel)]="address" formControlName="address" type="text" name="fulladdress"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address')?.touched"
+                    class="error-message">
+                    Name is required.
+                  </div>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -92,6 +116,10 @@
                 <ion-row>
                   <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                    <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone')?.touched"
+                    class="error-message">
+                    Mobile Number is required.
+                  </div>
                 </ion-row>
               </ion-col>
 
@@ -119,6 +147,7 @@
               "></span>
             </ion-row>
 
+
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="12">
                 <select [(ngModel)]="selectedCountry1" formControlName="selectedCountry1" name="country1"
@@ -127,7 +156,9 @@
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
+
                 </select>
+               
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
@@ -234,8 +265,8 @@
               </ion-row>
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                  <select [(ngModel)]="industry" formControlName="industry" name="industry">
-                    <option value="">---Select Industry Type---</option> <!-- Default option with value 0 -->
+                  <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
+                    <option value="0">---Select Industry Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
                     </option>
@@ -247,8 +278,8 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                  <select [(ngModel)]="businesstype" formControlName="businesstype" name="businesstype">
-                    <option value="">---Select Business Type---</option> <!-- Default option with value 0 -->
+                  <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
+                    <option value="0">---Select Business Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                       {{ businesstype.businesstypename }}
                     </option>
@@ -263,8 +294,8 @@
               </ion-row>
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                  <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segmenttype">
-                    <option value="">---Select Segment Type---</option> <!-- Default option with value 0 -->
+                  <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
+                    <option value="0">---Select Segment Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                       {{ segmenttype.segmentname }}
                     </option>
@@ -273,9 +304,9 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                  <select [(ngModel)]="companytype" formControlName="companytype" name="companytype">
-                    <option value="">---Select Company Type---</option> <!-- Default option with value 0 -->
-                    <option *ngFor="let companytype of companytype$ | async" [value]="companytype.companytypeid">
+                  <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
+                    <option value="0">---Select Company Type---</option> <!-- Default option with value 0 -->
+                    <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                       {{ companytype.gsttypename }}
                     </option>
 
@@ -289,7 +320,7 @@
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input color="dark" [ngModel]="tanno" formControlName="tanno" name="tannumber" type="text"
+                    <ion-input color="dark" [ngModel]="tanumber" formControlName="tanumber" name="tanno" type="text"
                       label="TAN No. :" label-placement="floating" fill="outline" max-length="15"></ion-input>
                   </ion-row>
                 </ion-col>

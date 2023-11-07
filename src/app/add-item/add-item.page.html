@@ -24,13 +24,19 @@
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="item_Desc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
                     </ion-input>
+                    <div *ngIf="myform && myform.controls['itemDesc']?.hasError('required') && myform.controls['itemDesc']?.touched" >
+                      Item Description is required.
+                    </div>
                   </ion-row>
-                </ion-col>
 
+                </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code"
                       type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
+                      <div *ngIf="myform && myform.controls['itemCode']?.hasError('required') && myform.controls['itemCode']?.touched" class="error-message">
+                        Item Code is required.
+                      </div>
                   </ion-row>
                 </ion-col>
 
@@ -40,6 +46,7 @@
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
+                    
                   </select>
                 </ion-col>
 
@@ -50,6 +57,10 @@
                       {{ stocktypename.stocktypename }}
                     </option>
                   </select>
+                    
+                  <div *ngIf="myform && myform.controls['selectStock']?.hasError('required') && myform.controls['selectStock']?.touched" class="error-message">
+                    Stock Type is required.
+                  </div>
                 </ion-col>
 
               </ion-row>
@@ -62,8 +73,10 @@
                       {{ itemtypename.itemtypename }}
                     </option>
                   </select>
+                  <div *ngIf="myform && myform.controls['selectItem']?.hasError('required') && myform.controls['selectItem']?.touched" class="error-message">
+                    Item Type is required.
+                  </div>
                 </ion-col>
-
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$" >
                     <option value="0">--- Select Unit Name ---</option>
@@ -99,8 +112,12 @@
                       {{ itemgroup.itemgroupname }}
                     </option>
                   </select>
+                  <div *ngIf="myform && myform.controls['selectItemGroup']?.hasError('required') && myform.controls['selectItemGroup']?.touched" class="error-message">
+                    Item Group Type is required.
+                  </div>
                 </ion-col>
              
+
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
                     <option value="">---Select GST Type---</option> <!-- Default option with value 0 -->
@@ -108,6 +125,9 @@
                       {{ gsttype.gstname }}
                     </option>
                   </select>
+                  <div *ngIf="myform && myform.controls['selectGst']?.hasError('required') && myform.controls['selectGst']?.touched" class="error-message">
+                     GST is required.
+                  </div>
                 </ion-col>
               </ion-row>
 
@@ -117,16 +137,16 @@
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance" type="text" label=" Opening Balance :" label-placement="floating"
                       fill="outline"></ion-input>
                   </ion-row>
-                </ion-col>
 
+                </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance" type="text" label=" Closing Balance :" label-placement="floating"
                       fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-              </ion-row>
 
+              </ion-row>
               <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
 
                 <ion-toolbar>
@@ -160,7 +180,7 @@
                         <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
                           <option *ngFor="let attribute of attributes; let i = index" [value]="attribute">{{ 'Attribute ' + (i + 1) }}</option>
                         </select>
-
+                        
                       </ion-row>
                     </ion-col>
                   </ion-row>

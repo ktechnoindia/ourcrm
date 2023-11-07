@@ -32,14 +32,18 @@
                 <ion-row>
                   <ion-input [(ngModel)]="hsncode" formControlName="hsncode"  name="hsn_code"  type="text" label="HSN Code :" label-placement="floating"
                   fill="outline" ></ion-input>
-                  
+                  <div *ngIf="form && form.controls['hsncode']?.hasError('required') && form.controls['hsncode'].touched" class="error-message">
+                    HSn Code is required.
+                  </div>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="unit" formControlName="unit" name="units" type="text" label="Unit :" label-placement="floating"
                   fill="outline"  ></ion-input>
-                 
+                  <div *ngIf="form && form.controls['unit']?.hasError('required') && form.controls['unit'].touched" class="error-message">
+                    Unit is required.
+                  </div>
                 </ion-row>
               </ion-col>
 

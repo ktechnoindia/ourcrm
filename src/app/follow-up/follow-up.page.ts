@@ -116,6 +116,6 @@ myform:FormGroup;
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(["/leaddashboard"])
+    this.router.navigate(["/lead-manager"])
   }
 }

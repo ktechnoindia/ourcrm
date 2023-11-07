@@ -78,7 +78,7 @@ export class AddItemPage implements OnInit {
   itemtypename$:Observable<any[]>
   itemtypename:string='';
   itemgroups$: Observable<any[]>
-companyid=1;
+
 
   selectedAttribute: string='';
   attributes: string[] = [];
@@ -95,9 +95,9 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.myform = this.formBuilder.group({
       itemDesc: ['', [Validators.required]],
       itemCode: ['', [Validators.required]],
-      selectItem: ['', ],
-      selectStock: ['',],
-      selectItemGroup: ['', ],
+      selectItem: ['', [Validators.required]],
+      selectStock: ['', [Validators.required]],
+      selectItemGroup: ['', [Validators.required]],
       selectGst: [''],
       unitname$: [''],
       // selectAltUnit: [''],
@@ -143,7 +143,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
   }
   
  async onSubmit() {
-    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
+    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode,selectItemGroup:this.selectItemGroup,}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       this.submitted=true;

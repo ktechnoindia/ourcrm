@@ -15,18 +15,25 @@
           <ion-row>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="item_group_name" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input [(ngModel)]="igname" formControlName="igname" name="item_group_name" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
             
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-              <select  [(ngModel)]="groupname" formControlName="groupname"  name="groupname">
+              <select  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
                 <option value="0">---Select Parent Group---</option> <!-- Default option with value 0 --> 
+                <!-- <option value="1">1</option> -->
+                 <!--<option value="2">Ravi</option>
+                <option value="3">Nirbhay</option>
+                <option value="4">Abhishek</option> -->
                 <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                   {{ itemgroup.itemgroupname }}
                 </option>
               </select>
+              <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
+                Lead Assign is required.
+             </div>
             </ion-col>
           </ion-row>
           <ion-row >
@@ -42,8 +49,8 @@
                 </tr>
                 <tr *ngFor="let itemgroup of itemgroups$ | async; let i = index">
                   <td>{{ i + 1 }}</td>
-                  <td>{{ itemgroup.itemgroupname }}</td>
-                  <td>{{ itemgroup.groupname }}</td>
+                  <td><ion-input style="border: none;">{{ itemgroup.itemgroupname }}</ion-input></td>
+                  <td><ion-input style="border: none;">{{ itemgroup.parentgroupid }}</ion-input></td>
                  </tr>
               </table>
             </div>

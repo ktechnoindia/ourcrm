@@ -120,6 +120,6 @@ export class AddExecutivePage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/masterdashboard']); // Navigate back to the previous page
+    this.router.navigate(['/add-executive']); // Navigate back to the previous page
   }
 }
