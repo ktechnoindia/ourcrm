@@ -5,36 +5,6 @@ import { Observable } from 'rxjs';
 
 export interface vend{
 
-
-  // name: string;
-  // vendor_code: string;
-  // gstin: string='';
-  // select_group: number= 0;
-  // opening_balance: number | null;
-  // closing_balance: number | null = null;
-  // mobile: number | null = null;
-  // whatsapp_number: number | null = null;
-  // email: string = '';
-  // country: number=0;
-  // state: number=0;
-  // district: number=0;
-  // pincode: string='';
-  // address: string = '';
-  // tdn:  string='';
-  // aadhar_no: string='';
-  // pan_no: number |  string='';
-  // udhyog_aadhar:  string='';
-  // account_number: string='';
-  // ifsc_code: string='';
-  // bank_name: string = '';
-  // branch_name: string = '';
-  // credit_period: number=0;
-  // credit_limit: number=0;
-  // select_sales_person: number=0;
-  // card_number: string = '';
-  // opening_point: number=0;
-  // closing_point: number=0;
-
       name:string;
       customer_code: string;
       gstin: string;

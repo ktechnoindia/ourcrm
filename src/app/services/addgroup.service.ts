@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export interface group{
   itemgroupname: string,
   companyid: number,
-  parentgroupid: number
+  groupname: number;
 }
 
 @Injectable({
@@ -22,4 +22,5 @@ export class AddgroupService {
   getAllGroups(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apibaseurl+environment.fetchallitemgroups+'?companyid='+companyid);
   }
+ 
 }

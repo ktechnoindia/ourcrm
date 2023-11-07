@@ -42,7 +42,7 @@ export const environment = {
   addaccount: 'accounts',
   addcreateamc: 'createamc',
   additem: 'item',
-  addgroup: 'saveItemGroups',
+  addgroup: 'insert_group',
   addUnit: 'createunit',
   addHsn: 'insert_hsn',
   addcomapny: 'createcompany',
@@ -51,15 +51,14 @@ export const environment = {
   fetchallvend: 'get_vendors',
   fetchallitem: 'get_items',
   fetchallservice: 'saveservices',
-  fetchallexecuitve:'saveExecutive', 
-  fetchallcompany:'saveCompany',
-  fetchallledger:'saveLedger',
-  addattribute : 'attribute',
-adduser:'adduser',
-addpass:'password',
-addlogin:'login',
-addbarcode:'barcode',
-
+  fetchallexecuitve: 'saveExecutive',
+  fetchallcompany: 'saveCompany',
+  fetchallledger: 'saveLedger',
+  addattribute: 'attribute',
+  adduser: 'adduser',
+  addpass: 'password',
+  addlogin: 'login',
+  addbarcode: 'barcode',
 };
 
 
