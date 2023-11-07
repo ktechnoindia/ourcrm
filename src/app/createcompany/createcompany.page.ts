@@ -67,17 +67,17 @@ export class CreatecompanyPage implements OnInit {
   company: any;
 
   //Step: 2
-  tanumber: string = '';
+  tanno: string = '';
   pannumber: string = '';
 
-  industry: number|null = null;
+  industry:number= 1;;
   industry$: any;
   companytype$: any;
-  companytype:  number|null = null;
+  companytype:  number= 1;
   businesstype$: any;
-  businesstype:  number|null = null;
+  businesstype: number= 1;
   segmenttype$: any;
-  segmenttype: number|null = null;
+  segmenttype:number= 1;
 
   //step : 3 
   language: number = 0;
@@ -145,7 +145,7 @@ export class CreatecompanyPage implements OnInit {
       segmenttype: ['', [Validators.required]],
       companytype: ['', [Validators.required]],
       pannumber: [''],
-      tanumber: [''],
+     
 
       //step: 3
       language: ['', [Validators.required]],
