@@ -86,7 +86,7 @@
             <ion-row>
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_balance" name="opening_balance" class="sign_input" type="text"
+                  <ion-input [(ngModel)]="opening_balance" name="opening_balance" class="sign_input" type="number"
                     label=" Opening Balance :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
@@ -94,7 +94,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_balance " name="closing_balance" type="text"
+                  <ion-input [(ngModel)]="closing_balance " name="closing_balance" type="number"
                     label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
@@ -102,7 +102,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="mobile" name="mobile" type="tel" label=" Mobile Number :"
+                  <ion-input [(ngModel)]="mobile" name="mobile" type="text" label=" Mobile Number :"
                     label-placement="floating" fill="outline" maxlength="10"></ion-input>
 
                 </ion-row>
@@ -267,7 +267,7 @@
 
               <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="aadhar_no" name="aadhar_no" type="tel" label="Aadhar No.:"
+                  <ion-input [(ngModel)]="aadhar_no" name="aadhar_no" type="text" label="Aadhar No.:"
                     label-placement="floating" fill="outline" maxlength="12"></ion-input>
                 </ion-row>
               </ion-col>
@@ -334,13 +334,13 @@
             <ion-row>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_period" name="credit_period" type="tel" label=" Credit Period :"
+                  <ion-input [(ngModel)]="credit_period" name="credit_period" type="number" label=" Credit Period :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="credit_limit" name="credit_limit" type="text" label=" Credit Limit :"
+                  <ion-input [(ngModel)]="credit_limit" name="credit_limit" type="number" label=" Credit Limit :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -366,14 +366,14 @@
 
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="opening_point" name="opening_point" type="text" label="Opening Point :"
+                  <ion-input [(ngModel)]="opening_point" name="opening_point" type="number" label="Opening Point :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
 
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="closing_point" name="closing_point" type="text" label="Closing Point :"
+                  <ion-input [(ngModel)]="closing_point" name="closing_point" type="number" label="Closing Point :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
