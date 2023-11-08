@@ -52,8 +52,8 @@ export class LegderService {
     return this.httpclient.post(environment.apiactionurl+environment.addledger,ledger,{headers:{'key':key,'user':user}})
   }
 
-  fetchAllLedger(companyid:string,key:string,user:string): Observable<any> {
-    console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl+environment.fetchallledger+'?p='+companyid,{headers:{'key':key,'user':user}})
+  fetchAllLedger(companyid: string, key: string, user: string): Observable<any> {
+    console.log('companyyy ' + companyid);
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallledger + '/' + companyid, { headers: { 'key': key, 'user': user } })
   }
 }
