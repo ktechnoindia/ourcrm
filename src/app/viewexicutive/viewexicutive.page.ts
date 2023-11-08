@@ -22,7 +22,7 @@ export class ViewexicutivePage implements OnInit {
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:AddexecutiveService) { 
     const compid='1';
 
-    this.executives$ = this.executService.fetchAllExecutive(encService.encrypt(compid),'','');
+    this.executives$ = this.executService.fetchAllExecutive(compid,'','');
     console.log(this.executives$);
   }
 
