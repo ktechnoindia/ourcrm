@@ -174,7 +174,7 @@ input[type="date"] {
 }
 .leadscard ion-title{
   font-size: 26px;
-  // color: black;
+  color: purple;
   font-weight: bolder;
 }
 .leadscard ion-icon{
@@ -213,9 +213,14 @@ height: 40px;
 margin-top: 6px;
 }
 
-.leadsrouter ion-icon{
+.leadscard ion-icon{
   padding: 5px;
   color: purple;
+  font-size: 28px;
+}
+.leadsrouter ion-icon{
+  padding: 5px;
+  color: black;
 }
 .leadsrouter  ion-label{
   margin-bottom: 5px;
@@ -226,4 +231,38 @@ margin-top: 6px;
 .leadsrouter ion-card{
   margin: 10px;
   width: 80%;
+}
+.leadsrouter{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+
+.date {
+  justify-content: left;
+}
+.date ion-input{
+  margin-left: 5px;
+  min-height: 35px;
+  // color: goldenrod;
+  font-weight: 400;
+   outline-color: black;
+  outline-width: 2px black;
+  outline-style: initial;
+  box-shadow: none;
+}
+ion-item:hover {
+  background-color: rgb(224, 215, 215);
+  ion-icon{
+    color: purple;
+  }
+  ion-label{
+    color: #000;
+  }
+}
+@media(max-width:575px){
+  .icon-container {
+    margin-top: 10px;
+  }
 }

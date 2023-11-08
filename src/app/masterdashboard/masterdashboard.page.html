@@ -20,132 +20,106 @@
     <div class="lead_nav">
       <ion-grid>
         <ion-row>
-          <div class="icon-container">
-            <!-- <ion-row>
-              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Last 30 Days Leads :</ion-label>
-                </ion-row>
-              </ion-col>
-              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Overall Leads :</ion-label>
-                </ion-row>
-              </ion-col>
-            </ion-row> -->
-
-            <ion-row class="leadscard">
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
-                  <ion-icon name="person-outline" color="danger"></ion-icon><br>
-                  <ion-label color="danger">
-                    Active Customer
-                  </ion-label>
-                  <ion-title color="danger">1000</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
-                  <ion-icon name="person" color="secondary"></ion-icon><br>
-                  <ion-label color="secondary">
-                    Active Supplier
-                  </ion-label>
-                  <ion-title color="secondary">323</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
-                  <ion-icon name="bag-handle" color="#005a00"></ion-icon> <br>
-                  <ion-label color="#005a00">
-                    Types of Services
-                  </ion-label>
-                  <ion-title color="#005a00">10</ion-title>
-                </ion-card>
-              </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                  <ion-icon name="clipboard" color="danger"></ion-icon><br>
-                  <ion-label  color="danger">
-                    Types of Item
-                  </ion-label>
-                  <ion-title  color="danger">1020</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
-                  <ion-icon name="people" color="dark"></ion-icon><br>
-                  <ion-label color="dark">
-                    No. of Executive
-                  </ion-label>
-                  <ion-title color="dark">10</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
-                  <ion-icon name="newspaper" color="success"></ion-icon><br>
-                  <ion-label color="success">
-                    Total Ledger
-                  </ion-label>
-                  <ion-title color="success">93</ion-title>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Manage Master :</ion-label>
-                </ion-row>
-            <ion-row class="leadsrouter">
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-customer']">
-                  <ion-icon name="person-add-sharp"></ion-icon><br>
-                  <ion-label color="success">
+          <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
+            <div class="icon-container">
+              <ion-row class="leadscard">
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
+                    <ion-icon name="person-outline" color="danger"></ion-icon><br>
+                    <ion-label color="danger">
+                      Active Customer
+                    </ion-label>
+                    <ion-title color="danger">1000</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
+                    <ion-icon name="person" color="secondary"></ion-icon><br>
+                    <ion-label color="secondary">
+                      Active Supplier
+                    </ion-label>
+                    <ion-title color="secondary">323</ion-title>
+                  </ion-card>
+                </ion-col>
+                <!-- <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
+                    <ion-icon name="bag-handle" color="#005a00"></ion-icon> <br>
+                    <ion-label color="#005a00">
+                      1
+                    </ion-label>
+                    <ion-title color="#005a00">10</ion-title>
+                  </ion-card>
+                </ion-col> -->
+              </ion-row>
+              <!-- <ion-row class="leadscard">
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                    <ion-icon name="clipboard" color="danger"></ion-icon><br>
+                    <ion-label color="danger">
+                      2 </ion-label>
+                    <ion-title color="danger">1020</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
+                    <ion-icon name="people" color="dark"></ion-icon><br>
+                    <ion-label color="dark">
+                      3 </ion-label>
+                    <ion-title color="dark">10</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
+                    <ion-icon name="newspaper" color="success"></ion-icon><br>
+                    <ion-label color="success">
+                      4 </ion-label>
+                    <ion-title color="success">93</ion-title>
+                  </ion-card>
+                </ion-col>
+              </ion-row> -->
+            </div>
+          </ion-col>
+          <ion-col size="12" size-lg="2" size-md="4" size-sm="2">
+            <div class="icon-container">
+              <ion-row class="headinglabel" style="text-align: center;">
+                <ion-label color="dark">Manage Master :</ion-label>
+              </ion-row>
+              <ion-row class="leadsrouter">
+                <ion-item [routerLink]="['/add-customer']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                     Add Customer
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-vendor']">
-                  <ion-icon name="person-add"></ion-icon><br>
-                  <ion-label color="success">
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/add-vendor']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                     Add Supplier
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-item']">
-                  <ion-icon name="bag-add-sharp"></ion-icon><br>
-                  <ion-label color="success">
+                  </ion-label> <ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/add-item']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                     Add Item
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-executive']">
-                  <ion-icon name="person-add-outline"></ion-icon><br>
-                  <ion-label color="success">
-                   Add Executive
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-service']">
-                  <ion-icon name="duplicate-sharp"></ion-icon><br>
-                  <ion-label color="success">
-                   Add Service
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/ledger']">
-                  <ion-icon name="newspaper-sharp"></ion-icon><br>
-                  <ion-label color="success">
-                   Add Ledger
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-            </ion-row>
- 
-          </div>
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/add-executive']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                    Add Executive
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/add-service']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                    Add Service
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/ledger']">
+                  <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                    Add Ledger
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+
+              </ion-row>
+
+            </div>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
@@ -153,90 +127,82 @@
     <ion-row class="lead_details">
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>Top New Lead</p>
+          <p>Customer List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
                 <th><input type="checkbox" name=""></th>
-                <th>Lead Name</th>
+                <th>Sr. No.</th>
+                <th>Customer Code</th>
+                <th>Customer Name</th>
                 <th>Company Name</th>
                 <th>Email</th>
-                <th>Phone Number</th>
-                <th>Lead Source</th>
-                <th>Lead Owner</th>
+                <th>Mobile Number</th>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>CUST001</td>
                 <td>Rajesh Verma</td>
                 <td>IndianTech Solutions</td>
-                <td>Software Services</td>
                 <td>rajesh@example.com</td>
                 <td>(91) 98765-43210</td>
-                <td>Web</td>
-                <td>Anita Sharma</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>2</td>
+                <td>CUST002</td>
                 <td>Priya Patel</td>
                 <td>Bharat Enterprises</td>
-                <td>Consumer Electronics</td>
                 <td>priya@example.com</td>
                 <td>(91) 98765-12345</td>
-                <td>Referral</td>
-                <td>Ajay Gupta</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>3</td>
+                <td>CUST003</td>
                 <td>Vinod Kumar</td>
                 <td>India Systems Pvt. Ltd.</td>
-                <td>IT Services</td>
                 <td>vinod@example.com</td>
                 <td>(91) 12345-67890</td>
-                <td>Email Campaign</td>
-                <td>Sneha Dubey</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>4</td>
+                <td>CUST004</td>
                 <td>Amit Singh</td>
                 <td>Mumbai Traders</td>
-                <td>Retail</td>
                 <td>amit@example.com</td>
                 <td>(91) 77777-88888</td>
-                <td>Phone Call</td>
-                <td>Kavita Reddy</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>5</td>
+                <td>CUST005</td>
                 <td>Pooja Mehta</td>
                 <td>Delhi Developers</td>
-                <td>Software Services</td>
                 <td>pooja@example.com</td>
                 <td>(91) 88888-99999</td>
-                <td>Web</td>
-                <td>Sachin Kumar</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>6</td>
+                <td>CUST006</td>
                 <td>Rahul Sharma</td>
                 <td>Bengaluru Innovations</td>
-                <td>Hardware Manufacturing</td>
                 <td>rahul@example.com</td>
                 <td>(91) 98765-67890</td>
-                <td>Referral</td>
-                <td>Kirti Mishra</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
+                <td>7</td>
+                <td>CUST007</td>
                 <td>Geeta Reddy</td>
                 <td>Hyderabad Ventures</td>
-                <td>Consulting</td>
                 <td>geeta@example.com</td>
                 <td>(91) 77777-55555</td>
-                <td>Email Campaign</td>
-                <td>Sanjay Verma</td>
               </tr>
-
 
             </table>
           </div>
@@ -244,89 +210,335 @@
       </ion-col>
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>Product Wise Lead</p>
+          <p>Supplier List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
                 <th><input type="checkbox" name=""></th>
-                <th>Lead Name</th>
+                <th>Sr. No.</th>
+                <th>Supplier Code</th>
+                <th>Supplier Name</th>
                 <th>Company Name</th>
-                <th>Type Of Product</th>
                 <th>Email</th>
-                <th>Phone Number</th>
-                <th>Lead Source</th>
-                <th>Lead Owner</th>
+                <th>Mobile Number</th>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Rajesh Verma</td>
-                <td>IndianTech Solutions</td>
-                <td>Software Services</td>
+                <td>1</td>
+                <td>SUP001</td>
+                <td>Rajesh Traders</td>
+                <td>Indian Suppliers Ltd.</td>
                 <td>rajesh@example.com</td>
                 <td>(91) 98765-43210</td>
-                <td>Web</td>
-                <td>Anita Sharma</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Priya Patel</td>
-                <td>Bharat Enterprises</td>
-                <td>Consumer Electronics</td>
+                <td>2</td>
+                <td>SUP002</td>
+                <td>Priya Exports</td>
+                <td>Bharat Suppliers</td>
                 <td>priya@example.com</td>
                 <td>(91) 98765-12345</td>
-                <td>Referral</td>
-                <td>Ajay Gupta</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Vinod Kumar</td>
-                <td>India Systems Pvt. Ltd.</td>
-                <td>IT Services</td>
+                <td>3</td>
+                <td>SUP003</td>
+                <td>Vinod Enterprises</td>
+                <td>India Traders Pvt. Ltd.</td>
                 <td>vinod@example.com</td>
                 <td>(91) 12345-67890</td>
-                <td>Email Campaign</td>
-                <td>Sneha Dubey</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Amit Singh</td>
-                <td>Mumbai Traders</td>
-                <td>Retail</td>
+                <td>4</td>
+                <td>SUP004</td>
+                <td>Amit Suppliers</td>
+                <td>Mumbai Exports</td>
                 <td>amit@example.com</td>
                 <td>(91) 77777-88888</td>
-                <td>Phone Call</td>
-                <td>Kavita Reddy</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Pooja Mehta</td>
-                <td>Delhi Developers</td>
-                <td>Software Services</td>
+                <td>5</td>
+                <td>SUP005</td>
+                <td>Pooja Traders</td>
+                <td>Delhi Suppliers</td>
                 <td>pooja@example.com</td>
                 <td>(91) 88888-99999</td>
-                <td>Web</td>
-                <td>Sachin Kumar</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Rahul Sharma</td>
-                <td>Bengaluru Innovations</td>
-                <td>Hardware Manufacturing</td>
+                <td>6</td>
+                <td>SUP006</td>
+                <td>Rahul Exports</td>
+                <td>Bengaluru Traders</td>
                 <td>rahul@example.com</td>
                 <td>(91) 98765-67890</td>
-                <td>Referral</td>
-                <td>Kirti Mishra</td>
               </tr>
               <tr>
                 <td><input type="checkbox" name=""></td>
-                <td>Geeta Reddy</td>
-                <td>Hyderabad Ventures</td>
-                <td>Consulting</td>
+                <td>7</td>
+                <td>SUP007</td>
+                <td>Geeta Enterprises</td>
+                <td>Hyderabad Exports</td>
                 <td>geeta@example.com</td>
                 <td>(91) 77777-55555</td>
-                <td>Email Campaign</td>
-                <td>Sanjay Verma</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="lead_details">
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Executive List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Sr. No.</th>
+                <th>Executive Code</th>
+                <th>Executive Name</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>EXE001</td>
+                <td>Rajesh Verma</td>
+                <td>Sales Executive</td>
+                <td>rajesh@example.com</td>
+                <td>(91) 98765-43210</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>2</td>
+                <td>EXE002</td>
+                <td>Priya Patel</td>
+                <td>Marketing Executive</td>
+                <td>priya@example.com</td>
+                <td>(91) 98765-12345</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>3</td>
+                <td>EXE003</td>
+                <td>Vinod Kumar</td>
+                <td>Product Manager</td>
+                <td>vinod@example.com</td>
+                <td>(91) 12345-67890</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>4</td>
+                <td>EXE004</td>
+                <td>Amit Singh</td>
+                <td>Customer Support</td>
+                <td>amit@example.com</td>
+                <td>(91) 77777-88888</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>5</td>
+                <td>EXE005</td>
+                <td>Pooja Mehta</td>
+                <td>HR Manager</td>
+                <td>pooja@example.com</td>
+                <td>(91) 88888-99999</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>6</td>
+                <td>EXE006</td>
+                <td>Rahul Sharma</td>
+                <td>Finance Analyst</td>
+                <td>rahul@example.com</td>
+                <td>(91) 98765-67890</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>7</td>
+                <td>EXE007</td>
+                <td>Geeta Reddy</td>
+                <td>IT Specialist</td>
+                <td>geeta@example.com</td>
+                <td>(91) 77777-55555</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Item List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Sr. No.</th>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>HSN Number</th>
+                <th>Item Group</th>
+                <th>Unit od Item</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>ITM001</td>
+                <td>Laptop</td>
+                <td>8471</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>2</td>
+                <td>ITM002</td>
+                <td>Mobile Phone</td>
+                <td>8517</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>3</td>
+                <td>ITM003</td>
+                <td>Printer</td>
+                <td>8443</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>4</td>
+                <td>ITM004</td>
+                <td>LED TV</td>
+                <td>8528</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>5</td>
+                <td>ITM005</td>
+                <td>Refrigerator</td>
+                <td>8418</td>
+                <td>Appliances</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>6</td>
+                <td>ITM006</td>
+                <td>Washing Machine</td>
+                <td>8450</td>
+                <td>Appliances</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>7</td>
+                <td>ITM007</td>
+                <td>Microwave Oven</td>
+                <td>8516</td>
+                <td>Appliances</td>
+                <td>Each</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="lead_details">
+     
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Top Item List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table>
+              <tr>
+                <th><input type="checkbox" name=""></th>
+                <th>Sr. No.</th>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>HSN Number</th>
+                <th>Item Group</th>
+                <th>Unit od Item</th>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>1</td>
+                <td>ITM001</td>
+                <td>Laptop</td>
+                <td>8471</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>2</td>
+                <td>ITM002</td>
+                <td>Mobile Phone</td>
+                <td>8517</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>3</td>
+                <td>ITM003</td>
+                <td>Printer</td>
+                <td>8443</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>4</td>
+                <td>ITM004</td>
+                <td>LED TV</td>
+                <td>8528</td>
+                <td>Electronics</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>5</td>
+                <td>ITM005</td>
+                <td>Refrigerator</td>
+                <td>8418</td>
+                <td>Appliances</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>6</td>
+                <td>ITM006</td>
+                <td>Washing Machine</td>
+                <td>8450</td>
+                <td>Appliances</td>
+                <td>Each</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>7</td>
+                <td>ITM007</td>
+                <td>Microwave Oven</td>
+                <td>8516</td>
+                <td>Appliances</td>
+                <td>Each</td>
               </tr>
 
             </table>

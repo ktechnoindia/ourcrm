@@ -17,12 +17,15 @@ export class AddQuotPage implements OnInit {
 
   quoteNumber: number | null = null;
   quateDate: string = '';
-  quoteGroup: string = '';
+  custname: string = '';
   quateTax:string='';
   taxrate: string = '';
+  refrence: string = '';
+  refdate: string = '';
   unit: string = '';
   item: string = '';
   quotation: any;
+  quoteGroup: string = '';
   description : string='';
   quantity : string ='';
   basicrate : string ='';

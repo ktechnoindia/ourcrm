@@ -20,119 +20,130 @@
     <div class="lead_nav">
       <ion-grid>
         <ion-row>
-          <div class="icon-container">
-            <ion-row>
-              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Last 30 Days Leads :</ion-label>
-                </ion-row>
-              </ion-col>
-              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Overall Leads :</ion-label>
-                </ion-row>
-              </ion-col>
-            </ion-row>
+          <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
+            <div class="icon-container">
+              <ion-row class="date" >
+                <ion-col size="3" size-lg="3" size-md="3" size-sm="3">
+                  <ion-input color="dark" type="date" label="From Date" label-placement="floating" fill="outline"
+                    name="fromdate"></ion-input>
+                </ion-col>
+                <ion-col size="3" size-lg="3" size-md="3" size-sm="3">
+                  <ion-input color="dark" type="date" label="To Date" label-placement="floating" fill="outline"
+                    name="todate"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row class="leadscard">
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                    <ion-icon name="list-outline"></ion-icon><br>
+                    <ion-label>
+                      Total Leads
+                    </ion-label>
+                    <ion-title>1020</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
+                    <ion-icon name="trophy-outline"></ion-icon><br>
+                    <ion-label>
+                      Active Leads
+                    </ion-label>
+                    <ion-title>121</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color: lightcyan">
+                    <ion-icon name="shield-checkmark-outline"></ion-icon><br>
+                    <ion-label>
+                      Hot Leads
+                    </ion-label>
+                    <ion-title>99</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color: lightgray">
+                    <ion-icon name="shield-half-outline"></ion-icon><br>
+                    <ion-label>
+                      Warm Leads
+                    </ion-label>
+                    <ion-title>29</ion-title>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
 
-            <ion-row class="leadscard">
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center;background-color: rgb(255, 234, 234);">
-                  <ion-icon name="calendar-clear-sharp" color="danger"></ion-icon><br>
-                  <ion-label color="danger">
-                    New Lead
-                  </ion-label>
-                  <ion-title color="danger">10</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(199, 241, 241);">
-                  <ion-icon name="hand-right-sharp" color="secondary"></ion-icon><br>
-                  <ion-label color="secondary">
-                    Engagement
-                  </ion-label>
-                  <ion-title color="secondary">10 %</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(187, 231, 187);">
-                  <ion-icon name="bag-check-sharp" color="#005a00"></ion-icon><br>
-                  <ion-label color="#005a00">
-                    Active Leads
-                  </ion-label>
-                  <ion-title color="#005a00">100%</ion-title>
-                </ion-card>
-              </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                  <ion-icon name="albums-sharp" color="danger"></ion-icon><br>
-                  <ion-label color="danger">
-                    Total Leads
-                  </ion-label>
-                  <ion-title color="danger">1020</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(182, 205, 255);">
-                  <ion-icon name="albums-sharp" color="dark"></ion-icon><br>
-                  <ion-label color="dark">
-                    Engagement
-                  </ion-label>
-                  <ion-title color="dark">0 %</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="2" size-md="2" size-sm="2">
-                <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
-                  <ion-icon name="star-sharp" color="success"></ion-icon><br>
-                  <ion-label color="success">
-                    Active Leads
-                  </ion-label>
-                  <ion-title color="success">99%</ion-title>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
-                <ion-row class="headinglabel" style="text-align: center;">
-                  <ion-label color="dark">Leads Manage :</ion-label>
-                </ion-row>
-              </ion-col>
-            </ion-row>
-            <ion-row class="leadsrouter">
-              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/add-lead']">
-                  <ion-icon name="bag-add-sharp"></ion-icon><br>
+              <ion-row class="leadscard">
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color: lightpink">
+                    <ion-icon name="thumbs-down-outline"></ion-icon><br>
+                    <ion-label>
+                      Cold Leads
+                    </ion-label>
+                    <ion-title>9</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center;background-color: lightgoldenrodyellow">
+                    <ion-icon name="analytics-outline"></ion-icon><br>
+                    <ion-label>
+                      Pending Follow-ups
+                    </ion-label>
+                    <ion-title>10</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color: lightsalmon">
+                    <ion-icon name="notifications-off-outline"></ion-icon><br>
+                    <ion-label>
+                      Not Attended Leads
+                    </ion-label>
+                    <ion-title>10</ion-title>
+                  </ion-card>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                  <ion-card style="text-align: center; background-color:lightseagreen">
+                    <ion-icon name="close-circle-outline"></ion-icon><br>
+                    <ion-label>
+                      Order Closed
+                    </ion-label>
+                    <ion-title>100</ion-title>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size="12" size-lg="2" size-md="4" size-sm="2">
+            <div class="icon-container">
+              <ion-row class="headinglabel" style="text-align: center;">
+                <ion-label color="dark">Leads Manage :</ion-label>
+              </ion-row>
+              <ion-row class="leadsrouter">
+                <ion-item [routerLink]="['/add-lead']">
+                  <ion-icon name="checkmark-circle"></ion-icon>
                   <ion-label color="success">
                     Add New Lead
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/follow-up']">
-                  <ion-icon name="call-sharp"></ion-icon><br>
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/followup']">
+                  <ion-icon name="checkmark-circle"></ion-icon>
                   <ion-label color="success">
                     Follow Up
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/transfer-lead']">
-                  <ion-icon name="share-social-sharp"></ion-icon><br>
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/transfer-lead']">
+                  <ion-icon name="checkmark-circle"></ion-icon>
                   <ion-label color="success">
                     Transfer Lead
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center; background-color:lightcyan"  [routerLink]="['/view-lead']">
-                  <ion-icon name="eye-sharp"></ion-icon><br>
+                  </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-item>
+                <ion-item [routerLink]="['/view-lead']">
+                  <ion-icon name="checkmark-circle"></ion-icon>
                   <ion-label color="success">
                     View Lead
-                  </ion-label>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-          </div>
+                  </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
+                </ion-item>
+              </ion-row>
+            </div>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
