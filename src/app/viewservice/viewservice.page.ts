@@ -22,7 +22,7 @@ export class ViewservicePage implements OnInit {
 
   constructor(private addService : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
-    this.services$ = this.addService.fetchallservice(encService.encrypt(compid),'','');
+    this.services$ = this.addService.fetchallservice(compid,'','');
     console.log(this.services$);
   }
 

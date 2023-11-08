@@ -29,7 +29,7 @@ export class ViewcompanyPage implements OnInit {
 
   constructor(private alertController: AlertController,public session:SessionService,private companyService : CreatecompanyService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
-    this.companys$ = this.companyService.fetchAllCompany(encService.encrypt(compid),'','');
+    this.companys$ = this.companyService.fetchAllCompany(compid,'','');
     console.log(this.companys$);
   }
 
