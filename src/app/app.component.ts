@@ -29,7 +29,7 @@ import { FollowupService } from './services/followup.service';
 import { LegderService } from './services/ledger.service';
 import { AddserviceService } from './services/addservice.service';
 import { GstService } from './services/gst.service';
-import { AddexecutiveService } from './services/addexecutive.service';
+// import { AddexecutiveService } from './services/addexecutive.service';
 import { RoleofexecutiveService } from './services/roleofexecutive.service';
 import { AddaccountserviceService } from './services/addaccountservice.service';
 import { CreateamcService } from './services/createamc.service';
@@ -59,7 +59,7 @@ import { BarcodeService } from './services/barcode.service';
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [ItemtypeService, LeadsourceService,FollowupService,StocktypeService, LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
-    CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,AddexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+    CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
  AddattributeService,UsercreateService,PasswordService,LoginService,BarcodeService
   ],
 })

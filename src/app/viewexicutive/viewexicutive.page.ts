@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AddexecutiveService } from '../services/addexecutive.service';
+import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
 
 
@@ -19,7 +19,7 @@ export class ViewexicutivePage implements OnInit {
   formDate:string='';
   toDate:string='';
   executives$: Observable<any[]>
-  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:AddexecutiveService) { 
+  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:ExecutiveService) { 
     const compid='1';
 
     this.executives$ = this.executService.fetchAllExecutive(encService.encrypt(compid),'','');

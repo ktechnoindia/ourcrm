@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddexecutiveService,execut } from '../services/addexecutive.service';
+import { ExecutiveService,execut } from '../services/executive.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormValidationService } from '../form-validation.service';
@@ -42,7 +42,7 @@ export class AddExecutivePage implements OnInit {
   roletypesservice: any;
  
 
-  constructor(private router: Router,private addExecutiveService:AddexecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+  constructor(private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
