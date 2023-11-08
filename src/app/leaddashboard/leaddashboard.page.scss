@@ -56,7 +56,7 @@ ion-col{
 .navigation a{
   float: right;
   padding: 10px;
-  background-color: lightsteelblue;
+  background-color: lightblue;
   width: 400px;
   margin: 5px;
 }
@@ -67,23 +67,14 @@ ion-icon{
   color: lightblue;
   font-size: 20px;
 }
-
-.dash
 ion-label{
   font-size: 13px;
-
 }
 
 .table_data{
   padding: 5px 10px;
 }
- .table-data{
-  background-color: lightsteelblue;
-}
-.table-container{
-  background-color: lightgrey ;
 
-}
 .container_fluid{
     width: 100%;
     display: flex;
@@ -100,19 +91,19 @@ ion-label{
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px; /* Enable vertical scrollbar when content overflows */
-    // background-color: rgb(169, 252, 241);
+    background-color: rgb(169, 252, 241);
   }
   .scroll-container {
     width: 1500px; /* Set the width of the container */
     height: 250px; /* Set the height of the container */
     overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
     overflow-y: scroll;
-    // background-color: white;
+    background-color: white;
   }
   .table-container p{
     // background-color: lightblue;
     font-size: 20px;
-    // border-bottom: 1px solid white;
+    border-bottom: 1px solid white;
     width: 100%;
   }
   /* Style the table inside the container */
@@ -120,7 +111,7 @@ ion-label{
     width: 100%; 
     padding: 10px;
     border: none;
-    // border: 1px solid grey;
+    border: 1px solid grey;
     height: 200px;
   }
 
@@ -130,17 +121,17 @@ ion-label{
   th{
     border: none;
     width: 300px;
-    // border-top: 1px solid rgb(199, 191, 191);
+    border-top: 1px solid rgb(199, 191, 191);
     // border-bottom: 1px solid rgb(199, 191, 191);
-    // background-color: lightgray;
+    background-color: lightgray;
     padding: 0px 12px;
     font-size: 14px;
   }
   td{
     border: none;
     width: 300px;
-    // border-bottom: 1px solid rgb(199, 191, 191);
-    // color: grey;
+    border-bottom: 1px solid rgb(199, 191, 191);
+    color: grey;
     padding: 0px 12px;
     font-size: 13px;
   }
@@ -159,18 +150,29 @@ input[type="date"] {
   width: 150px;
   background-color: transparent;
 }
+ion-searchbar{
+  --ion-background-color:white;
+  border-radius: 20px;
+  line-height: 14px;
+  width: 100%;
+  font-size: 12px;
+ 
+}
+ion-input {
+ --ion-height: 20px;
+}
+
 
 .icon-container{
   width: 100%; 
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px; 
-  background-color: lightsteelblue;
+  background-color: lightpink;
 }
 .leadscard ion-card{
-  height: 100px;
+  height: 60px;
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .leadscard ion-title{
   font-size: 26px;
@@ -179,11 +181,12 @@ input[type="date"] {
 }
 .leadscard ion-icon{
   font-size: 22px;
-  font-weight: bold;
-  padding-top: 4px;
+  color: black;
+  font-weight: bolder;
 }
 .leadscard ion-label{
-  font-size: 16px;
+  font-size: 18px;
+  color: black;
   font-weight: bold;
   color: purple;
 }

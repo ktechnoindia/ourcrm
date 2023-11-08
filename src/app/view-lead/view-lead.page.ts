@@ -62,7 +62,7 @@ export class ViewLeadPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(["/leaddashboard"])
+    this.router.navigate(["/lead-manager"])
   }
 
 }

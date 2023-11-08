@@ -105,7 +105,7 @@ export class AddServicePage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/masterdashboard']); // Navigate back to the previous page
+    this.router.navigate(['/master']); // Navigate back to the previous page
   }
 
 }

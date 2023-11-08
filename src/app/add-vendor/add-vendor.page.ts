@@ -91,11 +91,11 @@ export class AddVendorPage implements OnInit {
   constructor(private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
-      gstin: [''],
-      mobile: ['', [Validators.maxLength(10)]],
-      email: ['', [Validators.email]],
-      select_group: ['', ],
+      vendor_code: ['', [Validators.required, Validators.maxLength(5)]],
+      gstin: ['', [Validators.required, Validators.maxLength(15)]],
+      mobile: ['', [Validators.required, Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      select_group: ['', [Validators.required]],
       opening_balance: [''],
       closing_balance: [''],
       whatsapp_number: [''],
@@ -151,7 +151,7 @@ export class AddVendorPage implements OnInit {
   }
 
   async onSubmit() {
-    const fields = {name:this.name,vendor_code:this.vendor_code,}
+    const fields = {name:this.name,vendor_code:this.vendor_code,gstin:this.gstin,mobile:this.mobile,}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
  
@@ -245,6 +245,6 @@ export class AddVendorPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/masterdashboard']); // Navigate back to the previous page
+    this.router.navigate(['/master']); // Navigate back to the previous page
   }
 }

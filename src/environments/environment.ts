@@ -53,7 +53,7 @@ export const environment = {
   fetchallservice: 'saveservices',
   fetchallexecuitve: 'saveExecutive',
   fetchallcompany: 'saveCompany',
-  fetchallledger: 'saveLedger',
+  fetchallledger: 'ledgers',
   addattribute: 'attribute',
   adduser: 'adduser',
   addpass: 'password',

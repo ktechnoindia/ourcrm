@@ -31,43 +31,44 @@ export class AddCustomerPage implements OnInit {
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
-  selectedState: number=0;
-  selectedDistrict: number=0;
+  selectedState: any;
+  selectedDistrict: string='';
 
   name: string = '';
+  customercode: number | null = null;
   customer_code:string='';
-  selectedOption: number=0;
-  opening_balance: number=0;
-  closing_balance: number= 0;
-  mobile:  string = '';
+  selectedOption: string = '';
+  opening_balance: number | null = null;
+  closing_balance: number | null = null;
+  mobile: number | null = null;
   whatsapp_number:string='';
   address: string = '';
   gstin:string='';
   email:string='';
-  select_sales_person:string='';
+  select_sales_person:number=0;
   pincode:string='';
-  tdn: string='';
-  aadhar_no: string='';
-  pan_no: string='';
-  udhyog_aadhar: string='';
-  account_number:string='';
-  ifsc_code: string='';
+  tdn: number | null = null;
+  aadhar_no: number | null = null;
+  pan_no: number | null = null;
+  udhyog_aadhar: number | null = null;
+  account_number: string="";
+  ifsc_code: number | null = null;
   bank_name: string = '';
   branch_name: string = '';
-  credit_period: number =0;
-  credit_limit: number=0;
-  card_number: string='';
-  opening_point: number=0;
-  closing_point: number=0;
-  district:number=0;
-  country:number=0;
-  state:number=0;
-  select_group:number=0;
+  credit_period: number | null = null;
+  credit_limit: number | null = null;
+  card_number: number | null = null;
+  opening_point: number | null = null;
+  closing_point: number | null = null;
+  district:any;
+  country:any;
+  state:any;
+  select_group:string='';
 
 
-  selectedOption1:number=0;
-selectedState1:number=0;;
-selectedDistrict1:number=0;
+  selectedOption1:string='';
+selectedState1:string='';
+selectedDistrict1:string='';
 pincode1:string='';
 address1:string='';
 
@@ -143,7 +144,7 @@ address1:string='';
   }
 
   goBack() {
-    this.router.navigate(['/masterdashboard']);
+    this.router.navigate(['/master']);
   }
 
   onSubmit(myform: NgForm) {
