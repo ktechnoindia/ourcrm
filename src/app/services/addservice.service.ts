@@ -9,7 +9,7 @@ export interface serv{
   gst:string;
   sac_code:string;
   description:string;
-  companyid:number,
+  companyid:1,
 
 }
 
@@ -25,6 +25,6 @@ export class AddserviceService {
   }
   fetchallservice(companyid:string,key:string,user:string): Observable<any> {
     console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl+environment.fetchallservice+'?p='+companyid,{headers:{'key':key,'user':user}})
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallservice+'/'+companyid,{headers:{'key':key,'user':user}})
   }
 }
