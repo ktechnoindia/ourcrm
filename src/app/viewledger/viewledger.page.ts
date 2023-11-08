@@ -22,7 +22,7 @@ export class ViewledgerPage implements OnInit {
   constructor(private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
     const compid='1';
 
-    this.ledgers$ = this.ledgerService.fetchAllLedger(encService.encrypt(compid),'','');
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid,'','');
     console.log(this.ledgers$);
   }
 
