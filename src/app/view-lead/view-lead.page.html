@@ -24,11 +24,11 @@
         </div>
         <ion-grid>
 
-          <form #viewLeadForm="ngForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 25px;">
               <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
-                <select [(ngModel)]=" select_sales_person" name="select_sales_person">
+                <select [(ngModel)]=" select_sales_person" formControlName="select_sales_person" name="execute">
                   <option value="0">Search By Executive Name</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -38,15 +38,15 @@
               </ion-col>
               <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="fromDate" name="fromDate" type="date" label="To Date :"
-                    label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="formdate" formControlName="formdate" name="formdate"  type="date" label="To Date :"
+                    label-placement="floating" fill="outline" id="endDate" ></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
-                    label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="toDate" formControlName="toDate" name="toDate" type="date"  label="To Date :"
+                    label-placement="floating" fill="outline" id="endDate" ></ion-input>
                 </ion-row>
               </ion-col>
                <ion-col size-lg="3" size-md="3" size-sm="3" size="6"

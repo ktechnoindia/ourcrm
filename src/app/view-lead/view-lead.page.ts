@@ -6,59 +6,38 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { ExecutiveService } from '../services/executive.service';
+import { FormGroup,Validators,FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-lead',
   templateUrl: './view-lead.page.html',
   styleUrls: ['./view-lead.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink,ReactiveFormsModule]
 })
 export class ViewLeadPage implements OnInit {
 
-  select_sales_person:number=0;
+  form:FormGroup;
   executive$: any;
   executive: string='';
-  fromDate: string = '';
+  select_sales_person:number=0;
+  formdate: string = '';
   toDate: string = '';
 
-  constructor(private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController) {
+  constructor(private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder) {
     this.executive$ = this.execut.getexecutive();
 
+    this.form = formBuilder.group({
+      select_sales_person:[''],
+      formdate:[''],
+      toDate:[''],
+    })
    }
 
-  async onSubmit() {
-   if(this.executive$===''){
-      const toast = await this.toastCtrl.create({
-        message:"Executive  Name is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.fromDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"From Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success'
-      });
-      toast.present()
-    }
-  }
+ async onSubmit(){
 
+ }
   ngOnInit() {
   }
   goBack() {
