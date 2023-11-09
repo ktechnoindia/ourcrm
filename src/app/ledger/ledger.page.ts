@@ -89,11 +89,11 @@ form:any;
   constructor(private toastController:ToastController,private formService:FormValidationService,private https:HttpClient,private formBuilder: FormBuilder,private custtp: CustomertypeService, private execut: ExecutiveService, private ledger: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      ledger_code: ['', [Validators.required, Validators.maxLength(5)]],
-      gstin: ['', [Validators.required, Validators.maxLength(15)]],
-      mobile: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
-      lgroup_name:['',[Validators.required]],
+      ledger_code: ['', [Validators.required, Validators.maxLength(10)]],
+      gstin: ['', [ Validators.maxLength(15)]],
+      mobile: ['', [ Validators.maxLength(10)]],
+      email: ['', [ Validators.email]],
+      lgroup_name:[''],
       opening_balance:[''],
       closing_balance:[''],
       whatsapp_number:[''],
@@ -159,7 +159,7 @@ form:any;
 
   async onSubmit(){
    
-      const fields = {lname:this.lname,ledger_code:this.ledger_code,gstin:this.gstin,email:this.email} 
+      const fields = {lname:this.lname,ledger_code:this.ledger_code} 
       const isValid = await this.formService.validateForm(fields);
       if(isValid){
         

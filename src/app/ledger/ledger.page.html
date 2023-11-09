@@ -49,9 +49,7 @@
               <ion-row>
                 <ion-input [(ngModel)]="lname" formControlName="lname"  name="lnames" type="text" label="Ledger Name :"
                 label-placement="floating" fill="outline"></ion-input>
-                <div *ngIf="form && form.get('lname')?.hasError('required') && form.get('lname')?.touched" class="error-message">
-                 Ledger Name is required.
-                </div>
+               
               </ion-row>
             </ion-col> 
             <ion-col  size-lg="2" size-md="3" size-sm="6" size="12">
@@ -68,9 +66,7 @@
                   <option value="">Group 2</option>
                   <option value="">Group 3</option>
                 </select>
-                <div *ngIf="form && form.get('lgroup_name')?.hasError('required') && form.get('lgroup_name')?.touched" class="error-message">
-                 Group Name is required.
-                </div>
+              
               </ion-row>
             </ion-col> 
             <ion-col size-lg="2" size-md="3" size-sm="6" size="12">
@@ -147,9 +143,7 @@
                   {{ state.statename }}
                 </option>
               </select>
-              <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
-                State is required.
-                </div>
+             
             </ion-col>
             <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
@@ -201,9 +195,7 @@
                   {{ state.statename }}
                 </option>
               </select>
-              <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
-                State is required.
-                </div>
+              
             </ion-col>
             <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 

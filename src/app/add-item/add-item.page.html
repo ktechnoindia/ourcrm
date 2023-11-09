@@ -24,9 +24,7 @@
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="item_Desc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
                     </ion-input>
-                    <div *ngIf="myform && myform.controls['itemDesc']?.hasError('required') && myform.controls['itemDesc']?.touched" >
-                      Item Description is required.
-                    </div>
+                   
                   </ion-row>
 
                 </ion-col>
@@ -34,9 +32,7 @@
                   <ion-row>
                     <ion-input [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code"
                       type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
-                      <div *ngIf="myform && myform.controls['itemCode']?.hasError('required') && myform.controls['itemCode']?.touched" class="error-message">
-                        Item Code is required.
-                      </div>
+                     
                   </ion-row>
                 </ion-col>
 
@@ -57,10 +53,6 @@
                       {{ stocktypename.stocktypename }}
                     </option>
                   </select>
-                    
-                  <div *ngIf="myform && myform.controls['selectStock']?.hasError('required') && myform.controls['selectStock']?.touched" class="error-message">
-                    Stock Type is required.
-                  </div>
                 </ion-col>
 
               </ion-row>
@@ -73,9 +65,6 @@
                       {{ itemtypename.itemtypename }}
                     </option>
                   </select>
-                  <div *ngIf="myform && myform.controls['selectItem']?.hasError('required') && myform.controls['selectItem']?.touched" class="error-message">
-                    Item Type is required.
-                  </div>
                 </ion-col>
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$" >
@@ -86,25 +75,6 @@
                   </select>
                 </ion-col>
 
-                <!-- <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectAltUnit" formControlName="selectAltUnit" name="select_AltUnit">
-                    <option value="">--- Select Alternate Unit ---</option>
-                    <option value="">Roll (RL)</option>
-                    <option value="">Bundle (BDL)</option>
-                    <option value="">Carton (CTN)</option>
-                    <option value="">Pack (PK)</option>
-                    <option value="">Pair (PR)</option>
-                    <option value="">Dozen (DZ)</option>
-                    <option value="">Case (CS)</option>
-                    <option value="">Bundle of 10 (BDL10)</option>
-                    <option value="">Square Feet (ft²)</option>
-                    <option value="">Cubic Feet (ft³)</option>
-                    <option value="">Hour (HR)</option>
-                    <option value="">Pallet (PLT)</option>
-                    <option value="">Custom Units</option>
-
-                  </select>
-                </ion-col> -->
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
                     <option value="">---Select Item Group ---</option> <!-- Default option with value 0 -->
@@ -112,12 +82,9 @@
                       {{ itemgroup.itemgroupname }}
                     </option>
                   </select>
-                  <div *ngIf="myform && myform.controls['selectItemGroup']?.hasError('required') && myform.controls['selectItemGroup']?.touched" class="error-message">
-                    Item Group Type is required.
-                  </div>
+                 
                 </ion-col>
              
-
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
                     <option value="">---Select GST Type---</option> <!-- Default option with value 0 -->
@@ -125,9 +92,7 @@
                       {{ gsttype.gstname }}
                     </option>
                   </select>
-                  <div *ngIf="myform && myform.controls['selectGst']?.hasError('required') && myform.controls['selectGst']?.touched" class="error-message">
-                     GST is required.
-                  </div>
+                 
                 </ion-col>
               </ion-row>
 

@@ -46,12 +46,12 @@ export class AddExecutivePage implements OnInit {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
-      roleid: ['', [Validators.required]],
+      roleid: [''],
       excode:['',[Validators.required]],
       executivename: ['', [Validators.required]],
-      emanager: ['', [Validators.required]],
-      emobile: ['', [Validators.required]],
-      ledger: ['', [Validators.required]],
+      emanager: [''],
+      emobile: [''],
+      ledger: [''],
       ecommision: [''],
       epan: [''],
       ewhatsapp: [''],
@@ -60,30 +60,9 @@ export class AddExecutivePage implements OnInit {
     })
   }
 
-  // onSubmit(myform:any) {
-  //   if (this.myform) {
-  //     console.log('Selected Value' + myform.value);
-  //     let executdata:execut = {role:myform.value.role,name:myform.value.name,manager:myform.value.manager,phone_number:myform.value.phone_number,email:myform.value.email,whatshapp_number:myform.value.whatsapp_number,pan_number:myform.value.pan_number,commission:myform.value.commission,ledger:myform.value.commission}
-  //     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
-  //       (response:any) => {
-  //            console.log('POST Request successful',response);
-  //       },
-  //       (error:any)=>{
-  //            console.log('POST Request failed',error);
-  //       }
-  //     )
-  //   } else {
-  //     Object.keys(this.myform.controls).forEach(controlName => {
-  //       const control = this.myform.get(controlName);
-  //       if (control.invalid) {
-  //         control.markAsTouched();
-  //       }
-  //     })
-  //   }
-  // }
-
+  
   async onSubmit() {
-    // const fields = {roleid:this.roleid,executivename:this.executivename,emanager:this.emanager,emobile:this.emobile,ledger:this.ledger}
+    // const fields = {executivename:this.executivename,excode:this.excode}
     // const isValid = await this.formService.validateForm(fields);
     // if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);

@@ -93,11 +93,11 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.selectedAttribute = 'default value';
 
      this.myform = this.formBuilder.group({
-      itemDesc: ['', [Validators.required]],
-      itemCode: ['', [Validators.required]],
-      selectItem: ['', [Validators.required]],
-      selectStock: ['', [Validators.required]],
-      selectItemGroup: ['', [Validators.required]],
+      itemDesc: ['',[Validators.required]],
+      itemCode: ['',[Validators.required]],
+      selectItem: [''],
+      selectStock: [''],
+      selectItemGroup: [''],
       selectGst: [''],
       unitname$: [''],
       // selectAltUnit: [''],
@@ -143,7 +143,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
   }
   
  async onSubmit() {
-    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode,selectItemGroup:this.selectItemGroup,}
+    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       this.submitted=true;

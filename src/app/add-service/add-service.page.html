@@ -21,7 +21,8 @@
               <ion-title style="text-align: center;">Add Service</ion-title>
               <div class="custom-primary">
                 <ion-button [routerLink]="['/viewservice']" id="open-loading5">View Service</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading5" message="Service Showing ..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Service Showing ..."
+                  [duration]="1000"></ion-loading>
 
               </div>
             </ion-row>
@@ -38,13 +39,12 @@
                 <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
                   <ion-input [(ngModel)]="service_code" formControlName="service_code" name="serviceCode" type="text"
                     placeholder="Enter Service Code"></ion-input>
+                  <div
+                    *ngIf="myform && myform.controls['service_code']?.hasError('required') && myform.controls['service_code']?.touched"
+                    class="error-message">
+                    Service Code is required.
+                  </div>
                 </ion-col>
-                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
-                    label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="myform && myform.controls['service_code']?.hasError('required') && myform.controls['service_code']?.touched"
-                  class="error-message">
-                  Service Code is required.
-                </div>
               </ion-row>
             </div>
             <div class="inputs">
@@ -55,13 +55,12 @@
                 <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
                   <ion-input [(ngModel)]="service_name" formControlName="service_name" name="serviceName" type="text"
                     placeholder="Enter Service Name"></ion-input>
+                  <div
+                    *ngIf="myform && myform.controls['service_name']?.hasError('required') && myform.controls['service_name']?.touched"
+                    class="error-message">
+                    Service name is required.
+                  </div>
                 </ion-col>
-                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
-                    label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="myform && myform.controls['service_name']?.hasError('required') && myform.controls['service_name']?.touched"
-                  class="error-message">
-                  Service name is required.
-                </div>
               </ion-row>
             </div>
 
@@ -71,14 +70,9 @@
                   <ion-label for="" class="custom-label">SAC Code :</ion-label>
                 </ion-col>
                 <ion-col size="8" size-lg="9" size-md="9" size-sm="9">
-                  <ion-input  [ngModel]="sac_code" formControlName="sac_code" name="saccode" type="text"
+                  <ion-input [ngModel]="sac_code" formControlName="sac_code" name="saccode" type="text"
                     placeholder="Enter SAC Code"></ion-input>
                 </ion-col>
-                <div
-                  *ngIf="myform && myform.controls['sac_code']?.hasError('required') && myform.controls['sac_code']?.touched"
-                  class="error-message">
-                  SAC code is required.
-                </div>
               </ion-row>
             </div>
 
@@ -95,10 +89,7 @@
                     </option>
                   </select>
                 </ion-col>
-                <div *ngIf="myform && myform.controls['gst']?.hasError('required') && myform.controls['gst']?.touched"
-                  class="error-message">
-                  GST% is required.
-                </div>
+
               </ion-row>
             </div>
             <div class="inputs">
@@ -110,26 +101,25 @@
                   <ion-textarea [(ngModel)]="description" formControlName="description" name="description" type="text"
                     placeholder="Enter Mobile Number"></ion-textarea>
                 </ion-col>
-                <!-- <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label=" Email :"
-                    label-placement="floating" fill="outline"></ion-input> -->
-                <div *ngIf="myform && myform.controls['description']?.hasError('required') && myform.controls['description']?.touched"
-                  class="error-message">
-                  Description is required.
-                </div>
               </ion-row>
             </div>
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button id="open-loading">New</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading1" message="Service Adding..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading1" message="Service Adding..."
+                [duration]="1000"></ion-loading>
               <ion-button id="open-loading2">Delete</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..."
+                [duration]="1000"></ion-loading>
               <ion-button id="open-loading3">Preview</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..."
+                [duration]="1000"></ion-loading>
               <ion-button id="open-loading4">Close</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
 
             </ion-row>
           </form>

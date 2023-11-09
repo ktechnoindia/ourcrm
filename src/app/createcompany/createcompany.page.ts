@@ -70,11 +70,8 @@ export class CreatecompanyPage implements OnInit {
   //Step: 2
   tanumber: string = '';
   pannumber: string = '';
-  industry: number = 0;
-
   industry$: any;
-  selectindustry: number = 0;
-
+  industry: number = 0;
   companytype$: any;
   companytype: number = 0;
   businesstype$: any;
@@ -118,13 +115,13 @@ export class CreatecompanyPage implements OnInit {
 
 
     this.form = this.formBuilder.group({
-      selectedCountry: ['', [Validators.required]],
-      selectedState: ['', [Validators.required]],
-      selectedDistrict: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      phone: ['', [Validators.required,Validators.maxLength(10)]],
+      selectedCountry: [''],
+      selectedState: [''],
+      selectedDistrict: [''],
+      address: [''],
+      phone: ['', [Validators.maxLength(10)]],
       cpyname: ['', [Validators.required]],
-      email: [''],
+      email: ['',[Validators.email]],
       rdate: [''],
       wpnumber: [''],
       pinCode: [''],
@@ -136,23 +133,23 @@ export class CreatecompanyPage implements OnInit {
       selectedState1: [''],
       selectedDistrict1: [''],
       selectedCountry1: [''],
-      email1: [''],
+      email1: ['',[Validators.email]],
       wpnumber1: [''],
       phone1: [''],
       address1: [''],
       pinCode1: [''],
 
       //step:2
-      industry: ['', [Validators.required]],
-      businesstype: ['', [Validators.required]],
-      segmenttype: ['', [Validators.required]],
-      companytype: ['', [Validators.required]],
+      industry: [''],
+      businesstype: [''],
+      segmenttype: [''],
+      companytype: [''],
       pannumber: [''],
       tanumber: [''],
 
       //step: 3
-      language: ['', [Validators.required]],
-      currency: ['', [Validators.required]],
+      language: [''],
+      currency: [''],
       sales: [''],
       purchase: [''],
       quotation: [''],
@@ -162,7 +159,7 @@ export class CreatecompanyPage implements OnInit {
       alloftheabove: [''],
 
       //step : 4
-      bname: ['', [Validators.required]],
+      bname: [''],
       accno: [''],
       ifsc: [''],
       branchname: [''],
@@ -186,7 +183,7 @@ export class CreatecompanyPage implements OnInit {
   }
 
  async onSubmit() {
-    const fields = { cpyname: this.cpyname, selectedCountry: this.selectedCountry, selectedState: this.selectedState,  selectedDistrict: this.selectedDistrict, address: this.address, rdate: this.rdate, industry: this.industry, businesstype: this.businesstype, language: this.language, currency: this.currency, bname: this.bname }
+    const fields = { cpyname: this.cpyname}
 
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {

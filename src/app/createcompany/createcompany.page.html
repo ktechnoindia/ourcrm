@@ -24,10 +24,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
                     label=" Company Name :" label-placement="floating" fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('cpyname')?.hasError('required') && form.get('cpyname')?.touched"
-                    class="error-message">
-                    Company Name is required.
-                  </div>
+                
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -52,13 +49,7 @@
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
-
                 </select>
-                <div
-                  *ngIf="form && form.get('selectedCountry')?.hasError('required') && form.get('selectedCountry')?.touched"
-                  class="error-message">
-                  Country is required.
-                </div>
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
@@ -69,11 +60,7 @@
                     {{ state.statename }}
                   </option>
                 </select>
-                <div
-                *ngIf="form && form.get('selectedState')?.hasError('required') && form.get('selectedState')?.touched"
-                class="error-message">
-                Country is required.
-              </div>
+                
               </ion-col>
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
 
@@ -85,11 +72,7 @@
                     {{ district.districtname }}
                   </option>
                 </select>
-                <div
-                  *ngIf="form && form.get('selectedDistrict')?.hasError('required') && form.get('selectedDistrict')?.touched"
-                  class="error-message">
-                  District is required.
-                </div>
+               
               </ion-col>
 
             </ion-row>
@@ -104,10 +87,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="address" formControlName="address" type="text" name="fulladdress"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-                  <div *ngIf="form && form.get('address')?.hasError('required') && form.get('address')?.touched"
-                    class="error-message">
-                    Name is required.
-                  </div>
+                  
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -116,10 +96,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('phone')?.hasError('required') && form.get('phone')?.touched"
-                    class="error-message">
-                    Mobile Number is required.
-                  </div>
+                   
                 </ion-row>
               </ion-col>
 
@@ -156,9 +133,7 @@
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
-
                 </select>
-               
               </ion-col>
 
               <ion-col size="12" size-lg="4" size-md="4" size-sm="6">
@@ -175,12 +150,10 @@
                 <select [(ngModel)]="selectedDistrict1" formControlName="selectedDistrict1" name="district1"
                   label-placement="floating" fill="outline">
                   <option value="0">---Select District---</option> <!-- Default option with value 0 -->
-
                   <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
                 </select>
-              
               </ion-col>
 
             </ion-row>
@@ -195,7 +168,6 @@
                 <ion-row>
                   <ion-input [(ngModel)]="address1" type="text" formControlName="address1" name="fulladdress1"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-                  
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -244,10 +216,6 @@
                 <input type="file" id="file-upload" name="file" accept="image/*">
                 <ion-input [(ngModel)]="rdate" formControlName="rdate" name="startdate" type="date"
                   placeholder="Enter Starting Date" class="custom-date-input"></ion-input>
-                  <div *ngIf="form && form.get('rdate')?.hasError('required') && form.get('rdate')?.touched"
-                  class="error-message">
-                  Date is required.
-                </div>
               </ion-col>
             </ion-row>
             <ion-row class="custom-primary">
@@ -266,50 +234,38 @@
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="industry" formControlName="industry" name="selectindustry">
-                    <option value="0">---Select Industry Type---</option> <!-- Default option with value 0 -->
+                    <option value="">---Select Industry Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
                     </option>
                   </select>
-                  <div *ngIf="form && form.get('industry')?.hasError('required') && form.get('industry')?.touched"
-                    class="error-message">
-                    Industry is required.
-                  </div>
                 </ion-col>
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="businesstype" formControlName="businesstype" name="business">
-                    <option value="0">---Select Business Type---</option> <!-- Default option with value 0 -->
+                    <option value="">---Select Business Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                       {{ businesstype.businesstypename }}
                     </option>
-
                   </select>
-                  <div
-                    *ngIf="form && form.get('businesstype')?.hasError('required') && form.get('businesstype')?.touched"
-                    class="error-message">
-                    Business is required.
-                  </div>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
-                    <option value="0">---Select Segment Type---</option> <!-- Default option with value 0 -->
+                    <option value="">---Select Segment Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                       {{ segmenttype.segmentname }}
                     </option>
-
                   </select>
                 </ion-col>
 
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
-                    <option value="0">---Select Company Type---</option> <!-- Default option with value 0 -->
+                    <option value="">---Select GST Type---</option> <!-- Default option with value 0 -->
                     <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                       {{ companytype.gsttypename }}
                     </option>
-
                   </select>
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -392,10 +348,6 @@
                     <option value="Tamil">Tamil</option>
                     <option value="French">French</option>
                   </select>
-                  <div *ngIf="form && form.get('language')?.hasError('required') && form.get('language')?.touched"
-                    class="error-message">
-                    Language is required.
-                  </div>
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <select fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
@@ -404,10 +356,7 @@
                     <option value="Doller">Doller</option>
                     <option value="euro">Euro</option>
                   </select>
-                  <div *ngIf="form && form.get('currency')?.hasError('required') && form.get('currency')?.touched"
-                    class="error-message">
-                    Currency is required.
-                  </div>
+                 
                 </ion-col>
               </ion-row>
               <ion-row class="custom-primary">
@@ -441,10 +390,7 @@
                   <ion-row>
                     <ion-input [(ngModel)]="bname" formControlName="bname" name="bankname" type="text"
                       label="Bank Name :" label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('bname')?.hasError('required') && form.get('bname')?.touched"
-                      class="error-message">
-                      Bank Name is required.
-                    </div>
+                   
                   </ion-row>
                 </ion-col>
                 <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
@@ -478,13 +424,7 @@
   
             </ion-row>
           </form>
-          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row> -->
+         
         </ion-grid>
       </ion-card-content>
     </ion-card>

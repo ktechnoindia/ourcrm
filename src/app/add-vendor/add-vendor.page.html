@@ -49,9 +49,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="name"   formControlName="name" type="text" label="Contact Person Name :" label-placement="floating"
                   name="customername" fill="outline" ></ion-input>
-                  <div *ngIf="myform && myform.controls['name']?.hasError('required') && myform.controls['name'].touched" class="error-message">
-                    Name is required.
-                  </div>
+                
                 </ion-row>
 
               </ion-col>
@@ -59,9 +57,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="vendor_code"  formControlName="vendor_code" type="text" label=" Vendor Code :"
                     label-placement="floating" name="vcode" fill="outline"  maxlength="5"></ion-input>
-                    <div *ngIf="myform && myform.controls['vendor_code']?.hasError('required') && myform.controls['vendor_code'].touched" class="error-message">
-                      Vendor Code is required.
-                    </div>
+                   
                 </ion-row>
               </ion-col>
 
@@ -69,9 +65,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
                     label-placement="floating" name="gstincode" fill="outline"  maxlength="15"></ion-input>
-                    <div *ngIf="myform && myform.controls['gstin']?.hasError('required') && myform.controls['gstin'].touched" class="error-message">
-                      GSTIN is required.
-                    </div>
+                   
                 </ion-row>
               </ion-col>
               <ion-col size="6" size="auto" size-lg="2" size-md="6" size-sm="6">
@@ -105,9 +99,7 @@
                 <ion-row>
                   <ion-input  [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
                     label-placement="floating" name="phonenumber" fill="outline"   maxlength="10"></ion-input>
-                    <div *ngIf="myform && myform.controls['mobile']?.hasError('required') && myform.controls['mobile'].touched" class="error-message">
-                      Phone Number is required.
-                      </div>
+                   
                 </ion-row>
               </ion-col>
 
@@ -149,9 +141,7 @@
                     {{ state.statename }}
                   </option>
                 </select>
-                <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
-                  State is required.
-                  </div>
+                
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
@@ -201,9 +191,7 @@
                     {{ state.statename }}
                   </option>
                 </select>
-                <div *ngIf="myform && myform.controls['state']?.hasError('required') && myform.controls['state'].touched" class="error-message">
-                  State is required.
-                  </div>
+              
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
