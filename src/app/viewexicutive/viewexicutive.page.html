@@ -45,15 +45,22 @@
                 <div style="overflow-x: auto; width: 100%; height: 350px;">
                   <table style="overflow-x: auto; width: 100%;">
                     <tr>
-                      <th style="width: 20px !important; padding: 5px;">Select</th>
+                      <th style="width: 20px !important; "><ion-checkbox></ion-checkbox></th>
                       <th style="width: 100px;">Sr. No.</th>
+                      <th>Company Id</th>
+                      <th style="width: 100px;">Executive Role</th>
                       <th style="width: 100px;">Executive Code</th>
                       <th style="width: 100px;">Executive Name</th>
-                      <th style="width: 100px;">Executive Role</th>
-                      <th style="width: 100px;">Email</th>
+                      <th>Manager</th>
                       <th style="width: 100px;">Phone Number</th>
+                      <th style="width: 100px;">Email</th>
+                      <th>Whatshapp Number</th>
+                      <th>PAN No.</th>
+                      <th>Commission</th>
+                      <th>Ledger</th>
                     </tr>
                     <tr *ngFor="let execute of executives$ | async; let i = index">
+                      <td><ion-checkbox></ion-checkbox></td>
                       <td style="width: 50px;">{{i + 1}}</td>
                       <td>{{execute.companyid}}</td>
                       <td style="width: 30px;">{{execute.roleid}}</td>

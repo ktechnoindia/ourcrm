@@ -66,11 +66,11 @@
                     <th>Description</th>
                     <th>Action</th>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>wddsfd df fad asd</td>
+                  <tr *ngFor="let hsn of hsncode$ | async; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{hsn.hsncode}}</td>
+                    <td>{{hsn.unit}}</td>
+                    <td>{{hsn.desc}}</td>
                     <td>
                       <ion-icon class="create" name="create"></ion-icon>
                       <ion-icon class="delete" name="trash"></ion-icon>
