@@ -15,7 +15,7 @@
           <ion-row>
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
               <ion-row>
-                <ion-input [(ngModel)]="igname" formControlName="igname" name="item_group_name" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -50,7 +50,7 @@
                 <tr *ngFor="let itemgroup of itemgroups$ | async; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td><ion-input style="border: none;">{{ itemgroup.itemgroupname }}</ion-input></td>
-                  <td><ion-input style="border: none;">{{ itemgroup.parentgroupid }}</ion-input></td>
+                  <td><ion-input style="border: none;">{{ itemgroup.parentgroupname }}</ion-input></td>
                  </tr>
               </table>
             </div>
