@@ -20,6 +20,8 @@ export class AddQuotPage implements OnInit {
   custname: string = '';
   quateTax:string='';
   taxrate: string = '';
+  totaltax:string='';
+  total:string='';
   refrence: string = '';
   refdate: string = '';
   unit: string = '';

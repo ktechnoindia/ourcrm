@@ -421,6 +421,7 @@ table th {
     border-left: solid .1px grey;
     border-right: solid .1px grey;
     max-height: 20px;
+ }
 
 .table_input {
     border: none;
@@ -432,6 +433,10 @@ table th {
     border: none;
     outline: none;
     text-align: center;
+    // margin-left: 5px;
+    // margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: -5px;
 }
 
 .back {
@@ -771,8 +776,8 @@ ion-card{
     margin-top: 70px;
 }
 .Customer ion-input {
-    margin-top: 10px;
-    min-height: 35px;
+    margin-top: 5px;
+    min-height: 30px;
     // color: goldenrod;
     // font-weight: 400;
     // outline-color: goldenrod;
@@ -822,8 +827,8 @@ ion-input[fill="outline"] input:focus {
   
 
 .Customer ion-select {
-    margin-top: 10px;
-    min-height: 35px;
+    margin-top: 5px;
+    min-height: 30px;
     // color: goldenrod;
     // font-weight: 400;
     // outline-color: goldenrod;
@@ -832,8 +837,8 @@ ion-input[fill="outline"] input:focus {
 }
 
 .Customer select {
-    min-height: 35px;
-    margin-top: 10px;
+    min-height: 33px;
+    margin-top: 5px;
 font-size: 20px;
     // color: goldenrod;
     // font-weight: 400;
@@ -863,7 +868,7 @@ ng-template ion-button {
     --border-color: #1a4174;
 }
 .Customer ion-textarea {
-    margin-top: 10px;
+    margin-top: 5px;
     min-height: 35px;
     // color: goldenrod;
     // font-weight: 400;
