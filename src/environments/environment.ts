@@ -55,11 +55,12 @@ export const environment = {
   fetchallexecuitve: 'saveExecutive',
   fetchallcompany: 'getcompanys',
   fetchallledger: 'ledgers',
-  addattribute: 'attribute',
+  addattribute: 'insert_attribute',
   adduser: 'adduser',
   addpass: 'password',
   addlogin: 'login',
   addbarcode: 'barcode',
+  fetchattribute:'get_attributes'
 };
 
 
