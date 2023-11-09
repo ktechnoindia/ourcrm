@@ -138,12 +138,13 @@
                 <ng-container [ngSwitch]="type">
                 <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
 
-                  <ion-row *ngFor="let attribute of attributes; let i = index">
+                   <ion-row *ngFor="let attribute of attributes; let i = index"> 
+                 
                     <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                       <ion-row>
                         <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
                         <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
-                          <option *ngFor="let attribute of attributes; let i = index" [value]="attribute">{{ 'Attribute ' + (i + 1) }}</option>
+                          <option *ngFor="let attname of attname$ | async ;  let i = index" >{{attname.attname}}</option>
                         </select>
                         
                       </ion-row>

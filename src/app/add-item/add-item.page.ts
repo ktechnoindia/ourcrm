@@ -15,6 +15,7 @@ import { ChangeDetectionStrategy } from '@angular/compiler';
 import { StocktypeService } from '../services/stocktype.service';
 import { ItemtypeService } from '../services/itemtype.service';
 import { FormValidationService } from '../form-validation.service';
+import { AddattributeService } from '../services/addattribute.service';
 
 
 
@@ -31,7 +32,7 @@ export class AddItemPage implements OnInit {
   type = 'address';
   myform:FormGroup;
   submitted=false;
-
+  attname$: Observable<any[]>
   itemDesc: string = '';
   itemCode: number | null = null;
   selectHSN: string = '';
@@ -83,7 +84,7 @@ export class AddItemPage implements OnInit {
   selectedAttribute: string='';
   attributes: string[] = [];
   
-constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService) {   
+constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService,private attname:AddattributeService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
      this.unitname$=this.unittype.getunits();
      this.hsnname$=this.hsnservices.getHSNNames(1);
@@ -91,6 +92,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.stocktypename$=this.stocktype1.getStockTypes(1);
      this.itemtypename$=this.itemtype1.getItemTypes(1);
      this.selectedAttribute = 'default value';
+     this.attname$=this.attname.getattribute(1);
 
      this.myform = this.formBuilder.group({
       itemDesc: ['',[Validators.required]],
