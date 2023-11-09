@@ -3,18 +3,20 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 export interface leadstore {
-  catPerson: string;
-  phone:number;
-  whatshappnumber: number;
-  emails: string;
-  selectedCountry : string;
-  selectedState : string;
-  selectedDistrict : string;
-  pncode: number;
-  fulladdress : string;
-  lscore : string;
-  select_sales_person : string;
-  rmark : string;
+  catPerson:string,
+  companyname:string,
+  phone:string,
+  pncode:string,
+  fulladdress:string,
+  emails:string,
+  lscore:number,
+  rmark:string,
+  selectpd:string
+  executivename:number,
+  selectedCountry:number,
+  selectedState: number,
+  selectedDistrict: number,
+
 }
 @Injectable({
   providedIn: 'root'

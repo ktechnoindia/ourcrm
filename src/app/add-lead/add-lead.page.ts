@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
@@ -28,19 +28,16 @@ export class AddLeadPage {
   submitted = false;
 
   catPerson:string='';
+  companyname:string=''
   phone:string='';
-  selectedCountry:number=0;
-  // selectedState:string='';
-  // selectedDistrict:string='';
   pncode:string='';
   fulladdress:string='';
-  whatshappnumber:string='';
   emails:string='';
-  lscore:string='';
-  lassign:string='';
+  lscore:number=0;
   rmark:string='';
   selectpd:string='';
-
+  executivename:number=0;
+  selectedCountry:number=0;
   selectedState: number=0;
   selectedDistrict: number=0;
 
@@ -49,7 +46,6 @@ export class AddLeadPage {
   districts$: Observable<any[]>
   leadsourcetype$: any;
   leadsourcetype!: string;
-  select_sales_person:number=0;
   executive$: any;
   executive: string='';
 
@@ -65,16 +61,16 @@ export class AddLeadPage {
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 
-      phone: ['', [Validators.required]],
-      selectedCountry: ['', [Validators.required]],
-      selectedState: ['', [Validators.required]],
-      selectedDistrict: ['', [Validators.required]],
-      fulladdress:['',[Validators.required]],
-      lscore:['',[Validators.required]],
-      select_sales_person:['',[Validators.required]],
+      companyname:['',[Validators.required]],
+      phone: [''],
+      selectedCountry: [''],
+      selectedState: [''],
+      selectedDistrict: [''],
+      fulladdress:[''],
+      lscore:[''],
+      executivename:[''],
       pncode:[''],
-      whatshappnumber:[''],
-      emails:[''],
+      emails:['',[Validators.email]],
       rmark:[''],
       selectpd:[''],
 
@@ -92,13 +88,13 @@ export class AddLeadPage {
 
   
  async onSubmit() {
-    const fields = {catPerson:this.catPerson,phone:this.phone,selectedCountry:this.selectedCountry,selectedState:this.selectedState,selectedDistrict:this.selectedDistrict,fulladdress:this.fulladdress,lscore:this.lscore,selectpd:this.selectpd}
+    const fields = {companyname:this.companyname,catPerson:this.catPerson}
 
     const isValid = await this.formService.validateForm(fields);
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,phone:this.form.value.phone,whatshappnumber:this.form.value.whatshappnumber,emails:this.form.value.emails,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,fulladdress:this.form.value.fulladdress,lscore:this.form.value.lscore,select_sales_person:this.form.value.select_sales_person,rmark:this.form.value.rmark};
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {
@@ -122,19 +118,6 @@ export class AddLeadPage {
           }
         });
       }
-
-
-    // if (this.form.valid) {
-    //   console.log('Form submitted:', this.form.value);
-    // } else {
-    //   // If the form is not valid, display error messages
-    //   Object.keys(this.form.controls).forEach(controlName => {
-    //     const control = this.form.get(controlName);
-    //     if (control.invalid) {
-    //       control.markAsTouched();
-    //     }
-    //   });
-    // }
   }
 
   ngOnInit() {

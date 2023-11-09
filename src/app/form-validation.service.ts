@@ -9,7 +9,7 @@ export class FormValidationService {
   async validateForm(fields: { [key: string]:any }): Promise<boolean> {
     for (const key in fields) {
       if (fields[key].trim() === '') {
-        await this.showAlert('Error !', 'Please fill required fields.');
+        // await this.showAlert('Error !', 'Please fill required fields.');
         return false;
       }
     }

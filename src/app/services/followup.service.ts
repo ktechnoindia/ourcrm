@@ -4,11 +4,8 @@ import { environment } from 'src/environments/environment';
 
 export interface followuptable {
 
-  leadName: string;
-  companyName:string;
-  email: string;
-  phoneNumber: string;
-  leadStatus : string;
+  remark:string;
+  nextfollowupDate:string;
 }
 @Injectable({
   providedIn: 'root'
