@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 
 export interface group{
-  groupname: string,
+  itemgroupname: string,
   companyid: number,
   parentgroupid: number
 }
@@ -17,7 +17,7 @@ export class AddgroupService {
 
   constructor(private httpclient:HttpClient) { }
   createGroup(groups:group,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addgroup,groups,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiactionurl+environment.additemgroup,groups,{headers:{'key':key,'user':user}})
   }
   getAllGroups(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apibaseurl+environment.fetchallitemgroups+'?companyid='+companyid);

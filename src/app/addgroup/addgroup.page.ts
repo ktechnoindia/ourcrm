@@ -18,10 +18,10 @@ import { FormValidationService } from '../form-validation.service';
 export class AddgroupPage implements OnInit {
 
   form:FormGroup;
-  groupname:string='';
-  igname:string='';
-  agname:string='';
-  description:string='';
+  itemgroupname:string='';
+  // igname:string='';
+  // agname:string='';
+  // description:string='';
   parentgroup:number=0; 
   subscription: Subscription = new Subscription();
   itemgroups$: Observable<any[]>
@@ -30,9 +30,10 @@ export class AddgroupPage implements OnInit {
 
   constructor(private router:Router,private formBuilder:FormBuilder, private formService: FormValidationService,private groupService:AddgroupService) {
     this.form = this.formBuilder.group({
-      igname: ['', [Validators.required]],
-      agname: [''],
-      description: [''],
+      // igname: ['', [Validators.required]],
+      // agname: [''],
+      // description: [''],
+      itemgroupname:[''],
       parentgroup:[''],
 
   })
@@ -41,12 +42,12 @@ export class AddgroupPage implements OnInit {
    }
 
    async onSubmit() {
-    const fields = {igname:this.igname,parentgroup:this.parentgroup,}
+    const fields = {groupname:this.itemgroupname,parentgroup:this.parentgroup,}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
     let groupdata:group={
-      groupname: this.form.value.igname, 
+      itemgroupname: this.form.value.itemgroupname, 
       parentgroupid: this.form.value.parentgroup,
       companyid: 1,
     };

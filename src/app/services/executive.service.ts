@@ -34,7 +34,7 @@ export class ExecutiveService {
 
   fetchAllExecutive(companyid:string,key:string,user:string): Observable<any> {
     console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apibaseurl+environment.fetchexecutive+'/'+companyid,{headers:{'key':key,'user':user}})
+    return this.httpclient.get(environment.apibaseurl+environment.fetchexecutive,{headers:{'key':key,'user':user}})
   }
 }
 

@@ -43,6 +43,7 @@ export const environment = {
   addcreateamc: 'createamc',
   additem: 'item',
   addgroup: 'insert_group',
+  additemgroup:'saveItemGroup',
   addUnit: 'createunit',
   addHsn: 'insert_hsn',
   addcomapny: 'createcompany',
