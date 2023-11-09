@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -25,7 +25,11 @@ import { FormValidationService } from '../form-validation.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddVendorPage implements OnInit {
-  // form: FormGroup;
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+
+
   type: string = 'all';
   selectedSalutation: string='';
   companyName: string = '';
@@ -197,18 +201,19 @@ export class AddVendorPage implements OnInit {
       this.vendService.createVendor(venddata,'','').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          this.formService.showSuccessAlert();
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 2000);
+         
+          this.formService.showHideAutoLoader()
+          this.myform.reset()
         },
         (error: any) => {
           console.error('POST request failed', error);
           this.formService.showFailedAlert();
         }
       );
-      setTimeout(() => {
-        // Reset the form and clear input fields
-        this.myform.reset()
-      }, 1000); 
-      
+     
     }  else {
        //If the form is not valid, display error messages
        Object.keys(this.myform.controls).forEach(controlName => {
@@ -217,32 +222,15 @@ export class AddVendorPage implements OnInit {
            control.markAsTouched();
          }
        });
+       if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
      }
     }
-  
 
-
-
-  //    onSubmit() {
-  //     if (this.myform) {
-  //       this.submitted=true;
-  //     console.log('Your form data : ', this.myform.value);
-  //     let venddata:vend={name:this.myform.value.name,customer_code:this.myform.value.vendor_code,gstin:this.myform.value.gstin,select_group:this.myform.value.select_group,opening_balance:this.myform.value.opening_balance,closing_balance:this.myform.value.closing_balance,mobile:this.myform.value.mobile,whatsapp_number:this.myform.value.whatsapp_number,email:this.myform.value.email,country:this.myform.value.country,state:this.myform.value.state,district:this.myform.value.district,pincode:this.myform.value.pincode,address:this.myform.value.address,tdn:this.myform.value.tdn,aadhar_no:this.myform.value.aadhar_no,pan_no:this.myform.value.pan_no,udhyog_aadhar:this.myform.value.udhyog_aadhar,account_number:this.myform.value.account_number,ifsc_code:this.myform.value.ifsc_code,bank_name:this.myform.value.bank_name,branch_name:this.myform.value.branch_name,credit_period:this.myform.value.credit_period,credit_limit:this.myform.value.credit_limit,select_sales_person:this.myform.value.select_sales_person,card_number:this.myform.value.card_number,opening_point:this.myform.value.opening_point,closing_point:this.myform.value.closing_point,selectedSalutation:this.myform.value.selectedSalutation,companyName:this.myform.value.companyName,country1:this.myform.value.country1,state1:this.myform.value.state1,district1:this.myform.value.district1,pincode1:this.myform.value.pincode1,address1:this.myform.value.address1};
-  //     this.vendService.createVendor(venddata,'','').subscribe(
-  //       (response: any) => {
-  //         console.log('POST request successful', response);
-  //         // Handle the response as needed
-  //       },
-  //       (error: any) => {
-  //         console.error('POST request failed', error);
-  //         // Handle the error as needed
-  //       }
-  //     );
-  //   }
-
-  // }
 
   ngOnInit() {
+    
   }
   goBack() {
     this.router.navigate(['/master']); // Navigate back to the previous page
