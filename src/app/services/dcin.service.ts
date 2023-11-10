@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 export interface dcinstore {
   voucherNumber: string;
-  datetype:string;
-  suppliertype: string;
+  datetype: string;
+  suppliertype: number;
   referenceNumber: number;
-  payment : string;
-  remark : string;
-  item : string;
+  payment: number;
+  remark: string;
+  item:number;
 }
 @Injectable({
   providedIn: 'root'

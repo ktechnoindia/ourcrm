@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="Customer">
-    <ion-card>
+    <ion-card style="height: 570px;">
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header >
@@ -20,9 +20,8 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">DC-IN Window</ion-title>
               <div  class="custom-primary">
-                <ion-button [routerLink]="['/dc-in-report']" id="open-loading5">View DC-IN</ion-button>
+                <ion-button size="small" [routerLink]="['/dc-in-report']" id="open-loading5">View DC-IN</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="DC-IN Showing ..." [duration]="1000"></ion-loading>
-
               </div>
             </ion-row>
           </ion-card-header>
@@ -31,115 +30,202 @@
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()" >
             <ion-row>
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input  [(ngModel)]="voucherformat" formControlName="voucherformat" name="voucherformat" type="text"
+                    label="Voucher Format :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <ion-input  [(ngModel)]="voucherNumber" formControlName="voucherNumber" name="vouchno" type="text"
                     label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('voucherNumber')?.hasError('required') && form.get('voucherNumber')?.touched" class="error-message">
-                      Voucher Number is required.
-                    </div>
+                    
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="datetype" formControlName="datetype" name="date" type="date" label=" Date :"
                     label-placement="floating" fill="outline"></ion-input>
-                    <div *ngIf="form && form.get('date')?.hasError('required') && form.get('date')?.touched" class="error-message">
-                      Date is required.
-                    </div>
+                   
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
-                  <option value="" disabled selected>Select Supplier</option> <!-- Default option -->
+                  <option value="0" disabled selected> Supplier</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
-                <div *ngIf="form && form.get('supplier')?.hasError('required') && form.get('supplier')?.touched" class="error-message">
-                  Supplier is required.
-                </div>
+               
               </ion-col>
 
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="referenceNumber" formControlName="referenceNumber" name="refernceNumber">
-                  <option value="" disabled selected>Select Refrence No.</option> <!-- Default option -->
-
+                  <option value="0" disabled selected> Refrence No.</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
                 </select>
-                <div *ngIf="form && form.get('referenceNumber')?.hasError('required') && form.get('referenceNumber')?.touched" class="error-message">
-                  Reference Number is required.
-                </div>
+               
               </ion-col>
-            </ion-row>
 
-            <ion-row>
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label=" Reference Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                   
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="1.5" size-md="4" size-sm="6" size="12">
                 <select [(ngModel)]="payment" formControlName="payment" name="pty" >
-                  <option value="" disabled selected>Select Payment Mode</option> <!-- Default option -->
+                  <option value="0" disabled selected> Payment Mode </option> <!-- Default option -->
                   <option value="2">Cash</option>
                   <option value="3">Credit</option>
                 </select>
-                <div *ngIf="form && form.get('payment')?.hasError('required') && form.get('payment')?.touched" class="error-message">
-                  Payment is required.
-                </div>
-              </ion-col>
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
-                <ion-row>
-                  <ion-textarea  [(ngModel)]="remark" formControlName="remark" name="remark" type="text" label="Remark :" 
-                    label-placement="floating" fill="outline"></ion-textarea>
-                </ion-row>
+              
               </ion-col>
             </ion-row>
 
+           
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table>
+                <table  style="width:1500px;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th>Item Code</th>
+                    <th>Barcode</th>
+                    <th>Customer Code</th>
                     <th>Item Name</th>
+                    <th>Item Description</th>
                     <th>Quantity</th>
-                    <th>Rate</th>
-                    <th>Discount%</th>
-                    <th>Discount Amount</th>
+                    <th>Unit</th>
+                    <th>MRP</th>
+                    <th>Net Base</th>
+                    <th>Gross Amount</th>
+                    <th>GST</th>
                     <th>CGST</th>
                     <th>SGST</th>
-                    <th>Total</th>
-                    <th>Action</th>
+                    <th>IGST</th>
+                    <th>Discount</th>
+                    <th>Discount Amount</th>
+                    <th>Tax Amount</th>
+                    <th>Net Amount</th>
+                    
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>
-                      <select  [(ngModel)]="item" [ngModelOptions]="{standalone: true}" class="table_select" aria-label="Default select example" id="transaction">
-                        <option selected>--Select--</option>
-                        <option value="1">Credit</option>
-                        <option value="2">Cash</option>
-                      </select>
-                    </td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>12</td>
-                    <td>18</td>
-                    <td>18</td>
-                    <td>110</td>
-                    <td>
-                      <ion-icon class="create" name="create"></ion-icon>
-                      <ion-icon class="delete" name="trash"></ion-icon>
-                    </td>
+                  <tr class="tdrows">
+                    <td style="width: 80px;">1</td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 250px;"><input class="table_input" type="text"></td>
+                    <td style="width: 800px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 250px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 250px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 250px;"><input class="table_input" type="text"></td>
+                    <td style="width: 150px;"><input class="table_input" type="text"></td>
+                    <td style="width: 350px;"><input class="table_input" type="text"></td>
                   </tr>
                 </table>
               </div>
+              <table>
+                <tr>
+                  <td colspan="4">
+                    <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                      <label for="">Discount :</label>
+                      <input style="width: 150px;" name="" class="" type="text">
+                    </div>
+                  </td>
+                  <td>
+                    <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                      <label for="">Gross Amount :</label>
+                      <input style="width: 150px;" name="" class="" type="text">
+                    </div>
+                  </td>
+                  <td>
+                    <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                      <label for="">Tax Amount :</label>
+                      <input style="width: 150px;" name="" class="" type="text">
+                    </div>
+                  </td>
+                  <td>
+                    <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                      <label for="">Total :</label>
+                      <input style="width: 150px;" name="" class="" type="text">
+                    </div>
+                   
+                  </td>
+                </tr>
+              </table>
             </ion-row>
 
-            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-row>
+              <ion-col  size-lg="5.5" size-md="12" size-sm="12" size="12">
+                <table  style="width:100%; height: 90px; overflow-x:auto;">
+                  <tr class="sub">
+                    <td colspan="4">
+                      <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                        <label for="">Opening Balance :</label>
+                        <input style="width: 150px;" name="" class="" type="text">
+                      </div>
+                    </td>
+                    <td>
+                      <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                        <label for="">Closing Balance :</label>
+                        <input style="width: 150px;" name="" class="" type="text">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="sub">
+                    <td colspan="4">
+                      <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                        <label for="">Credit Limit :</label>
+                        <input style="width: 150px;margin-left: 25px;" name="" class="" type="text">
+                      </div>
+                    </td>
+                    <td>
+                      <div style="margin-left: 20px; display: flex;flex-direction: row;align-items: center;">
+                        <label for="">Credit Period :</label>
+                        <input style="width: 150px; margin-left: 15px;" name="" class="" type="text">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </ion-col>
+              <ion-col  size-lg="3.5" size-md="12" size-sm="12" size="12">
+
+              </ion-col>
+              <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">
+                <div class="output">
+                  <table style="border: none;margin-left: 25px;">
+                  
+                    <tr class="sub">
+                      
+                      <td colspan="1" >Total Amount : <input style="margin-left: 8px;width: 150px;" class="" type="text">
+                      </td>
+                    </tr>
+                    <tr class="sub">
+                      
+                      <td colspan="1">Round Off : <input style="margin-left: 25px;width: 150px;" class="" type="text">
+                      </td>
+                    </tr>
+                    <tr class="sub">
+                     
+                      <td colspan="1">Total : <input style="margin-left: 55px;width: 150px;" class="" type="text">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
               <ion-button id="open-loading">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
