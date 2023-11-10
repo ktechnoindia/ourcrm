@@ -47,7 +47,7 @@
               
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="name"   formControlName="name" type="text" label="Contact Person Name :" label-placement="floating"
+                  <ion-input [(ngModel)]="name"   #firstInvalidInput formControlName="name" type="text" label="Contact Person Name :" label-placement="floating"
                   name="customername" fill="outline" ></ion-input>
                 
                 </ion-row>
@@ -351,7 +351,7 @@
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button id="open-loading">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
-              <ion-button type="submit" id="open-loading1">Save</ion-button>
+              <ion-button type="submit">Save</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Vendor Adding..." [duration]="1000"></ion-loading>
               <ion-button id="open-loading2">Delete</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
