@@ -20,11 +20,19 @@ export interface quotestore {
   grossrate : string;
     CGST : string;
     SGST : string;
+    total: number;
+    ttotal: number;
+
 }
 @Injectable({
   providedIn: 'root'
 })
 export class QuotationService {
+
+  total!: number;
+  ttotal!: number;
+
+
   constructor(private httpclient:HttpClient) { }
   createquote(quatation:quotestore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addquote,quatation,{headers:{'key':key,'user':user}})
