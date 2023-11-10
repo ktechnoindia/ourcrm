@@ -35,9 +35,9 @@
                   <th>Attribute Name</th>
                   <!-- <th>Attribute Details</th> -->
                 </tr>
-                <tr>
-                  <td><ion-input style="border: none;"></ion-input></td>
-                  <td><ion-input  style="border: none;"></ion-input></td>
+                <tr *ngFor="let attname of attname$ | async; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{attname.attname}}</td>
                   <!-- <td><ion-input style="border: none;"></ion-input></td> -->
 
                 </tr>

@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddattributeService, addattribute } from '../services/addattribute.service';
 import { FormValidationService } from '../form-validation.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-addattribute',
@@ -18,16 +19,17 @@ import { FormValidationService } from '../form-validation.service';
 export class AddattributePage implements OnInit {
   type = 'address';
   attname: string = '';
- 
+ companyid:number=1;
   myform: FormGroup;
   submitted = false;
+  attname$: Observable<any[]>
 
   constructor(private router: Router, private addatt: AddattributeService,private formService:FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
       attname: ['',Validators.required],
       // attdetails: ['']
     })
-
+    this.attname$=this.addatt.getattribute(1);
   }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class AddattributePage implements OnInit {
       console.log('Your form data : ', this.myform.value);
       let attdata: addattribute = {
         attname: this.myform.value.attname,
-        
+        companyid: 1
       };
       this.addatt.createAttribute(attdata, '', '').subscribe(
         (response: any) => {
