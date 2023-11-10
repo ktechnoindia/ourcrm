@@ -44,14 +44,8 @@
                   </ion-row>
                 </ion-col>
               </div>
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="vendor_code"  formControlName="vendor_code" type="text" label=" Vendor Code :"
-                    label-placement="floating" name="vcode" fill="outline"  maxlength="5"></ion-input>
-                   
-                </ion-row>
-              </ion-col>
-                <ion-col size="6" size-lg="3.5" size-md="6" size-sm="6">
+              
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="name"   #firstInvalidInput formControlName="name" type="text" label="Contact Person Name :" label-placement="floating"
                   name="customername" fill="outline" ></ion-input>
@@ -59,18 +53,24 @@
                 </ion-row>
 
               </ion-col>
-              
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="vendor_code"  formControlName="vendor_code" type="text" label=" Vendor Code :"
+                    label-placement="floating" name="vcode" fill="outline"  maxlength="5"></ion-input>
+                   
+                </ion-row>
+              </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
                     label-placement="floating" name="gstincode" fill="outline"  maxlength="15"></ion-input>
                    
                 </ion-row>
               </ion-col>
-              <ion-col size="6" size="auto" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size="auto" size-lg="2" size-md="6" size-sm="6">
                 <select [(ngModel)]="select_group" formControlName="select_group" name="select_group"  >
-                  <option value="0">Customer Type</option> <!-- Default option with value 0 -->
+                  <option value="0">---Select Customer Type---</option> <!-- Default option with value 0 -->
                   <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
                     {{ custtype.customertypename }}
                   </option>
@@ -81,21 +81,21 @@
             </ion-row>
 
             <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number" label=" Opening Balance :"
                     label-placement="floating" name="openbal" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance"  type="number" label=" Closing Balance :"
                     label-placement="floating" name="closingbal" fill="outline"  ></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input  [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
                     label-placement="floating" name="phonenumber" fill="outline"   maxlength="10"></ion-input>
@@ -103,15 +103,16 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text" label=" Whatsapp Number :" label-placement="floating"
                    name="wpnumber" fill="outline"  maxlength="10"></ion-input>
                 </ion-row>
               </ion-col>
-           
+            </ion-row>
             
-              <ion-col size="12" size-lg="2 " size-md="6" size-sm="6">
+            <ion-row style="margin-top: 5px;">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="email" formControlName="email" type="email" label="Email :" label-placement="floating"
                   name="emails" fill="outline" ></ion-input>
@@ -120,7 +121,7 @@
             </ion-row>
 
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label >Billing Address:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label style="font-size: 18px; font-weight: bold;">Billing Address:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
             <ion-row>
@@ -170,7 +171,7 @@
               </ion-col>
             </ion-row>
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label >Shipping Address:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label style="font-size: 18px; font-weight: bold;">Shipping Address:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
             <ion-row>
@@ -221,7 +222,7 @@
             </ion-row>
 
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label >Registration :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label style="font-size: 18px; font-weight: bold;">Registration :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
             <ion-row>
@@ -257,7 +258,7 @@
             </ion-row>
 
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label >Bank Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label style="font-size: 18px; font-weight: bold;">Bank Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
             <ion-row>
@@ -293,7 +294,7 @@
             </ion-row>  
 
             <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label  >Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label style="font-size: 18px; font-weight: bold;">Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
                 "></span>
             </ion-row>
 
