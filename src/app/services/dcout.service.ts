@@ -14,6 +14,7 @@ export interface dcoutstore {
   providedIn: 'root'
 })
 export class DcoutService {
+    total!: number;
     constructor(private httpclient:HttpClient) { }
     createdcout(dcout:dcoutstore,key:string,user:string){
       return this.httpclient.post(environment.apiactionurl+environment.adddcout,dcout,{headers:{'key':key,'user':user}})

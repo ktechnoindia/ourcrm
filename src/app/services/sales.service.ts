@@ -19,6 +19,7 @@ export interface salesstore {
   providedIn: 'root'
 })
 export class SalesService {
+  total!: number;
   constructor(private httpclient:HttpClient) { }
   createsale(sales:salesstore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addsales,sales,{headers:{'key':key,'user':user}})

@@ -4,10 +4,31 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { DcoutService, dcoutstore } from '../services/dcout.service';
 import { NgForm } from '@angular/forms';
-
+import { UnitnameService } from '../services/unitname.service';
+import { GsttypeService } from '../services/gsttype.service';
+import { quotestore } from '../services/quotation.service';
+interface Dcout {
+  barcode: string;
+  itemcode: number;
+  itemname: number,
+  description: string;
+  quantity: number;
+  unitname: number;
+  mrp: number;
+  basicrate: number;
+  netrate: number;
+  grossrate: number;
+  taxrate: number;
+  CGST: number;
+  SGST: number;
+  IGST: number;
+  discount: number;
+  discountamt: number;
+  totaltax: number;
+  total: number;
+}
 @Component({
   selector: 'app-dc-out',
   templateUrl: './dc-out.page.html',
@@ -25,30 +46,53 @@ export class DcOutPage implements OnInit {
   payment: string = '';
   remark: string = '';
   item: string = '';
-
-  form:FormGroup;
+  vendcode:string='';
+  ponumber:string='';
   submitted = false;
-
-  constructor(private router: Router, private toastCtrl: ToastController, private formBuilder:FormBuilder,private dcin: DcoutService) { 
-    this.form = this.formBuilder.group({
-      voucherformat:[''],
-      voucherNumber:['',[Validators.required]],
-      datetype:[''],
-      suppliertype:[''],
-      referenceNumber:[''],
-      refdate:[''],
-      payment:[''],
-      remark:[''],
-      item:['']
-    })
+  unitname$: any;
+  taxrate$:any;
+  ttotal!: number;
+  dcoutData: Dcout[] = [{
+    barcode: '',
+    itemcode: 0,
+    itemname: 0,
+    description: '',
+    quantity: 0,
+    unitname: 0,
+    mrp: 0,
+    basicrate: 0,
+    netrate: 0,
+    grossrate: 0,
+    taxrate: 0,
+    CGST: 0,
+    SGST: 0,
+    IGST: 0,
+    discount: 0,
+    discountamt: 0,
+    totaltax: 0,
+    total: 0,
+  }];
+  dcout: any;
+  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcin: DcoutService) { 
+    this.taxrate$ = this.gstsrvs.getgsttype();
+    this.unitname$ = this.unittype.getunits();
   }
 
  
-  onSubmit() {
-    console.log('Your form data : ', this.form.value);
-    let dcoutdata: dcoutstore = {datetype:  this.form.value.datetype, voucherNumber:  this.form.value.voucherNumber,suppliertype:  this.form.value.suppliertype,referenceNumber:  this.form.value.referenceNumber, payment:  this.form.value.payment, remark:  this.form.value.remark, item:  this.form.value.item };
-
-    this.dcin.createdcout(dcoutdata, '', '').subscribe(
+  onSubmit(myform: NgForm, dcinData: any) {
+    console.log('Your form data : ', myform.value);
+    let quotedata: quotestore = {
+      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
+      payment: myform.value.payment,
+      orderNumber: myform.value.orderNumber,
+      gstin: myform.value.gstin,
+      salePerson: myform.value.salePerson,
+      unit: myform.value.unit,
+      total: myform.value.total,
+      ttotal: myform.value.ttotal
+    };
+    
+    this.dcout.createdcout(this.dcoutData, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
@@ -58,6 +102,44 @@ export class DcOutPage implements OnInit {
         // Handle the error as needed
       }
     );
+  }
+    addDcout() {
+      console.log('addrowwww'+this.dcoutData.length);
+      // You can initialize the new row data here
+      const newRow :Dcout= {
+        barcode: '',
+        itemcode: 0,
+        itemname: 0,
+        description:'',
+        quantity:0,
+        unitname:0,
+        mrp:0,
+        basicrate:0,
+        netrate:0,
+        grossrate:0,
+        taxrate:0,
+        CGST:0,
+        SGST:0,
+        IGST:0,
+        discount:0,
+        discountamt:0,
+        totaltax:0,
+        total:0,
+        // Add more properties as needed
+      };
+      this.dcoutData.push(newRow);
+    }
+    removeDcout(index: number,row:Dcout) {
+      this.ttotal=this.ttotal-this.dcin.total;
+      this.dcoutData.splice(index, 1);
+    }
+    calculateTotalSum() {
+      let sum = 0;
+      for (const row of this.dcoutData) {
+        sum += this.dcin.total;
+      }
+      this.ttotal= sum;
+    }
   
     // if (this.form.valid) {
     //   console.log('Selected Value' + this.form.value);
@@ -69,8 +151,7 @@ export class DcOutPage implements OnInit {
     //     }
     //   })
     // }
-  }
-
+  
   ngOnInit() {
   }
   goBack() {

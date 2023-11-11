@@ -49,7 +49,7 @@ export class AddQuotPage implements OnInit {
   unitname: string = '';
   item: string = '';
   quotation: any;
-  quoteGroup: string = '';
+  billformate: string = '';
   description: string = '';
   quantity: string = '';
   basicrate: string = '';
