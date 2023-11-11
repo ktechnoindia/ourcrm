@@ -78,10 +78,7 @@ export const routes: Routes = [
     path: 'add-executive',
     loadComponent: () => import('./add-executive/add-executive.page').then(m => m.AddExecutivePage)
   },
-  {
-    path: 'purchase',
-    loadComponent: () => import('./purchase/purchase.page').then(m => m.PurchasePage)
-  },
+ 
   {
     path: 'sales',
     loadComponent: () => import('./sales/sales.page').then(m => m.SalesPage)
@@ -338,7 +335,8 @@ export const routes: Routes = [
   {
     path: 'roleassign',
     loadComponent: () => import('./roleassign/roleassign.page').then( m => m.RoleassignPage)
-  },  {
+  },
+  {
     path: 'setting',
     loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
   },
