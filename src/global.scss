@@ -344,6 +344,8 @@ ion-header ion-title {
 color: #000;
   font-weight: bold; /* Adjust font styles as needed */
   /* Add any other styles you want */
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 ion-card {
@@ -441,6 +443,7 @@ table th {
 
 .back {
     padding: 3px;
+    font-size: 14px;
 }
 
 .back:hover {
@@ -517,19 +520,21 @@ table th {
 ion-card-header {
     border-bottom: 2px solid  black;
     width: 100%;
-margin-top: -20px;
+margin-top: -25px;
+margin-bottom: 0px;
 }
 
 ion-card-header ion-title {
     font-weight: bold;
     text-align: center;
+    margin-top: 10px;
 }
 
 ion-card-header .back {
     color: black;
     font-size: 24px;
     font-weight: bold;
-    margin-top: -5px;
+    margin-top: 10px;
 }
 
 ion-col {
@@ -674,6 +679,7 @@ input[type="password"] {
 
 .back {
     margin-top: 15px;
+    font-size: 14px;
 }
 
 .container ion-row span{
@@ -703,6 +709,7 @@ ion-card{
     background-clip: text;
     background: linear-gradient(to right, #00b4db, #0083b0);
     border-radius: 4px;
+    font-size: 12px;
   }
 
 
@@ -773,7 +780,7 @@ ion-card{
     }
 }
 .Customer{
-    margin-top: 70px;
+    margin-top: 45px;
 }
 .Customer ion-input {
     margin-top: 5px;
