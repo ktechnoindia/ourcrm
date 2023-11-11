@@ -16,11 +16,12 @@ import { NgForm } from '@angular/forms';
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
 })
 export class DcOutPage implements OnInit {
-
+  voucherformat:string='';
   voucherNumber: string='';
   datetype: string = '';
   suppliertype: string = '';
   referenceNumber: string='';
+  refdate:string='';
   payment: string = '';
   remark: string = '';
   item: string = '';
@@ -30,11 +31,13 @@ export class DcOutPage implements OnInit {
 
   constructor(private router: Router, private toastCtrl: ToastController, private formBuilder:FormBuilder,private dcin: DcoutService) { 
     this.form = this.formBuilder.group({
+      voucherformat:[''],
       voucherNumber:['',[Validators.required]],
-      datetype:['',[Validators.required]],
-      suppliertype:['',[Validators.required]],
-      referenceNumber:['',[Validators.required]],
-      payment:['',[Validators.required]],
+      datetype:[''],
+      suppliertype:[''],
+      referenceNumber:[''],
+      refdate:[''],
+      payment:[''],
       remark:[''],
       item:['']
     })

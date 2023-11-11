@@ -52,37 +52,53 @@
         <ion-row>
           <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
         </ion-row>
-       
-        <ion-row>
-          <div style="overflow-x:auto;width: 100%;">
-                <table style="width: 100%;">
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>Voucher Number</th>
-                        <th>Voucher Date</th>
-                        <th>Ref. Number</th>
-                        <th>Ref. Date</th>
-                        <th>Supplier Name</th>
-                        <th>Total</th>
-                        <th>Remark</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>12/09/2023</td>
-                        <td>123</td>
-                        <td>15/09/2023</td>
-                        <td>Pawan</td>
-                        <td>12</td>
-                        <td>Nothing</td>
-                        <td>
-                            <ion-icon class="create" [routerLink]="['/dc-in']" name="create"></ion-icon>
-                            <ion-icon class="delete" name="trash"></ion-icon>
-                        </td>
-                    </tr>
-                </table>
-             </div>
+
+        <ion-row style="margin-top: 10px;">
+          <div class="scroll-container"  >
+            <table style="width:1500px;overflow-x:auto;">
+              <tr>
+                <th>Sr.No.</th>
+                <th>Barcode</th>
+                <th>Customer Code</th>
+                <th>Item Name</th>
+                <th>Item Description</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>MRP</th>
+                <th>Net Base</th>
+                <th>Gross Amount</th>
+                <th>GST</th>
+                <th>CGST</th>
+                <th>SGST</th>
+                <th>IGST</th>
+                <th>Discount</th>
+                <th>Discount Amount</th>
+                <th>Tax Amount</th>
+                <th>Net Amount</th>
+                
+              </tr>
+              <tr class="tdrows">
+                <td style="width: 80px;">1</td>
+                <td style="width: 150px;">4f84fr3</td>
+                <td style="width: 150px;">5645434</td>
+                <td style="width: 150px;">Jeans</td>
+                <td style="width: 800px;">this is the good Company</td>
+                <td style="width: 150px;">400</td>
+                <td style="width: 150px;">5</td>
+                <td style="width: 100px;">30000.00</td>
+                <td style="width: 150px;">30000.00</td>
+                <td style="width: 150px;">20000.00</td>
+                <td style="width: 150px;">5%</td>
+                <td style="width: 150px;">443</td>
+                <td style="width: 150px;">433</td>
+                <td style="width: 150px;">44</td>
+                <td style="width: 150px;">10%</td>
+                <td style="width: 150px;">2000.00</td>
+                <td style="width: 150px;">750</td>
+                <td style="width: 300px;">30000.00</td>
+              </tr>
+            </table>
+          </div>
         </ion-row>
         <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
           <ion-button>New</ion-button>
