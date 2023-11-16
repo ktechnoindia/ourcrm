@@ -56,47 +56,110 @@
               </ion-row>
               <ion-row style="margin: 0 auto; width: 100%;">
                 <div style="overflow:auto; width: 100%;">
-                  <table style="width: 100%;">
+                  <table style="width:1555px;">
                     <tr>
-                      <th>Sr.No.</th>
-                      <th>Item Code</th>
-                      <th>Item Name</th>
-                      <th>Quantity</th>
-                      <th>Rate</th>
-                      <th>Discount%</th>
-                      <th>Discount Amount</th>
-                      <th>CGST</th>
-                      <th>SGST</th>
-                      <th>Total</th>
-                      <th>Action</th>
+                      <th style="width: 50px !important;">Sr.No.</th>
+                      <th style="width: 100px !important;">BarCode</th>
+                      <th style="width: 70px !important;">Item Code</th>
+                      <th style="width: 150px !important;">Item Name</th>
+                      <th style="width: 120px !important;">Description</th>
+                      <th style="width: 50px !important;">Quantity</th>
+                      <th style="width: 70px !important;">Unit</th>
+                      <th style="width: 50px !important;">MRP</th>
+                      <th style="width: 70px !important;">Basic Rate</th>
+                      <th style="width: 70px !important;">Net Rate</th>
+                      <th style="width: 70px !important;">Gross Amount</th>
+                      <th style="width: 50px !important;">GST</th>
+                      <th style="width: 50px !important;">CGST</th>
+                      <th style="width: 50px !important;">SGST</th>
+                      <th style="width: 50px !important;">IGST</th>
+                      <th style="width: 70px !important;">Discount %</th>
+                      <th style="width: 100px !important;">Discount Amount</th>
+                      <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Net Amount</th>
+                      <th style="width: 70px !important;">Action</th>
                     </tr>
                     <tr>
                       <td>1</td>
+                      <td>123456789012</td>
+                      <td>ABC123</td>
+                      <td>Product A</td>
+                      <td>High-quality product</td>
+                      <td>5</td>
+                      <td>Pieces</td>
+                      <td>50</td>
+                      <td>200</td>
+                      <td>180</td>
+                      <td>900</td>
+                      <td>18%</td>
+                      <td>9%</td>
+                      <td>9%</td>
+                      <td>0%</td>
+                      <td>5%</td>
+                      <td>45</td>
+                      <td>41.85</td>
+                      <td>85.50</td>
+                      <td>943.50</td>
                       <td>
-                        12
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
                       </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>987654321098</td>
+                      <td>XYZ789</td>
+                      <td>Product B</td>
+                      <td>Standard product</td>
+                      <td>10</td>
+                      <td>Kilograms</td>
+                      <td>120</td>
+                      <td>150</td>
+                      <td>135</td>
+                      <td>1350</td>
+                      <td>12%</td>
+                      <td>6%</td>
+                      <td>6%</td>
+                      <td>0%</td>
+                      <td>8%</td>
+                      <td>108</td>
+                      <td>81</td>
+                      <td>81</td>
+                      <td>1229</td>
                       <td>
-                        <select style="width: 120px;" class="table_select" aria-label="Default select example"
-                          id="transaction">
-                          <option selected>-Select-</option>
-                          <option value="1">Credit</option>
-                          <option value="2">Cash</option>
-                        </select>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
                       </td>
-                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>654321098765</td>
+                      <td>PQR456</td>
+                      <td>Product C</td>
+                      <td>Economical product</td>
+                      <td>8</td>
+                      <td>Liters</td>
+                      <td>80</td>
                       <td>100</td>
-                      <td>
-                        56
-                      </td>
-                      <td>12</td>
+                      <td>90</td>
+                      <td>720</td>
+                      <td>5%</td>
+                      <td>2.5%</td>
+                      <td>2.5%</td>
+                      <td>0%</td>
+                      <td>3%</td>
+                      <td>27</td>
+                      <td>22.5</td>
                       <td>18</td>
-                      <td>18</td>
-                      <td>110</td>
+                      <td>648</td>
                       <td>
-                        <ion-icon class="create" [routerLink]="['/add-purchase']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
+                    
                   </table>
                 </div>
               </ion-row>
