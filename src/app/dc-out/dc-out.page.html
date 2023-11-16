@@ -69,11 +69,9 @@
               </ion-col>
 
               <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
-                <select [(ngModel)]="referenceNumber"  name="refernceNumber">
-                  <option value=""> Refrence No.</option> <!-- Default option -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
+                <ion-input [(ngModel)]="referenceNumber" name="refernceNumber" type="text" label="Refrence No. :"
+                  label-placement="floating" fill="outline">
+                </ion-input>
                
               </ion-col>
 
