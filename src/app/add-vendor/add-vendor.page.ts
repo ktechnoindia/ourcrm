@@ -235,4 +235,13 @@ export class AddVendorPage implements OnInit {
   goBack() {
     this.router.navigate(['/master']); // Navigate back to the previous page
   }
+
+  copyBillingToShipping() {
+    // Copy values from billing to shipping
+    this.country1 = this.country;
+    this.state1 = this.state;
+    this.district1 = this.district;
+    this.pincode1 = this.pincode;
+    this.address1 = this.address;
+  }
 }

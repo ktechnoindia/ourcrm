@@ -8,9 +8,10 @@
               <ion-row lines="none">
                 <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
                 <ion-title style="text-align: center;">Add Item</ion-title>
-                <div  class="custom-primary">
+                <div class="custom-primary">
                   <ion-button size="small" [routerLink]="['/viewitem']" id="open-loading5">View Item</ion-button>
-                  <ion-loading class="custom-loading" trigger="open-loading5" message="Item Showing ..." [duration]="1000"></ion-loading>
+                  <ion-loading class="custom-loading" trigger="open-loading5" message="Item Showing ..."
+                    [duration]="1000"></ion-loading>
 
                 </div>
               </ion-row>
@@ -19,208 +20,207 @@
           <ion-grid>
             <form [formGroup]="myform" (ngSubmit)="onSubmit()">
               <ion-row>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="item_Desc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
                     </ion-input>
-                   
+
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code"
-                      type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
-                     
+                    <ion-input [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code" type="text"
+                      label=" Item code :" label-placement="floating" fill="outline"></ion-input>
+
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                   <select [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
-                    <option value="">---Select HSN ---</option> <!-- Default option with value 0 -->
+                    <option value="">Select HSN</option> <!-- Default option with value 0 -->
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
-                    
+
                   </select>
                 </ion-col>
 
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <select [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
-                    <option value="">---Select Stock Type---</option> <!-- Default option with value 0 -->
+                    <option value="">Select Stock Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
                     </option>
                   </select>
                 </ion-col>
 
-              </ion-row>
 
-              <ion-row>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <select [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
-                    <option value="">---Select Item Type---</option> <!-- Default option with value 0 -->
+                    <option value="">Select Item Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
                     </option>
                   </select>
                 </ion-col>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$" >
-                    <option value="0">--- Select Unit Name ---</option>
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                  <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$">
+                    <option value="0">Select Unit Name</option>
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
                     </option>
                   </select>
                 </ion-col>
+              </ion-row>
 
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
-                    <option value="">---Select Item Group ---</option> <!-- Default option with value 0 -->
+                    <option value="">Select Item Group</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
                     </option>
                   </select>
-                 
+
                 </ion-col>
+
              
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
-                    <option value="">---Select GST Type---</option> <!-- Default option with value 0 -->
+                    <option value="">Select GST Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
                     </option>
                   </select>
-                 
-                </ion-col>
-              </ion-row>
 
-              <ion-row>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                </ion-col>
+             
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance" type="text" label=" Opening Balance :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"
+                      type="text" label=" Opening Balance :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance" type="text" label=" Closing Balance :" label-placement="floating"
-                      fill="outline"></ion-input>
+                    <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance"
+                      type="text" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
 
               </ion-row>
+
               <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
-
                 <ion-toolbar>
-                <ion-segment style="border-bottom: 2px solid lightblue;" name="type" [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable >
-                  <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
-                    value="all">
-                    <ion-label>Attribute</ion-label>
-                  </ion-segment-button>
-                  <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
-                    value="Image">
-                    <ion-label>Image</ion-label>
-                  </ion-segment-button>
-                  <ion-segment-button style="border-right: 2px solid lightblue; background: #fff; color: #000000;"
-                    value="Barcode">
-                    <ion-label>Barcode </ion-label>
-                  </ion-segment-button>
-                  <ion-segment-button value="Other"
-                    style="border-right: 2px solid lightblue; background: #fff; color: #000000;">
-                    <ion-label>Other Details</ion-label>
-                  </ion-segment-button>
-                </ion-segment>
+                  <ion-segment style="border-bottom: 2px solid lightblue;" name="type"
+                    [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)"
+                    scrollable>
+                    <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
+                      value="all">
+                      <ion-label>Attribute</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
+                      value="Image">
+                      <ion-label>Image</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button style="border-right: 2px solid lightblue; background: #fff; color: #000000;"
+                      value="Barcode">
+                      <ion-label>Barcode </ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="Other"
+                      style="border-right: 2px solid lightblue; background: #fff; color: #000000;">
+                      <ion-label>Other Details</ion-label>
+                    </ion-segment-button>
+                  </ion-segment>
                 </ion-toolbar>
 
                 <ng-container [ngSwitch]="type">
-                <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
+                  <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
 
-                   <ion-row *ngFor="let attribute of attributes; let i = index"> 
-                 
-                    <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
-                      <ion-row>
-                        <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
-                        <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
-                          <option *ngFor="let attname of attname$ | async ;  let i = index" >{{attname.attname}}</option>
-                        </select>
-                        
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
-                  
-                  <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
-                </div>
+                    <ion-row *ngFor="let attribute of attributes; let i = index">
 
-                <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
+                      <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
+                        <ion-row>
+                          <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
+                          <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
+                            <option *ngFor="let attname of attname$ | async ;  let i = index">{{attname.attname}}
+                            </option>
+                          </select>
 
-                  <ion-row>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
 
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                      <div class="images">
-                        <!-- <input class="file"  type="file" (change)="onFileSelected($event)" accept="image/*" /> -->
-                        <input class="file"  type="file" fomControlName="files" [(ngModel)]="files" name="image"  (change)="onFileSelected($event)" accept="image/*" />
-                        <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
-                      </div>
-                    </ion-col>
+                    <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
+                  </div>
 
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6" style="border: solid 1px lightblue;">
-                      <div></div>
-                    </ion-col>
+                  <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
 
-                  </ion-row>
-                </div>
+                    <ion-row>
 
-                <div style="width: 100%; margin: 0 auto;"*ngSwitchCase="'Barcode'">
-                  <ion-row style="margin-bottom: 10px;">
-                    <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode"
-                          type="text" label=" Barcode :" label-placement="floating"
-                          fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
-                </div>
+                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                        <div class="images">
+                          <!-- <input class="file"  type="file" (change)="onFileSelected($event)" accept="image/*" /> -->
+                          <input class="file" type="file" fomControlName="files" [(ngModel)]="files" name="image"
+                            (change)="onFileSelected($event)" accept="image/*" />
+                          <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />
+                        </div>
+                      </ion-col>
 
-                <div style="width: 100%; margin: 10px auto;" *ngSwitchCase="'Other'">
+                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6" style="border: solid 1px lightblue;">
+                        <div></div>
+                      </ion-col>
 
-                  <ion-row class="headinglabel">
-                    <ion-label>Quantity Levels</ion-label>
-                  </ion-row>
+                    </ion-row>
+                  </div>
 
-                  <ion-row>
+                  <div style="width: 100%; margin: 0 auto;" *ngSwitchCase="'Barcode'">
+                    <ion-row style="margin-bottom: 10px;">
+                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                        <ion-row>
+                          <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="text"
+                            label=" Barcode :" label-placement="floating" fill="outline"></ion-input>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </div>
 
-                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                      <ion-row>
-                        <ion-input name="mini_mum" formControlName="minimum" [(ngModel)]="minimum"
-                          type="text" label="Minimum :" label-placement="floating"
-                          fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                      <ion-row>
-                        <ion-input name="maxi_mum" formControlName="maximum" [(ngModel)]="maximum"
-                          type="text" label="Maximum :" label-placement="floating"
-                          fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
+                  <div style="width: 100%; margin: 10px auto;" *ngSwitchCase="'Other'">
 
-                    <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                      <ion-row>
-                        <ion-input name="re_order" formControlName="reorder" [(ngModel)]="reorder"
-                          type="text" label="Re-order :" label-placement="floating"
-                          fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
+                    <ion-row class="headinglabel">
+                      <ion-label>Quantity Levels</ion-label>
+                    </ion-row>
 
-                  </ion-row>
+                    <ion-row>
 
-                
+                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                        <ion-row>
+                          <ion-input name="mini_mum" formControlName="minimum" [(ngModel)]="minimum" type="text"
+                            label="Minimum :" label-placement="floating" fill="outline"></ion-input>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                        <ion-row>
+                          <ion-input name="maxi_mum" formControlName="maximum" [(ngModel)]="maximum" type="text"
+                            label="Maximum :" label-placement="floating" fill="outline"></ion-input>
+                        </ion-row>
+                      </ion-col>
 
-                 <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                        <ion-row>
+                          <ion-input name="re_order" formControlName="reorder" [(ngModel)]="reorder" type="text"
+                            label="Re-order :" label-placement="floating" fill="outline"></ion-input>
+                        </ion-row>
+                      </ion-col>
+
+                    </ion-row>
+
+
+
+                    <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
 
                   <ion-row class="headinglabel">
                     <ion-label>Dimension & Weight</ion-label>
@@ -303,22 +303,27 @@
                     </ion-col>
 
                   </ion-row> -->
-                </div>
-              </ng-container>
+                  </div>
+                </ng-container>
 
               </ion-row>
               <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
                 <ion-button id="open-loading">New</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                  [duration]="1000"></ion-loading>
                 <ion-button type="submit" id="open-loading1">Save</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading1" message="Item Adding..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading1" message="Item Adding..."
+                  [duration]="1000"></ion-loading>
                 <ion-button id="open-loading2">Delete</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..."
+                  [duration]="1000"></ion-loading>
                 <ion-button id="open-loading3">Preview</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..."
+                  [duration]="1000"></ion-loading>
                 <ion-button id="open-loading4">Close</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
-  
+                <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                  [duration]="1000"></ion-loading>
+
               </ion-row>
             </form>
           </ion-grid>
