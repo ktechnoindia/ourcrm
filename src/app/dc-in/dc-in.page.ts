@@ -17,7 +17,7 @@ interface Dcin {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -39,17 +39,13 @@ interface Dcin {
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule]
 })
 export class DcInPage implements OnInit {
-  voucherformat:string='';
+  voucherformat:number=0;
   voucherNumber: string = '';
   datetype: string = '';
   suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate:string='';
-  payment: number = 0;
-  remark: string = '';
-  item: number = 0;
   vendcode:string='';
-  submitted = false;
   ponumber:number=0;
   dcinData: Dcin[] = [{
     barcode: '',
@@ -57,7 +53,7 @@ export class DcInPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -77,7 +73,7 @@ ttotal!: number;
 
   constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    this.unitname$=this.unittype.getunits();
 
    
   }
@@ -116,7 +112,7 @@ ttotal!: number;
       itemname: 0,
       description:'',
       quantity:0,
-      unitname:0,
+      unitname$:0,
       mrp:0,
       basicrate:0,
       netrate:0,

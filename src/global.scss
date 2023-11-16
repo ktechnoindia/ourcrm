@@ -987,3 +987,10 @@ ion-textarea[fill="outline"] input:focus {
   select option{
     text-align: center;
   }
+
+  .select{
+    border: none;
+    outline: none;
+    width: 100px !important;
+    margin: 3px;
+  }

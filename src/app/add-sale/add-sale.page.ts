@@ -14,7 +14,7 @@ interface Sales {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -57,7 +57,7 @@ export class AddSalePage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -113,7 +113,7 @@ export class AddSalePage implements OnInit {
         itemname: 0,
         description:'',
         quantity:0,
-        unitname:0,
+        unitname$:0,
         mrp:0,
         basicrate:0,
         netrate:0,
