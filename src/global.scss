@@ -523,14 +523,13 @@ table th {
 ion-card-header {
     border-bottom: 2px solid  black;
     width: 100%;
-margin-top: -25px;
-margin-bottom: 0px;
+padding: 0;
 }
 
 ion-card-header ion-title {
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;
+
 }
 
 ion-card-header .back {
