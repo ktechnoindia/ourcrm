@@ -13,7 +13,7 @@ interface Purchase {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -52,7 +52,7 @@ form:any;
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -115,7 +115,7 @@ form:any;
       itemname: 0,
       description:'',
       quantity:0,
-      unitname:0,
+      unitname$:0,
       mrp:0,
       basicrate:0,
       netrate:0,

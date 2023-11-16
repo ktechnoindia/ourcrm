@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 export interface dcinstore {
+  
+  voucherformat:number;
   voucherNumber: string;
-  datetype: string;
+  datetype: string ;
   suppliertype: number;
   referenceNumber: number;
-  payment: number;
-  remark: string;
-  item:number;
+  refdate:string;
+  vendcode:string;
+  ponumber:number;
 }
 @Injectable({
   providedIn: 'root'

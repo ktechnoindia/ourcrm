@@ -141,7 +141,12 @@
 
                     </td>
                     <td>
-                    
+                      <select class="select" [(ngModel)]="unitname$"  name="unit_name$" >
+                        <option value="0">--- Select Unit Name ---</option>
+                        <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
+                          {{ unitname.unitname }}
+                        </option>
+                      </select>  
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.mrp" name="mrp" class="table_input" type="text">
