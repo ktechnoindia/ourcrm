@@ -15,49 +15,62 @@
 
 
 .main {
-    width: 100%; 
+    width: 100%;
 }
+
 .my-custom-alert {
     --ion-background-color: white;
     // --ion-color-primary: darkblue;
 
-  }
-.alert_button{
-   --ion-padding: 10px 20px ;
+}
+
+.alert_button {
+    --ion-padding: 10px 20px;
     --ion-background-color: blue;
     color: black;
     border: 1px solid #0083b0;
-}  
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  display: none;
+    display: none;
 }
 
 /* Example styles for customizing alert buttons */
 .custom-alert-button {
-    padding: 10px 20px; /* Adjust padding as needed */
-    background-color: #3498db; /* Change the background color */
-    border: 2px solid #2980b9; /* Add a border with custom color */
-    color: #fff; /* Change the text color */
-    border-radius: 10px; /* Add rounded corners */
-  }
-  
-  .custom-alert-button.secondary {
-    background-color: #3498db; /* Customize secondary button color */
+    padding: 10px 20px;
+    /* Adjust padding as needed */
+    background-color: #3498db;
+    /* Change the background color */
+    border: 2px solid #2980b9;
+    /* Add a border with custom color */
+    color: #fff;
+    /* Change the text color */
+    border-radius: 10px;
+    /* Add rounded corners */
+}
+
+.custom-alert-button.secondary {
+    background-color: #3498db;
+    /* Customize secondary button color */
     // border: 1px solid grey;
     color: white;
     padding: 10px 20px;
-  }
-  
-  /* Example styles for alert content */
-  .custom-alert-content {
-    background-color: #ecf0f1; /* Change alert content background color */
-    padding: 20px; /* Add padding to alert content */
-    border-radius: 10px; /* Add rounded corners */
-    color: #333; /* Change text color */
-  }
-  
-.mars{
+}
+
+/* Example styles for alert content */
+.custom-alert-content {
+    background-color: #ecf0f1;
+    /* Change alert content background color */
+    padding: 20px;
+    /* Add padding to alert content */
+    border-radius: 10px;
+    /* Add rounded corners */
+    color: #333;
+    /* Change text color */
+}
+
+.mars {
     margin: 50px 100px 0 100px;
     border: 1px solid grey;
     // width: 100%;
@@ -68,9 +81,9 @@ input::-webkit-inner-spin-button {
 .error-message {
     color: rgb(230, 67, 67);
     font-size: 14px;
-  }
+}
 
-  
+
 ion-item {
     --background-hover: var(--background);
     --ripple-color: transparent;
@@ -100,12 +113,13 @@ ion-menu.md ion-note {
 }
 
 ion-menu.md ion-list#inbox-list {
-     border-bottom: 1px solid var(--ion-color-step-150, #000000);
+    border-bottom: 1px solid var(--ion-color-step-150, #000000);
     background-image: linear-gradient(to right, #ff9966, #ff5e62);
 
 }
-.menu ion-button{
-background: none;
+
+.menu ion-button {
+    background: none;
 }
 
 
@@ -242,7 +256,8 @@ ion-menu-button {
     // border: 1px solid rgb(9, 45, 245);
     padding: 5px 10px;
 }
-.card4 ion-input{
+
+.card4 ion-input {
     box-shadow: none;
 }
 
@@ -342,11 +357,12 @@ ion-header ion-title {
 
 .dekstop-menu ion-title {
     text-transform: uppercase;
-color: #000;
-  font-weight: bold; /* Adjust font styles as needed */
-  /* Add any other styles you want */
-  margin-bottom: 10px;
-  font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    /* Adjust font styles as needed */
+    /* Add any other styles you want */
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 ion-card {
@@ -373,12 +389,8 @@ ion-card {
 
 ion-item {
     --background: transparent;
-    
+
 }
-
-
-
-
 
 .scroll-container {
     overflow-x: auto;
@@ -386,9 +398,6 @@ ion-item {
     width: 100%;
     height: 700px;
 }
-
-
-
 
 table {
     width: 100%;
@@ -405,31 +414,33 @@ table th {
     font-size: 12px;
     font-weight: bold;
 
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Alternate row background color */
     border-bottom: solid .5px grey;
     border-left: solid .1px grey;
     border-right: solid .1px grey;
     max-height: 20px;
 
-  }
-  
- tr:nth-child(odd) {
-    background-color: #ffffff; /* Alternate row background color */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* Alternate row background color */
     border-bottom: solid .5px grey;
     border-left: solid .1px grey;
     border-right: solid .1px grey;
     max-height: 20px;
- }
+}
 
 .table_input {
     border: none;
     outline: none;
     text-align: center;
     // width: 100px;
-   
+
 }
 
 
@@ -437,8 +448,7 @@ table th {
     border: none;
     outline: none;
     text-align: center;
-    // margin-left: 5px;
-    // margin-right: 10px;
+
     margin-bottom: 5px;
     margin-top: -5px;
     width: 100px !important;
@@ -453,22 +463,15 @@ table th {
     background-color: rgba(255, 251, 251, 0.932);
 }
 
-@media(max-width:2222px) {
-   
-}
-@media(max-width:950px){
-   
+@media(max-width:2222px) {}
+
+@media(max-width:950px) {
+
 
     .container {
         margin-top: 10px;
     }
 }
-
-// @media screen and (max-width:1010px) {
-//     .container {
-//         width: 100%;
-//     }
-// }
 
 
 @media(max-width:540px) {
@@ -497,40 +500,36 @@ table th {
         min-width: 120px;
     }
 }
-@media(max-width:2500px){
- .dekstop-header {
-       display: none;
-       visibility: hidden;
- }
- .second_header{
-    display: block;
-    visibility: visible;
- }
+
+@media(max-width:2500px) {
+    .dekstop-header {
+        display: none;
+        visibility: hidden;
+    }
+
+    .second_header {
+        display: block;
+        visibility: visible;
+    }
 }
 
 @media(max-width:920px) {
-    // .second_header {
-    //     display: block;
-    // }
 
-   
-    
-    ion-content ion-card{
+    ion-content ion-card {
         margin-top: 0px;
     }
 }
 
 ion-card-header {
-    border-bottom: 2px solid  black;
+    border-bottom: 2px solid black;
     width: 100%;
-margin-top: -25px;
-margin-bottom: 0px;
+    padding: 0;
 }
 
 ion-card-header ion-title {
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;
+
 }
 
 ion-card-header .back {
@@ -539,31 +538,11 @@ ion-card-header .back {
     font-weight: bold;
     margin-top: 10px;
 }
+
 ion-col {
     padding: 0 2px;
 }
 
-
-
-// .container ion-input {
-//     min-height: 35px;
-//     color: #000;
-//     // background: skyblue;
-//     font-weight: 600;
-//     outline-width: 2px;
-//     outline-style: initial;
-//     border: solid 1px #000;
-// border-radius: 4px;
-// text-transform: uppercase;
-// }
-.container ion-input label{
-    // margin-left: 10px;
-
-}
-.container ion-textarea label{
-    // margin-left: 10px;
-
-}
 .container ion-select {
     text-transform: uppercase;
     min-height: 35px;
@@ -573,9 +552,11 @@ ion-col {
     outline-width: 2px;
     outline-style: initial;
 }
-.container option{
+
+.container option {
     color: #000000;
 }
+
 .container select {
     background: skyblue;
     min-height: 35px;
@@ -619,74 +600,12 @@ input[type="password"] {
     font-size: 13px;
 }
 
-// .container ion-input {
-// min-height: 35px;
-// color: #000;
-// background: skyblue;
-// font-weight: 600;
-// outline-width: 2px;
-// outline-style: initial;
-// border: solid 1px #000;
-// border-radius: 4px;
-// text-transform: uppercase;
-// }
-
-// .container ion-input label {
-//     margin-left: 10px;
-
-// }
-
-// .container ion-textarea label {
-//     margin-left: 10px;
-
-// }
-
-.container ion-select {
-    // text-transform: uppercase;
-
-    // background: skyblue;
-    // color: #000;
-    // font-weight: 600;
-    // outline-width: 2px;
-    // outline-style: initial;
-}
-
-.container option {
-    // color: #000000;
-}
-
-.container select {
-    // background: skyblue;
-
-    // color: #000;
-    // font-weight: 600;
-    // width: 100%;
-    // text-align: left;
-    // border-radius: 4px;
-    // text-transform: uppercase;
-
-}
-
-.container ion-textarea {
-    // text-transform: uppercase;
-    // background: skyblue;
-    // color: #000;
-    // font-weight: 600;
-    // width: 100%;
-    // text-align: left;
-    // border: solid 1px black;
-    // border-radius: 4px;
-}
-
-
-
-
 .back {
     margin-top: 15px;
     font-size: 14px;
 }
 
-.container ion-row span{
+.container ion-row span {
     background-image: linear-gradient(to right, #00b4db, #0083b0);
 }
 
@@ -699,25 +618,19 @@ input[type="password"] {
     font-size: 14px;
     margin-top: 7px;
 }
-ion-card{
+
+ion-card {
     width: 100%;
     // background-image: linear-gradient(to right, #141e30, #243b55);
 }
-// .gradient-button{
-//     background: linear-gradient(to right, #ff6600, #ff3300);
-//     color: white; /* Text color */
-//     /* Add any other button styles as needed */
-//   }
-  .custom-primary ion-button{
+
+.custom-primary ion-button {
     --background: transparent;
     background-clip: text;
     background: linear-gradient(to right, #00b4db, #0083b0);
     border-radius: 4px;
     font-size: 12px;
-  }
-
-
-
+}
 
 //code of cards design
 .cards {
@@ -783,17 +696,15 @@ ion-card{
         margin-left: -5px;
     }
 }
-.Customer{
+
+.Customer {
     margin-top: 45px;
 }
+
 .Customer ion-input {
     margin-top: 5px;
     min-height: 30px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    // outline-width: 2px;
-    // outline-style: initial;
+
     font-family: 'Times New Roman', Times, serif;
 
 }
@@ -833,16 +744,10 @@ ion-input[fill="outline"] input:focus {
     color: #1a4174;
     /* Change the input text color when focused */
 }
-/* Change floating label color */
-/* Change floating label color */
-  
 
 .Customer ion-select {
     margin-top: 5px;
     min-height: 30px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
     outline-width: 1px;
     outline-style: initial;
 }
@@ -850,10 +755,8 @@ ion-input[fill="outline"] input:focus {
 .Customer select {
     min-height: 33px;
     margin-top: 5px;
-font-size: 20px;
-    // color: goldenrod;
-    // font-weight: 400;
-    //border-color: goldenrod;
+    font-size: 20px;
+
     width: 100%;
     text-align: left;
     border-color: #646464;
@@ -862,31 +765,30 @@ font-size: 20px;
     border-width: 1px;
     box-shadow: 0 0 2px 2px #fffbfb;
     /* Add a box shadow when focused */
-color: #1a4174;
+    color: #1a4174;
     /* Change the input text color when focused */
-padding-left: 12px;
-font-family: 'Times New Roman', Times, serif;
-text-align: center;
+    padding-left: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
 }
-.Customer option{
+
+.Customer option {
     font-size: 18px;
 
 }
+
 ng-template ion-button {
     color: goldenrod;
 }
 
-.Customer ion-input:focus{
+.Customer ion-input:focus {
     --border-color: #1a4174;
 }
+
 .Customer ion-textarea {
     margin-top: 5px;
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    // outline-width: 2px;
-    // outline-style: initial;
+
     font-family: 'Times New Roman', Times, serif;
 
 }
@@ -934,63 +836,63 @@ ion-textarea[fill="outline"] input:focus {
     border: solid 1.5px grey;
     border-radius: 7px;
 
-  }
-  
-  /* Change the text color of the search bar */
-  .custom .searchbar-input {
+}
+
+/* Change the text color of the search bar */
+.custom .searchbar-input {
     color: #ffffff;
     font-weight: bold;
-  }
-  
-  /* Change the placeholder color of the search bar */
-  .custom .searchbar-input::placeholder {
+}
+
+/* Change the placeholder color of the search bar */
+.custom .searchbar-input::placeholder {
     color: #ffffff;
-  }
-  
-  /* Change the icon color of the search bar */
-  .custom .searchbar-icon {
+}
+
+/* Change the icon color of the search bar */
+.custom .searchbar-icon {
     color: #ffffff;
-  }
-  
-  /* Change the color of the cancel button */
-  .custom .searchbar-clear-icon {
+}
+
+/* Change the color of the cancel button */
+.custom .searchbar-clear-icon {
     color: #ffffff;
-  }
+}
 
 
-  //progress bar
-  ion-progress-bar::part(track) {
+//progress bar
+ion-progress-bar::part(track) {
     background: black;
-  }
-  
-  ion-progress-bar::part(progress) {
+}
+
+ion-progress-bar::part(progress) {
     background: skyblue;
-  }
-  
-  ion-progress-bar::part(stream) {
+}
+
+ion-progress-bar::part(stream) {
     background-image: radial-gradient(ellipse at center, #e475f3 0%, #e475f3 30%, transparent 30%);
-  }
+}
 
 
-  .filter ion-select{
+.filter ion-select {
     border: solid 1px grey;
     border-radius: 4px;
-  }
+}
 
-  ion-loading.custom-loading {
+ion-loading.custom-loading {
     --background: #e3edff;
     --spinner-color: #1c6dff;
-  
+
     color: #1c6dff;
-  }
+}
 
-  select option{
+select option {
     text-align: center;
-  }
+}
 
-  .select{
+.select {
     border: none;
     outline: none;
     width: 100px !important;
     margin: 3px;
-  }
+}

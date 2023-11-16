@@ -7,6 +7,8 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { quotestore } from '../services/quotation.service';
 import { purchasestore } from '../services/purchase.service';
+import { ExecutiveService } from '../services/executive.service';
+import { PurchasereturnService,purchasereturnstore } from '../services/purchasereturn.service';
 
 interface Purchase {
   barcode: string;
@@ -74,15 +76,17 @@ export class PurchasereturnPage implements OnInit {
   vendcode:string='';
   orderDate:string='';
   orderNumber:string='';
+  executive$: any;
   
-  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private purchasereturnService:PurchasereturnService) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.executive$ = this.execut.getexecutive();
   }
 
   onSubmit(myform: NgForm, purchaseData: any) {
     console.log('Your form data : ', myform.value);
-    let purchasereturndata: purchasestore = {
+    let purchasereturndata: purchasereturnstore = {
       billNumber:myform.value.billNumber,billDate:myform.value.billDate,billformate:myform.value.billformate,payment:myform.value.payment,supplier:myform.value.supplier,gstin:myform.value.gstin,
       exicutive:myform.value.exicutive,unitname$:myform.value.unitname$,taxrate$:myform.value.taxrate$,
       refrence:myform.value.refrence,refdate:myform.value.refdate,vendcode:myform.value.vendcode,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,

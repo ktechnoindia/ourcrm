@@ -53,7 +53,7 @@
                    
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="custcode" name="custcode" type="text" label="Code :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -61,7 +61,7 @@
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="2" size="4">
                 <select [(ngModel)]="custname" name="custname">
-                  <option value="" disabled selected>Customer Name</option> <!-- Default option -->
+                  <option value="0" disabled selected>Customer Name</option> <!-- Default option -->
                   <option value="1">Deepak</option>
                   <option value="2">Ram</option>
                   <option value="3">Shyam</option>
@@ -83,10 +83,6 @@
                 </ion-row>
               </ion-col>
 
-            </ion-row>
-
-            <ion-row>
-              
               <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
                 <ion-row>
                   <ion-input  [(ngModel)]="orderDate" name="orDate" type="date" label=" Order Date :"
@@ -101,7 +97,7 @@
                    
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="2" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="ponumber" name="ponumber" type="text" label="PO Number :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -116,7 +112,7 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
                 <select [(ngModel)]="salePerson" name="sperson">
-                  <option value="" disabled selected>Select Sales Person</option> <!-- Default option -->
+                  <option value="0" disabled selected>Select Sales Person</option> <!-- Default option -->
 
                   <option value="2">Deepak</option>
                   <option value="3">Ravi</option>
@@ -127,7 +123,7 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
                 <select [(ngModel)]="payment"  name="pyt">
-                  <option value="" disabled selected>Select Payment Mode</option> <!-- Default option -->
+                  <option value="0" disabled selected>Select Payment Mode</option> <!-- Default option -->
                   <option value="2">Cash</option>
                   <option value="3">Credit</option>
                 </select>
@@ -397,8 +393,7 @@
               <ion-button id="open-loading">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading1" message="Sales Saving..." [duration]="1000"></ion-loading>
-              <ion-button id="open-loading2">Delete</ion-button>
+              
               <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
               <ion-button id="open-loading3">Preview</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>

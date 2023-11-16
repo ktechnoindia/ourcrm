@@ -78,6 +78,7 @@ export class AddSalePage implements OnInit {
   constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private sales: SalesService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    
   }
   onSubmit(myform: NgForm, salesData: any) {
     console.log('Your form data : ', myform.value);

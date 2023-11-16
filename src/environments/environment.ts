@@ -60,7 +60,9 @@ export const environment = {
   addpass: 'password',
   addlogin: 'login',
   addbarcode: 'barcode',
-  fetchattribute:'get_attributes'
+  fetchattribute:'get_attributes',
+  addsalereturn:'salereturn',
+  addpurchasereturn:'purchasereturn',
 };
 
 

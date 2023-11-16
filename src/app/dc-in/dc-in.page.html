@@ -32,35 +32,35 @@
           <form #myform="ngForm" (ngSubmit)="onSubmit(myform,dcinData)">
 
             <ion-row>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <select [(ngModel)]="voucherformat" name="voucherformat">
-                  <option value="" disabled selected>Voucher Formate</option> <!-- Default option -->
+                  <option value="0" disabled selected>Voucher Formate</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
                 </select>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="voucherNumber" name="vouchno" type="text" label="Voucher No. :"
                     label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="datetype" name="date" type="date" label="Voucher Date :"
                     label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="vendcode" name="vendcode" type="text" label="Code :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="2.5" size-md="2" size-sm="3" size="4">
                 <select [(ngModel)]="suppliertype" name="supplier">
                   <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
@@ -69,21 +69,21 @@
 
               </ion-col>
 
-              <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1" size-md="2" size-sm="3" size="4">
                 <ion-input [(ngModel)]="referenceNumber" name="refernceNumber" type="text" label="Refrence No. :"
                   label-placement="floating" fill="outline">
                 </ion-input>
 
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="refdate" name="refdate" type="date" label=" Reference Date :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="ponumber" name="ponumber" type="text" label="PO Number :"
                     label-placement="floating" fill="outline"></ion-input>
