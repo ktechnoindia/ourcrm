@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { SalesService, salesstore } from '../services/sales.service';
+import { SalereturnService,salereturnstore } from '../services/salereturn.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
-import { quotestore } from '../services/quotation.service';
+
 interface Sales {
   barcode: string;
   itemcode: number;
@@ -74,19 +74,19 @@ export class SalesreturnPage implements OnInit {
   ponumber:string='';
   refrence:string='';
   refdate:string='';
-  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private sales: SalesService) {
+  constructor(private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
   }
   onSubmit(myform: NgForm, salesData: any) {
     console.log('Your form data : ', myform.value);
-    let salesreturndata: salesstore = {
+    let salesreturndata: salereturnstore = {
       billformate:myform.value.billformate,billNumber:myform.value.billNumber,billDate:myform.value.billDate,
       payment:myform.value.payment,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
       gstin:myform.value.gstin,salePerson:myform.value.salePerson,taxrate:myform.value.taxrate,custcode:myform.value.custcode,custname:myform.value.custname,unitname$:myform.value.unitname$,ponumber:myform.value.ponumber,refdate:myform.value.refdate,refrence:myform.value.refrence,
     
     };
-    this.sales.createsale(salesData, '', '').subscribe(
+    this.salereturnService.createSaleReturn(salesData, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
@@ -124,13 +124,13 @@ export class SalesreturnPage implements OnInit {
       this.salesData.push(newRow);
     }
     removeSales(index: number,row:Sales) {
-      this.ttotal=this.ttotal-this.sales.total;
+      this.ttotal=this.ttotal-this.salereturnService.total;
       this.salesData.splice(index, 1);
     }
     calculateTotalSum() {
       let sum = 0;
       for (const row of this.salesData) {
-        sum += this.sales.total;
+        sum += this.salereturnService.total;
       }
       this.ttotal= sum;
     }

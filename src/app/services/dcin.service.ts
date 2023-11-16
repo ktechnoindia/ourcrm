@@ -11,6 +11,7 @@ export interface dcinstore {
   refdate:string;
   vendcode:string;
   ponumber:string;
+  
 }
 @Injectable({
   providedIn: 'root'
