@@ -14,7 +14,7 @@ interface Sales {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -37,27 +37,24 @@ interface Sales {
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterModule]
 })
 export class SalesreturnPage implements OnInit {
-  billNumber: number | null = null;
+  billNumber: number=0;
   billDate: string = '';
-  payment: string = '';
-  cName: string = '';
+  payment: number = 0;
   orderDate: string = '';
-  orderNumber: number | null = null;
-  gstin: number | null = null;
-  salePerson: string = '';
+  orderNumber: string='';
+  gstin: number =0;
+  salePerson: number = 0;
   taxrate: string = '';
-  unit: string = '';
-  item: string = '';
   custcode: string = '';
   billformate:number=0;
-  custname: string = '';
+  custname: number = 0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -83,15 +80,11 @@ export class SalesreturnPage implements OnInit {
   }
   onSubmit(myform: NgForm, salesData: any) {
     console.log('Your form data : ', myform.value);
-    let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
-      orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
-      total: myform.value.total,
-      ttotal: myform.value.ttotal
+    let salesreturndata: salesstore = {
+      billformate:myform.value.billformate,billNumber:myform.value.billNumber,billDate:myform.value.billDate,
+      payment:myform.value.payment,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
+      gstin:myform.value.gstin,salePerson:myform.value.salePerson,taxrate:myform.value.taxrate,custcode:myform.value.custcode,custname:myform.value.custname,unitname$:myform.value.unitname$,ponumber:myform.value.ponumber,refdate:myform.value.refdate,refrence:myform.value.refrence,
+    
     };
     this.sales.createsale(salesData, '', '').subscribe(
       (response: any) => {
@@ -113,7 +106,7 @@ export class SalesreturnPage implements OnInit {
         itemname: 0,
         description:'',
         quantity:0,
-        unitname:0,
+        unitname$:0,
         mrp:0,
         basicrate:0,
         netrate:0,

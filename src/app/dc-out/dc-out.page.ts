@@ -37,18 +37,15 @@ interface Dcout {
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
 })
 export class DcOutPage implements OnInit {
-  voucherformat:string='';
-  voucherNumber: string='';
+  voucherformat:number=0;
+  voucherNumber: string = '';
   datetype: string = '';
-  suppliertype: string = '';
-  referenceNumber: string='';
+  suppliertype: number = 0;
+  referenceNumber: number = 0;
   refdate:string='';
-  payment: string = '';
-  remark: string = '';
-  item: string = '';
   vendcode:string='';
   ponumber:string='';
-  submitted = false;
+ 
   unitname$: any;
   taxrate$:any;
   ttotal!: number;
@@ -81,15 +78,10 @@ export class DcOutPage implements OnInit {
  
   onSubmit(myform: NgForm, dcinData: any) {
     console.log('Your form data : ', myform.value);
-    let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
-      orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
-      total: myform.value.total,
-      ttotal: myform.value.ttotal
+    let dcoutdata: dcoutstore = {
+      voucherformat:myform.value.voucherformat,voucherNumber:myform.value.voucherNumber,datetype:myform.value.datetype,
+      suppliertype:myform.value.suppliertype,referenceNumber:myform.value.referenceNumber,refdate:myform.value.refdate,vendcode:myform.value.vendcode,ponumber:myform.value.ponumber,
+     
     };
     
     this.dcout.createdcout(this.dcoutData, '', '').subscribe(

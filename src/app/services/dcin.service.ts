@@ -5,12 +5,12 @@ export interface dcinstore {
   
   voucherformat:number;
   voucherNumber: string;
-  datetype: string ;
+  datetype: string;
   suppliertype: number;
   referenceNumber: number;
   refdate:string;
   vendcode:string;
-  ponumber:number;
+  ponumber:string;
 }
 @Injectable({
   providedIn: 'root'

@@ -46,7 +46,7 @@ export class DcInPage implements OnInit {
   referenceNumber: number = 0;
   refdate:string='';
   vendcode:string='';
-  ponumber:number=0;
+  ponumber:string='';
   dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
@@ -80,15 +80,9 @@ ttotal!: number;
 
   onSubmit(myform: NgForm, dcinData: any) {
     console.log('Your form data : ', myform.value);
-    let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
-      orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
-      total: myform.value.total,
-      ttotal: myform.value.ttotal
+    let dcindata: dcinstore = {
+     voucherformat:myform.value.voucherformat,voucherNumber:myform.value.voucherNumber,datetype:myform.value.datetype,
+     suppliertype:myform.value.suppliertype,referenceNumber:myform.value.referenceNumber,refdate:myform.value.refdate,vendcode:myform.value.vendcode,ponumber:myform.value.ponumber,
     };
   
       this.dcin.createdcin(dcinData, '', '').subscribe(

@@ -4,24 +4,23 @@ import { environment } from 'src/environments/environment';
 export interface quotestore {
 
   quoteNumber: number;
-  quateDate:string;
-  quoteGroup: string;
+  quateDate: string;
+  custname: number;
   quateTax: string;
-  payment : string;
-  orderNumber : string;
-  gstin : string;
-  salePerson : string;
-  taxrate : string;
-  unit:string;
-  item:string;
-  description : string;
-  quantity : string;
-  basicrate : string;
-  grossrate : string;
-    CGST : string;
-    SGST : string;
-    total: number;
-    ttotal: number;
+  taxrate: string ;
+  totaltax: string ;
+  total: string ;
+  refrence: string ;
+  refdate: string ;
+  billformate: number;
+  description:string;
+  quantity:number;
+  basicrate:number;
+  grossrate:number;
+  CGST:number;
+  SGST:number;
+  orderNumber:number;
+  ttotal:number;
 }
 @Injectable({
   providedIn: 'root'

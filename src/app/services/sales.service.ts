@@ -4,16 +4,20 @@ import { environment } from 'src/environments/environment';
 export interface salesstore {
 
   billNumber: number;
-  billDate:string;
-  cName: string;
+  billDate: string ;
+  payment: number;
   orderDate: string;
-  payment : string;
-  orderNumber : string;
-  gstin : string;
-  salePerson : string;
-  taxrate : string;
-  unit:string;
-  item:string;
+  orderNumber: string;
+  gstin: number;
+  salePerson: number;
+  taxrate: string;
+  custcode: string;
+  billformate:number;
+  custname: number;
+  unitname$: number;
+  ponumber:string;
+  refrence:string;
+  refdate:string;
 }
 @Injectable({
   providedIn: 'root'
