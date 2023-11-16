@@ -54,7 +54,6 @@ export class AddQuotPage implements OnInit {
   grossrate: string = '';
   CGST: string = '';
   SGST: string = '';
-  payment?: any;
   orderNumber: any;
   taxrate$: any;
   custcode: string = '';

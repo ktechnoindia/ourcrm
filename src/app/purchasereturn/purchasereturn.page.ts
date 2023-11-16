@@ -7,6 +7,7 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { quotestore } from '../services/quotation.service';
 import { purchasestore } from '../services/purchase.service';
+import { ExecutiveService } from '../services/executive.service';
 
 interface Purchase {
   barcode: string;
@@ -74,10 +75,12 @@ export class PurchasereturnPage implements OnInit {
   vendcode:string='';
   orderDate:string='';
   orderNumber:string='';
+  executive$: any;
   
-  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.executive$ = this.execut.getexecutive();
   }
 
   onSubmit(myform: NgForm, purchaseData: any) {
