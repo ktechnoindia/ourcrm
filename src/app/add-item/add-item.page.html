@@ -21,7 +21,7 @@
             <form [formGroup]="myform" (ngSubmit)="onSubmit()">
               <ion-row>
 
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="5" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code" type="text"
                       label=" Item code :" label-placement="floating" fill="outline"></ion-input>
@@ -29,7 +29,7 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                <ion-col size="7" size-lg="8" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="item_Desc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
@@ -37,7 +37,7 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="5" size-lg="2" size-md="6" size-sm="6">
                   <select [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
                     <option value=""> HSN</option> <!-- Default option with value 0 -->
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
@@ -46,8 +46,9 @@
 
                   </select>
                 </ion-col>
-
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              </ion-row>
+              <ion-row style="margin-top: 4px;">
+                <ion-col size="7" size-lg="4" size-md="6" size-sm="6">
                   <select [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
                     <option value="">Select Stock Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
@@ -57,7 +58,7 @@
                 </ion-col>
 
 
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                   <select [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
                     <option value="">Select Item Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
@@ -65,8 +66,8 @@
                     </option>
                   </select>
                 </ion-col>
-             
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+
+                <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
                   <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$">
                     <option value="0">Select Unit Name</option>
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
@@ -74,8 +75,10 @@
                     </option>
                   </select>
                 </ion-col>
-              
-                <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              </ion-row>
+              <ion-row style="margin-top: 4px;">
+
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
                     <option value="">Select Item Group</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
@@ -85,8 +88,8 @@
 
                 </ion-col>
 
-             
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
                     <option value="">Select GST Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
@@ -95,15 +98,15 @@
                   </select>
 
                 </ion-col>
-             
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"
                       type="text" label=" Opening Balance :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance"
                       type="text" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
@@ -165,14 +168,14 @@
                           <!-- <input class="file"  type="file" (change)="onFileSelected($event)" accept="image/*" /> -->
                           <input class="file" type="file" fomControlName="files" [(ngModel)]="files" name="image"
                             (change)="onFileSelected($event)" accept="image/*" />
-                          <img [src]="selectedImage"  class="image_url" *ngIf="selectedImage" alt="Selected Image" />
+                          <img [src]="selectedImage" class="image_url" *ngIf="selectedImage" alt="Selected Image" />
                         </div>
                       </ion-col>
                       <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                        <div ></div>
+                        <div></div>
                       </ion-col>
 
-                     
+
                     </ion-row>
                   </div>
 
@@ -313,7 +316,7 @@
                 <ion-button type="submit" id="open-loading1">Save</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading1" message="Item Adding..."
                   [duration]="1000"></ion-loading>
-               
+
                 <ion-button id="open-loading4">Close</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                   [duration]="1000"></ion-loading>
