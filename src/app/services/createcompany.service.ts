@@ -63,8 +63,8 @@ export class CreatecompanyService {
   createCompany(company: companystore, key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addcompany, company, { headers: { 'key': key, 'user': user } })
   }
-  fetchAllCompany(companyid: string, key: string, user: string): Observable<any> {
+  fetchallcompany(companyid: string, key: string, user: string): Observable<any> {
     console.log('companyyy ' + companyid);
-    return this.httpclient.get(environment.apiactionurl + environment.fetchallcompany + '/' + companyid, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallcompany +'?p='+companyid + companyid, { headers: { 'key': key, 'user': user } })
   }
 }

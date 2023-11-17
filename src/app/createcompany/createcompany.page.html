@@ -16,7 +16,7 @@
         <ion-grid>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row class="headinglabel">
-              <ion-label style="font-size: 18px;">Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label>Information Of Company:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
             </ion-row>
             <ion-row>
@@ -35,8 +35,8 @@
               </ion-col>
             </ion-row>
 
-            <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label style="font-size: 18px; font-weight: bold;">Address-1:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-row class="headinglabel" >
+              <ion-label >Address-1:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
             </ion-row>
 
@@ -123,8 +123,11 @@
               </ion-col>
             </ion-row>
 
-            <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label style="font-size: 18px; font-weight: bold;">Address-2:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-row class="headinglabel" style="justify-content: space-between;align-items: center;">
+              <ion-label >Address-2:</ion-label>
+              <ion-checkbox  (click)="copyBillingToShipping()">Same as Address-1</ion-checkbox>
+
+              <span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
             </ion-row>
 
@@ -205,8 +208,8 @@
                 </ion-row>
               </ion-col>
             </ion-row>
-            <ion-row class="headinglabel" style="margin: 10px auto;">
-              <ion-label style="font-size: 18px; font-weight: bold;">Attechment:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-row class="headinglabel">
+              <ion-label>Attechment:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
             </ion-row>
             <ion-row>
@@ -235,7 +238,7 @@
                 slot="end"></ion-icon></ion-button>
             <div  *ngIf="step1">
               <ion-row class="headinglabel">
-                <ion-label style="font-size: 18px;">Resistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                <ion-label>Resistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
     "></span>
               </ion-row>
               <ion-row>
@@ -298,7 +301,7 @@
             <ion-button (click)="toggleStep2()">STEP : 3<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
             <div *ngIf="step2">
               <ion-row class="headinglabel">
-                <ion-label style="font-size: 18px;">Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                <ion-label>Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
               </ion-row>
               <ion-row>
@@ -375,7 +378,7 @@
             <ion-button (click)="toggleStep3()">STEP : 4<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
             <div *ngIf="step3">
               <ion-row class="headinglabel">
-                <ion-label style="font-size: 18px;">Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                <ion-label>Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
               </ion-row>
               <ion-row>

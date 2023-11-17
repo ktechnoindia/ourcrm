@@ -239,5 +239,17 @@ export class CreatecompanyPage implements OnInit {
   goBack() {
     this.router.navigate(['/master']);
   }
+  copyBillingToShipping() {
+    // Copy values from billing to shipping
+    this.selectedCountry1 = this.selectedCountry;
+    this.selectedState1 = this.selectedState;
+    this.selectedDistrict1 = this.selectedDistrict;
+    this.pinCode1 = this.pinCode;
+    this.address1 = this.address;
+    this.phone1 = this.phone;
+    this.wpnumber1 = this.wpnumber;
+    this.email1 = this.email;
+    this.website1 = this.website;
 
+  }
 }
