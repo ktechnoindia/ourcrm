@@ -39,6 +39,7 @@ interface Sales {
 export class SalesreturnPage implements OnInit {
   billNumber: number=0;
   billDate: string = '';
+  frombill:number=0;
   payment: number = 0;
   orderDate: string = '';
   orderNumber: string='';
@@ -84,7 +85,7 @@ export class SalesreturnPage implements OnInit {
       billformate:myform.value.billformate,billNumber:myform.value.billNumber,billDate:myform.value.billDate,
       payment:myform.value.payment,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
       gstin:myform.value.gstin,salePerson:myform.value.salePerson,taxrate:myform.value.taxrate,custcode:myform.value.custcode,custname:myform.value.custname,unitname$:myform.value.unitname$,ponumber:myform.value.ponumber,refdate:myform.value.refdate,refrence:myform.value.refrence,
-    
+      frombill:myform.value.frombill,
     };
     this.salereturnService.createSaleReturn(salesData, '', '').subscribe(
       (response: any) => {

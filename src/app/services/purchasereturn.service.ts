@@ -6,6 +6,7 @@ export interface purchasereturnstore {
 
   billNumber: number;
   billDate: string;
+  frombill:number;
   payment: number;
   supplier: number;
   gstin: number ;

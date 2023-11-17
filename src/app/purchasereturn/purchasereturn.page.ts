@@ -42,6 +42,7 @@ export class PurchasereturnPage implements OnInit {
   form:any;
   billNumber: number = 0;
   billDate: string = '';
+  frombill:number=0;
   payment: number = 0;
   supplier: number = 0;
   gstin: number = 0;
@@ -90,7 +91,7 @@ export class PurchasereturnPage implements OnInit {
       billNumber:myform.value.billNumber,billDate:myform.value.billDate,billformate:myform.value.billformate,payment:myform.value.payment,supplier:myform.value.supplier,gstin:myform.value.gstin,
       exicutive:myform.value.exicutive,unitname$:myform.value.unitname$,taxrate$:myform.value.taxrate$,
       refrence:myform.value.refrence,refdate:myform.value.refdate,vendcode:myform.value.vendcode,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
-    
+    frombill:myform.value.frombill,
     };
     if (this.form.valid) {
       console.log('Selected Value' + this.form.value);
