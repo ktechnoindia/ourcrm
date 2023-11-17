@@ -196,22 +196,49 @@ export class AppComponent {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+    // Close other dropdowns
+    this.isDropdownOpen2 = false;
+    this.isDropdownOpen3 = false;
+    this.isDropdownOpen4 = false;
+    this.isDropdownOpen5 = false;
   }
+  
   toggleDropdown2() {
     this.isDropdownOpen2 = !this.isDropdownOpen2;
-
+    // Close other dropdowns
+    this.isDropdownOpen = false;
+    this.isDropdownOpen3 = false;
+    this.isDropdownOpen4 = false;
+    this.isDropdownOpen5 = false;
   }
+  
   toggleDropdown3() {
     this.isDropdownOpen3 = !this.isDropdownOpen3;
-
-  } toggleDropdown4() {
+    // Close other dropdowns
+    this.isDropdownOpen = false;
+    this.isDropdownOpen2 = false;
+    this.isDropdownOpen4 = false;
+    this.isDropdownOpen5 = false;
+  }
+  toggleDropdown4() {
     this.isDropdownOpen4 = !this.isDropdownOpen4;
+    // Close other dropdowns
+    this.isDropdownOpen = false;
+    this.isDropdownOpen2 = false;
+    this.isDropdownOpen3 = false;
+    this.isDropdownOpen5 = false;
+  }
+  
+  toggleDropdown5() {
+    this.isDropdownOpen5 = !this.isDropdownOpen5;
+    // Close other dropdowns
+    this.isDropdownOpen = false;
+    this.isDropdownOpen2 = false;
+    this.isDropdownOpen3 = false;
+    this.isDropdownOpen4 = false;
 
   }
- toggleDropdown5() {
-  this.isDropdownOpen5 = !this.isDropdownOpen5;
-
-}
+  
   selectOption(option: string) {
     // Handle the selected option here (e.g., emit an event or set a variable).
     console.log(`Selected: ${option}`);
@@ -231,6 +258,11 @@ export class AppComponent {
     // Handle the selected option here (e.g., emit an event or set a variable).
     console.log(`Selected: ${option}`);
     this.isDropdownOpen4 = false; // Close the dropdown after selection.
+  }
+  selectOption5(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen5 = false; // Close the dropdown after selection.
   }
 
   toggleMobileMenu() {

@@ -78,8 +78,8 @@ select option:checked {
 }
 
 .dropdown :hover {
-  color: #000;
-  border-bottom: rgb(255, 255, 255) solid 2px;
+  color: #ffffff;
+  // border-bottom: rgb(255, 255, 255) solid 2px;
 }
 
 .drop img {
@@ -298,7 +298,8 @@ ion-select::part(icon) {
 }
 
 .dropdown-title :hover{
-  color: #000;
+  color: skyblue;
+  
 }
 /* Show the list when hovering over the title */
 .dropdown:hover .dropdown-list {
@@ -330,12 +331,13 @@ ion-select::part(icon) {
   padding: 4px;
 }
 .dropdown img{
-  height: 20px;
-  width: 20px;
-  margin-top: 10px;
+  height: 30px;
+  width: 30px;
+  margin-top: 18px;
 }
 .dropdown p{
-  font-size: 14px;
+  font-size: 12px;
+  margin-top: 0px;
 }
 .dropdown p :hover{
   color: #000;
@@ -349,6 +351,7 @@ ion-select::part(icon) {
 .dropdown-list {
 width: 160px;
 background: skyblue;
+margin-top: -18px;
 
 }
 .dropdown-list li{
@@ -362,7 +365,7 @@ background: skyblue;
    flex-direction: column;
 }
 .right-dropdown a{
-  background: rgb(255, 255, 255);
+  background: rgb(194, 238, 255);
  color: rgb(0, 0, 0);
   text-decoration: none;
   width: 100%;
@@ -422,7 +425,8 @@ background: rgb(185, 228, 229);
   }
   .dropdown_div{
     display: none;
-    background-color: lightgray;
+    background-color: skyblue;
+    color: #000000;
     width: 150px;
   }
   .dropdown-list{
@@ -433,14 +437,16 @@ background: rgb(185, 228, 229);
   }
   .desktop_menu{
     display: block;
-    background-color: #fff;
+    background-color: skyblue;
+    color: #000000;
   }
   .desktop_menu img{
     display: none;
     visibility: hidden;
   }
   .desktop_menu p{
-    font-size: 18px;
+    font-size: 14px;
+    color: #fff;
   }
   .desktop_menu button{
     width: 100%;
