@@ -13,13 +13,13 @@
         <ion-grid>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="unit_name" formControlName="unit_name" name="unitname" type="text"
                     label="Unit Name :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="short_name" formControlName="short_name" name="shortname" type="text"
                     label="Symbol/ Short Name :" label-placement="floating" fill="outline"></ion-input>
@@ -32,7 +32,7 @@
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>-->
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <select name="decimalplace" formControlName="decimal_place" [(ngModel)]="decimal_place">
                   <option value="">--- Decimal Places ---</option>
                   <option value="meter">1</option>
@@ -42,7 +42,7 @@
 
                 </select>
               </ion-col>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
                 <ion-row>
                   <select name="primaryunit" formControlName="primary_unit" [(ngModel)]="primary_unit">
                     <option value="">--- Select UQC ---</option>
@@ -107,25 +107,26 @@
             <ion-row>
               <ion-searchbar class="custom"></ion-searchbar>
             </ion-row>
-            <ion-row>
-              <div style="width: 100%; height: 100px;scroll-behavior: auto;" class="scroll-container">
-                <table>
-                  <tr>
-                    <th>Sr.No</th>
-                    <th>Unit Name</th>
-                    <th>Symbol/ Short Name</th>
-                    <th>Decimal Places</th>
-                    <th>Uqc</th>
-                  </tr>
-                  <tr>
-                    <td>Sr.No</td>
+            <ion-row class="Executive">
+              <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                <table style="width: 950px;overflow-x:auto;">
+                 
+                  <thead>
+                    <tr>
+                      <th style="width: 50px;">Sr.No</th>
+                      <th style="width: 100px;"> Unit Name</th>
+                      <th style="width: 200px;">Symbol/ Short Name</th>
+                      <th style="width: 100px;">Decimal Places</th>
+                      <th style="width: 100px;">Uqc</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <td>1</td>
                     <td>Kilogram</td>
                     <td>kg</td>
-
                     <td>0</td>
                     <td>2</td>
-
-                  </tr>
+                  </tbody>
 
                 </table>
               </div>

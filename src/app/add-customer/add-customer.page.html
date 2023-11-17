@@ -74,15 +74,29 @@
                   <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
                     {{ custtype.customertypename }}
                   </option>
-
                 </select>
+              </ion-col>
+              <ion-col size="6" size-lg="2 " size-md="6" size-sm="6">
+                <ion-row>
+                  <select name="" id="">
+                    <option value="0">Default Discount</option> <!-- Default option -->
+                    <option value="5">5%</option>
+                    <option value="8">8%</option>
+                    <option value="10">10%</option>
+                    <option value="12">12%</option>
+                    <option value="15">15%</option>
+                    <option value="18">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                    <option value="90">90%</option>
+                  </select>
 
+                </ion-row>
 
               </ion-col>
-            </ion-row>
-
-            <!-- Third Row -->
-            <ion-row style="margin-top: 5px;">
+            
               <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" name="opening_balance" class="sign_input" type="text"
@@ -122,28 +136,10 @@
                 </ion-row>
 
               </ion-col>
-              <ion-col size="12" size-lg="2 " size-md="6" size-sm="6">
-                <ion-row>
-                  <select name="" id="">
-                    <option value="0">Default Discount</option> <!-- Default option -->
-                    <option value="5">5%</option>
-                    <option value="8">8%</option>
-                    <option value="10">10%</option>
-                    <option value="12">12%</option>
-                    <option value="15">15%</option>
-                    <option value="18">15%</option>
-                    <option value="20">20%</option>
-                    <option value="25">25%</option>
-                    <option value="50">50%</option>
-                    <option value="70">70%</option>
-                    <option value="90">90%</option>
-                  </select>
-
-                </ion-row>
-
-              </ion-col>
+             
 
             </ion-row>
+
             <ion-row>
               <ion-col size-lg="6" size="12">
                 <ion-row class="headinglabel">
@@ -200,11 +196,11 @@
                 </ion-row>
               </ion-col>
               <ion-col  size-lg="6" size="12">
-                <ion-row class="headinglabel"  style="justify-content: space-between;align-items: center; flex-direction: column;flex-wrap: nowrap;">
+                <ion-row class="headinglabel"  style="justify-content: space-between;align-items: center; ">
                   <ion-label>Shipping Address :</ion-label>
                   <ion-checkbox (click)="copyBillingToShipping()">Same as Billing Address</ion-checkbox>
 
-                  <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                  <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom: 5px;
         "></span>
 
 
@@ -265,7 +261,7 @@
             <ion-row>
               <ion-col  size-lg="6" size="12">
                 <ion-row class="headinglabel">
-                  <ion-label>Registration Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                  <ion-label>Registration Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom: 5px;
                     "></span>
                 </ion-row>
 
@@ -303,7 +299,7 @@
               </ion-col>
               <ion-col  size-lg="6" size="12">
                 <ion-row class="headinglabel">
-                  <ion-label>Bank Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+                  <ion-label>Bank Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom: 5px;
                     "></span>
                 </ion-row>
 
@@ -341,30 +337,28 @@
               </ion-col>
             </ion-row>
 
-
-
           <ion-row>
-          <ion-col  size-lg="6" size="12">
+          <ion-col  size="12">
             <ion-row class="headinglabel">
-              <ion-label>Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+              <ion-label>Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom: 5px;
                 "></span>
             </ion-row>
 
             <ion-row>
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="credit_period" name="credit_period" type="tel" label=" Credit Period :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="credit_limit" name="credit_limit" type="text" label=" Credit Limit :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <select [(ngModel)]=" select_sales_person" name="select_sales_person">
                   <option value="0">Select Executive Name</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
@@ -373,24 +367,22 @@
 
                 </select>
               </ion-col>
-            </ion-row>
-
-            <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+           
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="card_number" name="card_number" type="text" label=" Card Number :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_point" name="opening_point" type="text" label="Opening Point :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
 
               </ion-col>
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_point" name="closing_point" type="text" label="Closing Point :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -410,9 +402,7 @@
               <ion-button id="open-loading2">Delete</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..."
                 [duration]="1000"></ion-loading>
-              <ion-button id="open-loading3">Preview</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..."
-                [duration]="1000"></ion-loading>
+             
               <ion-button id="open-loading4">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>

@@ -28,7 +28,7 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 5px;">
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="hsncode" formControlName="hsncode"  name="hsn_code"  type="text" label="HSN Code :" label-placement="floating"
                   fill="outline" ></ion-input>
@@ -37,7 +37,7 @@
                   </div>
                 </ion-row>
               </ion-col>
-              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="unit" formControlName="unit" name="units" type="text" label="Unit :" label-placement="floating"
                   fill="outline"  ></ion-input>
@@ -57,8 +57,8 @@
 
             <ion-row>
               <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-              <div style="overflow-x:auto; width: 100%;">
-                <table>
+              <div style="overflow-x:auto; width: 100% ;height: 330px;">
+                <table style="width: 900px;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>HSN Code</th>
@@ -85,10 +85,7 @@
                 <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
                 <ion-button type="submit" id="open-loading1">Save</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading1" message="HSN Number Adding..." [duration]="1000"></ion-loading>
-                <ion-button id="open-loading2">Delete</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
-                <ion-button id="open-loading3">Preview</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+                
                 <ion-button id="open-loading4">Close</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
   

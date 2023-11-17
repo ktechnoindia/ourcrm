@@ -80,45 +80,7 @@
 
                 </select>
               </ion-col>
-            </ion-row>
-
-            <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number"
-                    label=" Opening Balance :" label-placement="floating" name="openbal" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance" type="number"
-                    label=" Closing Balance :" label-placement="floating" name="closingbal" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
-                    label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text"
-                    label=" Whatsapp Number :" label-placement="floating" name="wpnumber" fill="outline"
-                    maxlength="10"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="12" size-lg="2.5 " size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="email" formControlName="email" type="email" label="Email :"
-                    label-placement="floating" name="emails" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size="12" size-lg="2 " size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="1.5 " size-md="6" size-sm="6">
                 <ion-row>
                   <select name="" id="">
                     <option value="0">Default Discount</option> <!-- Default option -->
@@ -138,6 +100,43 @@
                 </ion-row>
 
               </ion-col>
+          
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number"
+                    label=" Opening Balance :" label-placement="floating" name="openbal" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance" type="number"
+                    label=" Closing Balance :" label-placement="floating" name="closingbal" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
+                    label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text"
+                    label=" Whatsapp Number :" label-placement="floating" name="wpnumber" fill="outline"
+                    maxlength="10"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12" size-lg="2.5 " size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="email" formControlName="email" type="email" label="Email :"
+                    label-placement="floating" name="emails" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+             
             </ion-row>
 
             <ion-row>
@@ -258,7 +257,7 @@
             </ion-row>
 
             <ion-row>
-              <ion-col size="6">
+              <ion-col size="12">
                 <ion-row class="headinglabel">
                   <ion-label>Registration :</ion-label><span style="width: 100%; height: 2px;margin-bottom:5px; background-image: linear-gradient(to right, #00b4db, #0083b0); "></span>
                 </ion-row>
@@ -295,7 +294,7 @@
 
                 </ion-row>
               </ion-col>
-              <ion-col size="6">
+              <ion-col size="12">
                 <ion-row class="headinglabel">
                   <ion-label>Bank Details :</ion-label><span style="width: 100%; height: 2px;        margin-bottom:5px; background-image:linear-gradient(to right, #00b4db, #0083b0);"></span>
                 </ion-row>
@@ -395,10 +394,6 @@
                 [duration]="1000"></ion-loading>
               <ion-button type="submit">Save</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Vendor Adding..."
-                [duration]="1000"></ion-loading>
-             
-              <ion-button id="open-loading3">Preview</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..."
                 [duration]="1000"></ion-loading>
               <ion-button id="open-loading4">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
