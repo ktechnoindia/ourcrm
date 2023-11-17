@@ -26,8 +26,8 @@
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-            <ion-row style="margin-top: 25px;">
-              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+            <ion-row>
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
                 <select [(ngModel)]=" select_sales_person" formControlName="select_sales_person" name="execute">
                   <option value="0">Search By Executive Name</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
@@ -36,32 +36,29 @@
                    
                 </select>
               </ion-col>
-              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="formdate" formControlName="formdate" name="formdate"  type="date" label="To Date :"
                     label-placement="floating" fill="outline" id="endDate" ></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="toDate" formControlName="toDate" name="toDate" type="date"  label="To Date :"
                     label-placement="floating" fill="outline" id="endDate" ></ion-input>
                 </ion-row>
               </ion-col>
-               <ion-col size-lg="3" size-md="3" size-sm="3" size="6"
-                class="custom-primary">
-                <ion-row>
-                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-                  <ion-button style="justify-content: right; margin-top: 10px;" expand="block"  [routerLink]="['/leadedit']">Edit Lead</ion-button>
-                </ion-row>
+               <ion-col size-lg="6" size-md="3" size-sm="3" size="6" class="custom-primary">
+                  <ion-button style="float: right;" expand="">Ok</ion-button>
+                  <ion-button style="float: right;" expand=""  [routerLink]="['/leadedit']">Edit Lead</ion-button>
               </ion-col>
             </ion-row>
            
             <ion-row>
-              <div style="overflow-x:auto; width: 100%;">
+              <div style="overflow-x:auto; width: 100% ;height: 350px;">
                 <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
-                <table>
+                <table style="width: 1500px;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>Lead ID</th>

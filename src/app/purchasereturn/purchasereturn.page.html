@@ -30,104 +30,100 @@
         <ion-grid>
           <form #myform="ngForm" (ngSubmit)="onSubmit(myform,purchaseData)">
 
-          <ion-row>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <select [(ngModel)]="billformate" name="billformate">
-                <option value="0" >Bill Formate</option> <!-- Default option -->
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input [(ngModel)]="billNumber"   name="billno" type="number" label=" Billing No.  :"
-                  label-placement="floating" fill="outline"></ion-input>
-
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input  [(ngModel)]="billDate"   name="billdate" type="date" label=" Billing Date   :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input color="dark" [(ngModel)]="vendcode" name="vendcode" type="text" label="Code :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-           
-
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="4">
+        
+            <ion-row>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <select [(ngModel)]="billformate" name="billformate">
+                  <option value="0" >Bill Formate</option> <!-- Default option -->
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="billNumber"   name="billno" type="number" label=" Billing No.  :"
+                    label-placement="floating" fill="outline"></ion-input>
+  
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input  [(ngModel)]="billDate"   name="billdate" type="date" label=" Billing Date   :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" [(ngModel)]="vendcode" name="vendcode" type="text" label="Code :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
              
-            <select  [(ngModel)]="supplier"   name="spler">
-              <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
-              <option value="1">Deepak</option>
-              <option value="2">Ram</option>
-              <option value="3">Shyam</option>
-              <option value="4">Lakshman</option>
-
-            </select>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input color="dark" [(ngModel)]="refrence" name="refrence" type="text" label="Refrence No.:"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input color="dark" [(ngModel)]="refdate" name="refdate" type="date" label="Ref. Date :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-         
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input  [(ngModel)]="orderDate" name="orDate" type="date" label="Purchase Order Date :"
-                  label-placement="floating" fill="outline"></ion-input>
-                 
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input  [(ngModel)]="orderNumber" name="orderno" type="text"
-                  label="Purchase Order No.  :" label-placement="floating" fill="outline"></ion-input>
-                 
-              </ion-row>
-            </ion-col>
-            <!-- <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input  [(ngModel)]="voucherNumber"  name="vouchno" type="number"
-                  label="  Voucher No.  :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col> -->
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <ion-row>
-                <ion-input  [(ngModel)]="gstin"  name="gstincode" type="number" label=" GSTIN  :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <select [(ngModel)]="payment" name="pyt">
-                <option value="0">
-                 Payment Mode</option>
-                <option value="2">Cash</option>
-                <option value="3">Credit</option>
+  
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
+               
+              <select  [(ngModel)]="supplier"   name="spler">
+                <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
+                <option value="1">Deepak</option>
+                <option value="2">Ram</option>
+                <option value="3">Shyam</option>
+                <option value="4">Lakshman</option>
+  
               </select>
-            </ion-col>
-            <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-              <select [(ngModel)]=" executive$" name="executive_name" >
-                <option value="">--- Executive ---</option><!-- Default option -->
-                <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
-                  {{ executive.executivename }}
-                </option>
-              </select>
-            </ion-col>
-           
-          </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" [(ngModel)]="refrence" name="refrence" type="text" label="Refrence No.:"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+  
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" [(ngModel)]="refdate" name="refdate" type="date" label="Ref. Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+          
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input  [(ngModel)]="orderDate" name="orDate" type="date" label="Purchase Order Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                   
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input  [(ngModel)]="orderNumber" name="orderno" type="text"
+                    label="Purchase Order No.  :" label-placement="floating" fill="outline"></ion-input>
+                   
+                </ion-row>
+              </ion-col>
+             
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input  [(ngModel)]="gstin"  name="gstincode" type="number" label=" GSTIN  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
+                <select [(ngModel)]="payment" name="pyt">
+                  <option value="0">
+                   Payment Mode</option>
+                  <option value="2">Cash</option>
+                  <option value="3">Credit</option>
+                </select>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <select [(ngModel)]=" executive$" name="executive_name" >
+                  <option value="0">--- Executive ---</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
+                </select>
+              </ion-col>
+             
+            </ion-row>
         
 
           <ion-row style="margin-top: 7px;">
@@ -393,10 +389,7 @@
             <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
             <ion-button type="submit" id="open-loading1">Save</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading1" message="Purchase Saving..." [duration]="1000"></ion-loading>
-            <ion-button id="open-loading2">Delete</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
-            <ion-button id="open-loading3">Preview</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+           
             <ion-button id="open-loading4">Close</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
           </ion-row>

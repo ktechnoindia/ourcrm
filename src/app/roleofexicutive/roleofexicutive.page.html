@@ -12,166 +12,182 @@
         </div>
         <ion-grid>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <ion-row>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-row>
-                <ion-input [(ngModel)]="exname" formControlName="exname" name="ex_name" type="text" label=" Exicutive Name :" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.controls['exname']?.hasError('required') && form.controls['exname'].touched" class="error-message">
+            <ion-row>
+              <ion-col size-lg="6" size-md="3" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="exname" formControlName="exname" name="ex_name" type="text"
+                    label=" Exicutive Name :" label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="form && form.controls['exname']?.hasError('required') && form.controls['exname'].touched"
+                    class="error-message">
                     Executive Name is required.
                   </div>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-row>
-                <ion-input [(ngModel)]="extilte" formControlName="extilte" name="ex_tilte" type="text" label="Exicutive Title:" label-placement="floating"
-                  fill="outline"></ion-input>
-                  <div *ngIf="form && form.controls['extilte']?.hasError('required') && form.controls['extilte'].touched" class="error-message">
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="6" size-md="3" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="extilte" formControlName="extilte" name="ex_tilte" type="text"
+                    label="Exicutive Title:" label-placement="floating" fill="outline"></ion-input>
+                  <div
+                    *ngIf="form && form.controls['extilte']?.hasError('required') && form.controls['extilte'].touched"
+                    class="error-message">
                     Exicutive Title is required.
                   </div>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row class="headinglabel">
-            <ion-label style="font-size: 18px;">Contact Information :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row class="headinglabel">
+              <ion-label style="font-size: 18px;">Contact Information :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
             "></span>
-          </ion-row>
+            </ion-row>
 
-          <ion-row>
-                      <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="phone" formControlName="phone"  name="phonenumber"  type="number" label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-                <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone'].touched" class="error-message">
-                  Monile Number is required.
-                </div>
-              </ion-row>
-            </ion-col>
+            <ion-row>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="phone" formControlName="phone" name="phonenumber" type="number"
+                    label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
+                  <div *ngIf="form && form.controls['phone']?.hasError('required') && form.controls['phone'].touched"
+                    class="error-message">
+                    Monile Number is required.
+                  </div>
+                </ion-row>
+              </ion-col>
 
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="wp_number"  type="number" label=" Whatsapp Number :" label-placement="floating"
-                  fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="email" formControlName="email" name="emails"  type="email" label="Email :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="wp_number" type="number"
+                    label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label="Email :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
 
-          <ion-row class="headinglabel" style="margin: 10px auto;">
-            <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+            <ion-row class="headinglabel" style="margin: 10px auto;">
+              <ion-label style="font-size: 18px; font-weight: bold;">Address :</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
               "></span>
-          </ion-row>
+            </ion-row>
 
-          <ion-row>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="12">
-              <select name="country" formControlName="selectedCountry" [(ngModel)]="selectedCountry" >
-                <option value="">
-                --- Select Country ---
-                </option>
-                <option value="">India</option>
-                <option value="">USA</option>
-                <option value="">Uk</option>
-              </select>
-              <div *ngIf="form && form.controls['selectedCountry']?.hasError('required') && form.controls['selectedCountry'].touched" class="error-message">
-                Country is required.
-              </div>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select  [(ngModel)]="selectedState" formControlName="selectedState"  name="state" >
-                <option selected value="">--Select State--</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand</option>
-                <option value="West Bengal">West Bengal</option>
-                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
-                </option>
-                <option value="Lakshadweep">Lakshadweep</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Puducherry">Puducherry</option>
-              </select>
-              <div *ngIf="form && form.controls['selectedState']?.hasError('required') && form.controls['selectedState'].touched" class="error-message">
-                State is required.
-              </div>
-            </ion-col>
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <select  [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district" >
-                <option selected value=""> --Select City--</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Hyderabad">Hyderabad</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Pune">Pune</option>
-                <option value="Ahmedabad">Ahmedabad</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Lucknow">Lucknow</option>
-              </select>
-              <div *ngIf="form && form.controls['selectedDistrict']?.hasError('required') && form.controls['selectedDistrict'].touched" class="error-message">
-                District is required.
-              </div>
-            </ion-col>
-
-            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="pinCode" formControlName="pinCode" name="pin_code"  type="number" label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
-              <ion-row>
-                <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address"  type="text" label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-                <div *ngIf="form && form.controls['fulladdress']?.hasError('required') && form.controls['fulladdress'].touched" class="error-message">
-                  Address is required.
+            <ion-row>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <select name="country" formControlName="selectedCountry" [(ngModel)]="selectedCountry">
+                  <option value="">
+                    --- Select Country ---
+                  </option>
+                  <option value="">India</option>
+                  <option value="">USA</option>
+                  <option value="">Uk</option>
+                </select>
+                <div
+                  *ngIf="form && form.controls['selectedCountry']?.hasError('required') && form.controls['selectedCountry'].touched"
+                  class="error-message">
+                  Country is required.
                 </div>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-          
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button id="open-loading">New</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
-            <ion-button type="submit" id="open-loading1">Save</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading1" message="Role Creating..." [duration]="1000"></ion-loading>
-            <ion-button id="open-loading2">Delete</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
-            <ion-button id="open-loading3">Preview</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
-            <ion-button id="open-loading4">Close</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+              </ion-col>
 
-          </ion-row>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedState" formControlName="selectedState" name="state">
+                  <option selected value="">--Select State--</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
+                  </option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Puducherry">Puducherry</option>
+                </select>
+                <div
+                  *ngIf="form && form.controls['selectedState']?.hasError('required') && form.controls['selectedState'].touched"
+                  class="error-message">
+                  State is required.
+                </div>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district">
+                  <option selected value=""> --Select City--</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Lucknow">Lucknow</option>
+                </select>
+                <div
+                  *ngIf="form && form.controls['selectedDistrict']?.hasError('required') && form.controls['selectedDistrict'].touched"
+                  class="error-message">
+                  District is required.
+                </div>
+              </ion-col>
+
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="pinCode" formControlName="pinCode" name="pin_code" type="number"
+                    label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" type="text"
+                    label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+                  <div
+                    *ngIf="form && form.controls['fulladdress']?.hasError('required') && form.controls['fulladdress'].touched"
+                    class="error-message">
+                    Address is required.
+                  </div>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button id="open-loading">New</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
+              <ion-button type="submit" id="open-loading1">Save</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading1" message="Role Creating..."
+                [duration]="1000"></ion-loading>
+             
+              <ion-button id="open-loading4">Close</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
+
+            </ion-row>
           </form>
         </ion-grid>
       </ion-card-content>

@@ -8,7 +8,7 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Create Company</ion-title>
               <div  class="custom-primary">
-                <ion-button [routerLink]="['/viewcompany']" id="open-loading5">View Company</ion-button>
+                <ion-button  size="small" [routerLink]="['/viewcompany']" id="open-loading5">View Company</ion-button>
               </div>
             </ion-row>
           </ion-card-header>
@@ -234,7 +234,7 @@
             </ion-row>
 
             <!-- Step : 2-->
-            <ion-button (click)="toggleStep1()" >STEP : 2<ion-icon name="add-circle" size="small"
+            <ion-button size="small" (click)="toggleStep1()" >STEP : 2<ion-icon name="add-circle" size="small"
                 slot="end"></ion-icon></ion-button>
             <div  *ngIf="step1">
               <ion-row class="headinglabel">
@@ -298,7 +298,7 @@
             </ion-row>
           </div>
             <!-- Step : 3-->
-            <ion-button (click)="toggleStep2()">STEP : 3<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
+            <ion-button size="small" (click)="toggleStep2()">STEP : 3<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
             <div *ngIf="step2">
               <ion-row class="headinglabel">
                 <ion-label>Select Modules:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
@@ -375,7 +375,7 @@
               </ion-row>
             </div>
             <!-- Step : 4-->
-            <ion-button (click)="toggleStep3()">STEP : 4<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
+            <ion-button size="small" (click)="toggleStep3()">STEP : 4<ion-icon name="add-circle" size="small"></ion-icon></ion-button>
             <div *ngIf="step3">
               <ion-row class="headinglabel">
                 <ion-label>Bank Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);

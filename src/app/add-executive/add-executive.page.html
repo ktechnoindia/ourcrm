@@ -31,7 +31,7 @@
             <ion-row>
               <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <select [ngModel]="roleid" name="roletype" formControlName="roleid">
-                  <option value="0">Select Role</option> <!-- Default option -->
+                  <option value="0"> Role</option> <!-- Default option -->
                   <option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid" >
                     {{ roletypes.roletypename }}
                   </option>   
@@ -53,7 +53,7 @@
               </ion-col>
               <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
                 <select [ngModel]="emanager"  formControlName="emanager" name="managertype">
-                  <option value="" disabled selected>Select Manager</option> <!-- Default option -->
+                  <option value="" disabled selected> Manager</option> <!-- Default option -->
                   <option value="1">Deepak</option>
                   <option value="1">Yogesh</option>
                   <option value="1">Abhishek</option>
@@ -62,50 +62,9 @@
                 </select>
                
               </ion-col>
-            </ion-row>
-
-            <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [ngModel]="emobile"  formControlName="emobile" name="mobile" type="text" label="Mobile No. :"
-                    label-placement="floating" fill="outline" ></ion-input>
-                    
-                </ion-row>
-              </ion-col>
-          
-              <ion-col size="6" size-lg="4.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [ngModel]="eemail"  formControlName="eemail"  name="emails" type="email" label="Email :" label-placement="floating"
-                     fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
-          
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [ngModel]="ewhatsapp"  formControlName="ewhatsapp"  name="wpnumber" type="text" label="WhatsApp No. :"
-                    label-placement="floating" fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [ngModel]="epan"   formControlName="epan" name="pnumber" type="text" label="PAN No. :"
-                    label-placement="floating"  fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
-            </ion-row>
-
-            <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input [ngModel]="ecommision"  formControlName="ecommision"  name="commiss" type="number" label="Commission :"
-                    label-placement="floating"  fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
-           
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <select [ngModel]="ledger"  formControlName="ledger"  name="ledgertype">
-                  <option value="" disabled selected>Select ledger</option> <!-- Default option -->
+                  <option value="" disabled selected> ledger</option> <!-- Default option -->
 
                   <option value="1">Stock ledger</option>
                   <option value="1">Sales ledger</option>
@@ -115,16 +74,49 @@
                   Service Type is required.
                 </div>
               </ion-col>
+            
+              <ion-col size="6" size-lg="4.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [ngModel]="emobile"  formControlName="emobile" name="mobile" type="text" label="Mobile No. :"
+                    label-placement="floating" fill="outline" ></ion-input>
+                    
+                </ion-row>
+              </ion-col>
+          
+              <ion-col size="6" size-lg="4.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [ngModel]="ewhatsapp"  formControlName="ewhatsapp"  name="wpnumber" type="text" label="WhatsApp No. :"
+                    label-placement="floating" fill="outline" ></ion-input>
+                </ion-row>
+              </ion-col>
+
+
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
+                <ion-row>
+                  <ion-input [ngModel]="eemail"  formControlName="eemail"  name="emails" type="email" label="Email :" label-placement="floating"
+                     fill="outline" ></ion-input>
+                </ion-row>
+              </ion-col>
+            
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [ngModel]="epan"   formControlName="epan" name="pnumber" type="text" label="PAN No. :"
+                    label-placement="floating"  fill="outline" ></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input [ngModel]="ecommision"  formControlName="ecommision"  name="commiss" type="number" label="Commission :"
+                    label-placement="floating"  fill="outline" ></ion-input>
+                </ion-row>
+              </ion-col>
+           
             </ion-row>
 
-            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
               <ion-button type="submit" id="open-loading1">Create Role</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Role Creating..." [duration]="1000"></ion-loading>
-              <ion-button id="open-loading2">Create Manager</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading2" message="Manager Creating..." [duration]="1000"></ion-loading>
-              <ion-button [routerLink]="['/viewexicutive']" id="open-loading3">Show Executive</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading3" message="Executive Showing..." [duration]="1000"></ion-loading>
-
+              
             </ion-row>
           </form>
         </ion-grid>
