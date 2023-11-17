@@ -42,51 +42,56 @@
               </ion-row>
 
               <ion-row>
-                <div  class="scroll-container" >
+                <div class="scroll-container">
                   <table style="width: 2500px;overflow-x:auto;">
                     <thead>
                       <tr>
                         <th style="width: 50px !important;">Sr. No.</th>
-                        <th  style="width: 200px !important;">Ledger Name</th>
                         <th style="width: 100px !important;">Ledger Code</th>
-                        <th  style="width: 100px !important;">Group Name</th>
-                        <th  style="width: 100px !important;">GSTIN</th>
-                        <th  style="width: 100px !important;">Opening Balance</th>
-                        <th  style="width: 100px !important;">Closing Balance</th>
-                        <th  style="width: 100px !important;">Mobile Number</th>
-                        <th  style="width: 100px !important;">Email</th>
-                        <th  style="width: 100px !important;">Whatsapp Number</th>
-                        <th  style="width: 100px !important;">Country</th>
-                        <th  style="width: 100px !important;">State</th>
-                        <th  style="width: 100px !important;">Pincode</th>
-                        <th  style="width: 100px !important;">Aadhar No.</th>
-                        <th  style="width: 100px !important;">PAN No.</th>
-                        <th  style="width: 100px !important;">Udhyog Aadhar</th>
-                        <th  style="width: 100px !important;">Account No.</th>
-                        <th  style="width: 100px !important;">IFSC Code</th>
-                        <th  style="width: 150px !important;">Bank Name</th>
-                        <th  style="width: 100px !important;">Branch Name</th>
-                        <th  style="width: 100px !important;">Card No.</th>
-                        <th  style="width: 100px !important;">Credit Period</th>
-                        <th  style="width: 100px !important;">Credit Limit</th>
+                        <th style="width: 200px !important;">Ledger Name</th>
+                        <th style="width: 200px !important;">Company ID</th>
+                        <th style="width: 200px !important;">Company Name</th>
+                        <th style="width: 100px !important;">Group Name</th>
+                        <th style="width: 100px !important;">GSTIN</th>
+                        <th style="width: 100px !important;">Opening Balance</th>
+                        <th style="width: 100px !important;">Closing Balance</th>
+                        <th style="width: 100px !important;">Mobile Number</th>
+                        <th style="width: 100px !important;">Whatsapp Number</th>
+                        <th style="width: 100px !important;">Email</th>
+                        <th style="width: 100px !important;">Country</th>
+                        <th style="width: 100px !important;">State</th>
+                        <th style="width: 100px !important;">Address</th>
+                        <th style="width: 100px !important;">Pincode</th>
+                        <th style="width: 100px !important;">Tax Deducation No.</th>
+                        <th style="width: 100px !important;">Aadhar No.</th>
+                        <th style="width: 100px !important;">PAN No.</th>
+                        <th style="width: 100px !important;">Udhyog Aadhar</th>
+                        <th style="width: 100px !important;">Account No.</th>
+                        <th style="width: 100px !important;">IFSC Code</th>
+                        <th style="width: 150px !important;">Bank Name</th>
+                        <th style="width: 100px !important;">Branch Name</th>
+                        <th style="width: 100px !important;">Card No.</th>
+                        <th style="width: 100px !important;">Credit Period</th>
+                        <th style="width: 100px !important;">Credit Limit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let ledger of ledgers$ | async; let i = index">
                         <td>{{ i + 1}}</td>
-                        <td>{{ledger.lcode}}</td>
+                        <td>{{ledger.ledger_code}}</td>
                         <td>{{ledger.lname}}</td>
                         <td>{{ledger.companyid}}</td>
-                        <td>{{ledger.ledger_code}}</td>
-                        <td>{{ledger.selectedOption}}</td>
+                        <td> {{ledger.companyName}}</td>
+                        <td>{{ledger.lgroup_name}}</td>
+                        <td>{{ledger.gstin}}</td>
                         <td>{{ledger.opening_balance}}</td>
                         <td>{{ledger.closing_balance}}</td>
                         <td>{{ledger.mobile}}</td>
                         <td>{{ledger.whatsapp_number}}</td>
-                        <td>{{ledger.address}}</td>
-                        <td>{{ledger.gstin}}</td>
                         <td>{{ledger.email}}</td>
-                        <td>{{ledger.select_sales_person}}</td>
+                        <td>{{ledger.country}}</td>
+                        <td>{{ledger.state}}</td>
+                        <td>{{ledger.address}}</td>
                         <td>{{ledger.pincode}}</td>
                         <td>{{ledger.tdn}}</td>
                         <td>{{ledger.aadhar_no}}</td>
@@ -96,6 +101,10 @@
                         <td>{{ledger.ifsc_code}}</td>
                         <td>{{ledger.bank_name}}</td>
                         <td>{{ledger.branch_name}}</td>
+                        <td>{{ledger.card_number}}</td>
+                        <td>{{ledger.credit_period}}</td>
+                        <td>{{ledger.credit_limit}}</td>
+
                       </tr>
                       <!-- <tr>
                         <td>2</td>
