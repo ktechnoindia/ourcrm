@@ -1,0 +1,85 @@
+
+.Customer ion-input {
+    min-height: 33px;
+   // color: goldenrod;
+   // font-weight: 400;
+   // outline-color: goldenrod;
+   outline-width: 2px;
+   outline-style: initial;
+}
+.Customer ion-select {
+   min-height: 33px;
+   // color: goldenrod;
+   // font-weight: 400;
+   // outline-color: goldenrod;
+   outline-width: 2px;
+   outline-style: initial;
+}
+
+.Customer select {
+   // color: goldenrod;
+   // font-weight: 400;
+   //border-color: goldenrod;
+   width: 100%;
+   text-align: left;
+}
+.Customer .table_select select{
+   
+}
+
+.scroll-container td {
+ background-color: #fff;
+ border: .1px solid grey;
+ max-height: 20px;
+}
+@media(max-width:540px) {
+ .Customer ion-input {
+   min-height: 33px;
+   text-align: center;
+ }
+
+   .Customer ion-select {
+       min-height: 33px;
+       text-align: center;
+   }
+}
+
+.output td {
+   border: 1px solid grey;
+   margin: 5px;
+   // height: 30px;
+}
+
+.output th {
+   text-align: right;
+   border: none;
+   // background-color: #fff;
+   padding-left: 10px;
+}
+.scroll-container {
+ overflow-x: auto;
+ width: 100%;
+ max-width: 100%;
+ border: 1px solid;
+ width: 100%;
+ height: 270px;
+ overflow-x: auto;
+ width: 1555px;
+}
+.Customer ion-select {
+ margin-top: -10px;
+ margin-bottom: -10px;
+ --max-width: 50px !important;
+}
+.delivery-label {
+ font-size: 1.5em;
+ font-weight: bold;
+ margin-bottom: 10px;
+}
+.outstanding {
+ border: solid .1px grey;
+ border-radius: 10px;
+ table td {
+   background-color: #fff;
+ }
+}

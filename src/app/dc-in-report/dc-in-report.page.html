@@ -12,104 +12,160 @@
 
 <ion-content [fullscreen]="true">
   <div class="Customer">
-  <ion-card>
-    <ion-card-content>
-      <div class="dekstop-menu">
-        <ion-card-header >
-          <ion-row lines="none">
-            <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-            <ion-title style="text-align: center;">DC-IN Report</ion-title>
-          </ion-row>
-        </ion-card-header>
-      </div>
-      <ion-grid>
-        <ion-row>
-          <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-          
-          </ion-col>
-          <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
-            <ion-row>
-              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-row>
-                  <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                <ion-row>
-                  <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">DC-IN Report</ion-title>
             </ion-row>
-          </ion-col>
-          <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-            <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-          </ion-col>
-        </ion-row>
-          
-        <ion-row>
-          <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
-        </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
 
-        <ion-row style="margin-top: 10px;">
-          <div class="scroll-container"  >
-            <table style="width:1500px;overflow-x:auto;">
-              <tr>
-                <th>Sr.No.</th>
-                <th>Barcode</th>
-                <th>Customer Code</th>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Quantity</th>
-                <th>Unit</th>
-                <th>MRP</th>
-                <th>Net Base</th>
-                <th>Gross Amount</th>
-                <th>GST</th>
-                <th>CGST</th>
-                <th>SGST</th>
-                <th>IGST</th>
-                <th>Discount</th>
-                <th>Discount Amount</th>
-                <th>Tax Amount</th>
-                <th>Net Amount</th>
-                
-              </tr>
-              <tr class="tdrows">
-                <td style="width: 80px;">1</td>
-                <td style="width: 150px;">4f84fr3</td>
-                <td style="width: 150px;">5645434</td>
-                <td style="width: 150px;">Jeans</td>
-                <td style="width: 800px;">this is the good Company</td>
-                <td style="width: 150px;">400</td>
-                <td style="width: 150px;">5</td>
-                <td style="width: 100px;">30000.00</td>
-                <td style="width: 150px;">30000.00</td>
-                <td style="width: 150px;">20000.00</td>
-                <td style="width: 150px;">5%</td>
-                <td style="width: 150px;">443</td>
-                <td style="width: 150px;">433</td>
-                <td style="width: 150px;">44</td>
-                <td style="width: 150px;">10%</td>
-                <td style="width: 150px;">2000.00</td>
-                <td style="width: 150px;">750</td>
-                <td style="width: 300px;">30000.00</td>
-              </tr>
-            </table>
-          </div>
-        </ion-row>
-        <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            </ion-col>
+            <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+              <ion-row>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+              <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+          </ion-row>
+
+          <ion-row style="margin-top: 10px;">
+            <div class="scroll-container">
+              <table style="width:2555px;">
+                <tr>
+                  <th style="width: 50px !important;">Sr.No.</th>
+                  <th style="width: 70px !important;">Voucher Formate</th>
+                  <th style="width: 70px !important;">Voucher No.</th>
+                  <th style="width: 70px !important;">Voucher Date</th>
+                  <th style="width: 70px !important;">Supplier Code</th>
+                  <th style="width: 70px !important;">Supplier Name</th>
+                  <th style="width: 70px !important;">Refrence No.</th>
+                  <th style="width: 70px !important;">Refrence Date</th>
+                  <th style="width: 70px !important;">PO Number</th>
+                  <th style="width: 100px !important;">BarCode</th>
+                  <th style="width: 70px !important;">Item Code</th>
+                  <th style="width: 150px !important;">Item Name</th>
+                  <th style="width: 120px !important;">Description</th>
+                  <th style="width: 50px !important;">Quantity</th>
+                  <th style="width: 70px !important;">Unit</th>
+                  <th style="width: 50px !important;">MRP</th>
+                  <th style="width: 70px !important;">Basic Rate</th>
+                  <th style="width: 70px !important;">Net Rate</th>
+                  <th style="width: 70px !important;">Gross Amount</th>
+                  <th style="width: 50px !important;">GST</th>
+                  <th style="width: 50px !important;">CGST</th>
+                  <th style="width: 50px !important;">SGST</th>
+                  <th style="width: 50px !important;">IGST</th>
+                  <th style="width: 70px !important;">Discount %</th>
+                  <th style="width: 100px !important;">Discount Amount</th>
+                  <th style="width: 70px !important;">Tax Amount</th>
+                  <th style="width: 70px !important;">Net Amount</th>
+                  <th style="width: 70px !important;">Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>VF001</td>
+                  <td>VN001</td>
+                  <td>2023-11-16</td>
+                  <td>SC001</td>
+                  <td>Supplier A</td>
+                  <td>RN001</td>
+                  <td>2023-11-15</td>
+                  <td>PON001</td>
+                  <td>BC001</td>
+                  <td>IC001</td>
+                  <td>Item A</td>
+                  <td>Description A</td>
+                  <td>10</td>
+                  <td>pcs</td>
+                  <td>50.00</td>
+                  <td>45.00</td>
+                  <td>40.00</td>
+                  <td>400.00</td>
+                  <td>5.00</td>
+                  <td>2.50</td>
+                  <td>2.50</td>
+                  <td>0.00</td>
+                  <td>5%</td>
+                  <td>20.00</td>
+                  <td>50.00</td>
+                  <td>380.00</td>
+                  <td>
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>VF002</td>
+                  <td>VN002</td>
+                  <td>2023-11-17</td>
+                  <td>SC002</td>
+                  <td>Supplier B</td>
+                  <td>RN002</td>
+                  <td>2023-11-16</td>
+                  <td>PON002</td>
+                  <td>BC002</td>
+                  <td>IC002</td>
+                  <td>Item B</td>
+                  <td>Description B</td>
+                  <td>15</td>
+                  <td>pcs</td>
+                  <td>60.00</td>
+                  <td>55.00</td>
+                  <td>50.00</td>
+                  <td>750.00</td>
+                  <td>7.50</td>
+                  <td>3.75</td>
+                  <td>3.75</td>
+                  <td>0.00</td>
+                  <td>8%</td>
+                  <td>30.00</td>
+                  <td>75.00</td>
+                  <td>690.00</td>
+                  <td>
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
+                </tr>
+
+              </table>
+            </div>
+          </ion-row>
+          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
           <ion-button>New</ion-button>
           <ion-button type="submit">Save</ion-button>
           <ion-button>Delete</ion-button>
           <ion-button>Preview</ion-button>
           <ion-button>Close</ion-button>
-        </ion-row>
+        </ion-row> -->
 
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-</div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

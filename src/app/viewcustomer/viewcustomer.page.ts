@@ -19,11 +19,11 @@ import { SessionService } from '../services/session.service';
   ]
 })
 export class ViewcustomerPage implements OnInit {
-  formDate:string='';
-  toDate:string='';
+  formDate: string = '';
+  toDate: string = '';
   customers$: Observable<any[]>
 
-  searchText:string='';
+  searchText: string = '';
   availableColumns: string[] = [
     'Code',
     'Name',
@@ -57,38 +57,38 @@ export class ViewcustomerPage implements OnInit {
   ];
 
 
-  constructor(public session:SessionService,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private custservice:CustomerService) { 
-    const compid='1';
+  constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
+    const compid = '1';
 
-    this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid),'','');
+    this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');
     console.log(this.customers$);
 
     this.customers$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
     });
-    
+
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
+  async onSubmit() {
+    if (this.formDate === '') {
       const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
+        message: "Form Date is required",
+        duration: 3000,
+        color: 'danger',
       });
       toast.present();
-    }else if(this.toDate===''){
+    } else if (this.toDate === '') {
       const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
+        message: "To Date is required",
+        duration: 3000,
+        color: 'danger',
       });
       toast.present();
-    }else{
+    } else {
       const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
+        message: "Successfully !",
+        duration: 3000,
+        color: 'success',
       });
       toast.present();
     }
@@ -100,22 +100,23 @@ export class ViewcustomerPage implements OnInit {
 
 
   ///edit customer start
-  editcustomer(customer:any){
+  editcustomer(customer: any) {
     console.log(customer);
     let navigationExtras: NavigationExtras = {
       state: {
         customer: customer,
-        edit:true
+        edit: true
       }
     };
     this.router.navigate(['add-customer'], navigationExtras);
 
   }
-  async openToast(msg:string) {  
-    this.session.openToast(msg); 
-   }  
-   
-goBack(){
-  this.router.navigate(["/add-customer"])
-}
+  async openToast(msg: string) {
+    this.session.openToast(msg);
+  }
+  
+
+  goBack() {
+    this.router.navigate(["/add-customer"])
+  }
 }

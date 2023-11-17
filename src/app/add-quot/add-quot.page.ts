@@ -37,29 +37,24 @@ interface Quote {
 })
 export class AddQuotPage implements OnInit {
 
-  quoteNumber: number | null = null;
+  quoteNumber: number=0;
   quateDate: string = '';
-  custname: string = '';
+  custname: number = 0;
   quateTax: string = '';
   taxrate: string = '';
   totaltax: string = '';
   total: string = '';
   refrence: string = '';
   refdate: string = '';
-  unitname: string = '';
-  item: string = '';
-  quotation: any;
-  billformate: string = '';
+  unitname: number =0;
+  billformate: number = 0;
   description: string = '';
   quantity: string = '';
   basicrate: string = '';
   grossrate: string = '';
   CGST: string = '';
   SGST: string = '';
-  payment?: any;
   orderNumber: any;
-  gstin: any;
-  salePerson: any;
   taxrate$: any;
   custcode: string = '';
   itemcode: string = '';
@@ -98,17 +93,22 @@ export class AddQuotPage implements OnInit {
   onSubmit(myform: NgForm, quoteData: any) {
     console.log('Your form data : ', myform.value);
     let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
+      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quateTax: myform.value.quateTax, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, 
+      SGST:myform.value.SGST,
+      CGST:myform.value.CGST,
       orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
       total: myform.value.total,
-      ttotal: myform.value.ttotal
+      ttotal: myform.value.ttotal,
+      custname:myform.value.custname,
+      totaltax:myform.value.totaltax,
+      refrence:myform.value.refrence,
+      refdate:myform.value.refdate,
+      billformate:myform.value.billformate,
+
+
     };
 
-    this.quotation.createquote(quotedata, '', '').subscribe(
+    this.quote.createquote(quotedata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed

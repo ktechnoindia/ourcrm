@@ -12,16 +12,17 @@
 
 <ion-content>
   <div class="Customer">
-    <ion-card >
+    <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">DC-IN Window</ion-title>
-              <div  class="custom-primary">
+              <div class="custom-primary">
                 <ion-button size="small" [routerLink]="['/dc-in-report']" id="open-loading5">View DC-IN</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading5" message="DC-IN Showing ..." [duration]="1000"></ion-loading>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="DC-IN Showing ..."
+                  [duration]="1000"></ion-loading>
               </div>
             </ion-row>
           </ion-card-header>
@@ -29,74 +30,72 @@
         <ion-grid>
 
           <form #myform="ngForm" (ngSubmit)="onSubmit(myform,dcinData)">
-            
+
             <ion-row>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
-                <select [(ngModel)]="voucherformat" name="voucherformat" >
-                  <option value="" disabled selected>Voucher Formate</option> <!-- Default option -->
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
+                <select [(ngModel)]="voucherformat" name="voucherformat">
+                  <option value="0" disabled selected>Voucher Formate</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
                 </select>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
-                  <ion-input  [(ngModel)]="voucherNumber"name="vouchno" type="text"
-                    label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
-                    
+                  <ion-input [(ngModel)]="voucherNumber" name="vouchno" type="text" label="Voucher No. :"
+                    label-placement="floating" fill="outline"></ion-input>
+
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="datetype" name="date" type="date" label="Voucher Date :"
                     label-placement="floating" fill="outline"></ion-input>
-                   
+
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1" size-md="2" size-sm="3" size="4">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="vendcode" name="vendcode"type="text" label="Code :"
+                  <ion-input color="dark" [(ngModel)]="vendcode" name="vendcode" type="text" label="Code :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="2.5" size-md="2" size-sm="3" size="4">
                 <select [(ngModel)]="suppliertype" name="supplier">
                   <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
                 </select>
-               
+
               </ion-col>
 
-              <ion-col size-lg="1" size-md="2" size-sm="2" size="4">
-                <select [(ngModel)]="referenceNumber"  name="refernceNumber">
-                  <option value="0" disabled selected> Refrence No.</option> <!-- Default option -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
-               
+              <ion-col size-lg="1" size-md="2" size-sm="3" size="4">
+                <ion-input [(ngModel)]="referenceNumber" name="refernceNumber" type="text" label="Refrence No. :"
+                  label-placement="floating" fill="outline">
+                </ion-input>
+
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="4">
+              <ion-col size-lg="1.5" size-md="2" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="refdate" name="refdate" type="date" label=" Reference Date :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="1.5" size-md="4" size-sm="3" size="4">
                 <ion-row>
                   <ion-input [(ngModel)]="ponumber" name="ponumber" type="text" label="PO Number :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
-              
+
               </ion-col>
             </ion-row>
 
-           
+
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table  style="width:1500px;overflow-x:auto;">
+                <table style="width:1500px;overflow-x:auto;">
                   <tr>
                     <th style="width: 50px !important;">Sr.No.</th>
                     <th style="width: 100px !important;">BarCode</th>
@@ -128,13 +127,13 @@
                       <input [(ngModel)]="dcin.itemcode" name="itemcode" class="table_input" type="text">
                     </td>
                     <td>
-                      <ion-select ion-select interface="popover" [(ngModel)]="dcin.itemname" name="itemname" class="table_input"
-                      aria-label="Default select example" id="itemname" class="table_select">
-                      <ion-select-option>Item 1</ion-select-option>
-                      <ion-select-option>Item 2</ion-select-option>
-                      <ion-select-option>Item 3</ion-select-option>
+                      <ion-select ion-select interface="popover" [(ngModel)]="dcin.itemname" name="itemname"
+                        class="table_input" aria-label="Default select example" id="itemname" class="table_select">
+                        <ion-select-option>Item 1</ion-select-option>
+                        <ion-select-option>Item 2</ion-select-option>
+                        <ion-select-option>Item 3</ion-select-option>
 
-                    </ion-select>
+                      </ion-select>
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.description" name="description" class="table_input" type="text">
@@ -144,8 +143,12 @@
 
                     </td>
                     <td>
-                    
-                    </td>
+                      <select class="select" [(ngModel)]="unitname$"  name="unit_name$" >
+                        <option value="0">--- Select Unit Name ---</option>
+                        <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
+                          {{ unitname.unitname }}
+                        </option>
+                      </select>                    </td>
                     <td>
                       <input [(ngModel)]="dcin.mrp" name="mrp" class="table_input" type="text">
                     </td>
@@ -349,19 +352,24 @@
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
               <ion-button size="small" id="open-loading">New</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
               <ion-button size="small" type="submit" id="open-loading1">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading1" message="DC-IN Saving..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading1" message="DC-IN Saving..."
+                [duration]="1000"></ion-loading>
               <ion-button size="small" id="open-loading2">Delete</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading2" message="Deleting Customer..."
+                [duration]="1000"></ion-loading>
               <ion-button size="small" id="open-loading3">Preview</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading3" message="Previewing..."
+                [duration]="1000"></ion-loading>
               <ion-button size="small" id="open-loading4">Close</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
 
             </ion-row>
-              
-             
+
+
           </form>
         </ion-grid>
       </ion-card-content>

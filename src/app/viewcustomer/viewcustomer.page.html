@@ -65,32 +65,32 @@
                       </tr>
                     </tbody>
                   </table> -->
-                  <table style="width: 100%;overflow-x:auto;"  >
+                  <table style="width: 1900px;overflow-x:auto;">
                     <thead>
                       <tr>
-                        <th style="width: 50px">Sr. No.</th>
-                        <th style="width: 50px">Code</th>
-                        <th style="width: 100px">Name</th>
-                        <th style="width: 100px">GSTIN</th>
-                        <th style="width: 100px">Mobile No.</th>
-                        <th style="width: 100px">WhatsApp No.</th>
-                        <th style="width: 100px">Email</th>
-                        <th style="width: 100px">Country</th>
-                        <th style="width: 100px">State</th>
-                        <th style="width: 100px">District</th>
-                          <th style="width: 100px">Pincode</th>
-                          <th style="width: 100px">Full Address</th>
-                          <th style="width: 100px">Aadhar No.</th>
-                          <th style="width: 100px">PAN No.</th>
-                          <th style="width: 100px">Udhyog Aadhar No.</th>
-                          <th style="width: 100px">Account No.</th>
-                          <th style="width: 100px">IFSC Code</th>
-                          <th style="width: 100px">Bank Name</th>
-                          <th style="width: 100px">Branch Name</th>
-                          <th style="width: 100px">Card No.</th>
-                          <th style="width: 100px">Credit Period</th>
-                          <th style="width: 100px">Credit Limit</th>
-                          <th>Action</th>
+                        <th style="width: 50px !important">Sr. No.</th>
+                        <th style="width: 50px !important">Code</th>
+                        <th style="width: 100px !important">Name</th>
+                        <th style="width: 100px !important">GSTIN</th>
+                        <th style="width: 100px !important">Mobile No.</th>
+                        <th style="width: 100px !important">WhatsApp No.</th>
+                        <th style="width: 100px !important">Email</th>
+                        <th style="width: 100px !important">Country</th>
+                        <th style="width: 100px !important">State</th>
+                        <th style="width: 100px !important">District</th>
+                        <th style="width: 100px !important">Pincode</th>
+                        <th style="width: 150px !important">Full Address</th>
+                        <th style="width: 100px !important">Aadhar No.</th>
+                        <th style="width: 100px !important">PAN No.</th>
+                        <th style="width: 100px !important">Udhyog Aadhar No.</th>
+                        <th style="width: 100px !important">Account No.</th>
+                        <th style="width: 100px !important">IFSC Code</th>
+                        <th style="width: 150px !important">Bank Name</th>
+                        <th style="width: 100px !important">Branch Name</th>
+                        <th style="width: 100px !important">Card No.</th>
+                        <th style="width: 100px !important">Credit Period</th>
+                        <th style="width: 100px !important">Credit Limit</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -98,7 +98,7 @@
 
                         <td>{{ i + 1 }}</td>
                         <td>{{customer.customer_code}}</td>
-                        <td>{{customer.name}}</td>                       
+                        <td>{{customer.name}}</td>
                         <td>{{customer.gstin}}</td>
                         <td>{{customer.mobile}}</td>
                         <td>{{customer.whatsapp_number}}</td>
@@ -118,13 +118,13 @@
                         <td>{{customer.card_number}}</td>
                         <td>{{customer.credit_period}}</td>
                         <td>{{customer.credit_limit}}</td>
-                        <!-- <td class="Action">
-                          <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> 
-                         <ion-icon color="primary" icon-only clear (click)="editcustomer(customer)" name="create"></ion-icon>
-                        </td> -->
+                        <td class="Action">
+                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                          <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        </td>
                       </tr>
-                     
-                                            
+
+
                     </tbody>
 
                   </table>

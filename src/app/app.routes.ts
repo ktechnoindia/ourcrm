@@ -339,7 +339,23 @@ export const routes: Routes = [
   {
     path: 'setting',
     loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
+  },  {
+    path: 'salesreturn',
+    loadComponent: () => import('./salesreturn/salesreturn.page').then( m => m.SalesreturnPage)
   },
+  {
+    path: 'purchasereturn',
+    loadComponent: () => import('./purchasereturn/purchasereturn.page').then( m => m.PurchasereturnPage)
+  },
+  {
+    path: 'view-purchasereturn',
+    loadComponent: () => import('./view-purchasereturn/view-purchasereturn.page').then( m => m.ViewPurchasereturnPage)
+  },
+  {
+    path: 'view-salesreturn',
+    loadComponent: () => import('./view-salesreturn/view-salesreturn.page').then( m => m.ViewSalesreturnPage)
+  },
+
 
   
 

@@ -41,3 +41,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
+.Customer ion-card{
+    width: 90%;
+    margin-left: 5%;
+}
+@media(max-width:940px){
+    .Customer ion-card{
+        width: 100%;
+        margin-left: 0%;
+    }
+}

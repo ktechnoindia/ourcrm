@@ -52,6 +52,8 @@ import { UsercreateService } from './services/usercreate.service';
 import { PasswordService } from './services/password.service';
 import { LoginService } from './services/login.service';
 import { BarcodeService } from './services/barcode.service';
+import { SalereturnService } from './services/salereturn.service';
+import { PurchasereturnService } from './services/purchasereturn.service'; 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -60,7 +62,7 @@ import { BarcodeService } from './services/barcode.service';
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
   providers: [ItemtypeService, LeadsourceService,FollowupService,StocktypeService, LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
     CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
- AddattributeService,UsercreateService,PasswordService,LoginService,BarcodeService
+ AddattributeService,UsercreateService,PasswordService,LoginService,BarcodeService,SalereturnService,PurchasereturnService
   ],
 })
 export class AppComponent {

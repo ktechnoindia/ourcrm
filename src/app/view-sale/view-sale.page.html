@@ -15,7 +15,7 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Sales Report</ion-title>
@@ -24,78 +24,188 @@
 
           <ion-grid>
             <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
-            <ion-row>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              </ion-col>
-              <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
-                <ion-row>
-                  <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                    <ion-row>
-                      <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
-                        label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                  <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                    <ion-row>
-                      <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                        label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-  
-                </ion-row>
-              </ion-col>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-                <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-              </ion-col>
-            </ion-row>
-              
-            <ion-row>
-              <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
-            </ion-row>
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+                <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                  <ion-row>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
+                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                      <ion-row>
+                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+                </ion-col>
+              </ion-row>
 
               <ion-row>
-                <div style="overflow-x:auto; width: 100%;">
-                  <table style="width: 100%;">
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row>
+                <div class="scroll-container" style="overflow-x:auto; width: 100%;">
+                  <table style="width:3055px;">
                     <tr>
-                      <th>Sr.No.</th>
-                      <th>Item Code</th>
-                      <th>Item Name</th>
-                      <th>Quantity</th>
-                      <th>Rate</th>
-                      <th>Discount%</th>
-                      <th>Discount Amount</th>
-                      <th>CGST</th>
-                      <th>SGST</th>
-                      <th>Total</th>
-                      <th>Action</th>
+                      <th style="width: 50px !important;">Sr.No.</th>
+                      <th style="width: 70px !important;">Bill Formate</th>
+                      <th style="width: 70px !important;">Billing No.</th>
+                      <th style="width: 70px !important;">Billing Date</th>
+                      <th style="width: 70px !important;">Customer Code</th>
+                      <th style="width: 70px !important;">Customer Name</th>
+                      <th style="width: 70px !important;">Refrence No.</th>
+                      <th style="width: 70px !important;">Refrence Date</th>
+                      <th style="width: 70px !important;">Order No.</th>
+                      <th style="width: 70px !important;">Order Date</th>
+                      <th style="width: 70px !important;">PO Number</th>
+                      <th style="width: 70px !important;">GSTIN</th>
+                      <th style="width: 70px !important;">Sales Person Name</th>
+                      <th style="width: 70px !important;">Payment Mode</th>
+                      <th style="width: 100px !important;">BarCode</th>
+                      <th style="width: 70px !important;">Item Code</th>
+                      <th style="width: 150px !important;">Item Name</th>
+                      <th style="width: 120px !important;">Description</th>
+                      <th style="width: 50px !important;">Quantity</th>
+                      <th style="width: 70px !important;">Unit</th>
+                      <th style="width: 50px !important;">MRP</th>
+                      <th style="width: 70px !important;">Basic Rate</th>
+                      <th style="width: 70px !important;">Net Rate</th>
+                      <th style="width: 70px !important;">Gross Amount</th>
+                      <th style="width: 50px !important;">GST</th>
+                      <th style="width: 50px !important;">CGST</th>
+                      <th style="width: 50px !important;">SGST</th>
+                      <th style="width: 50px !important;">IGST</th>
+                      <th style="width: 70px !important;">Discount %</th>
+                      <th style="width: 100px !important;">Discount Amount</th>
+                      <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Net Amount</th>
+                      <th style="width: 70px !important;">Action</th>
                     </tr>
                     <tr>
                       <td>1</td>
+                      <td>BF001</td>
+                      <td>BN001</td>
+                      <td>2023-11-17</td>
+                      <td>CC001</td>
+                      <td>Customer A</td>
+                      <td>RN001</td>
+                      <td>2023-11-16</td>
+                      <td>ON001</td>
+                      <td>2023-11-15</td>
+                      <td>PON001</td>
+                      <td>12ABCDE3456F7HI</td>
+                      <td>Salesperson A</td>
+                      <td>Cash</td>
+                      <td>BC001</td>
+                      <td>IC001</td>
+                      <td>Item A</td>
+                      <td>Description A</td>
+                      <td>10</td>
+                      <td>pcs</td>
+                      <td>50.00</td>
+                      <td>45.00</td>
+                      <td>40.00</td>
+                      <td>400.00</td>
+                      <td>5.00</td>
+                      <td>3.00</td>
+                      <td>2.00</td>
+                      <td>0.00</td>
+                      <td>8%</td>
+                      <td>32.00</td>
+                      <td>38.00</td>
+                      <td>370.00</td>
                       <td>
-                        12
-                      </td>
-                      <td>
-                        <select style="width: 120px;" class="table_select" aria-label="Default select example"
-                          id="transaction">
-                          <option selected>-Select-</option>
-                          <option value="1">Credit</option>
-                          <option value="2">Cash</option>
-                        </select>
-                      </td>
-                      <td>1</td>
-                      <td>100</td>
-                      <td>
-                        56
-                      </td>
-                      <td>12</td>
-                      <td>18</td>
-                      <td>18</td>
-                      <td>110</td>
-                      <td>
-                        <ion-icon class="create" [routerLink]="['/add-sale']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>BF002</td>
+                      <td>BN002</td>
+                      <td>2023-11-17</td>
+                      <td>CC002</td>
+                      <td>Customer B</td>
+                      <td>RN002</td>
+                      <td>2023-11-16</td>
+                      <td>ON002</td>
+                      <td>2023-11-15</td>
+                      <td>PON002</td>
+                      <td>34ABCDE6789G1JK</td>
+                      <td>Salesperson B</td>
+                      <td>Credit Card</td>
+                      <td>BC002</td>
+                      <td>IC002</td>
+                      <td>Item B</td>
+                      <td>Description B</td>
+                      <td>15</td>
+                      <td>pcs</td>
+                      <td>65.00</td>
+                      <td>60.00</td>
+                      <td>55.00</td>
+                      <td>825.00</td>
+                      <td>8.00</td>
+                      <td>4.00</td>
+                      <td>4.00</td>
+                      <td>0.00</td>
+                      <td>10%</td>
+                      <td>82.50</td>
+                      <td>79.00</td>
+                      <td>762.00</td>
+                      <td>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>BF003</td>
+                      <td>BN003</td>
+                      <td>2023-11-17</td>
+                      <td>CC003</td>
+                      <td>Customer C</td>
+                      <td>RN003</td>
+                      <td>2023-11-16</td>
+                      <td>ON003</td>
+                      <td>2023-11-15</td>
+                      <td>PON003</td>
+                      <td>56ABCDE1234K7LM</td>
+                      <td>Salesperson C</td>
+                      <td>Cheque</td>
+                      <td>BC003</td>
+                      <td>IC003</td>
+                      <td>Item C</td>
+                      <td>Description C</td>
+                      <td>20</td>
+                      <td>pcs</td>
+                      <td>80.00</td>
+                      <td>75.00</td>
+                      <td>70.00</td>
+                      <td>1400.00</td>
+                      <td>10.00</td>
+                      <td>5.00</td>
+                      <td>5.00</td>
+                      <td>0.00</td>
+                      <td>12%</td>
+                      <td>168.00</td>
+                      <td>168.00</td>
+                      <td>1264.00</td>
+                      <td>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
+                      </td>
+                    </tr>
+
                   </table>
                 </div>
               </ion-row>

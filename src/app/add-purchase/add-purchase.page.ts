@@ -5,7 +5,8 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
-import { quotestore } from '../services/quotation.service';
+import { purchasestore } from '../services/purchase.service';
+import { ExecutiveService } from '../services/executive.service';
 
 interface Purchase {
   barcode: string;
@@ -13,7 +14,7 @@ interface Purchase {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -39,20 +40,19 @@ interface Purchase {
 
 export class AddPurchasePage implements OnInit {
 form:any;
-  billNumber: number | null = null;
+  billNumber: number = 0;
   billDate: string = '';
-  payment: string = '';
-  supplier: string = '';
-  voucherNumber: number | null = null;
-  gstin: number | null = null;
-  exicutive:string='';
+  payment: number = 0;
+  supplier: number = 0;
+  gstin: number = 0;
+  exicutive:number=0;
   purchaseData: Purchase[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -69,7 +69,6 @@ form:any;
   ttotal!: number;
   unitname$: any;
   taxrate$: any;
-  ponumber:string='';
   refrence:string='';
   refdate:string='';
   purchase: any;
@@ -77,23 +76,20 @@ form:any;
   vendcode:string='';
   orderDate:string='';
   orderNumber:string='';
+  executive$: any;
   
-  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.executive$ = this.execut.getexecutive();
   }
 
   onSubmit(myform: NgForm, purchaseData: any) {
     console.log('Your form data : ', myform.value);
-    let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
-      orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
-      total: myform.value.total,
-      ttotal: myform.value.ttotal
+    let purchasedata: purchasestore = {
+      billNumber:myform.value.billNumber,billDate:myform.value.billDate,billformate:myform.value.billformate,payment:myform.value.payment,supplier:myform.value.supplier,gstin:myform.value.gstin,
+      exicutive:myform.value.exicutive,unitname$:myform.value.unitname$,taxrate$:myform.value.taxrate$,
+      refrence:myform.value.refrence,refdate:myform.value.refdate,vendcode:myform.value.vendcode,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
     };
     if (this.form.valid) {
       console.log('Selected Value' + this.form.value);
@@ -115,7 +111,7 @@ form:any;
       itemname: 0,
       description:'',
       quantity:0,
-      unitname:0,
+      unitname$:0,
       mrp:0,
       basicrate:0,
       netrate:0,

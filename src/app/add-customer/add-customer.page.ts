@@ -166,7 +166,14 @@ address1:string='';
       companyName: this.companyName,
     });
   }
-
+  copyBillingToShipping() {
+    // Copy values from billing to shipping
+    this.selectedOption1 = this.selectedOption;
+    this.selectedState1 = this.selectedState;
+    this.selectedDistrict1 = this.selectedDistrict;
+    this.pincode1 = this.pincode;
+    this.address1 = this.address;
+  }
 
   // async onSubmit(form: NgForm) {
   //  if(this.cname === ""){

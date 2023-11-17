@@ -17,7 +17,7 @@ interface Dcin {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname$: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -39,25 +39,21 @@ interface Dcin {
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule]
 })
 export class DcInPage implements OnInit {
-  voucherformat:string='';
+  voucherformat:number=0;
   voucherNumber: string = '';
   datetype: string = '';
   suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate:string='';
-  payment: number = 0;
-  remark: string = '';
-  item: number = 0;
   vendcode:string='';
-  submitted = false;
-  ponumber:number=0;
+  ponumber:string='';
   dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    unitname$: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -77,22 +73,16 @@ ttotal!: number;
 
   constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    this.unitname$=this.unittype.getunits();
 
    
   }
 
   onSubmit(myform: NgForm, dcinData: any) {
     console.log('Your form data : ', myform.value);
-    let quotedata: quotestore = {
-      quoteNumber: myform.value.quoteNumber, quateDate: myform.value.quateDate, quoteGroup: myform.value.quoteGroup, quateTax: myform.value.quateTax, item: myform.value.item, taxrate: myform.value.taxrate, description: myform.value.description, quantity: myform.value.quantity, basicrate: myform.value.basicrate, grossrate: myform.value.grossrate, CGST: myform.value.CGST, SGST: myform.value.SGST,
-      payment: myform.value.payment,
-      orderNumber: myform.value.orderNumber,
-      gstin: myform.value.gstin,
-      salePerson: myform.value.salePerson,
-      unit: myform.value.unit,
-      total: myform.value.total,
-      ttotal: myform.value.ttotal
+    let dcindata: dcinstore = {
+     voucherformat:myform.value.voucherformat,voucherNumber:myform.value.voucherNumber,datetype:myform.value.datetype,
+     suppliertype:myform.value.suppliertype,referenceNumber:myform.value.referenceNumber,refdate:myform.value.refdate,vendcode:myform.value.vendcode,ponumber:myform.value.ponumber,
     };
   
       this.dcin.createdcin(dcinData, '', '').subscribe(
@@ -116,7 +106,7 @@ ttotal!: number;
       itemname: 0,
       description:'',
       quantity:0,
-      unitname:0,
+      unitname$:0,
       mrp:0,
       basicrate:0,
       netrate:0,

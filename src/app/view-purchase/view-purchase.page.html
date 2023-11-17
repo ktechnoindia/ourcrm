@@ -55,48 +55,161 @@
                 <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
               </ion-row>
               <ion-row style="margin: 0 auto; width: 100%;">
-                <div style="overflow:auto; width: 100%;">
-                  <table style="width: 100%;">
+                <div class="scroll-container" style="overflow-x:auto; width: 100%;">
+                  <table style="width:2555px;">
                     <tr>
-                      <th>Sr.No.</th>
-                      <th>Item Code</th>
-                      <th>Item Name</th>
-                      <th>Quantity</th>
-                      <th>Rate</th>
-                      <th>Discount%</th>
-                      <th>Discount Amount</th>
-                      <th>CGST</th>
-                      <th>SGST</th>
-                      <th>Total</th>
-                      <th>Action</th>
+                      <th style="width: 50px !important;">Sr.No.</th>
+                      <th style="width: 70px !important;">Bill Formate</th>
+                      <th style="width: 70px !important;">Billing No.</th>
+                      <th style="width: 70px !important;">Billing Date</th>
+                      <th style="width: 70px !important;">Supplier Code</th>
+                      <th style="width: 70px !important;">Supplier Name</th>
+                      <th style="width: 70px !important;">Refrence No.</th>
+                      <th style="width: 70px !important;">Refrence Date</th>
+                      <th style="width: 70px !important;">Purchase Order No.</th>
+                      <th style="width: 70px !important;">Purchase Order Date</th>
+                      <th style="width: 70px !important;">PO Number</th>
+                      <th style="width: 70px !important;">GSTIN</th>
+                      <th style="width: 70px !important;">Exicutive Name</th>
+                      <th style="width: 70px !important;">Payment Mode</th>
+                      <th style="width: 100px !important;">BarCode</th>
+                      <th style="width: 70px !important;">Item Code</th>
+                      <th style="width: 150px !important;">Item Name</th>
+                      <th style="width: 120px !important;">Description</th>
+                      <th style="width: 50px !important;">Quantity</th>
+                      <th style="width: 70px !important;">Unit</th>
+                      <th style="width: 50px !important;">MRP</th>
+                      <th style="width: 70px !important;">Basic Rate</th>
+                      <th style="width: 70px !important;">Net Rate</th>
+                      <th style="width: 70px !important;">Gross Amount</th>
+                      <th style="width: 50px !important;">GST</th>
+                      <th style="width: 50px !important;">CGST</th>
+                      <th style="width: 50px !important;">SGST</th>
+                      <th style="width: 50px !important;">IGST</th>
+                      <th style="width: 70px !important;">Discount %</th>
+                      <th style="width: 100px !important;">Discount Amount</th>
+                      <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Net Amount</th>
+                      <th style="width: 70px !important;">Action</th>
                     </tr>
+
                     <tr>
                       <td>1</td>
+                      <td>BF001</td>
+                      <td>BN001</td>
+                      <td>2023-11-17</td>
+                      <td>SC001</td>
+                      <td>Supplier A</td>
+                      <td>RN001</td>
+                      <td>2023-11-16</td>
+                      <td>PON001</td>
+                      <td>2023-11-15</td>
+                      <td>PON001</td>
+                      <td>12ABCDE3456L7MN</td>
+                      <td>Executive A</td>
+                      <td>Cash</td>
+                      <td>BC001</td>
+                      <td>IC001</td>
+                      <td>Item A</td>
+                      <td>Description A</td>
+                      <td>10</td>
+                      <td>pcs</td>
+                      <td>100.00</td>
+                      <td>90.00</td>
+                      <td>80.00</td>
+                      <td>800.00</td>
+                      <td>5.00</td>
+                      <td>2.50</td>
+                      <td>2.50</td>
+                      <td>0.00</td>
+                      <td>8%</td>
+                      <td>64.00</td>
+                      <td>72.00</td>
+                      <td>744.00</td>
                       <td>
-                        12
-                      </td>
-                      <td>
-                        <select style="width: 120px;" class="table_select" aria-label="Default select example"
-                          id="transaction">
-                          <option selected>-Select-</option>
-                          <option value="1">Credit</option>
-                          <option value="2">Cash</option>
-                        </select>
-                      </td>
-                      <td>1</td>
-                      <td>100</td>
-                      <td>
-                        56
-                      </td>
-                      <td>12</td>
-                      <td>18</td>
-                      <td>18</td>
-                      <td>110</td>
-                      <td>
-                        <ion-icon class="create" [routerLink]="['/add-purchase']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>BF002</td>
+                      <td>BN002</td>
+                      <td>2023-11-17</td>
+                      <td>SC002</td>
+                      <td>Supplier B</td>
+                      <td>RN002</td>
+                      <td>2023-11-16</td>
+                      <td>PON002</td>
+                      <td>2023-11-15</td>
+                      <td>PON002</td>
+                      <td>34ABCDE6789G1JK</td>
+                      <td>Executive B</td>
+                      <td>Credit Card</td>
+                      <td>BC002</td>
+                      <td>IC002</td>
+                      <td>Item B</td>
+                      <td>Description B</td>
+                      <td>15</td>
+                      <td>pcs</td>
+                      <td>65.00</td>
+                      <td>60.00</td>
+                      <td>55.00</td>
+                      <td>825.00</td>
+                      <td>8.00</td>
+                      <td>4.00</td>
+                      <td>4.00</td>
+                      <td>0.00</td>
+                      <td>10%</td>
+                      <td>82.50</td>
+                      <td>79.00</td>
+                      <td>762.00</td>
+                      <td>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>BF003</td>
+                      <td>BN003</td>
+                      <td>2023-11-17</td>
+                      <td>SC003</td>
+                      <td>Supplier C</td>
+                      <td>RN003</td>
+                      <td>2023-11-16</td>
+                      <td>PON003</td>
+                      <td>2023-11-15</td>
+                      <td>PON003</td>
+                      <td>56ABCDE1234K7LM</td>
+                      <td>Executive C</td>
+                      <td>Cheque</td>
+                      <td>BC003</td>
+                      <td>IC003</td>
+                      <td>Item C</td>
+                      <td>Description C</td>
+                      <td>20</td>
+                      <td>pcs</td>
+                      <td>80.00</td>
+                      <td>75.00</td>
+                      <td>70.00</td>
+                      <td>1400.00</td>
+                      <td>10.00</td>
+                      <td>5.00</td>
+                      <td>5.00</td>
+                      <td>0.00</td>
+                      <td>12%</td>
+                      <td>168.00</td>
+                      <td>168.00</td>
+                      <td>1264.00</td>
+                      <td>
+                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="trash"></ion-icon>
+                      </td>
+                    </tr>
+
+
+
                   </table>
                 </div>
               </ion-row>
