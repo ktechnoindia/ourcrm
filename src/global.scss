@@ -396,12 +396,14 @@ ion-item {
     overflow-x: auto;
     border: 1px solid #ddd;
     width: 100%;
-    height: 700px;
+    height: 400px;
 }
-
+.scroll-container table{
+text-align: center;
+}
 table {
     width: 100%;
-    border-collapse: collapse;
+    // border-collapse: collapse;
     border: 1px solid grey;
     border-radius: 10px;
 }
