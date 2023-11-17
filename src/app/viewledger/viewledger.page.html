@@ -41,42 +41,42 @@
                 <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
               </ion-row>
 
-              <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 350px;">
-                  <table style="width: 100%;overflow-x:auto;">
+              <ion-row>
+                <div  class="scroll-container" >
+                  <table style="width: 2500px;overflow-x:auto;">
                     <thead>
                       <tr>
-                        <th style="width: 50px;">Sr. No.</th>
-                        <th>Ledger Name</th>
-                        <th>Ledger Code</th>
-                        <th>Group Name</th>
-                        <th>GSTIN</th>
-                        <th>Opening Balance</th>
-                        <th>Closing Balance</th>
-                        <th>Mobile Number</th>
-                        <th>Email</th>
-                        <th>Whatsapp Number</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>Pincode</th>
-                        <th>Aadhar No.</th>
-                        <th>PAN No.</th>
-                        <th>Udhyog Aadhar</th>
-                        <th>Account No.</th>
-                        <th>IFSC Code</th>
-                        <th>Bank Name</th>
-                        <th>Branch Name</th>
-                        <th>Card No.</th>
-                        <th>Credit Period</th>
-                        <th>Credit Limit</th>
+                        <th style="width: 50px !important;">Sr. No.</th>
+                        <th  style="width: 200px !important;">Ledger Name</th>
+                        <th style="width: 100px !important;">Ledger Code</th>
+                        <th  style="width: 100px !important;">Group Name</th>
+                        <th  style="width: 100px !important;">GSTIN</th>
+                        <th  style="width: 100px !important;">Opening Balance</th>
+                        <th  style="width: 100px !important;">Closing Balance</th>
+                        <th  style="width: 100px !important;">Mobile Number</th>
+                        <th  style="width: 100px !important;">Email</th>
+                        <th  style="width: 100px !important;">Whatsapp Number</th>
+                        <th  style="width: 100px !important;">Country</th>
+                        <th  style="width: 100px !important;">State</th>
+                        <th  style="width: 100px !important;">Pincode</th>
+                        <th  style="width: 100px !important;">Aadhar No.</th>
+                        <th  style="width: 100px !important;">PAN No.</th>
+                        <th  style="width: 100px !important;">Udhyog Aadhar</th>
+                        <th  style="width: 100px !important;">Account No.</th>
+                        <th  style="width: 100px !important;">IFSC Code</th>
+                        <th  style="width: 150px !important;">Bank Name</th>
+                        <th  style="width: 100px !important;">Branch Name</th>
+                        <th  style="width: 100px !important;">Card No.</th>
+                        <th  style="width: 100px !important;">Credit Period</th>
+                        <th  style="width: 100px !important;">Credit Limit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let ledger of ledgers$ | async; let i = index">
                         <td>{{ i + 1}}</td>
-                        <td>{{ledger.companyid}}</td>
-                        <td>{{ledger.lname}}</td>
                         <td>{{ledger.lcode}}</td>
+                        <td>{{ledger.lname}}</td>
+                        <td>{{ledger.companyid}}</td>
                         <td>{{ledger.ledger_code}}</td>
                         <td>{{ledger.selectedOption}}</td>
                         <td>{{ledger.opening_balance}}</td>

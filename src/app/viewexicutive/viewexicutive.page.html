@@ -41,41 +41,41 @@
                 <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
               </ion-row>
 
-              <ion-row class="Executive">
-                <div style="overflow-x: auto; width: 100%; height: 350px;">
-                  <table style="overflow-x: auto; width: 100%;">
+              <ion-row>
+                <div class="scroll-container" style=" height: 350px;">
+                  <table style=" width: 1300px">
                     <tr>
-                      <th style="width: 20px !important; "><ion-checkbox></ion-checkbox></th>
-                      <th style="width: 100px;">Sr. No.</th>
-                      <th>Company Id</th>
-                      <th style="width: 100px;">Executive Role</th>
-                      <th style="width: 100px;">Executive Code</th>
-                      <th style="width: 100px;">Executive Name</th>
-                      <th>Manager</th>
-                      <th style="width: 100px;">Phone Number</th>
+                      <th style="width: 30px !important; ">Select</th>
+                      <th style="width: 50px;">Sr. No.</th>
+                      <th style="width: 50px;"> Company Id</th>
+                      <th style="width: 70px;">Executive Role</th>
+                      <th style="width: 70px;">Executive Code</th>
+                      <th style="width: 130px;">Executive Name</th>
+                      <th style="width: 100px;">Manager</th>
+                      <th style="width: 70px;">Phone Number</th>
                       <th style="width: 100px;">Email</th>
-                      <th>Whatshapp Number</th>
-                      <th>PAN No.</th>
-                      <th>Commission</th>
-                      <th>Ledger</th>
+                      <th style="width: 70px;">Whatshapp Number</th>
+                      <th style="width: 70px;">PAN No.</th>
+                      <th style="width: 50px;">Commission</th>
+                      <th style="width: 50px;">Ledger</th>
                     </tr>
                     <tr *ngFor="let execute of executives$ | async; let i = index">
                       <td><ion-checkbox></ion-checkbox></td>
-                      <td style="width: 50px;">{{i + 1}}</td>
+                      <td >{{i + 1}}</td>
                       <td>{{execute.companyid}}</td>
-                      <td style="width: 30px;">{{execute.roleid}}</td>
-                      <td style="width: 50px;">{{execute.excode}}</td>
-                      <td style="width: 50px;">{{execute.executivename}}</td>
-                      <td style="width: 50px;">{{execute.emanager}}</td>
-                      <td style="width: 50px;">{{execute.emobile}}</td>
-                      <td style="width: 50px;">{{execute.eemail}}</td>
-                      <td style="width: 50px;">{{execute.ewhatsapp}}</td>
+                      <td>{{execute.roleid}}</td>
+                      <td >{{execute.excode}}</td>
+                      <td>{{execute.executivename}}</td>
+                      <td >{{execute.emanager}}</td>
+                      <td >{{execute.emobile}}</td>
+                      <td>{{execute.eemail}}</td>
+                      <td>{{execute.ewhatsapp}}</td>
                       <td>{{execute.epan}}</td>
                       <td>{{execute.ecommision}}</td>
                       <td>{{execute.ledger}}</td>
-                      
+
                     </tr>
-<!--                     
+                    <!--                     
                     <tr>
                       <td><input type="checkbox"></td>
                       <td>2</td>
@@ -115,7 +115,7 @@
                       <td>evewilliams@example.com</td>
                       <td>1234567891</td>
                     </tr> -->
-                    
+
                   </table>
                 </div>
               </ion-row>
