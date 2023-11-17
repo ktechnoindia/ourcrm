@@ -6,6 +6,7 @@ export interface salereturnstore {
 
   billNumber: number;
   billDate: string ;
+  frombill:number;
   payment: number;
   orderDate: string;
   orderNumber: string;
