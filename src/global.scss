@@ -896,3 +896,11 @@ select option {
     width: 100px !important;
     margin: 3px;
 }
+
+@media(max-width:540px){
+   
+    .headinglabel ion-label {
+        font-size: 12px;
+    }
+      
+}

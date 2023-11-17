@@ -70,7 +70,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size="auto" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <select [(ngModel)]="select_group" formControlName="select_group" name="select_group">
                   <option value="0">Customer Type</option> <!-- Default option with value 0 -->
                   <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
