@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface purchasereturnstore {
@@ -29,5 +30,9 @@ export class PurchasereturnService {
   constructor(private httpclient:HttpClient) { }
   createsale(purchasesreturn:purchasereturnstore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addpurchasereturn,purchasesreturn,{headers:{'key':key,'user':user}})
+  }
+  fetchallPurchasereturn(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallpurchasereturn+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }

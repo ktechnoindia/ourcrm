@@ -31,11 +31,13 @@ export const environment = {
   addgst: 'gst',
   addexecutive: 'saveExecutive',
   editlead: 'editlead',
-  adddcin: 'dcin',
-  adddcout: 'dcout',
-  addsales: 'sales',
-  addpurchase: 'purchase',
-  addquote: 'quotation',
+  adddcin: 'insert_dcin',
+  adddcout: 'insert_dcout',
+  addsales: 'insert_sales',
+  addsalesreturn:'insert_sale_return',
+  addpurchasereturn:'insert_purchase_return',
+  addpurchase: 'insert_purchase',
+  addquote: 'insert_quotation',
   addupquote: 'saveupquote',
   addcompany: 'saveCompany',
   addroleofexecutive: 'roleofexecutive',
@@ -60,7 +62,15 @@ export const environment = {
   addpass: 'password',
   addlogin: 'login',
   addbarcode: 'barcode',
-  fetchattribute:'get_attributes'
+  fetchattribute:'get_attributes',
+  fetchallquote:'get_quotations',
+  fetchalldcin:'get_dcin',
+  fetchalldcout:'get_dcout',
+  fetchallsales:'get_sales',
+  fetchallpurchase:'get_purchase',
+  fetchallsalesreturn:'get_sale_return',
+  fetchallpurchasereturn:'get_purchase_return',
+
 };
 
 

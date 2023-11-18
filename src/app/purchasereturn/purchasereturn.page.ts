@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,NgForm,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule,NgForm,ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
@@ -79,10 +79,14 @@ export class PurchasereturnPage implements OnInit {
   orderNumber:string='';
   executive$: any;
   
-  constructor(private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private purchasereturnService:PurchasereturnService) { 
+  constructor(private formBuilder: FormBuilder,private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private purchasereturnService:PurchasereturnService) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
+
+    this.form = this.formBuilder.group({
+      // your form controls here
+    });
   }
 
   onSubmit(myform: NgForm, purchaseData: any) {

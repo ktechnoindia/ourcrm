@@ -83,3 +83,26 @@
    background-color: #fff;
  }
 }
+
+
+@media(max-width:990px){
+   .row{
+      margin-top: -250px;
+      margin-left: -30px;
+   }
+   .row1{
+      margin-top: 150px;
+   }
+}
+@media(max-width:540px){
+   .row{
+      margin-top: -420px;
+      margin-left: -30px;
+   }
+   .row1{
+      margin-top: 0px;
+   }
+   .row3{
+      margin-top:150px ;
+   }
+}

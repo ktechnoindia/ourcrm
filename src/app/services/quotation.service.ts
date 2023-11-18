@@ -1,25 +1,53 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface quotestore {
-
+  billformate: number;
   quoteNumber: number;
   quateDate: string;
+  custcode:string;
   custname: number;
-  quateTax: string;
-  taxrate: string ;
-  totaltax: string ;
-  total: string ;
   refrence: string ;
   refdate: string ;
-  billformate: number;
-  description:string;
-  quantity:number;
-  basicrate:number;
-  grossrate:number;
-  CGST:number;
-  SGST:number;
-  orderNumber:number;
+  
+  //table
+barcode:string;
+itemcode:string;
+itemname:string;
+description:string;
+quantity:number;
+unitname:number;
+mrp:string;
+basicrate:number;
+netrate:string;
+grossrate:string;
+  taxrate: number ;
+ IGST:string;
+  CGST:string;
+  SGST:string;
+  discount:string;
+  discountamt:string;
+  totaltax: string ;
+  total: string ;
+
+  totalitemno:string;
+  totalquantity:string;
+  totalgrossamt:string;
+  totaldiscountamt:string;
+  totaltaxamount:string;
+  totalnetamount:string;
+  deliverydate: string;
+  deliveryplace: string;
+
+  roundoff: string;
+  pretax: string;
+  posttax: string;
+  openingbalance: string;
+  closingbalance: string;
+  debit: string;
+  credit: string;
+
   ttotal:number;
 }
 @Injectable({
@@ -31,6 +59,11 @@ export class QuotationService {
   constructor(private httpclient:HttpClient) { }
   createquote(quatation:quotestore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addquote,quatation,{headers:{'key':key,'user':user}})
+  }
+
+  fetchallQuote(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallquote+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }
 
