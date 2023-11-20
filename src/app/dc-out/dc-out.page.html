@@ -141,7 +141,7 @@
 
                     </td>
                     <td>
-                      <select class="select" [(ngModel)]="unitname"   formControlName="unitname"  formControlName="voucherNumber" name="unit_name$" >
+                      <select class="select" [(ngModel)]="unitname"   formControlName="unitname"   name="unit_name$" >
                         <option value="0">--- Select Unit Name ---</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
