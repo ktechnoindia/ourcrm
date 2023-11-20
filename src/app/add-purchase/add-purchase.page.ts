@@ -115,9 +115,9 @@ billformate:number=0;
   purchase: any;
   executive$: any;
   myform: FormGroup;
-  purchaseService: any;
 
-  constructor(private formBuilder: FormBuilder,private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+
+  constructor(private formBuilder: FormBuilder,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
