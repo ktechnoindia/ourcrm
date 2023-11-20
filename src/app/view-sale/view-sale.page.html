@@ -91,120 +91,45 @@
                       <th style="width: 70px !important;">Net Amount</th>
                       <th style="width: 70px !important;">Action</th>
                     </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>BF001</td>
-                      <td>BN001</td>
-                      <td>2023-11-17</td>
-                      <td>CC001</td>
-                      <td>Customer A</td>
-                      <td>RN001</td>
-                      <td>2023-11-16</td>
-                      <td>ON001</td>
-                      <td>2023-11-15</td>
-                      <td>PON001</td>
-                      <td>12ABCDE3456F7HI</td>
-                      <td>Salesperson A</td>
-                      <td>Cash</td>
-                      <td>BC001</td>
-                      <td>IC001</td>
-                      <td>Item A</td>
-                      <td>Description A</td>
-                      <td>10</td>
-                      <td>pcs</td>
-                      <td>50.00</td>
-                      <td>45.00</td>
-                      <td>40.00</td>
-                      <td>400.00</td>
-                      <td>5.00</td>
-                      <td>3.00</td>
-                      <td>2.00</td>
-                      <td>0.00</td>
-                      <td>8%</td>
-                      <td>32.00</td>
-                      <td>38.00</td>
-                      <td>370.00</td>
+                    <tr *ngFor="let sales of sales$ | async; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{sales.billformate}}</td>
+                      <td>{{sales.billNumber}}</td>
+                      <td>{{sales.billDate}}</td>
+                      <td>{{sales.custcode}}</td>
+                      <td>{{sales.custname}}</td>
+                      <td>{{sales.refrence}}</td>
+                      <td>{{sales.refdate}}</td>
+                      <td>{{sales.orderDate}}</td>
+                      <td>{{sales.orderNumber}}</td>
+                      <td>{{sales.ponumber}}</td>
+                      <td>{{sales.gstin}}</td>
+                      <td>{{sales.salePerson}}</td>
+                      <td>{{sales.payment}}</td>
+                      <td>{{sales.barcode}}</td>
+                      <td>{{sales.itemcode}}</td>
+                      <td>{{sales.itemname}}</td>
+                      <td>{{sales.description}}</td>
+                      <td>{{sales.quantity}}</td>
+                      <td>{{sales.unitname}}</td>
+                      <td>{{sales.mrp}}</td>
+                      <td>{{sales.basicrate}}</td>
+                      <td>{{sales.netrate}}</td>
+                      <td>{{sales.grossrate}}</td>
+                      <td>{{sales.taxrate}}</td>
+                      <td>{{sales.IGST}}</td>
+                      <td>{{sales.CGST}}</td>
+                      <td>{{sales.SGST}}</td>
+                      <td>{{sales.discount}}</td>
+                      <td>{{sales.discountamt}}</td>
+                      <td>{{sales.totaltax}}</td>
+                      <td>{{sales.total}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
                         <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>BF002</td>
-                      <td>BN002</td>
-                      <td>2023-11-17</td>
-                      <td>CC002</td>
-                      <td>Customer B</td>
-                      <td>RN002</td>
-                      <td>2023-11-16</td>
-                      <td>ON002</td>
-                      <td>2023-11-15</td>
-                      <td>PON002</td>
-                      <td>34ABCDE6789G1JK</td>
-                      <td>Salesperson B</td>
-                      <td>Credit Card</td>
-                      <td>BC002</td>
-                      <td>IC002</td>
-                      <td>Item B</td>
-                      <td>Description B</td>
-                      <td>15</td>
-                      <td>pcs</td>
-                      <td>65.00</td>
-                      <td>60.00</td>
-                      <td>55.00</td>
-                      <td>825.00</td>
-                      <td>8.00</td>
-                      <td>4.00</td>
-                      <td>4.00</td>
-                      <td>0.00</td>
-                      <td>10%</td>
-                      <td>82.50</td>
-                      <td>79.00</td>
-                      <td>762.00</td>
-                      <td>
-                        <ion-icon name="create"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>BF003</td>
-                      <td>BN003</td>
-                      <td>2023-11-17</td>
-                      <td>CC003</td>
-                      <td>Customer C</td>
-                      <td>RN003</td>
-                      <td>2023-11-16</td>
-                      <td>ON003</td>
-                      <td>2023-11-15</td>
-                      <td>PON003</td>
-                      <td>56ABCDE1234K7LM</td>
-                      <td>Salesperson C</td>
-                      <td>Cheque</td>
-                      <td>BC003</td>
-                      <td>IC003</td>
-                      <td>Item C</td>
-                      <td>Description C</td>
-                      <td>20</td>
-                      <td>pcs</td>
-                      <td>80.00</td>
-                      <td>75.00</td>
-                      <td>70.00</td>
-                      <td>1400.00</td>
-                      <td>10.00</td>
-                      <td>5.00</td>
-                      <td>5.00</td>
-                      <td>0.00</td>
-                      <td>12%</td>
-                      <td>168.00</td>
-                      <td>168.00</td>
-                      <td>1264.00</td>
-                      <td>
-                        <ion-icon name="create"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                      </td>
-                    </tr>
+                 
 
                   </table>
                 </div>

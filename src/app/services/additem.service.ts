@@ -5,52 +5,43 @@ import { Observable } from 'rxjs';
 
 
 export interface item{
- 
+
   itemDesc: string;
-  itemCode: number;
-  selectHSN: string;
-  selectItem:string;
-  selectStock: string;
-  selectPrimaryUnit: string;
-  selectItemGroup: string;
-  selectGst: string;
-  selectunitname:string;
-  openingbalance: number;
-  closingbalance: number;
-  attr1: string ;
-  attr2: string;
-  attr3:string;
-  attr4: string ;
-  attr5: string ;
-  attr6: string;
-  attr7: string ;
-  attr8: string ;
-  barcode: number;
-  minimum: number;
-  maximum: number;
-  reorder: string;
-  selectGstservice:any;
-  hsnname:string;
-  stocktypename:string;
-  itemtypename:string;
-  unitname:string;
-itemtype:string;
-stocktype:string;
+   itemCode: number;
+   selectHSN: number;
+   selectItem:number;
+   selectStock: number;
+   selectPrimaryUnit: number;
+   selectItemGroup: number;
+   selectGst: number;
+   selectunitname:number;
+   openingbalance: string;
+   closingbalance: string;
+   attr1: string ;
+   attr2: string;
+   attr3:string;
+   attr4: string ;
+   attr5: string ;
+   attr6: string;
+   attr7: string ;
+   attr8: string ;
+   barcode: number;
+   minimum: number;
+   maximum: number;
+   reorder: string;
+   selectGstservice:number;
+   hsnname:string;
+   stocktypename:string;
+   itemtypename:string;
+   unitname:string;
+ itemtype:string;
+ stocktype:string;
+ 
+   unitname$:any;
+   hsnname$:any;
+   itemtypename$:any;
+   stocktypename$:any;
 
-  unitname$:any;
-  hsnname$:any;
-  itemtypename$:any;
-  stocktypename$:any;
-
-   // description: string;
-  // dimension: string ;
-  // weight: number ;
-  // brandname: string ;
-  // modelname: string ;
-  // category: string ;
-  // weightunit: number;
-  // relailprofit: number;
-  // delarprofit: number;
 }
 
 @Injectable({

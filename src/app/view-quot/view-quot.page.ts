@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
+import { QuotationService } from '../services/quotation.service';
+import { Observable } from 'rxjs';
+import { EncryptionService } from '../services/encryption.service';
 
 @Component({
   selector: 'app-view-quot',
@@ -15,8 +18,17 @@ export class ViewQuotPage implements OnInit {
 
   formDate:string='';
   toDate:string='';
+  quote$: Observable<any[]>
+  constructor( private encService: EncryptionService, private quoteservice: QuotationService,private router:Router,private toastCtrl:ToastController) { 
+    const compid = '1';
 
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
+    console.log(this.quote$);
+
+    this.quote$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+  }
 
   async onSubmit(){
     if(this.formDate===''){

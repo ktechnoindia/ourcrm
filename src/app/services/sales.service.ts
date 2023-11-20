@@ -22,7 +22,7 @@ export interface salesstore {
   //table
   barcode:string;
 itemcode:string;
-itemname:string;
+itemname:number;
 description:string;
 quantity:number;
 unitname:number;

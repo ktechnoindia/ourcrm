@@ -68,7 +68,6 @@
                       <th style="width: 70px !important;">Refrence Date</th>
                       <th style="width: 70px !important;">Purchase Order No.</th>
                       <th style="width: 70px !important;">Purchase Order Date</th>
-                      <th style="width: 70px !important;">PO Number</th>
                       <th style="width: 70px !important;">GSTIN</th>
                       <th style="width: 70px !important;">Exicutive Name</th>
                       <th style="width: 70px !important;">Payment Mode</th>
@@ -93,120 +92,44 @@
                       <th style="width: 70px !important;">Action</th>
                     </tr>
 
-                    <tr>
-                      <td>1</td>
-                      <td>BF001</td>
-                      <td>BN001</td>
-                      <td>2023-11-17</td>
-                      <td>SC001</td>
-                      <td>Supplier A</td>
-                      <td>RN001</td>
-                      <td>2023-11-16</td>
-                      <td>PON001</td>
-                      <td>2023-11-15</td>
-                      <td>PON001</td>
-                      <td>12ABCDE3456L7MN</td>
-                      <td>Executive A</td>
-                      <td>Cash</td>
-                      <td>BC001</td>
-                      <td>IC001</td>
-                      <td>Item A</td>
-                      <td>Description A</td>
-                      <td>10</td>
-                      <td>pcs</td>
-                      <td>100.00</td>
-                      <td>90.00</td>
-                      <td>80.00</td>
-                      <td>800.00</td>
-                      <td>5.00</td>
-                      <td>2.50</td>
-                      <td>2.50</td>
-                      <td>0.00</td>
-                      <td>8%</td>
-                      <td>64.00</td>
-                      <td>72.00</td>
-                      <td>744.00</td>
+                    <tr *ngFor="let purchase of purchase$ | async; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{purchase.billformate}}</td>
+                      <td>{{purchase.billNumber}}</td>
+                      <td>{{purchase.billDate}}</td>
+                      <td>{{purchase.vendcode}}</td>
+                      <td>{{purchase.supplier}}</td>
+                      <td>{{purchase.refrence}}</td>
+                      <td>{{purchase.refdate}}</td>
+                      <td>{{purchase.orderDate}}</td>
+                      <td>{{purchase.orderNumber}}</td>
+                      <td>{{purchase.gstin}}</td>
+                      <td>{{purchase.payment}}</td>
+                      <td>{{purchase.executive}}</td>
+                      <td>{{purchase.barcode}}</td>
+                      <td>{{purchase.itemcode}}</td>
+                      <td>{{purchase.itemname}}</td>
+                      <td>{{purchase.description}}</td>
+                      <td>{{purchase.quantity}}</td>
+                      <td>{{purchase.unitname}}</td>
+                      <td>{{purchase.mrp}}</td>
+                      <td>{{purchase.basicrate}}</td>
+                      <td>{{purchase.netrate}}</td>
+                      <td>{{purchase.grossrate}}</td>
+                      <td>{{purchase.taxrate}}</td>
+                      <td>{{purchase.IGST}}</td>
+                      <td>{{purchase.CGST}}</td>
+                      <td>{{purchase.SGST}}</td>
+                      <td>{{purchase.discount}}</td>
+                      <td>{{purchase.discountamt}}</td>
+                      <td>{{purchase.totaltax}}</td>
+                      <td>{{purchase.total}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
                         <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>BF002</td>
-                      <td>BN002</td>
-                      <td>2023-11-17</td>
-                      <td>SC002</td>
-                      <td>Supplier B</td>
-                      <td>RN002</td>
-                      <td>2023-11-16</td>
-                      <td>PON002</td>
-                      <td>2023-11-15</td>
-                      <td>PON002</td>
-                      <td>34ABCDE6789G1JK</td>
-                      <td>Executive B</td>
-                      <td>Credit Card</td>
-                      <td>BC002</td>
-                      <td>IC002</td>
-                      <td>Item B</td>
-                      <td>Description B</td>
-                      <td>15</td>
-                      <td>pcs</td>
-                      <td>65.00</td>
-                      <td>60.00</td>
-                      <td>55.00</td>
-                      <td>825.00</td>
-                      <td>8.00</td>
-                      <td>4.00</td>
-                      <td>4.00</td>
-                      <td>0.00</td>
-                      <td>10%</td>
-                      <td>82.50</td>
-                      <td>79.00</td>
-                      <td>762.00</td>
-                      <td>
-                        <ion-icon name="create"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>BF003</td>
-                      <td>BN003</td>
-                      <td>2023-11-17</td>
-                      <td>SC003</td>
-                      <td>Supplier C</td>
-                      <td>RN003</td>
-                      <td>2023-11-16</td>
-                      <td>PON003</td>
-                      <td>2023-11-15</td>
-                      <td>PON003</td>
-                      <td>56ABCDE1234K7LM</td>
-                      <td>Executive C</td>
-                      <td>Cheque</td>
-                      <td>BC003</td>
-                      <td>IC003</td>
-                      <td>Item C</td>
-                      <td>Description C</td>
-                      <td>20</td>
-                      <td>pcs</td>
-                      <td>80.00</td>
-                      <td>75.00</td>
-                      <td>70.00</td>
-                      <td>1400.00</td>
-                      <td>10.00</td>
-                      <td>5.00</td>
-                      <td>5.00</td>
-                      <td>0.00</td>
-                      <td>12%</td>
-                      <td>168.00</td>
-                      <td>168.00</td>
-                      <td>1264.00</td>
-                      <td>
-                        <ion-icon name="create"></ion-icon>
-                        <ion-icon name="trash"></ion-icon>
-                      </td>
-                    </tr>
+                 
 
 
 

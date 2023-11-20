@@ -67,104 +67,40 @@
                   <th style="width: 70px !important;">Net Amount</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
-                <tr  class="tdrows">
-                  <td>1</td>
-                  <td>Invoice</td>
-                  <td>Q123</td>
-                  <td>2023-11-16</td>
-                  <td>C001</td>
-                  <td>Customer A</td>
-                  <td>Ref-001</td>
-                  <td>2023-11-15</td>
-                  <td>123456789012</td>
-                  <td>IC001</td>
-                  <td>Product A</td>
-                  <td>High-quality product</td>
-                  <td>5</td>
-                  <td>Pieces</td>
-                  <td>50</td>
-                  <td>200</td>
-                  <td>180</td>
-                  <td>900</td>
-                  <td>18%</td>
-                  <td>9%</td>
-                  <td>9%</td>
-                  <td>0%</td>
-                  <td>5%</td>
-                  <td>45</td>
-                  <td>41.85</td>
-                  <td>943.50</td>
+                <tr *ngFor="let quote of quote$ | async; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{quote.billformate}}</td>
+                  <td>{{quote.quoteNumber}}</td>
+                  <td>{{quote.quateDate}}</td>
+                  <td>{{quote.custcode}}</td>
+                  <td>{{quote.custname}}</td>
+                  <td>{{quote.refrence}}</td>
+                  <td>{{quote.refdate}}</td>
+                  <td>{{quote.barcode}}</td>
+                  <td>{{quote.itemcode}}</td>
+                  <td>{{quote.itemname}}</td>
+                  <td>{{quote.description}}</td>
+                  <td>{{quote.quantity}}</td>
+                  <td>{{quote.unitname}}</td>
+                  <td>{{quote.mrp}}</td>
+                  <td>{{quote.basicrate}}</td>
+                  <td>{{quote.netrate}}</td>
+                  <td>{{quote.grossrate}}</td>
+                  <td>{{quote.taxrate}}</td>
+                  <td>{{quote.IGST}}</td>
+                  <td>{{quote.CGST}}</td>
+                  <td>{{quote.SGST}}</td>
+                  <td>{{quote.discount}}</td>
+                  <td>{{quote.discountamt}}</td>
+                  <td>{{quote.totaltax}}</td>
+                  <td>{{quote.total}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
                     <ion-icon name="trash"></ion-icon>
                   </td>
                 </tr>
                 
-                <tr>
-                  <td>2</td>
-                  <td>Quotation</td>
-                  <td>Q124</td>
-                  <td>2023-11-17</td>
-                  <td>C002</td>
-                  <td>Customer B</td>
-                  <td>Ref-002</td>
-                  <td>2023-11-16</td>
-                  <td>987654321098</td>
-                  <td>IC002</td>
-                  <td>Product B</td>
-                  <td>Standard product</td>
-                  <td>10</td>
-                  <td>Kilograms</td>
-                  <td>120</td>
-                  <td>150</td>
-                  <td>135</td>
-                  <td>1350</td>
-                  <td>12%</td>
-                  <td>6%</td>
-                  <td>6%</td>
-                  <td>0%</td>
-                  <td>8%</td>
-                  <td>108</td>
-                  <td>81</td>
-                  <td>1229</td>
-                  <td>
-                    <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
-                  </td>
-                </tr>
                 
-                <tr>
-                  <td>3</td>
-                  <td>Invoice</td>
-                  <td>Q125</td>
-                  <td>2023-11-18</td>
-                  <td>C003</td>
-                  <td>Customer C</td>
-                  <td>Ref-003</td>
-                  <td>2023-11-17</td>
-                  <td>654321098765</td>
-                  <td>IC003</td>
-                  <td>Product C</td>
-                  <td>Economical product</td>
-                  <td>8</td>
-                  <td>Liters</td>
-                  <td>80</td>
-                  <td>100</td>
-                  <td>90</td>
-                  <td>720</td>
-                  <td>5%</td>
-                  <td>2.5%</td>
-                  <td>2.5%</td>
-                  <td>0%</td>
-                  <td>3%</td>
-                  <td>27</td>
-                  <td>22.5</td>
-                  <td>648</td>
-                  <td>
-                    <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
-                  </td>
-                </tr>
                 
                 
               </table>
