@@ -101,13 +101,12 @@ export class DcOutPage implements OnInit {
     totaltax: 0,
     total: 0,
   }];
-  dcout: any;
   myform: FormGroup;
   unitname$: any;
   taxrate$: any;
   ttotal!: number;
 
-  constructor(private formBuilder: FormBuilder,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcin: DcoutService) { 
+  constructor(private formBuilder: FormBuilder,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
 
@@ -212,7 +211,7 @@ export class DcOutPage implements OnInit {
      
     };
     
-    this.dcout.createdcout(this.dcoutData, '', '').subscribe(
+    this.dcout.createdcout(dcoutdata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
@@ -250,13 +249,13 @@ export class DcOutPage implements OnInit {
       this.dcoutData.push(newRow);
     }
     removeDcout(index: number,row:Dcout) {
-      this.ttotal=this.ttotal-this.dcin.total;
+      this.ttotal=this.ttotal-this.dcout.total;
       this.dcoutData.splice(index, 1);
     }
     calculateTotalSum() {
       let sum = 0;
       for (const row of this.dcoutData) {
-        sum += this.dcin.total;
+        sum += this.dcout.total;
       }
       this.ttotal= sum;
     }
