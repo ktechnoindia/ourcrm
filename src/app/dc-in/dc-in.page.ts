@@ -213,7 +213,7 @@ export class DcInPage implements OnInit {
 
     };
 
-    this.dcin.createdcin(dcinData, '', '').subscribe(
+    this.dcin.createdcin(dcindata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         this.formService.showSuccessAlert();

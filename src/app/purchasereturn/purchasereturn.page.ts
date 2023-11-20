@@ -45,7 +45,7 @@ export class PurchasereturnPage implements OnInit {
   frombill:number=0;
   payment: number = 0;
   supplier: number = 0;
-  gstin: number = 0;
+  gstin: string='';
   exicutive:number=0;
 
    //table data
@@ -187,7 +187,7 @@ export class PurchasereturnPage implements OnInit {
       payment:this.myform.value.payment,
       supplier:this.myform.value.supplier,
       gstin:this.myform.value.gstin,
-      exicutive:this.myform.value.exicutive,
+      exicutive$:this.myform.value.exicutive$,
       unitname$:this.myform.value.unitname$,
       taxrate$:this.myform.value.taxrate$,
       refrence:this.myform.value.refrence,
@@ -231,17 +231,17 @@ export class PurchasereturnPage implements OnInit {
     debit: this.myform.value.debit,
     credit: this.myform.value.credit,
     };
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
-    }
-  } 
+    this.purchasereturnService.createpurchasereturn(purchasereturndata, '', '').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        // Handle the response as needed
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        // Handle the error as needed
+      }
+    );
+  }
   addPurchase() {
     console.log('addrowwww'+this.purchaseData.length);
     // You can initialize the new row data here

@@ -10,8 +10,8 @@ export interface purchasereturnstore {
   frombill:number;
   payment: number;
   supplier: number;
-  gstin: number ;
-  exicutive:number;
+  gstin: string ;
+  exicutive$:number;
   unitname$: number;
   taxrate$: number;
   refrence:string;
@@ -65,7 +65,7 @@ grossrate:string;
 export class PurchasereturnService {
 
   constructor(private httpclient:HttpClient) { }
-  createsale(purchasesreturn:purchasereturnstore,key:string,user:string){
+  createpurchasereturn(purchasesreturn:purchasereturnstore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addpurchasereturn,purchasesreturn,{headers:{'key':key,'user':user}})
   }
   fetchallPurchasereturn(companyid:string,key:string,user:string): Observable<any> {

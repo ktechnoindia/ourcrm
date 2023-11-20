@@ -229,7 +229,7 @@ export class SalesreturnPage implements OnInit {
       credit: this.myform.value.credit,
 
     };
-    this.salereturnService.createSaleReturn(salesData, '', '').subscribe(
+    this.salereturnService.createSaleReturn(salesreturndata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed

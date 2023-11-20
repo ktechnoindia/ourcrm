@@ -112,7 +112,7 @@ export class AddSalePage implements OnInit {
   unitname$: any;
   taxrate$: any;
 
-  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private sales: SalesService) {
+  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
 
@@ -224,7 +224,7 @@ export class AddSalePage implements OnInit {
       unitname$: this.myform.value.unitname$,
 
     };
-    this.sales.createsale(salesData, '', '').subscribe(
+    this.saleService.createsale(saledata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
@@ -262,13 +262,13 @@ export class AddSalePage implements OnInit {
     this.salesData.push(newRow);
   }
   removeSales(index: number, row: Sales) {
-    this.ttotal = this.ttotal - this.sales.total;
+    this.ttotal = this.ttotal - this.saleService.total;
     this.salesData.splice(index, 1);
   }
   calculateTotalSum() {
     let sum = 0;
     for (const row of this.salesData) {
-      sum += this.sales.total;
+      sum += this.saleService.total;
     }
     this.ttotal = sum;
   }

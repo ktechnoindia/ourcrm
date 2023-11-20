@@ -230,7 +230,7 @@ billformate:number=0;
       debit: this.myform.value.debit,
       credit: this.myform.value.credit,
     };
-    this.purchaseService.createpurchase(purchaseData, '', '').subscribe(
+    this.purchaseService.createpurchase(purchasedata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
