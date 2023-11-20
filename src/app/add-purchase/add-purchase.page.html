@@ -162,6 +162,7 @@
                   <td>
                     <ion-select ion-select interface="popover" [(ngModel)]="purchase.itemname"  formControlName="itemname" name="itemname" class="table_input"
                     aria-label="Default select example" id="itemname" class="table_select">
+                    <ion-select-option value=""></ion-select-option>
                     <ion-select-option>Item 1</ion-select-option>
                     <ion-select-option>Item 2</ion-select-option>
                     <ion-select-option>Item 3</ion-select-option>
@@ -177,7 +178,7 @@
                   </td>
                   <td>
                     <select class="select" [(ngModel)]="unitname"   formControlName="unitname" name="unit_name$" >
-                      <option value="0">--- Select Unit Name ---</option>
+                      <option value="0">Unit Name</option>
                       <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                         {{ unitname.unitname }}
                       </option>
@@ -198,7 +199,7 @@
                   </td>
                   <td>
                     <ion-select interface="popover" [(ngModel)]="purchase.taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
-                      <ion-select-option value="">Select GST</ion-select-option>
+                      <ion-select-option value="0">Select GST</ion-select-option>
                       <!-- Default option with value 0 -->
                       <ion-select-option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                         {{ gsttype.gstname }}

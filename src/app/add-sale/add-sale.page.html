@@ -182,7 +182,7 @@
                     </td>
                     <td>
                       <select class="select" [(ngModel)]="unitname" formControlName="unitname"  name="unitname" >
-                        <option value="0">--- Select Unit Name ---</option>
+                        <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
                         </option>
