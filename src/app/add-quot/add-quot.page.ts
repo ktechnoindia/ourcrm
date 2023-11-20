@@ -163,7 +163,7 @@ export class AddQuotPage implements OnInit {
 
     })
   }
-  onSubmit(quoteData: any) {
+  onSubmit() {
     console.log('Your form data : ', this.myform.value);
     let quotedata: quotestore = {
       billformate:this.myform.value.billformate,

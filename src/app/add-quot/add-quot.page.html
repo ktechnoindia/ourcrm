@@ -29,7 +29,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit(quoteData)">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select  [(ngModel)]="billformate" name="billformate" formControlName="billformate"  name="bill formate"  >
