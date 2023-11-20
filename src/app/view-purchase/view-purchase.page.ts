@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
+import { PurchaseService } from '../services/purchase.service';
 @Component({
   selector: 'app-view-purchase',
   templateUrl: './view-purchase.page.html',
@@ -14,7 +17,18 @@ import { RouterLink } from '@angular/router';
 export class ViewPurchasePage implements OnInit {
   formDate:string='';
   toDate:string='';
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+  purchase$: Observable<any[]>
+
+  constructor( private purchaseService:PurchaseService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
+    const compid = '1';
+
+    this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
+    console.log(this.purchase$);
+
+    this.purchase$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+   }
 
   async onSubmit(){
     if(this.formDate===''){

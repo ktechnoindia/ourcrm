@@ -86,72 +86,40 @@
                   <th style="width: 70px !important;">Net Amount</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>VF001</td>
-                  <td>VN001</td>
-                  <td>2023-11-16</td>
-                  <td>SC001</td>
-                  <td>Supplier A</td>
-                  <td>RN001</td>
-                  <td>2023-11-15</td>
-                  <td>PON001</td>
-                  <td>BC001</td>
-                  <td>IC001</td>
-                  <td>Item A</td>
-                  <td>Description A</td>
-                  <td>10</td>
-                  <td>pcs</td>
-                  <td>50.00</td>
-                  <td>45.00</td>
-                  <td>40.00</td>
-                  <td>400.00</td>
-                  <td>5.00</td>
-                  <td>2.50</td>
-                  <td>2.50</td>
-                  <td>0.00</td>
-                  <td>5%</td>
-                  <td>20.00</td>
-                  <td>50.00</td>
-                  <td>380.00</td>
+                <tr *ngFor="let dcin of dcin$ | async; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{dcin.voucherformat}}</td>
+                  <td>{{dcin.voucherNumber}}</td>
+                  <td>{{dcin.datetype}}</td>
+                  <td>{{dcin.vendcode}}</td>
+                  <td>{{dcin.suppliertype}}</td>
+                  <td>{{dcin.referenceNumber}}</td>
+                  <td>{{dcin.refdate}}</td>
+                  <td>{{dcin.ponumber}}</td>
+                  <td>{{dcin.barcode}}</td>
+                  <td>{{dcin.itemcode}}</td>
+                  <td>{{dcin.itemname}}</td>
+                  <td>{{dcin.description}}</td>
+                  <td>{{dcin.quantity}}</td>
+                  <td>{{dcin.unitname}}</td>
+                  <td>{{dcin.mrp}}</td>
+                  <td>{{dcin.basicrate}}</td>
+                  <td>{{dcin.netrate}}</td>
+                  <td>{{dcin.grossrate}}</td>
+                  <td>{{dcin.taxrate}}</td>
+                  <td>{{dcin.IGST}}</td>
+                  <td>{{dcin.CGST}}</td>
+                  <td>{{dcin.SGST}}</td>
+                  <td>{{dcin.discount}}</td>
+                  <td>{{dcin.discountamt}}</td>
+                  <td>{{dcin.totaltax}}</td>
+                  <td>{{dcin.total}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
                     <ion-icon name="trash"></ion-icon>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>VF002</td>
-                  <td>VN002</td>
-                  <td>2023-11-17</td>
-                  <td>SC002</td>
-                  <td>Supplier B</td>
-                  <td>RN002</td>
-                  <td>2023-11-16</td>
-                  <td>PON002</td>
-                  <td>BC002</td>
-                  <td>IC002</td>
-                  <td>Item B</td>
-                  <td>Description B</td>
-                  <td>15</td>
-                  <td>pcs</td>
-                  <td>60.00</td>
-                  <td>55.00</td>
-                  <td>50.00</td>
-                  <td>750.00</td>
-                  <td>7.50</td>
-                  <td>3.75</td>
-                  <td>3.75</td>
-                  <td>0.00</td>
-                  <td>8%</td>
-                  <td>30.00</td>
-                  <td>75.00</td>
-                  <td>690.00</td>
-                  <td>
-                    <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
-                  </td>
-                </tr>
+             
 
               </table>
             </div>

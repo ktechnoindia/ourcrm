@@ -126,13 +126,15 @@
                       <input [(ngModel)]="quote.itemcode" name="itemcode"  formControlName="itemcode"  class="table_input" type="text">
                     </td>
                     <td>
-                      <ion-select ion-select interface="popover" [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname" class="table_input"
+                      <!-- <ion-select ion-select interface="popover" [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname" class="table_input"
                       aria-label="Default select example" id="itemname" class="table_select">
-                      <ion-select-option>Item 1</ion-select-option>
+                      <ion-select-option >Item 1</ion-select-option>
                       <ion-select-option>Item 2</ion-select-option>
                       <ion-select-option>Item 3</ion-select-option>
 
-                    </ion-select>
+                    </ion-select> -->
+                    <input [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname"   class="table_input" type="number">
+
                     </td>
                     <td>
                       <input [(ngModel)]="quote.description" formControlName="description" name="description" class="table_input" type="text">
