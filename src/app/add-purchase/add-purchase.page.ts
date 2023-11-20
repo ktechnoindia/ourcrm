@@ -5,7 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
-import { purchasestore } from '../services/purchase.service';
+import { PurchaseService,purchasestore } from '../services/purchase.service';
 import { ExecutiveService } from '../services/executive.service';
 
 interface Purchase {
@@ -78,7 +78,7 @@ form:any;
   orderNumber:string='';
   executive$: any;
   
-  constructor(private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
@@ -91,17 +91,17 @@ form:any;
       exicutive:myform.value.exicutive,unitname$:myform.value.unitname$,taxrate$:myform.value.taxrate$,
       refrence:myform.value.refrence,refdate:myform.value.refdate,vendcode:myform.value.vendcode,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
     };
-    if (this.form.valid) {
-      console.log('Selected Value' + this.form.value);
-    } else {
-      Object.keys(this.form.controls).forEach(controlName => {
-        const control = this.form.get(controlName);
-        if (control.invalid) {
-          control.markAsTouched();
-        }
-      })
-    }
-  } 
+    this.purchaseService.createpurchase(purchaseData, '', '').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        // Handle the response as needed
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        // Handle the error as needed
+      }
+    );
+  }
   addPurchase() {
     console.log('addrowwww'+this.purchaseData.length);
     // You can initialize the new row data here

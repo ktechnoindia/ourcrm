@@ -25,7 +25,7 @@ export interface purchasestore {
 export class PurchaseService {
 
   constructor(private httpclient:HttpClient) { }
-  createsale(purchase:purchasestore,key:string,user:string){
+  createpurchase(purchase:purchasestore,key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addpurchase,purchase,{headers:{'key':key,'user':user}})
   }
   fetchallPurchase(companyid:string,key:string,user:string): Observable<any> {
