@@ -3,22 +3,59 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface salesstore {
-
+  billformate:number;
   billNumber: number;
   billDate: string ;
-  payment: number;
-  orderDate: string;
-  orderNumber: string;
-  gstin: number;
-  salePerson: number;
-  taxrate: string;
   custcode: string;
-  billformate:number;
   custname: number;
-  unitname$: number;
-  ponumber:string;
   refrence:string;
   refdate:string;
+  orderDate: string;
+  orderNumber: string;
+  ponumber:string;
+  gstin: number;
+  salePerson: number;
+  payment: number;
+
+  unitname$: number;
+ 
+  //table
+  barcode:string;
+itemcode:string;
+itemname:string;
+description:string;
+quantity:number;
+unitname:number;
+mrp:string;
+basicrate:number;
+netrate:string;
+grossrate:string;
+  taxrate: number ;
+ IGST:string;
+  CGST:string;
+  SGST:string;
+  discount:string;
+  discountamt:string;
+  totaltax: string ;
+  total: string ;
+
+  totalitemno:string;
+  totalquantity:string;
+  totalgrossamt:string;
+  totaldiscountamt:string;
+  totaltaxamount:string;
+  totalnetamount:string;
+  deliverydate: string;
+  deliveryplace: string;
+
+  roundoff: string;
+  pretax: string;
+  posttax: string;
+  openingbalance: string;
+  closingbalance: string;
+  debit: string;
+  credit: string;
+  
 }
 @Injectable({
   providedIn: 'root'
