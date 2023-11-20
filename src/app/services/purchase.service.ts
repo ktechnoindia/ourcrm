@@ -12,6 +12,8 @@ export interface purchasestore {
   refdate: string;
   orderDate: string;
   orderNumber: string;
+  ponumber: string;
+
   gstin: number;
   payment: number;
   executive$: number;

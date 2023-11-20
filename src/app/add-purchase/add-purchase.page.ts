@@ -50,6 +50,7 @@ billformate:number=0;
   refdate:string='';
   orderDate:string='';
   orderNumber:string='';
+  ponumber:string='';
   gstin: number = 0;
   payment: number = 0;
 
@@ -132,6 +133,7 @@ billformate:number=0;
       refdate: [''],
       orderDate: [''],
       orderNumber: [''],
+      ponumber: [''],
       gstin:  [''],
       payment:  [''],
       executive$: ['', Validators.required],
@@ -195,6 +197,8 @@ billformate:number=0;
       vendcode: this.myform.value.vendcode,
       orderDate: this.myform.value.orderDate,
       orderNumber: this.myform.value.orderNumber,
+      ponumber: this.myform.value.ponumber,
+
 
       barcode: this.myform.value.barcode,
       itemcode: this.myform.value.itemcode,
