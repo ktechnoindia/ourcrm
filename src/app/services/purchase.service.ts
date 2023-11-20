@@ -36,14 +36,14 @@ grossrate:string;
   SGST:string;
   discount:string;
   discountamt:string;
-  totaltax: string ;
+  totaltax: number ;
   total: string ;
 
   totalitemno:string;
   totalquantity:string;
   totalgrossamt:string;
   totaldiscountamt:string;
-  totaltaxamount:string;
+  totaltaxamount:number;
   totalnetamount:string;
   deliverydate: string;
   deliveryplace: string;

@@ -13,33 +13,33 @@ export interface salereturnstore {
   orderNumber: string;
   gstin: number;
   salePerson: number;
-  taxrate: string;
+  taxrate: number;
   custcode: string;
   billformate:number;
   custname: number;
-  unitname$: number;
+  // unitname$: number;
   ponumber:string;
   refrence:string;
   refdate:string;
 
   //table
   barcode:string;
-itemcode:string;
-itemname:string;
+itemcode:number;
+itemname:number;
 description:string;
 quantity:number;
 unitname:number;
-mrp:string;
+mrp:number;
 basicrate:number;
-netrate:string;
-grossrate:string;
- IGST:string;
-  CGST:string;
-  SGST:string;
-  discount:string;
-  discountamt:string;
-  totaltax: string ;
-  total: string ;
+netrate:number;
+grossrate:number;
+ IGST:number;
+  CGST:number;
+  SGST:number;
+  discount:number;
+  discountamt:number;
+  totaltax: number ;
+  total: number ;
 
   totalitemno:string;
   totalquantity:string;

@@ -42,14 +42,14 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="text"
+                  <ion-input [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="number"
                     label=" Billing No. :" label-placement="floating" fill="outline"></ion-input>                
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="frombill" formControlName="frombill" name="frombill" type="text"
+                  <ion-input [(ngModel)]="frombill" formControlName="frombill" name="frombill" type="number"
                     label="From Billing No :" label-placement="floating" fill="outline"></ion-input>                
                 </ion-row>
               </ion-col>
@@ -114,7 +114,7 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
+                  <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="number" label=" GSTIN  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -171,7 +171,7 @@
                       <input [(ngModel)]="sales.barcode" formControlName="barcode" name="barcode" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.itemcode" formControlName="itemcode" name="itemcode" class="table_input" type="text">
+                      <input [(ngModel)]="sales.itemcode" formControlName="itemcode" name="itemcode" class="table_input" type="number">
                     </td>
                     <td>
                       <ion-select ion-select interface="popover" [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname" class="table_input"
@@ -198,14 +198,14 @@
                       </select>  
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.mrp" formControlName="mrp" name="mrp" class="table_input" type="text">
+                      <input [(ngModel)]="sales.mrp" formControlName="mrp" name="mrp" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.basicrate"  formControlName="basicrate" name="basicrate" class="table_input" type="number">
 
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.netrate" formControlName="netrate" name="netrate" class="table_input" type="text">
+                      <input [(ngModel)]="sales.netrate" formControlName="netrate" name="netrate" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
@@ -221,25 +221,25 @@
                     </td>
 
                     <td>
-                      <input [(ngModel)]="sales.CGST" formControlName="CGST" name="CGST" class="table_input" type="text">
+                      <input [(ngModel)]="sales.CGST" formControlName="CGST" name="CGST" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.SGST" formControlName="SGST" name="SGST" class="table_input" type="text">
+                      <input [(ngModel)]="sales.SGST" formControlName="SGST" name="SGST" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.IGST" formControlName="IGST" name="IGST" class="table_input" type="text">
+                      <input [(ngModel)]="sales.IGST" formControlName="IGST" name="IGST" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.discount" formControlName="discount" name="discount" class="table_input" type="text">
+                      <input [(ngModel)]="sales.discount" formControlName="discount" name="discount" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.discountamt" formControlName="discountamt" name="discountamt" class="table_input" type="text">
+                      <input [(ngModel)]="sales.discountamt" formControlName="discountamt" name="discountamt" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.totaltax" formControlName="totaltax" name="totaltax" class="table_input" type="text">
+                      <input [(ngModel)]="sales.totaltax" formControlName="totaltax" name="totaltax" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.total" formControlName="total" name="total" class="table_input" type="text">
+                      <input [(ngModel)]="sales.total" formControlName="total" name="total" class="table_input" type="number">
 
                     </td>
 

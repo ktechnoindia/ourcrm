@@ -14,7 +14,7 @@ interface Sales {
   itemname: number,
   description: string;
   quantity: number;
-  unitname$: number;
+  unitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -92,7 +92,7 @@ export class SalesreturnPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname$: 0,
+    unitname: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -189,7 +189,7 @@ export class SalesreturnPage implements OnInit {
       taxrate:this.myform.value.taxrate,
       custcode:this.myform.value.custcode,
       custname:this.myform.value.custname,
-      unitname$:this.myform.value.unitname$,
+      // unitname$:this.myform.value.unitname$,
       ponumber:this.myform.value.ponumber,
       refdate:this.myform.value.refdate,
       refrence:this.myform.value.refrence,
@@ -249,7 +249,7 @@ export class SalesreturnPage implements OnInit {
         itemname: 0,
         description:'',
         quantity:0,
-        unitname$:0,
+        unitname:0,
         mrp:0,
         basicrate:0,
         netrate:0,

@@ -10,7 +10,7 @@ export interface purchasereturnstore {
   frombill:number;
   payment: number;
   supplier: number;
-  gstin: string ;
+  gstin: number ;
   exicutive$:number;
   unitname$: number;
   taxrate$: number;
@@ -38,7 +38,7 @@ grossrate:string;
   SGST:string;
   discount:string;
   discountamt:string;
-  totaltax: string ;
+  totaltax: number ;
   total: string ;
 
   totalitemno:string;
