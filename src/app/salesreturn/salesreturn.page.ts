@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -49,6 +49,43 @@ export class SalesreturnPage implements OnInit {
   custcode: string = '';
   billformate:number=0;
   custname: number = 0;
+
+
+  
+  //table data
+  barcode: string = '';
+  itemcode: string = '';
+  itemname: number = 0;
+  description: string = '';
+  quantity: string = '';
+  unitname: number = 0;
+  mrp: string = '';
+  basicrate: string = '';
+  netrate: string = '';
+  grossrate: string = '';
+  CGST: string = '';
+  SGST: string = '';
+  IGST: string = '';
+  discount: string = '';
+  discountamt: string = '';
+  totaltax: string = '';
+  total: string = '';
+  totalitemno: string = '';
+  totalquantity: string = '';
+  totalgrossamt: string = '';
+  totaldiscountamt: string = '';
+  totaltaxamount: string = '';
+  totalnetamount: string = '';
+
+  roundoff: string = '';
+  pretax: string = '';
+  posttax: string = '';
+  deliverydate: string = '';
+  deliveryplace: string = '';
+  openingbalance: string = '';
+  closingbalance: string = '';
+  debit: string = '';
+  credit: string = '';
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
@@ -75,17 +112,122 @@ export class SalesreturnPage implements OnInit {
   ponumber:string='';
   refrence:string='';
   refdate:string='';
-  constructor(private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
+  myform: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+
+    
+    this.myform = this.formBuilder.group({
+      billformate: [''],
+      billNumber: [''],
+      billDate: [''],
+      custcode: [''],
+      custname: [''],
+      refrence: [''],
+      refdate: [''],
+      orderDate: [''],
+      orderNumber: [''],
+      ponumber: [''],
+      gstin: [''],
+      salePerson: [''],
+      payment: [''],
+      frombill:[''],
+
+      //table
+      barcode: [''],
+      itemcode: [''],
+      itemname: [''],
+      description: [''],
+      quantity: [''],
+      unitname: [''],
+      mrp: [''],
+      basicrate: [''],
+      netrate: [''],
+      grossrate: [''],
+      taxrate: [''],
+      IGST: [''],
+      CGST: [''],
+      SGST: [''],
+      discount: [''],
+      discountamt: [''],
+      totaltax: [''],
+      total: [''],
+
+      totalitemno: [''],
+      totalquantity: [''],
+      totalgrossamt: [''],
+      totaldiscountamt: [''],
+      totaltaxamount: [''],
+      totalnetamount: [''],
+      deliverydate: [''],
+      deliveryplace: [''],
+
+      roundoff: [''],
+      pretax: [''],
+      posttax: [''],
+      openingbalance: [''],
+      closingbalance: [''],
+      debit: [''],
+      credit: [''],
+
+      ttotal: [''],
+    })
   }
-  onSubmit(myform: NgForm, salesData: any) {
-    console.log('Your form data : ', myform.value);
+  onSubmit(salesData: any) {
+    console.log('Your form data : ', this.myform.value);
     let salesreturndata: salereturnstore = {
-      billformate:myform.value.billformate,billNumber:myform.value.billNumber,billDate:myform.value.billDate,
-      payment:myform.value.payment,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
-      gstin:myform.value.gstin,salePerson:myform.value.salePerson,taxrate:myform.value.taxrate,custcode:myform.value.custcode,custname:myform.value.custname,unitname$:myform.value.unitname$,ponumber:myform.value.ponumber,refdate:myform.value.refdate,refrence:myform.value.refrence,
-      frombill:myform.value.frombill,
+      billformate:this.myform.value.billformate,
+      billNumber:this.myform.value.billNumber,
+      billDate:this.myform.value.billDate,
+      payment:this.myform.value.payment,
+      orderDate:this.myform.value.orderDate,
+      orderNumber:this.myform.value.orderNumber,
+      gstin:this.myform.value.gstin,
+      salePerson:this.myform.value.salePerson,
+      taxrate:this.myform.value.taxrate,
+      custcode:this.myform.value.custcode,
+      custname:this.myform.value.custname,
+      unitname$:this.myform.value.unitname$,
+      ponumber:this.myform.value.ponumber,
+      refdate:this.myform.value.refdate,
+      refrence:this.myform.value.refrence,
+      frombill:this.myform.value.frombill,
+
+      barcode: this.myform.value.barcode,
+      itemcode: this.myform.value.itemcode,
+      itemname: this.myform.value.itemname,
+      description: this.myform.value.description,
+      quantity: this.myform.value.quantity,
+      unitname: this.myform.value.unitname,
+      mrp: this.myform.value.mrp,
+      basicrate: this.myform.value.basicrate,
+      netrate: this.myform.value.netrate,
+      grossrate: this.myform.value.grossrate,
+      CGST: this.myform.value.CGST,
+      SGST: this.myform.value.SGST,
+      IGST: this.myform.value.IGST,
+      discount: this.myform.value.discount,
+      discountamt: this.myform.value.discountamt,
+      totaltax: this.myform.value.totaltax,
+      total: this.myform.value.total,
+      totalitemno: this.myform.value.totalitemno,
+      totalquantity: this.myform.value.totalquantity,
+      totalgrossamt: this.myform.value.totalgrossamt,
+      totaldiscountamt: this.myform.value.totaldiscountamt,
+      totaltaxamount: this.myform.value.totaltaxamount,
+      totalnetamount: this.myform.value.totalnetamount,
+      roundoff: this.myform.value.roundoff,
+      pretax: this.myform.value.pretax,
+      posttax: this.myform.value.posttax,
+      deliverydate: this.myform.value.deliverydate,
+      deliveryplace: this.myform.value.deliveryplace,
+      openingbalance: this.myform.value.openingbalance,
+      closingbalance: this.myform.value.closingbalance,
+      debit: this.myform.value.debit,
+      credit: this.myform.value.credit,
+
     };
     this.salereturnService.createSaleReturn(salesData, '', '').subscribe(
       (response: any) => {

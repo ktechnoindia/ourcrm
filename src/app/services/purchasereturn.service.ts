@@ -20,6 +20,43 @@ export interface purchasereturnstore {
   vendcode:string;
   orderDate:string;
   orderNumber:string;
+
+  //table
+  barcode:string;
+itemcode:string;
+itemname:string;
+description:string;
+quantity:number;
+unitname:number;
+mrp:string;
+basicrate:number;
+netrate:string;
+grossrate:string;
+  taxrate: number ;
+ IGST:string;
+  CGST:string;
+  SGST:string;
+  discount:string;
+  discountamt:string;
+  totaltax: string ;
+  total: string ;
+
+  totalitemno:string;
+  totalquantity:string;
+  totalgrossamt:string;
+  totaldiscountamt:string;
+  totaltaxamount:string;
+  totalnetamount:string;
+  deliverydate: string;
+  deliveryplace: string;
+
+  roundoff: string;
+  pretax: string;
+  posttax: string;
+  openingbalance: string;
+  closingbalance: string;
+  debit: string;
+  credit: string;
 }
 
 @Injectable({
