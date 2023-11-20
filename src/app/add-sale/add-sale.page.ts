@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -28,27 +28,65 @@ interface Sales {
   discountamt: number;
   totaltax: number;
   total: number;
-  
+
 }
 @Component({
   selector: 'app-add-sale',
   templateUrl: './add-sale.page.html',
   styleUrls: ['./add-sale.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class AddSalePage implements OnInit {
-  billNumber: number=0;
+  billformate: number = 0;
+  billNumber: number = 0;
   billDate: string = '';
-  payment: number = 0;
-  orderDate: string = '';
-  orderNumber: string='';
-  gstin: number =0;
-  salePerson: number = 0;
-  taxrate: string = '';
   custcode: string = '';
-  billformate:number=0;
   custname: number = 0;
+  refrence: string = '';
+  refdate: string = '';
+  orderDate: string = '';
+  orderNumber: string = '';
+  ponumber: string = '';
+  gstin: number = 0;
+  salePerson: number = 0;
+  payment: number = 0;
+
+  //table data
+  barcode: string = '';
+  itemcode: string = '';
+  itemname: number = 0;
+  description: string = '';
+  quantity: string = '';
+  unitname: number = 0;
+  mrp: string = '';
+  basicrate: string = '';
+  netrate: string = '';
+  grossrate: string = '';
+  taxrate: string = '';
+  CGST: string = '';
+  SGST: string = '';
+  IGST: string = '';
+  discount: string = '';
+  discountamt: string = '';
+  totaltax: string = '';
+  total: string = '';
+  totalitemno: string = '';
+  totalquantity: string = '';
+  totalgrossamt: string = '';
+  totaldiscountamt: string = '';
+  totaltaxamount: string = '';
+  totalnetamount: string = '';
+
+  roundoff: string = '';
+  pretax: string = '';
+  posttax: string = '';
+  deliverydate: string = '';
+  deliveryplace: string = '';
+  openingbalance: string = '';
+  closingbalance: string = '';
+  debit: string = '';
+  credit: string = '';
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
@@ -70,22 +108,121 @@ export class AddSalePage implements OnInit {
     total: 0,
   }];
   ttotal!: number;
+  myform: FormGroup;
   unitname$: any;
   taxrate$: any;
-  ponumber:string='';
-  refrence:string='';
-  refdate:string='';
-  constructor(private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private sales: SalesService) {
+
+  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private sales: SalesService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
-    
+
+    this.myform = this.formBuilder.group({
+      billformate: [''],
+      billNumber: [''],
+      billDate:  [''],
+      custcode: [''],
+      custname:  [''],
+      refrence: [''],
+      refdate:  [''],
+      orderDate:  [''],
+      orderNumber:  [''],
+      ponumber: [''],
+      gstin:  [''],
+      salePerson:  [''],
+      payment:  [''],
+
+       //table
+       barcode: [''],
+       itemcode: [''],
+       itemname: [''],
+       description: [''],
+       quantity: [''],
+       unitname: [''],
+       mrp: [''],
+       basicrate: [''],
+       netrate: [''],
+       grossrate: [''],
+       taxrate: [''],
+       IGST: [''],
+       CGST: [''],
+       SGST: [''],
+       discount: [''],
+       discountamt: [''],
+       totaltax: [''],
+       total: [''],
+ 
+       totalitemno: [''],
+       totalquantity: [''],
+       totalgrossamt: [''],
+       totaldiscountamt: [''],
+       totaltaxamount: [''],
+       totalnetamount: [''],
+       deliverydate: [''],
+       deliveryplace: [''],
+ 
+       roundoff: [''],
+       pretax: [''],
+       posttax: [''],
+       openingbalance: [''],
+       closingbalance: [''],
+       debit: [''],
+       credit: [''],
+ 
+       ttotal: [''],
+    })
   }
-  onSubmit(myform: NgForm, salesData: any) {
-    console.log('Your form data : ', myform.value);
+  onSubmit(salesData: any) {
+    console.log('Your form data : ',  this.myform.value);
     let saledata: salesstore = {
-     billformate:myform.value.billformate,billNumber:myform.value.billNumber,billDate:myform.value.billDate,
-     payment:myform.value.payment,orderDate:myform.value.orderDate,orderNumber:myform.value.orderNumber,
-     gstin:myform.value.gstin,salePerson:myform.value.salePerson,taxrate:myform.value.taxrate,custcode:myform.value.custcode,custname:myform.value.custname,unitname$:myform.value.unitname$,ponumber:myform.value.ponumber,refdate:myform.value.refdate,refrence:myform.value.refrence,
+      billformate: this.myform.value.billformate,
+      billNumber:  this.myform.value.billNumber,
+      billDate:  this.myform.value.billDate,
+      custcode: this.myform.value.custcode,
+      custname:  this.myform.value.custname,
+      refdate:  this.myform.value.refdate,
+      refrence: this.myform.value.refrence,
+      orderDate: this.myform.value.orderDate,
+      orderNumber: this.myform.value.orderNumber,
+      ponumber:  this.myform.value.ponumber,
+      gstin:  this.myform.value.gstin,
+      salePerson:  this.myform.value.salePerson,    
+      payment: this.myform.value.payment,
+
+      barcode: this.myform.value.barcode,
+      itemcode: this.myform.value.itemcode,
+      itemname: this.myform.value.itemname,
+      description: this.myform.value.description,
+      quantity: this.myform.value.quantity,
+      unitname: this.myform.value.unitname,
+      mrp: this.myform.value.mrp,
+      basicrate: this.myform.value.basicrate,
+      netrate: this.myform.value.netrate,
+      grossrate: this.myform.value.grossrate,
+      taxrate: this.myform.value.taxrate,
+      CGST: this.myform.value.CGST,
+      SGST: this.myform.value.SGST,
+      IGST: this.myform.value.IGST,
+      discount: this.myform.value.discount,
+      discountamt: this.myform.value.discountamt,
+      totaltax: this.myform.value.totaltax,
+      total: this.myform.value.total,
+      totalitemno: this.myform.value.totalitemno,
+      totalquantity: this.myform.value.totalquantity,
+      totalgrossamt: this.myform.value.totalgrossamt,
+      totaldiscountamt: this.myform.value.totaldiscountamt,
+      totaltaxamount: this.myform.value.totaltaxamount,
+      totalnetamount: this.myform.value.totalnetamount,
+      roundoff: this.myform.value.roundoff,
+      pretax: this.myform.value.pretax,
+      posttax: this.myform.value.posttax,
+      deliverydate: this.myform.value.deliverydate,
+      deliveryplace: this.myform.value.deliveryplace,
+      openingbalance: this.myform.value.openingbalance,
+      closingbalance: this.myform.value.closingbalance,
+      debit: this.myform.value.debit,
+      credit: this.myform.value.credit,
+      unitname$:  this.myform.value.unitname$,
+
     };
     this.sales.createsale(salesData, '', '').subscribe(
       (response: any) => {
@@ -99,54 +236,54 @@ export class AddSalePage implements OnInit {
     );
   }
   addSales() {
-      console.log('addrowwww'+this.salesData.length);
-      // You can initialize the new row data here
-      const newRow :Sales= {
-        barcode: '',
-        itemcode: 0,
-        itemname: 0,
-        description:'',
-        quantity:0,
-        unitname$:0,
-        mrp:0,
-        basicrate:0,
-        netrate:0,
-        grossrate:0,
-        taxrate:0,
-        CGST:0,
-        SGST:0,
-        IGST:0,
-        discount:0,
-        discountamt:0,
-        totaltax:0,
-        total:0,
-        // Add more properties as needed
-      };
-      this.salesData.push(newRow);
+    console.log('addrowwww' + this.salesData.length);
+    // You can initialize the new row data here
+    const newRow: Sales = {
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname$: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      // Add more properties as needed
+    };
+    this.salesData.push(newRow);
+  }
+  removeSales(index: number, row: Sales) {
+    this.ttotal = this.ttotal - this.sales.total;
+    this.salesData.splice(index, 1);
+  }
+  calculateTotalSum() {
+    let sum = 0;
+    for (const row of this.salesData) {
+      sum += this.sales.total;
     }
-    removeSales(index: number,row:Sales) {
-      this.ttotal=this.ttotal-this.sales.total;
-      this.salesData.splice(index, 1);
-    }
-    calculateTotalSum() {
-      let sum = 0;
-      for (const row of this.salesData) {
-        sum += this.sales.total;
-      }
-      this.ttotal= sum;
-    }
+    this.ttotal = sum;
+  }
 
-    // if (this.form.valid) {
-    //   console.log('Selected Value' + this.form.value);
-    // } else {
-    //   Object.keys(this.form.controls).forEach(controlName => {
-    //     const control = this.form.get(controlName);
-    //     if (control.invalid) {
-    //       control.markAsTouched();
-    //     }
-    //   })
-    // }
-  
+  // if (this.form.valid) {
+  //   console.log('Selected Value' + this.form.value);
+  // } else {
+  //   Object.keys(this.form.controls).forEach(controlName => {
+  //     const control = this.form.get(controlName);
+  //     if (control.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   })
+  // }
+
   ngOnInit() {
   }
   goBack() {
