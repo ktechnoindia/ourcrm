@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SalereturnService } from '../services/salereturn.service';
+import { EncryptionService } from '../services/encryption.service';
 
 @Component({
   selector: 'app-view-salesreturn',
@@ -15,8 +18,14 @@ import { RouterLink } from '@angular/router';
 export class ViewSalesreturnPage implements OnInit {
   formDate:string='';
   toDate:string='';
+  salreturn$: Observable<any[]>
+  constructor(private router:Router,private toastCtrl:ToastController,private salereturnservice:SalereturnService,private encService:EncryptionService
+    ) { 
+    const compid='1';
 
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+    this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid),'','');
+    console.log(this.salreturn$);
+  }
 
   async onSubmit(){
     if(this.formDate===''){

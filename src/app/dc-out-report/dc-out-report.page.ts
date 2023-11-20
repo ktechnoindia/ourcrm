@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
+import { DcoutService } from '../services/dcout.service';
+import { Observable } from 'rxjs';
+import { EncryptionService } from '../services/encryption.service';
+
+
 
 @Component({
   selector: 'app-dc-out-report',
@@ -14,8 +19,14 @@ import { Router, RouterLink } from '@angular/router';
 export class DcOutReportPage implements OnInit {
   formDate:string='';
   toDate:string='';
+  dcout$: Observable<any[]>
 
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+  constructor(private router:Router,private toastCtrl:ToastController,private dcoutservice:DcoutService,private encService:EncryptionService,) { 
+    const compid='1';
+
+    this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid),'','');
+    console.log(this.dcout$);
+  }
 
   async onSubmit(){
     if(this.formDate===''){

@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { PurchasereturnService } from '../services/purchasereturn.service';
+import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-purchasereturn',
@@ -15,7 +18,14 @@ import { RouterLink } from '@angular/router';
 export class ViewPurchasereturnPage implements OnInit {
   formDate:string='';
   toDate:string='';
-  constructor(private router:Router,private toastCtrl:ToastController) { }
+  purchasereturn$: Observable<any[]>
+
+  constructor(private router:Router,private toastCtrl:ToastController,private purchasereturnservice:PurchasereturnService,private encService:EncryptionService ) { 
+    const compid='1';
+
+    this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid),'','');
+    console.log(this.purchasereturn$);
+  }
 
   async onSubmit(){
     if(this.formDate===''){
