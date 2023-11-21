@@ -33,7 +33,7 @@
           <form [formGroup]="myform"  (ngSubmit)="onSubmit(salesData)">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+                <select class="select" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
                   <option value="0" >Bill Formate</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -68,7 +68,7 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="custname" formControlName="custname" name="custname">
+                <select class="select" [(ngModel)]="custname" formControlName="custname" name="custname">
                   <option value="0" disabled selected>Customer Name</option> <!-- Default option -->
                   <option value="1">Deepak</option>
                   <option value="2">Ram</option>
@@ -91,7 +91,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="2" size="6">
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input  [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date" label=" Order Date :"
                     label-placement="floating" fill="outline"></ion-input>
@@ -119,8 +119,8 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
-                  <option value="0" disabled selected>Select Sales Person</option> <!-- Default option -->
+                <select class="select" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
+                  <option value="0" >Select Sales Person</option> <!-- Default option -->
 
                   <option value="2">Deepak</option>
                   <option value="3">Ravi</option>
@@ -130,7 +130,7 @@
               
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="payment" formControlName="payment" name="pyt">
+                <select class="select" [(ngModel)]="payment" formControlName="payment" name="pyt">
                   <option value="0" disabled selected>Select Payment Mode</option> <!-- Default option -->
                   <option value="2">Cash</option>
                   <option value="3">Credit</option>
@@ -142,7 +142,7 @@
             <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
 
-                <table style="width:1555px;">
+                <table style="width:1755px;">
                   <tr>
                     <th style="width: 50px !important;">Sr.No.</th>
                     <th style="width: 100px !important;">BarCode</th>
@@ -154,7 +154,7 @@
                     <th style="width: 50px !important;">MRP</th>
                     <th style="width: 70px !important;">Basic Rate</th>
                     <th style="width: 70px !important;">Net Rate</th>
-                    <th style="width: 70px !important;">Gross Amount</th>
+                    <th style="width: 100px !important;">Gross Amount</th>
                     <th style="width: 50px !important;">GST</th>
                     <th style="width: 50px !important;">CGST</th>
                     <th style="width: 50px !important;">SGST</th>
@@ -173,15 +173,18 @@
                     <td>
                       <input [(ngModel)]="sales.itemcode" formControlName="itemcode" name="itemcode" class="table_input" type="number">
                     </td>
-                    <td>
-                      <ion-select ion-select interface="popover" [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname" class="table_input"
+                    <td >
+                      <input  [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname"  class="table_input" type="number">
+                    </td>
+
+                      <!-- <ion-select ion-select interface="popover" [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname" class="table_input"
                       aria-label="Default select example" id="itemname" class="table_select">
                       <ion-select-option>Item 1</ion-select-option>
                       <ion-select-option>Item 2</ion-select-option>
                       <ion-select-option>Item 3</ion-select-option>
 
-                    </ion-select>
-                    </td>
+                    </ion-select> -->
+                   
                     <td>
                       <input [(ngModel)]="sales.description" formControlName="description" name="description" class="table_input" type="text">
                     </td>
@@ -189,8 +192,8 @@
                       <input [(ngModel)]="sales.quantity" formControlName="quantity" name="quantity" class="table_input" type="number">
 
                     </td>
-                    <td>
-                      <select class="select" [(ngModel)]="unitname" formControlName="unitname"  name="unitname" >
+                    <td class="select-option">
+                      <select [(ngModel)]="unitname" formControlName="unitname"  name="unitname" >
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -210,14 +213,14 @@
                     <td>
                       <input [(ngModel)]="sales.grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
-                    <td>
-                      <ion-select interface="popover" [(ngModel)]="sales.taxrate" formControlName="taxrate" name="taxrate" id="taxrate">
-                        <ion-select-option value="">Select GST</ion-select-option>
+                    <td class="select-option">
+                      <select interface="popover" [(ngModel)]="sales.taxrate" formControlName="taxrate" name="taxrate" id="taxrate">
+                        <option value="0">Select GST</option>
                         <!-- Default option with value 0 -->
-                        <ion-select-option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
+                        <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
-                        </ion-select-option>
-                      </ion-select>
+                        </option>
+                      </select>
                     </td>
 
                     <td>

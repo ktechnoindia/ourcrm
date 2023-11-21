@@ -109,6 +109,12 @@ export class AddQuotPage implements OnInit {
   taxrate$: any;
   myform: FormGroup;
 
+  totalItemNo: number = 0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
   constructor(private formBuilder: FormBuilder,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -251,17 +257,32 @@ export class AddQuotPage implements OnInit {
     };
     this.quoteData.push(newRow);
   }
-  removeQuote(index: number, row: Quote) {
+  calculateTotal(quote: Quote) {
+    quote.total = quote.totaltax + quote.grossrate;
+    this.calculateTotals();
+  }
+
+  removeQuote(index: number, quote: Quote) {
     this.ttotal = this.ttotal - this.quote.total;
     this.quoteData.splice(index, 1);
   }
-  calculateTotalSum() {
-    let sum = 0;
-    for (const row of this.quoteData) {
-      sum += this.quote.total;
-    }
-    this.ttotal = sum;
+  calculateTotals(): void {
+    // Add your logic to calculate totals based on the salesData array
+    this.totalItemNo = this.quoteData.length;
+
+    // Example calculation for total quantity and gross amount
+    this.totalQuantity = this.quoteData.reduce((total, quote) => total + quote.quantity, 0);
+    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + quote.grossrate, 0);
+
+    // Add similar calculations for other totals
   }
+  // calculateTotalSum() {
+  //   let sum = 0;
+  //   for (const row of this.quoteData) {
+  //     sum += this.quote.total;
+  //   }
+  //   this.ttotal = sum;
+  // }
   // async onSubmit() {
   //   if (this.quoteNumber === null) {
   //     const toast = await this.toastCtrl.create({

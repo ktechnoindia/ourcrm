@@ -22,6 +22,11 @@ export class ViewitemPage implements OnInit {
     const compid='1';
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
     console.log(this.items$);
+
+
+    this.items$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
   }
 
   async onSubmit(){

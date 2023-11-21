@@ -32,7 +32,7 @@
 
           <ion-row>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-              <select [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+              <select class="select" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
                 <option value="0" >Bill Formate</option> <!-- Default option -->
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,7 +61,7 @@
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
              
-            <select  [(ngModel)]="supplier"  formControlName="supplier"   name="spler">
+            <select class="select"  [(ngModel)]="supplier"  formControlName="supplier"   name="spler">
               <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
               <option value="1">Deepak</option>
               <option value="2">Ram</option>
@@ -112,7 +112,7 @@
               </ion-row>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-              <select [(ngModel)]="payment"  formControlName="payment" name="pyt">
+              <select class="select" [(ngModel)]="payment"  formControlName="payment" name="pyt">
                 <option value="0">
                  Payment Mode</option>
                 <option value="2">Cash</option>
@@ -120,8 +120,8 @@
               </select>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-              <select [(ngModel)]="executive$"  formControlName="executive$" name="executive_name" >
-                <option value="0">--- Executive ---</option><!-- Default option -->
+              <select class="select" [(ngModel)]="executive$"  formControlName="executive$" name="executive_name" >
+                <option value="0">Select Executive</option><!-- Default option -->
                 <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                   {{ executive.executivename }}
                 </option>
@@ -134,7 +134,7 @@
           <ion-row style="margin-top: 7px;">
             <div class="scroll-container">
 
-              <table style="width:1555px;">
+              <table style="width:1755px;">
                 <tr>
                   <th style="width: 50px !important;">Sr.No.</th>
                   <th style="width: 100px !important;">BarCode</th>
@@ -146,7 +146,7 @@
                   <th style="width: 50px !important;">MRP</th>
                   <th style="width: 70px !important;">Basic Rate</th>
                   <th style="width: 70px !important;">Net Rate</th>
-                  <th style="width: 70px !important;">Gross Amount</th>
+                  <th style="width: 100px !important;">Gross Amount</th>
                   <th style="width: 50px !important;">GST</th>
                   <th style="width: 50px !important;">CGST</th>
                   <th style="width: 50px !important;">SGST</th>
@@ -166,7 +166,7 @@
                     <input [(ngModel)]="purchase.itemcode"  formControlName="itemcode" name="itemcode" class="table_input" type="text">
                   </td>
                   <td>
-                    <input [(ngModel)]="purchase.itemname"  formControlName="itemname" name="itemname" class="table_input" type="text">
+                    <input [(ngModel)]="purchase.itemname"  formControlName="itemname" name="itemname" class="table_input" type="number">
 
                     <!-- <ion-select ion-select interface="popover" [(ngModel)]="purchase.itemname"  formControlName="itemname" name="itemname" class="table_input"
                     aria-label="Default select example" id="itemname" class="table_select">
@@ -184,8 +184,8 @@
                     <input [(ngModel)]="purchase.quantity"  formControlName="quantity" name="quantity" class="table_input" type="number">
 
                   </td>
-                  <td>
-                    <select class="select" [(ngModel)]="unitname"   formControlName="unitname" name="unit_name$" >
+                  <td class="select-option">
+                    <select [(ngModel)]="unitname"   formControlName="unitname" name="unit_name$" >
                       <option value="0">Unit Name</option>
                       <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                         {{ unitname.unitname }}
@@ -205,14 +205,14 @@
                   <td>
                     <input [(ngModel)]="purchase.grossrate"  formControlName="grossrate" name="grossrate" class="table_input" type="number">
                   </td>
-                  <td>
-                    <ion-select interface="popover" [(ngModel)]="purchase.taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
-                      <ion-select-option value="0">Select GST</ion-select-option>
+                  <td class="select-option">
+                    <select interface="popover" [(ngModel)]="purchase.taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
+                      <option value="0">Select GST</option>
                       <!-- Default option with value 0 -->
-                      <ion-select-option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
+                      <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                         {{ gsttype.gstname }}
-                      </ion-select-option>
-                    </ion-select>
+                      </option>
+                    </select>
                   </td>
 
                   <td>

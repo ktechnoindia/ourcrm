@@ -43,7 +43,7 @@ export class SalesreturnPage implements OnInit {
   payment: number = 0;
   orderDate: string = '';
   orderNumber: string='';
-  gstin: number =0;
+  gstin:number = 0;
   salePerson: number = 0;
   taxrate: string = '';
   custcode: string = '';

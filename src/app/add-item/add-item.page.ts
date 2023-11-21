@@ -28,23 +28,33 @@ import { AddattributeService } from '../services/addattribute.service';
 
 })
 export class AddItemPage implements OnInit {
-  // selectTabs = 'address';
-  type = 'address';
   myform:FormGroup;
   submitted=false;
-  attname$: Observable<any[]>
+  type = 'address';
+
+  itemCode:string = '';
   itemDesc: string = '';
-  itemCode: number | null = null;
-  selectHSN: number=0;
+  hsnname:number=0;
   selectItem:number=0;
-  selectitemtype:number=0;
-  selectPrimaryUnit:number=0;
-  // selectAltUnit: string = '';
+  stocktypename:number=0;
+  itemtypename:number=0;
+  unitname:number=0;
   selectItemGroup: number=0;
   selectGst: number=0;
-  unitname:number=0;
   openingbalance:string='';
   closingbalance:string='';
+  selectedAttribute: string='';
+  files:string='';
+  barcode:string='';
+  minimum: string='';
+  maximum: string='';
+  reorder: string = '';
+
+  selectitemtype:number=0;
+
+  attname$: Observable<any[]>
+ 
+  selectPrimaryUnit:number=0;
   attr1: string = '';
   attr2: string = '';
   attr3: string = '';
@@ -53,27 +63,19 @@ export class AddItemPage implements OnInit {
   attr6: string = '';
   attr7: string = '';
   attr8: string = '';
-  barcode:string='';
-  files:string='';
-  minimum: string='';
-  maximum: string='';
-  reorder: string = '';
+ 
   selectGstservice: number=0;
   selectGst$: any;
   selectStock:string='';
   unitname$:any;
   // unitname!: string; 
   hsnname$:Observable<any[]>
-  hsnname:string='';
   
   stocktypename$:Observable<any[]>
-  stocktypename:string='';
   itemtypename$:Observable<any[]>
-  itemtypename:string='';
   itemgroups$: Observable<any[]>
 
 
-  selectedAttribute: string='';
   attributes: string[] = [];
   
 constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService,private attname:AddattributeService) {   
@@ -87,19 +89,25 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.attname$=this.attname.getattribute(1);
 
      this.myform = this.formBuilder.group({
-      itemDesc: ['',[Validators.required]],
       itemCode: ['',[Validators.required]],
-      selectItem: [''],
-      selectStock: [''],
-      selectItemGroup: [''],
-      selectGst: [''],
-      unitname$: [''],
-      // selectAltUnit: [''],
+      itemDesc: ['',[Validators.required]],
       hsnname: [''],
       stocktypename: [''],
       itemtypename: [''],
+      unitname$: [''],
+      selectGst: [''],
       openingbalance: [''],
       closingbalance: [''],
+      selectedAttribute:  [''],
+      files:[''],
+      barcode: [''],
+      minimum: [''],
+      maximum: [''],
+      reorder: [''],
+
+      
+      selectItemGroup: [''],
+     
       attr1: [''],
       attr2: [''],
       attr3: [''],
@@ -108,18 +116,8 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr6: [''],
       attr7: [''],
       attr8: [''],
-      barcode: [''],
-      minimum: [''],
-      maximum: [''],
-      reorder: [''],
-      // dimension: [''],
-      // weight: [''],
-      // brandname: [''],
-      // modelname: [''],
-      // category: [''],
-      // relailprofit: [''],
-      // delarprofit: [''],
-      files:['']
+     
+     
       
     })
 
@@ -137,26 +135,30 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
   }
   
  async onSubmit() {
-    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-      this.submitted=true;
+    // const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
+    // const isValid = await this.formService.validateForm(fields);
+    // if (await this.formService.validateForm(fields)) {
+    //   this.submitted=true;
     console.log('Your form data : ', this.myform.value);
+    
     let itemdata:item={
       itemDesc: this.myform.value.itemDesc,
       itemCode: this.myform.value.itemCode,
-      selectItem: this.myform.value.selectItem,
-      selectStock: this.myform.value.selectStock,
+      hsnname: this.myform.value.hsnname,
+      stocktypename: this.myform.value.stocktypename,
+      itemtypename: this.myform.value.itemtypename,
+      unitname:this.myform.value.unitname,
       selectItemGroup: this.myform.value.selectItemGroup,
       selectGst: this.myform.value.selectGst,
-      selectHSN: this.myform.value.selectHSN,
-      itemtypename: this.myform.value.itemtypename,
-      stocktypename: this.myform.value.stocktypename,
-      selectPrimaryUnit: this.myform.value.selectPrimaryUnit,
-      // selectAltUnit: this.myform.value.selectAltUnit,
-      selectunitname: this.myform.value.selectunitname,
       openingbalance: this.myform.value.openingbalance,
       closingbalance: this.myform.value.closingbalance,
+      selectedAttribute: this.myform.value.selectedAttribute, 
+      files:this.myform.value.files,
+      barcode: this.myform.value.barcode,
+      minimum: this.myform.value.minimum,
+      maximum: this.myform.value.maximum,
+      reorder: this.myform.value.reorder,
+
       attr1: this.myform.value.attr1,
       attr2: this.myform.value.attr2,
       attr3: this.myform.value.attr3,
@@ -165,28 +167,13 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr6: this.myform.value.attr6,
       attr7: this.myform.value.attr7,
       attr8: this.myform.value.attr8,
-      barcode: this.myform.value.barcode,
-      minimum: this.myform.value.minimum,
-      maximum: this.myform.value.maximum,
-      reorder: this.myform.value.reorder,
-      // description: this.myform.value.description,
-      // dimension: this.myform.value.dimension,
-      // weight: this.myform.value.weight,
-      // brandname: this.myform.value.brandname,
-      // modelname: this.myform.value.modelname,
-      // category: this.myform.value.category,
-      // weightunit: this.myform.value.weightunit,
-      // relailprofit: this.myform.value.relailprofit,
-      // delarprofit: this.myform.value.delarprofit,
+     
       selectGstservice: this.myform.value.selectGstservice,
       unitname$: this.myform.value.unitname,
       hsnname$: this.myform.value.hsnname,
-      hsnname: this.myform.value.hsnname,
       stocktypename$: this.myform.value.stocktypename,
       itemtypename$: this.myform.value.itemtypename,
-      unitname: '',
-      itemtype: '',
-      stocktype: ''
+   
     };
     this.itemService.createItem(itemdata,'','').subscribe(
       (response: any) => {
@@ -198,19 +185,19 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
         this.formService.showFailedAlert();
       }
     );
-    setTimeout(() => {
-      // Reset the form and clear input fields
-      this.myform.reset();
-    }, 1000); 
-  }  else {
-    //If the form is not valid, display error messages
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
-  }
+  //   setTimeout(() => {
+  //     // Reset the form and clear input fields
+  //     this.myform.reset();
+  //   }, 1000); 
+  //   else {
+  //   //If the form is not valid, display error messages
+  //   Object.keys(this.myform.controls).forEach(controlName => {
+  //     const control = this.myform.get(controlName);
+  //     if (control?.invalid) {
+  //       control.markAsTouched();
+  //     }
+  //   });
+  // }
   
 }
 

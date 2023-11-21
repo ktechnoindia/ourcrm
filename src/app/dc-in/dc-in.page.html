@@ -33,7 +33,7 @@
 
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="voucherformat"  formControlName="voucherformat"  name="voucherformat">
+                <select class="select" [(ngModel)]="voucherformat"  formControlName="voucherformat"  name="voucherformat">
                   <option value="0" disabled selected>Voucher Formate</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -61,7 +61,7 @@
               </ion-col>
 
               <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="suppliertype"  formControlName="suppliertype"  name="supplier">
+                <select class="select" [(ngModel)]="suppliertype"  formControlName="suppliertype"  name="supplier">
                   <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
@@ -95,7 +95,7 @@
 
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table style="width:1500px;overflow-x:auto;">
+                <table style="width:1755px;overflow-x:auto;">
                   <tr>
                     <th style="width: 50px !important;">Sr.No.</th>
                     <th style="width: 100px !important;">BarCode</th>
@@ -107,7 +107,7 @@
                     <th style="width: 50px !important;">MRP</th>
                     <th style="width: 70px !important;">Basic Rate</th>
                     <th style="width: 70px !important;">Net Rate</th>
-                    <th style="width: 70px !important;">Gross Amount</th>
+                    <th style="width: 100px !important;">Gross Amount</th>
                     <th style="width: 50px !important;">GST</th>
                     <th style="width: 50px !important;">CGST</th>
                     <th style="width: 50px !important;">SGST</th>
@@ -144,8 +144,8 @@
                       <input [(ngModel)]="dcin.quantity" formControlName="quantity"  name="quantity" class="table_input" type="number">
 
                     </td>
-                    <td>
-                      <select class="select" [(ngModel)]="unitname" formControlName="unitname"  name="unit_name" >
+                    <td class="select-option">
+                      <select  [(ngModel)]="unitname" formControlName="unitname"  name="unit_name" >
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -164,14 +164,14 @@
                     <td>
                       <input [(ngModel)]="dcin.grossrate" formControlName="grossrate"  name="grossrate" class="table_input" type="number">
                     </td>
-                    <td>
-                      <ion-select interface="popover" [(ngModel)]="dcin.taxrate" formControlName="taxrate"  name="taxrate" id="taxrate">
-                        <ion-select-option value="">Select GST</ion-select-option>
+                    <td class="select-option">
+                      <select interface="popover" [(ngModel)]="dcin.taxrate" formControlName="taxrate"  name="taxrate" id="taxrate">
+                        <option value="0">Select GST</option>
                         <!-- Default option with value 0 -->
-                        <ion-select-option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
+                        <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
-                        </ion-select-option>
-                      </ion-select>
+                        </option>
+                      </select>
                     </td>
 
                     <td>

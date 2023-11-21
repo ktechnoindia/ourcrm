@@ -13,7 +13,7 @@ export interface salesstore {
   orderDate: string;
   orderNumber: string;
   ponumber:string;
-  gstin: number;
+  gstin:number;
   salePerson: number;
   payment: number;
 
@@ -55,7 +55,7 @@ grossrate:string;
   closingbalance: string;
   debit: string;
   credit: string;
-  
+  ttotal:number;
 }
 @Injectable({
   providedIn: 'root'

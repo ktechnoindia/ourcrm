@@ -32,7 +32,7 @@
           <form  [formGroup]="myform" (ngSubmit)="onSubmit(dcoutData)">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="voucherformat" name="voucherformat"  formControlName="voucherformat"  >
+                <select class="select" [(ngModel)]="voucherformat" name="voucherformat"  formControlName="voucherformat"  >
                   <option value="0" disabled selected>Voucher Formate</option> <!-- Default option -->
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -60,7 +60,7 @@
               </ion-col>
 
               <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
-                <select [(ngModel)]="suppliertype" name="supplier"   formControlName="suppliertype">
+                <select class="select" [(ngModel)]="suppliertype" name="supplier"   formControlName="suppliertype">
                   <option value="0">Supplier Name</option> <!-- Default option -->
                   <option value="2">Nirbahy</option>
                   <option value="3">Yogesh</option>
@@ -93,7 +93,7 @@
 
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table  style="width:1500px;overflow-x:auto;">
+                <table  style="width:1755px;overflow-x:auto;">
                   <tr>
                     <th style="width: 50px !important;">Sr.No.</th>
                     <th style="width: 100px !important;">BarCode</th>
@@ -124,14 +124,15 @@
                     <td>
                       <input [(ngModel)]="dcout.itemcode"    formControlName="itemcode" name="itemcode" class="table_input" type="text">
                     </td>
-                    <td>
-                      <ion-select ion-select interface="popover" [(ngModel)]="dcout.itemname"   formControlName="itemname" name="itemname" class="table_input"
+                    <td class="select-option">
+                      <select  ion-select interface="popover" [(ngModel)]="dcout.itemname"   formControlName="itemname" name="itemname" class="table_input"
                       aria-label="Default select example" id="itemname" class="table_select">
-                      <ion-select-option>Item 1</ion-select-option>
-                      <ion-select-option>Item 2</ion-select-option>
-                      <ion-select-option>Item 3</ion-select-option>
+                      <option value="0">Select Item</option>
+                      <option>Item 1</option>
+                      <option>Item 2</option>
+                      <option>Item 3</option>
 
-                    </ion-select>
+                    </select>
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.description"   formControlName="description" name="description" class="table_input" type="text">
@@ -140,8 +141,8 @@
                       <input [(ngModel)]="dcout.quantity"   formControlName="quantity" name="quantity" class="table_input" type="number">
 
                     </td>
-                    <td>
-                      <select class="select" [(ngModel)]="unitname"   formControlName="unitname"   name="unit_name$" >
+                    <td class="select-option">
+                      <select [(ngModel)]="unitname"   formControlName="unitname"   name="unit_name$" >
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -161,14 +162,14 @@
                     <td>
                       <input [(ngModel)]="dcout.grossrate"   formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
-                    <td>
-                      <ion-select interface="popover" [(ngModel)]="dcout.taxrate"   formControlName="taxrate" name="taxrate" id="taxrate">
-                        <ion-select-option value="">Select GST</ion-select-option>
+                    <td class="select-option">
+                      <select interface="popover" [(ngModel)]="dcout.taxrate"   formControlName="taxrate" name="taxrate" id="taxrate">
+                        <option value="0">Select GST</option>
                         <!-- Default option with value 0 -->
-                        <ion-select-option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
+                        <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
-                        </ion-select-option>
-                      </ion-select>
+                        </option>
+                      </select>
                     </td>
 
                     <td>

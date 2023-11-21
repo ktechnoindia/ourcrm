@@ -107,10 +107,17 @@ export class AddSalePage implements OnInit {
     totaltax: 0,
     total: 0,
   }];
-  ttotal!: number;
+  ttotal:  number = 0;
   myform: FormGroup;
   unitname$: any;
   taxrate$: any;
+
+  totalItemNo: number = 0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
 
   constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -169,6 +176,7 @@ export class AddSalePage implements OnInit {
       credit: [''],
 
       ttotal: [''],
+      
     })
   }
   onSubmit(salesData: any) {
@@ -222,6 +230,7 @@ export class AddSalePage implements OnInit {
       debit: this.myform.value.debit,
       credit: this.myform.value.credit,
       unitname$: this.myform.value.unitname$,
+      ttotal: this.myform.value.ttotal,
 
     };
     this.saleService.createsale(saledata, '', '').subscribe(
@@ -261,17 +270,33 @@ export class AddSalePage implements OnInit {
     };
     this.salesData.push(newRow);
   }
-  removeSales(index: number, row: Sales) {
+  calculateTotal(sales: Sales) {
+    sales.total = sales.totaltax + sales.grossrate;
+    this.calculateTotals();
+  }
+  removeSales(index: number, sales: Sales) {
     this.ttotal = this.ttotal - this.saleService.total;
     this.salesData.splice(index, 1);
   }
-  calculateTotalSum() {
-    let sum = 0;
-    for (const row of this.salesData) {
-      sum += this.saleService.total;
-    }
-    this.ttotal = sum;
+  calculateTotals(): void {
+    // Add your logic to calculate totals based on the salesData array
+    this.totalItemNo = this.salesData.length;
+
+    // Example calculation for total quantity and gross amount
+    this.totalQuantity = this.salesData.reduce((total, sale) => total + sale.quantity, 0);
+    this.totalGrossAmt = this.salesData.reduce((total, sale) => total + sale.grossrate, 0);
+
+    // Add similar calculations for other totals
   }
+  // calculateTotalSum() {
+  //   let sum = 0;
+  //   for (const sales of this.salesData) {
+  //     sum += sales.total;
+
+  //   }
+  //   this.ttotal = sum;
+    
+  // }
 
   // if (this.form.valid) {
   //   console.log('Selected Value' + this.form.value);
