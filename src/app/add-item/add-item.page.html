@@ -38,7 +38,7 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
-                  <select [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
+                  <select class="select" [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
                     <option value="0"> HSN</option> <!-- Default option with value 0 -->
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
@@ -49,7 +49,7 @@
               </ion-row>
               <ion-row style="margin-top: 4px;">
                 <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                  <select [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
+                  <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
                     <option value="0">Select Stock Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
@@ -59,7 +59,7 @@
 
 
                 <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                  <select [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
+                  <select class="select" [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
                     <option value="0">Select Item Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
@@ -68,7 +68,7 @@
                 </ion-col>
 
                 <ion-col size="12" size-lg="4" size-md="6" size-sm="6">
-                  <select [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$">
+                  <select class="select" [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$">
                     <option value="0">Select Unit Name</option>
                     <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                       {{ unitname.unitname }}
@@ -79,7 +79,7 @@
               <ion-row style="margin-top: 4px;">
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
+                  <select class="select" [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
                     <option value="0">Select Item Group</option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
@@ -90,7 +90,7 @@
 
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
-                  <select [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
+                  <select class="select" [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
                     <option value="0">Select GST Type</option> <!-- Default option with value 0 -->
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
@@ -147,7 +147,8 @@
                       <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                         <ion-row>
                           <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
-                          <select [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
+                          <select class="select" [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
+                            <option value=""> Select Attribute</option>
                             <option *ngFor="let attname of attname$ | async ;  let i = index">{{attname.attname}}
                             </option>
                           </select>

@@ -28,7 +28,7 @@
 
             <ion-row>
               <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
-                <select [(ngModel)]=" select_sales_person" formControlName="select_sales_person" name="execute">
+                <select class="select" [(ngModel)]=" select_sales_person" formControlName="select_sales_person" name="execute">
                   <option value="0">Search By Executive Name</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}

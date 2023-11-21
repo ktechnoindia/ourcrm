@@ -21,12 +21,9 @@
             </ion-col>
             
             <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
-              <select  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
-                <option value="0">---Select Parent Group---</option> <!-- Default option with value 0 --> 
-                <!-- <option value="1">1</option> -->
-                 <!--<option value="2">Ravi</option>
-                <option value="3">Nirbhay</option>
-                <option value="4">Abhishek</option> -->
+              <select class="select"  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
+                <option value="0">Select Parent Group</option> <!-- Default option with value 0 --> 
+               
                 <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                   {{ itemgroup.itemgroupname }}
                 </option>

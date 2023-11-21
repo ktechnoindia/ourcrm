@@ -73,7 +73,7 @@
 
             <ion-row>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <select name="country" formControlName="selectedCountry" [(ngModel)]="selectedCountry">
+                <select class="select" name="country" formControlName="selectedCountry" [(ngModel)]="selectedCountry">
                   <option value="">
                     --- Select Country ---
                   </option>
@@ -89,7 +89,7 @@
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedState" formControlName="selectedState" name="state">
+                <select class="select" [(ngModel)]="selectedState" formControlName="selectedState" name="state">
                   <option selected value="">--Select State--</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
                   <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -134,7 +134,7 @@
                 </div>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <select [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district">
+                <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district">
                   <option selected value=""> --Select City--</option>
                   <option value="Mumbai">Mumbai</option>
                   <option value="Delhi">Delhi</option>

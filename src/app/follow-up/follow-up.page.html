@@ -22,143 +22,149 @@
             </ion-row>
           </ion-card-header>
         </div>
-<form [formGroup]="myform" (ngSubmit)="onSubmit()">
-        <ion-row>
-          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-card style="height: 450px;">  
-              <ion-row class="headinglabel" style="margin: 15px;">
-                <ion-searchbar class="custom"></ion-searchbar>
-              </ion-row>
+        <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+          <ion-row>
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-card style="height: 450px;">
+                <ion-row class="headinglabel" style="margin: 15px;">
+                  <ion-searchbar class="custom"></ion-searchbar>
+                </ion-row>
+                <ion-row class="scroll-container">
+                  <div style="overflow-x:auto;height: 350px;border: 1px solid grey;">
+                    <table style="width: 1300px;overflow-x:auto;border: 1px solid grey; ">
+                      <tr>
+                        <th style="width: 50px;">SI NO.</th>
+                        <th style="width: 100px;">Date</th>
+                        <th style="width: 240px;">Company name</th>
+                        <th style="width: 140px;">Customer name</th>
+                        <th style="width: 140px;">Mobile Number</th>
+                        <th style="width: 100px;">City</th>
+                        <th style="width: 140px;">Email</th>
+                        <th style="width: 100px;">Next Follow Up</th>
+                        <th style="width: 200px;">Entered By</th>
+                        <th style="width: 70px;">Action</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>2023-10-01</td>
+                        <td>ABC Company Pvt. Ltd.</td>
+                        <td>Rajesh Yadav</td>
+                        <td>9876543210</td>
+                        <td>Mumbai</td>
+                        <td>rajesh@example.com</td>
+                        <td>2023-10-15</td>
+                        <td>Archana Gupta</td>
+                        <td>
+                          <ion-icon name="create-outline" size="small"></ion-icon>
+                          <ion-icon name="trash-outline" size="small"></ion-icon>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>2023-10-02</td>
+                        <td>XYZ Industries</td>
+                        <td>Jane Smith</td>
+                        <td>9876543210</td>
+                        <td>Delhi</td>
+                        <td>jane@example.com</td>
+                        <td>2023-10-20</td>
+                        <td>Archana Gupta</td>
+                        <td>
+                          <ion-icon name="create-outline" size="small"></ion-icon>
+                          <ion-icon name="trash-outline" size="small"></ion-icon>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>2023-10-03</td>
+                        <td>PQR Solutions</td>
+                        <td>Mike Johnson</td>
+                        <td>5551234567</td>
+                        <td>Bangalore</td>
+                        <td>mike@example.com</td>
+                        <td>2023-10-25</td>
+                        <td>Chandan Sharma</td>
+                        <td>
+                          <ion-icon name="create-outline" size="small"></ion-icon>
+                          <ion-icon name="trash-outline" size="small"></ion-icon>
+                        </td>
+                      </tr>
 
-              <div style="margin: 15px;overflow-x:auto;height: 400px;">
-                <table style="overflow-x:auto;width: 100%; ">
-                  <tr>
-                    <th style="width: 50px;">SI NO.</th>
-                    <th style="width: 100px;">Date</th>
-                    <th style="width: 140px;">Company name</th>
-                    <th style="width: 140px;">Customer name</th>
-                    <th style="width: 140px;">Mobile Number</th>
-                    <th style="width: 100px;">City</th>
-                    <th style="width: 140px;">Email</th>
-                    <th style="width: 100px;">Next Follow Up</th>
-                    <th style="width: 100px;">Entered By</th>
-                    <th style="width: 300px;">Action</th>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>2023-10-01</td>
-                    <td>ABC Company Pvt. Ltd.</td>
-                    <td>Rajesh Yadav</td>
-                    <td>9876543210</td>
-                    <td>Mumbai</td>
-                    <td>rajesh@example.com</td>
-                    <td>2023-10-15</td>
-                    <td>Archana Gupta</td>
-                    <td>
-                      <ion-button class="custom-secondary"> <ion-icon name="create-outline" size="small"></ion-icon></ion-button>
-                      <ion-button class="custom-tertiary"> <ion-icon name="trash-outline" size="small"></ion-icon></ion-button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>2023-10-02</td>
-                    <td>XYZ Industries</td>
-                    <td>Jane Smith</td>
-                    <td>9876543210</td>
-                    <td>Delhi</td>
-                    <td>jane@example.com</td>
-                    <td>2023-10-20</td>
-                    <td>Archana Gupta</td>
-                    <td>
-                      <ion-button class="custom-secondary"> <ion-icon name="create-outline" size="small"></ion-icon></ion-button>
-                      <ion-button class="custom-tertiary"> <ion-icon name="trash-outline" size="small"></ion-icon></ion-button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>2023-10-03</td>
-                    <td>PQR Solutions</td>
-                    <td>Mike Johnson</td>
-                    <td>5551234567</td>
-                    <td>Bangalore</td>
-                    <td>mike@example.com</td>
-                    <td>2023-10-25</td>
-                    <td>Chandan Sharma</td>
-                    <td>
-                      <ion-button class="custom-secondary"> <ion-icon name="create-outline" size="small"></ion-icon></ion-button>
-                      <ion-button class="custom-tertiary"> <ion-icon name="trash-outline" size="small"></ion-icon></ion-button>
-                    </td>
-                  </tr>
+                    </table>
+                  </div>
+                </ion-row>
+              </ion-card>
+            </ion-col>
 
-                </table>
-              </div>
-            </ion-card>
-          </ion-col>
-
-          <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
-            <ion-card style="height: 450px;">
-              <div style="margin: 15px;overflow-x:auto; height: 200px;">
+            <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-card style="height: 450px;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <table style="overflow-x:auto;width: 100%;">
-                  <tr>
-                    <th>SR. No.</th>
-                    <th>Date & Time</th>
-                    <th>Remark</th>
-                    <th>Next Follow-Up Date</th>
-                    <th>Entered By</th>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>2023-10-15 09:30 AM</td>
-                    <td>Followed up with the client</td>
-                    <td>2023-10-22</td>
-                    <td>John Doe</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>2023-10-16 02:15 PM</td>
-                    <td>Scheduled a meeting</td>
-                    <td>2023-10-23</td>
-                    <td>Jane Smith</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>2023-10-17 11:45 AM</td>
-                    <td>Sent an email</td>
-                    <td>2023-10-24</td>
-                    <td>Mike Johnson</td>
-                  </tr>
-                  
-                </table>
-              </div>
-              <div style="margin: 15px;border-top: solid 2px grey;">
-                <ion-row>
-                 
-                  <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                    <ion-row>
-                      <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate" name="nextfollowupDate" type="datetime-local" label="Next Follow-Up Date :"
-                        label-placement="floating" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                  <ion-col size="6" size-lg="8" size-md="8" size-sm="8">
-                    <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating" fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
-                  </ion-col>
+                <ion-row class="scroll-container" style="overflow-x:auto;max-height: 250px !important;">
+                  <div style="overflow-x:auto;max-height: 200px !important;">
+                    <table style="overflow-x:auto; width: 660px;">
+                      <tr>
+                        <th style="width: 60px;">SR. No.</th>
+                        <th style="width: 100px !important;">Date & Time</th>
+                        <th style="width: 200px !important;">Remark</th>
+                        <th style="width: 100px;">Next Follow-Up Date</th>
+                        <th style="width: 100px;">Entered By</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>2023-10-15 09:30 AM</td>
+                        <td>Followed up with the client</td>
+                        <td>2023-10-22</td>
+                        <td>John Doe</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>2023-10-16 02:15 PM</td>
+                        <td>Scheduled a meeting</td>
+                        <td>2023-10-23</td>
+                        <td>Jane Smith</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>2023-10-17 11:45 AM</td>
+                        <td>Sent an email</td>
+                        <td>2023-10-24</td>
+                        <td>Mike Johnson</td>
+                      </tr>
+
+                    </table>
+                  </div>
                 </ion-row>
-                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                  <ion-button id="open-loading">New</ion-button>
-                  <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
-                    [duration]="1000"></ion-loading>
-                  <ion-button type="submit" id="open-loading1">Save</ion-button>
-                  <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Transfering..."
-                    [duration]="1000"></ion-loading>
-                </ion-row>
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </form>
+
+                <div style="margin: 15px;border-top: solid 2px grey;">
+                  <ion-row>
+
+                    <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                      <ion-row>
+                        <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate"
+                          name="nextfollowupDate" type="datetime-local" label="Next Follow-Up Date :"
+                          label-placement="floating" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="6" size-lg="8" size-md="8" size-sm="8">
+                      <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
+                        fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                    <ion-button id="open-loading">New</ion-button>
+                    <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                      [duration]="1000"></ion-loading>
+                    <ion-button type="submit" id="open-loading1">Save</ion-button>
+                    <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Transfering..."
+                      [duration]="1000"></ion-loading>
+                  </ion-row>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </form>
       </ion-card-content>
     </ion-card>
   </div>
