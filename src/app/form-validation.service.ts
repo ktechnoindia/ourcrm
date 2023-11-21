@@ -41,16 +41,35 @@ export class FormValidationService {
   showHideAutoLoader() {
     
     this.loadingController.create({
-      message:"",
-      duration: 1000
+      message:"Saveing",
+      duration: 500,
+      spinner:'bubbles'
     }).then((res) => {
       res.present();
 
       res.onDidDismiss().then((dis) => {
-        console.log('Loading dismissed! after 2 Seconds', dis);
+        console.log(dis);
       });
     });
 
   }
+
+  showSaveLoader() {
+    
+    this.loadingController.create({
+      message:"s",
+      duration: 500,
+      spinner:'crescent'
+    }).then((res) => {
+      res.present();
+
+      res.onDidDismiss().then((dis) => {
+        console.log(dis);
+      });
+    });
+
+  }
+ 
+  
  
 }

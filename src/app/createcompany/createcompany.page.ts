@@ -198,16 +198,27 @@ export class CreatecompanyPage implements OnInit {
     this.createcompany.createCompany(companydata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-       this.formService.showSuccessAlert();
+        this.formService.showSaveLoader()
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+        }, 1000);
+      
+      
       },
       (error: any) => {
         console.error('POST request failed', error);
-        this.formService.showFailedAlert();
+        this.formService.showSaveLoader
+        ()
+        setTimeout(() => {
+          this.formService.showFailedAlert();
+        }, 1000);
+        
+       
       }
     );
     setTimeout(() => {
       this.form.reset();
-    }, 1000);
+    }, 3000);
     }else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
