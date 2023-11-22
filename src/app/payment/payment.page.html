@@ -1,13 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>payment</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">payment</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header >
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Payment</ion-title>
+              <div  class="custom-primary">
+                <ion-button size="small" [routerLink]="['/paymenttransaction_report']" id="open-loading5">View Payemnt Transaction</ion-button>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..." [duration]="1000"></ion-loading>
+
+              </div>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
