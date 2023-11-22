@@ -174,7 +174,8 @@
                       <ion-select-option>Item 3</ion-select-option>
 
                     </ion-select> -->
-                    <select class="select-option" style="width: 100px;outline: none;border: none;" [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
+
+                    <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
                       <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.itemDescid">
                         {{ itemname.itemDesc }}
