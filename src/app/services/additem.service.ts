@@ -9,6 +9,14 @@ export interface item {
   itemDesc: string;
   itemCode: string;
   hsnname: number;
+  selectHSN:number;
+  selectItem:number;
+  selectStock:number;
+  selectPrimaryUnit:number;
+  selectunitname:number;
+
+  itemtype:string;
+  stocktype:string;
   stocktypename: number;
   itemtypename: number;
   unitname: string;
@@ -38,6 +46,7 @@ export interface item {
   hsnname$: any;
   itemtypename$: any;
   stocktypename$: any;
+  
 
 }
 
@@ -52,6 +61,6 @@ export class AdditemService {
   }
   fetchallItem(companyid: string, key: string, user: string): Observable<any> {
     console.log('companyyy ' + companyid);
-    return this.httpclient.get(environment.apiactionurl + environment.fetchallitem + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallItem + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
 }
