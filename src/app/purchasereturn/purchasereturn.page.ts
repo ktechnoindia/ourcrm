@@ -45,7 +45,7 @@ export class PurchasereturnPage implements OnInit {
   frombill:number=0;
   payment: number = 0;
   supplier: number = 0;
-  gstin: string = '';
+  gstin: number = 0;
   exicutive:number=0;
 
    //table data
