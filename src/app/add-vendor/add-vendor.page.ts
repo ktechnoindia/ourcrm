@@ -203,14 +203,17 @@ export class AddVendorPage implements OnInit {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
-          }, 2000);
+          }, 1000);
          
-          this.formService.showHideAutoLoader()
+          this.formService.showSaveLoader()
           this.myform.reset()
         },
         (error: any) => {
           console.error('POST request failed', error);
-          this.formService.showFailedAlert();
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
         }
       );
      

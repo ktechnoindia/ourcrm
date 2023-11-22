@@ -18,7 +18,7 @@ export interface salereturnstore {
   billformate:number;
   custname: number;
   // unitname$: number;
-  ponumber:string;
+  // ponumber:string;
   refrence:string;
   refdate:string;
 

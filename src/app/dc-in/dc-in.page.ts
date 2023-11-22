@@ -46,7 +46,7 @@ export class DcInPage implements OnInit {
   suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate: string = '';
-  ponumber: string = '';
+  // ponumber: string = '';
 
   //table data
   barcode: string = '';
@@ -120,7 +120,7 @@ export class DcInPage implements OnInit {
       suppliertype: [''],
       referenceNumber: [''],
       refdate: [''],
-      ponumber: [''],
+      // ponumber: [''],
 
       //table
       barcode: [''],
@@ -175,7 +175,7 @@ export class DcInPage implements OnInit {
       suppliertype: this.myform.value.suppliertype,
       referenceNumber: this.myform.value.referenceNumber,
       refdate: this.myform.value.refdate,
-      ponumber: this.myform.value.ponumber,
+      // ponumber: this.myform.value.ponumber,
 
       barcode: this.myform.value.barcode,
       itemcode: this.myform.value.itemcode,

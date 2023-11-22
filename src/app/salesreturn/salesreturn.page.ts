@@ -109,7 +109,7 @@ export class SalesreturnPage implements OnInit {
   ttotal!: number;
   unitname$: any;
   taxrate$: any;
-  ponumber:string='';
+  // ponumber:string='';
   refrence:string='';
   refdate:string='';
   myform: FormGroup;
@@ -129,7 +129,7 @@ export class SalesreturnPage implements OnInit {
       refdate: [''],
       orderDate: [''],
       orderNumber: [''],
-      ponumber: [''],
+      // ponumber: [''],
       gstin: [''],
       salePerson: [''],
       payment: [''],
@@ -190,7 +190,7 @@ export class SalesreturnPage implements OnInit {
       custcode:this.myform.value.custcode,
       custname:this.myform.value.custname,
       // unitname$:this.myform.value.unitname$,
-      ponumber:this.myform.value.ponumber,
+      // ponumber:this.myform.value.ponumber,
       refdate:this.myform.value.refdate,
       refrence:this.myform.value.refrence,
       frombill:this.myform.value.frombill,

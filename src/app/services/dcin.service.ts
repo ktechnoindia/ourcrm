@@ -11,7 +11,7 @@ export interface dcinstore {
   suppliertype: number;
   referenceNumber: number;
   refdate:string;
-  ponumber:string;
+  // ponumber:string;
 //table
   barcode:string;
 itemcode:string;

@@ -89,7 +89,7 @@ billformate:number=0;
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-
+  executivename:number=0;
   purchaseData: Purchase[] = [{
     barcode: '',
     itemcode: 0,
@@ -136,8 +136,8 @@ billformate:number=0;
       ponumber: [''],
       gstin:  [''],
       payment:  [''],
-      executive$: ['', Validators.required],
-
+      // executive$: ['', Validators.required],
+      executivename:[''],
       
        //table
        barcode: [''],
