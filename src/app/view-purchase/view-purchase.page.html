@@ -68,10 +68,12 @@
                       <th style="width: 70px !important;">Refrence Date</th>
                       <th style="width: 70px !important;">Purchase Order Date</th>
                       <th style="width: 70px !important;">Purchase Order No.</th>
-                      <th style="width: 70px !important;">PO Number</th>
+                    
                       <th style="width: 70px !important;">GSTIN</th>
                       <th style="width: 70px !important;">Exicutive Name</th>
                       <th style="width: 70px !important;">Payment Mode</th>
+                      <th style="width: 70px !important;">Delivery Date</th>
+                      <th style="width: 70px !important;">Delivery Place</th>
                       <th style="width: 100px !important;">BarCode</th>
                       <th style="width: 70px !important;">Item Code</th>
                       <th style="width: 150px !important;">Item Name</th>
@@ -89,6 +91,8 @@
                       <th style="width: 70px !important;">Discount %</th>
                       <th style="width: 100px !important;">Discount Amount</th>
                       <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Pre-Tax</th>
+                      <th style="width: 70px !important;">Post-Tax</th>
                       <th style="width: 70px !important;">Net Amount</th>
                       <th style="width: 70px !important;">Action</th>
                     </tr>
@@ -104,10 +108,12 @@
                       <td>{{purchase.refdate}}</td>
                       <td>{{purchase.orderDate}}</td>
                       <td>{{purchase.orderNumber}}</td>
-                      <td>{{purchase.ponumber}}</td>
+                     
                       <td>{{purchase.gstin}}</td>
                       <td>{{purchase.payment}}</td>
                       <td>{{purchase.executive}}</td>
+                      <td>{{purchase.deliverydate}}</td>
+                      <td>{{purchase.deliveryplace}}</td>
                       <td>{{purchase.barcode}}</td>
                       <td>{{purchase.itemcode}}</td>
                       <td>{{purchase.itemname}}</td>
@@ -125,13 +131,15 @@
                       <td>{{purchase.discount}}</td>
                       <td>{{purchase.discountamt}}</td>
                       <td>{{purchase.totaltax}}</td>
+                      <td>{{purchase.pretax}}</td>
+                      <td>{{purchase.posttax}}</td>
                       <td>{{purchase.total}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
                         <ion-icon name="trash"></ion-icon>
                       </td>
                     </tr>
-                 
+
 
 
 

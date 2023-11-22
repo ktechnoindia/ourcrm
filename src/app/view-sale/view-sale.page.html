@@ -67,10 +67,11 @@
                       <th style="width: 70px !important;">Refrence Date</th>
                       <th style="width: 70px !important;">Order No.</th>
                       <th style="width: 70px !important;">Order Date</th>
-                      <th style="width: 70px !important;">PO Number</th>
                       <th style="width: 70px !important;">GSTIN</th>
                       <th style="width: 70px !important;">Sales Person Name</th>
                       <th style="width: 70px !important;">Payment Mode</th>
+                      <th style="width: 70px !important;">Delivery Date</th>
+                      <th style="width: 70px !important;">Delivery Place</th>
                       <th style="width: 100px !important;">BarCode</th>
                       <th style="width: 70px !important;">Item Code</th>
                       <th style="width: 150px !important;">Item Name</th>
@@ -88,6 +89,8 @@
                       <th style="width: 70px !important;">Discount %</th>
                       <th style="width: 100px !important;">Discount Amount</th>
                       <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Pre-Tax</th>
+                      <th style="width: 70px !important;">Post-Tax</th>
                       <th style="width: 70px !important;">Net Amount</th>
                       <th style="width: 70px !important;">Action</th>
                     </tr>
@@ -102,11 +105,12 @@
                       <td>{{sales.refdate}}</td>
                       <td>{{sales.orderDate}}</td>
                       <td>{{sales.orderNumber}}</td>
-                      <td>{{sales.ponumber}}</td>
                       <td>{{sales.gstin}}</td>
                       <td>{{sales.salePerson}}</td>
                       <td>{{sales.payment}}</td>
-                      <td>{{sales.barcode}}</td>
+                      <td>{{sales.deliverydate}}</td>
+                      <td>{{sales.deliveryplace}}</td>
+                      <td>{{sales.barcode }}</td>
                       <td>{{sales.itemcode}}</td>
                       <td>{{sales.itemname}}</td>
                       <td>{{sales.description}}</td>
@@ -123,6 +127,8 @@
                       <td>{{sales.discount}}</td>
                       <td>{{sales.discountamt}}</td>
                       <td>{{sales.totaltax}}</td>
+                      <td>{{sales.pretax}}</td>
+                      <td>{{sales.posttax}}</td>
                       <td>{{sales.total}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
