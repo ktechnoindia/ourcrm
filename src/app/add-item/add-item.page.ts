@@ -145,9 +145,18 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       itemDesc: this.myform.value.itemDesc,
       itemCode: this.myform.value.itemCode,
       hsnname: this.myform.value.hsnname,
+      selectHSN:1,
+      unitname:'x',
+      selectItem:1,
+      selectStock:1,
+      selectPrimaryUnit:1,
+      selectunitname:1,
+      itemtype:'',
+      stocktype:'',
+      selectGstservice:1,
       stocktypename: this.myform.value.stocktypename,
       itemtypename: this.myform.value.itemtypename,
-      unitname:this.myform.value.unitname,
+     
       selectItemGroup: this.myform.value.selectItemGroup,
       selectGst: this.myform.value.selectGst,
       openingbalance: this.myform.value.openingbalance,
@@ -168,7 +177,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr7: this.myform.value.attr7,
       attr8: this.myform.value.attr8,
      
-      selectGstservice: this.myform.value.selectGstservice,
+   
       unitname$: this.myform.value.unitname,
       hsnname$: this.myform.value.hsnname,
       stocktypename$: this.myform.value.stocktypename,
