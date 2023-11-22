@@ -56,22 +56,24 @@
               </ion-row>
               <ion-row style="margin: 0 auto; width: 100%;">
                 <div class="scroll-container" style="overflow-x:auto; width: 100%;">
-                  <table style="width:2555px;">
+                  <table style="width:3055px;">
                     <tr>
                       <th style="width: 50px !important;">Sr.No.</th>
                       <th style="width: 70px !important;">Bill Formate</th>
-                      <th style="width: 70px !important;">Billing No.</th>
-                      <th style="width: 70px !important;">Billing Date</th>
-                      <th style="width: 70px !important;">Supplier Code</th>
-                      <th style="width: 70px !important;">Supplier Name</th>
-                      <th style="width: 70px !important;">Refrence No.</th>
-                      <th style="width: 70px !important;">Refrence Date</th>
-                      <th style="width: 70px !important;">Purchase Order No.</th>
-                      <th style="width: 70px !important;">Purchase Order Date</th>
-
-                      <th style="width: 70px !important;">GSTIN</th>
+                      <th style="width: 100px !important;">Billing No.</th>
+                      <th style="width: 100px !important;">Billing Date</th>
+                      <th style="width: 100px !important;">From Billing NO.</th>
+                      <th style="width: 100px !important;">Supplier Code</th>
+                      <th style="width: 100px !important;">Supplier Name</th>
+                      <th style="width: 100px !important;">Refrence No.</th>
+                      <th style="width: 100px !important;">Refrence Date</th>
+                      <th style="width: 100px !important;">Purchase Order No.</th>
+                      <th style="width: 100px !important;">Purchase Order Date</th>
+                      <th style="width: 100px !important;">GSTIN</th>
                       <th style="width: 70px !important;">Exicutive Name</th>
                       <th style="width: 70px !important;">Payment Mode</th>
+                      <th style="width: 70px !important;">Delivery Date</th>
+                      <th style="width: 100px !important;">Delivery Place</th>
                       <th style="width: 100px !important;">BarCode</th>
                       <th style="width: 70px !important;">Item Code</th>
                       <th style="width: 150px !important;">Item Name</th>
@@ -89,6 +91,8 @@
                       <th style="width: 70px !important;">Discount %</th>
                       <th style="width: 100px !important;">Discount Amount</th>
                       <th style="width: 70px !important;">Tax Amount</th>
+                      <th style="width: 70px !important;">Pre-Tax</th>
+                      <th style="width: 70px !important;">Post-Tax</th>
                       <th style="width: 70px !important;">Net Amount</th>
                       <th style="width: 70px !important;">Action</th>
                     </tr>
@@ -98,16 +102,18 @@
                       <td>{{purchasereturn.billformate}}</td>
                       <td>{{purchasereturn.billNumber}}</td>
                       <td>{{purchasereturn.billDate}}</td>
+                      <td>{{purchasereturn.frombill}}</td>
                       <td>{{purchasereturn.vendcode}}</td>
                       <td>{{purchasereturn.supplier}}</td>
                       <td>{{purchasereturn.refrence}}</td>
                       <td>{{purchasereturn.refdate}}</td>
                       <td>{{purchasereturn.orderNumber}}</td>
                       <td>{{purchasereturn.orderDate}}</td>
-
                       <td>{{purchasereturn.gstin}}</td>
                       <td>{{purchasereturn.exicutive}}</td>
                       <td>{{purchasereturn.payment}}</td>
+                      <td>{{purchasereturn.deliverydate}}</td>
+                      <td>{{purchasereturn.deliveryplace}}</td>
                       <td>{{purchasereturn.barcode}}</td>
                       <td>{{purchasereturn.itemcode}}</td>
                       <td>{{purchasereturn.itemname}} </td>
@@ -125,6 +131,8 @@
                       <td>{{purchasereturn.discount}}</td>
                       <td>{{purchasereturn.discountamt}}</td>
                       <td>{{purchasereturn.totaltax}}</td>
+                      <td>{{purchasereturn.pretax}}</td>
+                      <td>{{purchasereturn.posttax}}</td>
                       <td>{{purchasereturn.total}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>

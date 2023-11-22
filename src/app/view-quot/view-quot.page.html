@@ -47,6 +47,9 @@
                   <th style="width: 70px !important;">Customer Name</th>
                   <th style="width: 70px !important;">Refrence No.</th>
                   <th style="width: 70px !important;">Refrence Date</th>
+                  <th style="width: 70px !important;">Delivery Date</th>
+                  <th style="width: 70px !important;">Delivery Place</th>
+
                   <th style="width: 100px !important;">BarCode</th>
                   <th style="width: 70px !important;">Item Code</th>
                   <th style="width: 150px !important;">Item Name</th>
@@ -64,6 +67,8 @@
                   <th style="width: 70px !important;">Discount %</th>
                   <th style="width: 100px !important;">Discount Amount</th>
                   <th style="width: 70px !important;">Tax Amount</th>
+                  <th style="width: 70px !important;">Pre-Tax</th>
+                  <th style="width: 70px !important;">Post-Tax</th>
                   <th style="width: 70px !important;">Net Amount</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
@@ -76,6 +81,9 @@
                   <td>{{quote.custname}}</td>
                   <td>{{quote.refrence}}</td>
                   <td>{{quote.refdate}}</td>
+                  <td>{{quote.deliverydate}}</td>
+                  <td>{{quote.deliveryplace}}</td>
+
                   <td>{{quote.barcode}}</td>
                   <td>{{quote.itemcode}}</td>
                   <td>{{quote.itemname}}</td>
@@ -93,6 +101,8 @@
                   <td>{{quote.discount}}</td>
                   <td>{{quote.discountamt}}</td>
                   <td>{{quote.totaltax}}</td>
+                  <td>{{quote.pretax}}</td>
+                  <td>{{quote.posttax}}</td>
                   <td>{{quote.total}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>

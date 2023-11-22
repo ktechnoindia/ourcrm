@@ -148,7 +148,7 @@
                         <ion-row>
                           <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
                           <select class="select" [(ngModel)]="selectedAttribute" (ionChange)="onAttributeChange()">
-                            <option value=""> Select Attribute</option>
+                            <option value="0"> Select Attribute</option>
                             <option *ngFor="let attname of attname$ | async ;  let i = index">{{attname.attname}}
                             </option>
                           </select>

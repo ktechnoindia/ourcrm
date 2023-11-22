@@ -65,7 +65,9 @@
                   <th style="width: 70px !important;">Supplier Name</th>
                   <th style="width: 70px !important;">Refrence No.</th>
                   <th style="width: 70px !important;">Refrence Date</th>
-                  <th style="width: 70px !important;">PO Number</th>
+                  <th style="width: 70px !important;">Delivery Date</th>
+                  <th style="width: 70px !important;">Delivery Place</th>
+
                   <th style="width: 100px !important;">BarCode</th>
                   <th style="width: 70px !important;">Item Code</th>
                   <th style="width: 150px !important;">Item Name</th>
@@ -83,6 +85,8 @@
                   <th style="width: 70px !important;">Discount %</th>
                   <th style="width: 100px !important;">Discount Amount</th>
                   <th style="width: 70px !important;">Tax Amount</th>
+                  <th style="width: 70px !important;">Pre-Tax</th>
+                  <th style="width: 70px !important;">Post-Tax</th>
                   <th style="width: 70px !important;">Net Amount</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
@@ -95,7 +99,8 @@
                   <td>{{dcin.suppliertype}}</td>
                   <td>{{dcin.referenceNumber}}</td>
                   <td>{{dcin.refdate}}</td>
-                  <td>{{dcin.ponumber}}</td>
+                  <td>{{dcin.deliverydate}}</td>
+                  <td>{{dcin.deliveryplace}}</td>
                   <td>{{dcin.barcode}}</td>
                   <td>{{dcin.itemcode}}</td>
                   <td>{{dcin.itemname}}</td>
@@ -113,6 +118,8 @@
                   <td>{{dcin.discount}}</td>
                   <td>{{dcin.discountamt}}</td>
                   <td>{{dcin.totaltax}}</td>
+                  <td>{{dcin.pretax}}</td>
+                  <td>{{dcin.posttax}}</td>
                   <td>{{dcin.total}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>

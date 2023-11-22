@@ -65,7 +65,8 @@
                   <th style="width: 70px !important;">Supplier Name</th>
                   <th style="width: 70px !important;">Refrence No.</th>
                   <th style="width: 70px !important;">Refrence Date</th>
-                  <th style="width: 70px !important;">PO Number</th>
+                  <th style="width: 70px !important;">Delivery Date</th>
+                  <th style="width: 70px !important;">Delivery Place</th>
                   <th style="width: 100px !important;">BarCode</th>
                   <th style="width: 70px !important;">Item Code</th>
                   <th style="width: 150px !important;">Item Name</th>
@@ -83,6 +84,8 @@
                   <th style="width: 70px !important;">Discount %</th>
                   <th style="width: 100px !important;">Discount Amount</th>
                   <th style="width: 70px !important;">Tax Amount</th>
+                  <th style="width: 70px !important;">Pre-Tax</th>
+                  <th style="width: 70px !important;">Post-Tax</th>
                   <th style="width: 70px !important;">Net Amount</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
@@ -95,7 +98,8 @@
                   <td> {{dcout.suppliertype}}</td>
                   <td>{{dcout.referenceNumber}}</td>
                   <td>{{dcout.refdate}}</td>
-                  <td>{{dcout.ponumber}}</td>
+                  <td>{{dcout.deliverydate}}</td>
+                  <td>{{dcout.deliveryplace}}</td>
                   <td>{{dcout.barcode}}</td>
                   <td>{{dcout.itemcode}}</td>
                   <td>{{dcout.itemname}}</td>
@@ -113,6 +117,8 @@
                   <td>{{dcout.discount}}</td>
                   <td>{{dcout.discountamt}}</td>
                   <td>{{dcout.totaltax}}</td>
+                  <td>{{dcout.pretax}}</td>
+                  <td>{{dcout.posttax}}</td>
                   <td>{{dcout.total}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
