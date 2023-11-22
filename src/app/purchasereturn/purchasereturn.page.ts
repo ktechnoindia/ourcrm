@@ -9,6 +9,7 @@ import { quotestore } from '../services/quotation.service';
 import { purchasestore } from '../services/purchase.service';
 import { ExecutiveService } from '../services/executive.service';
 import { PurchasereturnService,purchasereturnstore } from '../services/purchasereturn.service';
+import { AdditemService } from '../services/additem.service';
 
 interface Purchase {
   barcode: string;
@@ -116,11 +117,13 @@ export class PurchasereturnPage implements OnInit {
   executive$: any;
   myform: FormGroup;
   purchaseService: any;
+  itemnames$: any;
   
-  constructor(private formBuilder: FormBuilder,private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private purchasereturnService:PurchasereturnService) { 
+  constructor(private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private purchasereturnService:PurchasereturnService) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
+    this.itemnames$ = this.itemService.getAllItems();
 
     this.myform = this.formBuilder.group({
       billformate: [''],

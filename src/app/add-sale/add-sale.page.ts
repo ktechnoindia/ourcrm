@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { SalesService, salesstore } from '../services/sales.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
+import { AdditemService } from '../services/additem.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -118,10 +119,13 @@ export class AddSalePage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
+  itemnames$: any;
 
-  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
+  constructor(private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.itemnames$ = this.itemService.getAllItems();
+
 
     this.myform = this.formBuilder.group({
       billformate: [''],

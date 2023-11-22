@@ -7,6 +7,8 @@ import { QuotationService, quotestore } from '../services/quotation.service';
 import { NgForm } from '@angular/forms';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
+import { AdditemService } from '../services/additem.service';
+import { CustomerService } from '../services/customer.service';
 interface Quote {
   barcode: string;
   itemcode: number;
@@ -115,9 +117,14 @@ export class AddQuotPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  constructor(private formBuilder: FormBuilder,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
+  itemnames$: any;
+  customer$: any;
+  constructor(private formBuilder: FormBuilder,private customerService:CustomerService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.itemnames$ = this.itemService.getAllItems();
+    this.customer$ = this.customerService.getCustomer(1);
+
 
     this.myform = this.formBuilder.group({
       billformate:[''],

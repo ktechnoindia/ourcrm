@@ -55,4 +55,7 @@ export class CustomerService {
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apiactionurl+environment.fetchallcust+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
+  getCustomer(companyid:number): Observable<any> {
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallcust);
+  }
 }

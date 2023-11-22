@@ -174,7 +174,13 @@
                       <input [(ngModel)]="sales.itemcode" formControlName="itemcode" name="itemcode" class="table_input" type="number">
                     </td>
                     <td >
-                      <input  [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname"  class="table_input" type="number">
+                      <!-- <input  [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname"  class="table_input" type="number"> -->
+                      <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
+                        <option value="0">Item Name</option><!-- Default option -->
+                        <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.itemDescid">
+                          {{ itemname.itemDesc }}
+                        </option>
+                      </select>
                     </td>
 
                       <!-- <ion-select ion-select interface="popover" [(ngModel)]="sales.itemname" formControlName="itemname" name="itemname" class="table_input"
@@ -184,6 +190,7 @@
                       <ion-select-option>Item 3</ion-select-option>
 
                     </ion-select> -->
+                    
                    
                     <td>
                       <input [(ngModel)]="sales.description" formControlName="description" name="description" class="table_input" type="text">

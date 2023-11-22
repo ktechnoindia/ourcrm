@@ -86,4 +86,9 @@ export interface vend{
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apiactionurl+environment.fetchallvend+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
+
+   
+  getvendor(): Observable<any> {
+    return this.httpclient.get(environment.apibaseurl+environment.fetchallvend);
+  }
   }

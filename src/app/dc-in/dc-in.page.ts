@@ -10,6 +10,8 @@ import { FormValidationService } from '../form-validation.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { NgForm } from '@angular/forms';
+import { AdditemService } from '../services/additem.service';
+import { VendorService } from '../services/vendor.service';
 interface Dcin {
   barcode: string;
   itemcode: number;
@@ -107,10 +109,15 @@ export class DcInPage implements OnInit {
   taxrate$: any;
   ttotal!: number;
   myform: FormGroup;
+  itemnames$: any;
 
-  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
+  constructor(private formBuilder: FormBuilder,private vendorService:VendorService,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.itemnames$ = this.itemService.getAllItems();
+        this.itemnames$ = this.itemService.getAllItems();
+
+
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],

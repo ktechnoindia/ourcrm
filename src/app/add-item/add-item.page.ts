@@ -77,6 +77,7 @@ export class AddItemPage implements OnInit {
 
 
   attributes: string[] = [];
+  itemname$: Observable<any>;
   
 constructor(private groupService:AddgroupService, private itemtype1:ItemtypeService,private formService:FormValidationService, private router: Router, private stocktype1:StocktypeService,  private itemService:AdditemService,private formBuilder:FormBuilder,private toastCtrl: ToastController,private gstsrvs:GsttypeService,private unittype:UnitnameService,private hsnservices:HsnService,private attname:AddattributeService) {   
      this.selectGst$=this.gstsrvs.getgsttype();
@@ -87,6 +88,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
      this.itemtypename$=this.itemtype1.getItemTypes(1);
      this.selectedAttribute = 'default value';
      this.attname$=this.attname.getattribute(1);
+     this.itemname$=this.itemService.getAllItems();
 
      this.myform = this.formBuilder.group({
       itemCode: ['',[Validators.required]],

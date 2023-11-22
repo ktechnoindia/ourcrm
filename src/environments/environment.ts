@@ -22,8 +22,7 @@ export const environment = {
   fetchstocktype: 'getStockTypes',
   addcust: 'customer',
   addvend: 'vendor',
-  //fetchexecutive:'getExecutives',
-  // fetchcustomertype:'getCustomertypes',
+  
   addlead: 'lead',
   addfollowup: 'followup',
   addledger: 'saveLedger',
@@ -71,6 +70,7 @@ export const environment = {
   fetchallsalesreturn:'get_sale_return',
   fetchallpurchasereturn:'get_purchase_return',
   fetchallItem:'get_all_items',
+ 
 };
 
 

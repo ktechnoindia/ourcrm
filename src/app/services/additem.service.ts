@@ -63,4 +63,8 @@ export class AdditemService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallItem + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
+   
+  getAllItems(): Observable<any> {
+    return this.httpclient.get(environment.apiactionurl+environment.fetchallItem);
+  }
 }

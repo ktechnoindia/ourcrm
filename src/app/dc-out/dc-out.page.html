@@ -125,13 +125,19 @@
                       <input [(ngModel)]="dcout.itemcode"    formControlName="itemcode" name="itemcode" class="table_input" type="text">
                     </td>
                     <td class="select-option">
-                      <select  ion-select interface="popover" [(ngModel)]="dcout.itemname"   formControlName="itemname" name="itemname" class="table_input"
+                      <!-- <select  ion-select interface="popover" [(ngModel)]="dcout.itemname"   formControlName="itemname" name="itemname" class="table_input"
                       aria-label="Default select example" id="itemname" class="table_select">
                       <option value="0">Select Item</option>
                       <option>Item 1</option>
                       <option>Item 2</option>
                       <option>Item 3</option>
 
+                    </select> -->
+                    <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
+                      <option value="0">Item Name</option><!-- Default option -->
+                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.itemDescid">
+                        {{ itemname.itemDesc }}
+                      </option>
                     </select>
                     </td>
                     <td>

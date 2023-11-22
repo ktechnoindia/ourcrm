@@ -62,14 +62,20 @@
                 </ion-row>
               </ion-col>
               <ion-col  size-lg="4" size-md="2" size-sm="6" size="6">
-                <select  class="select" [(ngModel)]="custname" formControlName="custname"  name="customer name">
-                  <option value="0" disabled selected>Customer Name</option> <!-- Default option -->
+                <select  class="select" [(ngModel)]="custname" formControlName="custname"  name="customer ">
+                  <option value="0" disabled selected>Customer Name</option> 
                   <option value="1">Deepak</option>
                   <option value="2">Ram</option>
                   <option value="3">Shyam</option>
                   <option value="4">Lakshman</option>
 
                 </select>
+                <!-- <select class="select"  [(ngModel)]=" custname" name="custname" formControlName="custname">
+                  <option value="0">Customer Name</option>
+                  <option *ngFor="let customername of customer$ | async" [value]="customername.nameid">
+                    {{ customername.name }}
+                  </option>
+                </select> -->
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
@@ -125,7 +131,7 @@
                     <td>
                       <input [(ngModel)]="quote.itemcode" name="itemcode"  formControlName="itemcode"  class="table_input" type="text">
                     </td>
-                    <td>
+                    <td class="select-option">
                       <!-- <ion-select ion-select interface="popover" [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname" class="table_input"
                       aria-label="Default select example" id="itemname" class="table_select">
                       <ion-select-option >Item 1</ion-select-option>
@@ -133,7 +139,13 @@
                       <ion-select-option>Item 3</ion-select-option>
 
                     </ion-select> -->
-                    <input [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname"   class="table_input" type="number">
+                    <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
+                      <option value="0">Item Name</option><!-- Default option -->
+                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.companyid">
+                        {{ itemname.itemDesc }}
+                      </option>
+                    </select>
+                    <!-- <input [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname"   class="table_input" type="number"> -->
 
                     </td>
                     <td>

@@ -7,6 +7,7 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { PurchaseService,purchasestore } from '../services/purchase.service';
 import { ExecutiveService } from '../services/executive.service';
+import { AdditemService } from '../services/additem.service';
 
 interface Purchase {
   barcode: string;
@@ -116,12 +117,14 @@ billformate:number=0;
   purchase: any;
   executive$: any;
   myform: FormGroup;
+  itemnames$: any;
 
 
-  constructor(private formBuilder: FormBuilder,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
+    this.itemnames$ = this.itemService.getAllItems();
 
     this.myform = this.formBuilder.group({
       billformate: [''],

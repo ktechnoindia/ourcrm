@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { SalereturnService,salereturnstore } from '../services/salereturn.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
+import { AdditemService } from '../services/additem.service';
 
 interface Sales {
   barcode: string;
@@ -113,10 +114,12 @@ export class SalesreturnPage implements OnInit {
   refrence:string='';
   refdate:string='';
   myform: FormGroup;
+  itemnames$: any;
 
-  constructor(private formBuilder: FormBuilder, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
+  constructor(private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
+    this.itemnames$ = this.itemService.getAllItems();
 
     
     this.myform = this.formBuilder.group({
