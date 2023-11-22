@@ -47,7 +47,7 @@ export class AddSalePage implements OnInit {
   refdate: string = '';
   orderDate: string = '';
   orderNumber: string = '';
-  ponumber: string = '';
+  // ponumber: string = '';
   gstin: number = 0;
   salePerson: number = 0;
   payment: number = 0;
@@ -133,7 +133,7 @@ export class AddSalePage implements OnInit {
       refdate: [''],
       orderDate: [''],
       orderNumber: [''],
-      ponumber: [''],
+      // ponumber: [''],
       gstin: [''],
       salePerson: [''],
       payment: [''],
@@ -191,7 +191,7 @@ export class AddSalePage implements OnInit {
       refrence: this.myform.value.refrence,
       orderDate: this.myform.value.orderDate,
       orderNumber: this.myform.value.orderNumber,
-      ponumber: this.myform.value.ponumber,
+      // ponumber: this.myform.value.ponumber,
       gstin: this.myform.value.gstin,
       salePerson: this.myform.value.salePerson,
       payment: this.myform.value.payment,

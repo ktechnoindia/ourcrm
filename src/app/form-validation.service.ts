@@ -38,12 +38,12 @@ export class FormValidationService {
        await alert.present(); 
   }
   
-  showHideAutoLoader() {
+  showSaveLoader() {
     
     this.loadingController.create({
       message:"Saveing",
       duration: 500,
-      spinner:'bubbles'
+      spinner:'crescent'
     }).then((res) => {
       res.present();
 
@@ -54,7 +54,7 @@ export class FormValidationService {
 
   }
 
-  showSaveLoader() {
+  shoErrorLoader() {
     
     this.loadingController.create({
       message:"",
