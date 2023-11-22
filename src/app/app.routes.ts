@@ -355,6 +355,14 @@ export const routes: Routes = [
     path: 'view-salesreturn',
     loadComponent: () => import('./view-salesreturn/view-salesreturn.page').then( m => m.ViewSalesreturnPage)
   },
+  {
+    path: 'payment',
+    loadComponent: () => import('./payment/payment.page').then( m => m.PaymentPage)
+  },
+  {
+    path: 'receipt',
+    loadComponent: () => import('./receipt/receipt.page').then( m => m.ReceiptPage)
+  },
 
 
   
