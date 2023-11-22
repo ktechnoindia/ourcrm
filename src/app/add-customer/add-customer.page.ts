@@ -155,12 +155,19 @@ address1:string='';
     this.myService.createCustomer(custdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-this.formService.showSuccessAlert()
+        setTimeout(() => {
+          this.formService.showSuccessAlert()
+
+        }, 1000);
 this.formService.showSaveLoader()
       },
       (error: any) => {
         console.error('POST request failed', error);
-this.formService.showFailedAlert() 
+
+        setTimeout(() => {
+          this.formService.showFailedAlert() 
+
+        }, 1000);
 this.formService.showSaveLoader()     }
     );
     console.log('Form submitted with data:', {

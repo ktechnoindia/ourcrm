@@ -57,7 +57,7 @@ export class FormValidationService {
   showSaveLoader() {
     
     this.loadingController.create({
-      message:"s",
+      message:"",
       duration: 500,
       spinner:'crescent'
     }).then((res) => {
