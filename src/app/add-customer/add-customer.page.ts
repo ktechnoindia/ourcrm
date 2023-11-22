@@ -16,7 +16,6 @@ import { CountryService } from '../services/country.service';
 import { CustomerService, cust } from '../services/customer.service';
 import { CustomertypeService } from '../services/customertype.service';
 import { ExecutiveService } from '../services/executive.service';
-import { FormValidationService } from '../form-validation.service';
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.page.html',
@@ -90,7 +89,7 @@ address1:string='';
   //   private myService: MyService
 
 
-  constructor(private custtp: CustomertypeService, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private formService:FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
+  constructor(private custtp: CustomertypeService, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
@@ -155,13 +154,12 @@ address1:string='';
     this.myService.createCustomer(custdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-this.formService.showSuccessAlert()
-this.formService.showSaveLoader()
+        // Handle the response as needed
       },
       (error: any) => {
         console.error('POST request failed', error);
-this.formService.showFailedAlert() 
-this.formService.showSaveLoader()     }
+        // Handle the error as needed
+      }
     );
     console.log('Form submitted with data:', {
       salutation: this.selectedSalutation,
