@@ -1,0 +1,60 @@
+.Customer ion-input {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
+}
+
+.Customer ion-textarea {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    // background: skyblue;
+
+}
+
+.Customer ion-select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    // outline-color: goldenrod;
+    outline-width: 2px;
+    outline-style: initial;
+}
+
+.Customer select {
+    min-height: 35px;
+    // color: goldenrod;
+    // font-weight: 400;
+    //border-color: goldenrod;
+    width: 100%;
+    text-align: left
+}
+
+.scroll-container {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid;
+    width: 100%;
+    height: 370px;
+    overflow-x: auto
+}
+table tr td select{
+    border: solid 1px lightgray;
+    color: darkgray;
+    font-weight: 400;
+    
+}
+ng-template ion-button {
+    color: goldenrod;
+}
+
+@media(max-width:940px) {
+    .followuplist ion-card {
+        height: 500;
+    }
+}

@@ -1,0 +1,47 @@
+
+.Customer ion-input {
+    min-height: 33px;
+   // color: goldenrod;
+   // font-weight: 400;
+   // outline-color: goldenrod;
+   outline-width: 2px;
+   outline-style: initial;
+}
+.Customer ion-select {
+   min-height: 33px;
+   // color: goldenrod;
+   // font-weight: 400;
+   // outline-color: goldenrod;
+   outline-width: 2px;
+   outline-style: initial;
+}
+
+.Customer select {
+   // color: goldenrod;
+   // font-weight: 400;
+   //border-color: goldenrod;
+   width: 100%;
+   text-align: left;
+}
+.Total{
+    margin-top:-80px !important;
+}
+
+ion-popover {
+    --background: rgba(235, 239, 240, 0.6);
+    --backdrop-opacity: 0.6;
+    // --box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
+    --color: white;
+    --width: 650px;
+  }
+  
+  ion-popover ion-content {
+    --background: rgba(203, 205, 206, 0.6);
+  }
+  
+  ion-popover::part(backdrop) {
+    background-color: rgb(222, 223, 230);
+  }
+  .custom-popover-table {
+    width: 600px; /* Set the desired width */
+  }
