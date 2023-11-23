@@ -3,13 +3,15 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Payment</ion-title>
-              <div  class="custom-primary">
-                <ion-button size="small" [routerLink]="['/paymenttransaction_report']" id="open-loading5">View Payemnt Transaction</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..." [duration]="1000"></ion-loading>
+              <div class="custom-primary">
+                <ion-button size="small" [routerLink]="['/paymenttransaction-report']" id="open-loading5">View Payemnt
+                  Transaction</ion-button>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..."
+                  [duration]="1000"></ion-loading>
 
               </div>
             </ion-row>
@@ -17,10 +19,270 @@
         </div>
         <ion-grid>
           <ion-row>
-            <ion-col size="12" size-lg="6" size-md="8" size-sm="8">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="8">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="voucherNumber" type="text" label="Voucher No.:"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="paymentdate" type="date" label="Payment Date:"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="5" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="bankname" type="text" label="Bank Name :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="branchname" type="text" label="Branch Name :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="checkno" type="text" label="Check Number:" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="checkdate" type="date" label="Check Date:" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="margin-top: 10px;">
+                  <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
+                    <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
+                      <tr>
+                        <th style="width: 100px !important;">Cr/Dr</th>
+                        <th style="width: 200px !important;">Ledger Name</th>
+                        <th style="width: 70px !important;">Dedit</th>
+                        <th style="width: 70px !important;">Credit</th>
+                        <th style="width: 70px !important;">Balance</th>
+
+                      </tr>
+                      <tr>
+                        <td>Cr</td>
+                        <td class="select-option">
+                          <select name="" id=""  style="width: 200px !important;">
+                            <option value="0">Select Company Name</option>
+                            <option value="">Company 1</option>
+                            <option value="">Company 2</option>
+                            <option value="">Company 3</option>
+                            <option value="">Company 4</option>
+                          </select>
+                        </td>
+                        <td>
+                          <input type="text">
+                        </td>
+                        <td></td>
+                        <td>
+                          <input type="text">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Dr</td>
+                        <td class="select-option">
+                          <select name="" id=""  style="width: 200px !important;">
+                            <option value="0">Select Company Name</option>
+                            <option value="">Company 1</option>
+                            <option value="">Company 2</option>
+                            <option value="">Company 3</option>
+                            <option value="">Company 4</option>
+                          </select>
+                        </td>
+                        <td></td>
+                        <td>
+                          <input type="text">
+                        </td>
+                        <td>
+                          <input type="text">
+                        </td>
+                      </tr>
+                      <tr class="Total">
+                        <td colspan="2">
+                          <label>Total</label>
+                        </td>
+                        <td>
+                          <input type="text" placeholder="Total Credit">
+                        </td>
+                        <td>
+                          <input type="text" placeholder="Total Dedit">
+                        </td>
+                        <td>
+                          <input type="text" placeholder="Total Balance">
+                        </td>
+                      </tr>
+                    </table>
+
+                  </div>
+
+                </ion-row>
+                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                  <ion-button id="open-loading">New</ion-button>
+                  <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                    [duration]="1000"></ion-loading>
+                  <ion-button type="submit" id="open-loading1">Save</ion-button>
+                  <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Transfering..."
+                    [duration]="1000"></ion-loading>
+                </ion-row>
+              </ion-card>
 
             </ion-col>
-            <ion-col size="12" size-lg="6" size-md="4" size-sm="4">
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="4">
+              <ion-card>
+                <ion-row>
+                  <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="voucherNumber" type="text" label="Voucher No.:"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="paymentdate" type="date" label="Payment Date:"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="5" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="bankname" type="text" label="Bank Name :" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="branchname" type="text" label="Branch Name :"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-col>
+
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="checkno" type="text" label="Check Number:" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                  <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-input color="dark" name="checkdate" type="date" label="Check Date:" label-placement="floating"
+                      fill="outline"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="margin-top: 10px;">
+                  <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
+                    <table style="width: 250px !important;overflow-x:auto;border: 1px solid grey; ">
+                      <tr>
+                        <th>Type</th>
+                        <th>Dr/Cr</th>
+                        <th>Particular</th>
+                        <th>Date</th>
+                        <th>Dedit</th>
+                        <th>Credit</th>
+
+                      </tr>
+                      <tr>
+                        <td class="select-option">
+                          <select name="" id="">
+                            <option value="0">Select Type</option>
+                            <option value="">Type 1</option>
+                            <option value="">Type 2</option>
+                            <option value="">Type 3</option>
+                            <option value="">Type 4</option>
+                          </select>
+                        </td>
+                        <td class="select-option">
+                          <select name="" id="">
+                            <option value="0">Select Dr/Cr</option>
+                            <option value="">Debit</option>
+                            <option value="">Credit</option>
+
+                          </select>
+                        </td>
+                        <td class="select-option" class="custom-primary">
+                          <ion-button id="click-trigger">Select Particulars <ion-icon name="chevron-down-sharp" slot="end"></ion-icon></ion-button>
+                          <ion-popover class="ion-padding" trigger="click-trigger" triggerAction="click">
+                            <ng-template>
+                              <ion-content class="ion-padding">
+
+                                <table class="custom-popover-table">
+                                  <tr>
+                                    <th>Particulars</th>
+                                    <th>Date</th>
+                                    <th>Refrence</th>
+                                    <th>Original Amount</th>
+                                    <th>Balance</th>
+                                    <th>Sales Person</th>
+                                    <th>Action</th>
+                                  </tr>
+
+                                  <tbody>
+                                    <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Item 1</td>
+                                      <td>2023-11-20</td>
+                                      <td>Ref-001</td>
+                                      <td>$100.00</td>
+                                      <td>$50.00</td>
+                                      <td>John Doe</td>
+                                      <td>
+                                        <ion-icon name="checkmark-circle-sharp"></ion-icon>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Item 2</td>
+                                      <td>2023-11-21</td>
+                                      <td>Ref-002</td>
+                                      <td>$150.00</td>
+                                      <td>$75.00</td>
+                                      <td>Jane Smith</td>
+                                      <td>
+                                        <ion-icon name="checkmark-circle-sharp"></ion-icon>
+                                      </td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                  </tbody>
+                                </table>
+                              </ion-content>
+                            </ng-template>
+                          </ion-popover>
+                        </td>
+                        <td>
+                          22/12/2023
+                        </td>
+                        <td>
+                          22222$
+                        </td>
+                        <td>
+                          1111$
+                        </td>
+                      </tr>
+
+                      <tr class="Total">
+                        <td colspan="4">
+                          <label>Total</label>
+                        </td>
+                        <td>
+                          <input type="text" placeholder="Total Credit">
+                        </td>
+                        <td>
+                          <input type="text" placeholder="Total Dedit">
+                        </td>
+                       
+                      </tr>
+                    </table>
+
+                  </div>
+
+                </ion-row>
+                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                  <ion-button id="open-loading">New</ion-button>
+                  <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                    [duration]="1000"></ion-loading>
+                  <ion-button type="submit" id="open-loading1">Save</ion-button>
+                  <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Transfering..."
+                    [duration]="1000"></ion-loading>
+                </ion-row>
+              </ion-card>
 
             </ion-col>
           </ion-row>

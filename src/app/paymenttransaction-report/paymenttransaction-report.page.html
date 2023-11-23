@@ -1,13 +1,91 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>paymenttransaction_report</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">paymenttransaction_report</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Payment Transaction Report</ion-title>
+             
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row style="margin-top: 5px;">
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+            
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="warning" name="formDate" type="date" label="From Date :"
+                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="warning"name="toDate" type="date" label="To Date :"
+                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+              <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+          </ion-row>
+          <ion-row class="scroll-container">
+            <div style="overflow-x:auto;height: 350px;">
+              <table style="width: 1530px;overflow-x:auto;border: 1px solid grey; ">
+                <tr>
+                  <th  style="width: 70px !important;">Sr. No.</th>
+                  <th style="width: 100px !important;">Voucher Number</th>
+                  <th style="width: 100px !important;">Payment Date</th>
+                  <th style="width: 200px !important;">Ledger Name</th>
+                  <th style="width: 100px !important;">Debit Amount</th>
+                  <th style="width: 100px !important;">Check Number</th>
+                  <th style="width: 100px !important;">Check Date</th>
+                  <th style="width: 140px !important;">Bank Name</th>
+                  <th style="width: 100px !important;">Branch Name</th>
+                  <th style="width: 100px !important;">Type Of Bill</th>
+                  <th style="width: 130px !important;">Payment Mode(Cr/Dr)</th>
+                  <th style="width: 70px !important;">Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Voucher-001</td>
+                  <td>2023-11-20</td>
+                  <td>ABC Company</td>
+                  <td>$500.00</td>
+                  <td>CHK-123</td>
+                  <td>2023-11-21</td>
+                  <td>Bank XYZ</td>
+                  <td>Branch abc</td>
+                  <td>Invoice</td>
+                  <td>Debit</td>
+                  <td><ion-icon name="create-sharp"></ion-icon></td>
+                </tr>
+                
+                <tr>
+                  <td>2</td>
+                  <td>Voucher-002</td>
+                  <td>2023-11-22</td>
+                  <td>XYZ Corporation</td>
+                  <td>$300.00</td>
+                  <td>CHK-456</td>
+                  <td>2023-11-23</td>
+                  <td>Bank ABC</td>
+                  <td>Branch abc</td>
+                  <td>Receipt</td>
+                  <td>Credit</td>
+                  <td><ion-icon name="create-sharp"></ion-icon></td>
+                </tr>
+              </table>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
