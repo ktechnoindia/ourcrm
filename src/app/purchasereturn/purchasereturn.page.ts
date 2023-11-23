@@ -10,6 +10,7 @@ import { PurchasereturnService, purchasereturnstore } from '../services/purchase
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { AdditemService } from '../services/additem.service';
+import { EncryptionService } from '../services/encryption.service';
 interface Purchase {
   barcode: string;
   itemcode: number;
@@ -119,12 +120,13 @@ export class PurchasereturnPage implements OnInit {
   supplier$: Observable<any>;
   itemnames$: Observable<any>;
 
-  constructor(private itemsname: AdditemService, private vendname: VendorService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService) {
+  constructor(private encService: EncryptionService,private vendname1:VendorService,private itemsname: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService) {
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
-    this.supplier$ = this.vendname.getvendor();
     this.itemnames$ = this.itemsname.getAllItems();
+    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
       billformate: [''],

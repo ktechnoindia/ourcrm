@@ -8,6 +8,8 @@ import { GsttypeService } from '../services/gsttype.service';
 import { PurchaseService,purchasestore } from '../services/purchase.service';
 import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
+import { VendorService } from '../services/vendor.service';
+import { EncryptionService } from '../services/encryption.service';
 
 interface Purchase {
   barcode: string;
@@ -118,13 +120,16 @@ billformate:number=0;
   executive$: any;
   myform: FormGroup;
   itemnames$: any;
+  supplier$: any;
 
 
-  constructor(private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+  constructor(private encService: EncryptionService,private vendname1:VendorService,private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
+    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
       billformate: [''],

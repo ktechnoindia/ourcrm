@@ -10,6 +10,8 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { quotestore } from '../services/quotation.service';
 import { AdditemService } from '../services/additem.service';
+import { EncryptionService } from '../services/encryption.service';
+import { VendorService } from '../services/vendor.service';
 interface Dcout {
   barcode: string;
   itemcode: number;
@@ -107,11 +109,14 @@ export class DcOutPage implements OnInit {
   taxrate$: any;
   ttotal!: number;
   itemnames$: any;
+  supplier$: any;
 
-  constructor(private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService) { 
+  constructor(private vendname1:VendorService,private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService) { 
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
+    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
 
 
     this.myform = this.formBuilder.group({

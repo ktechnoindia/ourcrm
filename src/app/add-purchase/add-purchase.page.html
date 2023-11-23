@@ -60,15 +60,13 @@
            
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
-             
-            <select class="select"  [(ngModel)]="supplier"  formControlName="supplier"   name="spler">
-              <option value="0" disabled selected>Supplier Name</option> <!-- Default option -->
-              <option value="1">Deepak</option>
-              <option value="2">Ram</option>
-              <option value="3">Shyam</option>
-              <option value="4">Lakshman</option>
-
-            </select>
+              <select class="select" [(ngModel)]="supplier"  formControlName="supplier"  name="spler">
+                <option value="0">Supplier Name</option><!-- Default option -->
+                <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.nameid">
+                  {{ suppliername.name }}
+                </option>
+              </select>
+           
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
               <ion-row>
