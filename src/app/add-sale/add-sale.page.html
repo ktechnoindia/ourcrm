@@ -60,14 +60,13 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="custname" formControlName="custname" name="custname">
-                  <option value="0" disabled selected>Customer Name</option> <!-- Default option -->
-                  <option value="1">Deepak</option>
-                  <option value="2">Ram</option>
-                  <option value="3">Shyam</option>
-                  <option value="4">Lakshman</option>
-
+                <select class="select"  [(ngModel)]=" custname" name="custname" formControlName="custname">
+                  <option value="0">Customer Name</option>
+                  <option *ngFor="let customername of customer$ | async" [value]="customername.nameid">
+                    {{ customername.name }}
+                  </option>
                 </select>
+                
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
@@ -111,15 +110,13 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+               
                 <select class="select" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
-                  <option value="0" disabled selected>Select Sales Person</option> <!-- Default option -->
-
-                  <option value="2">Deepak</option>
-                  <option value="3">Ravi</option>
-                  <option value="3">Abhishek</option>
-                  <option value="3">Yogesh</option>
+                  <option value="0">Select Sales Person</option><!-- Default option -->
+                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </option>
                 </select>
-              
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="payment"  formControlName="payment" name="pyt">

@@ -8,6 +8,9 @@ import { SalesService, salesstore } from '../services/sales.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { AdditemService } from '../services/additem.service';
+import { CustomerService } from '../services/customer.service';
+import { EncryptionService } from '../services/encryption.service';
+import { ExecutiveService } from '../services/executive.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -120,11 +123,16 @@ export class AddSalePage implements OnInit {
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
   itemnames$: any;
+  customer$: any;
+  executive$: any;
 
-  constructor(private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
+  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
+    this.executive$ = this.execut.getexecutive();
+    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
 
 
     this.myform = this.formBuilder.group({

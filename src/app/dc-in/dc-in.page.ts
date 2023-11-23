@@ -12,6 +12,7 @@ import { GsttypeService } from '../services/gsttype.service';
 import { NgForm } from '@angular/forms';
 import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
+import { EncryptionService } from '../services/encryption.service';
 interface Dcin {
   barcode: string;
   itemcode: number;
@@ -110,12 +111,15 @@ export class DcInPage implements OnInit {
   ttotal!: number;
   myform: FormGroup;
   itemnames$: any;
+  supplier$: any;
 
-  constructor(private formBuilder: FormBuilder,private vendorService:VendorService,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService,private formBuilder: FormBuilder,private vendname1:VendorService,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
         this.itemnames$ = this.itemService.getAllItems();
+        this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
 
 
 

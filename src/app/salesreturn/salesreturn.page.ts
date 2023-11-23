@@ -8,6 +8,9 @@ import { SalereturnService,salereturnstore } from '../services/salereturn.servic
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { AdditemService } from '../services/additem.service';
+import { ExecutiveService } from '../services/executive.service';
+import { CustomerService } from '../services/customer.service';
+import { EncryptionService } from '../services/encryption.service';
 
 interface Sales {
   barcode: string;
@@ -115,12 +118,16 @@ export class SalesreturnPage implements OnInit {
   refdate:string='';
   myform: FormGroup;
   itemnames$: any;
+  executive$: any;
+  customer$: any;
 
-  constructor(private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
+  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
+    const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
-
+    this.executive$ = this.execut.getexecutive();
+    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     
     this.myform = this.formBuilder.group({
       billformate: [''],
