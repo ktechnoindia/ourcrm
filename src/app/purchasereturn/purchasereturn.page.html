@@ -72,7 +72,7 @@
               <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="supplier"  formControlName="supplier"  name="spler">
                   <option value="0">Supplier Name</option><!-- Default option -->
-                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.nameid">
+                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
                   </option>
                 </select>
@@ -110,7 +110,7 @@
              
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="gstin"   formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
+                  <ion-input  [(ngModel)]="gstin"   formControlName="gstin" name="gstincode" type="number" label=" GSTIN  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -173,7 +173,7 @@
 
                     <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
-                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.itemDescid">
+                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                         {{ itemname.itemDesc }}
                       </option>
                     </select>
