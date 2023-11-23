@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 
 export interface roleofexecut{
  
-  exname: string;
-  extilte: string;
-  phone: number;
-  wpnumber: number;
+  exname: string ;
+  extilte: string ;
+  phone: string ;
+  wpnumber: string ;
   email: string;
-  selectedCountry: string;
-  selectedState:string;
-  selectedDistrict: string;
-  pinCode: number;
+  selectedOption: number ;
+  selectedState:  number;
+  selectedDistrict:  number;
+  pinCode: string ;
   fulladdress: string;
  
 }

@@ -339,7 +339,8 @@ export const routes: Routes = [
   {
     path: 'setting',
     loadComponent: () => import('./setting/setting.page').then( m => m.SettingPage)
-  },  {
+  },
+  {
     path: 'salesreturn',
     loadComponent: () => import('./salesreturn/salesreturn.page').then( m => m.SalesreturnPage)
   },
@@ -366,6 +367,10 @@ export const routes: Routes = [
   {
     path: 'paymenttransaction-report',
     loadComponent: () => import('./paymenttransaction-report/paymenttransaction-report.page').then( m => m.PaymenttransactionReportPage)
+  },
+  {
+    path: 'receipt-report',
+    loadComponent: () => import('./receipttransaction-report/receipttransaction-report.page').then( m => m.ReceipttransactionReportPage)
   },
 
 

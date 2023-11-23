@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleofexecutiveService, roleofexecut } from '../services/roleofexecutive.service';
+import { CountryService } from '../services/country.service';
+import { StateService } from '../services/state.service';
+import { DistrictsService } from '../services/districts.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -24,29 +28,45 @@ export class RoleofexicutivePage implements OnInit {
   exname: string = '';
   extilte: string = '';
   phone: string = '';
-  wpnumber: number | null = null;
+  wpnumber: string = '';
   email: string = '';
-  selectedCountry: string = '';
-  selectedState: string = '';
-  selectedDistrict: string = '';
+  selectedOption: number = 0;
+  selectedState:number=0;
+  selectedDistrict:  number = 0;
   pinCode: string = '';
   fulladdress: string = '';
+  
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
 
-  constructor(private router:Router,private roleExecuitveService:RoleofexecutiveService,private formBuilder:FormBuilder,) 
+  constructor(private router:Router,private roleExecuitveService:RoleofexecutiveService,private formBuilder:FormBuilder,private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) 
     {
       this.form = this.formBuilder.group({
         exname:['',[Validators.required]],
-        extilte:['',[Validators.required]],
-        phone:['',[Validators.required]],
-        selectedCountry:['',[Validators.required]],
-        selectedState:['',[Validators.required]],
-        selectedDistrict:['',[Validators.required]],
-        fulladdress:['',[Validators.required]],
+        extilte:[''],
+        phone:[''],
+        selectedOption:[''],
+        selectedState:[''],
+        selectedDistrict:[''],
+        fulladdress:[''],
         email:[''],
         wpnumber:[''],
         pinCode:['']
       })
+      this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+      this.countries$ = this.countryService.getCountries();
+      this.districts$ = this.districtservice.getDistricts(1);
      }
+
+     onCountryChange() {
+      console.log('selected value' + this.selectedOption);
+      this.states$ = this.stateservice.getStates(1);
+    }
+    onStateChange() {
+      console.log('selected value' + this.selectedState);
+      this.districts$ = this.districtservice.getDistricts(this.selectedState);
+    }
 
      onSubmit() {
       if (this.form) {
@@ -55,7 +75,7 @@ export class RoleofexicutivePage implements OnInit {
         exname: this.form.value.exname,
         extilte: this.form.value.extilte,
         phone: this.form.value.phone,
-        selectedCountry: this.form.value.selectedCountry,
+        selectedOption: this.form.value.selectedOption,
         selectedState: this.form.value.selectedState,
         selectedDistrict: this.form.value.selectedDistrict,
         fulladdress: this.form.value.fulladdress,

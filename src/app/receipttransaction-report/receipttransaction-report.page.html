@@ -1,0 +1,65 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">View Suppliers</ion-title>
+            </ion-row>
+          </ion-card-header>
+
+          <ion-grid>
+            <form>
+              <ion-row>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-row>
+
+              <ion-row class="Executive">
+                <div style="overflow-x:auto; width: 100% ;height: 450px;">
+                  <table style="width: 1400px;overflow-x:auto;overflow-y: 
+                  auto;">
+                    <thead>
+
+                      <tr>
+                        <th style="width: 100px !important;">Dr/Cr</th>
+                        <th style="width: 300px !important;">Ledger</th>
+                        <th style="width: 200px !important;">Debit</th>
+                        <th style="width: 200px !important;">Credit</th>
+                        <th style="width: 300px !important;">Balance</th>
+                        <th style="width: 100px !important;">Action</th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Credit</td>
+                        <td>Nirbhay</td>
+                        <td>389.00</td>
+                        <td>3893.00</td>
+                        <td>4003.00</td>
+                        <td class="Action">
+                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                          <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        </td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </ion-row>
+            </form>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

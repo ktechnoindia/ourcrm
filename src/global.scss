@@ -591,6 +591,16 @@ input::placeholder {
     font-size: 13px;
     color: salmon;
 }
+.label_table {
+    font-size: 13px;
+    color: salmon;
+}
+.input_table{
+    border: none;
+    outline: none;
+    width: 150px;
+    text-align: center;
+}
 
 input[type="text"] {
     font-size: 13px;
