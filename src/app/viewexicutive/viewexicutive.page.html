@@ -45,7 +45,6 @@
                 <div class="scroll-container" style=" height: 350px;">
                   <table style=" width: 1300px">
                     <tr>
-                      <th style="width: 30px !important; ">Select</th>
                       <th style="width: 50px;">Sr. No.</th>
                       <th style="width: 50px;"> Company Id</th>
                       <th style="width: 70px;">Executive Role</th>
@@ -60,7 +59,6 @@
                       <th style="width: 50px;">Ledger</th>
                     </tr>
                     <tr *ngFor="let execute of executives$ | async; let i = index">
-                      <td><ion-checkbox></ion-checkbox></td>
                       <td >{{i + 1}}</td>
                       <td>{{execute.companyid}}</td>
                       <td>{{execute.roleid}}</td>

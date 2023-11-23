@@ -130,8 +130,8 @@ export class AddVendorPage implements OnInit {
       pincode1: [''],
       address1: [''],
     });
+    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
 
-    this.states$ = this.stateservice.getStates(1)
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
     this.executive$ = this.execut.getexecutive();
@@ -141,17 +141,12 @@ export class AddVendorPage implements OnInit {
 
 
   onCountryChange() {
-    console.log('selected value' + this.selectedCountry);
-    this.countries$ = this.countryservice.getCountries();
+    console.log('selected value' + this.country);
+    this.states$ = this.stateservice.getStates(1);
   }
   onStateChange() {
-    console.log('selected value' + this.selectedState);
-    this.districts$ = this.districtservice.getDistricts(this.selectedState);
-  }
-
-  onDistrictChange() {
-    console.log('selected value' + this.selectedDistrict);
-    this.districts$ = this.districtservice.getDistricts(1);
+    console.log('selected value' + this.state);
+    this.districts$ = this.districtservice.getDistricts(this.state);
   }
 
   async onSubmit() {

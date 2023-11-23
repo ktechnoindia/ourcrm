@@ -8,8 +8,8 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Receipt</ion-title>
               <div class="custom-primary">
-                <ion-button size="small" [routerLink]="['/receipt-report']" >View Receipt</ion-button>
-                
+                <ion-button size="small" [routerLink]="['/receipt-report']">View Receipt</ion-button>
+
               </div>
             </ion-row>
           </ion-card-header>
@@ -18,219 +18,223 @@
 
           <form>
             <ion-row>
+
+
               <ion-col size-lg="6" size="12">
+                <ion-card style="padding: 10px;">
+                  <ion-row>
+                    <ion-col size="6" size-lg="2.2" size-md="6" size-sm="12">
+                      <ion-row>
+                        <ion-input type="text" name="vouchernumber" label=" Voucher No. :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
 
-                <ion-row>
-                  <ion-col size="6" size-lg="2.2" size-md="6" size-sm="12">
-                    <ion-row>
-                      <ion-input type="text" name="vouchernumber" label=" Voucher No. :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
+                    </ion-col>
 
-                  </ion-col>
+                    <ion-col size="6" size-lg="2.2" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input type="date" name="date" fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                    <ion-col size="6" size-lg="3.8" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input type="text" name="bank_name" label=" Bank Name  :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
 
-                  <ion-col size="6" size-lg="2.2" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input type="date" name="date" fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                  <ion-col size="6" size-lg="3.8" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input type="text" name="bank_name" label=" Bank Name  :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
+                    </ion-col>
 
-                  </ion-col>
+                    <ion-col size="6" size-lg="3.8" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input type="text" name="branch_name" label=" Branch Name  :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
 
-                  <ion-col size="6" size-lg="3.8" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input type="text" name="branch_name" label=" Branch Name  :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
-                </ion-row>
+                  <ion-row style="margin-top: 7px;">
+                    <ion-col size="12" size-lg="12">
+                      <div class="scroll-container">
 
-                <ion-row style="margin-top: 7px;">
-                  <ion-col size="12" size-lg="12">
-                    <div class="scroll-container">
+                        <table style="width:700px;">
+                          <tr>
+                            <th style="width: 50px !important;">Dr/Cr</th>
+                            <th style="width: 100px !important;">Ledger</th>
+                            <th style="width: 100px !important;">Debit</th>
+                            <th style="width: 100px !important;">Credit</th>
+                            <th style="width: 120px !important;">Balance</th>
+                          </tr>
+                          <tr>
+                            <td>Dr</td>
+                            <td>
+                              <input name="barcode" class="table_input" type="text">
+                            </td>
+                            <td>
+                              <input name="itemcode" class="table_input" type="text">
+                            </td>
 
-                      <table style="width:700px;">
+                            <td>
+                              <input name="description" class="table_input" type="text">
+                            </td>
+                            <td>
+                              <input name="quantity" class="table_input" type="number">
+
+                            </td>
+
+                          </tr>
+                          <tr>
+                            <td>Cr</td>
+                            <td>
+                              <input name="barcode" class="table_input" type="text">
+                            </td>
+                            <td>
+                              <input name="itemcode" class="table_input" type="text">
+                            </td>
+
+                            <td>
+                              <input name="description" class="table_input" type="text">
+                            </td>
+                            <td>
+                              <input name="quantity" class="table_input" type="number">
+
+                            </td>
+
+                          </tr>
+                        </table>
+
+                      </div>
+
+                      <table>
                         <tr>
-                          <th style="width: 50px !important;">Dr/Cr</th>
-                          <th style="width: 100px !important;">Ledger</th>
-                          <th style="width: 100px !important;">Debit</th>
-                          <th style="width: 100px !important;">Credit</th>
-                          <th style="width: 120px !important;">Balance</th>
-                        </tr>
-                        <tr>
-                          <td>Dr</td>
-                          <td>
-                            <input name="barcode" class="table_input" type="text">
-                          </td>
-                          <td>
-                            <input name="itemcode" class="table_input" type="text">
-                          </td>
-
-                          <td>
-                            <input name="description" class="table_input" type="text">
-                          </td>
-                          <td>
-                            <input name="quantity" class="table_input" type="number">
-
-                          </td>
-
-                        </tr>
-                        <tr>
-                          <td>Cr</td>
-                          <td>
-                            <input name="barcode" class="table_input" type="text">
-                          </td>
-                          <td>
-                            <input name="itemcode" class="table_input" type="text">
-                          </td>
-
-                          <td>
-                            <input name="description" class="table_input" type="text">
-                          </td>
-                          <td>
-                            <input name="quantity" class="table_input" type="number">
-
+                          <td style="float: right;">
+                            <label for="" style="margin-right: 5px;">Total :</label>
+                            <input type="text" placeholder="" style="border: none;outline: none;text-align: center;">
                           </td>
 
                         </tr>
                       </table>
-
-                    </div>
-
-                    <table>
-                      <tr>
-                        <td style="float: right;">
-                          <label for="" style="margin-right: 5px;">Total :</label>
-                          <input type="text" placeholder="" style="border: none;outline: none;text-align: center;">
-                        </td>
-
-                      </tr>
-                    </table>
-                  </ion-col>
-                </ion-row>
-
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
               </ion-col>
               <ion-col size-lg="6" size="12">
+                <ion-card style="padding: 10px;">
+                  <ion-row>
+                    <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input type="text" name="ledger_name" label=" Ledger :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
 
-                <ion-row>
-                  <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input type="text" name="ledger_name" label=" Ledger :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
+                    <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                      <ion-row>
+                        <ion-input type="text" name="balance" label=" Balance  :" label-placement="floating"
+                          fill="outline"></ion-input>
+                      </ion-row>
+                    </ion-col>
 
-                  <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                    <ion-row>
-                      <ion-input type="text" name="balance" label=" Balance  :" label-placement="floating"
-                        fill="outline"></ion-input>
-                    </ion-row>
-                  </ion-col>
+                  </ion-row>
 
-                </ion-row>
+                  <ion-row style="margin-top: 7px;">
+                    <ion-col size="12" size-lg="12">
+                      <div class="scroll-container">
 
-                <ion-row style="margin-top: 7px;">
-                  <ion-col size="12" size-lg="12">
-                    <div class="scroll-container">
+                        <table style="width:700px;">
+                          <tr>
+                            <th style="width: 100px !important;">Dr/Cr</th>
+                            <th style="width: 300px !important;">Particulars</th>
+                            <th style="width: 100px !important;">Debit</th>
+                            <th style="width: 100px !important;">Credit</th>
+                            <th style="width: 200px !important;">Balance</th>
+                          </tr>
+                          <tr>
+                            <td>Dr</td>
+                            <td>
+                              <ion-button class="btn" color="undefined" size="small"
+                                (click)="presentPopover($event)">Particulars <ion-icon
+                                  name="chevron-down-outline"></ion-icon></ion-button>
+                              <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+                                <ng-template>
+                                  <ion-content class="ion-padding">
+                                    <div class="scroll-container">
 
-                      <table style="width:700px;">
+                                      <table style="width:700px;">
+                                        <tr>
+                                          <th style="width: 50px !important;">Dr/Cr</th>
+                                          <th style="width: 100px !important;">Particulars</th>
+                                          <th style="width: 100px !important;">Date</th>
+                                          <th style="width: 100px !important;">Referance</th>
+                                          <th style="width: 120px !important;">Ori. Amt.</th>
+                                          <th style="width: 120px !important;">Balance</th>
+                                          <th style="width: 120px !important;">Sales Person</th>
+
+                                        </tr>
+                                        <tr>
+                                          <td>Dr</td>
+                                          <td>
+                                            <input name="barcode" class="table_input" type="text">
+                                          </td>
+                                          <td>
+                                            <input name="itemcode" class="table_input" type="text">
+                                          </td>
+
+                                          <td>
+                                            <input name="description" class="table_input" type="text">
+                                          </td>
+                                          <td>
+                                            <input name="itemcode" class="table_input" type="text">
+                                          </td>
+
+                                          <td>
+                                            <input name="description" class="table_input" type="text">
+                                          </td>
+                                          <td>
+                                            <input name="quantity" class="table_input" type="number">
+
+                                          </td>
+
+                                        </tr>
+
+                                      </table>
+
+                                    </div>
+                                  </ion-content>
+                                </ng-template>
+                              </ion-popover>
+                            </td>
+                            <td>
+                              <input name="description" class="table_input" type="text">
+
+                            </td>
+
+                            <td>
+                              <input name="description" class="table_input" type="text">
+                            </td>
+                            <td>
+                              <input name="quantity" class="table_input" type="number">
+
+                            </td>
+
+                          </tr>
+
+                        </table>
+
+                      </div>
+
+                      <table>
                         <tr>
-                          <th style="width: 100px !important;">Dr/Cr</th>
-                          <th style="width: 300px !important;">Particulars</th>
-                          <th style="width: 100px !important;">Debit</th>
-                          <th style="width: 100px !important;">Credit</th>
-                          <th style="width: 200px !important;">Balance</th>
-                        </tr>
-                        <tr>
-                          <td>Dr</td>
-                          <td>
-                            <ion-button class="btn" color="undefined" size="small"
-                              (click)="presentPopover($event)">Particulars <ion-icon
-                                name="chevron-down-outline"></ion-icon></ion-button>
-                            <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
-                              <ng-template>
-                                <ion-content class="ion-padding">
-                                  <div class="scroll-container">
-
-                                    <table style="width:700px;">
-                                      <tr>
-                                        <th style="width: 50px !important;">Dr/Cr</th>
-                                        <th style="width: 100px !important;">Particulars</th>
-                                        <th style="width: 100px !important;">Date</th>
-                                        <th style="width: 100px !important;">Referance</th>
-                                        <th style="width: 120px !important;">Ori. Amt.</th>
-                                        <th style="width: 120px !important;">Balance</th>
-                                        <th style="width: 120px !important;">Sales Person</th>
-
-                                      </tr>
-                                      <tr>
-                                        <td>Dr</td>
-                                        <td>
-                                          <input name="barcode" class="table_input" type="text">
-                                        </td>
-                                        <td>
-                                          <input name="itemcode" class="table_input" type="text">
-                                        </td>
-
-                                        <td>
-                                          <input name="description" class="table_input" type="text">
-                                        </td>
-                                        <td>
-                                          <input name="itemcode" class="table_input" type="text">
-                                        </td>
-
-                                        <td>
-                                          <input name="description" class="table_input" type="text">
-                                        </td>
-                                        <td>
-                                          <input name="quantity" class="table_input" type="number">
-
-                                        </td>
-
-                                      </tr>
-                                     
-                                    </table>
-
-                                  </div>
-                                </ion-content>
-                              </ng-template>
-                            </ion-popover>
-                          </td>
-                          <td>
-                            <input name="description" class="table_input" type="text">
-
-                          </td>
-
-                          <td>
-                            <input name="description" class="table_input" type="text">
-                          </td>
-                          <td>
-                            <input name="quantity" class="table_input" type="number">
-
+                          <td style="float: right;">
+                            <label for="" style="margin-right: 5px;">Total :</label>
+                            <input type="text" placeholder="" style="border: none;outline: none;text-align: center;">
                           </td>
 
                         </tr>
-
                       </table>
 
-                    </div>
-
-                    <table>
-                      <tr>
-                        <td style="float: right;">
-                          <label for="" style="margin-right: 5px;">Total :</label>
-                          <input type="text" placeholder="" style="border: none;outline: none;text-align: center;">
-                        </td>
-
-                      </tr>
-                    </table>
-                  </ion-col>
-                </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
               </ion-col>
             </ion-row>
 

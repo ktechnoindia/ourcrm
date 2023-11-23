@@ -172,7 +172,7 @@
                     <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
                       <select class="select" [(ngModel)]="district" formControlName="district" name="selectedDistrict"
-                        label-placement="floating" fill="outline" (change)="onDistrictChange()">
+                        label-placement="floating" fill="outline" >
                         <option value="0">Select District</option> <!-- Default option with value 0 -->
                         <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                           {{ district.districtname }}
@@ -230,7 +230,7 @@
                     <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
                       <select class="select" [(ngModel)]="district1" formControlName="district1" name="selectedDistrict1"
-                        label-placement="floating" fill="outline" (change)="onDistrictChange()">
+                        label-placement="floating" fill="outline" >
                         <option value="0">Select District</option> <!-- Default option with value 0 -->
                         <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
                           {{ district.districtname }}
