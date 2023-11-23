@@ -272,7 +272,7 @@ export class AddQuotPage implements OnInit {
   }
 
   removeQuote(index: number, quote: Quote) {
-    this.ttotal = this.ttotal - this.quote.total;
+    this.ttotal = this.ttotal - quote.total;
     this.quoteData.splice(index, 1);
   }
   calculateTotals(): void {

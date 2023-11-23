@@ -65,7 +65,7 @@
               
                  <select class="select"  [(ngModel)]=" custname" name="custname" formControlName="custname">
                   <option value="0">Customer Name</option>
-                  <option *ngFor="let customername of customer$ | async" [value]="customername.nameid">
+                  <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </option>
                 </select>
@@ -134,7 +134,7 @@
                     </ion-select> -->
                     <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
-                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.companyid">
+                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                         {{ itemname.itemDesc }}
                       </option>
                     </select>
