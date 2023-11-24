@@ -58,7 +58,7 @@ export class ViewQuotPage implements OnInit {
   ngOnInit() {
   }
   goBack(){
-    this.router.navigate(["/quote-manager"])
+    this.router.navigate(["/add-quote"])
   }
 
 }

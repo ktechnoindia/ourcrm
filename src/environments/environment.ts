@@ -22,7 +22,9 @@ export const environment = {
   fetchstocktype: 'getStockTypes',
   addcust: 'customer',
   addvend: 'vendor',
-  
+  addsignup:'get_signup',
+  addlogin: 'get_login',
+
   addlead: 'lead',
   addfollowup: 'followup',
   addledger: 'saveLedger',
@@ -57,7 +59,6 @@ export const environment = {
   addattribute: 'insert_attribute',
   adduser: 'adduser',
   addpass: 'password',
-  addlogin: 'login',
   addbarcode: 'barcode',
   fetchattribute:'get_attributes',
   addsalesreturn:'insert_sale_return',

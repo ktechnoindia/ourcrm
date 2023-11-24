@@ -1,3 +1,5 @@
+
+
 .signup{
     margin-top: 70px;
 }
@@ -7,17 +9,19 @@
 
     // color: goldenrod;
     font-weight: 400;
+    box-shadow: none;
+    background-color: #fff;
+color: black;
 }
 .signup select{
     min-height: 35px;
     // color: goldenrod;
     font-weight: 400;
-    background-color: skyblue;
+     background-color: #fff;
+     border-radius: 4px;
+     border: solid 1px rgb(194, 194, 194);
 }
-.signup select :hover{
-    border-color: gold;
 
-}
 .card1{
     margin-top: -50px;
 }
@@ -32,6 +36,15 @@ ion-header{
 .dekstop-header{
     display: none;
     visibility: hidden;
+}
+@media(max-width:912px){
+    .signup select{
+        min-height: 35px;
+        // color: goldenrod;
+        font-weight: 400;
+         background-color: #fff;
+         margin-bottom: 4px;
+    }
 }
 @media(max-width:540px){
     .signup{

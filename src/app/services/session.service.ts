@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SessionService {
+  openAlerth(arg0: string, custname: number) {
+    throw new Error('Method not implemented.');
+  }
   openToast(msg: string) {
     throw new Error('Method not implemented.');
   }

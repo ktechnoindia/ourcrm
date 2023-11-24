@@ -83,6 +83,9 @@ ion-icon {
 .table_data {
   padding: 5px 10px;
 }
+.table_data td{
+  max-height: 20px !important;
+}
 
 .table-data {
   background-color: lightsteelblue;

@@ -291,7 +291,7 @@ export class PurchasereturnPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/sales-manager']); // Navigate back to the previous page
+    this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page
   }
 
 }

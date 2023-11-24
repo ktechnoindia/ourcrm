@@ -283,6 +283,6 @@ export class DcOutPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(["/challan-manager"])
+    this.router.navigate(["/transcationdashboard"])
   }
 }

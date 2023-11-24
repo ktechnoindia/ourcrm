@@ -58,6 +58,6 @@ export class ViewPurchasePage implements OnInit {
   ngOnInit() {
   }
 goBack(){
-  this.router.navigate(["/sales-manager"])
+  this.router.navigate(["/add-purchase"])
 }
 }

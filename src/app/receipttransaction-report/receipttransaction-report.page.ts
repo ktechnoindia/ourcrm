@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-receipttransaction-report',
@@ -12,11 +13,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ReceipttransactionReportPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
-goBack(){
-  
-}
+  goBack() {
+    this.router.navigate(['/receipt']); // Navigate back to the previous page
+  }
 }

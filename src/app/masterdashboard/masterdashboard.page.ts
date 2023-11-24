@@ -60,6 +60,7 @@ export class MasterdashboardPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
 }

@@ -302,6 +302,6 @@ export class SalesreturnPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(["/sales-manager"])
+    this.router.navigate(["/transcationdashboard"])
   }
 }

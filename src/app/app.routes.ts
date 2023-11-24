@@ -369,9 +369,13 @@ export const routes: Routes = [
     loadComponent: () => import('./paymenttransaction-report/paymenttransaction-report.page').then( m => m.PaymenttransactionReportPage)
   },
   {
-    path: 'receipt-report',
+    path: 'receipttransaction-report',
     loadComponent: () => import('./receipttransaction-report/receipttransaction-report.page').then( m => m.ReceipttransactionReportPage)
+  },  {
+    path: 'accountdashboard',
+    loadComponent: () => import('./accountdashboard/accountdashboard.page').then( m => m.AccountdashboardPage)
   },
+
 
 
   

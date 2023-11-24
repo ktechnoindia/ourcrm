@@ -59,6 +59,6 @@ sales$: Observable<any[]>
   ngOnInit() {
   }
 goBack(){
-  this.router.navigate(["/sales-manager"])
+  this.router.navigate(["/add-sale"])
 }
 }

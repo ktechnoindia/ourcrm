@@ -330,6 +330,6 @@ export class AddQuotPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/quote-manager']); // Navigate back to the previous page
+    this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
 }

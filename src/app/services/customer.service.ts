@@ -58,4 +58,5 @@ export class CustomerService {
   getCustomer(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallcust);
   }
+  
 }

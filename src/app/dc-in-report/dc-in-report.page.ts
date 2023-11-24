@@ -60,7 +60,7 @@ export class DcInReportPage implements OnInit {
   ngOnInit() {
   }
   goBack(){
-    this.router.navigate(["/quote-manager"])
+    this.router.navigate(["/dc-in"])
   }
 
 }

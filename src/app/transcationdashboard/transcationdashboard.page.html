@@ -20,7 +20,26 @@
         <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
           <div class="icon-container">
             <ion-row class="leadscard">
-
+             
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: lightpink;">
+                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
+                  <ion-label>
+                    Sales 
+                  </ion-label>
+                  <ion-title>{{totalsales}}</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(233, 199, 186);">
+                  <ion-icon name="shield-half-outline"></ion-icon><br>
+                  <ion-label>
+                    Purchase 
+                  </ion-label>
+                  <ion-title>{{totalpurchase}}</ion-title>
+                </ion-card>
+              </ion-col>
+             
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
                   <ion-icon name="person-outline" ></ion-icon><br>
@@ -48,26 +67,6 @@
                   <ion-title>{{totaldcout}}</ion-title>
                 </ion-card>
               </ion-col>
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightpink;">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales 
-                  </ion-label>
-                  <ion-title>{{totalsales}}</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightsalmon;">
-                  <ion-icon name="shield-half-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase 
-                  </ion-label>
-                  <ion-title>{{totalpurchase}}</ion-title>
-                </ion-card>
-              </ion-col>
-             
-
             </ion-row>
 
           </div>
