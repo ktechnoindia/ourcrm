@@ -14,6 +14,8 @@ import { DcinService } from '../services/dcin.service';
 import { DcoutService } from '../services/dcout.service';
 import { SalesService } from '../services/sales.service';
 import { PurchaseService } from '../services/purchase.service';
+import { SalereturnService } from '../services/salereturn.service';
+import { PurchasereturnService } from '../services/purchasereturn.service';
 
 @Component({
   selector: 'app-transcationdashboard',
@@ -29,13 +31,17 @@ export class TranscationdashboardPage implements OnInit {
   dcout$: Observable<any>;
   sales$: Observable<any[]>;
   purchase$: Observable<any[]>
+  purchasereturn$: Observable<any[]>
   totalQuote: number=0;
   totaldcin: number=0;
   totaldcout: number=0;
   totalsales: number=0;
   totalpurchase: number=0;
+  salreturn$: Observable<any[]>;
+  totalsalesreturn: number=0;
+  totalpurchasereturn: number=0;
 
-  constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,) { 
+  constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,private salereturnservice:SalereturnService,private purchasereturnservice:PurchasereturnService, ) { 
     const compid = '1';
 
     this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
@@ -78,7 +84,24 @@ export class TranscationdashboardPage implements OnInit {
       this.totalpurchase=data.length;
 
     });
-  
+
+    this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid),'','');
+    console.log(this.salreturn$);
+
+    this.salreturn$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalsalesreturn=data.length;
+
+    });
+    this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid),'','');
+    console.log(this.purchasereturn$);
+
+    this.  purchasereturn$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalpurchasereturn=data.length;
+    });
+
+    
 
 }
   ngOnInit() {

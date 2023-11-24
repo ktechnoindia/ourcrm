@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
+import { PurchasereturnService } from '../services/purchasereturn.service';
 @Component({
   selector: 'app-view-purchase',
   templateUrl: './view-purchase.page.html',
@@ -19,10 +20,10 @@ export class ViewPurchasePage implements OnInit {
   toDate:string='';
   purchase$: Observable<any[]>
 
-  constructor( private purchaseService:PurchaseService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
+  constructor( private purchasereturnService:PurchasereturnService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
 
-    this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
+    this.purchase$ = this.purchasereturnService.fetchallPurchasereturn(encService.encrypt(compid), '', '');
     console.log(this.purchase$);
 
     this.purchase$.subscribe(data => {
