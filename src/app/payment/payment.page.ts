@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -12,9 +12,15 @@ import { Router, RouterModule } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class PaymentPage implements OnInit {
-
+  @ViewChild('popover')popover:any; 
+  
   constructor(private router: Router,) { }
+  isOpen = false;
 
+  presentPopover(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
   ngOnInit() {
   }
   goBack() {

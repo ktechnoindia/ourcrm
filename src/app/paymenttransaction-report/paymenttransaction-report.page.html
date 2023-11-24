@@ -37,50 +37,53 @@
           </ion-row>
           <ion-row class="scroll-container">
             <div style="overflow-x:auto;height: 350px;">
-              <table style="width: 1530px;overflow-x:auto;border: 1px solid grey; ">
+              <table style="width: 1330px;overflow-x:auto;border: 1px solid grey; ">
                 <tr>
                   <th  style="width: 70px !important;">Sr. No.</th>
                   <th style="width: 100px !important;">Voucher Number</th>
                   <th style="width: 100px !important;">Payment Date</th>
                   <th style="width: 200px !important;">Ledger Name</th>
+                  <th style="width: 100px !important;">Payment Transaction Mode</th>
                   <th style="width: 100px !important;">Debit Amount</th>
-                  <th style="width: 100px !important;">Check Number</th>
-                  <th style="width: 100px !important;">Check Date</th>
-                  <th style="width: 140px !important;">Bank Name</th>
-                  <th style="width: 100px !important;">Branch Name</th>
-                  <th style="width: 100px !important;">Type Of Bill</th>
-                  <th style="width: 130px !important;">Payment Mode(Cr/Dr)</th>
+                  <th style="width: 100px !important;">Credit Amount</th>
+                  <th style="width: 140px !important;">Prepared By</th>
+                  <th style="width: 100px !important;">Bank Name</th>
                   <th style="width: 70px !important;">Action</th>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Voucher-001</td>
                   <td>2023-11-20</td>
-                  <td>ABC Company</td>
-                  <td>$500.00</td>
-                  <td>CHK-123</td>
-                  <td>2023-11-21</td>
-                  <td>Bank XYZ</td>
-                  <td>Branch abc</td>
-                  <td>Invoice</td>
-                  <td>Debit</td>
-                  <td><ion-icon name="create-sharp"></ion-icon></td>
+                  <td>John Doe</td>
+                  <td>Credit Card</td>
+                  <td>5000</td>
+                  <td></td> <!-- Assuming this is a credit transaction, so Credit Amount is empty -->
+                  <td>Alice Smith</td>
+                  <td>ABC Bank</td>
+                  <td>
+                    <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
                 </tr>
                 
                 <tr>
                   <td>2</td>
                   <td>Voucher-002</td>
-                  <td>2023-11-22</td>
-                  <td>XYZ Corporation</td>
-                  <td>$300.00</td>
-                  <td>CHK-456</td>
-                  <td>2023-11-23</td>
-                  <td>Bank ABC</td>
-                  <td>Branch abc</td>
-                  <td>Receipt</td>
-                  <td>Credit</td>
-                  <td><ion-icon name="create-sharp"></ion-icon></td>
+                  <td>2023-11-21</td>
+                  <td>Jane Doe</td>
+                  <td>Cash</td>
+                  <td></td> <!-- Assuming this is a debit transaction, so Debit Amount is empty -->
+                  <td>3000</td>
+                  <td>Bob Johnson</td>
+                  <td>XYZ Bank</td>
+                  <td>
+                    <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
                 </tr>
+                
               </table>
             </div>
           </ion-row>

@@ -6,59 +6,88 @@
           <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">View Suppliers</ion-title>
+              <ion-title style="text-align: center;">Receipt Transaction Report</ion-title>
+             
             </ion-row>
           </ion-card-header>
-
-          <ion-grid>
-            <form>
-              <ion-row>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-                </ion-col>
-
-              </ion-row>
-
-              <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
-              </ion-row>
-
-              <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 450px;">
-                  <table style="width: 1400px;overflow-x:auto;overflow-y: 
-                  auto;">
-                    <thead>
-
-                      <tr>
-                        <th style="width: 100px !important;">Dr/Cr</th>
-                        <th style="width: 300px !important;">Ledger</th>
-                        <th style="width: 200px !important;">Debit</th>
-                        <th style="width: 200px !important;">Credit</th>
-                        <th style="width: 300px !important;">Balance</th>
-                        <th style="width: 100px !important;">Action</th>
-                      </tr>
-
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Credit</td>
-                        <td>Nirbhay</td>
-                        <td>389.00</td>
-                        <td>3893.00</td>
-                        <td>4003.00</td>
-                        <td class="Action">
-                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                          <ion-icon color="primary" icon-only name="create"></ion-icon>
-                        </td>
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-                </div>
-              </ion-row>
-            </form>
-          </ion-grid>
         </div>
+        <ion-grid>
+          <ion-row style="margin-top: 5px;">
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+            
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="warning" name="formDate" type="date" label="From Date :"
+                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-row>
+                <ion-input color="warning"name="toDate" type="date" label="To Date :"
+                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
+              <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+          </ion-row>
+          <ion-row class="scroll-container">
+            <div style="overflow-x:auto;height: 350px;">
+              <table style="width: 1330px;overflow-x:auto;border: 1px solid grey; ">
+                <tr>
+                  <th  style="width: 70px !important;">Sr. No.</th>
+                  <th style="width: 100px !important;">Voucher Number</th>
+                  <th style="width: 100px !important;">Payment Date</th>
+                  <th style="width: 200px !important;">Ledger Name</th>
+                  <th style="width: 100px !important;">Payment Transaction Mode</th>
+                  <th style="width: 100px !important;">Debit Amount</th>
+                  <th style="width: 100px !important;">Credit Amount</th>
+                  <th style="width: 140px !important;">Prepared By</th>
+                  <th style="width: 100px !important;">Bank Name</th>
+                  <th style="width: 70px !important;">Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Voucher-001</td>
+                  <td>2023-11-20</td>
+                  <td>John Doe</td>
+                  <td>Credit Card</td>
+                  <td>5000</td>
+                  <td></td> <!-- Assuming this is a credit transaction, so Credit Amount is empty -->
+                  <td>Alice Smith</td>
+                  <td>ABC Bank</td>
+                  <td>
+                    <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>2</td>
+                  <td>Voucher-002</td>
+                  <td>2023-11-21</td>
+                  <td>Jane Doe</td>
+                  <td>Cash</td>
+                  <td></td> <!-- Assuming this is a debit transaction, so Debit Amount is empty -->
+                  <td>3000</td>
+                  <td>Bob Johnson</td>
+                  <td>XYZ Bank</td>
+                  <td>
+                    <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
+                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="trash"></ion-icon>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>

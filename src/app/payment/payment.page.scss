@@ -23,9 +23,6 @@
    width: 100%;
    text-align: left;
 }
-.Total{
-    margin-top:-80px !important;
-}
 
 ion-popover {
     --background: rgba(235, 239, 240, 0.6);
@@ -36,12 +33,28 @@ ion-popover {
   }
   
   ion-popover ion-content {
-    --background: rgba(203, 205, 206, 0.6);
+    --background: skyblue;
   }
   
   ion-popover::part(backdrop) {
-    background-color: rgb(222, 223, 230);
+    background-color: skyblue;
   }
   .custom-popover-table {
     width: 600px; /* Set the desired width */
+    max-height: 300px !important;
   }
+  
+  .btn{
+    --box-shadow: none;  
+     font-size: 12px;
+    margin-top: 3px;
+    color: grey;
+    font-weight: bold;
+    padding: 0;
+ }
+ tr .table_input{
+  max-height: 20px !important;
+ }
+ .icons ion-icon{
+  font-size: 18px;
+ }
