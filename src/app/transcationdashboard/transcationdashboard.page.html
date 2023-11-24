@@ -3,66 +3,109 @@
 </ion-header>
 <ion-content class="container_fluid">
   <div class="dash">
-    <ion-label class="gamil"> <img width="25px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user">
-      Ktechnocompanycrm@gmail.com</ion-label>
+    <ion-title>
+      Transtraction Dashboard
+    </ion-title>
+    <ion-chip>
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label class="gamil">Ktechnocrm@gmail.com</ion-label>
+    </ion-chip>
   </div>
 
   <div class="lead_nav">
     <ion-grid>
       <ion-row>
-        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+        <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
           <div class="icon-container">
+            <ion-row class="leadscard">
 
-            <ion-row>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label> Quatation</ion-label>
-
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="person-outline" color="danger"></ion-icon><br>
+                  <ion-label color="danger">
+                    Quatations
+                  </ion-label>
+                  <ion-title>1000</ion-title>
+                </ion-card>
               </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>DC-In</ion-label>
-
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="list-outline"></ion-icon><br>
+                  <ion-label>
+                    DC-IN
+                  </ion-label>
+                  <ion-title>1020</ion-title>
+                </ion-card>
               </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="transgender"></ion-icon>
-                <ion-label>DC-Out</ion-label>
 
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="trophy-outline"></ion-icon><br>
+                  <ion-label>
+                    DC-OUT </ion-label>
+                  <ion-title>2033</ion-title>
+                </ion-card>
               </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>Sales</ion-label>
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="trophy-outline"></ion-icon><br>
+                  <ion-label>
+                    Sales 
+                  </ion-label>
+                  <ion-title>2033</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                  <ion-icon name="trophy-outline"></ion-icon><br>
+                  <ion-label>
+                    Purchase 
+                  </ion-label>
+                  <ion-title>2033</ion-title>
+                </ion-card>
+              </ion-col>
+             
 
-              </ion-col>
-              <ion-col class="lead_icon line">
-                <ion-icon name="person-add"></ion-icon>
-                <ion-label>Purchase</ion-label>
-
-              </ion-col>
             </ion-row>
 
           </div>
         </ion-col>
-        <ion-col class="table_data" size="12" size-lg="6" size-md="6" size-sm="6">
+        <ion-col size="12" size-lg="2" size-md="4" size-sm="2">
           <div class="icon-container">
-            <ion-row>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/add-quot']">Add Quatation</a>
-              </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/dc-in']">DC-IN</a>
-              </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/dc-out']">DC-OUT</a>
-              </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/add-sale']">Add Sale</a>
-              </ion-col>
-              <ion-col class="lead_icon">
-                <a [routerLink]="['/add-purchase']">Add Purchase</a>
-              </ion-col>
+            <!-- <ion-row class="headinglabel" style="text-align: center;">
+              <ion-label color="dark">Manage Master :</ion-label>
+            </ion-row> -->
+            <ion-row class="leadsrouter">
+              <ion-item [routerLink]="['/add-quot']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  Quatations
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/dc-in']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  DC-IN
+                </ion-label> <ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/dc-out']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                 DC-OUT
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/add-sale']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  Sales
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/add-purchase']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  Purchase
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+             
             </ion-row>
-            
+
           </div>
         </ion-col>
       </ion-row>
@@ -73,242 +116,142 @@
     <ion-row class="lead_details">
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>DC-IN</p>
+          <p>Quatations List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
-            <table>
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
-                <th><input type="checkbox" name=""></th>
-                <th>Sr No.</th>
-                <th>Voucher Number</th>
-                <th>Voucher Date</th>
-                <th>Ref. Number</th>
-                <th>Ref. Date</th>
-                <th>Supplier Name</th>
-                <th>Total</th>
-                <th>Rmark</th>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Quote No.</th>
+                <th style="width: 70px !important;">Quote Date</th>
+                <th style="width: 70px !important;">Customer Name</th>
               </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
+              <tr *ngFor="let quote of quote$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{quote.quoteNumber}}</td>
+                <td>{{quote.quateDate}}</td>
+                <td>{{quote.custname}}</td>
               </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
-              </tr>
-             
             </table>
           </div>
         </div>
       </ion-col>
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>DC-OUT</p>
+          <p>Dc-in List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
-            <table>
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
-                <th><input type="checkbox" name=""></th>
-                <th>Sr No.</th>
-                <th>Voucher Number</th>
-                <th>Voucher Date</th>
-                <th>Ref. Number</th>
-                <th>Ref. Date</th>
-                <th>Customer Name</th>
-                <th>Total</th>
-                <th>Rmark</th>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Voucher No.</th>
+                <th style="width: 70px !important;">Voucher Date</th>
+                <th style="width: 70px !important;">Supplier Code</th>
+                <th style="width: 70px !important;">Supplier Name</th>
+               
               </tr>
+              <tr *ngFor="let dcin of dcin$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{dcin.voucherNumber}}</td>
+                <td>{{dcin.datetype}}</td>
+                <td>{{dcin.vendcode}}</td>
+                <td>{{dcin.suppliertype}}</td>
+               
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="lead_details">
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Dc-out List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Voucher Formate</th>
+                <th style="width: 70px !important;">Voucher No.</th>
+                <th style="width: 70px !important;">Voucher Date</th>
+                <th style="width: 70px !important;">Supplier Code</th>
+                <th style="width: 70px !important;">Supplier Name</th>
               </tr>
+              <tr  *ngFor="let dcout of dcout$ | async; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{dcout.voucherformat}}</td>
+                <td>{{dcout.voucherNumber}}</td>
+                <td>{{dcout.datetype}}</td>
+                <td>{{dcout.vendcode}}</td>
+                <td> {{dcout.suppliertype}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Sales List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Billing Date</th>
+                <th style="width: 70px !important;">Customer Code</th>
+                <th style="width: 70px !important;">Customer Name</th>
+                <th style="width: 70px !important;">Order No.</th>
+                <th style="width: 70px !important;">Order Date</th>
+                <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
+              <tr *ngFor="let sales of sales$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{sales.billDate}}</td>
+                <td>{{sales.custcode}}</td>
+                <td>{{sales.custname}}</td>
+                <td>{{sales.orderDate}}</td>
+                <td>{{sales.orderNumber}}</td>
+                <td>{{sales.salePerson}}</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Purchase List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>5</td>
-                <td>30/10/2023</td>
-                <td>49</td>
-                <td>30/10/2023</td>
-                <td>Deepak</td>
-                <td>499</td>
-                <td>Rmark is dks</td>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Billing Date</th>
+                <th style="width: 70px !important;">Supplier Code</th>
+                <th style="width: 70px !important;">Supplier Name</th>
+                <th style="width: 70px !important;"> Order Date</th>
+                <th style="width: 70px !important;"> Order No.</th>
+                <th style="width: 70px !important;">Exicutive Name</th>
+               
               </tr>
+              <tr *ngFor="let purchase of purchase$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{purchase.billDate}}</td>
+                <td>{{purchase.vendcode}}</td>
+                <td>{{purchase.supplier}}</td>
+                <td>{{purchase.orderDate}}</td>
+                <td>{{purchase.orderNumber}}</td>
+                <td>{{purchase.executive}}</td>
+              </tr>
+
             </table>
           </div>
         </div>
       </ion-col>
     </ion-row>
 
-    <ion-row class="lead_details">
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Sale</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container">
-            <table>
-              <tr>
-                <th><input type="checkbox" name=""></th>
-                <th>Sr No.</th>
-                <th>Item Code </th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Discount</th>
-                <th>Discount Amount</th>
-                <th>CGST</th>
-                <th>SGST</th>
-                <th>Total</th>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-             
-            </table>
-          </div>
-        </div>
-      </ion-col>
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Purchase</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container">
-            <table>
-              <tr>
-                <th><input type="checkbox" name=""></th>
-                <th>Sr No.</th>
-                <th>Item Code </th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Discount</th>
-                <th>Discount Amount</th>
-                <th>CGST</th>
-                <th>SGST</th>
-                <th>Total</th>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
-                <td>1</td>
-                <td>65</td>
-                <td>Jeans</td>
-                <td>100</td>
-                <td>499</td>
-                <td>10%</td>
-                <td>150</td>
-                <td>5</td>
-                <td>15</td>
-                <td>60000</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
 
   </ion-grid>
 

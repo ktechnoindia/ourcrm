@@ -3,6 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
+import { EncryptionService } from '../services/encryption.service';
+import { CustomerService } from '../services/customer.service';
+import { VendorService } from '../services/vendor.service';
+import { ExecutiveService } from '../services/executive.service';
+import { AdditemService } from '../services/additem.service';
+import { Observable } from 'rxjs';
+import { QuotationService } from '../services/quotation.service';
+import { DcinService } from '../services/dcin.service';
+import { DcoutService } from '../services/dcout.service';
+import { SalesService } from '../services/sales.service';
+import { PurchaseService } from '../services/purchase.service';
 
 @Component({
   selector: 'app-transcationdashboard',
@@ -12,10 +23,50 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class TranscationdashboardPage implements OnInit {
+  
+  quote$:  Observable<any[]>;
+  dcin$: Observable<any[]>;
+  dcout$: Observable<any>;
+  sales$: Observable<any[]>;
+  purchase$: Observable<any[]>
 
-  constructor() { }
+  constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,) { 
+    const compid = '1';
 
-  ngOnInit() {
-  }
+    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
+    console.log(this.quote$);
+
+    this.quote$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+    this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
+    console.log(this.dcin$);
+
+    this.dcin$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+
+    this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid),'','');
+    console.log(this.dcout$);
+    
+    this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
+    console.log(this.sales$);
+
+    this.sales$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+
+    this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
+    console.log(this.purchase$);
+
+    this.purchase$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+  
 
 }
+  ngOnInit() {
+  }
+ 
+}
+
