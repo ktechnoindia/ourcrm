@@ -64,7 +64,7 @@
             
                 <select class="select" [(ngModel)]="suppliertype"  formControlName="suppliertype"  name="supplier">
                   <option value="0">Supplier Name</option><!-- Default option -->
-                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.nameid">
+                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
                   </option>
                 </select>
@@ -139,7 +139,7 @@
                       </ion-select> -->
                       <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                         <option value="0">Item Name</option><!-- Default option -->
-                        <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.itemDescid">
+                        <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
                         </option>
                       </select>

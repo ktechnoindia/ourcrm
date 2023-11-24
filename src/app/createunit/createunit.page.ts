@@ -16,8 +16,8 @@ export class CreateunitPage implements OnInit {
 
   unit_name:string='';
   short_name:string='';
-  primary_unit:string='';
-  decimal_place:string='';
+  primary_unit:number=0;
+  decimal_place:number=0;
   form: FormGroup;
 
   constructor(private router:Router,private formBuilder:FormBuilder,private formService:FormValidationService,private unitService:CreateunitService) { 
@@ -31,7 +31,7 @@ export class CreateunitPage implements OnInit {
   }
 
  async onSubmit() {
-    const fields = {unit_name:this.unit_name,primary_unit:this.primary_unit}
+    const fields = {unit_name:this.unit_name}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);

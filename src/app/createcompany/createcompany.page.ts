@@ -216,9 +216,9 @@ export class CreatecompanyPage implements OnInit {
        
       }
     );
-    setTimeout(() => {
-      this.form.reset();
-    }, 3000);
+    // setTimeout(() => {
+      // this.form.reset();
+    // }, 3000);
     }else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
