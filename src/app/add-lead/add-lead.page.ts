@@ -30,16 +30,19 @@ export class AddLeadPage {
   catPerson:string='';
   companyname:string=''
   phone:string='';
+  emails:string='';
   pncode:string='';
   fulladdress:string='';
-  emails:string='';
   lscore:number=0;
-  rmark:string='';
-  selectpd:string='';
+  selectpd:number=0;
   executivename:number=0;
   selectedCountry:number=0;
   selectedState: number=0;
   selectedDistrict: number=0;
+  rmark:string='';
+  c=1;
+  u=1;
+  r=1;
 
   countries$: Observable<any[]>
   states$: Observable<any[]>
@@ -47,7 +50,6 @@ export class AddLeadPage {
   leadsourcetype$: any;
   leadsourcetype!: string;
   executive$: any;
-  executive: string='';
 
 
   constructor(private execut: ExecutiveService, private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
@@ -94,7 +96,7 @@ export class AddLeadPage {
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode};
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {

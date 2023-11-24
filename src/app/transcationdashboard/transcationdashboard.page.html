@@ -17,30 +17,11 @@
   <div class="lead_nav">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
+        <ion-col size="12" size-lg="9.7" size-md="8" size-sm="10">
           <div class="icon-container">
             <ion-row class="leadscard">
-             
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightpink;">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales 
-                  </ion-label>
-                  <ion-title>{{totalsales}}</ion-title>
-                </ion-card>
-              </ion-col>
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(233, 199, 186);">
-                  <ion-icon name="shield-half-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase 
-                  </ion-label>
-                  <ion-title>{{totalpurchase}}</ion-title>
-                </ion-card>
-              </ion-col>
-             
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
                   <ion-icon name="person-outline" ></ion-icon><br>
                   <ion-label >
@@ -49,7 +30,7 @@
                   <ion-title>{{totalQuote}}</ion-title>
                 </ion-card>
               </ion-col>
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(199, 250, 199);">
                   <ion-icon name="list-outline"></ion-icon><br>
                   <ion-label>
@@ -59,7 +40,7 @@
                 </ion-card>
               </ion-col>
 
-              <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightgray;">
                   <ion-icon name="trophy-outline"></ion-icon><br>
                   <ion-label>
@@ -67,11 +48,46 @@
                   <ion-title>{{totaldcout}}</ion-title>
                 </ion-card>
               </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: lightpink;">
+                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
+                  <ion-label>
+                    Sales 
+                  </ion-label>
+                  <ion-title>{{totalsales}}</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: lightsalmon;">
+                  <ion-icon name="shield-half-outline"></ion-icon><br>
+                  <ion-label>
+                    Purchase 
+                  </ion-label>
+                  <ion-title>{{totalpurchase}}</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: lemonchiffon;">
+                  <ion-icon name="shield-half-outline"></ion-icon><br>
+                  <ion-label>
+                    Sales Return 
+                  </ion-label>
+                  <ion-title>{{totalsalesreturn}}</ion-title>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                <ion-card style="text-align: center;background-color: lightblue;">
+                  <ion-icon name="shield-half-outline"></ion-icon><br>
+                  <ion-label>
+                    Purchase Return 
+                  </ion-label>
+                  <ion-title>{{totalpurchasereturn}}</ion-title>
+                </ion-card>
+              </ion-col>
             </ion-row>
-
           </div>
         </ion-col>
-        <ion-col size="12" size-lg="2" size-md="4" size-sm="2">
+        <ion-col size="12" size-lg="2.3" size-md="4" size-sm="2">
           <div class="icon-container">
             <!-- <ion-row class="headinglabel" style="text-align: center;">
               <ion-label color="dark">Manage Master :</ion-label>
@@ -100,6 +116,17 @@
               <ion-item [routerLink]="['/add-purchase']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                   Purchase
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+
+              <ion-item [routerLink]="['/add-purchase']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  Sales Return
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/add-purchase']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                  Purchase Return
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
              
@@ -256,6 +283,69 @@
           </div>
         </div>
       </ion-col>
+
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Sales Return List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+              <tr>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Billing Date</th>
+                <th style="width: 70px !important;">Customer Code</th>
+                <th style="width: 70px !important;">Customer Name</th>
+                <th style="width: 70px !important;">Order No.</th>
+                <th style="width: 70px !important;">Order Date</th>
+                <th style="width: 300px !important;">Sales Person Name</th>
+              </tr>
+              <tr *ngFor="let salreturns of salreturn$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{salreturns.billDate}}</td>
+                <td>{{salreturns.custcode}}</td>
+                <td>{{salreturns.custname}}</td>
+                <td>{{salreturns.orderDate}}</td>
+                <td>{{salreturns.orderNumber}}</td>
+                <td>{{salreturns.salePerson}}</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Purchase Return List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+              <tr>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Billing Date</th>
+                <th style="width: 70px !important;">Supplier Code</th>
+                <th style="width: 70px !important;">Supplier Name</th>
+                <th style="width: 70px !important;"> Order Date</th>
+                <th style="width: 70px !important;"> Order No.</th>
+                <th style="width: 70px !important;">Exicutive Name</th>
+               
+              </tr>
+              <tr *ngFor="let purchasereturn of purchasereturn$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{purchasereturn.billDate}}</td>
+                <td>{{purchasereturn.vendcode}}</td>
+                <td>{{purchasereturn.supplier}}</td>
+                <td>{{purchasereturn.orderDate}}</td>
+                <td>{{purchasereturn.orderNumber}}</td>
+                <td>{{purchasereturn.executive}}</td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </ion-col>
+
+
     </ion-row>
 
 
