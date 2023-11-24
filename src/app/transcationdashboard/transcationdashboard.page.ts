@@ -29,6 +29,11 @@ export class TranscationdashboardPage implements OnInit {
   dcout$: Observable<any>;
   sales$: Observable<any[]>;
   purchase$: Observable<any[]>
+  totalQuote: number=0;
+  totaldcin: number=0;
+  totaldcout: number=0;
+  totalsales: number=0;
+  totalpurchase: number=0;
 
   constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,) { 
     const compid = '1';
@@ -38,22 +43,31 @@ export class TranscationdashboardPage implements OnInit {
 
     this.quote$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalQuote=data.length;
     });
     this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
     console.log(this.dcin$);
 
     this.dcin$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totaldcin=data.length;
     });
 
     this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid),'','');
     console.log(this.dcout$);
+
+    this.dcout$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totaldcout=data.length;
+    });
     
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
     console.log(this.sales$);
 
     this.sales$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalsales=data.length;
+
     });
 
     this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
@@ -61,6 +75,8 @@ export class TranscationdashboardPage implements OnInit {
 
     this.purchase$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalpurchase=data.length;
+
     });
   
 

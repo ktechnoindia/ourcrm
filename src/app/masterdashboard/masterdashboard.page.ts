@@ -22,7 +22,9 @@ export class MasterdashboardPage implements OnInit {
   vendors$: Observable<any[]>;
   executives$: Observable<any[]>
   items$: Observable<any[]>
-
+  totalCustomer: number = 0;
+  totalSupplier:number=0;
+  totalItems:number=0;
 
   constructor(private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     const compid = '1';
@@ -31,18 +33,26 @@ export class MasterdashboardPage implements OnInit {
     console.log(this.customers$);
 
     this.customers$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
+      console.log(data);
+      this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
     });
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
     console.log(this.vendors$);
+    this.vendors$.subscribe(data => {
+      console.log(data);
+      this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
     console.log(this.executives$);
     
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
     console.log(this.items$);
-
+    this.items$.subscribe(data => {
+      console.log(data);
+      this.totalItems=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.items$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched

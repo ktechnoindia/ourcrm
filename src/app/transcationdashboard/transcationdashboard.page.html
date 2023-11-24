@@ -23,11 +23,11 @@
 
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                  <ion-icon name="person-outline" color="danger"></ion-icon><br>
-                  <ion-label color="danger">
+                  <ion-icon name="person-outline" ></ion-icon><br>
+                  <ion-label >
                     Quatations
                   </ion-label>
-                  <ion-title>1000</ion-title>
+                  <ion-title>{{totalQuote}}</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
@@ -36,7 +36,7 @@
                   <ion-label>
                     DC-IN
                   </ion-label>
-                  <ion-title>1020</ion-title>
+                  <ion-title>{{totaldcin}}</ion-title>
                 </ion-card>
               </ion-col>
 
@@ -45,25 +45,25 @@
                   <ion-icon name="trophy-outline"></ion-icon><br>
                   <ion-label>
                     DC-OUT </ion-label>
-                  <ion-title>2033</ion-title>
+                  <ion-title>{{totaldcout}}</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightpink;">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
+                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                   <ion-label>
                     Sales 
                   </ion-label>
-                  <ion-title>2033</ion-title>
+                  <ion-title>{{totalsales}}</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightsalmon;">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
+                  <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
                     Purchase 
                   </ion-label>
-                  <ion-title>2033</ion-title>
+                  <ion-title>{{totalpurchase}}</ion-title>
                 </ion-card>
               </ion-col>
              
@@ -114,82 +114,39 @@
 
   <ion-grid>
     <ion-row class="lead_details">
+
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>Quatations List</p>
+          <p>Purchase List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
-                <th style="width: 70px !important;">Quote No.</th>
-                <th style="width: 70px !important;">Quote Date</th>
-                <th style="width: 70px !important;">Customer Name</th>
-              </tr>
-              <tr *ngFor="let quote of quote$ | async; let i = index">
-                <td>{{i+1}}</td>
-                <td>{{quote.quoteNumber}}</td>
-                <td>{{quote.quateDate}}</td>
-                <td>{{quote.custname}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </ion-col>
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Dc-in List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
-              <tr>
-                <th style="width: 50px !important;">Sr.No.</th>
-                <th style="width: 70px !important;">Voucher No.</th>
-                <th style="width: 70px !important;">Voucher Date</th>
+                <th style="width: 70px !important;">Billing Date</th>
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
+                <th style="width: 70px !important;"> Order Date</th>
+                <th style="width: 70px !important;"> Order No.</th>
+                <th style="width: 70px !important;">Exicutive Name</th>
                
               </tr>
-              <tr *ngFor="let dcin of dcin$ | async; let i = index">
+              <tr *ngFor="let purchase of purchase$ | async; let i = index">
                 <td>{{i+1}}</td>
-                <td>{{dcin.voucherNumber}}</td>
-                <td>{{dcin.datetype}}</td>
-                <td>{{dcin.vendcode}}</td>
-                <td>{{dcin.suppliertype}}</td>
-               
+                <td>{{purchase.billDate}}</td>
+                <td>{{purchase.vendcode}}</td>
+                <td>{{purchase.supplier}}</td>
+                <td>{{purchase.orderDate}}</td>
+                <td>{{purchase.orderNumber}}</td>
+                <td>{{purchase.executive}}</td>
               </tr>
+
             </table>
           </div>
         </div>
       </ion-col>
-    </ion-row>
-    <ion-row class="lead_details">
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Dc-out List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
-              <tr>
-                <th style="width: 50px !important;">Sr.No.</th>
-                <th style="width: 70px !important;">Voucher Formate</th>
-                <th style="width: 70px !important;">Voucher No.</th>
-                <th style="width: 70px !important;">Voucher Date</th>
-                <th style="width: 70px !important;">Supplier Code</th>
-                <th style="width: 70px !important;">Supplier Name</th>
-              </tr>
-              <tr  *ngFor="let dcout of dcout$ | async; let i = index">
-                <td>{{i + 1}}</td>
-                <td>{{dcout.voucherformat}}</td>
-                <td>{{dcout.voucherNumber}}</td>
-                <td>{{dcout.datetype}}</td>
-                <td>{{dcout.vendcode}}</td>
-                <td> {{dcout.suppliertype}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </ion-col>
+
+     
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Sales List</p>
@@ -219,33 +176,83 @@
           </div>
         </div>
       </ion-col>
+     
+    </ion-row>
+    <ion-row class="lead_details">
 
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
-          <p>Purchase List</p>
+          <p>Quatations List</p>
           <ion-searchbar class="custom"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
-                <th style="width: 70px !important;">Billing Date</th>
+                <th style="width: 70px !important;">Quote No.</th>
+                <th style="width: 70px !important;">Quote Date</th>
+                <th style="width: 70px !important;">Customer Name</th>
+              </tr>
+              <tr *ngFor="let quote of quote$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{quote.quoteNumber}}</td>
+                <td>{{quote.quateDate}}</td>
+                <td>{{quote.custname}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
+
+     
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Dc-in List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+              <tr>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Voucher No.</th>
+                <th style="width: 70px !important;">Voucher Date</th>
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
-                <th style="width: 70px !important;"> Order Date</th>
-                <th style="width: 70px !important;"> Order No.</th>
-                <th style="width: 70px !important;">Exicutive Name</th>
                
               </tr>
-              <tr *ngFor="let purchase of purchase$ | async; let i = index">
+              <tr *ngFor="let dcin of dcin$ | async; let i = index">
                 <td>{{i+1}}</td>
-                <td>{{purchase.billDate}}</td>
-                <td>{{purchase.vendcode}}</td>
-                <td>{{purchase.supplier}}</td>
-                <td>{{purchase.orderDate}}</td>
-                <td>{{purchase.orderNumber}}</td>
-                <td>{{purchase.executive}}</td>
+                <td>{{dcin.voucherNumber}}</td>
+                <td>{{dcin.datetype}}</td>
+                <td>{{dcin.vendcode}}</td>
+                <td>{{dcin.suppliertype}}</td>
+               
               </tr>
+            </table>
+          </div>
+        </div>
+      </ion-col>
 
+      <ion-col class="table_data" size="12" size-lg="6">
+        <div class="table-container">
+          <p>Dc-out List</p>
+          <ion-searchbar class="custom"></ion-searchbar>
+          <div class="scroll-container">
+            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+              <tr>
+                <th style="width: 50px !important;">Sr.No.</th>
+                <th style="width: 70px !important;">Voucher Formate</th>
+                <th style="width: 70px !important;">Voucher No.</th>
+                <th style="width: 70px !important;">Voucher Date</th>
+                <th style="width: 70px !important;">Supplier Code</th>
+                <th style="width: 70px !important;">Supplier Name</th>
+              </tr>
+              <tr  *ngFor="let dcout of dcout$ | async; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{dcout.voucherformat}}</td>
+                <td>{{dcout.voucherNumber}}</td>
+                <td>{{dcout.datetype}}</td>
+                <td>{{dcout.vendcode}}</td>
+                <td> {{dcout.suppliertype}}</td>
+              </tr>
             </table>
           </div>
         </div>

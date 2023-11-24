@@ -284,3 +284,37 @@ ion-item:hover {
   }
 }
 
+.leadscard ion-title{
+  font-size: 26px;
+  color: purple;
+  font-weight: bolder;
+}
+.leadscard ion-icon{
+  font-size: 32px;
+  color: purple;
+  font-weight: bolder;
+}
+.leadscard ion-label{
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  color: purple;
+}
+.leadscard ion-card{
+  height: 100%;
+  width: 80%;
+}
+.leadsrouter ion-icon{
+  padding: 5px;
+  color: purple;
+}
+.leadsrouter  ion-label{
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: purple;
+}
+.leadsrouter ion-card{
+  margin: 10px;
+  width: 80%;
+}

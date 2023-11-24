@@ -23,32 +23,33 @@
             <div class="icon-container">
               <ion-row class="leadscard">
                 
-                <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
+               
+                <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                   <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                    <ion-icon name="person-outline" color="danger"></ion-icon><br>
-                    <ion-label color="danger">
+                    <ion-icon name="list-outline"></ion-icon><br>
+                    <ion-label>
                       Active Customer
                     </ion-label>
-                    <ion-title>1000</ion-title>
+                    <ion-title>{{totalCustomer }}</ion-title>
                   </ion-card>
                 </ion-col>
                 <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                   <ion-card style="text-align: center;background-color:rgb(199, 250, 199);">
-                    <ion-icon name="list-outline"  color="danger"></ion-icon><br>
+                    <ion-icon name="trophy-outline"></ion-icon><br>
                     <ion-label>
                       Active Supplier
                     </ion-label>
-                    <ion-title>1020</ion-title>
+                    <ion-title>{{totalSupplier }}</ion-title>
                   </ion-card>
                 </ion-col>
 
                 <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
                   <ion-card style="text-align: center;background-color: lightgray;">
-                    <ion-icon name="trophy-outline"  color="danger"></ion-icon><br>
+                    <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                     <ion-label>
-                      Top Items
+                      Total Items
                     </ion-label>
-                    <ion-title>2033</ion-title>
+                    <ion-title>{{totalItems}}</ion-title>
                   </ion-card>
                 </ion-col>
               

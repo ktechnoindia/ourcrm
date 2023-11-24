@@ -56,7 +56,7 @@ export class ViewcustomerPage implements OnInit {
     'Email',
   ];
 
-
+  totalItems: number = 0;
   constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
     const compid = '1';
 
@@ -65,6 +65,7 @@ export class ViewcustomerPage implements OnInit {
 
     this.customers$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
     });
 
   }
