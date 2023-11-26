@@ -4,6 +4,7 @@ export const environment = {
   apibaseurl: 'http://103.154.184.66:8000/masters/',
   apiactionurl: 'http://103.154.184.66:8000/actions/',
   apiacturl: 'http://103.154.184.66:8000/acts/',
+  apiloginurl: 'http://localhost:8000/app1/',
   fetchallcountries: 'getCountries', // Replace with your API's base URL
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchallstate: 'getStates',
@@ -24,7 +25,7 @@ export const environment = {
   addcust: 'customer',
   addvend: 'vendor',
   addsignup:'get_signup',
-  addlogin: 'get_login',
+  addlogin: 'appin',
 
   addlead: 'insert_lead',
   addfollowup: 'followup',
