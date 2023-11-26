@@ -104,13 +104,15 @@
           
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <select class="select"  [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
-                    <option value="0" disabled selected>Select Lead Source</option>
+                  <!-- <select class="select"  [(ngModel)]="lscore" formControlName="lscore" name="leadscore"> -->
+                    <ion-input [(ngModel)]="lscore" formControlName="lscore" name="lscore" type="text"
+                  label="Lead Score:" label-placement="floating" fill="outline"></ion-input>
+                    <!-- <option value="0">Select Lead Source</option>
                     <option *ngFor="let leadsourcetype of leadsourcetype$ | async"
                       [value]="leadsourcetype.leadsourcetypeid">
                       {{ leadsourcetype.leadsourcename }}
-                    </option>
-                  </select>
+                    </option> 
+                  </select>-->
                 </ion-row>
               </ion-col>
 

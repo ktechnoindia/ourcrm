@@ -36,7 +36,7 @@ export class LoginpagePage implements OnInit {
       let loginstore: logindata = {
         username: this.form.value.username,
         password: this.form.value.password,
-       
+        emailphone: ''
       };
       this.logincreate.createlogin(loginstore, '', '').subscribe(
         (response: any) => {

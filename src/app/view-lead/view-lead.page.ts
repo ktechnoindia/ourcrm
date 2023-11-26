@@ -8,6 +8,9 @@ import { RouterLink } from '@angular/router';
 import { ExecutiveService } from '../services/executive.service';
 import { FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { EncryptionService } from '../services/encryption.service';
+import { LeadService } from '../services/lead.service';
 
 @Component({
   selector: 'app-view-lead',
@@ -18,17 +21,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ViewLeadPage implements OnInit {
 
-  form:FormGroup;
+  viewLeadForm: FormGroup;
   executive$: any;
   executive: string='';
   select_sales_person:number=0;
   formdate: string = '';
   toDate: string = '';
+  lead$:Observable<any[]>
 
-  constructor(private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder) {
+  constructor(private encService: EncryptionService,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder) {
+    const compid = '1';
+    this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
     this.executive$ = this.execut.getexecutive();
 
-    this.form = formBuilder.group({
+    this.viewLeadForm = this.formBuilder.group({
       select_sales_person:[''],
       formdate:[''],
       toDate:[''],

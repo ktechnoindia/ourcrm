@@ -24,7 +24,7 @@
         </div>
         <ion-grid>
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form [formGroup]="viewLeadForm" (ngSubmit)="onSubmit()">
 
             <ion-row>
               <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
@@ -70,77 +70,38 @@
                     <th>City </th>
                     <th>Address</th>
                     <th>Pincode</th>
-                    <th>WhatsApp No.</th>
                     <th>Email ID</th>
+                    <th>Select Product</th>
                     <th>Lead Source</th>
                     <th>Lead Assign To</th>
                     <th>Lead Score</th>
+                    <th>Remark</th>
                     <th>Action</th>
                   </tr>
-                  <tr>
-                    <tr>
-                      <td>1</td>
-                      <td>001</td>
-                      <td>ABC Corp</td>
-                      <td>John Doe</td>
-                      <td>123-456-7890</td>
-                      <td>USA</td>
-                      <td>California</td>
-                      <td>Los Angeles</td>
-                      <td>123 Main St</td>
-                      <td>90001</td>
-                      <td>123-456-7890</td>
-                      <td>john.doe@example.com</td>
-                      <td>Web Form</td>
-                      <td>Sales Rep A</td>
-                      <td>85</td>
+                  <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                    <td>{{i+1}}</td>
+                      <td>{{leadscore.tid}}</td>
+                      <td>{{leadscore.companyname}}</td>
+                      <td>{{leadscore.catPerson}}</td>
+                      <td>{{leadscore.phone}}</td>
+                      <td>{{leadscore.selectedCountry}}</td>
+                      <td>{{leadscore.selectedState}}</td>
+                      <td>{{leadscore.selectedDistrict}}</td>
+                      <td> {{leadscore.fulladdress}}</td>
+                      <td>{{leadscore.pncode}}</td>
+                      <td>{{leadscore.emails}}</td>
+                      <td>{{leadscore.selectpd}}</td>
+                      <td>{{leadscore.lscore}}</td>
+                      <td>{{leadscore.lscore}}</td>
+                      <td>{{leadscore.executivename}}</td>
+                      
+                      <td>{{leadscore.rmark}}</td>
                       <td>
                         <ion-icon class="create"[routerLink]="['/leadedit']" name="create"></ion-icon>
                         <ion-icon class="delete" name="trash"></ion-icon>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>002</td>
-                      <td>XYZ Inc</td>
-                      <td>Jane Smith</td>
-                      <td>987-654-3210</td>
-                      <td>Canada</td>
-                      <td>Ontario</td>
-                      <td>Toronto</td>
-                      <td>456 Elm St</td>
-                      <td>M5V 1A1</td>
-                      <td>987-654-3210</td>
-                      <td>jane.smith@example.com</td>
-                      <td>Referral</td>
-                      <td>Sales Rep B</td>
-                      <td>72</td>
-                      <td>
-                        <ion-icon class="create"[routerLink]="['/leadedit']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>003</td>
-                      <td>DEF Ltd</td>
-                      <td>Alice Johnson</td>
-                      <td>555-123-7890</td>
-                      <td>UK</td>
-                      <td>England</td>
-                      <td>London</td>
-                      <td>789 Oak Rd</td>
-                      <td>SW1A 1AA</td>
-                      <td>555-123-7890</td>
-                      <td>alice.johnson@example.com</td>
-                      <td>Email</td>
-                      <td>Sales Rep C</td>
-                      <td>93</td>
-                      <td>
-                        <ion-icon class="create"[routerLink]="['/leadedit']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
-                      </td>
-                    </tr>
+                    
                 </table>
               </div>
             </ion-row>

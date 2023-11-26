@@ -14,7 +14,24 @@ import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
 import { ExecutiveService } from '../services/executive.service';
-
+interface lead {
+  catPerson:string;
+  companyname:string
+  phone:string;
+  emails:string;
+  pncode:string;
+  fulladdress:string;
+  lscore:number;
+  selectpd:number;
+  executivename:number;
+  selectedCountry:number;
+  selectedState: number;
+  selectedDistrict: number;
+  rmark:string;
+  c:number;
+  u:number;
+  r:number;
+}
 
 @Component({ 
   selector: 'app-add-lead',
@@ -47,9 +64,10 @@ export class AddLeadPage {
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
-  leadsourcetype$: any;
-  leadsourcetype!: string;
+  leadsourcetype$: Observable<any[]>
+  leadsourcetype!: number;
   executive$: any;
+  lead$: any
 
 
   constructor(private execut: ExecutiveService, private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService

@@ -3,6 +3,7 @@ export const environment = {
   production: false,
   apibaseurl: 'http://103.154.184.66:8000/masters/',
   apiactionurl: 'http://103.154.184.66:8000/actions/',
+  apiacturl: 'http://103.154.184.66:8000/acts/',
   fetchallcountries: 'getCountries', // Replace with your API's base URL
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchallstate: 'getStates',
@@ -25,7 +26,7 @@ export const environment = {
   addsignup:'get_signup',
   addlogin: 'get_login',
 
-  addlead: 'lead',
+  addlead: 'insert_lead',
   addfollowup: 'followup',
   addledger: 'saveLedger',
   addservice: 'saveservices',
@@ -71,7 +72,8 @@ export const environment = {
   fetchallsalesreturn:'get_sale_return',
   fetchallpurchasereturn:'get_purchase_return',
   fetchallItem:'get_all_items',
-  fetchlead:"get_lead"
+  fetchlead:"get_lead",
+  fetchallleads:"get_lead_by_company"
  
 };
 

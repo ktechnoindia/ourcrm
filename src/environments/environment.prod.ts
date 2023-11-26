@@ -24,7 +24,7 @@ export const environment = {
   addvend: 'vendor',
   //fetchexecutive:'getExecutives',
   // fetchcustomertype:'getCustomertypes',
-  addlead: 'lead',
+  addlead: 'insert_lead',
   addfollowup: 'followup',
   addledger: 'saveLedger',
   addservice: 'saveservices',
