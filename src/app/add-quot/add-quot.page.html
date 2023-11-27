@@ -128,7 +128,7 @@
                      
                     <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
-                      <option *ngFor="let item  of itemnames$ | async" [value]="item .itemid">
+                      <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                         {{ item .itemDesc }}
                       </option>
                     </select>
@@ -185,7 +185,7 @@
                       <input [(ngModel)]="quote.discount"  formControlName="discount" name="discount" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.discountamt"  formControlName="discountamt" name="discountamt" class="table_input" type="text">
+                      <input [(ngModel)]="quote.discountamt" [value]="getTotalDiscountAmount()" formControlName="discountamt" name="discountamt" class="table_input" type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.totaltax"  formControlName="totaltax" name="totaltax" class="table_input" type="text">
@@ -321,13 +321,13 @@
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>
-                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt"  formControlName="totaldiscountamt" name="totaldiscountamt" class="table_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" formControlName="totaldiscountamt" name="totaldiscountamt" class="table_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Tax Amount : </th>
-                      <td colspan="2"> <input [(ngModel)]="totaltaxamount"  formControlName="totaltaxamount" name="totaltaxamount" class="table_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" formControlName="totaltaxamount" name="totaltaxamount" class="table_input" type="text">
                       </td>
                     </tr>
 
@@ -349,7 +349,7 @@
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount"  formControlName="totalnetamount" name="totalnetamount" class="table_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" [value]="getTotalAmount()" formControlName="totalnetamount" name="totalnetamount" class="table_input" type="text">
                       </td>
                     </tr>
                   </table>

@@ -355,16 +355,21 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + +quote.total, 0);
   }
 
+  
+
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.totaltax), 0);
   }
 
-  // getTotalDiscountAmount(): number {
-  //   return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
-  // }
   getTotalDiscountAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.discountamt), 0);
+    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
   }
+
+  
+
+  // getTotalDiscountAmount(): number {
+  //   return this.quoteData.reduce((total, quote) => total + (+quote.discountamt), 0);
+  // }
   
   ngOnInit() {
     this.calculateTotals()
