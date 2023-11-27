@@ -111,7 +111,7 @@ export class CreatecompanyPage implements OnInit {
     this.companytype$ = this.cmptype.getcgtype();
     this.businesstype$ = this.bustype.getbusinesstype();
     this.segmenttype$ = this.segment1.getsegments();
-
+this.rdate = new Date().toLocaleDateString();
 
 
     this.form = this.formBuilder.group({

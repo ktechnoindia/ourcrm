@@ -48,7 +48,7 @@
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="billDate" formControlName="billDate" name="billdate" type="date" label=" Billing Date :"
+                  <ion-input  [(ngModel)]="billDate" formControlName="billDate" name="billdate" type="datetime" label=" Billing Date :"
                     label-placement="floating" fill="outline"></ion-input>
                    
                 </ion-row>
@@ -77,18 +77,11 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label="Ref. Date :"
+                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="datetime" label="Ref. Date :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <ion-row>
-                  <ion-input  [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date" label=" Order Date :"
-                    label-placement="floating" fill="outline"></ion-input>
-                   
-                </ion-row>
-              </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input  [(ngModel)]="orderNumber" formControlName="orderNumber" name="orderno" type="text"
@@ -96,13 +89,16 @@
                    
                 </ion-row>
               </ion-col>
-              <!-- <ion-col size-lg="2" size-md="4" size-sm="6" size="6">
+
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text" label="PO Number :"
+                  <ion-input  [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="datetime" label=" Order Date :"
                     label-placement="floating" fill="outline"></ion-input>
+                   
                 </ion-row>
+              </ion-col>
               
-              </ion-col> -->
+             
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="number" label=" GSTIN  :"
@@ -120,9 +116,10 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="payment"  formControlName="payment" name="pyt">
-                  <option value="0" disabled selected>Select Payment Mode</option> <!-- Default option -->
-                  <option value="2">Cash</option>
-                  <option value="3">Credit</option>
+                  <!-- <option value="0" disabled selected>Select Payment Mode</option> Default option -->
+                  <option value="0">Credit</option>
+                  <option value="1">Cash</option>
+                 
                 </select>
               </ion-col>
             </ion-row>
@@ -162,7 +159,7 @@
                       <input [(ngModel)]="sales.itemcode" formControlName="itemcode" name="itemcode" class="table_input" type="text">
                     </td>
                     <td>
-                     
+                    
 
                     <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
@@ -242,7 +239,7 @@
 
               </div>
               <div style="overflow-x: auto;" >
-                <table style="width:1318px;" >
+                <table style="width:100%;" >
                   <tr>
   
                     <td colspan="1" >
@@ -251,7 +248,7 @@
                     </td>
   
                     <td colspan="5">
-                      <label class="label_table" for="">Quantity :</label>
+                      <label class="label_table" for="">Qty :</label>
                       <input name="totalquantity" [(ngModel)]="totalquantity"  formControlName="totalquantity"  class="input_table" type="text">
                     </td>
   
@@ -260,7 +257,7 @@
                       <input name="totalgrossamt" [(ngModel)]="totalgrossamt"  formControlName="totalgrossamt" class="input_table" type="text" >
                     </td>
                     <td colspan="10">
-                      <label class="label_table" for="">Gross Amount :</label>
+                      <label class="label_table" for="">Discount Amount :</label>
                       <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt"  formControlName="totaldiscountamt" class="input_table" type="text">
                     </td>
                     <td>
@@ -286,7 +283,7 @@
                       <tr>
                         <th style="width: 100px !important;">Delivery Date</th>
                         <td>
-                          <ion-input type="date"  [(ngModel)]="deliverydate"  formControlName="deliverydate" name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
+                          <ion-input type="datetime"  [(ngModel)]="deliverydate"  formControlName="deliverydate" name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
                         </td>
                       </tr>
                       <tr>

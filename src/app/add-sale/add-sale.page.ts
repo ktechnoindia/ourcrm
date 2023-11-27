@@ -83,10 +83,10 @@ export class AddSalePage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax: string = '0';
+  posttax: string = '0';
   deliverydate: string = '';
-  deliveryplace: string = '';
+  deliveryplace: string = 'Jaipur';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -133,7 +133,10 @@ export class AddSalePage implements OnInit {
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-
+    this.billDate= new Date().toLocaleDateString();
+    this.refdate=  new Date().toLocaleDateString();
+    this.deliverydate= new Date().toLocaleDateString();
+    this.orderDate= new Date().toLocaleDateString();
 
     this.myform = this.formBuilder.group({
       billformate: [''],

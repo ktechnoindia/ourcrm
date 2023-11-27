@@ -8,6 +8,9 @@ import { FollowupService, followuptable } from '../services/followup.service';
 import { MyService } from '../myservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidationService } from '../form-validation.service';
+import { LeadService } from '../services/lead.service';
+import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-follow-up',
   templateUrl: './follow-up.page.html',
@@ -20,13 +23,17 @@ export class FollowUpPage implements OnInit {
 myform:FormGroup;
   remark:string='';
   nextfollowupDate:string='';
-
-  constructor(private followService : FollowupService,private formService:FormValidationService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder) { 
+  // currentDate: string;
+  lead$:Observable<any[]>
+  constructor(private followService : FollowupService,private formService:FormValidationService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder,private encService: EncryptionService,private leadser:LeadService,) { 
    this.myform = this.formBuilder.group({
     remark:[''],
     nextfollowupDate:['']
    })
+   const compid = '1';
+   this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
 
+   this.nextfollowupDate = new Date().toLocaleDateString();
   }
 
 

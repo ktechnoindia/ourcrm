@@ -20,7 +20,7 @@ export interface leadstore {
   c:number;
   u:number;
   r:number;
-
+  leadtype:number;
 }
 @Injectable({
   providedIn: 'root'

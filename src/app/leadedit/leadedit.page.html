@@ -54,7 +54,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="0">Select Country</option> <!-- Default option -->
+                  <option value="">Select Country</option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -65,7 +65,7 @@
 
                 <select class="select" [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="0" >Select State</option> <!-- Default option -->
+                  <option value="" >Select State</option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -76,7 +76,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
-                  <option value="0" >Select District</option> <!-- Default option -->
+                  <option value="" >Select District</option> <!-- Default option -->
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
@@ -89,20 +89,32 @@
                     label=" Pincode :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="8" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                 <ion-row>
                   <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" type="text" label=" Address :"
                     label-placement="floating" fill="outline"></ion-input>
                  
                 </ion-row>
               </ion-col>
+
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+                <select class="select" [(ngModel)]="leadtype" formControlName="leadtype" name="leadtype">
+                  <option value="">Lead Type</option>
+                  <option value="1">Cold</option>
+                  <option value="2">Warm </option>
+                  <option value="3">Cold</option>
+                  <option value="4">Not Interested </option>
+                  <option value="5">Closed </option>
+                </select>
+
+              </ion-col>
           
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <select class="select" [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
-                    <option value="0" disabled selected>Select Lead Source</option>
+                    <option value="" disabled selected>Select Lead Source</option>
                     <option *ngFor="let leadsourcetype of leadsourcetype$ | async"
-                      [value]="leadsourcetype.leadsourcetypeid">
+                      [value]="leadsourcetype.leadsourceid">
                       {{ leadsourcetype.leadsourcename }}
                     </option>
                   </select>
