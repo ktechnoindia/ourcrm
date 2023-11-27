@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { Device } from '@ionic-native/device/ngx';
+import { Device } from '@capacitor/device';
 import { AlertController, Platform, ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,16 @@ export class SessionService {
   uuid: string = "";
   platforms: string = "";
 
-  constructor(private platform: Platform, private device: Device,private storage: Storage,public toastCtrl:ToastController, private alertController: AlertController,private router:Router,private httpclient:HttpClient){
+  constructor(private platform: Platform,private storage: Storage,public toastCtrl:ToastController, private alertController: AlertController,private router:Router,private httpclient:HttpClient){
      console.log('session constructor ');
     this.platform.ready().then(() => {
+      const device =  Device.getInfo();
+
       //console.log('device ready '+this.device.version);
-       this.osVersion = this.device.version;
-       this.uuid = this.device.uuid;
+       this.osVersion = '';// device.version;
+      // this.uuid = this.device.uuid;
        //this.name = (window as any).device.name;
-       this.platforms = device.platform;
+      // this.platforms = device.platform;
 
       
     });
