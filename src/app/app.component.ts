@@ -5,7 +5,7 @@ import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router'; // Import the Router module
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StateService } from './services/state.service';
 import { DistrictsService } from './services/districts.service';
@@ -54,16 +54,18 @@ import { LoginService } from './services/login.service';
 import { BarcodeService } from './services/barcode.service';
 import { SalereturnService } from './services/salereturn.service';
 import { PurchasereturnService } from './services/purchasereturn.service'; 
+import { InterceptorProvider } from './interceptors/interceptor';
+import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule],
+  imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule,HttpInterceptorModule],
   providers: [ItemtypeService, LeadsourceService,FollowupService,StocktypeService, LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
     CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
  AddattributeService,UsercreateService,PasswordService,LoginService,BarcodeService,SalereturnService,PurchasereturnService
-  ],
+ ],
 })
 export class AppComponent {
   activeSegment: string = '';
