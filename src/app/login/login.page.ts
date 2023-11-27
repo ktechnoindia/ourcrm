@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,15 +24,20 @@ export class LoginPage implements OnInit {
    username: string='';
 
    submitValue = false;
-login:any;
-   constructor(private navCtrl: NavController, private toastCtrl: ToastController,private logIn : LoginService){}
+myform:FormGroup;
+   constructor(private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService){
+    this.myform = this.formBuilder.group({
+      username:[''],
+      password:['']
+   })
+  }
  
-   onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
+   onSubmit() {
+    console.log('Your form data : ', this.myform.value);
     let loginStore: logindata = {
-      emailphone: myform.value.emailphone,
-      password: myform.value.password,
-      username: myform.value.username,
+      emailphone: this.myform.value.emailphone,
+      password: this.myform.value.password,
+      username: this.myform.value.username,
 
     };
     this.logIn.createlogin(loginStore, '', '').subscribe(
