@@ -13,7 +13,6 @@ import { DistrictsService } from '../services/districts.service';
 import { Observable } from 'rxjs';
 import { SignupService, signup } from '../services/signup.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -42,8 +41,26 @@ export class SignupPage implements OnInit {
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
+myform:FormGroup;
+  constructor(private signUp: SignupService, private router: Router, private toastController: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private formBuilder:FormBuilder) {
+    this.myform = this.formBuilder.group({
+      salutation:[''],
+      firstName:[''],
+      midName:[''],
+      lastName:[''],
+      phone:[''],
+      email:[''],
+      role:[''],
+      password:[''],
+      confirmpassword:[''],
+      selectedOption:[''],
+      selectedState:[''],
+      selectedDistrict:[''],
+      address:[''],
+      selectedarea:[''],
+      checkBoxSection:[''],
+    })
 
-  constructor(private signUp: SignupService, private router: Router, private toastController: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
@@ -57,23 +74,23 @@ export class SignupPage implements OnInit {
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
   }
 
-  onSubmit(myform: NgForm) {
-    console.log('Your form data : ', myform.value);
+  onSubmit() {
+    console.log('Your form data : ', this.myform.value);
     let signupdata: signup = {
-      firstName: myform.value.firstName,
-      midName: myform.value.midName,
-      lastName: myform.value.lastName,
-      phone: myform.value.phone,
-      email: myform.value.email,
-      role: myform.value.role,
-      password: myform.value.password,
-      confirmpassword: myform.value.confirmpassword,
-      selectedOption: myform.value.selectedOption,
-      selectedState: myform.value.selectedState,
-      selectedDistrict: myform.value.selectedDistrict,
-      address: myform.value.address,
-      selectedarea: myform.value.selectedarea,
-      salutation: myform.value.salutation,
+      firstName: this.myform.value.firstName,
+      midName: this.myform.value.midName,
+      lastName: this.myform.value.lastName,
+      phone: this.myform.value.phone,
+      email: this.myform.value.email,
+      role: this.myform.value.role,
+      password: this.myform.value.password,
+      confirmpassword: this.myform.value.confirmpassword,
+      selectedOption: this.myform.value.selectedOption,
+      selectedState: this.myform.value.selectedState,
+      selectedDistrict: this.myform.value.selectedDistrict,
+      address: this.myform.value.address,
+      selectedarea: this.myform.value.selectedarea,
+      salutation: this.myform.value.salutation,
     };
     this.signUp.createsignup(signupdata, '', '').subscribe(
       (response: any) => {

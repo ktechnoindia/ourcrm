@@ -320,10 +320,7 @@ export const routes: Routes = [
     path: 'viewservice',
     loadComponent: () => import('./viewservice/viewservice.page').then( m => m.ViewservicePage)
   },
-  {
-    path: 'loginpage',
-    loadComponent: () => import('./loginpage/loginpage.page').then( m => m.LoginpagePage)
-  },
+
   {
     path: 'changepassword',
     loadComponent: () => import('./changepassword/changepassword.page').then( m => m.ChangepasswordPage)
@@ -371,7 +368,8 @@ export const routes: Routes = [
   {
     path: 'receipttransaction-report',
     loadComponent: () => import('./receipttransaction-report/receipttransaction-report.page').then( m => m.ReceipttransactionReportPage)
-  },  {
+  },
+  {
     path: 'accountdashboard',
     loadComponent: () => import('./accountdashboard/accountdashboard.page').then( m => m.AccountdashboardPage)
   },
