@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
-import { NgForm } from '@angular/forms';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
 import { AdditemService } from '../services/additem.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
+
 interface Quote {
   barcode: string;
   itemcode: number;
@@ -243,8 +243,9 @@ export class AddQuotPage implements OnInit {
       }
     );
   }
+  
   addQuote() {
-    console.log('addrowwww' + this.quoteData.length);
+    console.log('addquotewww' + this.quoteData.length);
     // You can initialize the new row data here
     const newRow: Quote = {
       barcode: '',

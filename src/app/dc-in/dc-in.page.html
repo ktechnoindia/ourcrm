@@ -128,15 +128,7 @@
                       <input [(ngModel)]="dcin.itemcode" formControlName="itemcode"  name="itemcode" class="table_input" type="text">
                     </td>
                     <td>
-                      <!-- <input [(ngModel)]="dcin.itemname" formControlName="itemname"  name="itemname" class="table_input" type="number"> -->
-
-                      <!-- <ion-select ion-select interface="popover" [(ngModel)]="dcin.itemname" formControlName="itemname"  name="itemname"
-                        class="table_input" aria-label="Default select example" id="itemname" class="table_select">
-                        <ion-select-option>Item 1</ion-select-option>
-                        <ion-select-option>Item 2</ion-select-option>
-                        <ion-select-option>Item 3</ion-select-option>
-
-                      </ion-select> -->
+                    
                       <select class="select-option" style="width: 100px;outline: none;border: none;"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
@@ -323,8 +315,8 @@
               </ion-col>
 
               <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">
-                <div class="output">
-                  <table style="border: none;margin-left: 25px;">
+                <div class="output" style="border: none;margin-left: 43px;">
+                  <table >
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>

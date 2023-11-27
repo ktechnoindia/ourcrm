@@ -26,7 +26,16 @@
 .Customer .table_select select{
     
 }
+.scroll-container table{
+  width: 1000px;
+}
+.scroll-container{
+  height: 200px;
 
+}
+.scroll-container tr td {
+  width: 10px !important;
+}
 .scroll-container td {
   background-color: #fff;
   border: .1px solid grey;

@@ -93,28 +93,28 @@
             <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
 
-                <table style="width:1755px;">
+                <table >
                   <tr>
-                    <th style="width: 50px !important;">Sr.No.</th>
-                    <th style="width: 100px !important;">BarCode</th>
-                    <th style="width: 70px !important;">Item Code</th>
-                    <th style="width: 150px !important;">Item Name</th>
-                    <th style="width: 120px !important;">Description</th>
-                    <th style="width: 50px !important;">Quantity</th>
-                    <th style="width: 70px !important;">Unit</th>
-                    <th style="width: 50px !important;">MRP</th>
-                    <th style="width: 70px !important;">Basic Rate</th>
-                    <th style="width: 100px !important;">Net Rate</th>
-                    <th style="width: 70px !important;">Gross Amount</th>
-                    <th style="width: 50px !important;">GST</th>
-                    <th style="width: 50px !important;">CGST</th>
-                    <th style="width: 50px !important;">SGST</th>
-                    <th style="width: 50px !important;">IGST</th>
-                    <th style="width: 70px !important;">Discount %</th>
-                    <th style="width: 100px !important;">Discount Amount</th>
-                    <th style="width: 70px !important;">Tax Amount</th>
-                    <th style="width: 70px !important;">Net Amount</th>
-                    <th style="width: 70px !important;">Action</th>
+                    <th>Sr.No.</th>
+                    <th>BarCode</th>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>MRP</th>
+                    <th>Basic Rate</th>
+                    <th>Net Rate</th>
+                    <th>Gross Amount</th>
+                    <th>GST</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>IGST</th>
+                    <th>Discount %</th>
+                    <th>Discount Amount</th>
+                    <th>Tax Amount</th>
+                    <th>Net Amount</th>
+                    <th>Action</th>
                   </tr>
                   <tr *ngFor="let quote of quoteData; let i = index">
                     <td>{{i+1}}</td>
@@ -125,20 +125,13 @@
                       <input [(ngModel)]="quote.itemcode" name="itemcode"  formControlName="itemcode"  class="table_input" type="text">
                     </td>
                     <td class="select-option">
-                      <!-- <ion-select ion-select interface="popover" [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname" class="table_input"
-                      aria-label="Default select example" id="itemname" class="table_select">
-                      <ion-select-option >Item 1</ion-select-option>
-                      <ion-select-option>Item 2</ion-select-option>
-                      <ion-select-option>Item 3</ion-select-option>
-
-                    </ion-select> -->
+                     
                     <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
-                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
-                        {{ itemname.itemDesc }}
+                      <option *ngFor="let item  of itemnames$ | async" [value]="item .itemid">
+                        {{ item .itemDesc }}
                       </option>
                     </select>
-                    <!-- <input [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname"   class="table_input" type="number"> -->
 
                     </td>
                     <td>
@@ -151,8 +144,8 @@
                     <td class="select-option">
                       <select  [(ngModel)]="unitname" formControlName="unitname"  name="unit_name" >
                         <option value="0">Unit Name</option>
-                        <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
-                          {{ unitname.unitname }}
+                        <option *ngFor="let unit of unitname$ | async" [value]="unit.unitid">
+                          {{ unit.unitname }}
                         </option>
                       </select>     
                     </td>
@@ -323,8 +316,8 @@
               </ion-col>
 
               <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">
-                <div class="output">
-                  <table style="border: none;margin-left: 25px;">
+                <div class="output"style="border: none;margin-left: 43px;">
+                  <table >
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>

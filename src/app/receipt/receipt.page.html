@@ -26,8 +26,8 @@
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-col>
                   <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
-                    <ion-input color="dark" name="paymentdate" type="date" label="Payment Date:"
-                      label-placement="floating" fill="outline"></ion-input>
+                    <ion-input color="dark" name="receiptdate" type="date" label="Receipt Date:"
+                      label-placement="floating" fill="outline" [(ngModel)]="receiptdate"></ion-input>
                   </ion-col>
                   <ion-col size-lg="5" size-md="6" size-sm="6" size="6">
                     <select class="select" name="" id="" style="width: 200px !important;">
@@ -43,7 +43,6 @@
                   <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                     <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                       <tr>
-                        <th style="width: 50px !important;">Cr/Dr</th>
                         <th style="width: 200px !important;">Ledger Name</th>
                         <th style="width: 70px !important;">Dedit</th>
                         <th style="width: 70px !important;">Credit</th>
@@ -51,7 +50,6 @@
 
                       </tr>
                       <tr>
-                        <td>Cr</td>
                         <td class="select-option">
                           <select name="" id="" style="width: 200px !important;">
                             <option value="0">Select Ledger Name</option>
@@ -69,7 +67,7 @@
                           <ion-input class="table_input" type="text"></ion-input>
                         </td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>Dr</td>
                         <td class="select-option">
                           <select name="" id="" style="width: 200px !important;">
@@ -87,7 +85,7 @@
                         <td>
                           <ion-input class="table_input" type="text"></ion-input>
                         </td>
-                      </tr>
+                      </tr> -->
 
                     </table>
 
