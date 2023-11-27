@@ -54,7 +54,6 @@ import { LoginService } from './services/login.service';
 import { BarcodeService } from './services/barcode.service';
 import { SalereturnService } from './services/salereturn.service';
 import { PurchasereturnService } from './services/purchasereturn.service'; 
-import { InterceptorProvider } from './interceptors/interceptor';
 import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 @Component({
   selector: 'app-root',
