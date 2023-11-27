@@ -93,7 +93,7 @@
             <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
 
-                <table style="width:1755px;">
+                <table >
                   <tr>
                     <th style="width: 50px !important;">Sr.No.</th>
                     <th style="width: 100px !important;">BarCode</th>
@@ -125,20 +125,13 @@
                       <input [(ngModel)]="quote.itemcode" name="itemcode"  formControlName="itemcode"  class="table_input" type="text">
                     </td>
                     <td class="select-option">
-                      <!-- <ion-select ion-select interface="popover" [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname" class="table_input"
-                      aria-label="Default select example" id="itemname" class="table_select">
-                      <ion-select-option >Item 1</ion-select-option>
-                      <ion-select-option>Item 2</ion-select-option>
-                      <ion-select-option>Item 3</ion-select-option>
-
-                    </ion-select> -->
+                     
                     <select class="select-option"  [(ngModel)]=" itemname" name="itemname" formControlName="itemname">
                       <option value="0">Item Name</option><!-- Default option -->
-                      <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
-                        {{ itemname.itemDesc }}
+                      <option *ngFor="let item  of itemnames$ | async" [value]="item .itemid">
+                        {{ item .itemDesc }}
                       </option>
                     </select>
-                    <!-- <input [(ngModel)]="quote.itemname" formControlName="itemname"  name="itemname"   class="table_input" type="number"> -->
 
                     </td>
                     <td>
@@ -151,8 +144,8 @@
                     <td class="select-option">
                       <select  [(ngModel)]="unitname" formControlName="unitname"  name="unit_name" >
                         <option value="0">Unit Name</option>
-                        <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
-                          {{ unitname.unitname }}
+                        <option *ngFor="let unit of unitname$ | async" [value]="unit.unitid">
+                          {{ unit.unitname }}
                         </option>
                       </select>     
                     </td>
@@ -302,7 +295,7 @@
                 </div>
               </ion-col>
               <ion-col class="row1" size-lg="2" size-md="3" size-sm="3" size="12">
-                <ion-label class="delivery-label" style="font-size: smaller;">Total</ion-label>
+                <!-- <ion-label class="delivery-label" style="font-size: smaller;">Total</ion-label>
                 <div class="outstanding">
                   <ion-row>
                     <table style="width: 100%; overflow: hidden; max-height: 60px;">
@@ -318,7 +311,7 @@
                       </tr>
                     </table>
                   </ion-row>
-                </div>
+                </div> -->
               </ion-col>
 
               <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">

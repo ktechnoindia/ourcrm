@@ -4,12 +4,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
-import { NgForm } from '@angular/forms';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
 import { AdditemService } from '../services/additem.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
+import { SessionService } from '../services/session.service';
+
 interface Quote {
   barcode: string;
   itemcode: number;
@@ -120,7 +121,7 @@ export class AddQuotPage implements OnInit {
   totalNetAmt: number = 0;
   itemnames$: any;
   customer$: any;
-  constructor(private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
+  constructor(private session:SessionService,private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -240,8 +241,9 @@ export class AddQuotPage implements OnInit {
       }
     );
   }
+  
   addQuote() {
-    console.log('addrowwww' + this.quoteData.length);
+    console.log('addquotewww' + this.quoteData.length);
     // You can initialize the new row data here
     const newRow: Quote = {
       barcode: '',

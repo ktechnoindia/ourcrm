@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';@Component({
@@ -7,13 +7,17 @@ import { Router, RouterLink, RouterModule } from '@angular/router';@Component({
   templateUrl: './receipt.page.html',
   styleUrls: ['./receipt.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  providers: [DatePipe],
+
 })
 export class ReceiptPage implements OnInit {
   @ViewChild('popover') popover:any
   ;
+  receiptdate:string='';
 
-  constructor(private router:Router) { }
+
+  constructor(private datePipe: DatePipe,private router:Router) { }
   isOpen = false;
 
   presentPopover(e: Event) {
@@ -25,6 +29,8 @@ export class ReceiptPage implements OnInit {
   }
 
   ngOnInit() {
+    this.receiptdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+
   }
 
   goBack() {
