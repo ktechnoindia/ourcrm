@@ -14,6 +14,7 @@ import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
 import { ExecutiveService } from '../services/executive.service';
+import { AdditemService } from '../services/additem.service';
 interface lead {
   catPerson:string;
   companyname:string
@@ -60,7 +61,7 @@ export class AddLeadPage {
   c=1;
   u=1;
   r=1;
-
+  leadtype:number=0;
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -68,9 +69,10 @@ export class AddLeadPage {
   leadsourcetype!: number;
   executive$: any;
   lead$: any
+  itemnames$: Observable<any>;
 
 
-  constructor(private execut: ExecutiveService, private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
+  constructor(private execut: ExecutiveService, private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private itemService:AdditemService,
    ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -78,6 +80,8 @@ export class AddLeadPage {
     this.districts$ = this.districtservice.getDistricts(1);
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
+    this.itemnames$ = this.itemService.getAllItems();
+
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 
@@ -93,7 +97,7 @@ export class AddLeadPage {
       emails:['',[Validators.email]],
       rmark:[''],
       selectpd:[''],
-
+      leadtype:['']
     });
    
   }
@@ -114,7 +118,7 @@ export class AddLeadPage {
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,};
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {

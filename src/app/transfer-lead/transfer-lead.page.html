@@ -24,84 +24,48 @@
         </div>
         <ion-grid>
 
-          <div style="overflow-x:auto;">
+          <div style="overflow-x:auto; width: 100% ;height: 350px;">
             <ion-searchbar class="custom"></ion-searchbar>
-            <table style="width: 100%;">
+            <table style="width: 1500px;overflow-x:auto;">
               <tr>
-                <th style="width: 50px;">SI NO.</th>
-                <th style="width: 100px;">Company name</th>
-                <th style="width: 100px;">Mobile Number</th>
-                <th style="width: 100px;">State</th>
-                <th style="width: 100px;">City</th>
-                <th style="width: 100px;">Lead Source</th>
-                <th style="width: 100px;">Current Executive</th>
-                <th style="width: 130px;">Lead Assign To</th>
-                <th style="width: 100px;">Action</th>
+                <th>Sr.No.</th>
+                <th>Lead ID</th>
+                <th>Company Name</th>
+                <th>Contact Person</th>
+                <th>Mobile No.</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City </th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Email ID</th>
+                <th>Select Product</th>
+                <th>Lead Source</th>
+                <th>Lead Assign To</th>
+                <th>Lead Score</th>
+                <th>Remark</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>ABC India Pvt. Ltd.</td>
-                <td>91-1234567890</td>
-                <td>Maharashtra</td>
-                <td>Mumbai</td>
-                <td>Online Advertisement</td>
-                <td>Rahul Sharma</td>
-                <td style="padding: 5px;">
-                  <select name="" id="">
-                    <option value="">Select User</option>
-                    <option value="">Deepak</option>
-                    <option value="">Abhishek</option>
-                    <option value="">Yogesh</option>
-                    <option value="">Nirbhay</option>
-                  </select>
-                </td>
-                <td>
-                  <ion-button class="custom-primary">OK <ion-icon name="share-social-outline" slot="end" size="small"></ion-icon></ion-button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>XYZ India Ltd.</td>
-                <td>91-9876543210</td>
-                <td>Tamil Nadu</td>
-                <td>Chennai</td>
-                <td>Cold Call</td>
-                <td>Anita Verma</td>
-                <td style="padding: 5px;">
-                  <select name="" id="">
-                    <option value="">Select User</option>
-                    <option value="">Deepak</option>
-                    <option value="">Abhishek</option>
-                    <option value="">Yogesh</option>
-                    <option value="">Nirbhay</option>
-                  </select>
-                </td>
-                <td>
-                  <ion-button class="custom-primary">OK <ion-icon name="share-social-outline" slot="end" size="small"></ion-icon></ion-button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>PQR Exports Pvt. Ltd.</td>
-                <td>91-5551234567</td>
-                <td>Uttar Pradesh</td>
-                <td>Lucknow</td>
-                <td>Email Marketing</td>
-                <td>Amit Kumar</td>
-                <td style="padding: 5px;">
-                  <select name="" id="">
-                    <option value="">Select User</option>
-                    <option value="">Deepak</option>
-                    <option value="">Abhishek</option>
-                    <option value="">Yogesh</option>
-                    <option value="">Nirbhay</option>
-                  </select>
-                </td>
-                <td>
-                  <ion-button class="custom-primary">OK <ion-icon name="share-social-outline" slot="end" size="small"></ion-icon></ion-button>
-                </td>
-              </tr>
-              
+              <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                <td>{{i+1}}</td>
+                  <td>{{leadscore.tid}}</td>
+                  <td>{{leadscore.companyname}}</td>
+                  <td>{{leadscore.catPerson}}</td>
+                  <td>{{leadscore.phone}}</td>
+                  <td>{{leadscore.selectedCountry}}</td>
+                  <td>{{leadscore.selectedState}}</td>
+                  <td>{{leadscore.selectedDistrict}}</td>
+                  <td> {{leadscore.fulladdress}}</td>
+                  <td>{{leadscore.pncode}}</td>
+                  <td>{{leadscore.emails}}</td>
+                  <td>{{leadscore.selectpd}}</td>
+                  <td>{{leadscore.lscore}}</td>
+                  <td>{{leadscore.lscore}}</td>
+                  <td>{{leadscore.executivename}}</td>
+                  
+                  <td>{{leadscore.rmark}}</td>
+                  <td>
+                  </td>
+                </tr>
 
 
             </table>
