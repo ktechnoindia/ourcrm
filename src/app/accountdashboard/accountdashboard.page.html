@@ -47,11 +47,7 @@
               <ion-label color="dark">Manage Master :</ion-label>
             </ion-row> -->
             <ion-row class="leadsrouter">
-              <ion-item [routerLink]="['/addaccount']">
-                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
-                  Add Account
-                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
-              </ion-item>
+             
               <ion-item [routerLink]="['/payment']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                   Payment
@@ -60,6 +56,15 @@
               <ion-item [routerLink]="['/receipt']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                  Receipt
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item>
+              <ion-item [routerLink]="['/paymenttransaction-report']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                 Payment <br> Rajister
+                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-item> <ion-item [routerLink]="['/receipttransaction-report']">
+                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                 Receipt <br> Rajister
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
              

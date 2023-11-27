@@ -35,7 +35,7 @@
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                          <ion-card style="text-align: center; background-color: rgb(199, 250, 199);">
+                          <ion-card style="text-align: center; background-color: rgb(199, 250, 199);"  [routerLink]="['/view-lead']">
                             <ion-icon name="trophy-outline"></ion-icon><br>
                             <ion-label>
                               Active Leads
@@ -74,7 +74,7 @@
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                          <ion-card style="text-align: center;background-color: lightgoldenrodyellow">
+                          <ion-card style="text-align: center;background-color: lightgoldenrodyellow" [routerLink]="['/follow-up']">
                             <ion-icon name="analytics-outline"></ion-icon><br>
                             <ion-label>
                               Pending Follow-ups
@@ -86,7 +86,7 @@
                           <ion-card style="text-align: center; background-color: lightsalmon">
                             <ion-icon name="notifications-off-outline"></ion-icon><br>
                             <ion-label>
-                              Not Attended Leads
+                              Not Intrested
                             </ion-label>
                             <ion-title>10</ion-title>
                           </ion-card>
@@ -115,7 +115,7 @@
                             Add New Lead
                           </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
                         </ion-item>
-                        <ion-item [routerLink]="['/followup']">
+                        <ion-item [routerLink]="['/follow-up']">
                           <ion-icon name="checkmark-circle"></ion-icon>
                           <ion-label color="success">
                             Follow Up
@@ -146,8 +146,8 @@
                   <div class="table-container">
                     <p>Top New Lead</p>
                     <ion-searchbar class="custom"></ion-searchbar>
-                    <div class="scroll-container">
-                      <table>
+                    <div class="scroll-container" >
+                      <table  style="width: 300px;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th><input type="checkbox" name=""></th>
                           <th>Lead Name</th>
@@ -213,7 +213,7 @@
                     <p>Product Wise Lead</p>
                     <ion-searchbar class="custom"></ion-searchbar>
                     <div class="scroll-container">
-                      <table>
+                      <table  style="width: 800px;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th><input type="checkbox" name=""></th>
                           <th>Lead Name</th>

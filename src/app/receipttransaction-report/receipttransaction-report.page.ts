@@ -18,6 +18,6 @@ export class ReceipttransactionReportPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/receipt']); // Navigate back to the previous page
+    this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
 }

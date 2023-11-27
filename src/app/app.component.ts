@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonicModule, MenuController, NavController } from '@ionic/angular';

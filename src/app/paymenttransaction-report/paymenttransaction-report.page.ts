@@ -18,6 +18,6 @@ export class PaymenttransactionReportPage implements OnInit {
   ngOnInit() {
   }
   goBack() {
-    this.router.navigate(['/payment']); // Navigate back to the previous page
+    this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
 }
