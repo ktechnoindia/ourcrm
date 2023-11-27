@@ -76,15 +76,15 @@ export class AddQuotPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax: string = '0';
+  posttax: string = '0';
   deliverydate: string = '';
-  deliveryplace: string = '';
+  deliveryplace: string = 'Jaipur';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-
+  // deliveryplace: string = "Jaipur";
 
 
   quoteData: Quote[] = [{
@@ -126,6 +126,9 @@ export class AddQuotPage implements OnInit {
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
+    this.quateDate = new Date().toLocaleDateString();
+    this.refdate= new Date().toLocaleDateString();
+    this.deliverydate= new Date().toLocaleDateString();
 
 
     this.myform = this.formBuilder.group({
