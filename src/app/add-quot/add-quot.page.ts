@@ -278,7 +278,7 @@ export class AddQuotPage implements OnInit {
     this.ttotal = this.ttotal - quote.total;
     this.quoteData.splice(index, 1);
   }
-  calculateTotals(): void {
+  calculateTotals() {
     // Add your logic to calculate totals based on the salesData array
     this.totalItemNo = this.quoteData.length;
 
@@ -288,6 +288,19 @@ export class AddQuotPage implements OnInit {
 
     // Add similar calculations for other totals
   }
+  // Inside your component class
+// Inside your component class
+getAllRows() {
+  console.log('Number of Rows:', this.quoteData.length);
+
+  for (let i = 0; i < this.quoteData.length; i++) {
+    const quote = this.quoteData[i];
+    console.log('Row:', quote);
+  }
+}
+
+
+
   // calculateTotalSum() {
   //   let sum = 0;
   //   for (const row of this.quoteData) {
@@ -329,8 +342,32 @@ export class AddQuotPage implements OnInit {
   //     toast.present();
   //   }
   // }
+  getTotalQuantity(): number {
+    return this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
+  }
 
+  getTotalGrossAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * +quote.quantity), 0);
+  }
+
+  getTotalAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + +quote.total, 0);
+  }
+
+  getTotalTaxAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.totaltax), 0);
+  }
+
+  // getTotalDiscountAmount(): number {
+  //   return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
+  // }
+  getTotalDiscountAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.discountamt), 0);
+  }
+  
   ngOnInit() {
+    this.calculateTotals()
+    this.getTotalQuantity()
   }
   goBack() {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page

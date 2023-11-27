@@ -275,6 +275,15 @@ this.deliverydate= new Date().toLocaleDateString();
     }
     this.ttotal = sum;
   }
+
+  getAllRows() {
+    console.log('Number of Rows:', this.dcinData.length);
+  
+    for (let i = 0; i < this.dcinData.length; i++) {
+      const quote = this.dcinData[i];
+      console.log('Row:', quote);
+    }
+  }
   ngOnInit() {
   }
   goBack() {

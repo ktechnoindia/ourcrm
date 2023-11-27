@@ -303,6 +303,15 @@ export class AddSalePage implements OnInit {
 
     // Add similar calculations for other totals
   }
+
+  getAllRows() {
+    console.log('Number of Rows:', this.salesData.length);
+  
+    for (let i = 0; i < this.salesData.length; i++) {
+      const quote = this.salesData[i];
+      console.log('Row:', quote);
+    }
+  }
   // calculateTotalSum() {
   //   let sum = 0;
   //   for (const sales of this.salesData) {

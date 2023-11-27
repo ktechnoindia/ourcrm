@@ -291,6 +291,15 @@ this.orderDate= new Date().toLocaleDateString();
     }
     this.ttotal = sum;
   }
+  getAllRows() {
+    console.log('Number of Rows:', this.purchaseData.length);
+  
+    for (let i = 0; i < this.purchaseData.length; i++) {
+      const quote = this.purchaseData
+      [i];
+      console.log('Row:', quote);
+    }
+  }
 
 
   ngOnInit() {

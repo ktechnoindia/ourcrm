@@ -263,6 +263,14 @@ export class DcOutPage implements OnInit {
       this.ttotal=this.ttotal-this.dcout.total;
       this.dcoutData.splice(index, 1);
     }
+    getAllRows() {
+      console.log('Number of Rows:', this.dcoutData.length);
+    
+      for (let i = 0; i < this.dcoutData.length; i++) {
+        const quote = this.dcoutData[i];
+        console.log('Row:', quote);
+      }
+    }
     calculateTotalSum() {
       let sum = 0;
       for (const row of this.dcoutData) {

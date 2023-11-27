@@ -287,6 +287,14 @@ billformate:number=0;
     this.ttotal=this.ttotal-this.purchase.total;
     this.purchaseData.splice(index, 1);
   }
+  getAllRows() {
+    console.log('Number of Rows:', this.purchaseData.length);
+  
+    for (let i = 0; i < this.purchaseData.length; i++) {
+      const quote = this.purchaseData[i];
+      console.log('Row:', quote);
+    }
+  }
   calculateTotalSum() {
     let sum = 0;
     for (const row of this.purchaseData) {

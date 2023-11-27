@@ -291,7 +291,14 @@ this.orderDate=new Date().toLocaleDateString();
       }
       this.ttotal= sum;
     }
-
+    getAllRows() {
+      console.log('Number of Rows:', this.salesData.length);
+    
+      for (let i = 0; i < this.salesData.length; i++) {
+        const quote = this.salesData[i];
+        console.log('Row:', quote);
+      }
+    }
     // if (this.form.valid) {
     //   console.log('Selected Value' + this.form.value);
     // } else {
