@@ -32,12 +32,16 @@
                   label="Company Name:" label-placement="floating" fill="outline"></ion-input>
               
               </ion-col>
-              <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <ion-input [(ngModel)]="catPerson" formControlName="catPerson" name="contactPerson" type="text"
                   label="Contact Person:" label-placement="floating" fill="outline"></ion-input>
-               
+
               </ion-col>
-            
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
+                <ion-input [(ngModel)]="leaddate" formControlName="leaddate" name="leaddate" type="datetime"
+                  label="Lead Date:" label-placement="floating" fill="outline"></ion-input>
+
+              </ion-col>
           
               <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
                 <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text" label="Mobile No.:"

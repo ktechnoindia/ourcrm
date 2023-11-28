@@ -3,9 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 export interface followuptable {
-
+  followupdate: string;
+  enterdby: string;
   remark:string;
   nextfollowupDate:string;
+  custid:string;
+  leadid:string;
+  compid:string;
 }
 @Injectable({
   providedIn: 'root'

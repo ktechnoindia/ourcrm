@@ -37,6 +37,10 @@ ion-header{
     display: none;
     visibility: hidden;
 }
+.dropdown_menu{
+    display: none;
+    visibility: hidden;
+}
 @media(max-width:912px){
     .signup select{
         min-height: 35px;

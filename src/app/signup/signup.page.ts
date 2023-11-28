@@ -12,6 +12,7 @@ import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { Observable } from 'rxjs';
 import { SignupService, signup } from '../services/signup.service';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-signup',
@@ -42,7 +43,7 @@ export class SignupPage implements OnInit {
   states$: Observable<any[]>
   districts$: Observable<any[]>
 myform:FormGroup;
-  constructor(private signUp: SignupService, private router: Router, private toastController: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private formBuilder:FormBuilder) {
+  constructor(private sharedService: SharedService,private signUp: SignupService, private router: Router, private toastController: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private formBuilder:FormBuilder) {
     this.myform = this.formBuilder.group({
       salutation:[''],
       firstName:[''],
@@ -182,6 +183,7 @@ myform:FormGroup;
   //       // }
   // }
   ngOnInit() {
+    this.sharedService.showHeader  = false;
   }
   goBack() {
     this.router.navigate(["/master"])

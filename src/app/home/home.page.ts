@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { SharedService } from '../shared.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -12,9 +13,11 @@ import { RouterModule } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private sharedService: SharedService,) { }
 
   ngOnInit() {
+    this.sharedService.showHeader  = false;
+
   }
 
 }

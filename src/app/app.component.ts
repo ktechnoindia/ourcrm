@@ -57,6 +57,7 @@ import { SignupService } from './services/signup.service';
 import { InterceptorProvider } from './interceptors/interceptor';
 import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 import { CustomStorageModule } from './interceptors/custom-storage.module';
+import { SharedService } from './shared.service';
 
 
 @Component({
@@ -93,7 +94,7 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   menu: any;
 
-  constructor(private menuController: MenuController, private navCtrl: NavController, private router: Router) {
+  constructor(private sharedService: SharedService,private menuController: MenuController, private navCtrl: NavController, private router: Router) {
 
   }
 
@@ -279,4 +280,7 @@ export class AppComponent {
     this.isMobileMenuOpen = false;
   }
 
+  get showHeader(): boolean {
+    return this.sharedService.showHeader;
+  }
 }

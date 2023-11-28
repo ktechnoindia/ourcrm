@@ -226,18 +226,7 @@ ion-menu-button {
     flex-wrap: wrap;
 }
 
-.card1 {
-    --background: transparent;
-    padding-left: 100px;
-    padding-top: 70px;
 
-}
-
-.card2 {
-    --background: transparent;
-    // border: 1px solid white;
-    padding: 5px 10px;
-}
 
 .card3 {
     --background: transparent;
@@ -276,7 +265,22 @@ ion-menu-button {
     background-color: #000000;
     color: #fff;
 }
+.home_buttons1 {
+background-color: transparent;
+    color: #ffffff;
+    // border: 1px solid goldenrod;
+    border-radius: 3px;
+    transition: all 0.5s ease-out;
+    text-align: center;
+    font-weight: bold;
 
+}
+
+.home_buttons1:hover {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+}
 .master_window {
     text-align: center;
     background-color: #e5e4e2;
@@ -482,10 +486,7 @@ tr:nth-child(odd) {
 
 
 @media(max-width:540px) {
-    .card1 {
-        display: none;
-        visibility: hidden;
-    }
+  
 
 
 

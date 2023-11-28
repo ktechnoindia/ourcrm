@@ -26,50 +26,52 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-card>
-                  <ion-searchbar class="custom"  showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
                 <ion-row style="padding: 10px;height: 420px;">
                   <div class="scroll-container">
-                   
-                    <table style="width: 1800px;overflow-x:auto;overflow-y: auto;">
+
+                    <table style="width: 800px;overflow-x:auto;overflow-y: auto;">
                       <tr>
                         <th>Sr.No.</th>
                         <th>Lead ID</th>
                         <th>Company Name</th>
+                        <th>Lead Date</th>
                         <th>Contact Person</th>
                         <th>Mobile No.</th>
-                        <th>Country</th>
+                        <!-- <th>Country</th>
                         <th>State</th>
-                        <th>City </th>
+                        <th>City </th> -->
                         <th>Address</th>
-                        <th>Pincode</th>
-                        <th>Email ID</th>
+                        <!-- <th>Pincode</th>
+                        <th>Email ID</th> -->
                         <th>Select Product</th>
-                        <th>Lead Source</th>
+                        <!-- <th>Lead Source</th>
                         <th>Lead Assign To</th>
                         <th>Lead Score</th>
-                        <th>Remark</th>
+                        <th>Remark</th> -->
                       </tr>
                       <tr *ngFor="let leadscore of lead$ | async; let i = index">
                         <td>{{i+1}}</td>
-                          <td>{{leadscore.tid}}</td>
-                          <td>{{leadscore.companyname}}</td>
-                          <td>{{leadscore.catPerson}}</td>
-                          <td>{{leadscore.phone}}</td>
-                          <td>{{leadscore.selectedCountry}}</td>
+                        <td>{{leadscore.tid}}</td>
+                        <td>{{leadscore.companyname}}</td>
+                        <td>{{leadscore.leaddate}}</td>
+                        <td>{{leadscore.catPerson}}</td>
+                        <td>{{leadscore.phone}}</td>
+                        <!-- <td>{{leadscore.selectedCountry}}</td>
                           <td>{{leadscore.selectedState}}</td>
-                          <td>{{leadscore.selectedDistrict}}</td>
-                          <td> {{leadscore.fulladdress}}</td>
-                          <td>{{leadscore.pncode}}</td>
-                          <td>{{leadscore.emails}}</td>
-                          <td>{{leadscore.selectpd}}</td>
-                          <td>{{leadscore.lscore}}</td>
-                          <td>{{leadscore.lscore}}</td>
+                          <td>{{leadscore.selectedDistrict}}</td> -->
+                        <td> {{leadscore.fulladdress}}</td>
+                        <!-- <td>{{leadscore.pncode}}</td> -->
+                        <!-- <td>{{leadscore.emails}}</td>-->
+                        <td>{{leadscore.selectpd}}</td>
+                        <!-- <td>{{leadscore.lscore}}</td> -->
+                        <!-- <td>{{leadscore.lscore}}</td>
                           <td>{{leadscore.executivename}}</td>
                           
-                          <td>{{leadscore.rmark}}</td>
-                       
-                        </tr>
-                        
+                          <td>{{leadscore.rmark}}</td> -->
+
+                      </tr>
+
                     </table>
                   </div>
                 </ion-row>
@@ -91,33 +93,21 @@
                         <th style="width: 100px;">Next Follow-Up Date</th>
                         <th style="width: 100px;">Entered By</th>
                       </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>2023-10-15 09:30 AM</td>
-                        <td>Followed up with the client</td>
-                        <td>2023-10-22</td>
-                        <td>John Doe</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>2023-10-16 02:15 PM</td>
-                        <td>Scheduled a meeting</td>
-                        <td>2023-10-23</td>
-                        <td>Jane Smith</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>2023-10-17 11:45 AM</td>
-                        <td>Sent an email</td>
-                        <td>2023-10-24</td>
-                        <td>Mike Johnson</td>
-                      </tr>
+                      <ng-container>
+                        <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{leadscore.leaddate}}</td>
+                          <td>{{leadscore.rmark}}</td>
+                          <td>{{nextfollowupDate}}</td>
+                          <td>{{leadscore.catPerson }}</td>
+                        </tr>
+                      </ng-container>
 
                     </table>
                   </div>
                 </ion-row>
 
-                <div >
+                <div>
                   <ion-row style="padding:0px 20px ;">
 
                     <ion-col size="6" size-lg="4" size-md="4" size-sm="4">

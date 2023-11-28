@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 export interface leadstore {
   catPerson:string;
   companyname:string
+  leaddate:string;
   phone:string;
   emails:string;
   pncode:string;
