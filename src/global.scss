@@ -392,6 +392,16 @@ ion-item {
 
 }
 
+.container_div{
+    margin: 0 300px;
+}
+.container_fluid{
+    margin: 0 50px;
+}
+.container_data{
+    margin: 0 200px;
+}
+
 // .scroll-container {
 //     overflow-x: auto;
 //     border: 1px solid #ddd;
@@ -475,9 +485,6 @@ tr:nth-child(odd) {
 @media(max-width:950px) {
 
 
-    .container {
-        margin-top: 10px;
-    }
 }
 
 

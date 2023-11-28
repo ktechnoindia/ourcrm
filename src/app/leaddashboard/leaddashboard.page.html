@@ -16,14 +16,14 @@
   <div class="lead_nav">
     <ion-grid>
       <ion-row>
-        <ion-col class="table_data" >
-          <div >
+        <ion-col class="table_data">
+          <div>
             <div class="lead_nav">
               <ion-grid>
                 <ion-row>
                   <ion-col size="12" size-lg="10" size-md="8" size-sm="10">
                     <div class="icon-container">
-                     
+
                       <ion-row class="leadscard">
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
@@ -31,11 +31,12 @@
                             <ion-label>
                               Total Leads
                             </ion-label>
-                            <ion-title>1020</ion-title>
+                            <ion-title>{{totallead}}</ion-title>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                          <ion-card style="text-align: center; background-color: rgb(199, 250, 199);"  [routerLink]="['/view-lead']">
+                          <ion-card style="text-align: center; background-color: rgb(199, 250, 199);"
+                            [routerLink]="['/view-lead']">
                             <ion-icon name="trophy-outline"></ion-icon><br>
                             <ion-label>
                               Active Leads
@@ -74,7 +75,8 @@
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                          <ion-card style="text-align: center;background-color: lightgoldenrodyellow" [routerLink]="['/follow-up']">
+                          <ion-card style="text-align: center;background-color: lightgoldenrodyellow"
+                            [routerLink]="['/follow-up']">
                             <ion-icon name="analytics-outline"></ion-icon><br>
                             <ion-label>
                               Pending Follow-ups
@@ -144,65 +146,24 @@
               <ion-row class="lead_details">
                 <ion-col class="table_data" size="12" size-lg="6">
                   <div class="table-container">
-                    <p>Top New Lead</p>
+                    <p>Top New Lead </p>
                     <ion-searchbar class="custom"></ion-searchbar>
-                    <div class="scroll-container" >
-                      <table  style="width: 300px;overflow-x: auto;overflow-y: auto;">
+                    <div class="scroll-container">
+                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
                         <tr>
-                          <th><input type="checkbox" name=""></th>
-                          <th>Lead Name</th>
+                          <th>Sr.No.</th>
                           <th>Company Name</th>
-                          <th>Email</th>
-                          <th>Phone Number</th>
+                          <th>Mobile No.</th>
                           <th>Lead Source</th>
-                          <th>Lead Owner</th>
+                          <th>Executive Name</th>
                         </tr>
-                        <tr>
-                          <td><input type="checkbox" name=""></td>
-                          <td><a href="">Ktechnodsks</a></td>
-                          <td>Ktechno Private Ltd.</td>
-                          <td><a href="">ktechno@gmail.com</a></td>
-                          <td>+91 993893849</td>
-                          <td>Thnn sndsf</td>
-                          <td>jdjfdjghj</td>
+                        <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{leadscore.companyname}}</td>
+                          <td>{{leadscore.phone}}</td>
+                          <td>{{leadscore.lscore}}</td>
+                          <td>{{leadscore.executivename}}</td>
 
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name=""></td>
-                          <td><a href="">Ktechnodsks</a></td>
-                          <td>Ktechno Private Ltd.</td>
-                          <td><a href="">ktechno@gmail.com</a></td>
-                          <td>+91 993893849</td>
-                          <td>Thnn sndsf</td>
-                          <td>jdjfdjghj</td>
-
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name=""></td>
-                          <td>Ktechno Private Ltd.</td>
-                          <td><a href="">ktechno@gmail.com</a></td>
-                          <td>+91 993893849</td>
-                          <td>Thnn sndsf</td>
-                          <td>jdjfdjghj</td>
-                          <td>jdjfdjghj</td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name=""></td>
-                          <td>Ktechno Private Ltd.</td>
-                          <td><a href="">ktechno@gmail.com</a></td>
-                          <td>+91 993893849</td>
-                          <td>Thnn sndsf</td>
-                          <td>jdjfdjghj</td>
-                          <td>jdjfdjghj</td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name=""></td>
-                          <td>Ktechno Private Ltd.</td>
-                          <td><a href="">ktechno@gmail.com</a></td>
-                          <td>+91 993893849</td>
-                          <td>Thnn sndsf</td>
-                          <td>jdjfdjghj</td>
-                          <td>jdjfdjghj</td>
                         </tr>
                       </table>
                     </div>
@@ -213,7 +174,7 @@
                     <p>Product Wise Lead</p>
                     <ion-searchbar class="custom"></ion-searchbar>
                     <div class="scroll-container">
-                      <table  style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th><input type="checkbox" name=""></th>
                           <th>Lead Name</th>

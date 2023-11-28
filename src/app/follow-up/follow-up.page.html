@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="Customer">
-    <ion-card>
+    <div >
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -46,7 +46,6 @@
                         <th>Select Product</th>
                         <th>Lead Source</th>
                         <th>Lead Assign To</th>
-                        <th>Lead Score</th>
                         <th>Remark</th>
                       </tr>
                       <tr *ngFor="let leadscore of lead$ | async; let i = index">
@@ -62,7 +61,6 @@
                           <td>{{leadscore.pncode}}</td>
                           <td>{{leadscore.emails}}</td>
                           <td>{{leadscore.selectpd}}</td>
-                          <td>{{leadscore.lscore}}</td>
                           <td>{{leadscore.lscore}}</td>
                           <td>{{leadscore.executivename}}</td>
                           
@@ -98,20 +96,7 @@
                         <td>2023-10-22</td>
                         <td>John Doe</td>
                       </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>2023-10-16 02:15 PM</td>
-                        <td>Scheduled a meeting</td>
-                        <td>2023-10-23</td>
-                        <td>Jane Smith</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>2023-10-17 11:45 AM</td>
-                        <td>Sent an email</td>
-                        <td>2023-10-24</td>
-                        <td>Mike Johnson</td>
-                      </tr>
+                      
 
                     </table>
                   </div>
@@ -146,6 +131,6 @@
           </ion-row>
         </form>
       </ion-card-content>
-    </ion-card>
+    </div>
   </div>
 </ion-content>

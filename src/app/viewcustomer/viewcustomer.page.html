@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    <ion-card>
+    <div>
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -15,26 +15,7 @@
               <ion-row>
                 <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
                 </ion-col>
-                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
-                  <ion-row>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
-                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                          label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
 
-                  </ion-row>
-                </ion-col>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-                </ion-col> -->
               </ion-row>
 
               <ion-row>
@@ -50,21 +31,8 @@
               </ion-row>
 
               <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 350px;">
-                  <!-- <table>
-                    <thead>
-                      <tr>
-                        <th *ngFor="let col of selectedColumns">{{ col }}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let customer of customers$ | async; let i = index">
-                        <td *ngFor="let col of selectedColumns" style="width: 100px;">
-                          {{ customer[col] }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table> -->
+                <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+
                   <table style="width: 3000px;overflow-x:auto;overflow-y: auto;">
                     <thead>
                       <tr>
@@ -124,7 +92,7 @@
                         </td>
                       </tr>
 
-<p>Total:{{totalItems }}</p>
+                      <p>Total:{{totalItems }}</p>
                     </tbody>
 
                   </table>
@@ -134,6 +102,6 @@
           </ion-grid>
         </div>
       </ion-card-content>
-    </ion-card>
-  </div>
+    </div>
+    </div>
 </ion-content>

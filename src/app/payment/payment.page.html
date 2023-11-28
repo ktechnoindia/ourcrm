@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    <ion-card>
-      <ion-card-content>
+<div>
+        <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
             <ion-row lines="none">
@@ -229,15 +229,15 @@
                   <table>
                     <tr>
 
-                      <td style="float: right;">
-                        <label for="" style="margin-right: 5px;">Total :</label>
+                      <td style="justify-content: right;">
+                        <label for="" style="margin-left: 5px;">Total :</label>
                         <input type="text" placeholder="" style="border: none;outline: none;text-align: center;">
                       </td>
 
                     </tr>
                   </table>
                 </ion-row>
-                <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+                <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
                   <ion-button id="open-loading">New</ion-button>
                   <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                     [duration]="1000"></ion-loading>
@@ -251,6 +251,6 @@
           </ion-row>
         </ion-grid>
       </ion-card-content>
-    </ion-card>
+    </div>  
   </div>
 </ion-content>

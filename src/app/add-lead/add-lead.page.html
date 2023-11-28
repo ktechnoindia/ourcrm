@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="Customer">
-    <ion-card>
+    <div class="container_div">
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -129,7 +129,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]=" executivename" name="executive_name"
                   formControlName="executivename">
-                  <option value="0">Select Executive Name</option><!-- Default option -->
+                  <option value="0">Lead Assign To</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
@@ -169,6 +169,6 @@
           </form>
         </ion-grid>
       </ion-card-content>
-    </ion-card>
+    </div>
   </div>
 </ion-content>

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { RouterLink } from '@angular/router';
+import { EncryptionService } from '../services/encryption.service';
+import { LeadService } from '../services/lead.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -12,7 +14,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './leaddashboard.page.html',
   styleUrls: ['./leaddashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, Ng2GoogleChartsModule,RouterLink,],
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink,],
  
 })
 export class LeaddashboardPage implements OnInit {
@@ -29,9 +31,17 @@ export class LeaddashboardPage implements OnInit {
     ['Houston, TX', 2099000, 1953000],
     ['Philadelphia, PA', 1526000, 1517000]
   ]
+  lead$: Observable<any[]>;
+  totallead: number=0;
 
-  constructor() {
+  constructor(private encService: EncryptionService,private leadser:LeadService,) {
+    const compid = '1';
+    this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
 
+    this.lead$.subscribe(data => {
+      console.log(data);
+      this.totallead=data.length // Log the data to the console to verify if it's being fetched
+    });
   }
 
 ngOnInit() {
