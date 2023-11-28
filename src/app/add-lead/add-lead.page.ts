@@ -58,6 +58,7 @@ export class AddLeadPage {
   selectedState: number=0;
   selectedDistrict: number=0;
   rmark:string='';
+  leadassign:number=0;
   c=1;
   u=1;
   r=1;
@@ -97,7 +98,8 @@ export class AddLeadPage {
       emails:['',[Validators.email]],
       rmark:[''],
       selectpd:[''],
-      leadtype:['']
+      leadtype:[''],
+      leadassign:['']
     });
    
   }
@@ -118,7 +120,7 @@ export class AddLeadPage {
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype};
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype,leadassign:this.form.value.leadassign};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {

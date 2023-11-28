@@ -484,6 +484,15 @@ tr:nth-child(odd) {
 
 @media(max-width:950px) {
 
+    .container_div{
+        margin: 0 ;
+    }
+    .container_fluid{
+        margin: 0 ;
+    }
+    .container_data{
+        margin: 0 ;
+    }
 
 }
 
@@ -512,6 +521,15 @@ tr:nth-child(odd) {
 
     .textarea-width {
         min-width: 120px;
+    }
+    .container_div{
+        margin: 0 ;
+    }
+    .container_fluid{
+        margin: 0 ;
+    }
+    .container_data{
+        margin: 0 ;
     }
 }
 
