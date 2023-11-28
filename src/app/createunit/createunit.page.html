@@ -27,9 +27,9 @@
               </ion-col>
 
             
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <select class="select" name="decimalplace" formControlName="decimal_place" [(ngModel)]="decimal_place">
-                  <option value="">Select Decimal Places</option>
+                  <option value="0"> Decimal Places</option>
                   <option value="meter">1</option>
                   <option value="centimeter">2</option>
                   <option value="millimeter">3</option>
@@ -37,10 +37,10 @@
 
                 </select>
               </ion-col>
-              <ion-col size-lg="3" size-md="4" size-sm="6" size="12">
+              <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
                   <select class="select" name="primaryunit" formControlName="primary_unit" [(ngModel)]="primary_unit">
-                    <option value="">Select UQC</option>
+                    <option value="0"> UQC</option>
                     <option value="meter">Meter (m)</option>
                     <option value="centimeter">Centimeter (cm)</option>
                     <option value="millimeter">Millimeter (mm)</option>

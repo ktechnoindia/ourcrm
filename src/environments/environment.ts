@@ -76,7 +76,9 @@ export const environment = {
   fetchlead:"get_lead",
   fetchallleads:"get_lead_by_company",
   getlang:'lang',
-  toasttiming:2000
+  toasttiming:2000,
+  addpayment:'payment',
+ addrecepit:'recepit'
 };
 
 
