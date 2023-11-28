@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    <ion-card>
+<div>
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -12,37 +12,14 @@
 
           <ion-grid>
             <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
-              <ion-row>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-                </ion-col>
-                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
-                  <ion-row>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
-                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                          label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-
-                  </ion-row>
-                </ion-col>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-                </ion-col> -->
-              </ion-row>
+              
 
               <ion-row>
                 <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
               </ion-row>
 
               <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 350px;">
+                <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;">
                   <table style="width: 2500px;overflow-x:auto;overflow-y: 
                   auto;">
                     <thead>
@@ -111,6 +88,6 @@
           </ion-grid>
         </div>
       </ion-card-content>
-    </ion-card>
-  </div>
+</div>
+    </div>
 </ion-content>

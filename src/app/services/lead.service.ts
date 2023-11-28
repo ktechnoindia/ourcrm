@@ -22,6 +22,7 @@ export interface leadstore {
   u:number;
   r:number;
   leadtype:number;
+  leadassign?:number;
 }
 @Injectable({
   providedIn: 'root'

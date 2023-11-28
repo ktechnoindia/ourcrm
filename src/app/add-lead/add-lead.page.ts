@@ -60,6 +60,7 @@ export class AddLeadPage {
   selectedState: number=0;
   selectedDistrict: number=0;
   rmark:string='';
+  leadassign:number=0;
   c=1;
   u=1;
   r=1;
@@ -100,7 +101,8 @@ export class AddLeadPage {
       emails:['',[Validators.email]],
       rmark:[''],
       selectpd:[''],
-      leadtype:['']
+      leadtype:[''],
+      leadassign:['']
     });
    
   }

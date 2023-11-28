@@ -14,6 +14,7 @@ import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
 import { ExecutiveService } from '../services/executive.service';
+import { AdditemService } from '../services/additem.service';
 
 
 @Component({
@@ -42,6 +43,8 @@ export class LeadeditPage implements OnInit {
   selectedState: number=0;
   selectedDistrict: number=0;
   leadtype:number=0;
+  leadassign:number=0;
+
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -49,10 +52,11 @@ export class LeadeditPage implements OnInit {
   leadsourcetype!: string;
   executive$: any;
   executive: string='';
+  itemnames$: any;
 
 
 
-  constructor(private execut: ExecutiveService,private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
+  constructor(private execut: ExecutiveService,private itemService:AdditemService,private router:Router,private formBuilder: FormBuilder,private formService: FormValidationService,private leadSourceService:LeadsourceService, private leadmanage : LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService
    ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -61,6 +65,8 @@ export class LeadeditPage implements OnInit {
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
     this.leaddate= new Date().toLocaleDateString();
+    this.itemnames$ = this.itemService.getAllItems();
+
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 
@@ -76,7 +82,8 @@ export class LeadeditPage implements OnInit {
       emails:['',[Validators.email]],
       rmark:[''],
       selectpd:[''],
-      leadtype:['']
+      leadtype:[''],
+      leadassign:['']
     });
    
   }

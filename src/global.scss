@@ -396,6 +396,16 @@ ion-item {
 
 }
 
+.container_div{
+    margin: 0 300px;
+}
+.container_fluid{
+    margin: 0 50px;
+}
+.container_data{
+    margin: 0 200px;
+}
+
 // .scroll-container {
 //     overflow-x: auto;
 //     border: 1px solid #ddd;
@@ -478,10 +488,16 @@ tr:nth-child(odd) {
 
 @media(max-width:950px) {
 
-
-    .container {
-        margin-top: 10px;
+    .container_div{
+        margin: 0 ;
     }
+    .container_fluid{
+        margin: 0 ;
+    }
+    .container_data{
+        margin: 0 ;
+    }
+
 }
 
 
@@ -506,6 +522,15 @@ tr:nth-child(odd) {
 
     .textarea-width {
         min-width: 120px;
+    }
+    .container_div{
+        margin: 0 ;
+    }
+    .container_fluid{
+        margin: 0 ;
+    }
+    .container_data{
+        margin: 0 ;
     }
 }
 
@@ -597,7 +622,7 @@ input::placeholder {
 .input_table{
     border: none;
     outline: none;
-    width: 150px;
+    width: 144px;
     text-align: center;
 }
 
