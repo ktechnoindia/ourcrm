@@ -46,7 +46,9 @@ export class AddLeadPage {
   submitted = false;
 
   catPerson:string='';
-  companyname:string=''
+  companyname:string='';
+  leaddate:string='';
+
   phone:string='';
   emails:string='';
   pncode:string='';
@@ -82,6 +84,7 @@ export class AddLeadPage {
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
+    this.leaddate= new Date().toLocaleDateString();
 
 
     this.form = this.formBuilder.group({
@@ -120,7 +123,24 @@ export class AddLeadPage {
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype,leadassign:this.form.value.leadassign};
+    let leaddata:leadstore={catPerson:this.form.value.catPerson,
+      companyname:this.form.value.companyname,
+      phone:this.form.value.phone,
+      fulladdress:this.form.value.fulladdress,
+      emails:this.form.value.emails,
+      lscore:this.form.value.lscore,
+      rmark:this.form.value.rmark,
+      selectpd:this.form.value.selectpd,
+      executivename:this.form.value.executivename,
+      selectedCountry:this.form.value.selectedCountry,
+      selectedState:this.form.value.selectedState,
+      selectedDistrict:this.form.value.selectedDistrict,
+      pncode:this.form.value.pncode,
+      c:this.form.value.c,
+      u:this.form.value.u,
+      r:this.form.value.r,
+      leadtype:this.form.value.leadtype,
+    leaddate:this.form.value.leaddate};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {

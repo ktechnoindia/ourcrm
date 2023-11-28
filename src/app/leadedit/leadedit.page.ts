@@ -29,7 +29,8 @@ export class LeadeditPage implements OnInit {
   submitted = false;
 
   catPerson:string='';
-  companyname:string=''
+  companyname:string='';
+  leaddate:string='';
   phone:string='';
   pncode:string='';
   fulladdress:string='';
@@ -63,6 +64,7 @@ export class LeadeditPage implements OnInit {
     this.districts$ = this.districtservice.getDistricts(1);
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
+    this.leaddate= new Date().toLocaleDateString();
     this.itemnames$ = this.itemService.getAllItems();
 
 
@@ -101,7 +103,7 @@ export class LeadeditPage implements OnInit {
     if(await this.formService.validateForm(fields)){
       
     console.log('Your form data : ', this.form.value);
-    let leaddata:leadstore={catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype};
+    let leaddata:leadstore={ leaddate:this.form.value.leaddate,catPerson:this.form.value.catPerson,companyname:this.form.value.companyname,phone:this.form.value.phone,fulladdress:this.form.value.fulladdress,emails:this.form.value.emails,lscore:this.form.value.lscore,rmark:this.form.value.rmark,selectpd:this.form.value.selectpd,executivename:this.form.value.executivename,selectedCountry:this.form.value.selectedCountry,selectedState:this.form.value.selectedState,selectedDistrict:this.form.value.selectedDistrict,pncode:this.form.value.pncode,c:this.form.value.c,u:this.form.value.u,r:this.form.value.r,leadtype:this.form.value.leadtype};
 
     this.leadmanage.createLead(leaddata,'','').subscribe(
       (response: any) => {

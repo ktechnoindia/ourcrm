@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormsModule, FormBuilder, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -16,47 +16,61 @@ import { Observable } from 'rxjs';
   templateUrl: './follow-up.page.html',
   styleUrls: ['./follow-up.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class FollowUpPage implements OnInit {
-  
-myform:FormGroup;
-  remark:string='';
-  nextfollowupDate:string='';
-  // currentDate: string;
-  lead$:Observable<any[]>
-  constructor(private followService : FollowupService,private formService:FormValidationService, private router: Router, private toastCtrl: ToastController, private followup : FollowupService,private formBuilder:FormBuilder,private encService: EncryptionService,private leadser:LeadService,) { 
-   this.myform = this.formBuilder.group({
-    remark:[''],
-    nextfollowupDate:['']
-   })
-   const compid = '1';
-   this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
+  followupdate: string = '';
+  enterdby: string = '';
+  remark: string = '';
+  nextfollowupDate: string = '';
+  custid: string = '';
+  leadid: string = '';
+  compid: string = '';
 
-   this.nextfollowupDate = new Date().toLocaleDateString();
+  lead$: Observable<any[]>
+  myform: FormGroup;
+  showLeadDetails = false;
+  constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
+    const compid = '1';
+    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
+
+    this.nextfollowupDate = new Date().toLocaleDateString();
+    this.myform = this.formBuilder.group({
+      remark: [''],
+      nextfollowupDate: ['']
+    })
+
   }
 
 
   async onSubmit() {
 
-    if(await this.formService.validateForm({})){
+    if (await this.formService.validateForm({})) {
 
-    console.log('Your form data : ', this.myform.value);
-    let followuptable:followuptable={remark:this.myform.value.remark,nextfollowupDate:this.myform.value.nextfollowupDate};
+      console.log('Your form data : ', this.myform.value);
+      let followuptable: followuptable = {
+        remark: this.myform.value.remark,
+        nextfollowupDate: this.myform.value.nextfollowupDate,
+        followupdate: this.myform.value.followupdate,
+        enterdby: this.myform.value.enterdby,
+        custid: this.myform.value.custid,
+        compid: this.myform.value.compid,
+        leadid: this.myform.value.leadid
+      };
 
-    this.followService.createfollowup(followuptable, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        // Handle the response as needed
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
-      }
-    );setTimeout(() => {
-      this.myform.reset();
-    }, 1000);
-    }else {
+      this.followService.createfollowup(followuptable, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          // Handle the response as needed
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          // Handle the error as needed
+        }
+      ); setTimeout(() => {
+        this.myform.reset();
+      }, 1000);
+    } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -65,10 +79,12 @@ myform:FormGroup;
         }
       });
     }
-    }
+  }
   ngOnInit() {
   }
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }
+
+
 }

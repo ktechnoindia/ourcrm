@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastController } from '@ionic/angular'; 
 import { LoginService,logindata } from '../services/login.service';
+import { SharedService } from '../shared.service';
 
 
 
@@ -25,7 +26,7 @@ export class LoginPage implements OnInit {
 
    submitValue = false;
 myform:FormGroup;
-   constructor(private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService){
+   constructor(private sharedService: SharedService,private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService){
     this.myform = this.formBuilder.group({
       username:[''],
       password:['']
@@ -107,7 +108,8 @@ myform:FormGroup;
   // }
 
    ngOnInit(){
-  
+    this.sharedService.showHeader  = false;
+
 }
 
 
