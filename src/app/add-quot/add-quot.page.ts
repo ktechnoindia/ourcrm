@@ -9,6 +9,7 @@ import { UnitnameService } from '../services/unitname.service';
 import { AdditemService } from '../services/additem.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 
 interface Quote {
   barcode: string;
@@ -108,8 +109,6 @@ export class AddQuotPage implements OnInit {
     total: 0,
   }];
   ttotal!: number;
-  unitname$: any;
-  taxrate$: any;
   myform: FormGroup;
 
   totalItemNo: number = 0;
@@ -118,7 +117,9 @@ export class AddQuotPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  itemnames$: any;
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
   customer$: any;
   constructor(private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
     const compid = '1';
@@ -351,8 +352,8 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * +quote.quantity), 0);
   }
 
-  getTotalAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.total, 0);
+  getTotalnetAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate + +quote.totaltax - +quote.discountamt  * +quote.quantity), 0);
   }
 
   
@@ -364,13 +365,23 @@ getAllRows() {
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
   }
-
-  
-
-  // getTotalDiscountAmount(): number {
-  //   return this.quoteData.reduce((total, quote) => total + (+quote.discountamt), 0);
-  // }
-  
+ 
+  getnetrate(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate - quote.discountamt + quote.taxrate/100), 0);
+  }
+  getTotaltax(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate/100
+    * + quote.quantity), 0);
+  }
+  getgrossrate(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.quantity * +quote.basicrate), 0);
+  }
+  getdiscountamt(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.discount/100 * + quote.quantity), 0);
+  }
+  getTotal(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate + +quote.totaltax - +quote.discountamt), 0);
+  }
   ngOnInit() {
     this.calculateTotals()
     this.getTotalQuantity()
@@ -378,4 +389,5 @@ getAllRows() {
   goBack() {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
+
 }
