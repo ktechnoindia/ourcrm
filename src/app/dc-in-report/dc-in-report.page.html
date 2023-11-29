@@ -107,20 +107,20 @@
                   <td>{{dcin.description}}</td>
                   <td>{{dcin.quantity}}</td>
                   <td>{{dcin.unitname}}</td>
-                  <td>{{dcin.mrp}}</td>
-                  <td>{{dcin.basicrate}}</td>
-                  <td>{{dcin.netrate}}</td>
-                  <td>{{dcin.grossrate}}</td>
-                  <td>{{dcin.taxrate}}</td>
-                  <td>{{dcin.IGST}}</td>
-                  <td>{{dcin.CGST}}</td>
-                  <td>{{dcin.SGST}}</td>
-                  <td>{{dcin.discount}}</td>
-                  <td>{{dcin.discountamt}}</td>
-                  <td>{{dcin.totaltax}}</td>
-                  <td>{{dcin.pretax}}</td>
-                  <td>{{dcin.posttax}}</td>
-                  <td>{{dcin.total}}</td>
+                  <td>{{dcin.mrp  | currency : 'INR'}}</td>
+                  <td>{{dcin.basicrate  | currency : 'INR'}}</td>
+                  <td>{{dcin.netrate | currency : 'INR'}}</td>
+                  <td>{{dcin.grossrate | currency : 'INR'}}</td>
+                  <td>{{dcin.taxrate}}%</td>
+                  <td>{{dcin.IGST}}%</td>
+                  <td>{{dcin.CGST}}%</td>
+                  <td>{{dcin.SGST}}%</td>
+                  <td>{{dcin.discount}}%</td>
+                  <td>{{dcin.discountamt | currency : 'INR'}}</td>
+                  <td>{{dcin.totaltax | currency : 'INR'}}</td>
+                  <td>{{dcin.pretax | currency : 'INR'}}</td>
+                  <td>{{dcin.posttax | currency : 'INR'}}</td>
+                  <td>{{dcin.total  | currency : 'INR'}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
                     <ion-icon name="trash"></ion-icon>

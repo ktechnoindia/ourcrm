@@ -120,20 +120,20 @@
                       <td>{{purchase.description}}</td>
                       <td>{{purchase.quantity}}</td>
                       <td>{{purchase.unitname}}</td>
-                      <td>{{purchase.mrp}}</td>
-                      <td>{{purchase.basicrate}}</td>
-                      <td>{{purchase.netrate}}</td>
-                      <td>{{purchase.grossrate}}</td>
-                      <td>{{purchase.taxrate}}</td>
-                      <td>{{purchase.IGST}}</td>
-                      <td>{{purchase.CGST}}</td>
-                      <td>{{purchase.SGST}}</td>
-                      <td>{{purchase.discount}}</td>
-                      <td>{{purchase.discountamt}}</td>
-                      <td>{{purchase.totaltax}}</td>
-                      <td>{{purchase.pretax}}</td>
-                      <td>{{purchase.posttax}}</td>
-                      <td>{{purchase.total}}</td>
+                      <td>{{purchase.mrp | currency : 'INR'}}</td>
+                      <td>{{purchase.basicrate | currency : 'INR'}}</td>
+                      <td>{{purchase.netrate | currency : 'INR'}}</td>
+                      <td>{{purchase.grossrate | currency : 'INR'}}</td>
+                      <td>{{purchase.taxrate}}%</td>
+                      <td>{{purchase.IGST}}%</td>
+                      <td>{{purchase.CGST}}%</td>
+                      <td>{{purchase.SGST}}%</td>
+                      <td>{{purchase.discount}}%</td>
+                      <td>{{purchase.discountamt | currency : 'INR'}}</td>
+                      <td>{{purchase.totaltax | currency : 'INR'}}</td>
+                      <td>{{purchase.pretax | currency : 'INR'}}</td>
+                      <td>{{purchase.posttax | currency : 'INR'}}</td>
+                      <td>{{purchase.total | currency : 'INR'}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
                         <ion-icon name="trash"></ion-icon>

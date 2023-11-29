@@ -90,20 +90,20 @@
                   <td>{{quote.description}}</td>
                   <td>{{quote.quantity}}</td>
                   <td>{{quote.unitname}}</td>
-                  <td>{{quote.mrp}}</td>
-                  <td>{{quote.basicrate}}</td>
-                  <td>{{quote.netrate}}</td>
-                  <td>{{quote.grossrate}}</td>
-                  <td>{{quote.taxrate}}</td>
-                  <td>{{quote.IGST}}</td>
-                  <td>{{quote.CGST}}</td>
-                  <td>{{quote.SGST}}</td>
-                  <td>{{quote.discount}}</td>
-                  <td>{{quote.discountamt}}</td>
-                  <td>{{quote.totaltax}}</td>
-                  <td>{{quote.pretax}}</td>
-                  <td>{{quote.posttax}}</td>
-                  <td>{{quote.total}}</td>
+                  <td>{{quote.mrp  | currency : 'INR'}}</td>
+                  <td>{{quote.basicrate  | currency : 'INR'}}</td>
+                  <td>{{quote.netrate  | currency : 'INR'}}</td>
+                  <td>{{quote.grossrate  | currency : 'INR'}}</td>
+                  <td>{{quote.taxrate}} %</td>
+                  <td>{{quote.IGST}} %</td>
+                  <td>{{quote.CGST}} %</td>
+                  <td>{{quote.SGST}} %</td>
+                  <td>{{quote.discount}} %</td>
+                  <td>{{quote.discountamt  | currency : 'INR'}}</td>
+                  <td>{{quote.totaltax  | currency : 'INR'}}</td>
+                  <td>{{quote.pretax  | currency : 'INR'}}</td>
+                  <td>{{quote.posttax  | currency : 'INR'}}</td>
+                  <td>{{quote.total  | currency : 'INR'}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
                     <ion-icon name="trash"></ion-icon>

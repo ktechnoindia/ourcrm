@@ -353,25 +353,20 @@ getAllRows() {
   }
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate + +quote.totaltax - +quote.discountamt  * +quote.quantity), 0);
+    return this.quoteData.reduce((total, quote) => total + +quote.total, 0);
   }
-
-  
-
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.totaltax), 0);
   }
-
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
   }
- 
+ //table formaula
   getnetrate(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate - quote.discountamt + quote.taxrate/100), 0);
   }
   getTotaltax(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate/100
-    * + quote.quantity), 0);
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate/100 * + quote.quantity), 0);
   }
   getgrossrate(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.quantity * +quote.basicrate), 0);
@@ -379,15 +374,33 @@ getAllRows() {
   getdiscountamt(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.discount/100 * + quote.quantity), 0);
   }
-  getTotal(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate + +quote.totaltax - +quote.discountamt), 0);
+  getTotalamt(): number {
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate + +quote.netrate* +quote.taxrate/100  - + quote.discountamt), 0);
+  }
+  getcgst(): number {
+    return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
+  }
+  getsgst(): number {
+    return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
+  }
+  getigst(): number {
+    return this.quoteData.reduce((total, quote) => total + +quote.taxrate, 0);
   }
   ngOnInit() {
     this.calculateTotals()
     this.getTotalQuantity()
-  }
+  } 
   goBack() {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
 
+  onSelectChange(select: HTMLSelectElement) {
+    const selectedValue = select.value;
+    const selectedIndex = select.selectedIndex;
+    const selectedText = select.options[selectedIndex].text;
+
+    console.log('Selected value:', selectedValue);
+    console.log('Selected text:', selectedText);
+    // Use selectedValue and selectedText as needed
+  }
 }

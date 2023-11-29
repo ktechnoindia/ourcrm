@@ -120,20 +120,20 @@
                       <td> {{purchasereturn.description}}</td>
                       <td>{{purchasereturn.quantity}}</td>
                       <td>{{purchasereturn.unitname}}</td>
-                      <td>{{purchasereturn.mrp}}</td>
-                      <td>{{purchasereturn.basicrate}}</td>
-                      <td>{{purchasereturn.netrate}}</td>
-                      <td>{{purchasereturn.grossrate}}</td>
-                      <td>{{purchasereturn.taxrate}}</td>
-                      <td>{{purchasereturn.CGST}}</td>
-                      <td>{{purchasereturn.SGST}}</td>
-                      <td>{{purchasereturn.IGST}}</td>
-                      <td>{{purchasereturn.discount}}</td>
-                      <td>{{purchasereturn.discountamt}}</td>
-                      <td>{{purchasereturn.totaltax}}</td>
-                      <td>{{purchasereturn.pretax}}</td>
-                      <td>{{purchasereturn.posttax}}</td>
-                      <td>{{purchasereturn.total}}</td>
+                      <td>{{purchasereturn.mrp | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.basicrate | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.netrate | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.grossrate | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.taxrate}}%</td>
+                      <td>{{purchasereturn.CGST}}%</td>
+                      <td>{{purchasereturn.SGST}}%</td>
+                      <td>{{purchasereturn.IGST}}%</td>
+                      <td>{{purchasereturn.discount}}%</td>
+                      <td>{{purchasereturn.discountamt | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.totaltax | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.pretax | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.posttax | currency : 'INR'}}</td>
+                      <td>{{purchasereturn.total | currency : 'INR'}}</td>
                       <td>
                         <ion-icon name="create"></ion-icon>
                         <ion-icon name="trash"></ion-icon>

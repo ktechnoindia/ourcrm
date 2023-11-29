@@ -118,20 +118,20 @@
                       <td>{{salreturns.description}} </td>
                       <td>{{salreturns.quantity}}</td>
                       <td>{{salreturns.unitname}}</td>
-                      <td>{{salreturns.mrp}}</td>
-                      <td>{{salreturns.basicrate}}</td>
-                      <td>{{salreturns.netrate}}</td>
-                      <td>{{salreturns.grossrate}}</td>
-                      <td>{{salreturns.taxrate}}</td>
-                      <td>{{salreturns.CGST}}</td>
-                      <td>{{salreturns.SGST}}</td>
-                      <td>{{salreturns.IGST}}</td>
-                      <td>{{salreturns.discount}}</td>
-                      <td>{{salreturns.discountamt}}</td>
-                      <td>{{salreturns.totaltax}}</td>
-                      <td>{{salreturns.pretax}}</td>
-                      <td>{{salreturns.posttax}}</td>
-                      <td>{{salreturns.total}}</td>
+                      <td>{{salreturns.mrp | currency : 'INR'}}</td>
+                      <td>{{salreturns.basicrate | currency : 'INR'}}</td>
+                      <td>{{salreturns.netrate | currency : 'INR'}}</td>
+                      <td>{{salreturns.grossrate | currency : 'INR'}}</td>
+                      <td>{{salreturns.taxrate}}%</td>
+                      <td>{{salreturns.CGST}}%</td>
+                      <td>{{salreturns.SGST}}%</td>
+                      <td>{{salreturns.IGST}}%</td>
+                      <td>{{salreturns.discount}}%</td>
+                      <td>{{salreturns.discountamt | currency : 'INR'}}</td>
+                      <td>{{salreturns.totaltax | currency : 'INR'}}</td>
+                      <td>{{salreturns.pretax | currency : 'INR'}}</td>
+                      <td>{{salreturns.posttax | currency : 'INR'}}</td>
+                      <td>{{salreturns.total | currency : 'INR'}}</td>
                      
                       <td>
                         <ion-icon name="create"></ion-icon>
