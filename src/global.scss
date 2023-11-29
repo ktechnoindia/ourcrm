@@ -13,7 +13,9 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-
+ion-content {
+    --ion-background-color: #ffffff;
+  }
 .main {
     width: 100%;
 }
@@ -363,9 +365,6 @@ ion-header ion-title {
     text-transform: uppercase;
     color: #000;
     font-weight: bold;
-    /* Adjust font styles as needed */
-    /* Add any other styles you want */
-    margin-bottom: 10px;
     font-size: 14px;
 }
 
@@ -434,7 +433,7 @@ table td {
     border: 1px solid grey;
     text-align: center;
     font-size: 12px;
-    font-weight: bold;
+    // font-weight: bold;
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -476,14 +475,19 @@ tr:nth-child(odd) {
 }
 
 .back {
-    padding: 3px;
+   
     font-size: 14px;
 }
 
 .back:hover {
     background-color: rgba(255, 251, 251, 0.932);
 }
-
+input{
+    width: 100px !important;
+}
+.description{
+    width: 200px !important;
+}
 @media(max-width:2222px) {}
 
 @media(max-width:950px) {
@@ -576,30 +580,13 @@ ion-col {
     padding: 0 2px;
 }
 
-.container ion-select {
-    text-transform: uppercase;
-    min-height: 35px;
-    background: skyblue;
-    color: #000;
-    font-weight: 600;
-    outline-width: 2px;
-    outline-style: initial;
-}
+
 
 .container option {
     color: #000000;
 }
 
-// .container select {
-//     background: skyblue;
-//     min-height: 35px;
-//     color: #000;
-//     font-weight: 600;
-//     width: 100%;
-//     border: 1px solid lightgray;
-//     color: salmon;
-//     text-align: center;
-// }
+
 
 .select {
     margin-top: 5px;
@@ -666,7 +653,11 @@ ion-card {
     width: 100%;
     // background-image: linear-gradient(to right, #141e30, #243b55);
 }
-
+ ion-input {
+    min-height: 33px;
+   outline-width: 2px;
+   outline-style: initial;
+}
 .custom-primary ion-button {
     --background: transparent;
     background-clip: text;
@@ -727,6 +718,22 @@ ion-card {
     .cards ion-card-subtitle {
         font-size: 16px;
     }
+    .select {
+        margin-top: 5px;
+        font-size: 10px ;
+        text-align: center;
+        min-height: 25px!important;
+        border-radius: 4px;
+        border-color: rgb(178, 178, 178);
+    }
+    .Customer ion-input {
+       
+        min-height: 25px;
+    font-size: 10px;
+        font-family: 'Times New Roman', Times, serif;
+    
+    }
+    
 }
 
 
@@ -799,36 +806,14 @@ select option {
     background: none;
     max-height: 20px !important;
 }
-.Customer ion-select {
-    margin-top: 5px;
-    min-height: 35px !important;
-    outline-width: 1px;
-    outline-style: initial;
-}
-
-//  .select {
-//     max-height: 35px !important;
+// .Customer ion-select {
 //     margin-top: 5px;
-
-//     width: 100%;
-//     text-align: left;
-//     border-color: #646464;
-//     /* Change the border color when focused */
-//     border-radius: 4px;
-//     border-width: 1px;
-//     box-shadow: 0 0 2px 2px #fffbfb;
-//     /* Add a box shadow when focused */
-//     color: #1a4174;
-//     /* Change the input text color when focused */
-//     padding-left: 12px;
-//     font-family: 'Times New Roman', Times, serif;
-//     text-align: center;
+//     min-height: 35px !important;
+//     outline-width: 1px;
+//     outline-style: initial;
 // }
 
-// .Customer option {
-//     font-size: 18px;
 
-// }
 
 ng-template ion-button {
     color: goldenrod;
@@ -939,12 +924,32 @@ ion-loading.custom-loading {
     color: #1c6dff;
 }
 
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+}
 
 @media(max-width:540px){
    
+   ion-label {
+        font-size: 10px;
+    }
     .headinglabel ion-label {
+        font-size: 10px;
+    }
+    ion-checkbox{
+        font-size: 10px;
+    }
+    .Customer ion-title{
         font-size: 12px;
     }
+    .Customer ion-input {
+        min-height: 25px;
+        font-size: 10px;
+        outline-style: initial;
+    }
+   
       
 }
