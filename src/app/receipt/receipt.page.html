@@ -4,11 +4,11 @@
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
-            <ion-row lines="none">
+            <ion-row class="top">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">Payment Transaction</ion-title>
+              <ion-title style="text-align: center;">Recepit Transaction</ion-title>
               <div class="custom-primary">
-                <ion-button size="small" [routerLink]="['/paymenttransaction-report']" id="open-loading5">View Payemnt
+                <ion-button size="small" [routerLink]="['/paymenttransaction-report']" id="open-loading5">View Recepit
                   Transaction</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..."
                   [duration]="1000"></ion-loading>

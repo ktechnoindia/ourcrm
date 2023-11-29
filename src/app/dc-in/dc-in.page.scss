@@ -1,47 +1,20 @@
 
 .Customer ion-input {
     min-height: 33px;
-   // color: goldenrod;
-   // font-weight: 400;
-   // outline-color: goldenrod;
-   outline-width: 2px;
-   outline-style: initial;
-}
-.Customer ion-select {
-   min-height: 33px;
-   // color: goldenrod;
-   // font-weight: 400;
-   // outline-color: goldenrod;
    outline-width: 2px;
    outline-style: initial;
 }
 
 .Customer select {
-   // color: goldenrod;
-   // font-weight: 400;
-   //border-color: goldenrod;
    width: 100%;
    text-align: left;
 }
-.Customer .table_select select{
-   
-}
+
 
 .scroll-container td {
  background-color: #fff;
  border: .1px solid grey;
  max-height: 20px;
-}
-@media(max-width:540px) {
- .Customer ion-input {
-   min-height: 33px;
-   text-align: center;
- }
-
-   .Customer ion-select {
-       min-height: 33px;
-       text-align: center;
-   }
 }
 
 .output td {
@@ -83,24 +56,11 @@
    background-color: #fff;
  }
 }
-@media(max-width:990px){
-   .row{
-      margin-top: -250px;
-      margin-left: -30px;
+@media(max-width:540px) {
+   .Customer ion-input {
+     min-height: 25px;
+    font-size: 10px;
    }
-   .row1{
-      margin-top: 150px;
-   }
-}
-@media(max-width:540px){
-   .row{
-      margin-top: -420px;
-      margin-left: -30px;
-   }
-   .row1{
-      margin-top: 0px;
-   }
-   .row3{
-      margin-top:150px ;
-   }
-}
+  
+  }
+  
