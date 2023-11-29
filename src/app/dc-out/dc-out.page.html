@@ -220,46 +220,45 @@
                   </tr>
                 </table>
               </div>
-              <div style="overflow-x: auto;">
-                <table style="width:100%;">
-                  <tr>
+              
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+               
+                <ion-row>
+  
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total Item :</label>
+                    <input name="totalitemno" [(ngModel)]="dcoutData.length" formControlName="totalitemno"
+                      class="input_table" type="text">
+                  </ion-col>
 
-                    <td colspan="1">
-                      <label class="label_table" for="">Total Item :</label>
-                      <input name="totalitemno" [(ngModel)]="dcoutData.length" formControlName="totalitemno"
-                        class="input_table" type="text">
-                    </td>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Quantity : </label>
+                    
+                    <input name="totalquantity" [(ngModel)]="totalquantity" formControlName="totalquantity"  class="input_table" type="text">
+                  </ion-col>
 
-                    <td colspan="5">
-                      <label class="label_table" for="">Qty :</label>
-                      <input name="totalquantity" [(ngModel)]="totalquantity" formControlName="totalquantity"
-                        class="input_table" type="text">
-                    </td>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Gross Amount :</label>
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt"  formControlName="totalgrossamt" class="input_table" type="text" >
+                  </ion-col>
 
-                    <td colspan="10">
-                      <label class="label_table" for="">Gross Amount :</label>
-                      <input name="totalgrossamt" [(ngModel)]="totalgrossamt" formControlName="totalgrossamt"
-                        class="input_table" type="text">
-                    </td>
-                    <td colspan="10">
-                      <label class="label_table" for="">Discount Amount :</label>
-                      <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt"
-                        class="input_table" type="text">
-                    </td>
-                    <td>
-                      <label class="label_table" for="">Tax Amount :</label>
-                      <input name="totaltaxamount" [(ngModel)]="totaltaxamount" formControlName="totaltaxamount"
-                        class="input_table" type="text">
-                    </td>
-                    <td colspan="2">
-                      <label class="label_table" for="">Total :</label>
-                      <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                        class="input_table" type="text">
-                    </td>
-                  </tr>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Discount Amount : </label>
+                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt" class="input_table" type="text">
+                  </ion-col>
 
-                </table>
+                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Tax Amount :</label>
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount"  formControlName="totaltaxamount" class="input_table" type="text">
+                   </ion-col>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total :</label>
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount"  formControlName="totalnetamount" class="input_table" type="text" >
+                  </ion-col>
+             
+                </ion-row> 
               </div>
+
             </ion-row>
 
             <ion-row>

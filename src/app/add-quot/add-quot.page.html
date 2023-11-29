@@ -204,40 +204,42 @@
                 </table>
 
               </div>
-              <div style="overflow-x: auto;" >
-                <table style="width:100%;" >
-                  <tr>
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;" >
+                
+                 <ion-row>
   
-                    <td colspan="1" >
+                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Total Item :</label>
                       <input name="totalitemno" [(ngModel)]="quoteData.length"   formControlName="totalitemno" class="input_table" type="text" >
-                    </td>
+                    </ion-col>
   
-                    <td colspan="5">
-                      <label class="label_table" for="">Qty : </label>
+                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                      <label class="label_table" for="">Quantity : </label>
                       
                       <input name="totalquantity" [(ngModel)]="totalquantity"  [value]="getTotalQuantity()" formControlName="totalquantity"  class="input_table" type="text">
-                    </td>
+                    </ion-col>
   
-                    <td colspan="10">
+                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Gross Amount :</label>
                       <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()" formControlName="totalgrossamt" class="input_table" type="text" >
-                    </td>
-                    <td colspan="10">
+                    </ion-col>
+
+                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Discount Amount : </label>
                       <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" formControlName="totaldiscountamt" class="input_table" type="text">
-                    </td>
-                    <td>
+                    </ion-col>
+
+                     <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Tax Amount :</label>
                       <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" formControlName="totaltaxamount" class="input_table" type="text">
-                    </td>
-                    <td colspan="2">
+                     </ion-col>
+                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Total :</label>
                       <input name="totalnetamount" [(ngModel)]="totalnetamount" [value]="getTotalAmount()" formControlName="totalnetamount" class="input_table" type="text" >
-                    </td>
-                  </tr>
-  
-                </table>
+                    </ion-col>
+               
+                  </ion-row>
+               
               </div>
             
             </ion-row>
