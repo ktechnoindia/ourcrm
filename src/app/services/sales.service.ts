@@ -16,8 +16,7 @@ export interface salesstore {
   gstin:number;
   salePerson: number;
   payment: number;
-
-  unitname$: number;
+  unitname: number;
  
   //table
   barcode:string;
@@ -25,7 +24,6 @@ itemcode:string;
 itemname:number;
 description:string;
 quantity:number;
-unitname:number;
 mrp:string;
 basicrate:number;
 netrate:string;

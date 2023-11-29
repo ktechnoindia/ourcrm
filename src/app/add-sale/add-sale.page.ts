@@ -11,6 +11,7 @@ import { AdditemService } from '../services/additem.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { ExecutiveService } from '../services/executive.service';
+import { Observable } from 'rxjs';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -19,7 +20,7 @@ interface Sales {
   itemname: number,
   description: string;
   quantity: number;
-  unitname$: number;
+  unitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -97,7 +98,7 @@ export class AddSalePage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname$: 0,
+    unitname: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -113,8 +114,7 @@ export class AddSalePage implements OnInit {
   }];
   ttotal:  number = 0;
   myform: FormGroup;
-  unitname$: any;
-  taxrate$: any;
+ 
 
   totalItemNo: number = 0;
   totalQuantity: number = 0;
@@ -122,10 +122,11 @@ export class AddSalePage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  itemnames$: any;
   customer$: any;
   executive$: any;
-
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
   constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -244,7 +245,6 @@ export class AddSalePage implements OnInit {
       closingbalance: this.myform.value.closingbalance,
       debit: this.myform.value.debit,
       credit: this.myform.value.credit,
-      unitname$: this.myform.value.unitname$,
       ttotal: this.myform.value.ttotal,
 
     };
@@ -268,7 +268,7 @@ export class AddSalePage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname$: 0,
+      unitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -332,8 +332,52 @@ export class AddSalePage implements OnInit {
   //     }
   //   })
   // }
+ 
+  getTotalQuantity(): number {
+    return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
+  }
 
+  getTotalGrossAmount(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.grossrate * +sale.quantity), 0);
+  }
+
+  getTotalnetAmount(): number {
+    return this.salesData.reduce((total, sale) => total + +sale.total, 0);
+  }
+  getTotalTaxAmount(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.totaltax), 0);
+  }
+  getTotalDiscountAmount(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.grossrate * sale.discount / 100), 0);
+  }
+ //table formaula
+  getnetrate(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.basicrate - sale.discountamt + sale.taxrate/100), 0);
+  }
+  getTotaltax(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate/100 * + sale.quantity), 0);
+  }
+  getgrossrate(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.quantity * +sale.basicrate), 0);
+  }
+  getdiscountamt(): number {
+    return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.discount/100 * + sale.quantity), 0);
+  }
+  getTotalamt(): number {
+    return this.salesData.reduce((total, sale) => total + (sale.basicrate +sale.netrate* sale.quantity  - sale.discountamt), 0);
+  }
+  getcgst(): number {
+    return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+  }
+  getsgst(): number {
+    return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+  }
+  getigst(): number {
+    return this.salesData.reduce((total, sale) => total + +sale.taxrate, 0);
+  }
   ngOnInit() {
+    this.calculateTotals()
+    this.getTotalQuantity()
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])

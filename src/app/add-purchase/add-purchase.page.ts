@@ -10,6 +10,7 @@ import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 
 interface Purchase {
   barcode: string;
@@ -17,7 +18,7 @@ interface Purchase {
   itemname: number,
   description: string;
   quantity: number;
-  unitname$: number;
+  unitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -99,7 +100,7 @@ billformate:number=0;
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname$: 0,
+    unitname: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -114,15 +115,21 @@ billformate:number=0;
     total: 0,
   }];
   ttotal!: number;
-  unitname$: any;
-  taxrate$: any;
+ 
   purchase: any;
   executive$: any;
   myform: FormGroup;
-  itemnames$: any;
   supplier$: any;
-
-
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
+  otalItemNo: number = 0;
+  totalItemNo:number=0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
   constructor(private encService: EncryptionService,private vendname1:VendorService,private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -202,7 +209,6 @@ billformate:number=0;
       supplier: this.myform.value.supplier,
       gstin: this.myform.value.gstin,
       executive$: this.myform.value.executive$,
-      unitname$: this.myform.value.unitname$,
       taxrate$: this.myform.value.taxrate$,
       refrence: this.myform.value.refrence,
       refdate: this.myform.value.refdate,
@@ -266,7 +272,7 @@ billformate:number=0;
       itemname: 0,
       description:'',
       quantity:0,
-      unitname$:0,
+      unitname:0,
       mrp:0,
       basicrate:0,
       netrate:0,
@@ -304,7 +310,62 @@ billformate:number=0;
   }
 
 
+  calculateTotals() {
+    // Add your logic to calculate totals based on the salesData array
+    this.totalItemNo = this.purchaseData.length;
+
+    // Example calculation for total quantity and gross amount
+    this.totalQuantity = this.purchaseData.reduce((total, purchase) => total + purchase.quantity, 0);
+    this.totalGrossAmt = this.purchaseData.reduce((total, purchase) => total + purchase.grossrate, 0);
+
+    // Add similar calculations for other totals
+  }
+ 
+  getTotalQuantity(): number {
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+  }
+
+  getTotalGrossAmount(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * +purchase.quantity), 0);
+  }
+
+  getTotalnetAmount(): number {
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.total, 0);
+  }
+  getTotalTaxAmount(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.totaltax), 0);
+  }
+  getTotalDiscountAmount(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * purchase.discount / 100), 0);
+  }
+ //table formaula
+  getnetrate(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate - purchase.discountamt + purchase.taxrate/100), 0);
+  }
+  getTotaltax(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate/100 * + purchase.quantity), 0);
+  }
+  getgrossrate(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.quantity * +purchase.basicrate), 0);
+  }
+  getdiscountamt(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.discount/100 * + purchase.quantity), 0);
+  }
+  getTotalamt(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (purchase.basicrate +purchase.netrate* purchase.quantity  - purchase.discountamt), 0);
+  }
+  getcgst(): number {
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate/2, 0);
+  }
+  getsgst(): number {
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate/2, 0);
+  }
+  getigst(): number {
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate, 0);
+  }
   ngOnInit() {
+    this.calculateTotals()
+    this.getTotalQuantity()
   }
   goBack() {
     this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page

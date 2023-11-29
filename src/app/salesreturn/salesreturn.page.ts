@@ -11,6 +11,7 @@ import { AdditemService } from '../services/additem.service';
 import { ExecutiveService } from '../services/executive.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 
 interface Sales {
   barcode: string;
@@ -111,16 +112,24 @@ export class SalesreturnPage implements OnInit {
     total: 0,
   }];
   ttotal!: number;
-  unitname$: any;
-  taxrate$: any;
+ 
   // ponumber:string='';
   refrence:string='';
   refdate:string='';
   myform: FormGroup;
-  itemnames$: any;
   executive$: any;
   customer$: any;
 
+  otalItemNo: number = 0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
+  totalItemNo:number=0;
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
   constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -309,9 +318,63 @@ this.orderDate=new Date().toLocaleDateString();
     //     }
     //   })
     // }
+    calculateTotals() {
+      // Add your logic to calculate totals based on the salesData array
+      this.totalItemNo = this.salesData.length;
   
-  ngOnInit() {
-  }
+      // Example calculation for total quantity and gross amount
+      this.totalQuantity = this.salesData.reduce((total, sale) => total + sale.quantity, 0);
+      this.totalGrossAmt = this.salesData.reduce((total, sale) => total + sale.grossrate, 0);
+  
+      // Add similar calculations for other totals
+    }
+   
+    getTotalQuantity(): number {
+      return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
+    }
+  
+    getTotalGrossAmount(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.grossrate * +sale.quantity), 0);
+    }
+  
+    getTotalnetAmount(): number {
+      return this.salesData.reduce((total, sale) => total + +sale.total, 0);
+    }
+    getTotalTaxAmount(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.totaltax), 0);
+    }
+    getTotalDiscountAmount(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.grossrate * sale.discount / 100), 0);
+    }
+   //table formaula
+    getnetrate(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.basicrate - sale.discountamt + sale.taxrate/100), 0);
+    }
+    getTotaltax(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate/100 * + sale.quantity), 0);
+    }
+    getgrossrate(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.quantity * +sale.basicrate), 0);
+    }
+    getdiscountamt(): number {
+      return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.discount/100 * + sale.quantity), 0);
+    }
+    getTotalamt(): number {
+      return this.salesData.reduce((total, sale) => total + (sale.basicrate +sale.netrate* sale.quantity  - sale.discountamt), 0);
+    }
+    getcgst(): number {
+      return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+    }
+    getsgst(): number {
+      return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+    }
+    getigst(): number {
+      return this.salesData.reduce((total, sale) => total + +sale.taxrate, 0);
+    }
+    ngOnInit() {
+      this.calculateTotals()
+      this.getTotalQuantity()
+    }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }

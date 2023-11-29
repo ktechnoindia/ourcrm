@@ -17,7 +17,6 @@ export interface purchasestore {
   gstin: number;
   payment: number;
   executive$: number;
-  unitname$: number;
   taxrate$: number;
   
 

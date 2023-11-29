@@ -12,13 +12,14 @@ import { quotestore } from '../services/quotation.service';
 import { AdditemService } from '../services/additem.service';
 import { EncryptionService } from '../services/encryption.service';
 import { VendorService } from '../services/vendor.service';
+import { Observable } from 'rxjs';
 interface Dcout {
   barcode: string;
   itemcode: number;
   itemname: number,
   description: string;
   quantity: number;
-  unitname$: number;
+  unitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -90,7 +91,7 @@ export class DcOutPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname$: 0,
+    unitname: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -105,12 +106,17 @@ export class DcOutPage implements OnInit {
     total: 0,
   }];
   myform: FormGroup;
-  unitname$: any;
-  taxrate$: any;
   ttotal!: number;
-  itemnames$: any;
   supplier$: any;
-
+  totalItemNo: number = 0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
   constructor(private vendname1:VendorService,private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService) { 
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -242,7 +248,7 @@ export class DcOutPage implements OnInit {
         itemname: 0,
         description:'',
         quantity:0,
-        unitname$:0,
+        unitname:0,
         mrp:0,
         basicrate:0,
         netrate:0,
@@ -290,8 +296,63 @@ export class DcOutPage implements OnInit {
     //   })
     // }
   
-  ngOnInit() {
-  }
+    calculateTotals() {
+      // Add your logic to calculate totals based on the salesData array
+      this.totalItemNo = this.dcoutData.length;
+  
+      // Example calculation for total quantity and gross amount
+      this.totalQuantity = this.dcoutData.reduce((total, dcout) => total + dcout.quantity, 0);
+      this.totalGrossAmt = this.dcoutData.reduce((total, dcout) => total + dcout.grossrate, 0);
+  
+      // Add similar calculations for other totals
+    }
+   
+    getTotalQuantity(): number {
+      return this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
+    }
+  
+    getTotalGrossAmount(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * +dcout.quantity), 0);
+    }
+  
+    getTotalnetAmount(): number {
+      return this.dcoutData.reduce((total, dcout) => total + +dcout.total, 0);
+    }
+    getTotalTaxAmount(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax), 0);
+    }
+    getTotalDiscountAmount(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * dcout.discount / 100), 0);
+    }
+   //table formaula
+    getnetrate(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate - dcout.discountamt + dcout.taxrate/100), 0);
+    }
+    getTotaltax(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.taxrate/100 * + dcout.quantity), 0);
+    }
+    getgrossrate(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.quantity * +dcout.basicrate), 0);
+    }
+    getdiscountamt(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.discount/100 * + dcout.quantity), 0);
+    }
+    getTotalamt(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (dcout.basicrate +dcout.netrate* dcout.quantity  - dcout.discountamt), 0);
+    }
+    getcgst(): number {
+      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate/2, 0);
+    }
+    getsgst(): number {
+      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate/2, 0);
+    }
+    getigst(): number {
+      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate, 0);
+    }
+    ngOnInit() {
+      this.calculateTotals()
+      this.getTotalQuantity()
+    }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }

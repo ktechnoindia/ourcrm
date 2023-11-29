@@ -286,7 +286,7 @@ export class AddQuotPage implements OnInit {
 
     // Example calculation for total quantity and gross amount
     this.totalQuantity = this.quoteData.reduce((total, quote) => total + quote.quantity, 0);
-    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + quote.grossrate, 0);
+    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + (quote.grossrate * quote.quantity), 0);
 
     // Add similar calculations for other totals
   }
@@ -375,7 +375,7 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.discount/100 * + quote.quantity), 0);
   }
   getTotalamt(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate + +quote.netrate* +quote.taxrate/100  - + quote.discountamt), 0);
+    return this.quoteData.reduce((total, quote) => total + (quote.basicrate +quote.netrate* quote.quantity  - quote.discountamt), 0);
   }
   getcgst(): number {
     return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
@@ -387,8 +387,8 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + +quote.taxrate, 0);
   }
   ngOnInit() {
-    this.calculateTotals()
-    this.getTotalQuantity()
+    // this.calculateTotals()
+    // this.getTotalQuantity()
   } 
   goBack() {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page

@@ -13,13 +13,14 @@ import { NgForm } from '@angular/forms';
 import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 interface Dcin {
   barcode: string;
   itemcode: number;
   itemname: number,
   description: string;
   quantity: number;
-  unitname$: number;
+  unitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -92,7 +93,7 @@ export class DcInPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname$: 0,
+    unitname: 0,
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -106,13 +107,19 @@ export class DcInPage implements OnInit {
     totaltax: 0,
     total: 0,
   }];
-  unitname$: any;
-  taxrate$: any;
+ 
   ttotal!: number;
   myform: FormGroup;
-  itemnames$: any;
   supplier$: any;
-
+  totalItemNo: number = 0;
+  totalQuantity: number = 0;
+  totalGrossAmt: number = 0;
+  totalDiscountAmt: number = 0;
+  totalTaxAmt: number = 0;
+  totalNetAmt: number = 0;
+  itemnames$: Observable<any[]>; 
+  unitname$: Observable<any[]>; 
+  taxrate$: Observable<any[]>; 
   constructor(private encService: EncryptionService, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -247,7 +254,7 @@ this.deliverydate= new Date().toLocaleDateString();
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname$: 0,
+      unitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -275,7 +282,16 @@ this.deliverydate= new Date().toLocaleDateString();
     }
     this.ttotal = sum;
   }
+  calculateTotals() {
+    // Add your logic to calculate totals based on the salesData array
+    this.totalItemNo = this.dcinData.length;
 
+    // Example calculation for total quantity and gross amount
+    this.totalQuantity = this.dcinData.reduce((total, dcin) => total + dcin.quantity, 0);
+    this.totalGrossAmt = this.dcinData.reduce((total, dcin) => total + dcin.grossrate, 0);
+
+    // Add similar calculations for other totals
+  }
   getAllRows() {
     console.log('Number of Rows:', this.dcinData.length);
   
@@ -284,7 +300,51 @@ this.deliverydate= new Date().toLocaleDateString();
       console.log('Row:', quote);
     }
   }
+  getTotalQuantity(): number {
+    return this.dcinData.reduce((total, dcin) => total + +dcin.quantity, 0);
+  }
+
+  getTotalGrossAmount(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * +dcin.quantity), 0);
+  }
+
+  getTotalnetAmount(): number {
+    return this.dcinData.reduce((total, dcin) => total + +dcin.total, 0);
+  }
+  getTotalTaxAmount(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
+  }
+  getTotalDiscountAmount(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
+  }
+ //table formaula
+  getnetrate(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate - dcin.discountamt + dcin.taxrate/100), 0);
+  }
+  getTotaltax(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate/100 * + dcin.quantity), 0);
+  }
+  getgrossrate(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.quantity * +dcin.basicrate), 0);
+  }
+  getdiscountamt(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.discount/100 * + dcin.quantity), 0);
+  }
+  getTotalamt(): number {
+    return this.dcinData.reduce((total, dcin) => total + (dcin.basicrate +dcin.netrate* dcin.quantity  - dcin.discountamt), 0);
+  }
+  getcgst(): number {
+    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate/2, 0);
+  }
+  getsgst(): number {
+    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate/2, 0);
+  }
+  getigst(): number {
+    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate, 0);
+  }
   ngOnInit() {
+    this.calculateTotals()
+    this.getTotalQuantity()
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])

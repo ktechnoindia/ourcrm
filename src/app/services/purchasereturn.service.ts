@@ -12,7 +12,6 @@ export interface purchasereturnstore {
   supplier: number;
   gstin: number ;
   exicutive$:number;
-  unitname$: number;
   taxrate$: number;
   refrence:string;
   refdate:string;
