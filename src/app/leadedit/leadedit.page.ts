@@ -83,7 +83,8 @@ export class LeadeditPage implements OnInit {
       rmark:[''],
       selectpd:[''],
       leadtype:[''],
-      leadassign:['']
+      leadassign:[''],
+      leaddate:['']
     });
    
   }

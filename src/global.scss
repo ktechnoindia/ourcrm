@@ -15,7 +15,8 @@
 
 ion-content {
     --ion-background-color: #ffffff;
-  }
+}
+
 .main {
     width: 100%;
 }
@@ -51,9 +52,7 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;
     /* Add rounded corners */
 }
-.custom{
-    width: 100%;
-}
+
 .custom-alert-button.secondary {
     background-color: #3498db;
     /* Customize secondary button color */
@@ -126,34 +125,7 @@ ion-menu.md ion-list#inbox-list {
     background: none;
 }
 
-/* Change the background color of the search bar */
-.custom .searchbar-input {
-    background: linear-gradient(to right, #00b4db, #0083b0);
-    border: solid 1.5px grey;
-    border-radius: 7px;
 
-}
-
-/* Change the text color of the search bar */
-.custom .searchbar-input {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-/* Change the placeholder color of the search bar */
-.custom .searchbar-input::placeholder {
-    color: #ffffff;
-}
-
-/* Change the icon color of the search bar */
-.custom .searchbar-icon {
-    color: #ffffff;
-}
-
-/* Change the color of the cancel button */
-.custom .searchbar-clear-icon {
-    color: #ffffff;
-}
 
 ion-menu.md ion-item {
     --padding-start: 10px;
@@ -296,8 +268,9 @@ ion-menu-button {
     background-color: #000000;
     color: #fff;
 }
+
 .home_buttons1 {
-background-color: transparent;
+    background-color: transparent;
     color: #ffffff;
     // border: 1px solid goldenrod;
     border-radius: 3px;
@@ -312,6 +285,7 @@ background-color: transparent;
     color: #000000;
     font-weight: bold;
 }
+
 .master_window {
     text-align: center;
     background-color: #e5e4e2;
@@ -424,13 +398,15 @@ ion-item {
 
 }
 
-.container_div{
+.container_div {
     margin: 0 300px;
 }
-.container_fluid{
+
+.container_fluid {
     margin: 0 50px;
 }
-.container_data{
+
+.container_data {
     margin: 0 200px;
 }
 
@@ -458,12 +434,14 @@ table th {
     font-weight: bold;
 
 }
+
 table td {
     border: 1px solid grey;
     text-align: center;
     font-size: 12px;
     // font-weight: bold;
 }
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
     /* Alternate row background color */
@@ -504,38 +482,43 @@ tr:nth-child(odd) {
 }
 
 .back {
-   
+
     font-size: 14px;
 }
 
 .back:hover {
     background-color: rgba(255, 251, 251, 0.932);
 }
-input{
+
+input {
     width: 100px !important;
 }
-.description{
+
+.description {
     width: 200px !important;
 }
+
 @media(max-width:2222px) {}
 
 @media(max-width:950px) {
 
-    .container_div{
-        margin: 0 ;
+    .container_div {
+        margin: 0;
     }
-    .container_fluid{
-        margin: 0 ;
+
+    .container_fluid {
+        margin: 0;
     }
-    .container_data{
-        margin: 0 ;
+
+    .container_data {
+        margin: 0;
     }
 
 }
 
 
 @media(max-width:540px) {
-  
+
 
 
 
@@ -556,14 +539,17 @@ input{
     .textarea-width {
         min-width: 120px;
     }
-    .container_div{
-        margin: 0 ;
+
+    .container_div {
+        margin: 0;
     }
-    .container_fluid{
-        margin: 0 ;
+
+    .container_fluid {
+        margin: 0;
     }
-    .container_data{
-        margin: 0 ;
+
+    .container_data {
+        margin: 0;
     }
 }
 
@@ -619,9 +605,9 @@ ion-col {
 
 .select {
     margin-top: 5px;
-    font-size: 14px ;
+    font-size: 14px;
     text-align: center;
-    min-height: 33px!important;
+    min-height: 33px !important;
     border-radius: 4px;
     border-color: rgb(178, 178, 178);
 }
@@ -631,11 +617,14 @@ input::placeholder {
     font-size: 13px;
     color: salmon;
 }
+
 .label_table {
     font-size: 13px;
     color: salmon;
+    margin-left: 5px;
 }
-.input_table{
+
+.input_table {
     border: none;
     outline: none;
     width: 144px;
@@ -682,11 +671,13 @@ ion-card {
     width: 100%;
     // background-image: linear-gradient(to right, #141e30, #243b55);
 }
- ion-input {
+
+ion-input {
     min-height: 33px;
-   outline-width: 2px;
-   outline-style: initial;
+    outline-width: 2px;
+    outline-style: initial;
 }
+
 .custom-primary ion-button {
     --background: transparent;
     background-clip: text;
@@ -747,22 +738,24 @@ ion-card {
     .cards ion-card-subtitle {
         font-size: 16px;
     }
+
     .select {
         margin-top: 5px;
-        font-size: 10px ;
+        font-size: 10px;
         text-align: center;
-        min-height: 25px!important;
+        min-height: 25px !important;
         border-radius: 4px;
         border-color: rgb(178, 178, 178);
     }
+
     .Customer ion-input {
-       
+
         min-height: 25px;
-    font-size: 10px;
+        font-size: 10px;
         font-family: 'Times New Roman', Times, serif;
-    
+
     }
-    
+
 }
 
 
@@ -823,11 +816,12 @@ ion-input[fill="outline"] input:focus {
     color: #1a4174;
     /* Change the input text color when focused */
 }
+
 select option {
     text-align: center;
 }
 
-.select-option select{
+.select-option select {
     border: none;
     outline: none;
     width: 100px !important;
@@ -835,13 +829,10 @@ select option {
     background: none;
     max-height: 20px !important;
 }
-// .Customer ion-select {
-//     margin-top: 5px;
-//     min-height: 35px !important;
-//     outline-width: 1px;
-//     outline-style: initial;
-// }
 
+.row_data {
+    border-right: 1px solid grey;
+}
 
 
 ng-template ion-button {
@@ -953,32 +944,44 @@ ion-loading.custom-loading {
     color: #1c6dff;
 }
 
-.top{
+.top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
 
-@media(max-width:540px){
-   
-   ion-label {
+@media(max-width:540px) {
+
+    ion-label {
         font-size: 10px;
     }
+
     .headinglabel ion-label {
         font-size: 10px;
     }
-    ion-checkbox{
+
+    ion-checkbox {
         font-size: 10px;
     }
-    .Customer ion-title{
+
+    .Customer ion-title {
         font-size: 12px;
     }
+
     .Customer ion-input {
         min-height: 25px;
         font-size: 10px;
         outline-style: initial;
     }
-   
-      
+
+    .row_data {
+        border-right: 1px solid grey;
+        border-bottom: 1px solid grey;
+    }
+    .label_table {
+        text-align: left;
+    }
+
+
 }

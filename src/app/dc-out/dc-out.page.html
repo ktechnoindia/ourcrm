@@ -220,9 +220,16 @@
                   </tr>
                 </table>
               </div>
-              <div style="overflow-x: auto;">
-                <table style="width:100%;">
-                  <tr>
+              
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+               
+                <ion-row>
+  
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total Item :</label>
+                    <input name="totalitemno" [(ngModel)]="dcoutData.length" formControlName="totalitemno"
+                      class="input_table" type="text">
+                  </ion-col>
 
                     <td colspan="1">
                       <label class="label_table" for="">Total Item :</label>
@@ -259,8 +266,18 @@
                     </td>
                   </tr>
 
-                </table>
+                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Tax Amount :</label>
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount"  formControlName="totaltaxamount" class="input_table" type="text">
+                   </ion-col>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total :</label>
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount"  formControlName="totalnetamount" class="input_table" type="text" >
+                  </ion-col>
+             
+                </ion-row> 
               </div>
+
             </ion-row>
 
             <ion-row>

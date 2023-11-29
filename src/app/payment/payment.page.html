@@ -123,7 +123,7 @@
                       <tr>
                         <td >
                           <select class="select-option" name="billtype" [(ngModel)]="billtype" formControlName="billtype">
-                            <option value="0">Select Type</option>
+                            <option value="0"> Type</option>
                             <option value="1">New Bill</option>
                             <option value="2">Towards Bill/Refrence</option>
                             <option value="3">On A/c</option>
@@ -144,7 +144,7 @@
                               name="chevron-down-outline"></ion-icon></ion-button>
                           <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
                             <ng-template>
-                              <ion-content class="ion-padding">
+                              <ion-content class="ion-padding ">
                                 <div class="scroll-container">
                                   <table style="width:700px;" class="custom-popover-table">
                                     <tr>

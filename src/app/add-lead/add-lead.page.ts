@@ -65,6 +65,7 @@ export class AddLeadPage {
   u=1;
   r=1;
   leadtype:number=0;
+
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -102,7 +103,8 @@ export class AddLeadPage {
       rmark:[''],
       selectpd:[''],
       leadtype:[''],
-      leadassign:['']
+      leadassign:[''],
+      leaddate:['']
     });
    
   }
