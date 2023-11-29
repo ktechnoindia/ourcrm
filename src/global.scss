@@ -51,9 +51,7 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;
     /* Add rounded corners */
 }
-.custom{
-    width: 100%;
-}
+
 .custom-alert-button.secondary {
     background-color: #3498db;
     /* Customize secondary button color */
@@ -126,34 +124,7 @@ ion-menu.md ion-list#inbox-list {
     background: none;
 }
 
-/* Change the background color of the search bar */
-.custom .searchbar-input {
-    background: linear-gradient(to right, #00b4db, #0083b0);
-    border: solid 1.5px grey;
-    border-radius: 7px;
 
-}
-
-/* Change the text color of the search bar */
-.custom .searchbar-input {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-/* Change the placeholder color of the search bar */
-.custom .searchbar-input::placeholder {
-    color: #ffffff;
-}
-
-/* Change the icon color of the search bar */
-.custom .searchbar-icon {
-    color: #ffffff;
-}
-
-/* Change the color of the cancel button */
-.custom .searchbar-clear-icon {
-    color: #ffffff;
-}
 
 ion-menu.md ion-item {
     --padding-start: 10px;
