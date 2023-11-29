@@ -165,7 +165,7 @@
                   <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                     <select class="select" [(ngModel)]="selectedState" type="text" name="state" label-placement="floating"
                       fill="outline" (change)="onStateChange()">
-                      <option value="0">Select State</option>
+                      <option value="">Select State</option>
                       <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                         {{ state.statename }}
                       </option>
