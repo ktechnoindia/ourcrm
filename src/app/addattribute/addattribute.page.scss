@@ -5,37 +5,12 @@
 }
 .Customer ion-input {
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    outline-width: 2px;
-    outline-style: initial;
-}
-.Customer ion-textarea {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    // background: skyblue;
-
-}
-
-
-
-.Customer ion-select {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
     outline-width: 2px;
     outline-style: initial;
 }
 
 .Customer select {
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    //border-color: goldenrod;
     width: 100%;
     text-align: left
 }
@@ -48,12 +23,7 @@ ng-template ion-button{
     width: 50%;
     margin-left: 25%;
 }
-@media(max-width:940px){
-    .Customer ion-card{
-        width: 100%;
-        margin-left: 0%;
-    }
-}
+
 
 .scroll-container {
     overflow-x: auto;
@@ -67,4 +37,23 @@ ng-template ion-button{
 td{
     border-right: 1px solid grey;
     text-align: center;
+}
+
+@media(max-width:940px){
+    .Customer ion-card{
+        width: 100%;
+        margin-left: 0%;
+    }
+}
+@media(max-width:540px){
+    .Customer ion-input {
+        min-height: 25px;
+        font-size: 10px;
+        outline-width: 2px;
+        outline-style: initial;
+    }
+    ion-button{
+        font-size: 10px;
+       
+    }
 }

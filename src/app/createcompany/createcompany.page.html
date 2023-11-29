@@ -4,11 +4,11 @@
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
-            <ion-row lines="none">
+            <ion-row class="top">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Create Company</ion-title>
               <div  class="custom-primary">
-                <ion-button  size="small" [routerLink]="['/viewcompany']" id="open-loading5">View Company</ion-button>
+                <ion-button  size="small" [routerLink]="['/viewcompany']" id="company">View Company</ion-button>
               </div>
             </ion-row>
           </ion-card-header>
@@ -229,8 +229,8 @@
               </ion-col>
             </ion-row>
             <ion-row class="custom-primary">
-              <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 1</p>
-              <ion-progress-bar value="0.25" buffer=".25" style="height: 10px;"></ion-progress-bar>
+              <p class="steps">Step : 1</p>
+              <ion-progress-bar value="0.25" buffer=".25" class="progress_bar"></ion-progress-bar>
             </ion-row>
 
             <!-- Step : 2-->
@@ -293,8 +293,8 @@
               </ion-row>
            
             <ion-row class="custom-primary">
-              <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 2</p>
-              <ion-progress-bar value="0.5" buffer=".5" style="height: 10px;"></ion-progress-bar>
+              <p class="steps" >Step : 2</p>
+              <ion-progress-bar value="0.5" buffer=".5" class="progress_bar" ></ion-progress-bar>
             </ion-row>
           </div>
             <!-- Step : 3-->
@@ -370,8 +370,8 @@
                 </ion-col>
               </ion-row>
               <ion-row class="custom-primary">
-                <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 3</p>
-                <ion-progress-bar value="0.75" buffer=".75" style="height: 10px;"></ion-progress-bar>
+                <p class="steps">Step : 3</p>
+                <ion-progress-bar value="0.75" buffer=".75" class="progress_bar"></ion-progress-bar>
               </ion-row>
             </div>
             <!-- Step : 4-->
@@ -422,8 +422,8 @@
               </ion-row>
 
               <ion-row class="custom-primary">
-                <p style="font-weight: bold; color: skyblue;font-size: 18px;margin-top: 10px;">Step : 4</p>
-                <ion-progress-bar value="1.0" buffer="100" style="height: 10px;"></ion-progress-bar>
+                <p class="steps">Step : 4</p>
+                <ion-progress-bar value="1.0" buffer="100" class="progress_bar"></ion-progress-bar>
               </ion-row>
             </div>
 

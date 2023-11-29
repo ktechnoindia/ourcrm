@@ -58,7 +58,7 @@ import { InterceptorProvider } from './interceptors/interceptor';
 import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 import { CustomStorageModule } from './interceptors/custom-storage.module';
 import { SharedService } from './shared.service';
-
+import {  NavigationEnd } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -95,8 +95,15 @@ export class AppComponent {
   menu: any;
 
   constructor(private sharedService: SharedService,private menuController: MenuController, private navCtrl: NavController, private router: Router) {
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log('NavigationEnd event:', event);
+      }
+    });
   }
+  
+ ;
+
 
   navigateToPage() {
     // Use a switch statement or if-else to navigate based on the selected value

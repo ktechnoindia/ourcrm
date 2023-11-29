@@ -65,7 +65,7 @@
               <ion-col size="6" size-lg="3" size-md="6" size-sm="12">
                 <select class="select" [(ngModel)]="selectedOption" formControlName="selectedOption"  name="country" label-placement="floating" fill="outline"
                   (change)="onCountryChange()">
-                  <option value="">Select Country</option>
+                  <option value="0">Select Country</option>
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -84,7 +84,7 @@
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district" label-placement="floating" fill="outline">
-                  <option value="">Select District</option>
+                  <option value="0">Select District</option>
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>

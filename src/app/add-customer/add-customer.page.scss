@@ -4,15 +4,8 @@ ion-menu-button {
 
 .Customer ion-input {
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    // outline-width: 2px;
-    // outline-style: initial;
     font-family: 'Times New Roman', Times, serif;
     outline-style: initial;
-
-
 }
 
 /* Style the container of the input */
@@ -50,9 +43,10 @@ ion-input[fill="outline"] input:focus {
     color: #1a4174;
     /* Change the input text color when focused */
 }
+
 /* Change floating label color */
 /* Change floating label color */
-  
+
 
 .Customer ion-select {
     min-height: 35px;
@@ -65,9 +59,7 @@ ion-input[fill="outline"] input:focus {
 
 .Customer select {
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    //border-color: goldenrod;
+
     width: 100%;
     text-align: left;
     border-color: #646464;
@@ -76,21 +68,21 @@ ion-input[fill="outline"] input:focus {
     border-width: 1px;
     box-shadow: 0 0 2px 2px #fffbfb;
     /* Add a box shadow when focused */
-color: #1a4174;
+    color: #1a4174;
     /* Change the input text color when focused */
-padding-left: 12px;
-font-family: 'Times New Roman', Times, serif;
+    padding-left: 12px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 ng-template ion-button {
     color: goldenrod;
 }
 
-.Customer ion-input:focus{
+.Customer ion-input:focus {
     --border-color: #1a4174;
 }
 
-.select-width{
+.select-width {
     min-height: 35px;
     width: 100%;
     text-align: left;
@@ -101,35 +93,46 @@ ng-template ion-button {
     box-shadow: 0 0 2px 2px #fffbfb;
 }
 
-ion-input[type=number]::part(input){
+ion-input[type=number]::part(input) {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.dropdown ion-item{
-border: 1px solid #646464;
-max-height: 35px;
-border-radius: 4px;
-color: grey;
-font-family: 'Times New Roman', Times, serif;
-padding: 0px;
-width: 100%;
-border-width: 1px;
-select{
-    border: none;
-    background: transparent;
+.dropdown ion-item {
+    border: 1px solid #646464;
+    max-height: 35px;
+    border-radius: 4px;
+    color: grey;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0px;
     width: 100%;
-}
+    border-width: 1px;
+
+    select {
+        border: none;
+        background: transparent;
+        width: 100%;
+    }
 
 }
 
-.Customer ion-card{
+.Customer ion-card {
     width: 90%;
     margin-left: 5%;
 }
-@media(max-width:940px){
-    .Customer ion-card{
+
+@media(max-width:940px) {
+    .Customer ion-card {
         width: 100%;
         margin-left: 0%;
+    }
+}
+
+@media(max-width:540px) {
+    .Customer ion-input {
+        min-height: 25px;
+        font-size: 10px;
+        outline-width: 0;
+        outline-style: none;
     }
 }
