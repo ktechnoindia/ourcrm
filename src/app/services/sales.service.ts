@@ -59,6 +59,9 @@ grossrate:string;
   providedIn: 'root'
 })
 export class SalesService {
+  getSales() {
+    throw new Error('Method not implemented.');
+  }
   total!: number;
   constructor(private httpclient:HttpClient) { }
   createsale(sales:salesstore,key:string,user:string){

@@ -6,11 +6,22 @@ td {
     border-right: 1px solid grey;
 }
 
+.searchbar ion-input{
+    border: solid 1px grey;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    padding: 32px;
+   
+    --highlight-color-focused: black; /* or set it to the color of your background */
+}
+
+
 
 .Customer ion-input {
     min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
+    //  color: goldenrod;
+    //  font-weight: 400;
     // outline-color: goldenrod;
     outline-width: 2px;
     outline-style: initial;
