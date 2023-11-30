@@ -37,7 +37,7 @@ export class FollowUpPage implements OnInit {
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid),custid,leadid,'', '');
+    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid),'', '');
 
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
@@ -46,7 +46,11 @@ export class FollowUpPage implements OnInit {
     })
 
   }
+  selectedRowData: any;
 
+  onRowClick(leadscore: any) {
+    this.selectedRowData = leadscore;
+  }
 
   async onSubmit() {
 
@@ -56,11 +60,11 @@ export class FollowUpPage implements OnInit {
       let followuptable: followuptable = {
         remark: this.myform.value.remark,
         nextfollowupDate: this.myform.value.nextfollowupDate,
-        followupdate: this.myform.value.followupdate,
-        enterdby: this.myform.value.enterdby,
-        custid: this.myform.value.custid,
-        compid: this.myform.value.compid,
-        leadid: this.myform.value.leadid
+        followupdate: '1',
+        enterdby:'1',
+        custid: '1',
+        companyid: '1',
+        leadid: '1'
       };
 
       this.followService.createfollowup(followuptable, '', '').subscribe(
@@ -72,9 +76,10 @@ export class FollowUpPage implements OnInit {
           console.error('POST request failed', error);
           // Handle the error as needed
         }
-      ); setTimeout(() => {
-        this.myform.reset();
-      }, 1000);
+       ); 
+      // setTimeout(() => {
+      //   this.myform.reset();
+      // }, 1000);
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {

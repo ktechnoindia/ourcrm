@@ -50,7 +50,7 @@
                         <th>Lead Score</th>
                         <th>Remark</th> -->
                       </tr>
-                      <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                      <tr *ngFor="let leadscore of lead$ | async; let i = index"  (click)="onRowClick(leadscore)">
                         <td>{{i+1}}</td>
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.companyname}}</td>
@@ -83,8 +83,9 @@
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <ion-row style="height: 300px;padding: 10px;">
-                  <div class="scroll-container">
+                <div *ngIf="selectedRowData">
+                <ion-row style="height: 300px;padding: 10px;" >
+                  <div class="scroll-container" >
                     <table style="overflow-x:auto; width: 100%;">
                       <tr>
                         <th style="width: 60px;">SR. No.</th>
@@ -94,18 +95,19 @@
                         <th style="width: 100px;">Entered By</th>
                       </tr>
                       <ng-container>
-                        <tr *ngFor="let leadscore of lead$ | async; let i = index">
-                          <td>{{i+1}}</td>
-                          <td>{{leadscore.leaddate}}</td>
-                          <td>{{leadscore.rmark}}</td>
+                        <tr  >
+                          <td>{{selectedRowData.companyname}}</td>
+                          <td>{{selectedRowData.leaddate}}</td>
+                          <td>{{remark}}</td>
                           <td>{{nextfollowupDate}}</td>
-                          <td>{{leadscore.catPerson }}</td>
+                          <td>{{selectedRowData.executivename }}</td>
                         </tr>
                       </ng-container>
 
                     </table>
                   </div>
                 </ion-row>
+              </div>
 
                 <div>
                   <ion-row style="padding:0px 20px ;">

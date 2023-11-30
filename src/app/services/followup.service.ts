@@ -10,7 +10,7 @@ export interface followuptable {
   nextfollowupDate:string;
   custid:string;
   leadid:string;
-  compid:string;
+  companyid:string;
 }
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,8 @@ export class FollowupService {
     return this.httpclient.post(environment.apiacturl+environment.addfollowup,followup,{headers:{'key':key,'user':user}})
   }
 
-  fetchallfollowup(compid:string,custid:string,leadid:string,key:string,user:string): Observable<any> {
-    console.log('companyyy '+compid);
-    return this.httpclient.get(environment.apiacturl+environment.fetchfollowup+'?p='+compid+custid+leadid,{headers:{'key':key,'user':user}})
+  fetchallfollowup(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiacturl+environment.fetchfollowup+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }
