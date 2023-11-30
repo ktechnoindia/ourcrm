@@ -95,11 +95,7 @@ export class AppComponent {
   menu: any;
 
   constructor(private sharedService: SharedService,private menuController: MenuController, private navCtrl: NavController, private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log('NavigationEnd event:', event);
-      }
-    });
+   
   }
   
  ;

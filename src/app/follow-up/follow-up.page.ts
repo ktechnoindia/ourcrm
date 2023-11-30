@@ -30,9 +30,14 @@ export class FollowUpPage implements OnInit {
   lead$: Observable<any[]>
   myform: FormGroup;
   showLeadDetails = false;
+  followup$: Observable<any>;
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
+    const custid = '1';
+    const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
+
+    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid),custid,leadid,'', '');
 
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({

@@ -28,7 +28,7 @@ export const environment = {
   addlogin: 'appin',
 
   addlead: 'insert_lead',
-  addfollowup: 'followup',
+  addfollowup: 'insert_lead_followup',
   addledger: 'saveLedger',
   addservice: 'saveservices',
   addgst: 'gst',
@@ -73,12 +73,13 @@ export const environment = {
   fetchallsalesreturn:'get_sale_return',
   fetchallpurchasereturn:'get_purchase_return',
   fetchallItem:'get_all_items',
-  fetchlead:"get_lead",
   fetchallleads:"get_lead_by_company",
+  fetchfollowup:'get_lead_followup',
   getlang:'lang',
   toasttiming:2000,
   addpayment:'payment',
  addrecepit:'recepit'
+
 };
 
 

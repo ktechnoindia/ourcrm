@@ -5,6 +5,9 @@ td {
     text-align: center;
 }
 
+  ion-input {
+    --highlight-color-focused: transparent; /* or set it to the color of your background */
+  }
 
 .Customer ion-input {
     min-height: 35px;

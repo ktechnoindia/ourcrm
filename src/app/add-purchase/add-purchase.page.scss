@@ -63,4 +63,43 @@ table td {
   }
  
  }
+ .row{
+  margin-top: -103px;
+  margin-left: 79.8%;
+}
+ @media(max-width:990px){
+   .row{
+      margin-top: -253px;
+      margin-left: 60%;
+   }
+   .row1{
+      margin-top: 150px;
+   }
+ }
+ @media(max-width:575px){
+   .row{
+      margin-top: -324px;
+      margin-left: 40%;
+   }
+   .row1{
+      margin-top: 0px;
+   }
+   .row3{
+      margin-top:150px ;
+   }
  
+ }
+ 
+ @media(max-width:475px){
+   .row{
+      margin-top: -335px;
+      margin-left: 17%;
+   }
+   .row1{
+      margin-top: 0px;
+   }
+   .row3{
+      margin-top:150px ;
+   }
+ 
+ }

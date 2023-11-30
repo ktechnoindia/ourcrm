@@ -570,6 +570,10 @@ input {
     ion-content ion-card {
         margin-top: 0px;
     }
+     .row_data {
+        border-right: 1px solid grey;
+        border-bottom: 1px solid grey;
+    }
 }
 
 ion-card-header {
@@ -902,6 +906,8 @@ ion-textarea[fill="outline"] input:focus {
     font-weight: bold;
 }
 
+
+
 /* Change the placeholder color of the search bar */
 .custom .searchbar-input::placeholder {
     color: #ffffff;
@@ -985,3 +991,4 @@ ion-loading.custom-loading {
 
 
 }
+
