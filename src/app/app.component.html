@@ -2,7 +2,7 @@
   <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
     <ion-icon name="menu"></ion-icon>
   </ion-button>
-  <div class="ion-padding dropdown_div" >
+  <div class="ion-padding dropdown_div">
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/Companylogo.png" alt="">
@@ -14,12 +14,12 @@
         <li><a routerLink="closecompany">Close</a></li>
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown">
-          <a (click)="selectOption('Option 1')" isDropdownOpen = false; routerLink="/usercreate">User Create</a>
-          <a (click)="selectOption('Option 2')"  isDropdownOpen = false; routerLink="/useredit">User Edit</a>
-          <a (click)="selectOption('Option 4')"  isDropdownOpen = false; routerLink="/roleassign">Role Assign</a>
-          <a (click)="selectOption('Option 4')"  isDropdownOpen = false; routerLink="/password"> Create Password</a>
-          <a (click)="selectOption('Option 5')"  isDropdownOpen = false; routerLink="/changepassword">Change Password</a>
-          <a (click)="selectOption('Option 6')"  isDropdownOpen = false; routerLink="/loginpage">Login</a>
+          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate">User Create</a>
+          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/useredit">User Edit</a>
+          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/roleassign">Role Assign</a>
+          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/password"> Create Password</a>
+          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/changepassword">Change Password</a>
+          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/loginpage">Login</a>
 
 
         </div>
@@ -37,14 +37,14 @@
         <li><a routerLink="/ledger">Ledger</a></li>
         <li (click)="toggleDropdown2()">Add Item > </li>
         <div *ngIf="isDropdownOpen2" class="right-dropdown">
-          <a (click)="selectOption2('Option 7')"  isDropdownOpen2 = false; routerLink="/add-item">Add New Item</a>
-          <a (click)="selectOption2('Option 8')" isDropdownOpen2 = false; routerLink="/addgroup">Add Group</a>
-          <a (click)="selectOption2('Option 9')" isDropdownOpen2 = false; routerLink="/createunit">Create Unit</a>
-          <a (click)="selectOption2('Option 10')"  isDropdownOpen2 = false; routerLink="/addattribute">Add Attribute</a>
-          <a (click)="selectOption2('Option 11')" isDropdownOpen2 = false; routerLink="/barcode">Barcode</a>
-          <a (click)="selectOption2('Option 12')" isDropdownOpen2 = false; routerLink="/hsn-manager">HSN</a>
-          <a (click)="selectOption2('Option 13')" isDropdownOpen2 = false; routerLink="/stock">Stock</a>
-          <a (click)="selectOption2('Option 14')" isDropdownOpen2 = false; routerLink="/pro-stock">Pro Stock</a>
+          <a (click)="selectOption2('Option 7')" isDropdownOpen2=false; routerLink="/add-item">Add New Item</a>
+          <a (click)="selectOption2('Option 8')" isDropdownOpen2=false; routerLink="/addgroup">Add Group</a>
+          <a (click)="selectOption2('Option 9')" isDropdownOpen2=false; routerLink="/createunit">Create Unit</a>
+          <a (click)="selectOption2('Option 10')" isDropdownOpen2=false; routerLink="/addattribute">Add Attribute</a>
+          <a (click)="selectOption2('Option 11')" isDropdownOpen2=false; routerLink="/barcode">Barcode</a>
+          <a (click)="selectOption2('Option 12')" isDropdownOpen2=false; routerLink="/hsn-manager">HSN</a>
+          <!-- <a (click)="selectOption2('Option 13')" isDropdownOpen2=false; routerLink="/stock">Stock</a> -->
+          <!-- <a (click)="selectOption2('Option 14')" isDropdownOpen2=false; routerLink="/pro-stock">Pro Stock</a> -->
 
 
         </div>
@@ -53,8 +53,9 @@
         <li><a routerLink="/gst">GST</a></li>
         <li (click)="toggleDropdown3()"> Add Executive ></li>
         <div *ngIf="isDropdownOpen3" class="right-dropdown">
-          <a (click)="selectOption3('Option 15')"  isDropdownOpen3 = false; routerLink="/add-executive">Add Executive</a>
-          <a (click)="selectOption3('Option 16')"  isDropdownOpen3 = false; routerLink="/roleofexicutive">Role OF Executive</a>
+          <a (click)="selectOption3('Option 15')" isDropdownOpen3=false; routerLink="/add-executive">Add Executive</a>
+          <a (click)="selectOption3('Option 16')" isDropdownOpen3=false; routerLink="/roleofexicutive">Role OF
+            Executive</a>
         </div>
 
         <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
@@ -65,7 +66,7 @@
     <div class="dropdown">
       <button class="dropdown-title" [routerLink]="['/leaddashboard']">
         <img src="assets/LMS.png" alt="">
-        <p >LMS</p>
+        <p>LMS</p>
 
       </button>
       <ul class="dropdown-list">
@@ -90,7 +91,7 @@
         <li><a routerLink="/add-purchase">Purchase</a></li>
         <li><a routerLink="/salesreturn">Sales Return</a></li>
         <li><a routerLink="/purchasereturn">Purchase Return</a></li>
-        
+
       </ul>
     </div>
     <div class="dropdown">
@@ -99,11 +100,11 @@
         <p>Account</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/paymenttransaction-report">Payment Register</a></li>
-        <li><a routerLink="/receipttransaction-report">Receipt Register</a></li>
+        
         <li><a routerLink="/payment">Payment</a></li>
         <li><a routerLink="/receipt">Receipt</a></li>
-
+        <li><a routerLink="/paymenttransaction-report">Payment Register</a></li>
+        <li><a routerLink="/receipttransaction-report">Receipt Register</a></li>
       </ul>
     </div>
     <div class="dropdown">
@@ -114,26 +115,29 @@
       <ul class="dropdown-list">
         <li (click)="toggleDropdown5()"> Master Reports ></li>
         <div *ngIf="isDropdownOpen5" class="right-dropdown">
-          <a (click)="selectOption5('Option 17')" isDropdownOpen5 = false; routerLink="/viewcustomer">Customer List</a>
-          <a (click)="selectOption5('Option 18')"  isDropdownOpen5 = false; routerLink="/viewsupplier">Supplier List</a>
-          <a (click)="selectOption5('Option 19')"  isDropdownOpen5 = false; routerLink="/viewexicutive">Exicutive List</a>
-          <a (click)="selectOption5('Option 20')"  isDropdownOpen5 = false; routerLink="/viewitem">Item List</a>
-          <a (click)="selectOption5('Option 21')"  isDropdownOpen5 = false; routerLink="/viewservice">Service List</a>
-          <a (click)="selectOption5('Option 22')"  isDropdownOpen5 = false; routerLink="/viewledger">Ledger List</a>
+          <a (click)="selectOption5('Option 17')" isDropdownOpen5=false; routerLink="/viewcustomer">Customer List</a>
+          <a (click)="selectOption5('Option 18')" isDropdownOpen5=false; routerLink="/viewsupplier">Supplier List</a>
+          <a (click)="selectOption5('Option 19')" isDropdownOpen5=false; routerLink="/viewexicutive">Exicutive List</a>
+          <a (click)="selectOption5('Option 20')" isDropdownOpen5=false; routerLink="/viewitem">Item List</a>
+          <a (click)="selectOption5('Option 21')" isDropdownOpen5=false; routerLink="/viewservice">Service List</a>
+          <a (click)="selectOption5('Option 22')" isDropdownOpen5=false; routerLink="/viewledger">Ledger List</a>
 
         </div>
         <li><a routerLink="/view-lead">Leads Report</a></li>
-        <li><a routerLink="/view-sale">Sales Report</a></li>
-        <li><a routerLink="/view-purchase">Purchase Report</a></li>
-        <li><a routerLink="/dc-in-report">DC-IN Report</a></li>
-        <li><a routerLink="/dc-out-report">DC-OUT Report</a></li>
-        <li><a routerLink="/view-quot">Quotation Report</a></li>
-        <li><a routerLink="/stock-manager">Stock Report</a></li>
-        <li><a routerLink="/view-salesreturn">Sales Return Report</a></li>
-        <li><a routerLink="/view-purchasereturn">Purchase Return Report</a></li>
-        <li><a routerLink="/paymenttransaction-report">Payment Transaction Report</a></li>
-        <li><a routerLink="/receipttransaction-report">Receipt Transaction  Report</a></li>
+        <li (click)="toggleDropdown6()"> Transaction Report ></li>
+        <div *ngIf="isDropdownOpen6" class="right-dropdown">
 
+          <a (click)="selectOption6('Option 23')" isDropdownOpen5 = false; routerLink="/view-sale">Sales Report</a>
+          <a (click)="selectOption6('Option 24')" isDropdownOpen5 = false; routerLink="/view-purchase">Purchase Report</a>
+          <a (click)="selectOption6('Option 25')" isDropdownOpen5 = false; routerLink="/dc-in-report">DC-IN Report</a>
+          <a (click)="selectOption6('Option 26')" isDropdownOpen5 = false; routerLink="/dc-out-report">DC-OUT Report</a>
+          <a (click)="selectOption6('Option 28')" isDropdownOpen5 = false; routerLink="/view-quot">Quotation Report</a>
+          <!-- <li><a routerLink="/stock-manager">Stock Report</a></li> -->
+          <a (click)="selectOption6('Option 29')" isDropdownOpen5 = false; routerLink="/view-salesreturn">Sales Return Report</a>
+          <a (click)="selectOption6('Option 30')" isDropdownOpen5 = false; routerLink="/view-purchasereturn">Purchase Return Report</a>
+          <!-- <li><a routerLink="/paymenttransaction-report">Payment Transaction Report</a></li> -->
+          <!-- <li><a routerLink="/receipttransaction-report">Receipt Transaction  Report</a></li> -->
+        </div>
       </ul>
     </div>
     <div class="dropdown">
@@ -156,7 +160,7 @@
 <!-- Mobile Menu -->
 
 <ion-header class="desktop_menu" *ngIf="isMobileMenuOpen">
-  <div class="ion-padding " >
+  <div class="ion-padding ">
     <div class="dropdown">
       <button class="dropdown-title">
         <!-- <img src="assets/desk.svg" alt=""> -->
@@ -166,14 +170,20 @@
         <li><a routerLink="/createcompany" (click)="closeMobileMenu()">Create</a></li>
         <li><a [routerLink]="['/viewcompany']" (click)="closeMobileMenu()">Open</a></li>
         <li><a routerLink="closecompany" (click)="closeMobileMenu()">Close</a></li>
-        <li (click)="toggleDropdown()" >Setting > </li>
+        <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown ">
-          <a (click)="selectOption('Option 1')" isDropdownOpen = false; routerLink="/usercreate" (click)="closeMobileMenu()">User Create</a>
-          <a (click)="selectOption('Option 2')" isDropdownOpen = false; routerLink="/useredit" (click)="closeMobileMenu()">User Edit</a>
-          <a (click)="selectOption('Option 3')"  isDropdownOpen = false; routerLink="/roleassign" (click)="closeMobileMenu()">Role Assign</a>
-          <a (click)="selectOption('Option 4')" isDropdownOpen = false; routerLink="/password" (click)="closeMobileMenu()">Password</a>
-          <a (click)="selectOption('Option 5')"  isDropdownOpen = false; routerLink="/changepassword" (click)="closeMobileMenu()">Change Password</a>
-          <a (click)="selectOption('Option 6')" isDropdownOpen = false; routerLink="/loginpage" (click)="closeMobileMenu()">Login</a>
+          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate"
+            (click)="closeMobileMenu()">User Create</a>
+          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/useredit"
+            (click)="closeMobileMenu()">User Edit</a>
+          <a (click)="selectOption('Option 3')" isDropdownOpen=false; routerLink="/roleassign"
+            (click)="closeMobileMenu()">Role Assign</a>
+          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/password"
+            (click)="closeMobileMenu()">Password</a>
+          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/changepassword"
+            (click)="closeMobileMenu()">Change Password</a>
+          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/loginpage"
+            (click)="closeMobileMenu()">Login</a>
         </div>
       </ul>
     </div>
@@ -188,24 +198,34 @@
         <li><a routerLink="/ledger" (click)="closeMobileMenu()">Ledger</a></li>
         <li (click)="toggleDropdown2()">Add Item > </li>
         <div *ngIf="isDropdownOpen2" class="right-dropdown">
-          <a (click)="selectOption2('Option 7')"  isDropdownOpen2 = false; routerLink="/add-item" (click)="closeMobileMenu()">Add New Item</a>
-          <a (click)="selectOption2('Option 8')" isDropdownOpen2 = false; routerLink="/addgroup" (click)="closeMobileMenu()">Add Group</a>
-          <a (click)="selectOption2('Option 9')" isDropdownOpen2 = false; routerLink="/createunit" (click)="closeMobileMenu()">Create Unit</a>
-          <a (click)="selectOption2('Option 10')"  isDropdownOpen2 = false; routerLink="/addattribute" (click)="closeMobileMenu()">Add Attribute</a>
-          <a (click)="selectOption2('Option 11')" isDropdownOpen2 = false; routerLink="/barcode" (click)="closeMobileMenu()">Barcode</a>
-          <a (click)="selectOption2('Option 12')" isDropdownOpen2 = false; routerLink="/hsn-manager" (click)="closeMobileMenu()">HSN</a>
-          <a (click)="selectOption2('Option 13')" isDropdownOpen2 = false; routerLink="/stock" (click)="closeMobileMenu()">Stock</a>
-          <a (click)="selectOption2('Option 14')" isDropdownOpen2 = false; routerLink="/pro-stock" (click)="closeMobileMenu()">Pro Stock</a>
+          <a (click)="selectOption2('Option 7')" isDropdownOpen2=false; routerLink="/add-item"
+            (click)="closeMobileMenu()">Add New Item</a>
+          <a (click)="selectOption2('Option 8')" isDropdownOpen2=false; routerLink="/addgroup"
+            (click)="closeMobileMenu()">Add Group</a>
+          <a (click)="selectOption2('Option 9')" isDropdownOpen2=false; routerLink="/createunit"
+            (click)="closeMobileMenu()">Create Unit</a>
+          <a (click)="selectOption2('Option 10')" isDropdownOpen2=false; routerLink="/addattribute"
+            (click)="closeMobileMenu()">Add Attribute</a>
+          <a (click)="selectOption2('Option 11')" isDropdownOpen2=false; routerLink="/barcode"
+            (click)="closeMobileMenu()">Barcode</a>
+          <a (click)="selectOption2('Option 12')" isDropdownOpen2=false; routerLink="/hsn-manager"
+            (click)="closeMobileMenu()">HSN</a>
+          <a (click)="selectOption2('Option 13')" isDropdownOpen2=false; routerLink="/stock"
+            (click)="closeMobileMenu()">Stock</a>
+          <a (click)="selectOption2('Option 14')" isDropdownOpen2=false; routerLink="/pro-stock"
+            (click)="closeMobileMenu()">Pro Stock</a>
 
 
         </div>
 
         <li><a routerLink="/add-service" (click)="closeMobileMenu()">Add Service</a></li>
         <li><a routerLink="/gst" (click)="closeMobileMenu()">GST</a></li>
-        <li (click)="toggleDropdown3()" > Add Executive ></li>
+        <li (click)="toggleDropdown3()"> Add Executive ></li>
         <div *ngIf="isDropdownOpen3" class="right-dropdown">
-          <a (click)="selectOption3('Option 15')"  isDropdownOpen3 = false; routerLink="/add-executive" (click)="closeMobileMenu()">Add Executive</a>
-          <a (click)="selectOption3('Option 16')"  isDropdownOpen3 = false; routerLink="/roleofexicutive" (click)="closeMobileMenu()">Role OF Executive</a>
+          <a (click)="selectOption3('Option 15')" isDropdownOpen3=false; routerLink="/add-executive"
+            (click)="closeMobileMenu()">Add Executive</a>
+          <a (click)="selectOption3('Option 16')" isDropdownOpen3=false; routerLink="/roleofexicutive"
+            (click)="closeMobileMenu()">Role OF Executive</a>
         </div>
 
         <!-- <li><a routerLink="/hsn-manager">HSN Manager</a></li>
@@ -216,14 +236,14 @@
     <div class="dropdown">
       <button class="dropdown-title">
         <img src="assets/LMS.png" alt="">
-        <p >LMS</p>
+        <p>LMS</p>
       </button>
       <ul class="dropdown-list">
         <li><a routerLink="/add-lead" (click)="closeMobileMenu()">Add New Lead</a></li>
         <li><a routerLink="/follow-up" (click)="closeMobileMenu()">Follow-Up</a></li>
         <li><a routerLink="/transfer-lead" (click)="closeMobileMenu()">Transfer Lead</a></li>
         <li><a routerLink="/view-lead" (click)="closeMobileMenu()">View Lead</a></li>
-       
+
       </ul>
     </div>
     <div class="dropdown">
@@ -248,11 +268,11 @@
         <p>Account</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/paymenttransaction-report" (click)="closeMobileMenu()">Payment Register</a></li>
-        <li><a routerLink="/receipttransaction-report" (click)="closeMobileMenu()">Receipt Register</a></li>
+        
         <li><a routerLink="/payment" (click)="closeMobileMenu()">Payment</a></li>
         <li><a routerLink="/receipt" (click)="closeMobileMenu()">Receipt</a></li>
-
+        <li><a routerLink="/paymenttransaction-report" (click)="closeMobileMenu()">Payment Register</a></li>
+        <li><a routerLink="/receipttransaction-report" (click)="closeMobileMenu()">Receipt Register</a></li>
       </ul>
     </div>
     <div class="dropdown">
@@ -263,25 +283,36 @@
       <ul class="dropdown-list">
         <li (click)="toggleDropdown5()"> Master Reports ></li>
         <div *ngIf="isDropdownOpen5" class="right-dropdown">
-          <a (click)="selectOption5('Option 17')" isDropdownOpen5 = false; routerLink="/viewcustomer" (click)="closeMobileMenu()">Customer List</a>
-          <a (click)="selectOption5('Option 18')"  isDropdownOpen5 = false; routerLink="/viewsupplier" (click)="closeMobileMenu()">Supplier List</a>
-          <a (click)="selectOption5('Option 19')"  isDropdownOpen5 = false; routerLink="/viewexicutive" (click)="closeMobileMenu()">Exicutive List</a>
-          <a (click)="selectOption5('Option 20')"  isDropdownOpen5 = false; routerLink="/viewitem" (click)="closeMobileMenu()">Item List</a>
-          <a (click)="selectOption5('Option 21')"  isDropdownOpen5 = false; routerLink="/viewservice" (click)="closeMobileMenu()">Service List</a>
-          <a (click)="selectOption5('Option 22')"  isDropdownOpen5 = false; routerLink="/viewledger" (click)="closeMobileMenu()">Ledger List</a>
+          <a (click)="selectOption5('Option 17')" isDropdownOpen5=false; routerLink="/viewcustomer"
+            (click)="closeMobileMenu()">Customer List</a>
+          <a (click)="selectOption5('Option 18')" isDropdownOpen5=false; routerLink="/viewsupplier"
+            (click)="closeMobileMenu()">Supplier List</a>
+          <a (click)="selectOption5('Option 19')" isDropdownOpen5=false; routerLink="/viewexicutive"
+            (click)="closeMobileMenu()">Exicutive List</a>
+          <a (click)="selectOption5('Option 20')" isDropdownOpen5=false; routerLink="/viewitem"
+            (click)="closeMobileMenu()">Item List</a>
+          <a (click)="selectOption5('Option 21')" isDropdownOpen5=false; routerLink="/viewservice"
+            (click)="closeMobileMenu()">Service List</a>
+          <a (click)="selectOption5('Option 22')" isDropdownOpen5=false; routerLink="/viewledger"
+            (click)="closeMobileMenu()">Ledger List</a>
 
         </div>
         <li><a routerLink="/view-lead" (click)="closeMobileMenu()">Leads Report</a></li>
-        <li><a routerLink="/view-sale" (click)="closeMobileMenu()">Sales Report</a></li>
-        <li><a routerLink="/view-purchase" (click)="closeMobileMenu()">Purchase Report</a></li>
-        <li><a routerLink="/dc-in-report" (click)="closeMobileMenu()">DC-IN Report</a></li>
-        <li><a routerLink="/dc-out-report" (click)="closeMobileMenu()">DC-OUT Report</a></li>
-        <li><a routerLink="/view-quot" (click)="closeMobileMenu()">Quotation Report</a></li>
-        <li><a routerLink="/stock-manager" (click)="closeMobileMenu()">Stock Report</a></li>
-        <li><a routerLink="/view-salesreturn" (click)="closeMobileMenu()">Sales Return Report</a></li>
-        <li><a routerLink="/view-purchasereturn" (click)="closeMobileMenu()">Purchase Return Report</a></li>
-        <li><a routerLink="/paymenttransaction-report" (click)="closeMobileMenu()">Payment Transaction Report</a></li>
-        <li><a routerLink="/receipttransaction-report" (click)="closeMobileMenu()">Receipt Transaction  Report</a></li>
+
+       <li (click)="toggleDropdown6()"> Transaction Report ></li>
+        <div *ngIf="isDropdownOpen6" class="right-dropdown">
+
+          <a (click)="selectOption6('Option 23')" isDropdownOpen5 = false; routerLink="/view-sale">Sales Report</a>
+          <a (click)="selectOption6('Option 24')" isDropdownOpen5 = false; routerLink="/view-purchase">Purchase Report</a>
+          <a (click)="selectOption6('Option 25')" isDropdownOpen5 = false; routerLink="/dc-in-report">DC-IN Report</a>
+          <a (click)="selectOption6('Option 26')" isDropdownOpen5 = false; routerLink="/dc-out-report">DC-OUT Report</a>
+          <a (click)="selectOption6('Option 28')" isDropdownOpen5 = false; routerLink="/view-quot">Quotation Report</a>
+          <!-- <li><a routerLink="/stock-manager">Stock Report</a></li> -->
+          <a (click)="selectOption6('Option 29')" isDropdownOpen5 = false; routerLink="/view-salesreturn">Sales Return Report</a>
+          <a (click)="selectOption6('Option 30')" isDropdownOpen5 = false; routerLink="/view-purchasereturn">Purchase Return Report</a>
+          <!-- <li><a routerLink="/paymenttransaction-report">Payment Transaction Report</a></li> -->
+          <!-- <li><a routerLink="/receipttransaction-report">Receipt Transaction  Report</a></li> -->
+        </div>
       </ul>
     </div>
     <div class="dropdown">

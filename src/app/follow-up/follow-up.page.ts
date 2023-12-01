@@ -53,43 +53,53 @@ export class FollowUpPage implements OnInit {
   }
 
   async onSubmit() {
-
-    if (await this.formService.validateForm({})) {
-
+    const fields = {}
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+ 
       console.log('Your form data : ', this.myform.value);
-      let followuptable: followuptable = {
-        remark: this.myform.value.remark,
-        nextfollowupDate: this.myform.value.nextfollowupDate,
-        followupdate: '1',
+      const followupdata: followuptable = {
+        nextfollowupDate:this.myform.value.nextfollowupDate,
+        remark:this.myform.value.remark,
+        followupdate:'1',
         enterdby:'1',
-        custid: '1',
-        companyid: '1',
-        leadid: '1'
+        leadid:'1',
+        companyid:'1',
+        custid:'1'
       };
-
-      this.followService.createfollowup(followuptable, '', '').subscribe(
+  
+      this.followService.createfollowup(followupdata,'','').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          // Handle the response as needed
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+         
+          this.formService.showSaveLoader()
+          this.myform.reset()
         },
         (error: any) => {
           console.error('POST request failed', error);
-          // Handle the error as needed
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
         }
-       ); 
-      // setTimeout(() => {
-      //   this.myform.reset();
-      // }, 1000);
-    } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
-        }
-      });
-    }
-  }
+      );
+     
+    }  else {
+       //If the form is not valid, display error messages
+       Object.keys(this.myform.controls).forEach(controlName => {
+         const control = this.myform.get(controlName);
+         if (control?.invalid) {
+           control.markAsTouched();
+         }
+       });
+      //  if (this.firstInvalidInput) {
+      //   this.firstInvalidInput.setFocus();
+      }
+     }
+  
   ngOnInit() {
   }
   goBack() {

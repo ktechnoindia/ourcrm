@@ -25,10 +25,10 @@
         <form [formGroup]="myform" (ngSubmit)="onSubmit()">
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card>
+              <ion-card style="height: 445px;">
                 <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
-                <ion-row style="padding: 10px;height: 420px;">
-                  <div class="scroll-container">
+                <ion-row style="padding: 10px;">
+                  <div class="scroll-container" style="height: 360px;">
 
                     <table style="width: 800px;overflow-x:auto;overflow-y: auto;">
                       <tr>
@@ -79,13 +79,13 @@
             </ion-col>
 
             <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 480px;">
+              <ion-card style="height: 445px;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <div *ngIf="selectedRowData">
+                <div >
                 <ion-row style="height: 300px;padding: 10px;" >
-                  <div class="scroll-container" >
+                  <div class="scroll-container" style="border: 1px solid grey;">
                     <table style="overflow-x:auto; width: 100%;">
                       <tr>
                         <th style="width: 60px;">SR. No.</th>
@@ -94,15 +94,15 @@
                         <th style="width: 100px;">Next Follow-Up Date</th>
                         <th style="width: 100px;">Entered By</th>
                       </tr>
-                      <ng-container>
-                        <tr  >
-                          <td>{{selectedRowData.companyname}}</td>
-                          <td>{{selectedRowData.leaddate}}</td>
+                      <!-- <ng-container> -->
+                        <tr *ngIf="selectedRowData" >
+                          <td>{{selectedRowData.tid}}</td>
+                          <td>01/12/23</td>
                           <td>{{remark}}</td>
                           <td>{{nextfollowupDate}}</td>
                           <td>{{selectedRowData.executivename }}</td>
                         </tr>
-                      </ng-container>
+                      <!-- </ng-container> -->
 
                     </table>
                   </div>
@@ -110,7 +110,7 @@
               </div>
 
                 <div>
-                  <ion-row style="padding:0px 20px ;">
+                  <ion-row style="padding:0px 10px ;">
 
                     <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
                       <ion-row>
@@ -124,7 +124,7 @@
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>
                   </ion-row>
-                  <ion-row class="custom-primary" style="justify-content: right;margin-top: 40px;">
+                  <ion-row class="custom-primary" style="justify-content: right;padding: 10px;">
                     <ion-button id="open-loading">New</ion-button>
                     <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                       [duration]="1000"></ion-loading>

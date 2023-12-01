@@ -201,7 +201,7 @@ export class AppComponent {
   isDropdownOpen3 = false;
   isDropdownOpen4 = false;
   isDropdownOpen5 = false;
-
+  isDropdownOpen6 = false;
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -247,6 +247,15 @@ export class AppComponent {
     this.isDropdownOpen4 = false;
 
   }
+  toggleDropdown6() {
+    this.isDropdownOpen6 = !this.isDropdownOpen6;
+    // Close other dropdowns
+    this.isDropdownOpen = false;
+    this.isDropdownOpen2 = false;
+    this.isDropdownOpen3 = false;
+    this.isDropdownOpen4 = false;
+
+  }
   
   selectOption(option: string) {
     // Handle the selected option here (e.g., emit an event or set a variable).
@@ -272,6 +281,11 @@ export class AppComponent {
     // Handle the selected option here (e.g., emit an event or set a variable).
     console.log(`Selected: ${option}`);
     this.isDropdownOpen5 = false; // Close the dropdown after selection.
+  }
+  selectOption6(option: string) {
+    // Handle the selected option here (e.g., emit an event or set a variable).
+    console.log(`Selected: ${option}`);
+    this.isDropdownOpen6 = false; // Close the dropdown after selection.
   }
 
   toggleMobileMenu() {
