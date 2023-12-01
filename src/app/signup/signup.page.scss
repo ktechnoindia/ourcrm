@@ -1,7 +1,9 @@
 
 
 .signup{
-    margin-top: 70px;
+    margin-top: 5%;
+    width: 60%;
+    margin-left: 25%;
 }
 .signup ion-input{
     min-height: 35px;
@@ -29,18 +31,7 @@ ion-header{
     display: none;
     visibility: hidden;
 }
-.mymenu{
-    display: none;
-    visibility: hidden;
-}
-.dekstop-header{
-    display: none;
-    visibility: hidden;
-}
-.dropdown_menu{
-    display: none;
-    visibility: hidden;
-}
+
 @media(max-width:912px){
     .signup select{
         min-height: 35px;
@@ -49,7 +40,13 @@ ion-header{
          background-color: #fff;
          margin-bottom: 4px;
     }
+    .signup{
+        margin-top: 5%;
+        width: 100%;
+        margin-left: 5%;
+    }
 }
+
 @media(max-width:540px){
     .signup{
         margin-top: 0px;

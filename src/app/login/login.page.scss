@@ -15,7 +15,9 @@
 
 }
 .card4{
-    margin-top: 140px;
+    margin-top: 10%;
+    margin-left: 25%;
+    width: 50%;
 }
 .card1{
     margin-top: 0px;
@@ -23,8 +25,16 @@
 height: 100%;
 width: 100%;
 }
-@media(max-width:540px){
+@media(max-width:912px){
     .signup{
         margin-top: 0px;
+    }
+    .card4{
+        margin-top: 10%;
+        margin-left: 5%;
+        width: 90%;
+    }
+    .card1 img{
+        display: none;
     }
 }

@@ -1,12 +1,13 @@
 .card2 img {
     width: 30%;
     justify-content: left;
+    margin-top: -25px;
 }
 
 .card1 {
     --background: transparent;
-    padding-left: 100px;
-    padding-top: 70px;
+    padding-left: 30px;
+    padding-top: 30px;
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 109, 121, 1) 0%, rgba(1, 181, 234, 1) 90%, rgba(0, 212, 255, 1) 100%);
 }
@@ -51,6 +52,10 @@
     font-family: serif;
 }
 
+.card0 li {
+    list-style: none;
+}
+
 .custom-primary img {
     width: 80%;
     height: 80%;
@@ -64,4 +69,43 @@
 .custom-primary1.ion-button :hover {
     color: #fff;
 
+}
+
+.custom-primary1 {
+    justify-content: right;
+    text-align: right;
+}
+
+@media(max-width:550px) {
+    .card2 img {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        margin-top: 0px;
+    }
+
+    .card1 {
+        padding-left: 0px;
+        text-align: center;
+        padding-top: 0px;
+    }
+
+    .card0 {
+        h1 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .justify-content img {
+        display: none;
+        visibility: hidden;
+    }
+    .custom-primary1 {
+        justify-content: center;
+        text-align: center;
+    }
 }
