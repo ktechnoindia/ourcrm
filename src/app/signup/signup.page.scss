@@ -1,11 +1,9 @@
-
-
-.signup{
-    margin-top: 5%;
+.signup {
     width: 60%;
-    margin-left: 25%;
+    margin-left: 20%;
 }
-.signup ion-input{
+
+.signup ion-input {
     min-height: 35px;
     margin-bottom: 10px;
 
@@ -13,42 +11,38 @@
     font-weight: 400;
     box-shadow: none;
     background-color: #fff;
-color: black;
+    color: black;
 }
-.signup select{
+
+.signup select {
     min-height: 35px;
     // color: goldenrod;
     font-weight: 400;
-     background-color: #fff;
-     border-radius: 4px;
-     border: solid 1px rgb(194, 194, 194);
+    background-color: #fff;
+    border-radius: 4px;
+    border: solid 1px rgb(194, 194, 194);
 }
 
-.card1{
+.card1 {
     margin-top: -50px;
 }
-ion-header{
+
+ion-header {
     display: none;
     visibility: hidden;
 }
 
-@media(max-width:912px){
-    .signup select{
+@media(max-width:912px) {
+    .signup select {
         min-height: 35px;
         // color: goldenrod;
         font-weight: 400;
-         background-color: #fff;
-         margin-bottom: 4px;
+        background-color: #fff;
+        margin-bottom: 4px;
     }
-    .signup{
-        margin-top: 5%;
-        width: 100%;
-        margin-left: 5%;
-    }
-}
 
-@media(max-width:540px){
-    .signup{
-        margin-top: 0px;
+    .signup {
+        width: 100%;
+        margin-left: 0%;
     }
 }
