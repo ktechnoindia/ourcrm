@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
-
+import { RouterModule,RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-viewexicutive',
   templateUrl: './viewexicutive.page.html',
   styleUrls: ['./viewexicutive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink]
 })
 export class ViewexicutivePage implements OnInit {
   formDate:string='';
@@ -54,6 +54,6 @@ export class ViewexicutivePage implements OnInit {
   ngOnInit() {
   }
 goBack(){
-  this.router.navigate(["/addexecutive"])
+  this.router.navigate(["/add-executive"])
 }
 }

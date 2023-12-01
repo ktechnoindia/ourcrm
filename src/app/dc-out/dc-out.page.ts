@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { AdditemService } from '../services/additem.service';
 import { EncryptionService } from '../services/encryption.service';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
 interface Dcout {
   barcode: string;
   itemcode: number;
@@ -117,7 +118,10 @@ export class DcOutPage implements OnInit {
   itemnames$: Observable<any[]>; 
   unitname$: Observable<any[]>; 
   taxrate$: Observable<any[]>; 
-  constructor(private vendname1:VendorService,private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService) { 
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  
+  constructor(private vendname1:VendorService,private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService,private formService: FormValidationService) { 
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -129,10 +133,10 @@ export class DcOutPage implements OnInit {
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],
-      voucherNumber: [''],
+      voucherNumber: ['',Validators.required],
       datetype: [''],
-      vendcode: [''],
-      suppliertype: [''],
+      vendcode: ['',Validators.required],
+      suppliertype: ['',Validators.required],
       referenceNumber: [''],
       refdate: [''],
       // ponumber: [''],
@@ -180,65 +184,90 @@ export class DcOutPage implements OnInit {
   }
 
  
-  onSubmit(dcinData: any) {
-    console.log('Your form data : ',  this.myform.value);
-    let dcoutdata: dcoutstore = {
-      voucherformat: this.myform.value.voucherformat,
-      voucherNumber: this.myform.value.voucherNumber,
-      datetype: this.myform.value.datetype,
-      vendcode: this.myform.value.vendcode,
-      suppliertype: this.myform.value.suppliertype,
-      referenceNumber: this.myform.value.referenceNumber,
-      refdate: this.myform.value.refdate,
-      // ponumber: this.myform.value.ponumber,
+  async onSubmit() {
 
-      barcode: this.myform.value.barcode,
-      itemcode: this.myform.value.itemcode,
-      itemname: this.myform.value.itemname,
-      description: this.myform.value.description,
-      quantity: this.myform.value.quantity,
-      unitname: this.myform.value.unitname,
-      mrp: this.myform.value.mrp,
-      basicrate: this.myform.value.basicrate,
-      netrate: this.myform.value.netrate,
-      grossrate: this.myform.value.grossrate,
-      taxrate: this.myform.value.taxrate,
-      CGST: this.myform.value.CGST,
-      SGST: this.myform.value.SGST,
-      IGST: this.myform.value.IGST,
-      discount: this.myform.value.discount,
-      discountamt: this.myform.value.discountamt,
-      totaltax: this.myform.value.totaltax,
-      total: this.myform.value.total,
-      totalitemno: this.myform.value.totalitemno,
-      totalquantity: this.myform.value.totalquantity,
-      totalgrossamt: this.myform.value.totalgrossamt,
-      totaldiscountamt: this.myform.value.totaldiscountamt,
-      totaltaxamount: this.myform.value.totaltaxamount,
-      totalnetamount: this.myform.value.totalnetamount,
-      roundoff: this.myform.value.roundoff,
-      pretax: this.myform.value.pretax,
-      posttax: this.myform.value.posttax,
-      deliverydate: this.myform.value.deliverydate,
-      deliveryplace: this.myform.value.deliveryplace,
-      openingbalance: this.myform.value.openingbalance,
-      closingbalance: this.myform.value.closingbalance,
-      debit: this.myform.value.debit,
-      credit: this.myform.value.credit,
-     
-    };
-    
-    this.dcout.createdcout(dcoutdata, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        // Handle the response as needed
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
+
+      let dcoutdata: dcoutstore = {
+        voucherformat: this.myform.value.voucherformat,
+        voucherNumber: this.myform.value.voucherNumber,
+        datetype: this.myform.value.datetype,
+        vendcode: this.myform.value.vendcode,
+        suppliertype: this.myform.value.suppliertype,
+        referenceNumber: this.myform.value.referenceNumber,
+        refdate: this.myform.value.refdate,
+        // ponumber: this.myform.value.ponumber,
+
+        barcode: this.myform.value.barcode,
+        itemcode: this.myform.value.itemcode,
+        itemname: this.myform.value.itemname,
+        description: this.myform.value.description,
+        quantity: this.myform.value.quantity,
+        unitname: this.myform.value.unitname,
+        mrp: this.myform.value.mrp,
+        basicrate: this.myform.value.basicrate,
+        netrate: this.myform.value.netrate,
+        grossrate: this.myform.value.grossrate,
+        taxrate: this.myform.value.taxrate,
+        CGST: this.myform.value.CGST,
+        SGST: this.myform.value.SGST,
+        IGST: this.myform.value.IGST,
+        discount: this.myform.value.discount,
+        discountamt: this.myform.value.discountamt,
+        totaltax: this.myform.value.totaltax,
+        total: this.myform.value.total,
+        totalitemno: this.myform.value.totalitemno,
+        totalquantity: this.myform.value.totalquantity,
+        totalgrossamt: this.myform.value.totalgrossamt,
+        totaldiscountamt: this.myform.value.totaldiscountamt,
+        totaltaxamount: this.myform.value.totaltaxamount,
+        totalnetamount: this.myform.value.totalnetamount,
+        roundoff: this.myform.value.roundoff,
+        pretax: this.myform.value.pretax,
+        posttax: this.myform.value.posttax,
+        deliverydate: this.myform.value.deliverydate,
+        deliveryplace: this.myform.value.deliveryplace,
+        openingbalance: this.myform.value.openingbalance,
+        closingbalance: this.myform.value.closingbalance,
+        debit: this.myform.value.debit,
+        credit: this.myform.value.credit,
+
+      };
+
+      this.dcout.createdcout(dcoutdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+            this.myform.reset();
+          }, 1000);
+          this.formService.showSaveLoader();
+
+        },
+        (error:any) =>{
+         console.log('POST request failed',error);
+         setTimeout(() => {
+          this.formService.showFailedAlert();
+         }, 1000);
+         this.formService.shoErrorLoader();
+        }
+      );
+    }  else {
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
+    }
   }
+
     addDcout() {
       console.log('addrowwww'+this.dcoutData.length);
       // You can initialize the new row data here

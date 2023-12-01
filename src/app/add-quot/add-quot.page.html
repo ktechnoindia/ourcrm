@@ -34,15 +34,15 @@
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="billformate" name="billformate" formControlName="billformate"
                   name="bill formate">
-                  <option value="0" disabled selected>Bill Formate</option> <!-- Default option -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  <!-- <option value="0" disabled selected>Bill Formate</option> Default option -->
+                  <option value="0">1</option>
+                  <option value="1">2</option>
                 </select>
               </ion-col>
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="quoteNumber" formControlName="quoteNumber" name="quoteNumber"
+                  <ion-input #firstInvalidInput  [(ngModel)]="quoteNumber" formControlName="quoteNumber" name="quoteNumber"
                     type="text" label="Quote No. :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -58,7 +58,7 @@
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text"
+                  <ion-input  [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text"
                     label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -391,10 +391,7 @@
               <ion-button id="open-loading">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
-              <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading1" message="Quotation Adding..."
-                [duration]="1000"></ion-loading>
-
+              <ion-button type="submit">Save</ion-button>
               <ion-button id="open-loading4">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>

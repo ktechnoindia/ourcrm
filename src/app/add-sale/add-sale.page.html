@@ -30,19 +30,19 @@
         <ion-grid>
 
 
-          <form [formGroup]="myform"  (ngSubmit)="onSubmit(salesData)">
+          <form [formGroup]="myform"  (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
-                  <option value="0" >Bill Formate</option> <!-- Default option -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  <!-- <option value="0" >Bill Formate</option> Default option -->
+                  <option value="0">1</option>
+                  <option value="1">2</option>
                 </select>
               </ion-col>
 
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="text"
+                  <ion-input #firstInvalidInput [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="text"
                     label=" Billing No. :" label-placement="floating" fill="outline"></ion-input>                
                 </ion-row>
               </ion-col>
@@ -55,12 +55,12 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text" label="Code :"
+                  <ion-input #firstInvalidInput [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text" label="Code :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-                <select class="select"  [(ngModel)]=" custname" name="custname" formControlName="custname">
+                <select #firstInvalidInput class="select"  [(ngModel)]=" custname" name="custname" formControlName="custname">
                   <option value="0">Customer Name</option>
                   <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
@@ -108,7 +108,7 @@
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                
                 <select class="select" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
-                  <option value="0">Select Sales Person</option><!-- Default option -->
+                  <option value="0"> Sales Person</option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
