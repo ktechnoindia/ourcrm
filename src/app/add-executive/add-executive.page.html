@@ -77,7 +77,7 @@
             
               <ion-col size="6" size-lg="4.5" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="emobile"  formControlName="emobile" name="mobile" type="text" label="Mobile No. :"
+                  <ion-input [ngModel]="emobile" maxlength="10" formControlName="emobile" name="mobile" type="tel" label="Mobile No. :"
                     label-placement="floating" fill="outline" ></ion-input>
                     
                 </ion-row>
@@ -85,7 +85,7 @@
           
               <ion-col size="6" size-lg="4.5" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [ngModel]="ewhatsapp"  formControlName="ewhatsapp"  name="wpnumber" type="text" label="WhatsApp No. :"
+                  <ion-input [ngModel]="ewhatsapp"  formControlName="ewhatsapp"  name="wpnumber" type="tel" maxlength="10"label="WhatsApp No. :"
                     label-placement="floating" fill="outline" ></ion-input>
                 </ion-row>
               </ion-col>
