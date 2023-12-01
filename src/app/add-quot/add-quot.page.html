@@ -91,10 +91,10 @@
 
             </ion-row>
 
-            <ion-row style="margin-top: 7px;">
+            <ion-row style="margin-top: 7px; ">
               <div class="scroll-container">
 
-                <table>
+                <table >
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>
@@ -162,14 +162,16 @@
 
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.netrate" [value]="getnetrate()" formControlName="netrate" id="netrate" name="netrate"
+                      <input [(ngModel)]="quote.netrate" [value]="getnetrate(quote)" formControlName="netrate" id="netrate" name="netrate"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.grossrate" [value]="getgrossrate() " formControlName="grossrate" id="grossrate"
+                      <input [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " formControlName="grossrate" id="grossrate"
                         name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
+                      
+                      
                       <select  #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="quote.taxrate" formControlName="taxrate" name="taxrate" id="taxrate"  >
                         <option value="0">Select GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
@@ -203,7 +205,7 @@
                         name="totaltax" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.total" [value]="getTotalamt()" formControlName="total" name="total" id="total"
+                      <input [(ngModel)]="quote.total" [value]="getTotalamt(quote)" formControlName="total" name="total" id="total"
                         class="table_input" type="text">
 
                     </td>

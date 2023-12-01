@@ -42,6 +42,7 @@ interface Quote {
   ReactiveFormsModule ]
 })
 export class AddQuotPage implements OnInit {
+  gstTypes: any[] = [];
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -128,12 +129,15 @@ export class AddQuotPage implements OnInit {
   constructor(private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
+    this.gstsrvs.getgsttype().subscribe((types) => {
+      this.gstTypes = types });
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     this.quateDate = new Date().toLocaleDateString();
     this.refdate= new Date().toLocaleDateString();
     this.deliverydate= new Date().toLocaleDateString();
+    
 
 
     this.myform = this.formBuilder.group({
@@ -184,8 +188,11 @@ export class AddQuotPage implements OnInit {
     
       ttotal:[''],
 
-    })
+
+    });
+    
   }
+  
   async onSubmit() {
     const fields = {quoteNumber:this.quoteNumber,custcode:this.custcode,custname:this.custcode}
     // const isValid = await this.formService.validateForm(fields);
@@ -378,7 +385,7 @@ getAllRows() {
   }
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.total, 0);
+    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate)  - quote.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.totaltax), 0);
@@ -387,20 +394,21 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
   }
  //table formaula
-  getnetrate(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate - quote.discountamt + quote.taxrate/100), 0);
-  }
+  getnetrate(quote: Quote): number {
+   return quote.basicrate  + quote.totaltax;
+   }
   getTotaltax(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate/100 * + quote.quantity), 0);
   }
-  getgrossrate(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.quantity * +quote.basicrate), 0);
+  getgrossrate(quote: Quote): number {
+    return quote.quantity * quote.basicrate;
   }
   getdiscountamt(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.discount/100 * + quote.quantity), 0);
   }
-  getTotalamt(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.basicrate +quote.netrate* quote.quantity  - quote.discountamt), 0);
+  
+  getTotalamt(quote:Quote): number {
+    return (quote.quantity * quote.netrate) - quote.discountamt;
   }
   getcgst(): number {
     return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
@@ -412,9 +420,26 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + +quote.taxrate, 0);
   }
   ngOnInit() {
-    // this.calculateTotals()
-    // this.getTotalQuantity()
-  } 
+    // Other initialization logic...
+  
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+  }
+  
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+  
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (basicrate * taxrate) / 100;
+    const netrate = basicrate + taxrate - discount;
+    this.myform.get('netrate')?.setValue(netrate);
+  }
   goBack() {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
