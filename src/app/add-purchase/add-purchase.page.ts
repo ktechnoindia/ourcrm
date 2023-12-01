@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule,NgForm,ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -11,6 +11,7 @@ import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
 
 interface Purchase {
   barcode: string;
@@ -130,7 +131,10 @@ billformate:number=0;
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  constructor(private encService: EncryptionService,private vendname1:VendorService,private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController) { 
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  constructor(private encService: EncryptionService,private vendname1:VendorService,private formBuilder: FormBuilder,private itemService:AdditemService,private execut: ExecutiveService,private purchaseService:PurchaseService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private formService: FormValidationService) { 
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -144,10 +148,10 @@ billformate:number=0;
 
     this.myform = this.formBuilder.group({
       billformate: [''],
-      billNumber: [''],
+      billNumber: ['',Validators.required],
       billDate:  [''],
-      vendcode: [''],
-      supplier: [''],
+      vendcode: ['',Validators.required],
+      supplier: ['',Validators.required],
       refrence: [''],
       refdate: [''],
       orderDate: [''],
@@ -199,8 +203,11 @@ billformate:number=0;
     })
   }
 
-  onSubmit(purchaseData: any) {
-    console.log('Your form data : ', this.myform.value);
+  async onSubmit(purchaseData: any) {
+    const fields = { billNumber:this.billNumber,supplier:this.supplier,vendcode:this.vendcode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
     let purchasedata: purchasestore = {
       billNumber: this.myform.value.billNumber,
       billDate: this.myform.value.billDate,
@@ -255,13 +262,32 @@ billformate:number=0;
     this.purchaseService.createpurchase(purchasedata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+          this.myform.reset();
+        }, 1000);
+        this.formService.showSaveLoader();
+
       },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+      (error:any) =>{
+       console.log('POST request failed',error);
+       setTimeout(() => {
+        this.formService.showFailedAlert();
+       }, 1000);
+       this.formService.shoErrorLoader();
       }
     );
+  }  else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
+  }
   }
   addPurchase() {
     console.log('addrowwww'+this.purchaseData.length);

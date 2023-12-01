@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
@@ -10,6 +10,7 @@ import { AdditemService } from '../services/additem.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
 
 interface Quote {
   barcode: string;
@@ -41,6 +42,9 @@ interface Quote {
   ReactiveFormsModule ]
 })
 export class AddQuotPage implements OnInit {
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
   billformate: number = 0;
   quoteNumber: number= 0;
   quateDate: string = '';
@@ -121,7 +125,7 @@ export class AddQuotPage implements OnInit {
   unitname$: Observable<any[]>; 
   taxrate$: Observable<any[]>; 
   customer$: any;
-  constructor(private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService) {
+  constructor(private formBuilder: FormBuilder,private custname1:CustomerService, private encService: EncryptionService,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -134,10 +138,10 @@ export class AddQuotPage implements OnInit {
 
     this.myform = this.formBuilder.group({
       billformate:[''],
-      quoteNumber: [''],
+      quoteNumber: ['',Validators.required],
       quateDate:[''],
-      custcode:[''],
-      custname:[''],
+      custcode:['',Validators.required],
+      custname:['',Validators.required],
       refrence: [''],
       refdate:[''],
       
@@ -182,68 +186,89 @@ export class AddQuotPage implements OnInit {
 
     })
   }
-  onSubmit() {
-    console.log('Your form data : ', this.myform.value);
-    let quotedata: quotestore = {
-      billformate:this.myform.value.billformate,
-      quoteNumber: this.myform.value.quoteNumber,
-      quateDate:this.myform.value.quateDate,
-      custcode: this.myform.value.custcode,
-      custname:this.myform.value.custname,
-      refrence: this.myform.value.refrence,
-      refdate:this.myform.value.refdate,
-      
-      barcode:this.myform.value.barcode,
-      itemcode:this.myform.value.itemcode,
-      itemname:this.myform.value.itemname,
-      description:this.myform.value.description,
-      quantity:this.myform.value.quantity,
-      unitname:this.myform.value.unitname,
-      mrp:this.myform.value.mrp,
-      basicrate:this.myform.value.basicrate,
-      netrate:this.myform.value.netrate,
-      grossrate: this.myform.value.grossrate,
-      taxrate:this.myform.value.taxrate,
-      CGST:this.myform.value.CGST,
-      SGST:this.myform.value.SGST,
-      IGST: this.myform.value.IGST,
-      discount:this.myform.value.discount,
-      discountamt: this.myform.value.discountamt,
-      totaltax:this.myform.value.totaltax,
-      total: this.myform.value.total,
-      totalitemno: this.myform.value.totalitemno,
-      totalquantity:this.myform.value.totalquantity,
-      totalgrossamt:this.myform.value.totalgrossamt,
-      totaldiscountamt: this.myform.value.totaldiscountamt,
-      totaltaxamount:this.myform.value.totaltaxamount,
-      totalnetamount: this.myform.value.totalnetamount,
-      roundoff:this.myform.value.roundoff,
-      pretax:this.myform.value.pretax,
-      posttax:this.myform.value.posttax,
-      deliverydate: this.myform.value.deliverydate,
-      deliveryplace: this.myform.value.deliveryplace,
-      openingbalance:this.myform.value.openingbalance,
-      closingbalance: this.myform.value.closingbalance,
-      debit:this.myform.value.debit,
-      credit: this.myform.value.credit,
-
-      ttotal: this.myform.value.ttotal,
-
-
-
-    };
-
-    this.quote.createquote(quotedata, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        // Handle the response as needed
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+  async onSubmit() {
+    const fields = {quoteNumber:this.quoteNumber,custcode:this.custcode,custname:this.custcode}
+    // const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+ 
+      console.log('Your form data : ', this.myform.value);
+      const quotedata: quotestore = {
+        billformate:this.myform.value.billformate,
+        quoteNumber: this.myform.value.quoteNumber,
+        quateDate:this.myform.value.quateDate,
+        custcode: this.myform.value.custcode,
+        custname:this.myform.value.custname,
+        refrence: this.myform.value.refrence,
+        refdate:this.myform.value.refdate,
+        
+        barcode:this.myform.value.barcode,
+        itemcode:this.myform.value.itemcode,
+        itemname:this.myform.value.itemname,
+        description:this.myform.value.description,
+        quantity:this.myform.value.quantity,
+        unitname:this.myform.value.unitname,
+        mrp:this.myform.value.mrp,
+        basicrate:this.myform.value.basicrate,
+        netrate:this.myform.value.netrate,
+        grossrate: this.myform.value.grossrate,
+        taxrate:this.myform.value.taxrate,
+        CGST:this.myform.value.CGST,
+        SGST:this.myform.value.SGST,
+        IGST: this.myform.value.IGST,
+        discount:this.myform.value.discount,
+        discountamt: this.myform.value.discountamt,
+        totaltax:this.myform.value.totaltax,
+        total: this.myform.value.total,
+        totalitemno: this.myform.value.totalitemno,
+        totalquantity:this.myform.value.totalquantity,
+        totalgrossamt:this.myform.value.totalgrossamt,
+        totaldiscountamt: this.myform.value.totaldiscountamt,
+        totaltaxamount:this.myform.value.totaltaxamount,
+        totalnetamount: this.myform.value.totalnetamount,
+        roundoff:this.myform.value.roundoff,
+        pretax:'0',
+        posttax:'0',
+        deliverydate: '01/12/23',
+        deliveryplace: 'jaipur',
+        openingbalance:this.myform.value.openingbalance,
+        closingbalance: this.myform.value.closingbalance,
+        debit:this.myform.value.debit,
+        credit: this.myform.value.credit,
+  
+        ttotal: this.myform.value.ttotal,
+      };
+  
+      this.quote.createquote(quotedata,'','').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+            this.myform.reset()
+          }, 1000);
+          this.formService.showSaveLoader()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+     
+    }  else {
+       //If the form is not valid, display error messages
+       Object.keys(this.myform.controls).forEach(controlName => {
+         const control = this.myform.get(controlName);
+         if (control?.invalid) {
+           control.markAsTouched();
+         }
+       });
+       if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
-  }
+     }
+    }
   
   addQuote() {
     console.log('addquotewww' + this.quoteData.length);

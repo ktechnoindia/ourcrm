@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -12,6 +12,7 @@ import { ExecutiveService } from '../services/executive.service';
 import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
 
 interface Sales {
   barcode: string;
@@ -130,7 +131,9 @@ export class SalesreturnPage implements OnInit {
   itemnames$: Observable<any[]>; 
   unitname$: Observable<any[]>; 
   taxrate$: Observable<any[]>; 
-  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, ) {
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService,private salereturnService:SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController,private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -144,10 +147,10 @@ this.orderDate=new Date().toLocaleDateString();
     
     this.myform = this.formBuilder.group({
       billformate: [''],
-      billNumber: [''],
+      billNumber: ['',Validators.required],
       billDate: [''],
-      custcode: [''],
-      custname: [''],
+      custcode: ['',Validators.required],
+      custname: ['',Validators.required],
       refrence: [''],
       refdate: [''],
       orderDate: [''],
@@ -198,9 +201,78 @@ this.orderDate=new Date().toLocaleDateString();
       ttotal: [''],
     })
   }
-  onSubmit(salesData: any) {
-    console.log('Your form data : ', this.myform.value);
-    let salesreturndata: salereturnstore = {
+  // onSubmit(salesData: any) {
+  //   console.log('Your form data : ', this.myform.value);
+  //   let salesreturndata: salereturnstore = {
+  //     billformate:this.myform.value.billformate,
+  //     billNumber:this.myform.value.billNumber,
+  //     billDate:this.myform.value.billDate,
+  //     payment:this.myform.value.payment,
+  //     orderDate:this.myform.value.orderDate,
+  //     orderNumber:this.myform.value.orderNumber,
+  //     gstin:this.myform.value.gstin,
+  //     salePerson:this.myform.value.salePerson,
+  //     taxrate:this.myform.value.taxrate,
+  //     custcode:this.myform.value.custcode,
+  //     custname:this.myform.value.custname,
+  //     // unitname$:this.myform.value.unitname$,
+  //     // ponumber:this.myform.value.ponumber,
+  //     refdate:this.myform.value.refdate,
+  //     refrence:this.myform.value.refrence,
+  //     frombill:this.myform.value.frombill,
+
+  //     barcode: this.myform.value.barcode,
+  //     itemcode: this.myform.value.itemcode,
+  //     itemname: this.myform.value.itemname,
+  //     description: this.myform.value.description,
+  //     quantity: this.myform.value.quantity,
+  //     unitname: this.myform.value.unitname,
+  //     mrp: this.myform.value.mrp,
+  //     basicrate: this.myform.value.basicrate,
+  //     netrate: this.myform.value.netrate,
+  //     grossrate: this.myform.value.grossrate,
+  //     CGST: this.myform.value.CGST,
+  //     SGST: this.myform.value.SGST,
+  //     IGST: this.myform.value.IGST,
+  //     discount: this.myform.value.discount,
+  //     discountamt: this.myform.value.discountamt,
+  //     totaltax: this.myform.value.totaltax,
+  //     total: this.myform.value.total,
+  //     totalitemno: this.myform.value.totalitemno,
+  //     totalquantity: this.myform.value.totalquantity,
+  //     totalgrossamt: this.myform.value.totalgrossamt,
+  //     totaldiscountamt: this.myform.value.totaldiscountamt,
+  //     totaltaxamount: this.myform.value.totaltaxamount,
+  //     totalnetamount: this.myform.value.totalnetamount,
+  //     roundoff: this.myform.value.roundoff,
+  //     pretax: this.myform.value.pretax,
+  //     posttax: this.myform.value.posttax,
+  //     deliverydate: this.myform.value.deliverydate,
+  //     deliveryplace: this.myform.value.deliveryplace,
+  //     openingbalance: this.myform.value.openingbalance,
+  //     closingbalance: this.myform.value.closingbalance,
+  //     debit: this.myform.value.debit,
+  //     credit: this.myform.value.credit,
+
+  //   };
+  //   this.salereturnService.createSaleReturn(salesreturndata, '', '').subscribe(
+  //     (response: any) => {
+  //       console.log('POST request successful', response);
+  //       // Handle the response as needed
+  //     },
+  //     (error: any) => {
+  //       console.error('POST request failed', error);
+  //       // Handle the error as needed
+  //     }
+  //   );
+  // }
+
+  async onSubmit(salereturnData:any) {
+    const fields = {billNumber:this.billNumber,custcode:this.custcode,custname:this.custname }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
+    let salereturndata: salereturnstore = {
       billformate:this.myform.value.billformate,
       billNumber:this.myform.value.billNumber,
       billDate:this.myform.value.billDate,
@@ -252,17 +324,36 @@ this.orderDate=new Date().toLocaleDateString();
       credit: this.myform.value.credit,
 
     };
-    this.salereturnService.createSaleReturn(salesreturndata, '', '').subscribe(
+    this.salereturnService.createSaleReturn(salereturndata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+          this.myform.reset();
+        }, 1000);
+        this.formService.showSaveLoader();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
-      }
+        setTimeout(() => {
+          this.formService.showFailedAlert();
+         }, 1000);
+         this.formService.shoErrorLoader();
+        }
     );
+  }  else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
   }
+}
+
   addSales() {
       console.log('addrowwww'+this.salesData.length);
       // You can initialize the new row data here

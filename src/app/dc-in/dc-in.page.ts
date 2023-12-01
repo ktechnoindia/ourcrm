@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -107,7 +107,7 @@ export class DcInPage implements OnInit {
     totaltax: 0,
     total: 0,
   }];
- 
+
   ttotal!: number;
   myform: FormGroup;
   supplier$: any;
@@ -117,27 +117,30 @@ export class DcInPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  itemnames$: Observable<any[]>; 
-  unitname$: Observable<any[]>; 
-  taxrate$: Observable<any[]>; 
-  constructor(private encService: EncryptionService, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcin: DcinService, private formService: FormValidationService) {
+  itemnames$: Observable<any[]>;
+  unitname$: Observable<any[]>;
+  taxrate$: Observable<any[]>;
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  constructor(private encService: EncryptionService, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-this.datetype= new Date().toLocaleDateString();
-this.refdate=  new Date().toLocaleDateString();
-this.deliverydate= new Date().toLocaleDateString();
+    this.datetype = new Date().toLocaleDateString();
+    this.refdate = new Date().toLocaleDateString();
+    this.deliverydate = new Date().toLocaleDateString();
 
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],
-      voucherNumber: [''],
+      voucherNumber: ['', Validators.required],
       datetype: [''],
-      vendcode: [''],
-      suppliertype: [''],
+      vendcode: ['', Validators.required],
+      suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
       // ponumber: [''],
@@ -185,65 +188,90 @@ this.deliverydate= new Date().toLocaleDateString();
 
   }
 
-  onSubmit(dcinData: any) {
-    console.log('Your form data : ', this.myform.value);
-    let dcindata: dcinstore = {
-      voucherformat: this.myform.value.voucherformat,
-      voucherNumber: this.myform.value.voucherNumber,
-      datetype: this.myform.value.datetype,
-      vendcode: this.myform.value.vendcode,
-      suppliertype: this.myform.value.suppliertype,
-      referenceNumber: this.myform.value.referenceNumber,
-      refdate: this.myform.value.refdate,
-      // ponumber: this.myform.value.ponumber,
+  async onSubmit() {
 
-      barcode: this.myform.value.barcode,
-      itemcode: this.myform.value.itemcode,
-      itemname: this.myform.value.itemname,
-      description: this.myform.value.description,
-      quantity: this.myform.value.quantity,
-      unitname: this.myform.value.unitname,
-      mrp: this.myform.value.mrp,
-      basicrate: this.myform.value.basicrate,
-      netrate: this.myform.value.netrate,
-      grossrate: this.myform.value.grossrate,
-      taxrate: this.myform.value.taxrate,
-      CGST: this.myform.value.CGST,
-      SGST: this.myform.value.SGST,
-      IGST: this.myform.value.IGST,
-      discount: this.myform.value.discount,
-      discountamt: this.myform.value.discountamt,
-      totaltax: this.myform.value.totaltax,
-      total: this.myform.value.total,
-      totalitemno: this.myform.value.totalitemno,
-      totalquantity: this.myform.value.totalquantity,
-      totalgrossamt: this.myform.value.totalgrossamt,
-      totaldiscountamt: this.myform.value.totaldiscountamt,
-      totaltaxamount: this.myform.value.totaltaxamount,
-      totalnetamount: this.myform.value.totalnetamount,
-      roundoff: this.myform.value.roundoff,
-      pretax: this.myform.value.pretax,
-      posttax: this.myform.value.posttax,
-      deliverydate: this.myform.value.deliverydate,
-      deliveryplace: this.myform.value.deliveryplace,
-      openingbalance: this.myform.value.openingbalance,
-      closingbalance: this.myform.value.closingbalance,
-      debit: this.myform.value.debit,
-      credit: this.myform.value.credit,
+    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
 
-    };
+      let dcindata: dcinstore = {
+        voucherformat: this.myform.value.voucherformat,
+        voucherNumber: this.myform.value.voucherNumber,
+        datetype: this.myform.value.datetype,
+        vendcode: this.myform.value.vendcode,
+        suppliertype: this.myform.value.suppliertype,
+        referenceNumber: this.myform.value.referenceNumber,
+        refdate: this.myform.value.refdate,
+        // ponumber: this.myform.value.ponumber,
 
-    this.dcin.createdcin(dcindata, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        this.formService.showSuccessAlert();
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        this.formService.showFailedAlert();
+        barcode: this.myform.value.barcode,
+        itemcode: this.myform.value.itemcode,
+        itemname: this.myform.value.itemname,
+        description: this.myform.value.description,
+        quantity: this.myform.value.quantity,
+        unitname: this.myform.value.unitname,
+        mrp: this.myform.value.mrp,
+        basicrate: this.myform.value.basicrate,
+        netrate: this.myform.value.netrate,
+        grossrate: this.myform.value.grossrate,
+        taxrate: this.myform.value.taxrate,
+        CGST: this.myform.value.CGST,
+        SGST: this.myform.value.SGST,
+        IGST: this.myform.value.IGST,
+        discount: this.myform.value.discount,
+        discountamt: this.myform.value.discountamt,
+        totaltax: this.myform.value.totaltax,
+        total: this.myform.value.total,
+        totalitemno: this.myform.value.totalitemno,
+        totalquantity: this.myform.value.totalquantity,
+        totalgrossamt: this.myform.value.totalgrossamt,
+        totaldiscountamt: this.myform.value.totaldiscountamt,
+        totaltaxamount: this.myform.value.totaltaxamount,
+        totalnetamount: this.myform.value.totalnetamount,
+        roundoff: this.myform.value.roundoff,
+        pretax: this.myform.value.pretax,
+        posttax: this.myform.value.posttax,
+        deliverydate: this.myform.value.deliverydate,
+        deliveryplace: this.myform.value.deliveryplace,
+        openingbalance: this.myform.value.openingbalance,
+        closingbalance: this.myform.value.closingbalance,
+        debit: this.myform.value.debit,
+        credit: this.myform.value.credit,
+
+      };
+
+      this.dcinService.createdcin(dcindata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+            this.myform.reset();
+          }, 1000);
+          this.formService.showSaveLoader();
+
+        },
+        (error:any) =>{
+         console.log('POST request failed',error);
+         setTimeout(() => {
+          this.formService.showFailedAlert();
+         }, 1000);
+         this.formService.shoErrorLoader();
+        }
+      );
+    }  else {
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
+    }
   }
+
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);
@@ -272,13 +300,13 @@ this.deliverydate= new Date().toLocaleDateString();
     this.dcinData.push(newRow);
   }
   removeDcin(index: number, row: Dcin) {
-    this.ttotal = this.ttotal - this.dcin.total;
+    this.ttotal = this.ttotal - this.dcinService.total;
     this.dcinData.splice(index, 1);
   }
   calculateTotalSum() {
     let sum = 0;
     for (const row of this.dcinData) {
-      sum += this.dcin.total;
+      sum += this.dcinService.total;
     }
     this.ttotal = sum;
   }
@@ -294,7 +322,7 @@ this.deliverydate= new Date().toLocaleDateString();
   }
   getAllRows() {
     console.log('Number of Rows:', this.dcinData.length);
-  
+
     for (let i = 0; i < this.dcinData.length; i++) {
       const quote = this.dcinData[i];
       console.log('Row:', quote);
@@ -317,27 +345,27 @@ this.deliverydate= new Date().toLocaleDateString();
   getTotalDiscountAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
   }
- //table formaula
+  //table formaula
   getnetrate(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate - dcin.discountamt + dcin.taxrate/100), 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate - dcin.discountamt + dcin.taxrate / 100), 0);
   }
   getTotaltax(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate/100 * + dcin.quantity), 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate / 100 * + dcin.quantity), 0);
   }
   getgrossrate(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.quantity * +dcin.basicrate), 0);
   }
   getdiscountamt(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.discount/100 * + dcin.quantity), 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.discount / 100 * + dcin.quantity), 0);
   }
   getTotalamt(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.basicrate +dcin.netrate* dcin.quantity  - dcin.discountamt), 0);
+    return this.dcinData.reduce((total, dcin) => total + (dcin.basicrate + dcin.netrate * dcin.quantity - dcin.discountamt), 0);
   }
   getcgst(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate/2, 0);
+    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate / 2, 0);
   }
   getsgst(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate/2, 0);
+    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate / 2, 0);
   }
   getigst(): number {
     return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate, 0);

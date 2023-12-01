@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -12,6 +12,7 @@ import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { ExecutiveService } from '../services/executive.service';
 import { Observable } from 'rxjs';
+import { FormValidationService } from '../form-validation.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -127,7 +128,10 @@ export class AddSalePage implements OnInit {
   itemnames$: Observable<any[]>; 
   unitname$: Observable<any[]>; 
   taxrate$: Observable<any[]>; 
-  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService) {
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  constructor(private execut: ExecutiveService,private custname1:CustomerService, private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -141,10 +145,10 @@ export class AddSalePage implements OnInit {
 
     this.myform = this.formBuilder.group({
       billformate: [''],
-      billNumber: [''],
+      billNumber: ['',Validators.required],
       billDate: [''],
-      custcode: [''],
-      custname: [''],
+      custcode: ['',Validators.required],
+      custname: ['',Validators.required],
       refrence: [''],
       refdate: [''],
       orderDate: [''],
@@ -195,8 +199,11 @@ export class AddSalePage implements OnInit {
       
     })
   }
-  onSubmit(salesData: any) {
-    console.log('Your form data : ', this.myform.value);
+ async onSubmit() {
+    const fields = {billNumber:this.billNumber,custcode:this.custcode,custname:this.custname }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
     let saledata: salesstore = {
       billformate: this.myform.value.billformate,
       billNumber: this.myform.value.billNumber,
@@ -251,14 +258,33 @@ export class AddSalePage implements OnInit {
     this.saleService.createsale(saledata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+          this.myform.reset();
+        }, 1000);
+        this.formService.showSaveLoader();
       },
       (error: any) => {
         console.error('POST request failed', error);
-        // Handle the error as needed
-      }
+        setTimeout(() => {
+          this.formService.showFailedAlert();
+         }, 1000);
+         this.formService.shoErrorLoader();
+        }
     );
+  }  else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
   }
+}
+
   addSales() {
     console.log('addrowwww' + this.salesData.length);
     // You can initialize the new row data here

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -11,6 +11,7 @@ import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { AdditemService } from '../services/additem.service';
 import { EncryptionService } from '../services/encryption.service';
+import { FormValidationService } from '../form-validation.service';
 interface Purchase {
   barcode: string;
   itemcode: number;
@@ -105,7 +106,7 @@ export class PurchasereturnPage implements OnInit {
     total: 0,
   }];
   ttotal!: number;
-  
+
   refrence: string = '';
   refdate: string = '';
   purchase: any;
@@ -123,20 +124,23 @@ export class PurchasereturnPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  itemnames$: Observable<any[]>; 
-  unitname$: Observable<any[]>; 
-  taxrate$: Observable<any[]>; 
-  constructor(private encService: EncryptionService,private vendname1:VendorService,private itemsname: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService) {
+  itemnames$: Observable<any[]>;
+  unitname$: Observable<any[]>;
+  taxrate$: Observable<any[]>;
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  constructor(private encService: EncryptionService, private vendname1: VendorService, private itemsname: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService,private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemsname.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.billDate= new Date().toLocaleDateString();
-this.refdate=  new Date().toLocaleDateString();
-this.deliverydate= new Date().toLocaleDateString();
-this.orderDate= new Date().toLocaleDateString();
+    this.billDate = new Date().toLocaleDateString();
+    this.refdate = new Date().toLocaleDateString();
+    this.deliverydate = new Date().toLocaleDateString();
+    this.orderDate = new Date().toLocaleDateString();
 
 
     this.myform = this.formBuilder.group({
@@ -196,8 +200,11 @@ this.orderDate= new Date().toLocaleDateString();
     });
   }
 
-  onSubmit(purchaseData: any) {
-    console.log('Your form data : ', this.myform.value);
+  async onSubmit(purchaseData: any) {
+    const fields = { billNumber:this.billNumber,supplier:this.supplier,vendcode:this.vendcode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
     let purchasereturndata: purchasereturnstore = {
       billNumber: this.myform.value.billNumber,
       billDate: this.myform.value.billDate,
@@ -251,13 +258,32 @@ this.orderDate= new Date().toLocaleDateString();
     this.purchasereturnService.createpurchasereturn(purchasereturndata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+          this.myform.reset();
+        }, 1000);
+        this.formService.showSaveLoader();
+
       },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+      (error:any) =>{
+       console.log('POST request failed',error);
+       setTimeout(() => {
+        this.formService.showFailedAlert();
+       }, 1000);
+       this.formService.shoErrorLoader();
       }
     );
+  }  else {
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
+  }
   }
   addPurchase() {
     console.log('addrowwww' + this.purchaseData.length);
@@ -298,7 +324,7 @@ this.orderDate= new Date().toLocaleDateString();
   }
   getAllRows() {
     console.log('Number of Rows:', this.purchaseData.length);
-  
+
     for (let i = 0; i < this.purchaseData.length; i++) {
       const quote = this.purchaseData
       [i];
@@ -316,7 +342,7 @@ this.orderDate= new Date().toLocaleDateString();
 
     // Add similar calculations for other totals
   }
- 
+
   getTotalQuantity(): number {
     return this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
   }
@@ -334,27 +360,27 @@ this.orderDate= new Date().toLocaleDateString();
   getTotalDiscountAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * purchase.discount / 100), 0);
   }
- //table formaula
+  //table formaula
   getnetrate(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate - purchase.discountamt + purchase.taxrate/100), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate - purchase.discountamt + purchase.taxrate / 100), 0);
   }
   getTotaltax(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate/100 * + purchase.quantity), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate / 100 * + purchase.quantity), 0);
   }
   getgrossrate(): number {
     return this.purchaseData.reduce((total, purchase) => total + (+purchase.quantity * +purchase.basicrate), 0);
   }
   getdiscountamt(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.discount/100 * + purchase.quantity), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.discount / 100 * + purchase.quantity), 0);
   }
   getTotalamt(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.basicrate +purchase.netrate* purchase.quantity  - purchase.discountamt), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (purchase.basicrate + purchase.netrate * purchase.quantity - purchase.discountamt), 0);
   }
   getcgst(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate/2, 0);
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate / 2, 0);
   }
   getsgst(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate/2, 0);
+    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate / 2, 0);
   }
   getigst(): number {
     return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate, 0);
@@ -367,5 +393,3 @@ this.orderDate= new Date().toLocaleDateString();
     this.router.navigate(["/transcationdashboard"])
   }
 }
-
-

@@ -40,7 +40,7 @@
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
               <ion-row>
-                <ion-input [(ngModel)]="billNumber"  formControlName="billNumber"  name="billno" type="number" label=" Billing No.  :"
+                <ion-input #firstInvalidInput [(ngModel)]="billNumber"  formControlName="billNumber"  name="billno" type="number" label=" Billing No.  :"
                   label-placement="floating" fill="outline"></ion-input>
 
               </ion-row>
@@ -405,7 +405,6 @@
             <ion-button id="open-loading">New</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
             <ion-button type="submit" id="open-loading1">Save</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading1" message="Purchase Saving..." [duration]="1000"></ion-loading>
             
             <ion-button id="open-loading4">Close</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>

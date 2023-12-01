@@ -7,15 +7,17 @@ import { LoadingController } from '@ionic/angular';
 export class FormValidationService {
 
   constructor(private alertController: AlertController,private loadingController:LoadingController ) { }
-  async validateForm(fields: { [key: string]:any }): Promise<boolean> {
+  async validateForm(fields: { [key: string]: any }): Promise<boolean> {
     for (const key in fields) {
-      if (fields[key].trim() === '') {
-        // await this.showAlert('Error !', 'Please fill required fields.');
+      // Check if the value is a string before calling trim
+      if (typeof fields[key] === 'string' && fields[key].trim() === '') {
+        // await this.showAlert('Error!', 'Please fill required fields.');
         return false;
       }
     }
     return true;
   }
+  
 
   async showSuccessAlert() {
     await this.showAlert('Success !', 'Form submitted successfully.');
