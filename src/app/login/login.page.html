@@ -2,35 +2,27 @@
   <div class="signup">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-lg="6">
-          <div class="card1">
-            <img src="../../assets/ktechno-removebg-preview.png" alt="">
-          </div>
-        </ion-col>
-
-        <ion-col size="12" size-lg="6">
-
-          <div class="card4">
-            <ion-card class="ion-padding"color="light">
-              <form  [formGroup]="myform" (ngSubmit)="onSubmit()">
-                <ion-row style="color: rgb(8, 8, 8);font-size: 35px;font-weight: bold;text-align: center;font-weight: bold;justify-content: center; text-decoration: underline;">
-                <h1 >Login Now </h1>
+        <div class="card4">
+          <ion-card class="ion-padding" >
+            <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+              <ion-row
+                style="color: rgb(8, 8, 8);font-size: 35px;font-weight: bold;text-align: center;font-weight: bold;justify-content: center; text-decoration: underline;">
+                <h1>Login Now </h1>
               </ion-row>
+              <ion-row> 
+                  <ion-input [(ngModel)]="username" formControlName="username" type="text" label="Email/Phone No."
+                    label-placement="floating" fill="outline" name="email/phone"></ion-input>
+              </ion-row>
+
               <ion-row>
-                <ion-col size="12" size-lg="12">
-                  <ion-input  [(ngModel)]="username" formControlName="username"  type="text" label="Email/Phone No." label-placement="floating" fill="outline" name="email/phone"></ion-input>
-                </ion-col>
-              </ion-row>
-             
-              <ion-row>
-                <ion-col size="12" size-lg="12">
-                  <ion-input [(ngModel)]="password" formControlName="password" maxlength="15" name="password" id="password" color="dark"  type="password" label=" Password" label-placement="floating" fill="outline" formControlName="password"   required></ion-input>
-                </ion-col>
+                  <ion-input [(ngModel)]="password" formControlName="password" maxlength="15" name="password"
+                    id="password" color="dark" type="password" label=" Password" label-placement="floating"
+                    fill="outline" formControlName="password" required></ion-input> 
               </ion-row>
 
-             
+
               <ion-row style="justify-content: center;">
-                <ion-button expand="block" fill="outline" type="submit" class="home_buttons" >Login Now</ion-button>
+                <ion-button expand="block" fill="outline" type="submit" class="home_buttons">Login Now</ion-button>
               </ion-row>
 
               <ion-row style="justify-content: center;">
@@ -38,9 +30,7 @@
               </ion-row>
             </form>
           </ion-card>
-          </div>
-
-        </ion-col>
+        </div>
       </ion-row>
     </ion-grid>
   </div>
