@@ -337,7 +337,7 @@ export class DcInPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.total, 0);
+    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate)  - dcin.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
@@ -345,34 +345,55 @@ export class DcInPage implements OnInit {
   getTotalDiscountAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
   }
-  //table formaula
-  getnetrate(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate - dcin.discountamt + dcin.taxrate / 100), 0);
-  }
+ //table formaula
+  getnetrate(dcin: Dcin): number {
+   return dcin.basicrate  + dcin.totaltax;
+   }
   getTotaltax(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate / 100 * + dcin.quantity), 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate/100 * + dcin.quantity), 0);
   }
-  getgrossrate(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.quantity * +dcin.basicrate), 0);
+  getgrossrate(dcin: Dcin): number {
+    return dcin.quantity * dcin.basicrate;
   }
-  getdiscountamt(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.discount / 100 * + dcin.quantity), 0);
+  
+  getdiscountamt(dcin: Dcin): number {
+    return (dcin.discount/100) * dcin.basicrate * dcin.quantity;
   }
-  getTotalamt(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.basicrate + dcin.netrate * dcin.quantity - dcin.discountamt), 0);
+  
+  getTotalamt(dcin:Dcin): number {
+    return dcin.basicrate * dcin.quantity + dcin.totaltax - dcin.discountamt;
   }
-  getcgst(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate / 2, 0);
+  getcgst(dcin:Dcin): number {
+    return dcin.taxrate/2;
   }
-  getsgst(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate / 2, 0);
+  getsgst(dcin:Dcin): number {
+    return dcin.taxrate/2;
   }
-  getigst(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.taxrate, 0);
+  getigst(dcin:Dcin): number {
+    return dcin.taxrate;
   }
   ngOnInit() {
-    this.calculateTotals()
-    this.getTotalQuantity()
+    // Other initialization logic...
+  
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+  }
+  
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (discount / 100)*basicrate*quantity;
+    const netrate = basicrate + taxrate;
+    this.myform.get('netrate')?.setValue(netrate);
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])

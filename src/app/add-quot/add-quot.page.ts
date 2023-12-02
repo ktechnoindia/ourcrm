@@ -388,7 +388,7 @@ getAllRows() {
     return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate)  - quote.discount), 0)
   }
   getTotalTaxAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.totaltax), 0);
+    return this.quoteData.reduce((total, quote) => total + (+quote.totaltax* +quote.quantity), 0);
   }
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
@@ -403,7 +403,7 @@ getAllRows() {
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
-  
+ 
   getdiscountamt(quote: Quote): number {
     return (quote.discount/100) * quote.basicrate * quote.quantity;
   }
@@ -411,14 +411,14 @@ getAllRows() {
   getTotalamt(quote:Quote): number {
     return quote.basicrate * quote.quantity + quote.totaltax - quote.discountamt;
   }
-  getcgst(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
+  getcgst(quote:Quote): number {
+    return quote.taxrate/2;
   }
-  getsgst(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
+  getsgst(quote:Quote): number {
+    return quote.taxrate/2;
   }
-  getigst(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.taxrate, 0);
+  getigst(quote:Quote): number {
+    return quote.taxrate;
   }
   ngOnInit() {
     // Other initialization logic...
@@ -435,9 +435,11 @@ getAllRows() {
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
     const taxrate = this.myform.get('taxrate')?.value ?? 0;
     const discount = this.myform.get('discount')?.value ?? 0;
-  
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
     // Perform the calculation and update the netrate in the form
-    const gstAmount = (basicrate * taxrate) / 100;
+    const gstAmount = (discount / 100)*basicrate*quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
   }

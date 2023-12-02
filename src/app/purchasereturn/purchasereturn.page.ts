@@ -352,42 +352,63 @@ export class PurchasereturnPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.total, 0);
+    return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate)  - purchase.discount), 0)
   }
   getTotalTaxAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.totaltax), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.totaltax* +purchase.quantity), 0);
   }
   getTotalDiscountAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * purchase.discount / 100), 0);
   }
-  //table formaula
-  getnetrate(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate - purchase.discountamt + purchase.taxrate / 100), 0);
-  }
+ //table formaula
+  getnetrate(purchase: Purchase): number {
+   return purchase.basicrate  + purchase.totaltax;
+   }
   getTotaltax(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate / 100 * + purchase.quantity), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate/100 * + purchase.quantity), 0);
   }
-  getgrossrate(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.quantity * +purchase.basicrate), 0);
+  getgrossrate(purchase: Purchase): number {
+    return purchase.quantity * purchase.basicrate;
   }
-  getdiscountamt(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.discount / 100 * + purchase.quantity), 0);
+ 
+  getdiscountamt(purchase: Purchase): number {
+    return (purchase.discount/100) * purchase.basicrate * purchase.quantity;
   }
-  getTotalamt(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.basicrate + purchase.netrate * purchase.quantity - purchase.discountamt), 0);
+  
+  getTotalamt(purchase:Purchase): number {
+    return purchase.basicrate * purchase.quantity + purchase.totaltax - purchase.discountamt;
   }
-  getcgst(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate / 2, 0);
+  getcgst(purchase:Purchase): number {
+    return purchase.taxrate/2;
   }
-  getsgst(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate / 2, 0);
+  getsgst(purchase:Purchase): number {
+    return purchase.taxrate/2;
   }
-  getigst(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.taxrate, 0);
+  getigst(purchase:Purchase): number {
+    return purchase.taxrate;
   }
   ngOnInit() {
-    this.calculateTotals()
-    this.getTotalQuantity()
+    // Other initialization logic...
+  
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+  }
+  
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (discount / 100)*basicrate*quantity;
+    const netrate = basicrate + taxrate;
+    this.myform.get('netrate')?.setValue(netrate);
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
