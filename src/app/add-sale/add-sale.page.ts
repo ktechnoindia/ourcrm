@@ -368,42 +368,63 @@ export class AddSalePage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.salesData.reduce((total, sale) => total + +sale.total, 0);
+    return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate)  - sale.discount), 0)
   }
   getTotalTaxAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.totaltax), 0);
+    return this.salesData.reduce((total, sale) => total + (+sale.totaltax* +sale.quantity), 0);
   }
   getTotalDiscountAmount(): number {
     return this.salesData.reduce((total, sale) => total + (+sale.grossrate * sale.discount / 100), 0);
   }
  //table formaula
-  getnetrate(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.basicrate - sale.discountamt + sale.taxrate/100), 0);
-  }
+  getnetrate(sale: Sales): number {
+   return sale.basicrate  + sale.totaltax;
+   }
   getTotaltax(): number {
     return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate/100 * + sale.quantity), 0);
   }
-  getgrossrate(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.quantity * +sale.basicrate), 0);
+  getgrossrate(sale: Sales): number {
+    return sale.quantity * sale.basicrate;
   }
-  getdiscountamt(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.discount/100 * + sale.quantity), 0);
+ 
+  getdiscountamt(sale: Sales): number {
+    return (sale.discount/100) * sale.basicrate * sale.quantity;
   }
-  getTotalamt(): number {
-    return this.salesData.reduce((total, sale) => total + (sale.basicrate +sale.netrate* sale.quantity  - sale.discountamt), 0);
+  
+  getTotalamt(sale:Sales): number {
+    return sale.basicrate * sale.quantity + sale.totaltax - sale.discountamt;
   }
-  getcgst(): number {
-    return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+  getcgst(sale:Sales): number {
+    return sale.taxrate/2;
   }
-  getsgst(): number {
-    return this.salesData.reduce((total, sale) => total + +sale.taxrate/2, 0);
+  getsgst(sale:Sales): number {
+    return sale.taxrate/2;
   }
-  getigst(): number {
-    return this.salesData.reduce((total, sale) => total + +sale.taxrate, 0);
+  getigst(sale:Sales): number {
+    return sale.taxrate;
   }
   ngOnInit() {
-    this.calculateTotals()
-    this.getTotalQuantity()
+    // Other initialization logic...
+  
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+  }
+  
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (discount / 100)*basicrate*quantity;
+    const netrate = basicrate + taxrate;
+    this.myform.get('netrate')?.setValue(netrate);
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])

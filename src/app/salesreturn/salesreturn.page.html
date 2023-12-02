@@ -200,10 +200,10 @@
 
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.netrate" [value]="getnetrate()"  id="netrate" formControlName="netrate" name="netrate" class="table_input" type="number">
+                      <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)"  id="netrate" formControlName="netrate" name="netrate" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.grossrate"  [value]="getgrossrate() " id="grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
+                      <input [(ngModel)]="sales.grossrate"  [value]="getgrossrate(sales) " id="grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
                       <select interface="popover"  id="taxrate"  [(ngModel)]="sales.taxrate" formControlName="taxrate" name="taxrate" id="taxrate">
@@ -216,25 +216,25 @@
                     </td>
 
                     <td>
-                      <input [(ngModel)]="sales.CGST"  id="CGST" [value]="getcgst()" formControlName="CGST" name="CGST" class="table_input" type="number">
+                      <input [(ngModel)]="sales.CGST"  id="CGST" [value]="getcgst(sales)" formControlName="CGST" name="CGST" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.SGST" id="SGST" [value]="getsgst()" formControlName="SGST" name="SGST" class="table_input" type="number">
+                      <input [(ngModel)]="sales.SGST" id="SGST" [value]="getsgst(sales)" formControlName="SGST" name="SGST" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.IGST"  id="IGST" [value]="getigst()" formControlName="IGST" name="IGST" class="table_input" type="number">
+                      <input [(ngModel)]="sales.IGST"  id="IGST" [value]="getigst(sales)" formControlName="IGST" name="IGST" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.discount" id="discount" formControlName="discount" name="discount" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.discountamt" id="discountamt"  [value]="getdiscountamt()" formControlName="discountamt" name="discountamt" class="table_input" type="number">
+                      <input [(ngModel)]="sales.discountamt" id="discountamt"  [value]="getdiscountamt(sales)" formControlName="discountamt" name="discountamt" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.totaltax"  id="totaltax" [value]="getTotaltax()" formControlName="totaltax" name="totaltax" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.total" id="total"  [value]="getTotalamt()" formControlName="total" name="total" class="table_input" type="number">
+                      <input [(ngModel)]="sales.total" id="total"  [value]="getTotalamt(sales)" formControlName="total" name="total" class="table_input" type="number">
 
                     </td>
 

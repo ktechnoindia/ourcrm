@@ -345,42 +345,63 @@ export class DcOutPage implements OnInit {
     }
   
     getTotalnetAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + +dcout.total, 0);
+      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate)  - dcout.discount), 0)
     }
     getTotalTaxAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax), 0);
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax* +dcout.quantity), 0);
     }
     getTotalDiscountAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * dcout.discount / 100), 0);
     }
    //table formaula
-    getnetrate(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate - dcout.discountamt + dcout.taxrate/100), 0);
-    }
+    getnetrate(quote: Dcout): number {
+     return quote.basicrate  + quote.totaltax;
+     }
     getTotaltax(): number {
       return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.taxrate/100 * + dcout.quantity), 0);
     }
-    getgrossrate(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.quantity * +dcout.basicrate), 0);
+    getgrossrate(dcout: Dcout): number {
+      return dcout.quantity * dcout.basicrate;
     }
-    getdiscountamt(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.discount/100 * + dcout.quantity), 0);
+   
+    getdiscountamt(dcout: Dcout): number {
+      return (dcout.discount/100) * dcout.basicrate * dcout.quantity;
     }
-    getTotalamt(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (dcout.basicrate +dcout.netrate* dcout.quantity  - dcout.discountamt), 0);
+    
+    getTotalamt(dcout:Dcout): number {
+      return dcout.basicrate * dcout.quantity + dcout.totaltax - dcout.discountamt;
     }
-    getcgst(): number {
-      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate/2, 0);
+    getcgst(dcout:Dcout): number {
+      return dcout.taxrate/2;
     }
-    getsgst(): number {
-      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate/2, 0);
+    getsgst(dcout:Dcout): number {
+      return dcout.taxrate/2;
     }
-    getigst(): number {
-      return this.dcoutData.reduce((total, dcout) => total + +dcout.taxrate, 0);
+    getigst(dcout:Dcout): number {
+      return dcout.taxrate;
     }
     ngOnInit() {
-      this.calculateTotals()
-      this.getTotalQuantity()
+      // Other initialization logic...
+    
+      // Subscribe to value changes of basicrate, taxrate, and discount
+      this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+      this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+      this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
+      this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    }
+    
+    calculateNetRate() {
+      // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+      const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+      const taxrate = this.myform.get('taxrate')?.value ?? 0;
+      const discount = this.myform.get('discount')?.value ?? 0;
+      const grossrate = this.myform.get('grossrate')?.value ?? 0;
+      const quantity = this.myform.get('quantity')?.value ?? 0;
+  
+      // Perform the calculation and update the netrate in the form
+      const gstAmount = (discount / 100)*basicrate*quantity;
+      const netrate = basicrate + taxrate;
+      this.myform.get('netrate')?.setValue(netrate);
     }
   goBack() {
     this.router.navigate(["/transcationdashboard"])

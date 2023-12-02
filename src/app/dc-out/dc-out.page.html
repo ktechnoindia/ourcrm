@@ -164,11 +164,11 @@
 
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.netrate"  [value]="getnetrate()" id="netrate" formControlName="netrate" name="netrate" class="table_input"
+                      <input [(ngModel)]="dcout.netrate"  [value]="getnetrate(dcout)" id="netrate" formControlName="netrate" name="netrate" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.grossrate"  [value]="getgrossrate() " id="grossrate" formControlName="grossrate" name="grossrate"
+                      <input [(ngModel)]="dcout.grossrate"  [value]="getgrossrate(dcout) " id="grossrate" formControlName="grossrate" name="grossrate"
                         class="table_input" type="number">
                     </td>
                     <td class="select-option">
@@ -183,15 +183,15 @@
                     </td>
 
                     <td>
-                      <input [(ngModel)]="dcout.CGST" id="CGST" [value]="getcgst()"  formControlName="CGST" name="CGST" class="table_input"
+                      <input [(ngModel)]="dcout.CGST" id="CGST" [value]="getcgst(dcout)"  formControlName="CGST" name="CGST" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.SGST" id="SGST" [value]="getsgst()"  name="SGST" formControlName="SGST" class="table_input"
+                      <input [(ngModel)]="dcout.SGST" id="SGST" [value]="getsgst(dcout)"  name="SGST" formControlName="SGST" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.IGST" id="IGST"  [value]="getigst()"  name="IGST" formControlName="IGST" class="table_input"
+                      <input [(ngModel)]="dcout.IGST" id="IGST"  [value]="getigst(dcout)"  name="IGST" formControlName="IGST" class="table_input"
                         type="text">
                     </td>
                     <td>
@@ -199,7 +199,7 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.discountamt" id="discountamt"  [value]="getdiscountamt()" formControlName="discountamt" name="discountamt"
+                      <input [(ngModel)]="dcout.discountamt" id="discountamt"  [value]="getdiscountamt(dcout)" formControlName="discountamt" name="discountamt"
                         class="table_input" type="text">
                     </td>
                     <td>
@@ -207,7 +207,7 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.total" id="total" [value]="getTotalamt()" formControlName="total" name="total" class="table_input"
+                      <input [(ngModel)]="dcout.total" id="total" [value]="getTotalamt(dcout)" formControlName="total" name="total" class="table_input"
                         type="text">
 
                     </td>
