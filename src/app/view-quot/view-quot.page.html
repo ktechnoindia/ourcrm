@@ -106,13 +106,9 @@
                   <td>{{quote.total  | currency : 'INR'}}</td>
                   <td>
                     <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
+                    <ion-icon name="trash" (click)="deleteRow(i)"></ion-icon>
                   </td>
                 </tr>
-                
-                
-                
-                
               </table>
             </div>
           </ion-row>
