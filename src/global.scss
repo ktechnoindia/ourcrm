@@ -461,7 +461,7 @@ tr:nth-child(odd) {
     max-height: 20px;
 }
 
-.table_input {
+.row_data .table_input {
     border: none;
     outline: none;
     text-align: center;
@@ -469,9 +469,17 @@ tr:nth-child(odd) {
     max-height: 20px;
 
 }
+tr .table_input {
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 170px;
+    max-height: 20px;
+
+}
 
 
-.table_select {
+ .table_select {
     border: none;
     outline: none;
     text-align: center;
