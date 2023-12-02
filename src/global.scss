@@ -465,7 +465,7 @@ tr:nth-child(odd) {
     border: none;
     outline: none;
     text-align: center;
-    // width: 100px;
+    width: 50px;
     max-height: 20px;
 
 }
@@ -478,7 +478,7 @@ tr:nth-child(odd) {
 
     margin-bottom: 5px;
     margin-top: -5px;
-    width: 100px !important;
+    width: 80px !important;
 }
 
 .back {
@@ -496,6 +496,8 @@ tr:nth-child(odd) {
 
 .description {
     width: 200px !important;
+    outline: none;
+    border: none;
 }
 
 @media(max-width:2222px) {}
@@ -829,7 +831,7 @@ select option {
 .select-option select {
     border: none;
     outline: none;
-    width: 100px !important;
+    width: 85px !important;
     margin: 2px;
     background: none;
     max-height: 20px !important;

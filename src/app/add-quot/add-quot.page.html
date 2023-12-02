@@ -124,11 +124,11 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.itemcode" name="itemcode" id="itemcode" formControlName="itemcode" class="table_input"
+                      <input style="width: 70px;" [(ngModel)]="quote.itemcode" name="itemcode" id="itemcode" formControlName="itemcode" class="table_input"
                         type="text">
                     </td>
                     <td class="select-option">
-                      <select class="select-option" [(ngModel)]="quote.itemname"  name="itemname" formControlName="itemname" 
+                      <select  [(ngModel)]="quote.itemname"  name="itemname" formControlName="itemname" 
                         id="itemname">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
@@ -138,7 +138,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="quote.description" formControlName="description" id="description" name="description"
-                        class="table_input" type="text">
+                        class="description" type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.quantity" formControlName="quantity" id="quantity" name="quantity" class="table_input"
@@ -157,16 +157,16 @@
                       <input [(ngModel)]="quote.mrp" formControlName="mrp" id="mrp" name="mrp" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.basicrate" formControlName="basicrate" id="basicrate" name="basicrate"
+                      <input style="width: 70px;" [(ngModel)]="quote.basicrate" formControlName="basicrate" id="basicrate" name="basicrate"
                         class="table_input" type="number">
 
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.netrate" [value]="getnetrate(quote)" formControlName="netrate" id="netrate" name="netrate"
+                      <input  style="width: 70px;" [(ngModel)]="quote.netrate" [value]="getnetrate(quote)" formControlName="netrate" id="netrate" name="netrate"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " formControlName="grossrate" id="grossrate"
+                      <input  style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " formControlName="grossrate" id="grossrate"
                         name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
@@ -193,19 +193,19 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.discount" formControlName="discount" name="discount" class="table_input"
+                      <input style="width: 90px;" [(ngModel)]="quote.discount" formControlName="discount" name="discount" class="table_input"
                         type="text" id="discount">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.discountamt" [value]="getdiscountamt()" formControlName="discountamt" id="discount"
+                      <input style="width: 100px;" [(ngModel)]="quote.discountamt" [value]="getdiscountamt()" formControlName="discountamt" id="discount"
                         name="discountamt" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.totaltax" [value]="getTotaltax()" formControlName="totaltax" id="totaltax"
+                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax()" formControlName="totaltax" id="totaltax"
                         name="totaltax" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.total" [value]="getTotalamt(quote)" formControlName="total" name="total" id="total"
+                      <input style="width: 90px;" [(ngModel)]="quote.total" [value]="getTotalamt(quote)" formControlName="total" name="total" id="total"
                         class="table_input" type="text">
 
                     </td>
