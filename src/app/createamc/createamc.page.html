@@ -12,10 +12,10 @@
 
 <ion-content>
   <div class="Customer">
-    <ion-card>
+    <div class="container_data">
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Create AMC</ion-title>
@@ -24,131 +24,183 @@
         </div>
         <ion-grid>
 
-          <form  [formGroup]="form" (ngSubmit)="onSubmit()">
-           
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
             <ion-row>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="contactid" formControlName="contactid" name="contact_id" type="text" label="Contract ID : "
+                  <ion-input [(ngModel)]="amc_id" formControlName="amc_id" name="amc_id" type="text" label="Amc I’d  : "
                     label-placement="floating" fill="outline">
                   </ion-input>
-                  <div *ngIf="form && form.controls['contactid']?.hasError('required') && form.controls['contactid'].touched" class="error-message">
-                    Contract Id is required.
-                  </div>
+
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select" [(ngModel)]="cName" formControlName="cName"  name="customer_name" >
-                  <option  value="">--- Customer
-                    Name ---</option>
-                  <option value="">Deepak</option>
-                  <option value="">Ravi</option>
-                  <option value="">Nirbhay</option>
-                  <option value="">Abhishek</option>
-                </select>
-                <div *ngIf="form && form.controls['cName']?.hasError('required') && form.controls['cName'].touched" class="error-message">
-                  Customer Name is required.
-                </div>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+                <ion-input [(ngModel)]="amc_date" formControlName="amc_date" name="amc_date" type="date"
+                  label="Amc Date : " label-placement="floating" fill="outline">
+                </ion-input>
+
               </ion-col>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input  [(ngModel)]="startdate" formControlName="startdate" name="start_date" type="date" label="Start Date :"
-                    label-placement="floating" fill="outline" ></ion-input>
+                  <ion-input [(ngModel)]="cust_code" formControlName="cust_code" name="cust_code" type="text"
+                    label="Customer code  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
-                <div *ngIf="form && form.controls['startdate']?.hasError('required') && form.controls['startdate'].touched" class="error-message">
-                  Start Date is required.
-                </div>
+
               </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="endate" formControlName="endate" name="end_date" type="date" label="End Ddte :"
-                    label-placement="floating" fill="outline" class="sign_input"></ion-input>
-                    <div *ngIf="form && form.controls['endate']?.hasError('required') && form.controls['endate'].touched" class="error-message">
-                      End Date is required.
-                    </div>
+                  <ion-input [(ngModel)]="cust_name" formControlName="cust_name" name="cust_name" type="text"
+                    label="Customer Name :" label-placement="floating" fill="outline" class="sign_input"></ion-input>
+
                 </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input [(ngModel)]="bill_number" formControlName="bill_number" name="bill_number" type="number"
+                    label="From Bill Number :" label-placement="floating" fill="outline"></ion-input>
+
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+
+                <ion-button class="fetch" color="undefined" style="margin-top: 5px;" (click)="presentPopover($event)">
+                  Fetch Bill <ion-icon name="chevron-down-outline"></ion-icon></ion-button>
+                <ion-popover size="auto" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+                  <ng-template  >
+                    <ion-content class="ion-padding ">
+                      <div class="scroll-container">
+                        <table style="width:700px;" class="custom-popover-table">
+                          <tr>
+                            <th style="width:70px;">Sr. No.</th>
+                            <th style="width:200px;"> Item name </th>
+                            <th style="width:80px;">Selling price</th>
+                            <th style="width:100px;">Amc type</th>
+                            <th style="width:100px;">Amc period </th>
+                            <th style="width:80px;">Action</th>
+                          </tr>
+
+                          <tbody>
+                            <tr>
+                              <td class="icons">
+                                1
+                              </td>
+                              <td>
+                                <select class="select-option" name="selectdrcr">
+                                  <option value="0">Item Type</option>
+                                  <option value="1">1</option>
+                                  <option value="2">1</option>
+
+                                </select>
+                              </td>
+
+                              <td>
+                                <ion-input name="saler_price" type="text"></ion-input>
+                              </td>
+                              <td>
+                                <select class="select-option" name="selectdrcr">
+                                  <option value="0">AMC Type</option>
+                                  <option value="1">Computer and IT Equipment AMC:</option>
+                                  <option value="2">Air Conditioning (AC)</option>
+                                  <option value="">Generator AMC</option>
+                                  <option value="">Elevator and Lift AMC</option>
+                                  <option value="">Fire Safety Equipment AMC</option>
+                                  <option value="">Security System AMC</option>
+                                  <option value="">Medical Equipment AMC</option>
+
+                                </select>
+                              </td>
+                              <td>
+
+                                <select class="select-option" name="selectdrcr">
+                                  <option value="0">AMC Period</option>
+                                  <option value="1"> 1 month</option>
+                                  <option value="2">3 month</option>
+                                  <option value="">6 months</option>
+                                  <option value=""> 12 months</option>
+                                  <option value="">Unlimited</option>
+                                  <option value=""> Not Warrnty</option>
+                                </select>
+                              </td>
+                              <td>
+                                <ion-button size="small">Ok</ion-button>
+                              </td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+              </ion-col>
+           
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input [(ngModel)]=" renew_date" formControlName="renew_date" name="renew_date" type="date"
+                    label="Renew Date  :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+
+              </ion-col>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <select class="select" [(ngModel)]=" service_type" formControlName="service_type" name="service_type">
+                    <option value="0">Service Type</option>
+                    <option value="1">Standard </option>
+                    <option value="2">Comprehensive</option>
+                  </select>
+                </ion-row>
+
+              </ion-col>
+
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+                <ion-row>
+                  <ion-input [(ngModel)]=" servic_coverage" formControlName="servic_coverage" name="servic_coverage "
+                    type="text" label="Service Coverage  :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+
               </ion-col>
 
             </ion-row>
 
             <ion-row>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select" [(ngModel)]="contactdur" formControlName="contactdur"  name="contact_dur">
-                  <option value="">--- Contract
-                  Duration ---</option>
-                  <option value="">Monthly</option>
-                  <option value="">Yearly</option>
-                  <option value="">Quartterly</option>
-                </select>
-                <div *ngIf="form && form.controls['contactdur']?.hasError('required') && form.controls['contactdur'].touched" class="error-message">
-                  Contract Duration is required.
-                </div>
-              </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select" [(ngModel)]="cover"  formControlName="cover" name="coverd">
-                  <option  value="">Covered
-                  </option>
-                      <option value="">Billing</option>
-                      <option value="">Accounting</option>
-                      <option value="">GST</option>
-                    </select>
-              </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select" [(ngModel)]="list" formControlName="list"  name="lists">
-                  <option value="">List of
-                  </option>
-                      <option value="">Billing</option>
-                      <option value="">Accounting</option>
-                      <option value="">GST</option>
-                    </select>
-              </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <ion-row>
-                  <ion-input [(ngModel)]="contractvalue" formControlName="contractvalue" name="contract_value" type="number"
-                    label="Contract Value :" label-placement="floating" fill="outline" ></ion-input>
-                    <div *ngIf="form && form.controls['contractvalue']?.hasError('required') && form.controls['contractvalue'].touched" class="error-message">
-                      Contract Value is required.
-                    </div>
-                </ion-row>
-              </ion-col>
+              <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+              <div style="overflow-x:auto; width: 100% ;height: 330px;border: 1px solid grey;">
+                <table style="width: 100%;overflow-x:auto;">
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>AMC Id</th>
+                    <th>Amc date </th>
+                    <th>From bill number</th>
+                    <th>Customer name</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr >
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <ion-icon class="create" name="create"></ion-icon>
+                      <ion-icon class="delete" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </ion-row>
 
-            <ion-row>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <ion-row>
-                  <ion-input [(ngModel)]="payterms" formControlName="payterms" name="pay_terms" type="text"
-                    label=" Payment Terms :" label-placement="floating" fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <ion-row>
-                  <ion-input [(ngModel)]="servicelevel" formControlName="servicelevel" name="service_level" type="text"
-                    label="Service Level Agreements (SLAs) :" label-placement="floating" fill="outline" ></ion-input>
-                </ion-row>
-              </ion-col>
 
-              <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
-                <select class="select" [(ngModel)]="listsla" formControlName="listsla" name="list_sla">
-                  <option  value="">List of SLAs
-                      </option>
-                      <option value="">Billing</option>
-                      <option value="">Accounting</option>
-                      <option value="">GST</option>
-                    </select>
-              </ion-col>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+             
+              <ion-button>Close</ion-button>
             </ion-row>
-
-              <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                <ion-button>New</ion-button>
-                <ion-button type="submit">Save</ion-button>
-                <ion-button>Delete</ion-button>
-                <ion-button>Preview</ion-button>
-                <ion-button>Close</ion-button>
-              </ion-row>
           </form>
         </ion-grid>
       </ion-card-content>
-    </ion-card>
+    </div>
   </div>
 </ion-content>

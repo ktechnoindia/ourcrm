@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -16,34 +16,30 @@ import { CreateamcService,amc } from '../services/createamc.service';
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class CreateamcPage implements OnInit {
-
+  @ViewChild('popover')popover:any; 
   form:FormGroup; 
 
-  contactid:string='';
-  cName:string='';
-  payterms:string='';
-  startdate:string='';
-  endate:string='';
-  contactdur:string='';  
-  cover:string='';
-  list:string='';
-  contractvalue:string='';
-  servicelevel:string='';
-  listsla:string='';
+  amc_id:string='';
+  amc_date:string='';
+  cust_code:string='';
+  cust_name:string='';
+  bill_number:string='';
+  particular:string='';
+  renew_date:string='';
+  service_type:number=0;
+  servic_coverage:string='';
+  isOpen = false;
 
   constructor(private router: Router,private amcService:CreateamcService,private toastCtrl:ToastController,private formBuilder:FormBuilder,) { 
     this.form = this.formBuilder.group({
-      contactid:['',[Validators.required]],
-      cName:['',[Validators.required]],
-      startdate:['',[Validators.required]],
-      endate:['',[Validators.required]],
-      contactdur:['',[Validators.required]],
-      contractvalue:['',[Validators.required]],
-      cover:[''],
-      list:[''],
-      servicelevel:[''],
-      listsla:[''],
-      payterms:['']
+      amc_id:['',],
+      amc_date:['',],
+      cust_code:['',],
+      cust_name:['',],
+      bill_number:['',],
+      renew_date:['',],
+      service_type:['',],
+      servic_coverage:['',],
    })
   }
 
@@ -62,6 +58,11 @@ export class CreateamcPage implements OnInit {
       }
     );
   } 
+}
+
+presentPopover(e: Event) {
+  this.popover.event = e;
+  this.isOpen = true;
 }
 
 

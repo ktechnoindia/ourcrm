@@ -1,40 +1,107 @@
 
-
 .Customer ion-input {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    // outline-width: 2px;
-    // outline-style: initial;
-}
-.Customer ion-textarea {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    background: skyblue;
+    min-height: 33px;
+   outline-width: 2px;
+   outline-style: initial;
+  }
+  
+  .Customer select {
+   width: 100%;
+   text-align: left;
+  }
+  
+  
+  .scroll-container td {
+  background-color: #fff;
+  border: .1px solid grey;
+  max-height: 20px;
+  }
+  
+  .output td {
+   border: 1px solid grey;
+   margin: 5px;
+   // height: 30px;
+  }
+  
+  .output th {
+   text-align: right;
+   border: none;
+   // background-color: #fff;
+   padding-left: 10px;
+  }
+  .scroll-container {
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid;
+  width: 100%;
+  height: 270px;
+  overflow-x: auto;
+  width: 1555px;
+  }
+  .Customer ion-select {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  --max-width: 50px !important;
+  }
+  .delivery-label {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  }
+  .outstanding {
+  border: solid .1px grey;
+  border-radius: 10px;
+  table td {
+   background-color: #fff;
+  }
+  }
+  @media(max-width:540px) {
+   .Customer ion-input {
+     min-height: 25px;
+    font-size: 10px;
+   }
+  
+  }
+  .select-option{
+    border: none;
+    outline: none;
+    width: 100px !important;
+    margin: 2px;
+    background: none;
+    max-height: 20px !important;
+  }
+  .fetch{
+    // --box-shadow:none;
+    font-size: 13px;
+border: 1px solid grey;
+// padding: 5px;
+border-radius: 5px;
 
-}
-
-.Customer ion-select {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    // outline-color: goldenrod;
-    outline-width: 2px;
-    // outline-style: initial;
-}
-
-.Customer select {
-    min-height: 35px;
-    // color: goldenrod;
-    // font-weight: 400;
-    //border-color: goldenrod;
-    width: 100%;
-    text-align: left
-}
-
-ng-template ion-button{
-    color: goldenrod;
-}
+    color: black;
+    margin-bottom: 15px;
+  }
+  ion-popover {
+    --min-width: 600px; /* Set the desired minimum width */
+    --min-height: 200px;
+   
+  }
+  .center-popover {
+    --width: 70%; // Set the width as needed
+    --height: 70%; // Set the height as needed
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  /* Optional: Adjust the width and height of the popover content */
+  .content {
+   /* You can adjust the height as needed */
+    margin: 200px;
+  }
+  
+  ion-card{
+    height: 450px;
+    padding: 10px;
+  }
