@@ -403,12 +403,13 @@ getAllRows() {
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
+  
   getdiscountamt(quote: Quote): number {
-    return quote.netrate * quote.discount/100;
+    return (quote.discount/100) * quote.basicrate * quote.quantity;
   }
   
   getTotalamt(quote:Quote): number {
-    return (quote.quantity * quote.netrate) - quote.discountamt;
+    return quote.basicrate * quote.quantity + quote.totaltax - quote.discountamt;
   }
   getcgst(): number {
     return this.quoteData.reduce((total, quote) => total + +quote.taxrate/2, 0);
@@ -437,7 +438,7 @@ getAllRows() {
   
     // Perform the calculation and update the netrate in the form
     const gstAmount = (basicrate * taxrate) / 100;
-    const netrate = basicrate + taxrate - discount;
+    const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
   }
   goBack() {
