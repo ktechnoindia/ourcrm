@@ -403,8 +403,8 @@ getAllRows() {
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
-  getdiscountamt(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.discount/100 * + quote.quantity), 0);
+  getdiscountamt(quote: Quote): number {
+    return quote.netrate * quote.discount/100;
   }
   
   getTotalamt(quote:Quote): number {

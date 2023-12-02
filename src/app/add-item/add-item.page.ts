@@ -148,7 +148,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       itemCode: this.myform.value.itemCode,
       hsnname: this.myform.value.hsnname,
       selectHSN:1,
-      unitname:'x',
+      unitname:'unitname',
       selectItem:1,
       selectStock:1,
       selectPrimaryUnit:1,
@@ -227,7 +227,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
     }
   }
   goBack() {
-    this.router.navigate(['/item-master']); // Navigate back to the previous page
+    this.router.navigate(['/masterdashboard']); // Navigate back to the previous page
   }
 
 }

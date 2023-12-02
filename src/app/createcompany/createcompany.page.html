@@ -94,7 +94,7 @@
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="phone" formControlName="phone" name="mobileno" type="text"
+                  <ion-input [(ngModel)]="phone" formControlName="phone" maxlength="10" name="mobileno" type="tel"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
                    
                 </ion-row>
@@ -102,7 +102,7 @@
 
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="whatshappnumber" type="text"
+                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" maxlength="10" name="whatshappnumber" type="tel"
                     label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -181,14 +181,14 @@
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="phone1" formControlName="phone1" name="mobileno1" type="text"
+                  <ion-input [(ngModel)]="phone1" formControlName="phone1" name="mobileno1" type="tel" maxlength="10"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="wpnumber1" formControlName="wpnumber1" name="whatshappnumber1" type="text"
+                  <ion-input [(ngModel)]="wpnumber1" formControlName="wpnumber1" name="whatshappnumber1" type="tel" maxlength="10"
                     label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
