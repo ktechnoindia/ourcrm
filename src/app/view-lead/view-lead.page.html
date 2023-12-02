@@ -99,8 +99,8 @@
                       <td>{{leadscore.executivename}}</td>
                       <td>{{leadscore.rmark}}</td>
                       <td>
-                        <ion-icon class="create"[routerLink]="['/leadedit']" name="create"></ion-icon>
-                        <ion-icon class="delete" name="trash"></ion-icon>
+                        <ion-icon class="create" (click)="editRow(i)" name="create"></ion-icon>
+                        <ion-icon class="delete" name="trash" (click)="deleteRow(i)"></ion-icon>
                       </td>
                     </tr>
                     

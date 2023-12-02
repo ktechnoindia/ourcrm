@@ -61,4 +61,14 @@ export class ViewQuotPage implements OnInit {
     this.router.navigate(["/add-quote"])
   }
 
+
+  deleteRow(index: number): void {
+    this.quote$.subscribe(data => {
+      // Assuming quote$ is an array inside the Observable, remove the item at the specified index
+      this.quote$ = new Observable(observer => {
+        observer.next(data.filter((_, i) => i !== index));
+        observer.complete();
+      });
+    });
+  }
 }
