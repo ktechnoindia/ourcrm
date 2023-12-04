@@ -394,8 +394,31 @@ export class DcInPage implements OnInit {
     const gstAmount = (discount / 100)*basicrate*quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
+
+
+
+    
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
+  onSelectChange(select: HTMLSelectElement) {
+    const selectedValue = select.value;
+    const selectedIndex = select.selectedIndex;
+    const selectedText = select.options[selectedIndex].text;
+
+    console.log('Selected value:', selectedValue);
+    console.log('Selected text:', selectedText);
+
+    // Extracting a number from the selectedText using parseFloat
+    const numericValue = parseFloat(selectedText);
+
+    if (!isNaN(numericValue)) {
+      console.log('Numeric value:', numericValue);
+      // Use numericValue as needed
+    } else {
+      console.error('Selected text does not represent a valid number.');
+    }
+  }
+
 }

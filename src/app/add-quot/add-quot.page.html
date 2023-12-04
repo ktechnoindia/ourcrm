@@ -181,16 +181,13 @@
                     </td>
 
                     <td>
-                      <input [(ngModel)]="quote.CGST" formControlName="CGST" [value]="getcgst(quote)" name="CGST" class="table_input" id="CGST"
-                        type="text">
+                      <input [value]="getsgst(quote)"  [(ngModel)]="quote.CGST" formControlName="CGST" name="CGST" class="table_input" id="CGST">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.SGST" formControlName="SGST" [value]="getsgst(quote)" name="SGST" class="table_input" id="SGST"
-                        type="text">
+                      <input [value]="getcgst(quote)"  [(ngModel)]="quote.SGST" formControlName="SGST" name="SGST" class="table_input" id="SGST">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.IGST" formControlName="IGST" [value]="getigst(quote)"  name="IGST" class="table_input" id="IGST"
-                        type="text">
+                      <input [value]="getigst(quote)"  [(ngModel)]="quote.IGST" formControlName="IGST" name="IGST" class="table_input" id="IGST">
                     </td>
                     <td>
                       <input style="width: 90px;" [(ngModel)]="quote.discount"  formControlName="discount" name="discount" class="table_input"

@@ -41,8 +41,9 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="voucherNumber" name="vouchno" formControlName="voucherNumber" type="text"
-                    label="Voucher No. :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input #firstInvalidInput [(ngModel)]="voucherNumber" name="vouchno"
+                    formControlName="voucherNumber" type="text" label="Voucher No. :" label-placement="floating"
+                    fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -98,40 +99,41 @@
               <div class="scroll-container">
                 <table style="width:1755px;overflow-x:auto;">
                   <tr>
-                    <th >Sr.No.</th>
+                    <th>Sr.No.</th>
                     <th>BarCode</th>
-                    <th >Item Code</th>
-                    <th >Item Name</th>
-                    <th >Description</th>
-                    <th >Quantity</th>
-                    <th >Unit</th>
-                    <th >MRP</th>
-                    <th >Basic Rate</th>
-                    <th >Net Rate</th>
-                    <th >Gross Amount</th>
-                    <th >GST</th>
-                    <th >CGST</th>
-                    <th >SGST</th>
-                    <th >IGST</th>
-                    <th >Discount %</th>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>MRP</th>
+                    <th>Basic Rate</th>
+                    <th>Net Rate</th>
+                    <th>Gross Amount</th>
+                    <th>GST</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>IGST</th>
+                    <th>Discount %</th>
                     <th>Discount Amount</th>
-                    <th >Tax Amount</th>
-                    <th >Net Amount</th>
-                    <th >Action</th>
+                    <th>Tax Amount</th>
+                    <th>Net Amount</th>
+                    <th>Action</th>
                   </tr>
                   <tr *ngFor="let dcout of dcoutData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="dcout.barcode" id="barcode" formControlName="barcode" name="barcode" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.barcode" id="barcode" formControlName="barcode" name="barcode"
+                        class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.itemcode" id="itemcode" formControlName="itemcode" name="itemcode" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.itemcode" id="itemcode" formControlName="itemcode" name="itemcode"
+                        class="table_input" type="text">
                     </td>
                     <td class="select-option">
 
-                      <select class="select-option" id="itemname" [(ngModel)]=" dcout.itemname" name="itemname" formControlName="itemname">
+                      <select class="select-option" id="itemname" [(ngModel)]=" dcout.itemname" name="itemname"
+                        formControlName="itemname">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
@@ -139,12 +141,12 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.description" id="description" formControlName="description" name="description"
-                        class="table_input description" type="text">
+                      <input [(ngModel)]="dcout.description" id="description" formControlName="description"
+                        name="description" class="table_input description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.quantity" id="quantity" formControlName="quantity" name="quantity" class="table_input"
-                        type="number">
+                      <input [(ngModel)]="dcout.quantity" id="quantity" formControlName="quantity" name="quantity"
+                        class="table_input" type="number">
 
                     </td>
                     <td class="select-option">
@@ -156,7 +158,8 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.mrp" id="mrp" formControlName="mrp" name="mrp" class="table_input" type="text">
+                      <input [(ngModel)]="dcout.mrp" id="mrp" formControlName="mrp" name="mrp" class="table_input"
+                        type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.basicrate" id="basicrate" formControlName="basicrate" name="basicrate"
@@ -164,18 +167,17 @@
 
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.netrate"  [value]="getnetrate(dcout)" id="netrate" formControlName="netrate" name="netrate" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.netrate" [value]="getnetrate(dcout)" id="netrate"
+                        formControlName="netrate" name="netrate" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.grossrate"  [value]="getgrossrate(dcout) " id="grossrate" formControlName="grossrate" name="grossrate"
-                        class="table_input" type="number">
+                      <input [(ngModel)]="dcout.grossrate" [value]="getgrossrate(dcout) " id="grossrate"
+                        formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
-                      <select interface="popover" id="taxrate" [(ngModel)]="dcout.taxrate" formControlName="taxrate" name="taxrate"
-                        id="taxrate">
+                      <select #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcout.taxrate"
+                        formControlName="taxrate" name="taxrate" id="taxrate">
                         <option value="0">Select GST</option>
-                        <!-- Default option with value 0 -->
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
@@ -183,32 +185,32 @@
                     </td>
 
                     <td>
-                      <input [(ngModel)]="dcout.CGST" id="CGST" [value]="getcgst(dcout)"  formControlName="CGST" name="CGST" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.CGST" id="CGST" [value]="getcgst(dcout)" formControlName="CGST"
+                        name="CGST" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.SGST" id="SGST" [value]="getsgst(dcout)"  name="SGST" formControlName="SGST" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.SGST" id="SGST" [value]="getsgst(dcout)" name="SGST"
+                        formControlName="SGST" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.IGST" id="IGST"  [value]="getigst(dcout)"  name="IGST" formControlName="IGST" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.IGST" id="IGST" [value]="getigst(dcout)" name="IGST"
+                        formControlName="IGST" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.discount" id="discount" formControlName="discount" name="discount" class="table_input"
-                        type="text">
-                    </td>
-                    <td>
-                      <input [(ngModel)]="dcout.discountamt" id="discountamt"  [value]="getdiscountamt(dcout)" formControlName="discountamt" name="discountamt"
+                      <input [(ngModel)]="dcout.discount" id="discount" formControlName="discount" name="discount"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.totaltax" id="totaltax" [value]="getTotaltax()" formControlName="totaltax" name="totaltax" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.discountamt" id="discountamt" [value]="getdiscountamt(dcout)"
+                        formControlName="discountamt" name="discountamt" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.total" id="total" [value]="getTotalamt(dcout)" formControlName="total" name="total" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="dcout.totaltax" id="totaltax" [value]="getTotaltax()"
+                        formControlName="totaltax" name="totaltax" class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="dcout.total" id="total" [value]="getTotalamt(dcout)" formControlName="total"
+                        name="total" class="table_input" type="text">
 
                     </td>
 
@@ -220,43 +222,49 @@
                   </tr>
                 </table>
               </div>
-              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;" >
-                
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+
                 <ion-row>
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total Item :</label>
-                    <input name="totalitemno" [(ngModel)]="dcoutData.length"   formControlName="totalitemno" class="input_table" type="text" >
+                    <input name="totalitemno" [(ngModel)]="dcoutData.length" formControlName="totalitemno"
+                      class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
-                    
-                    <input name="totalquantity" [(ngModel)]="totalquantity"  [value]="getTotalQuantity()" formControlName="totalquantity"  class="input_table" type="text">
-                  
+
+                    <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
+                      formControlName="totalquantity" class="input_table" type="text">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()" formControlName="totalgrossamt" class="input_table" type="text" >
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
+                      formControlName="totalgrossamt" class="input_table" type="text">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" formControlName="totaldiscountamt" class="input_table" type="text">
-                 
+                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                      formControlName="totaldiscountamt" class="input_table" type="text">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" formControlName="totaltaxamount" class="input_table" type="text">
-                 
-                   </ion-col>
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                      formControlName="totaltaxamount" class="input_table" type="text">
 
-                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount"  formControlName="totalnetamount" class="input_table" type="text" >
-               
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                      class="input_table" type="text">
+
                   </ion-col>
                 </ion-row>
               </div>
@@ -348,22 +356,24 @@
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>
-                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" id="totaldiscountamt"
-                          formControlName="totaldiscountamt" name="totaldiscountamt" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                          id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
+                          class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Tax Amount : </th>
-                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" id="totaltaxamount"
-                          formControlName="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                          id="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" id="roundoff"
-                          class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
+                          id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
@@ -374,15 +384,15 @@
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
-                      <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax" id="posttax"
-                          class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
+                          id="posttax" class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount" id="totalnetamount"
-                          name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                          id="totalnetamount" name="totalnetamount" class="row_input" type="text">
                       </td>
                     </tr>
                   </table>
@@ -396,7 +406,7 @@
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-            
+
               <ion-button id="open-loading4">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
@@ -408,5 +418,5 @@
         </ion-grid>
       </ion-card-content>
     </div>
-    </div>
+  </div>
 </ion-content>
