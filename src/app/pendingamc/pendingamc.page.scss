@@ -1,4 +1,7 @@
-
+.Customer{
+    width:70%;
+    margin-left: 15%;
+}
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -36,4 +39,10 @@
 
 ng-template ion-button{
     color: goldenrod;
+}
+@media(max-width:950px){
+    .Customer{
+        width: 100%;
+        margin-left: 0%;
+    }
 }

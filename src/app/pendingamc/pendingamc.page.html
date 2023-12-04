@@ -1,14 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-item lines="none">
-      <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-      <ion-title>Pending AMC</ion-title>
-    </ion-item>
-  </ion-toolbar>
-</ion-header> -->
+
 
 <ion-content>
   <div class="Customer">
@@ -67,40 +57,38 @@
               <table style="width: 100%;">
                 <tr>
                   <th>Sr.No.</th>
-                  <th>Contract Numbe</th>
+                  <th>AMC Id</th>
+                  <th>Customer Code</th>
                   <th>Customer Name</th>
-                  <th>Contract Start Date</th>
-                  <th> Contract End Date</th>
+                  <th>Phone Number</th>
+                  <th>Item Name</th>
+                  <th>AMC Start Date</th>
+                  <th>AMC End Date</th>
                   <th>Action</th>
                 </tr>
                 <tr>
-                  <td>1.</td>
+                  <td>1</td>
                   <td>AMC001</td>
-                  <td> ABC Company </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
+                  <td>CUST001</td>
+                  <td>John Doe</td>
+                  <td>123-456-7890</td>
+                  <td>Product A</td>
+                  <td>2023-01-01</td>
+                  <td>2024-01-01</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
                 </tr>
                 <tr>
-                  <td>2.</td>
+                  <td>2</td>
                   <td>AMC002</td>
-                  <td> XYZ Inc. </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>AMC003</td>
-                  <td> LMN Corporation </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
+                  <td>CUST002</td>
+                  <td>Jane Smith</td>
+                  <td>987-654-3210</td>
+                  <td>Product B</td>
+                  <td>2023-02-01</td>
+                  <td>2024-02-01</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
@@ -113,9 +101,7 @@
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
+           
           </ion-row>
 
         </ion-grid>
