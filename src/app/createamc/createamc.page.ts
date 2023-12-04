@@ -71,5 +71,4 @@ presentPopover(e: Event) {
   goBack() {
     this.router.navigate(['/amc-manager']); // Navigate back to the previous page
   }
-
 }

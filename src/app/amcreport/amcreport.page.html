@@ -54,58 +54,68 @@
           </ion-row>
           <ion-row>
             <div style="overflow-x:auto;width: 100%;">
-              <table style="width: 100%;">
+              <table style="width: 100%; overflow-x: auto;">
                 <tr>
                   <th>Sr.No.</th>
-                  <th>Contract Number</th>
+                  <th>AMC Id</th>
+                  <th>AMC Date</th>
+                  <th>Customer Code</th>
                   <th>Customer Name</th>
-                  <th>Contract Start Date</th>
-                  <th> Contract End Date</th>
+                  <th>Renew Date</th>
+                  <th>Service Type</th>
+                  <th>Service Coverage</th>
+                  <th>Item Name</th>
+                  <th>Selling Price</th>
+                  <th>AMC Type</th>
+                  <th>AMC Status</th>
                   <th>Action</th>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>AMC001</td>
-                  <td> ABC Company  </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
+                  <td>2023-01-15</td>
+                  <td>CUST001</td>
+                  <td>John Doe</td>
+                  <td>2023-12-31</td>
+                  <td>Annual</td>
+                  <td>Full Coverage</td>
+                  <td>Product A</td>
+                  <td>5000</td>
+                  <td>Comprehensive</td>
+                  <td>Active</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
                 </tr>
                 <tr>
-                  <td>1</td>
+                  <td>2</td>
                   <td>AMC002</td>
-                  <td> XYZ Inc.   </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
+                  <td>2023-02-20</td>
+                  <td>CUST002</td>
+                  <td>Jane Smith</td>
+                  <td>2023-11-30</td>
+                  <td>Bi-Annual</td>
+                  <td>Partial Coverage</td>
+                  <td>Product B</td>
+                  <td>3000</td>
+                  <td>Standard</td>
+                  <td>Inactive</td>
                   <td>
                     <ion-icon class="create" name="create"></ion-icon>
                     <ion-icon class="delete" name="trash"></ion-icon>
                   </td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>AMC003</td>
-                  <td> LMN Corporation  </td>
-                  <td>2023-01-15 </td>
-                  <td>2024-01-15 </td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
+                <!-- Add more rows with dummy data as needed -->
               </table>
+              
             </div>
           </ion-row>
 
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
+         
           </ion-row>
         </ion-grid>
       </ion-card-content>
