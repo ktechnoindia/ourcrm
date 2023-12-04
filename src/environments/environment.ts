@@ -78,7 +78,9 @@ export const environment = {
   getlang:'lang',
   toasttiming:2000,
   addpayment:'payment',
- addrecepit:'recepit'
+ addrecepit:'recepit',
+ addamc:'amc',
+fetchamc:'getamc'
 
 };
 
