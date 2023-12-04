@@ -195,9 +195,8 @@
                     <input [(ngModel)]="purchase.grossrate" [value]="getgrossrate(purchase) " id="grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
                   </td>
                   <td class="select-option">
-                    <select interface="popover" [(ngModel)]="purchase.taxrate" id="taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
+                    <select  #taxrate (change)="onSelectChange(taxrate)"  [(ngModel)]="purchase.taxrate" id="taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
                       <option value="0">Select GST</option>
-                      <!-- Default option with value 0 -->
                       <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                         {{ gsttype.gstname }}
                       </option>

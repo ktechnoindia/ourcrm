@@ -491,5 +491,23 @@ this.orderDate=new Date().toLocaleDateString();
     goBack() {
       this.router.navigate(["/transcationdashboard"])
     }
+    onSelectChange(select: HTMLSelectElement) {
+      const selectedValue = select.value;
+      const selectedIndex = select.selectedIndex;
+      const selectedText = select.options[selectedIndex].text;
+  
+      console.log('Selected value:', selectedValue);
+      console.log('Selected text:', selectedText);
+  
+      // Extracting a number from the selectedText using parseFloat
+      const numericValue = parseFloat(selectedText);
+  
+      if (!isNaN(numericValue)) {
+        console.log('Numeric value:', numericValue);
+        // Use numericValue as needed
+      } else {
+        console.error('Selected text does not represent a valid number.');
+      }
+    }
   }
   
