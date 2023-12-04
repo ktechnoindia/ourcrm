@@ -31,7 +31,6 @@ import { GstService } from './services/gst.service';
 // import { AddexecutiveService } from './services/addexecutive.service';
 import { RoleofexecutiveService } from './services/roleofexecutive.service';
 import { AddaccountserviceService } from './services/addaccountservice.service';
-import { CreateamcService } from './services/createamc.service';
 import { AdditemService } from './services/additem.service';
 import { AddgroupService } from './services/addgroup.service';
 import { CreateunitService } from './services/createunit.service';
@@ -59,7 +58,7 @@ import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 import { CustomStorageModule } from './interceptors/custom-storage.module';
 import { SharedService } from './shared.service';
 import {  NavigationEnd } from '@angular/router'
-
+import { AmcService } from './services/amc.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -67,8 +66,8 @@ import {  NavigationEnd } from '@angular/router'
   standalone: true,
   imports: [IonicModule, RouterLink, RouterLinkActive,NgApexchartsModule, CommonModule,RouterModule,FormsModule,HttpClientModule,ReactiveFormsModule,HttpInterceptorModule,CustomStorageModule],
   providers: [ItemtypeService, LeadsourceService,FollowupService,StocktypeService, LeadService,DcinService,DcoutService,SalesService,PurchaseService,QuotationService,UpdatequoteService,EditleadService,CreatecompanyService,
-    CustomertypeService,AddgroupService,CreateunitService,AdditemService,CreateamcService,AddaccountserviceService,RoleofexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
- AddattributeService,UsercreateService,SignupService,InterceptorProvider,PasswordService,LoginService,BarcodeService,SalereturnService,PurchasereturnService
+    CustomertypeService,AddgroupService,CreateunitService,AdditemService,AddaccountserviceService,RoleofexecutiveService,GstService,AddserviceService,LegderService,VendorService,ExecutiveService,CustomerService,SegmentService,CgsttypeService,BusinesstypeService,HsnService,GsttypeService,IndustrytypeService,CountryService,roletypesservice,StateService,DistrictsService,GsttypeService,UnitnameService,
+ AddattributeService,UsercreateService,SignupService,InterceptorProvider,PasswordService,LoginService,BarcodeService,SalereturnService,PurchasereturnService,AmcService
  ],
 })
 export class AppComponent {
