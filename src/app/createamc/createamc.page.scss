@@ -1,107 +1,108 @@
-
 .Customer ion-input {
-    min-height: 33px;
-   outline-width: 2px;
-   outline-style: initial;
-  }
-  
-  .Customer select {
-   width: 100%;
-   text-align: left;
-  }
-  
-  
-  .scroll-container td {
+  min-height: 33px;
+  outline-width: 2px;
+  outline-style: initial;
+}
+
+.Customer select {
+  width: 100%;
+  text-align: left;
+}
+
+
+.scroll-container td {
   background-color: #fff;
   border: .1px solid grey;
-  max-height: 20px;
-  }
-  
-  .output td {
-   border: 1px solid grey;
-   margin: 5px;
-   // height: 30px;
-  }
-  
-  .output th {
-   text-align: right;
-   border: none;
-   // background-color: #fff;
-   padding-left: 10px;
-  }
-  .scroll-container {
+  max-height: 10px;
+}
+
+
+.scroll-container {
   overflow-x: auto;
   width: 100%;
   max-width: 100%;
   border: 1px solid;
   width: 100%;
-  height: 270px;
+  height: 350px;
   overflow-x: auto;
   width: 1555px;
-  }
-  .Customer ion-select {
+}
+
+.Customer ion-select {
   margin-top: -10px;
   margin-bottom: -10px;
   --max-width: 50px !important;
-  }
-  .delivery-label {
+}
+
+.delivery-label {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 10px;
-  }
-  .outstanding {
-  border: solid .1px grey;
-  border-radius: 10px;
-  table td {
-   background-color: #fff;
-  }
-  }
-  @media(max-width:540px) {
-   .Customer ion-input {
-     min-height: 25px;
-    font-size: 10px;
-   }
-  
-  }
-  .select-option{
-    border: none;
-    outline: none;
-    width: 100px !important;
-    margin: 2px;
-    background: none;
-    max-height: 20px !important;
-  }
-  .fetch{
-    // --box-shadow:none;
-    font-size: 13px;
-border: 1px solid grey;
-// padding: 5px;
-border-radius: 5px;
+}
+.seletc_amc{
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
 
-    color: black;
-    margin-bottom: 15px;
+}
+.fetch {
+  // --box-shadow:none;
+  font-size: 11px;
+  border: 1px solid lightgray;
+  // padding: 0px;
+  border-radius: 5px;
+  color: #1a4174;
+  min-height: 10px;
+  width: 100%;
+}
+
+ion-popover {
+  --min-width: 900px;
+  /* Set the desired minimum width */
+  --min-height: 350px;
+
+}
+
+.Customer select {
+  min-height: 35px;
+
+  width: 100%;
+  text-align: left;
+  // border-color: #646464;
+  border-radius: 4px;
+  border-width: 1px;
+  box-shadow: 0 0 2px 2px #fffbfb;
+  color: #1a4174;
+  padding-left: 12px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Optional: Adjust the width and height of the popover content */
+.content {
+  /* You can adjust the height as needed */
+  margin: 200px;
+}
+
+ion-card {
+  height: 450px;
+  padding: 10px;
+}
+
+@media(max-width:540px) {
+  .Customer ion-input {
+    min-height: 25px;
+    font-size: 10px;
   }
+
+}
+
+@media(max-width:650px) {
   ion-popover {
-    --min-width: 600px; /* Set the desired minimum width */
+    --min-width: 100%;
+    /* Set the desired minimum width */
     --min-height: 200px;
-   
+
   }
-  .center-popover {
-    --width: 70%; // Set the width as needed
-    --height: 70%; // Set the height as needed
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  
-  /* Optional: Adjust the width and height of the popover content */
-  .content {
-   /* You can adjust the height as needed */
-    margin: 200px;
-  }
-  
-  ion-card{
-    height: 450px;
-    padding: 10px;
-  }
+
+}

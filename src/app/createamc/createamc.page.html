@@ -27,7 +27,7 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <ion-row>
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="amc_id" formControlName="amc_id" name="amc_id" type="text" label="Amc I’d  : "
                     label-placement="floating" fill="outline">
@@ -35,36 +35,41 @@
 
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-input [(ngModel)]="amc_date" formControlName="amc_date" name="amc_date" type="date"
                   label="Amc Date : " label-placement="floating" fill="outline">
                 </ion-input>
 
               </ion-col>
 
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="cust_code" formControlName="cust_code" name="cust_code" type="text"
                     label="Customer code  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
 
               </ion-col>
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="cust_name" formControlName="cust_name" name="cust_name" type="text"
-                    label="Customer Name :" label-placement="floating" fill="outline" class="sign_input"></ion-input>
+                  <select class="select" [(ngModel)]=" cust_name" name="cust_name" formControlName="cust_name">
+                    <option value="0">Customer Name</option>
+                    <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                      {{ customername.name }}
+                    </option>
+                  </select>
 
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="bill_number" formControlName="bill_number" name="bill_number" type="number"
                     label="From Bill Number :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
-
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
+            </ion-row>
+            <ion-row style="margin-top: 5px;">
+                 <ion-col size-lg="2" size-md="6" size-sm="6" size="12">
 
                 <ion-button class="fetch" color="undefined" style="margin-top: 5px;" (click)="presentPopover($event)">
                   Fetch Bill <ion-icon name="chevron-down-outline"></ion-icon></ion-button>
@@ -72,35 +77,35 @@
                   <ng-template  >
                     <ion-content class="ion-padding ">
                       <div class="scroll-container">
-                        <table style="width:700px;" class="custom-popover-table">
+                        <table style="width:100%;" >
                           <tr>
-                            <th style="width:70px;">Sr. No.</th>
-                            <th style="width:200px;"> Item name </th>
-                            <th style="width:80px;">Selling price</th>
-                            <th style="width:100px;">Amc type</th>
-                            <th style="width:100px;">Amc period </th>
-                            <th style="width:80px;">Action</th>
+                            <th >Sr. No.</th>
+                            <th > Item name </th>
+                            <th >Selling price</th>
+                            <th >Amc type</th>
+                            <th >Amc period </th>
+                            <th >Action</th>
                           </tr>
 
                           <tbody>
-                            <tr>
+                            <tr style="min-height: 20px!important;">
                               <td class="icons">
                                 1
                               </td>
                               <td>
-                                <select class="select-option" name="selectdrcr">
-                                  <option value="0">Item Type</option>
-                                  <option value="1">1</option>
-                                  <option value="2">1</option>
-
-                                </select>
+                                <select class="seletc_amc" [(ngModel)]="itemname"  name="itemname" formControlName="itemname" >
+                                <option value="0">Item Type</option>
+                                <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
+                                  {{ item .itemDesc }}
+                                </option>
+                              </select>
                               </td>
 
                               <td>
                                 <ion-input name="saler_price" type="text"></ion-input>
                               </td>
                               <td>
-                                <select class="select-option" name="selectdrcr">
+                                <select class="seletc_amc" name="selectdrcr">
                                   <option value="0">AMC Type</option>
                                   <option value="1">Computer and IT Equipment AMC:</option>
                                   <option value="2">Air Conditioning (AC)</option>
@@ -114,7 +119,7 @@
                               </td>
                               <td>
 
-                                <select class="select-option" name="selectdrcr">
+                                <select class="seletc_amc"  name="selectdrcr">
                                   <option value="0">AMC Period</option>
                                   <option value="1"> 1 month</option>
                                   <option value="2">3 month</option>

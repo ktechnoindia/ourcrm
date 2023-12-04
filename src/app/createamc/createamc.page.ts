@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateamcService,amc } from '../services/createamc.service';
+import { CustomerService } from '../services/customer.service';
+import { EncryptionService } from '../services/encryption.service';
+import { AdditemService } from '../services/additem.service';
 
 
 @Component({
@@ -22,15 +25,18 @@ export class CreateamcPage implements OnInit {
   amc_id:string='';
   amc_date:string='';
   cust_code:string='';
-  cust_name:string='';
+  cust_name:number=0;
   bill_number:string='';
   particular:string='';
   renew_date:string='';
   service_type:number=0;
   servic_coverage:string='';
+  itemname:number=0;
   isOpen = false;
+  customer$: any;
+  itemnames$: any;
 
-  constructor(private router: Router,private amcService:CreateamcService,private toastCtrl:ToastController,private formBuilder:FormBuilder,) { 
+  constructor(private router: Router,private amcService:CreateamcService,private toastCtrl:ToastController,private formBuilder:FormBuilder,private custname1:CustomerService,private encService: EncryptionService,private itemService:AdditemService,) { 
     this.form = this.formBuilder.group({
       amc_id:['',],
       amc_date:['',],
@@ -40,7 +46,11 @@ export class CreateamcPage implements OnInit {
       renew_date:['',],
       service_type:['',],
       servic_coverage:['',],
+      itemname:['']
    })
+   const compid = '1';
+   this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
+   this.itemnames$ = this.itemService.getAllItems();
   }
 
   onSubmit() {
