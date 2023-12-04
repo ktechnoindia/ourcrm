@@ -12,26 +12,24 @@
         </div>
         <ion-grid>
         <form #viewQuoteForm="ngForm" (ngSubmit)="onSubmit()">
-          <ion-row style="margin-top: 5px;">
-            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-            
-            </ion-col>
-            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+          <ion-row>
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label="From Date :"
-                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+                <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size-lg="4" size-md="6" size-sm="6" size="12">
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label="To Date :"
-                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-              <ion-button  style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
+            <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+              <ion-button  expand="block">Ok</ion-button>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
           </ion-row>
