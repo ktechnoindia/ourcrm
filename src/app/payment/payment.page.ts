@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { CreatecompanyService } from '../services/createcompany.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-payment',
@@ -50,8 +51,8 @@ export class PaymentPage implements OnInit {
   myform:FormGroup;
   isOpen = false;
   companys$: Observable<any[]>;
-
-  constructor(private datePipe: DatePipe, private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,) { 
+  customer$: any;
+  constructor(private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private custname1:CustomerService,) { 
      
 this.myform= this.formBuilder.group({
   voucherNumber:[''],
@@ -75,6 +76,8 @@ this.myform= this.formBuilder.group({
 
 const compid='1';
 this.companys$ = this.companyService.fetchallcompany(compid,'','');
+
+this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
 console.log(this.companys$);
   }
 

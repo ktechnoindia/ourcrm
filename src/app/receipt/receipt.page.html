@@ -56,11 +56,11 @@
                       <tr>
                         <td class="select-option">
                           <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
-                            <option value="0"> Ledger Name</option>
-                            <option value="1">Company 1</option>
-                            <option value="2">Company 2</option>
-                            <option value="3">Company 3</option>
-                            <option value="4">Company 4</option>
+                            <option value="0">Ledger Name</option>
+                            <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
+                              {{ suppliername.name }}
+                            </option>
+                          
                           </select>
                         </td>
                         <td>

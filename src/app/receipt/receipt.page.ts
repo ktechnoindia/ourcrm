@@ -3,9 +3,13 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { RecepitService,rec } from '../services/recepit.service'; 
+import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
+import { CreatecompanyService } from '../services/createcompany.service';
+import { Observable } from 'rxjs';
+import { PurchaseService } from '../services/purchase.service';
+import { VendorService } from '../services/vendor.service';
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.page.html',
@@ -16,56 +20,62 @@ import { FormValidationService } from '../form-validation.service';
 
 })
 export class ReceiptPage implements OnInit {
-  @ViewChild('popover') popover:any
+  @ViewChild('popover') popover: any
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  voucherNumber:string='';
-  paymentdate:string='';
-  ledgername:number=0;
-  companyname:number=0;
-  debit:string='';
-  credit:string='';
-  total:string='';
-  balance:string='';
+  voucherNumber: string = '';
+  paymentdate: string = '';
+  ledgername: number = 0;
+  companyname: number = 0;
+  debit: string = '';
+  credit: string = '';
+  total: string = '';
+  balance: string = '';
 
-  ledger_name:string='';
-  total_payment:string='';
-  billtype:number=0;
-  date:string='';
-  selectdrcr:number=0;
-  particular:string='';
-  datetype:string='';
-  reference:string='';
-  oriamount:string='';
-  balanceamt:string='';
-  sale_person:string='';
-  debittype:string='';
-  credittype:string='';
-  totalamt:string='';
+  ledger_name: string = '';
+  total_payment: string = '';
+  billtype: number = 0;
+  date: string = '';
+  selectdrcr: number = 0;
+  particular: string = '';
+  datetype: string = '';
+  reference: string = '';
+  oriamount: string = '';
+  balanceamt: string = '';
+  sale_person: string = '';
+  debittype: string = '';
+  credittype: string = '';
+  totalamt: string = '';
 
-  myform:FormGroup;
+  myform: FormGroup;
   isOpen = false;
+  companys$: Observable<any[]>;
+  supplier$: any;
 
-  constructor(private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private recepitService:RecepitService,private encService:EncryptionService, private formService: FormValidationService,) { 
-this.myform= this.formBuilder.group({
-  voucherNumber:[''],
-  paymentdate:[''],
-  ledgername:[''],
-  companyname:[''],
-  debit:[''],
-  credit:[''],
-  total:[''],
-  balance:[''],
-  total_payment:[''],
-  billtype:[''],
-  selectdrcr:[''],
-  particular:[''],
-  datetype:[''],
-  reference:[''],
-  oriamount:[''],
-  balanceamt:[''],
-  sale_person:[''],
-})
+  constructor(private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private vendname1:VendorService,) {
+    this.myform = this.formBuilder.group({
+      voucherNumber: [''],
+      paymentdate: [''],
+      ledgername: [''],
+      companyname: [''],
+      debit: [''],
+      credit: [''],
+      total: [''],
+      balance: [''],
+      total_payment: [''],
+      billtype: [''],
+      selectdrcr: [''],
+      particular: [''],
+      datetype: [''],
+      reference: [''],
+      oriamount: [''],
+      balanceamt: [''],
+      sale_person: [''],
+    });
+    const compid = '1';
+    this.companys$ = this.companyService.fetchallcompany(compid, '', '');
+    console.log(this.companys$);
+    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
   }
 
   presentPopover(e: Event) {
@@ -76,20 +86,20 @@ this.myform= this.formBuilder.group({
     const fields = {}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-  
+
       console.log('Your form data : ', this.myform.value);
       const recepitdata: rec = {
-        voucherNumber:this.myform.value.voucherNumber,paymentdate:this.myform.value.paymentdate,ledgername:this.myform.value.ledgername,companyname:this.myform.value.companyname,debit:this.myform.value.debit,credit:this.myform.value.credit,total:this.myform.value.total,balance:this.myform.value.balance, total_payment:this.myform.value.total_payment,billtype:this.myform.value.billtype,selectdrcr:this.myform.value.selectdrcr,particular:this.myform.value.particular,datetype:this.myform.value.datetype,reference:this.myform.value.reference,oriamount:this.myform.value.oriamount,balanceamt:this.myform.value.balanceamt,sale_person:this.myform.value.sale_person,
-        
+        voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledgername: this.myform.value.ledgername, companyname: this.myform.value.companyname, debit: this.myform.value.debit, credit: this.myform.value.credit, total: this.myform.value.total, balance: this.myform.value.balance, total_payment: this.myform.value.total_payment, billtype: this.myform.value.billtype, selectdrcr: this.myform.value.selectdrcr, particular: this.myform.value.particular, datetype: this.myform.value.datetype, reference: this.myform.value.reference, oriamount: this.myform.value.oriamount, balanceamt: this.myform.value.balanceamt, sale_person: this.myform.value.sale_person,
+
       };
-  
-      this.recepitService.createRecepit(recepitdata,'','').subscribe(
+
+      this.recepitService.createRecepit(recepitdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-         
+
           this.formService.showSaveLoader()
           this.myform.reset()
         },
@@ -101,20 +111,20 @@ this.myform= this.formBuilder.group({
           this.formService.shoErrorLoader();
         }
       );
-     
-    }  else {
-       //If the form is not valid, display error messages
-       Object.keys(this.myform.controls).forEach(controlName => {
-         const control = this.myform.get(controlName);
-         if (control?.invalid) {
-           control.markAsTouched();
-         }
-       });
-       if (this.firstInvalidInput) {
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
-     }
     }
+  }
 
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;

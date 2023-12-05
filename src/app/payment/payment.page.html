@@ -57,17 +57,11 @@
                         <td class="select-option">
                           <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
-                            <!-- <option *ngFor="let company of companys$ | async; l" [value]="company.companyid"> {{ company.cpyname }}</option> -->
-                           <option value="1">company1</option>
-                           <option value="2">company2</option>
-                           <option value="3">company3</option>
+                            <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                              {{ customername.name }}
+                          
                           </select>
-                          <!-- <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
-                            <option value="0"> Stock Type</option>  Default option with value 0 
-                            <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
-                              {{ stocktypename.stocktypename }}
-                            </option>
-                          </select> -->
+                         
                         </td>
                         <td>
                           <ion-input class="table_input" name="debit" [(ngModel)]="debit" formControlName="debit" type="text"></ion-input>
