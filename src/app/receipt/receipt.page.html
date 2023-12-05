@@ -57,8 +57,8 @@
                         <td class="select-option">
                           <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
-                            <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
-                              {{ suppliername.name }}
+                            <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                              {{ customername.name }}
                             </option>
                           
                           </select>

@@ -10,6 +10,7 @@ import { CreatecompanyService } from '../services/createcompany.service';
 import { Observable } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { VendorService } from '../services/vendor.service';
+import { CustomerService } from '../services/customer.service';
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.page.html',
@@ -51,8 +52,9 @@ export class ReceiptPage implements OnInit {
   isOpen = false;
   companys$: Observable<any[]>;
   supplier$: any;
+  customer$: Observable<any>;
 
-  constructor(private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private vendname1:VendorService,) {
+  constructor(private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private custname1:CustomerService) {
     this.myform = this.formBuilder.group({
       voucherNumber: [''],
       paymentdate: [''],
@@ -75,7 +77,10 @@ export class ReceiptPage implements OnInit {
     const compid = '1';
     this.companys$ = this.companyService.fetchallcompany(compid, '', '');
     console.log(this.companys$);
-    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
+  
+
+    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
+console.log(this.companys$);
   }
 
   presentPopover(e: Event) {
