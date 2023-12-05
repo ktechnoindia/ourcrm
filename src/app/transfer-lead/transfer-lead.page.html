@@ -24,15 +24,14 @@
         </div>
         <ion-grid>
 
-          <div style="overflow-x:auto; width: 100% ;height: 350px;">
+          <div style="overflow-x:auto; width: 100% ;height: 400px;">
             <ion-searchbar class="custom"></ion-searchbar>
-            <table style="width: 1500px;overflow-x:auto;">
+            <table style="width: 1300px;overflow-x:auto;">
               <tr>
                 <th>Sr.No.</th>
                 <th>Lead ID</th>
                 <th>Company Name</th>
                 <th>Lead Date</th>
-                <th>Contact Person</th>
                 <th>Mobile No.</th>
                 <th>Country</th>
                 <th>State</th>
@@ -42,6 +41,7 @@
                 <th>Email ID</th>
                 <th> Product Name</th>
                 <th>Lead Source</th>
+                <th>Contact Person</th>
                 <th>Lead Assign To</th>
                 <th>Remark</th>
                 <th>Action</th>
@@ -51,7 +51,6 @@
                   <td>{{leadscore.tid}}</td>
                   <td>{{leadscore.companyname}}</td>
                   <td>{{leadscore.leaddate}}</td>
-                  <td>{{leadscore.catPerson}}</td>
                   <td>{{leadscore.phone}}</td>
                   <td>{{leadscore.selectedCountry}}</td>
                   <td>{{leadscore.selectedState}}</td>
@@ -61,9 +60,10 @@
                   <td>{{leadscore.emails}}</td>
                   <td>{{leadscore.selectpd}}</td>
                   <td>{{leadscore.lscore}}</td>
-                  <td>
-                    <select class="select-option" [(ngModel)]=" select_sales_person" name="select_sales_person">
-                      <option value="0">Lead Assign To</option><!-- Default option -->
+                  <td>{{leadscore.catPerson}}</td>
+                  <td class="select-option" >
+                    <select [(ngModel)]=" leadscore.select_sales_person" name="select_sales_person" >
+                      <option selected >Lead Assign To</option><!-- Default option -->
                       <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                         {{ executive.executivename }}
                       </option>
@@ -72,7 +72,7 @@
                   </td>
                   <td>{{leadscore.rmark}}</td>
                   <td>
-                    <ion-button size="small">Ok</ion-button>
+                    <ion-button size="small" type="submit" (click)="updateCatPerson(leadscore)" >Ok</ion-button>
                   </td>
                 </tr>
 

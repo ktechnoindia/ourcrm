@@ -126,6 +126,7 @@ export class AddQuotPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   customer$: any;
+  
   constructor(private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

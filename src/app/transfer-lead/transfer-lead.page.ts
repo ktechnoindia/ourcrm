@@ -30,5 +30,17 @@ export class TransferLeadPage implements OnInit {
   goBack(){
     this.router.navigate(["/leaddashboard"])
   }
+// Inside your component class
+updateCatPerson(leadscore: any) {
+  const selectedExecutiveId = leadscore.select_sales_person;
 
+  // Subscribe to the Observable to get the actual data
+  this.executive$.subscribe((executives: any[]) => {
+    // Find the corresponding executive
+    const selectedExecutive = executives.find(exe => exe.executiveid === selectedExecutiveId);
+
+    // Update the leadscore.catPerson with the selected executive's name
+    leadscore.catPerson = selectedExecutive ? selectedExecutive.executivename : '';
+  });
+}
 }
