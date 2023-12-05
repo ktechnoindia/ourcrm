@@ -57,17 +57,12 @@
                         <td class="select-option">
                           <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
-                            <!-- <option *ngFor="let company of companys$ | async; l" [value]="company.companyid"> {{ company.cpyname }}</option> -->
-                           <option value="1">company1</option>
-                           <option value="2">company2</option>
-                           <option value="3">company3</option>
-                          </select>
-                          <!-- <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
-                            <option value="0"> Stock Type</option>  Default option with value 0 
-                            <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
-                              {{ stocktypename.stocktypename }}
+                           
+                            <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
+                              {{ suppliername.name }}
                             </option>
-                          </select> -->
+                          </select>
+                         
                         </td>
                         <td>
                           <ion-input class="table_input" name="debit" [(ngModel)]="debit" formControlName="debit" type="text"></ion-input>
@@ -205,16 +200,7 @@
                       </tr>
                     </table>
                   </div>
-                  <table>
-                    <tr>
-
-                      <td style="justify-content: right;">
-                        <label for="" style="margin-left: 5px;">Total :</label>
-                        <input type="text"  name="total" [(ngModel)]="total" formControlName="total" style="border: none;outline: none;text-align: center;">
-                      </td>
-
-                    </tr>
-                  </table>
+                 
                 </ion-row>
                 <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
                   <ion-button id="open-loading">New</ion-button>

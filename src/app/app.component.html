@@ -302,14 +302,14 @@
        <li (click)="toggleDropdown6()"> Transaction Report ></li>
         <div *ngIf="isDropdownOpen6" class="right-dropdown">
 
-          <a (click)="selectOption6('Option 23')" isDropdownOpen5 = false; routerLink="/view-sale">Sales Report</a>
-          <a (click)="selectOption6('Option 24')" isDropdownOpen5 = false; routerLink="/view-purchase">Purchase Report</a>
-          <a (click)="selectOption6('Option 25')" isDropdownOpen5 = false; routerLink="/dc-in-report">DC-IN Report</a>
-          <a (click)="selectOption6('Option 26')" isDropdownOpen5 = false; routerLink="/dc-out-report">DC-OUT Report</a>
-          <a (click)="selectOption6('Option 28')" isDropdownOpen5 = false; routerLink="/view-quot">Quotation Report</a>
+          <a (click)="selectOption6('Option 23')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/view-sale">Sales Report</a>
+          <a (click)="selectOption6('Option 24')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/view-purchase">Purchase Report</a>
+          <a (click)="selectOption6('Option 25')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/dc-in-report">DC-IN Report</a>
+          <a (click)="selectOption6('Option 26')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/dc-out-report">DC-OUT Report</a>
+          <a (click)="selectOption6('Option 28')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/view-quot">Quotation Report</a>
           <!-- <li><a routerLink="/stock-manager">Stock Report</a></li> -->
-          <a (click)="selectOption6('Option 29')" isDropdownOpen5 = false; routerLink="/view-salesreturn">Sales Return Report</a>
-          <a (click)="selectOption6('Option 30')" isDropdownOpen5 = false; routerLink="/view-purchasereturn">Purchase Return Report</a>
+          <a (click)="selectOption6('Option 29')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/view-salesreturn">Sales Return Report</a>
+          <a (click)="selectOption6('Option 30')" (click)="closeMobileMenu()" isDropdownOpen5 = false; routerLink="/view-purchasereturn">Purchase Return Report</a>
           <!-- <li><a routerLink="/paymenttransaction-report">Payment Transaction Report</a></li> -->
           <!-- <li><a routerLink="/receipttransaction-report">Receipt Transaction  Report</a></li> -->
         </div>

@@ -56,11 +56,11 @@
                       <tr>
                         <td class="select-option">
                           <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
-                            <option value="0"> Ledger Name</option>
-                            <option value="1">Company 1</option>
-                            <option value="2">Company 2</option>
-                            <option value="3">Company 3</option>
-                            <option value="4">Company 4</option>
+                            <option value="0">Ledger Name</option>
+                            <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                              {{ customername.name }}
+                            </option>
+                          
                           </select>
                         </td>
                         <td>
@@ -199,16 +199,7 @@
                       </tr>
                     </table>
                   </div>
-                  <table>
-                    <tr>
-
-                      <td style="justify-content: right;">
-                        <label for="" style="margin-left: 5px;">Total :</label>
-                        <input type="text"  name="total" [(ngModel)]="total" formControlName="total" style="border: none;outline: none;text-align: center;">
-                      </td>
-
-                    </tr>
-                  </table>
+                  
                 </ion-row>
                 <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
                   <ion-button id="open-loading">New</ion-button>
