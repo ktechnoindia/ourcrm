@@ -30,6 +30,10 @@ export interface leadstore {
 export class LeadService {
  
   constructor(private httpclient:HttpClient) { }
+  // lead.service.ts
+updateLeadAssignToInDatabase(leadId: string, leadAssignTo: string) {
+  // Implementation
+}
   createLead(lead:leadstore,key:string,user:string){
     return this.httpclient.post(environment.apiacturl+environment.addlead,lead,{headers:{'key':key,'user':user}})
   }
