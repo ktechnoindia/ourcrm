@@ -42,7 +42,7 @@ export const environment = {
   addcompany: 'saveCompany',
   addroleofexecutive: 'roleofexecutive',
   addaccount: 'accounts',
-  addcreateamc: 'createamc',
+  
   additem: 'insert_item',
   addgroup: 'insert_group',
   additemgroup:'saveItemGroup',
@@ -72,8 +72,9 @@ export const environment = {
   fetchallsalesreturn:'get_sale_return',
   fetchallpurchasereturn:'get_purchase_return',
   fetchallItem:'get_all_items',
-  fetchitem:'get_items'
-
+  fetchitem:'get_items',
+  addamc:'insert_amc',
+  fetchamc:'get_amc'
 };
 
 

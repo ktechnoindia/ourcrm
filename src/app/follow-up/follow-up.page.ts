@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, FormBuilder, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -19,6 +19,8 @@ import { Observable } from 'rxjs';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class FollowUpPage implements OnInit {
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
   followupdate: string = '';
   enterdby: string = '';
   remark: string = '';
@@ -31,6 +33,8 @@ export class FollowUpPage implements OnInit {
   myform: FormGroup;
   showLeadDetails = false;
   followup$: Observable<any>;
+  followUps: { [key: string]: any[] } = {};
+selectedRowData: any;
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
@@ -46,7 +50,6 @@ export class FollowUpPage implements OnInit {
     })
 
   }
-  selectedRowData: any;
 
   onRowClick(leadscore: any) {
     this.selectedRowData = leadscore;
@@ -88,17 +91,18 @@ export class FollowUpPage implements OnInit {
       );
      
     }  else {
-       //If the form is not valid, display error messages
+       
        Object.keys(this.myform.controls).forEach(controlName => {
          const control = this.myform.get(controlName);
          if (control?.invalid) {
            control.markAsTouched();
          }
        });
-      //  if (this.firstInvalidInput) {
-      //   this.firstInvalidInput.setFocus();
+       if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
      }
+    }
   
   ngOnInit() {
   }

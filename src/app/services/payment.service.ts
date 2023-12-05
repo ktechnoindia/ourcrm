@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -19,7 +20,7 @@ export interface pay{
   selectdrcr:number;
   particular:string;
   datetype:string;
-  refrence:string;
+  reference:string;
   oriamount:string;
   balanceamt:string;
   sale_person:string;
@@ -35,6 +36,12 @@ export class PaymentService {
   constructor(private httpclient:HttpClient) { }
 
   createPayment(payment:pay,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addpayment,payment,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiacturl+environment.addpayment,payment,{headers:{'key':key,'user':user}})
   }
+
+  fetchAllPayment(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiacturl+environment.fetchpayment+'?p='+companyid,{headers:{'key':key,'user':user}})
+  }
+
 }

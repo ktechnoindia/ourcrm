@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -19,7 +20,7 @@ export interface rec{
   selectdrcr:number;
   particular:string;
   datetype:string;
-  refrence:string;
+  reference:string;
   oriamount:string;
   balanceamt:string;
   sale_person:string;
@@ -32,6 +33,12 @@ export class RecepitService {
   constructor(private httpclient:HttpClient) { }
 
   createRecepit(recepit:rec,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addrecepit,recepit,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiacturl+environment.addrecepit,recepit,{headers:{'key':key,'user':user}})
   }
+
+  fetchAllReceppit(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiacturl+environment.fetchrecepit+'?p='+companyid,{headers:{'key':key,'user':user}})
+  }
+
 }

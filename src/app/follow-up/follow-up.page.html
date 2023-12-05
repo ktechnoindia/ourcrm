@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="Customer">
-    <div >
+    <div>
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -50,7 +50,7 @@
                         <th>Lead Score</th>
                         <th>Remark</th> -->
                       </tr>
-                      <tr *ngFor="let leadscore of lead$ | async; let i = index"  (click)="onRowClick(leadscore)">
+                      <tr *ngFor="let leadscore of lead$ | async; let i = index" (click)="onRowClick(leadscore)">
                         <td>{{i+1}}</td>
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.companyname}}</td>
@@ -83,31 +83,34 @@
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <div >
-                <ion-row style="height: 300px;padding: 10px;" >
-                  <div class="scroll-container" style="border: 1px solid grey;">
-                    <table style="overflow-x:auto; width: 100%;">
-                      <tr>
-                        <th style="width: 60px;">SR. No.</th>
-                        <th style="width: 100px !important;">Date & Time</th>
-                        <th style="width: 200px !important;">Remark</th>
-                        <th style="width: 100px;">Next Follow-Up Date</th>
-                        <th style="width: 100px;">Entered By</th>
-                      </tr>
-                      <!-- <ng-container> -->
-                        <tr *ngIf="selectedRowData" >
-                          <td>{{selectedRowData.tid}}</td>
-                          <td>01/12/23</td>
-                          <td>{{remark}}</td>
-                          <td>{{nextfollowupDate}}</td>
-                          <td>{{selectedRowData.executivename }}</td>
-                        </tr>
-                      <!-- </ng-container> -->
+                <div>
+                  <ion-row style="height: 300px;padding: 10px;overflow-x:auto;">
+                    <div class="scroll-container" style="border: 1px solid grey;">
+                      <table style="overflow-x:auto; width: 645px;">
+                        <tr>
+                          <th style="width: 50px;">SR. No.</th>
+                          <th style="width: 80px;">Company Id</th>
+                          <th style="width: 75px !important;">Lead Date</th>
+                          <th style="width: 200px;">Remark</th>
+                          <th style="width: 130px !important;">Next Follow-Up Date</th>
 
-                    </table>
-                  </div>
-                </ion-row>
-              </div>
+                          <th style="width: 70px;">Entered By</th>
+                        </tr>
+                        <ng-container *ngFor="let followup of followup$ | async; let i = index">
+                          <tr *ngIf="selectedRowData">
+                            <td>{{i+1}}</td>
+                            <td>{{selectedRowData.tid}}</td>
+                            <td>{{nextfollowupDate}}</td>
+                            <td>{{followup.remark}}</td>
+                            <td>{{followup.nextfollowupDate}}</td>
+                            <td>{{selectedRowData.executivename }}</td>
+                          </tr>
+                        </ng-container>
+
+                      </table>
+                    </div>
+                  </ion-row>
+                </div>
 
                 <div>
                   <ion-row style="padding:0px 10px ;">

@@ -8,6 +8,7 @@ import { PaymentService,pay,  } from '../services/payment.service';
 import { Observable } from 'rxjs';
 import { CreatecompanyService } from '../services/createcompany.service';
 import { EncryptionService } from '../services/encryption.service';
+import { FormValidationService } from '../form-validation.service';
 
 @Component({
   selector: 'app-payment',
@@ -20,6 +21,8 @@ import { EncryptionService } from '../services/encryption.service';
 })
 export class PaymentPage implements OnInit {
   @ViewChild('popover')popover:any; 
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
   voucherNumber:string='';
   paymentdate:string='';
   ledgername:number=0;
@@ -36,7 +39,7 @@ export class PaymentPage implements OnInit {
   selectdrcr:number=0;
   particular:string='';
   datetype:string='';
-  refrence:string='';
+  reference:string='';
   oriamount:string='';
   balanceamt:string='';
   sale_person:string='';
@@ -48,7 +51,7 @@ export class PaymentPage implements OnInit {
   isOpen = false;
   companys$: Observable<any[]>;
 
-  constructor(private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService) { 
+  constructor(private datePipe: DatePipe, private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,) { 
      
 this.myform= this.formBuilder.group({
   voucherNumber:[''],
@@ -64,7 +67,7 @@ this.myform= this.formBuilder.group({
   selectdrcr:[''],
   particular:[''],
   datetype:[''],
-  refrence:[''],
+  reference:[''],
   oriamount:[''],
   balanceamt:[''],
   sale_person:[''],
@@ -76,23 +79,49 @@ console.log(this.companys$);
   }
 
 
-  onSubmit(){
-   const paymentdata:pay ={
-    voucherNumber:this.myform.value.voucherNumber,paymentdate:this.myform.value.paymentdate,ledgername:this.myform.value.ledgername,companyname:this.myform.value.companyname,debit:this.myform.value.debit,credit:this.myform.value.credit,total:this.myform.value.total,balance:this.myform.value.balance, total_payment:this.myform.value.total_payment,billtype:this.myform.value.billtype,selectdrcr:this.myform.value.selectdrcr,particular:this.myform.value.particular,datetype:this.myform.value.datetype,refrence:this.myform.value.refrence,oriamount:this.myform.value.oriamount,balanceamt:this.myform.value.balanceamt,sale_person:this.myform.value.sale_person,
-   }
-   this.payService.createPayment(paymentdata,'','').subscribe(
-    (response: any) => {
-      console.log('POST request successful', response);
-      // Handle the response as needed
-    },
-    (error: any) => {
-      console.error('POST request failed', error);
-      // Handle the error as needed
-    }
-  );
-  
-}
+async onSubmit() {
+  const fields = {}
+  const isValid = await this.formService.validateForm(fields);
+  if (await this.formService.validateForm(fields)) {
 
+    console.log('Your form data : ', this.myform.value);
+    const paymentdata: pay = {
+      voucherNumber:this.myform.value.voucherNumber,paymentdate:this.myform.value.paymentdate,ledgername:this.myform.value.ledgername,companyname:this.myform.value.companyname,debit:this.myform.value.debit,credit:this.myform.value.credit,total:this.myform.value.total,balance:this.myform.value.balance, total_payment:this.myform.value.total_payment,billtype:this.myform.value.billtype,selectdrcr:this.myform.value.selectdrcr,particular:this.myform.value.particular,datetype:this.myform.value.datetype,reference:this.myform.value.reference,oriamount:this.myform.value.oriamount,balanceamt:this.myform.value.balanceamt,sale_person:this.myform.value.sale_person,
+      
+    };
+
+    this.payService.createPayment(paymentdata,'','').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+        }, 1000);
+       
+        this.formService.showSaveLoader()
+        this.myform.reset()
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        setTimeout(() => {
+          this.formService.showFailedAlert();
+        }, 1000);
+        this.formService.shoErrorLoader();
+      }
+    );
+   
+  }  else {
+     //If the form is not valid, display error messages
+     Object.keys(this.myform.controls).forEach(controlName => {
+       const control = this.myform.get(controlName);
+       if (control?.invalid) {
+         control.markAsTouched();
+       }
+     });
+     if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
+   }
+  }
 
   
 

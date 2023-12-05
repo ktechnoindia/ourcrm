@@ -77,10 +77,12 @@ export const environment = {
   fetchfollowup:'get_lead_followup',
   getlang:'lang',
   toasttiming:2000,
-  addpayment:'payment',
- addrecepit:'recepit',
- addamc:'amc',
-fetchamc:'getamc'
+  addpayment:'insert_payment',
+ addrecepit:'insert_receipt',
+ addamc:'insert_amc',
+fetchamc:'get_amc',
+fetchpayment:'get_payment',
+fetchrecepit:'get_receipt'
 
 };
 

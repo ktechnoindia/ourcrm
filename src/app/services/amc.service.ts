@@ -24,11 +24,11 @@ export class AmcService {
   constructor(private httpclient:HttpClient) { }
 
   createAmc(createamc:amc,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addamc,createamc,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiacturl+environment.addamc,createamc,{headers:{'key':key,'user':user}})
   }
 
   fetchallAmc(companyid:string,key:string,user:string): Observable<any> {
     console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl+environment.fetchamc+'?p='+companyid,{headers:{'key':key,'user':user}})
+    return this.httpclient.get(environment.apiacturl+environment.fetchamc+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }

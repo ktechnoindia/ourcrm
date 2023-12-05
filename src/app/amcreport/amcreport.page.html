@@ -58,6 +58,7 @@
                   <th>AMC Date</th>
                   <th>Customer Code</th>
                   <th>Customer Name</th>
+                  <th>Bill Number</th>
                   <th>Renew Date</th>
                   <th>Service Type</th>
                   <th>Service Coverage</th>
@@ -67,42 +68,27 @@
                   <th>AMC Status</th>
                   <th>Action</th>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>AMC001</td>
-                  <td>2023-01-15</td>
-                  <td>CUST001</td>
-                  <td>John Doe</td>
-                  <td>2023-12-31</td>
-                  <td>Annual</td>
-                  <td>Full Coverage</td>
-                  <td>Product A</td>
-                  <td>5000</td>
-                  <td>Comprehensive</td>
-                  <td>Active</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
+                <tr *ngFor="let amcs of amc$ | async; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{amcs.amc_id}}</td>
+                  <td>{{amcs.amc_date}}</td>
+                  <td>{{amcs.cust_code}}</td>
+                  <td>{{amcs.cust_name}}</td>
+                  <td>{{amcs.bill_number}}</td>
+                  <td>{{amcs.renew_date}}</td>
+                  <td>{{amcs.service_type}}</td>
+                  <td>{{amcs.servic_coverage}}</td>
+                  <td>{{amcs.itemname}}</td>
+                  <td>{{amcs.saler_price}}</td>
+                  <td>{{amcs.amc_type}}</td>
+                  <td>{{amcs.amc_period}}</td>
+                  
+                  <td class="Action">
+                    <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                    <ion-icon color="primary" icon-only name="create"></ion-icon>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>AMC002</td>
-                  <td>2023-02-20</td>
-                  <td>CUST002</td>
-                  <td>Jane Smith</td>
-                  <td>2023-11-30</td>
-                  <td>Bi-Annual</td>
-                  <td>Partial Coverage</td>
-                  <td>Product B</td>
-                  <td>3000</td>
-                  <td>Standard</td>
-                  <td>Inactive</td>
-                  <td>
-                    <ion-icon class="create" name="create"></ion-icon>
-                    <ion-icon class="delete" name="trash"></ion-icon>
-                  </td>
-                </tr>
+               
                 <!-- Add more rows with dummy data as needed -->
               </table>
               

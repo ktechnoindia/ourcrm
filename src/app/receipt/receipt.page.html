@@ -8,7 +8,7 @@
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Recepit Transaction</ion-title>
               <div class="custom-primary">
-                <ion-button size="small" [routerLink]="['/paymenttransaction-report']" id="open-loading5">View Recepit
+                <ion-button size="small" [routerLink]="['/receipttransaction-report']" id="open-loading5">View Recepit
                   Transaction</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..."
                   [duration]="1000"></ion-loading>
@@ -165,7 +165,7 @@
                                           <ion-input class="table_input"  name="datetype" [(ngModel)]="datetype" formControlName="datetype" type="date"></ion-input>
                                         </td>
                                         <td>
-                                          <ion-input class="table_input" name="refrence" [(ngModel)]="refrence" formControlName="refrence" type="text"></ion-input>
+                                          <ion-input class="table_input" name="reference" [(ngModel)]="reference" formControlName="reference" type="text"></ion-input>
                                         </td>
                                         <td>
                                           <ion-input class="table_input" name="oriamount" [(ngModel)]="oriamount" formControlName="oriamount" type="text"></ion-input>

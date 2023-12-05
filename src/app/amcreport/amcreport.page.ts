@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AmcService } from '../services/amc.service';
+import { FormValidationService } from '../form-validation.service';
+import { EncryptionService } from '../services/encryption.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-amcreport',
@@ -14,7 +18,15 @@ import { Router } from '@angular/router';
 export class AmcreportPage implements OnInit {
   formDate:string='';
   toDate:string='';
-  constructor(private router: Router) { }
+  amc$: Observable<any[]>;
+
+
+
+  constructor(private router: Router,private amcService:AmcService,private formService: FormValidationService,private encService: EncryptionService,) { 
+    const compid='1'
+    this.amc$ = this.amcService.fetchallAmc(encService.encrypt(compid),'','');
+   console.log(this.amc$);
+  }
 
   ngOnInit() {
   }
