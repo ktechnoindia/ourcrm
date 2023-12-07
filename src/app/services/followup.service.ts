@@ -25,4 +25,5 @@ export class FollowupService {
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apiacturl+environment.fetchfollowup+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
+  
 }

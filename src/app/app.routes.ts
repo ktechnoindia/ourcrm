@@ -460,7 +460,11 @@ export const routes: Routes = [
     path: 'accountdashboard',
     loadComponent: () => import('./accountdashboard/accountdashboard.page').then( m => m.AccountdashboardPage),
     canActivate:[AuthGuard]
+  },  {
+    path: 'viewroleassign',
+    loadComponent: () => import('./viewroleassign/viewroleassign.page').then( m => m.ViewroleassignPage)
   },
+
 
 
 

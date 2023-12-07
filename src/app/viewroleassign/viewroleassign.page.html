@@ -1,0 +1,365 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Role Assigning Table </ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row style="justify-content: center;">
+
+            <ion-searchbar class="custom"></ion-searchbar>
+            <ion-row style="margin: 0 auto; width: 100%;">
+              <div style="overflow:auto; width: 100%;">
+                <table style="width:1300px;">
+                  <tr>
+                    <th style="width: 50px;" rowspan="2">Sr. No.</th>
+                    <th style="width: auto;" rowspan="2">UserCode</th>
+                    <th style="width: auto;" rowspan="2">UserName</th>
+                    <th style="width: auto;" colspan="6">Sales</th>
+                    <th style="width: auto;" colspan="6">Purchase </th>
+                    <th style="width: auto;" colspan="6">Quotation</th>
+                    <th style="width: auto;" colspan="6">Challan</th>
+                    <th style="width: auto;" colspan="6">LMS</th>
+                    <th style="width: auto;" colspan="6">AMC</th>
+                    <th style="width: auto;" rowspan="2">Action</th>
+                  </tr>
+
+                  <tr>
+
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                    <th>All</th>
+                    <th>New</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Print</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>user1</td>
+                    <td>Yogesh Sharma</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the first row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr>
+                    <td>2</td>
+                    <td>user2</td>
+                    <td>John Doe</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the second row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>3</td>
+                    <td>user3</td>
+                    <td>Jane Smith</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the third row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>user4</td>
+                    <td>Nitesh Sharma</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the first row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr>
+                    <td>5</td>
+                    <td>user5</td>
+                    <td>Nirbhay</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the second row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>6</td>
+                    <td>user6</td>
+                    <td>Deepak</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      <!-- Add action buttons or links for the third row here -->
+                      <ion-icon name="create-outline"></ion-icon>
+                      <ion-icon name="trash-outline"></ion-icon>
+                    </td>
+                  </tr>
+
+                  <!-- Add more rows following a similar pattern -->
+
+                </table>
+              </div>
+            </ion-row>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
