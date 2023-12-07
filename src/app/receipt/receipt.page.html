@@ -36,7 +36,7 @@
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                       <select class="select" name="ledgername" [(ngModel)]="ledgername" formControlName="ledgername">
-                        <option value="0">Cash</option>
+                        <option value="0"> --- Cash --- </option>
                         <option value="1">Bank</option>
                         <option value="2">Card</option>
                       </select>
@@ -134,7 +134,7 @@
                         </td>
                         <td class="select-option">
                           <ion-button class="btn" color="undefined" size="small" style="margin-top: 5px;"
-                            (click)="presentPopover($event)"> Select Particulars <ion-icon
+                            (click)="presentPopover($event)">  Particulars <ion-icon
                               name="chevron-down-outline"></ion-icon></ion-button>
                           <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
                             <ng-template>

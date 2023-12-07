@@ -52,7 +52,7 @@
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <select class="select" [(ngModel)]=" cust_name" name="cust_name" formControlName="cust_name">
-                    <option value="0">Customer Name</option>
+                    <option value="0"> --- Customer Name --- </option>
                     <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                       {{ customername.name }}
                     </option>
@@ -152,7 +152,7 @@
               <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <select class="select" [(ngModel)]=" service_type" formControlName="service_type" name="service_type">
-                    <option value="0">Service Type</option>
+                    <option value="0"> --- Service Type --- </option>
                     <option value="1">Standard </option>
                     <option value="2">Comprehensive</option>
                   </select>

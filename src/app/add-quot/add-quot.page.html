@@ -65,7 +65,7 @@
               <ion-col size-lg="4" size-md="2" size-sm="6" size="6">
 
                 <select class="select" [(ngModel)]=" custname" name="custname" formControlName="custname">
-                  <option value="0">Customer Name</option>
+                  <option value="0"> --- Customer Name --- </option>
                   <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </option>
@@ -85,10 +85,6 @@
                     label="Ref. Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
-
-
-
             </ion-row>
 
             <ion-row style="margin-top: 7px; ">
@@ -170,10 +166,8 @@
                         name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
-                      
-                      
                       <select  #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="quote.taxrate" formControlName="taxrate" name="taxrate" id="taxrate"  >
-                        <option value="0">Select GST</option>
+                        <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>

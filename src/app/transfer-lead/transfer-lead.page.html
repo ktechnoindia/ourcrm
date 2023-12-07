@@ -61,9 +61,9 @@
                   <td>{{leadscore.selectpd}}</td>
                   <td>{{leadscore.lscore}}</td>
                   <td>{{leadscore.catPerson}}</td>
-                  <td class="select-option" >
-                    <select [(ngModel)]=" leadscore.select_sales_person" name="select_sales_person" >
-                      <option selected >Lead Assign To</option><!-- Default option -->
+                  <td  >
+                    <select class="select-option" [(ngModel)]="select_sales_person" name="select_sales_person" >
+                      <option selected value="0" disabled>Lead Assign To</option><!-- Default option -->
                       <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                         {{ executive.executivename }}
                       </option>
@@ -72,7 +72,7 @@
                   </td>
                   <td>{{leadscore.rmark}}</td>
                   <td>
-                    <ion-button size="small" type="submit" (click)="updateCatPerson(leadscore)" >Ok</ion-button>
+                    <ion-button style="font-size: 10px;margin: 0;padding: 0;" size="small" type="submit" (click)="updateCatPerson(leadscore)" >Ok</ion-button>
                   </td>
                 </tr>
 
