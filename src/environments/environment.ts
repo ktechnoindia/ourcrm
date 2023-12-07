@@ -41,13 +41,13 @@ export const environment = {
   addquote: 'insert_quotation',
   addupquote: 'saveupquote',
   addcompany: 'saveCompany',
-  addroleofexecutive: 'roleofexecutive',
+  addroleofexecutive: 'insert_insert_executive_roles',
   addaccount: 'accounts',
   addcreateamc: 'createamc',
   additem: 'insert_item',
   addgroup: 'insert_group',
   additemgroup:'saveItemGroup',
-  addUnit: 'createunit',
+  addunit: 'insert_units',
   addHsn: 'insert_hsn',
   addcomapny: 'createcompany',
   fetchallitemgroups: 'getItemGroups',
@@ -82,8 +82,8 @@ export const environment = {
  addamc:'insert_amc',
 fetchamc:'get_amc',
 fetchpayment:'get_payment',
-fetchrecepit:'get_receipt'
-
+fetchrecepit:'get_receipt',
+fetchunit:'get_units'
 };
 
 

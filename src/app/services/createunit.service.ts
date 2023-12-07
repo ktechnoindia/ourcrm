@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface unit{
   unit_name:string;
@@ -18,6 +19,12 @@ export class CreateunitService {
  
   constructor(private httpclient:HttpClient) { }
   createUnit(units:unit,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addUnit,units,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apibaseurl+environment.addunit,units,{headers:{'key':key,'user':user}})
+  }
+
+
+  fetchallunit(companyid:string,key:string,user:string): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apibaseurl+environment.fetchunit+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }

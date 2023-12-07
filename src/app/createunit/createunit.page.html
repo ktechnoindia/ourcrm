@@ -30,10 +30,10 @@
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <select class="select" name="decimal_place" formControlName="decimal_place" [(ngModel)]="decimal_place">
                   <option value="0"> --- Decimal Places --- </option>
-                  <option value="meter">1</option>
-                  <option value="centimeter">2</option>
-                  <option value="millimeter">3</option>
-                  <option value="kilometer">4</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
 
                 </select>
               </ion-col>
@@ -41,48 +41,48 @@
                 <ion-row>
                   <select class="select" name="primary_unit" formControlName="primary_unit" [(ngModel)]="primary_unit">
                     <option value="0">  --- UQC --- </option>
-                    <option value="meter">Meter (m)</option>
-                    <option value="centimeter">Centimeter (cm)</option>
-                    <option value="millimeter">Millimeter (mm)</option>
-                    <option value="kilometer">Kilometer (km)</option>
-                    <option value="inch">Inch (in)</option>
-                    <option value="foot">Foot (ft)</option>
-                    <option value="yard">Yard (yd)</option>
-                    <option value="squaremeter">Square Meter (m²)</option>
-                    <option value="squarecentimeter">Square Centimeter (cm²)</option>
-                    <option value="squarekilometer">Square Kilometer (km²)</option>
-                    <option value="squareinch">Square Inch (in²)</option>
-                    <option value="squarefoot">Square Foot (ft²)</option>
-                    <option value="squareyard">Square Yard (yd²)</option>
-                    <option value="acre">Acre (ac)</option>
-                    <option value="liter">Liter (L)</option>
-                    <option value="milliliter">Milliliter (mL)</option>
-                    <option value="cubicmeter">Cubic Meter (m³)</option>
-                    <option value="cubiccentimeter">Cubic Centimeter (cm³)</option>
-                    <option value="gallon">Gallon (gal)</option>
-                    <option value="quart">Quart (qt)</option>
-                    <option value="pint">Pint (pt)</option>
-                    <option value="fluidounce">Fluid Ounce (fl oz)</option>
-                    <option value="gram">Gram (g)</option>
-                    <option value="kilogram">Kilogram (kg)</option>
-                    <option value="milligram">Milligram (mg)</option>
-                    <option value="ounce">Ounce (oz)</option>
-                    <option value="pound">Pound (lb)</option>
-                    <option value="ton">Ton (metric ton)</option>
-                    <option value="second">Second (s)</option>
-                    <option value="minute">Minute (min)</option>
-                    <option value="hour">Hour (hr)</option>
-                    <option value="day">Day (d)</option>
-                    <option value="week">Week (wk)</option>
-                    <option value="month">Month (mo)</option>
-                    <option value="year">Year (yr)</option>
-                    <option value="each">Each (ea)</option>
-                    <option value="dozen">Dozen (dz)</option>
-                    <option value="gross">Gross (gr)</option>
-                    <option value="pair">Pair (pr)</option>
-                    <option value="celsius">Celsius (°C)</option>
-                    <option value="fahrenheit">Fahrenheit (°F)</option>
-                    <option value="kelvin">Kelvin (K)</option>
+                    <option value="2">Meter (m)</option>
+                    <option value="3">Centimeter (cm)</option>
+                    <option value="4">Millimeter (mm)</option>
+                    <option value="5">Kilometer (km)</option>
+                    <option value="6">Inch (in)</option>
+                    <option value="7">Foot (ft)</option>
+                    <option value="8">Yard (yd)</option>
+                    <option value="9">Square Meter (m²)</option>
+                    <option value="10">Square Centimeter (cm²)</option>
+                    <option value="11">Square Kilometer (km²)</option>
+                    <option value="12">Square Inch (in²)</option>
+                    <option value="13">Square Foot (ft²)</option>
+                    <option value="14">Square Yard (yd²)</option>
+                    <option value="15">Acre (ac)</option>
+                    <option value="16">Liter (L)</option>
+                    <option value="17">Milliliter (mL)</option>
+                    <option value="18">Cubic Meter (m³)</option>
+                    <option value="19">Cubic Centimeter (cm³)</option>
+                    <option value="21">Gallon (gal)</option>
+                    <option value="22">Quart (qt)</option>
+                    <option value="23">Pint (pt)</option>
+                    <option value="24">Fluid Ounce (fl oz)</option>
+                    <option value="25">Gram (g)</option>
+                    <option value="26">Kilogram (kg)</option>
+                    <option value="27">Milligram (mg)</option>
+                    <option value="28">Ounce (oz)</option>
+                    <option value="29">Pound (lb)</option>
+                    <option value="30">Ton (metric ton)</option>
+                    <option value="31">Second (s)</option>
+                    <option value="32">Minute (min)</option>
+                    <option value="33">Hour (hr)</option>
+                    <option value="34">Day (d)</option>
+                    <option value="35">Week (wk)</option>
+                    <option value="36">Month (mo)</option>
+                    <option value="37">Year (yr)</option>
+                    <option value="38">Each (ea)</option>
+                    <option value="39">Dozen (dz)</option>
+                    <option value="40">Gross (gr)</option>
+                    <option value="41">Pair (pr)</option>
+                    <option value="42">Celsius (°C)</option>
+                    <option value="43">Fahrenheit (°F)</option>
+                    <option value="45">Kelvin (K)</option>
 
                   </select>
                 </ion-row>
@@ -106,11 +106,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <td>1</td>
-                    <td>Kilogram</td>
-                    <td>kg</td>
-                    <td>0</td>
-                    <td>2</td>
+                    <tr  *ngFor="let unit of units$ | async; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{unit.unit_name}}</td>
+                    <td>{{unit.short_name}}</td>
+                    <td>{{unit.primary_unit}}</td>
+                    <td>{{unit.decimal_place}}</td>
+                    </tr>
                   </tbody>
 
                 </table>
