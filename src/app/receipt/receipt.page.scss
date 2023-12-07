@@ -75,14 +75,17 @@ table td {
   border: none;
   outline: none;
   width: 100px !important;
-  margin: 2px;
+  // margin: 2px;
   background: none;
-  max-height: 20px !important;
+  // max-height: 20px !important;
   
 }
 .btn{
   --box-shadow:none;
   font-size: 10px;
+}
+.table_input{
+  width: 100%;
 }
 ion-popover {
   --min-width: 600px; /* Set the desired minimum width */

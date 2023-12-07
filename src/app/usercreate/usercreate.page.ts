@@ -19,12 +19,12 @@ import { FormValidationService } from '../form-validation.service';
   imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
 })
 export class UsercreatePage implements OnInit {
-  fname:string='';
-  usercode:number=0;
+  username:string='';
+  usercode:string='';
   fathname:string='';
   email:string='';
-  phone:number=0;
-  roleid: number = 0;
+  phone:string='';
+  roletype: number = 0;
 
   form:FormGroup;
   roletypes$: Observable<any[]>
@@ -35,29 +35,29 @@ export class UsercreatePage implements OnInit {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
-      fname:['',[Validators.required]],
+      username:['',[Validators.required]],
       usercode:['',[Validators.required]],
       fathname:['',[Validators.required]],
       phone:['',[Validators.required]],
       email:['',[Validators.required,Validators.email]],
-      roleid: ['', [Validators.required]],
+      roletype: ['', [Validators.required]],
     })
   }
 
   
  async onSubmit() {
-  const fields = {fname:this.fname,usercode:this.usercode,fathname:this.fathname,phone:this.phone,email:this.email,roleid:this.roleid}
+  const fields = {username:this.username,usercode:this.usercode,fathname:this.fathname,phone:this.phone,email:this.email,roletype:this.roletype}
   const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
     console.log('Your form data : ', this.form.value);
     let userstore:userdata={
-     fname:this.form.value.fname,
+      username:this.form.value.username,
      usercode:this.form.value.usercode,
      fathname:this.form.value.fathname,
      phone:this.form.value.phone,
      email:this.form.value.email,
-     roleid:this.form.value.roleid,
+     roletype:this.form.value.roletype,
     };
     this.usercreate.createuser(userstore,'','').subscribe(
       (response: any) => {

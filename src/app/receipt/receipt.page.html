@@ -47,15 +47,15 @@
                   <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                     <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                       <tr>
-                        <th style="width: 200px !important;">Ledger Name</th>
-                        <th style="width: 70px !important;">Dedit</th>
-                        <th style="width: 70px !important;">Credit</th>
-                        <th style="width: 70px !important;">Balance</th>
+                        <th >Ledger Name</th>
+                        <th >Dedit</th>
+                        <th>Credit</th>
+                        <th >Balance</th>
 
                       </tr>
                       <tr>
-                        <td class="select-option">
-                          <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
+                        <td>
+                          <select  class="select-option" name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
                             <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                               {{ customername.name }}
@@ -80,13 +80,11 @@
                 <table>
                   <tr>
                     <td style="float: right;">
-                      <label for="" style="margin-right: 5px;">Total :</label>
+                      <label for="" style="margin-left: 5px;">Total :</label>
                       <input type="text" name="total" [(ngModel)]="total" formControlName="total" style="border: none;outline: none;text-align: center;">
                     </td>
                   </tr>
                 </table>
-                
-               
               </ion-card>
 
             </ion-col>

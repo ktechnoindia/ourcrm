@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 export interface userdata{
-  fname:string;
-  usercode:number;
+  username:string;
+  usercode:string;
   fathname:string;
   email:string;
-  phone:number;
-  roleid: number;
+  phone:string;
+  roletype: number;
 }
 
 @Injectable({

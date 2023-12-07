@@ -47,15 +47,15 @@
                   <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                     <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                       <tr>
-                        <th style="width: 200px !important;">Ledger Name</th>
-                        <th style="width: 70px !important;">Dedit</th>
-                        <th style="width: 70px !important;">Credit</th>
-                        <th style="width: 70px !important;">Balance</th>
+                        <th >Ledger Name</th>
+                        <th >Dedit</th>
+                        <th >Credit</th>
+                        <th >Balance</th>
 
                       </tr>
                       <tr>
-                        <td class="select-option">
-                          <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
+                        <td >
+                          <select class="select-option" name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
                            
                             <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">

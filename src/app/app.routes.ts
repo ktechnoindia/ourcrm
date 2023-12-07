@@ -263,8 +263,8 @@ export const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'useredit',
-    loadComponent: () => import('./useredit/useredit.page').then( m => m.UsereditPage),
+    path: 'viewuser',
+    loadComponent: () => import('./viewuser/viewuser.page').then( m => m.ViewUserPage),
     canActivate:[AuthGuard]
   },
   {

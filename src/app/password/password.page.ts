@@ -16,8 +16,8 @@ import { PasswordService, passdata } from '../services/password.service';
 })
 export class PasswordPage implements OnInit {
 
-  createpass: string = '';
-  cunfpass: string = '';
+  create_pass: string = '';
+  confirm_pass: string = '';
 
   form: FormGroup;
   submitted = false;
@@ -25,8 +25,8 @@ export class PasswordPage implements OnInit {
   passcreate: any;
   constructor(private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
-      createpass: ['', [Validators.required]],
-      cunfpass: ['', [Validators.required]],
+      create_pass: ['', [Validators.required]],
+      confirm_pass: ['', [Validators.required]],
     })
   }
   ngOnInit() {
@@ -37,10 +37,8 @@ export class PasswordPage implements OnInit {
     if (this.form) {
       console.log('Your form data : ', this.form.value);
       let passtore: passdata = {
-        createpass: this.form.value.createpass,
-        cunfpass: this.form.value.cunfpass,
-        oldpass: this.form.value.oldpass,
-        newpass: this.form.value.newpass,
+        create_pass: this.form.value.create_pass,
+        confirm_pass: this.form.value.confirm_pass,
       };
       this.passcreate.createpass(passtore, '', '').subscribe(
         (response: any) => {

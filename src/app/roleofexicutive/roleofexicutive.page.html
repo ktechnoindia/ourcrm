@@ -15,14 +15,14 @@
             <ion-row>
               <ion-col size-lg="6" size-md="3" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="exname" formControlName="exname" name="ex_name" type="text"
+                  <ion-input [(ngModel)]="exname" formControlName="exname" name="exname" type="text"
                     label=" Exicutive Name :" label-placement="floating" fill="outline"></ion-input>
                  
                 </ion-row>
               </ion-col>
               <ion-col size-lg="6" size-md="3" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="extilte" formControlName="extilte" name="ex_tilte" type="text"
+                  <ion-input [(ngModel)]="extilte" formControlName="extilte" name="extilte" type="text"
                     label="Exicutive Title:" label-placement="floating" fill="outline"></ion-input>
                 
                 </ion-row>
@@ -36,7 +36,7 @@
             <ion-row>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="phone" formControlName="phone" name="phonenumber" type="number"
+                  <ion-input [(ngModel)]="phone" formControlName="phone" name="phone" type="number"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
                  
                 </ion-row>
@@ -44,13 +44,13 @@
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="wp_number" type="number"
+                  <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" name="wpnumber" type="number"
                     label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="email" formControlName="email" name="emails" type="email" label="Email :"
+                  <ion-input [(ngModel)]="email" formControlName="email" name="email" type="email" label="Email :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -63,7 +63,7 @@
 
             <ion-row>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="12">
-                <select class="select" [(ngModel)]="selectedOption" formControlName="selectedOption"  name="country" label-placement="floating" fill="outline"
+                <select class="select" [(ngModel)]="selectedOption" formControlName="selectedOption"  name="selectedOption" label-placement="floating" fill="outline"
                   (change)="onCountryChange()">
                   <option value="0">Select Country</option>
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
@@ -74,7 +74,7 @@
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <select class="select" [(ngModel)]="selectedState" formControlName="selectedState" type="text" name="state" label-placement="floating"
+                <select class="select" [(ngModel)]="selectedState" formControlName="selectedState" type="text" name="selectedState" label-placement="floating"
                   fill="outline" (change)="onStateChange()">
                   <option value="0">Select State</option>
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
@@ -83,7 +83,7 @@
                 </select>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district" label-placement="floating" fill="outline">
+                <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="selectedDistrict" label-placement="floating" fill="outline">
                   <option value="0">Select District</option>
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
@@ -93,7 +93,7 @@
 
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="pinCode" formControlName="pinCode" name="pin_code" type="number"
+                  <ion-input [(ngModel)]="pin_code" formControlName="pin_code" name="pin_code" type="number"
                     label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -101,7 +101,7 @@
             <ion-row>
               <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="address" type="text"
+                  <ion-input [(ngModel)]="fulladdress" formControlName="fulladdress" name="fulladdress" type="text"
                     label="Full Address :" label-placement="floating" fill="outline"></ion-input>
                 
                 </ion-row>

@@ -67,9 +67,8 @@ table td {
   border: none;
   outline: none;
   width: 100px !important;
-  margin: 2px;
   background: none;
-  max-height: 20px !important;
+  // max-height: 20px !important;
 }
 .btn{
   --box-shadow:none;
@@ -79,7 +78,9 @@ ion-popover {
   --min-width: 600px; /* Set the desired minimum width */
   --min-height: 200px; /* Set the desired minimum height */
 }
-
+.table_input{
+  width: 100%;
+}
 ion-card{
   height: 450px;
   padding: 10px;
