@@ -63,7 +63,7 @@
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
                 <select #firstInvalidInput class="select" [(ngModel)]=" custname" name="custname"
                   formControlName="custname">
-                  <option value="0">Customer Name</option>
+                  <option value="0"> --- Customer Name --- </option>
                   <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </option>
@@ -110,7 +110,7 @@
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
 
                 <select class="select" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
-                  <option value="0"> Sales Person</option><!-- Default option -->
+                  <option value="0">  --- Sales Person --- </option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
@@ -119,7 +119,7 @@
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="payment" formControlName="payment" name="pyt">
                   <!-- <option value="0" disabled selected>Select Payment Mode</option> Default option -->
-                  <option value="0">Credit</option>
+                  <option value="0"> --- Credit --- </option>
                   <option value="1">Cash</option>
 
                 </select>
@@ -210,7 +210,7 @@
                     <td class="select-option">
                       <select  #taxrate (change)="onSelectChange(taxrate)"  [(ngModel)]="sales.taxrate" formControlName="taxrate" name="taxrate"
                         id="taxrate">
-                        <option value="0">Select GST</option>
+                        <option value="0"> GST</option>
                         <!-- Default option with value 0 -->
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}

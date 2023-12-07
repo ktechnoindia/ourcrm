@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    <ion-card>
+    <div>
       <ion-card-content>
         <div class="dekstop-menu">
           <ion-card-header>
@@ -17,7 +17,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <ion-row style="margin: 0 auto; width: 100%;">
+          <ion-row style="margin: 10px 0; width: 100%;">
             <div style="overflow:auto; width: 100%;">
               <table style="width:100%;">
                 <tr>
@@ -96,22 +96,13 @@
               </table>
             </div>
           </ion-row>
-          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+          <ion-row class="custom-primary" style="justify-content: right;">
               <ion-button>New</ion-button>
               <ion-button type="submit" id="open-loading">Save</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Role Assigning..."
-                [duration]="1000"></ion-loading>
-              <!-- <ion-button>Delete</ion-button> -->
-              <!-- <ion-button>Preview</ion-button> -->
               <ion-button>Close</ion-button>
-            </ion-row>
           </ion-row>
-
-
-
         </ion-grid>
       </ion-card-content>
-    </ion-card>
+    </div>
   </div>
 </ion-content>

@@ -22,15 +22,13 @@
             
             <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
               <select class="select"  [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
-                <option value="0">Select Parent Group</option> <!-- Default option with value 0 --> 
+                <option value="0">  --- Parent Group --- </option> <!-- Default option with value 0 --> 
                
                 <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                   {{ itemgroup.itemgroupname }}
                 </option>
               </select>
-              <div *ngIf="form && form.controls['lassign']?.hasError('required') && form.controls['lassign']?.touched" class="error-message">
-                Lead Assign is required.
-             </div>
+             
             </ion-col>
           </ion-row>
           <ion-row >

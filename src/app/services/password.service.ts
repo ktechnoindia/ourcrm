@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 export interface passdata{
-  createpass:string;
-  cunfpass:string;
-  oldpass: string;
-  newpass: string;
+  create_pass:string;
+  confirm_pass:string;
+
 }
 @Injectable({
   providedIn: 'root'

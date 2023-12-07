@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PasswordService, passdata } from '../services/password.service';
+import { ChangepasswordService,changepass } from '../services/changepassword.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -24,7 +24,7 @@ export class ChangepasswordPage implements OnInit {
   subscription: any;
   passcreate: any;
 
-  constructor(private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
+  constructor(private passwordChange: ChangepasswordService, private router: Router, private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
       oldpass: ['', [Validators.required]],
       newpass: ['', [Validators.required]],
@@ -35,13 +35,13 @@ export class ChangepasswordPage implements OnInit {
   onSubmit() {
     if (this.form) {
       console.log('Your form data : ', this.form.value);
-      let passtore: passdata = {
+      let passchangetore: changepass = {
         oldpass: this.form.value.oldpass,
         newpass: this.form.value.newpass,
         cunfpass: this.form.value.cunfpass,
-        createpass: this.form.value.createpass,
+       
       };
-      this.passcreate.createpass(passtore, '', '').subscribe(
+      this.passwordChange.createChangePass(passchangetore, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);

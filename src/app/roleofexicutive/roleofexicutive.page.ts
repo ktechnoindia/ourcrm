@@ -33,7 +33,7 @@ export class RoleofexicutivePage implements OnInit {
   selectedOption: number = 0;
   selectedState:number=0;
   selectedDistrict:  number = 0;
-  pinCode: string = '';
+  pin_code: string = '';
   fulladdress: string = '';
   
   countries$: Observable<any[]>
@@ -52,7 +52,7 @@ export class RoleofexicutivePage implements OnInit {
         fulladdress:[''],
         email:[''],
         wpnumber:[''],
-        pinCode:['']
+        pin_code:['']
       })
       this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
       this.countries$ = this.countryService.getCountries();
@@ -81,7 +81,7 @@ export class RoleofexicutivePage implements OnInit {
         fulladdress: this.form.value.fulladdress,
         email: this.form.value.email,
         wpnumber:this.form.value.email,
-        pinCode:this.form.value.pinCode
+        pin_code:this.form.value.pin_code
       };
       this.roleExecuitveService.createRoleofExecutive(roleexecutdata,'','').subscribe(
         (response: any) => {

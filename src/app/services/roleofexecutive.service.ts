@@ -12,7 +12,7 @@ export interface roleofexecut{
   selectedOption: number ;
   selectedState:  number;
   selectedDistrict:  number;
-  pinCode: string ;
+  pin_code: string ;
   fulladdress: string;
  
 }

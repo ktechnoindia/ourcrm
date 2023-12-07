@@ -58,7 +58,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="selectedCountry" formControlName="selectedCountry" name="country"
                   label-placement="floating" fill="outline" (change)="onCountryChange()">
-                  <option value="0">Select Country</option> <!-- Default option -->
+                  <option value="0">  --- Country --- </option> <!-- Default option -->
                   <option *ngFor="let country of countries$ | async" [value]="country.countryid">
                     {{ country.countryname }}
                   </option>
@@ -69,7 +69,7 @@
 
                 <select class="select" [(ngModel)]="selectedState" formControlName="selectedState" name="state"
                   label-placement="floating" (change)="onStateChange()">
-                  <option value="0">Select State</option> <!-- Default option -->
+                  <option value="0">  --- State --- </option> <!-- Default option -->
                   <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
                     {{ state.statename }}
                   </option>
@@ -80,7 +80,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="selectedDistrict" formControlName="selectedDistrict" name="district"
                   label-placement="floating" fill="outline">
-                  <option value="0">Select District</option> <!-- Default option -->
+                  <option value="0">  --- District --- </option> <!-- Default option -->
                   <option *ngFor="let district of districts$ | async" [value]="district.districtid">
                     {{ district.districtname }}
                   </option>
@@ -103,7 +103,7 @@
 
               <ion-col size-lg="3" size-md="6" size-sm="6" size="12">
                 <select class="select" [(ngModel)]="leadtype" formControlName="leadtype" name="leadtype">
-                  <option value="0">Lead Type</option>
+                  <option value="0"> --- Lead Type --- </option>
                   <option value="1">Cold</option>
                   <option value="2">Warm </option>
                   <option value="3">Cold</option>
@@ -116,7 +116,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <select class="select"  [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
-                  <option value="0"> Lead Source</option>
+                  <option value="0">  --- Lead Source --- </option>
                     <option *ngFor="let leadsourcetype of leadsourcetype$ | async"
                       [value]="leadsourcetype.leadsourceid">
                       {{ leadsourcetype.leadsourcename }}
@@ -125,10 +125,10 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="2.2" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]=" executivename" name="executive_name"
                   formControlName="executivename">
-                  <option value="0">Executive Name</option><!-- Default option -->
+                  <option value="0"> --- Executive Name --- </option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
@@ -136,19 +136,19 @@
               </ion-col>
 
 
-              <ion-col size-lg="2.3" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]=" leadassign" name="leadassign"
                   formControlName="leadassign">
-                  <option value="0">Lead Assign To</option><!-- Default option -->
+                  <option value="0"> --- Lead Assign To --- </option><!-- Default option -->
                   <option *ngFor="let leadassigns of executive$ | async" [value]="leadassigns.executiveid">
                     {{ leadassigns.executivename }}
                   </option>
                 </select>
               </ion-col>
 
-              <ion-col size-lg="2.2" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">
-                  <option value=""> Product Name</option><!-- Default option -->
+                  <option value="">  --- Product Name --- </option><!-- Default option -->
                   <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                     {{ itemname.itemDesc }}
                   </option>
@@ -156,7 +156,7 @@
 
               </ion-col>
 
-              <ion-col size-lg="5.3" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <ion-textarea [(ngModel)]="rmark" formControlName="rmark" name="remark" type="text" label=" Remark :"
                     label-placement="floating" fill="outline"></ion-textarea>

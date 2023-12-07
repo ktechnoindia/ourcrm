@@ -36,7 +36,7 @@
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                       <select class="select" name="ledgername" [(ngModel)]="ledgername" formControlName="ledgername">
-                        <option value="0">Cash</option>
+                        <option value="0"> --- Cash --- </option>
                         <option value="1">Bank</option>
                         <option value="2">Card</option>
                       </select>
@@ -47,15 +47,15 @@
                   <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                     <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                       <tr>
-                        <th style="width: 200px !important;">Ledger Name</th>
-                        <th style="width: 70px !important;">Dedit</th>
-                        <th style="width: 70px !important;">Credit</th>
-                        <th style="width: 70px !important;">Balance</th>
+                        <th>Ledger Name</th>
+                        <th >Dedit</th>
+                        <th >Credit</th>
+                        <th >Balance</th>
 
                       </tr>
                       <tr>
-                        <td class="select-option">
-                          <select name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
+                        <td >
+                          <select class="select-option" name="companyname" [(ngModel)]="companyname" formControlName="companyname" >
                             <option value="0">Ledger Name</option>
                            
                             <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
@@ -137,7 +137,7 @@
                         </td>
                         <td class="select-option">
                           <ion-button class="btn" color="undefined" size="small" style="margin-top: 5px;"
-                            (click)="presentPopover($event)"> Select Particulars <ion-icon
+                            (click)="presentPopover($event)">  Particulars <ion-icon
                               name="chevron-down-outline"></ion-icon></ion-button>
                           <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
                             <ng-template>
@@ -163,7 +163,7 @@
                                           <ion-input class="table_input" name="particular" [(ngModel)]="particular" formControlName="particular" type="text"></ion-input>
                                         </td>
                                         <td>
-                                          <ion-input class="table_input"  name="datetype" [(ngModel)]="datetype" formControlName="datetype" type="date"></ion-input>
+                                          <ion-input class="table_input date"  name="datetype" [(ngModel)]="datetype" formControlName="datetype" type="date"></ion-input>
                                         </td>
                                         <td>
                                           <ion-input class="table_input" name="reference" [(ngModel)]="reference" formControlName="reference" type="text"></ion-input>
@@ -189,7 +189,7 @@
                           </ion-popover>
                         </td>
                         <td>
-                          <ion-input type="date" name="datetype" [(ngModel)]="datetype" formControlName="datetype"></ion-input>
+                          <ion-input class="date" type="date" name="datetype" [(ngModel)]="datetype" formControlName="datetype"></ion-input>
                         </td>
                         <td>
                           <ion-input type="text" name="debit" [(ngModel)]="debit" formControlName="debit"></ion-input>

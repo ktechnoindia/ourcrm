@@ -64,7 +64,7 @@
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
 
                 <select class="select" [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
-                  <option value="0">Supplier Name</option><!-- Default option -->
+                  <option value="0"> --- Supplier Name --- </option><!-- Default option -->
                   <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
                   </option>
@@ -84,14 +84,6 @@
                     label=" Reference Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
-              <!-- <ion-col size-lg="1.5" size-md="4" size-sm="6" size="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="ponumber"  formControlName="ponumber"  name="ponumber" type="text" label="PO Number :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-
-              </ion-col> -->
             </ion-row>
 
 
@@ -177,7 +169,7 @@
                     <td class="select-option">
                       <select #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcin.taxrate"
                         formControlName="taxrate" name="taxrate" id="taxrate">
-                        <option value="0">Select GST</option>
+                        <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>

@@ -5,13 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-useredit',
-  templateUrl: './useredit.page.html',
-  styleUrls: ['./useredit.page.scss'],
+  selector: 'app-viewuser',
+  templateUrl: './viewuser.page.html',
+  styleUrls: ['./viewuser.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class UsereditPage implements OnInit {
+export class ViewUserPage implements OnInit {
 
   constructor(private router:Router) { }
 

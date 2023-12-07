@@ -61,7 +61,7 @@
 
             <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
               <select class="select" [(ngModel)]="supplier"  formControlName="supplier"  name="spler">
-                <option value="0">Supplier Name</option><!-- Default option -->
+                <option value="0"> --- Supplier Name --- </option><!-- Default option -->
                 <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                   {{ suppliername.name }}
                 </option>
@@ -107,14 +107,14 @@
               <select class="select" [(ngModel)]="payment"  formControlName="payment" name="pyt">
                 <!-- <option value="0">
                  Payment Mode</option> -->
-                 <option value="0">Credit</option>
+                 <option value="0"> --- Credit --- </option>
                 <option value="1">Cash</option>
                
               </select>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
               <select class="select"  [(ngModel)]=" executivename" name="executive_name" formControlName="executivename">
-                <option value="0">Select Executive Name</option><!-- Default option -->
+                <option value="0">  --- Executive Name --- </option><!-- Default option -->
                 <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                   {{ executive.executivename }}
                 </option>
@@ -196,7 +196,7 @@
                   </td>
                   <td class="select-option">
                     <select  #taxrate (change)="onSelectChange(taxrate)"  [(ngModel)]="purchase.taxrate" id="taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
-                      <option value="0">Select GST</option>
+                      <option value="0"> GST</option>
                       <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                         {{ gsttype.gstname }}
                       </option>
