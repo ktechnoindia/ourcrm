@@ -34,18 +34,18 @@
                   <th>Action</th>
                 </tr>
                 <!-- Sample Row -->
-                <tr>
-                  <td>1</td>
-                  <td>John Doe</td>
-                  <td>Manager</td>
-                  <td>1234567890</td>
-                  <td>9876543210</td>
-                  <td>johndoe@example.com</td>
-                  <td>Country1</td>
-                  <td>State1</td>
-                  <td>District1</td>
-                  <td>123456</td>
-                  <td>123 Main Street, City1</td>
+                <tr *ngFor="let roleexective of roleexectives$ | async; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{roleexective.exname}} </td>
+                  <td>{{roleexective.extilte}}</td>
+                  <td>{{roleexective.phone}}</td>
+                  <td>{{roleexective.wpnumber}}</td>
+                  <td>{{roleexective.email}}</td>
+                  <td>{{roleexective.selectedOption}}</td>
+                  <td>{{roleexective.selectedState}}</td>
+                  <td>{{roleexective.selectedDistrict}}</td>
+                  <td>{{roleexective.pin_code}}</td>
+                  <td>{{roleexective.fulladdress}}</td>
                   <td>
                     <!-- Add action buttons or links for the first row here -->
                     <ion-icon name="create-outline"></ion-icon>

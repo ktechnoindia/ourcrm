@@ -28,8 +28,8 @@ export class RoleofexecutiveService {
     return this.httpclient.post(environment.apiacturl+environment.addroleofexecutive,rolexecut,{headers:{'key':key,'user':user}})
   }
 
-  fetchallunit(companyid:string,key:string,user:string): Observable<any> {
+  fetchroleexecutive(companyid:string,key:string,user:string): Observable<any> {
     console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiacturl+environment.fetchunit+'?p='+companyid,{headers:{'key':key,'user':user}})
+    return this.httpclient.get(environment.apiacturl+environment.fetchroleofexecutive+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 }
