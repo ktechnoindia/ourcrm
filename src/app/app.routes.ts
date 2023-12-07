@@ -262,11 +262,7 @@ export const routes: Routes = [
     loadComponent: () => import('./usercreate/usercreate.page').then( m => m.UsercreatePage),
     canActivate:[AuthGuard]
   },
-  {
-    path: 'useredit',
-    loadComponent: () => import('./useredit/useredit.page').then( m => m.UsereditPage),
-    canActivate:[AuthGuard]
-  },
+ 
   {
     path: 'password',
     loadComponent: () => import('./password/password.page').then( m => m.PasswordPage),
@@ -892,6 +888,11 @@ export const routes: Routes = [
     loadComponent: () => import('./accountdashboard/accountdashboard.page').then( m => m.AccountdashboardPage),
     canActivate:[AuthGuard]
   },
+  {
+    path: 'viewroleofexicutive',
+    loadComponent: () => import('./viewroleofexicutive/viewroleofexicutive.page').then( m => m.ViewroleofexicutivePage)
+  },
+
 
 
 
