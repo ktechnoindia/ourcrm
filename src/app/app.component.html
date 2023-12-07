@@ -9,9 +9,9 @@
         <p>Company</p>
       </button>
       <ul class="dropdown-list">
-        <li><a routerLink="/createcompany">Create</a></li>
-        <li><a [routerLink]="['/viewcompany']">Open</a></li>
-        <li><a routerLink="closecompany">Close</a></li>
+        <li><a routerLink="/createcompany">Create Company</a></li>
+        <li><a [routerLink]="['/viewcompany']">View Company</a></li>
+        <!-- <li><a routerLink="closecompany">Close</a></li> -->
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown">
           <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate">User Create</a>
@@ -167,9 +167,9 @@
         <p>Company</p>
       </button>
       <ul class="dropdown-list drop_down">
-        <li><a routerLink="/createcompany" (click)="closeMobileMenu()">Create</a></li>
-        <li><a [routerLink]="['/viewcompany']" (click)="closeMobileMenu()">Open</a></li>
-        <li><a routerLink="closecompany" (click)="closeMobileMenu()">Close</a></li>
+        <li><a routerLink="/createcompany" (click)="closeMobileMenu()">Create Company</a></li>
+        <li><a [routerLink]="['/viewcompany']" (click)="closeMobileMenu()">View Company</a></li>
+        <!-- <li><a routerLink="closecompany" (click)="closeMobileMenu()">Close</a></li> -->
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown ">
           <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate"
