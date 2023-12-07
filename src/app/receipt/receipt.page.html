@@ -9,7 +9,7 @@
               <ion-title style="text-align: center;">Recepit Transaction</ion-title>
               <div class="custom-primary">
                 <ion-button size="small" [routerLink]="['/receipttransaction-report']" id="open-loading5">View Recepit
-                  Transaction</ion-button>
+                  </ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="Payemnt Transaction Showing ..."
                   [duration]="1000"></ion-loading>
 
@@ -160,7 +160,7 @@
                                           <ion-input class="table_input" name="particular" [(ngModel)]="particular" formControlName="particular" type="text"></ion-input>
                                         </td>
                                         <td>
-                                          <ion-input class="table_input"  name="datetype" [(ngModel)]="datetype" formControlName="datetype" type="date"></ion-input>
+                                          <ion-input class="table_input date"  name="datetype" [(ngModel)]="datetype" formControlName="datetype" type="date"></ion-input>
                                         </td>
                                         <td>
                                           <ion-input class="table_input" name="reference" [(ngModel)]="reference" formControlName="reference" type="text"></ion-input>
@@ -186,7 +186,7 @@
                           </ion-popover>
                         </td>
                         <td>
-                          <ion-input type="date" name="datetype" [(ngModel)]="datetype" formControlName="datetype"></ion-input>
+                          <ion-input class="date" type="date" name="datetype" [(ngModel)]="datetype" formControlName="datetype"></ion-input>
                         </td>
                         <td>
                           <ion-input type="text" name="debit" [(ngModel)]="debit" formControlName="debit"></ion-input>

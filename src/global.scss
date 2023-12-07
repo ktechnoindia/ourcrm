@@ -92,7 +92,19 @@ ion-item {
     --ripple-color: transparent;
     --background-activated: transparent;
 }
-
+.Customer select {
+    min-height: 35px;
+  
+    width: 100%;
+    text-align: left;
+    // border-color: #646464;
+    border-radius: 4px;
+    border-width: 1px;
+    // box-shadow: 0 0 2px 2px #fffbfb;
+    color: #1a4174;
+    padding-left: 12px;
+    font-family: 'Times New Roman', Times, serif;
+  }
 
 ion-menu.md ion-content {
     --padding-start: 0px;
@@ -698,7 +710,7 @@ ion-input {
     background-clip: text;
     background: linear-gradient(to right, #00b4db, #0083b0);
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 //code of cards design

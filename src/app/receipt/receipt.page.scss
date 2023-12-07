@@ -1,15 +1,18 @@
 
 .Customer ion-input {
-   min-height: 33px;
-  outline-width: 2px;
-  outline-style: initial;
+  min-height: 33px;
+ outline-width: 2px;
+ outline-style: initial;
 }
 
 .Customer select {
-  width: 100%;
-  text-align: left;
+ width: 100%;
+ text-align: left;
 }
 
+ table th {
+color: black;
+  }
 
 .scroll-container td {
 background-color: #fff;
@@ -17,17 +20,20 @@ border: .1px solid grey;
 max-height: 20px;
 }
 
+.date{
+  color: #1a4174;
+}
 .output td {
-  border: 1px solid grey;
-  margin: 5px;
-  // height: 30px;
+ border: 1px solid grey;
+ margin: 5px;
+ // height: 30px;
 }
 
 .output th {
-  text-align: right;
-  border: none;
-  // background-color: #fff;
-  padding-left: 10px;
+ text-align: right;
+ border: none;
+ // background-color: #fff;
+ padding-left: 10px;
 }
 .scroll-container {
 overflow-x: auto;
@@ -53,45 +59,54 @@ margin-bottom: 10px;
 border: solid .1px grey;
 border-radius: 10px;
 table td {
-  background-color: #fff;
+ background-color: #fff;
 }
 }
 @media(max-width:540px) {
-  .Customer ion-input {
-    min-height: 25px;
-   font-size: 10px;
-  }
-  ion-button{
-   font-size: 5px;
-  }
-  ion-card{
-   --box-shadow:none;
-    padding: 0;
-  }
- 
+ .Customer ion-input {
+   min-height: 25px;
+  font-size: 10px;
  }
- 
- .select-option{
+
+}
+.select-option{
   border: none;
   outline: none;
   width: 100px !important;
-  // margin: 2px;
   background: none;
-  // max-height: 20px !important;
-  
+  max-height: 20px !important;
 }
 .btn{
   --box-shadow:none;
   font-size: 10px;
+  color: #1a4174;
+  font-family: 'Times New Roman', Times, serif;
+  outline: none;
+  border: none;
+}
+ion-popover {
+  --min-width: 650px; /* Set the desired minimum width */
+  --min-height: 200px; /* Set the desired minimum height */
 }
 .table_input{
   width: 100%;
-}
-ion-popover {
-  --min-width: 600px; /* Set the desired minimum width */
-  --min-height: 200px; /* Set the desired minimum height */
 }
 ion-card{
   height: 450px;
   padding: 10px;
 }
+
+.Customer select {
+  min-height: 35px;
+
+  width: 100%;
+  text-align: left;
+  // border-color: #646464;
+  border-radius: 4px;
+  border-width: 1px;
+  // box-shadow: 0 0 2px 2px #fffbfb;
+  color: #1a4174;
+  padding-left: 12px;
+  font-family: 'Times New Roman', Times, serif;
+}
+

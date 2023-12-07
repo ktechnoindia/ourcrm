@@ -73,6 +73,7 @@ export class ReceiptPage implements OnInit {
       oriamount: [''],
       balanceamt: [''],
       sale_person: [''],
+      
     });
     const compid = '1';
     this.companys$ = this.companyService.fetchallcompany(compid, '', '');
