@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { roletypesservice } from '../services/roletypes.service';
@@ -16,8 +16,8 @@ import { FormValidationService } from '../form-validation.service';
   templateUrl: './usercreate.page.html',
   styleUrls: ['./usercreate.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
-})
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
+  ReactiveFormsModule]})
 export class UsercreatePage implements OnInit {
   username:string='';
   usercode:string='';

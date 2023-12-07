@@ -7,6 +7,12 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">User Create</ion-title>
+              <div class="custom-primary">
+                <ion-button size="small" [routerLink]="['/viewuser']" id="open-loading5">View User</ion-button>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="User Showing ..."
+                  [duration]="1000"></ion-loading>
+
+              </div>
             </ion-row>
           </ion-card-header>
         </div>

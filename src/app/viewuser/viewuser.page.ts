@@ -20,7 +20,7 @@ export class ViewUserPage implements OnInit {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/setting']); 
+    this.router.navigate(['/usercreate']); 
   }
 
 }

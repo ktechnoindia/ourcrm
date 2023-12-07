@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleofexecutiveService, roleofexecut } from '../services/roleofexecutive.service';
@@ -17,8 +17,8 @@ import { Observable } from 'rxjs';
   templateUrl: './roleofexicutive.page.html',
   styleUrls: ['./roleofexicutive.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
-})
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
+  ReactiveFormsModule]})
 export class RoleofexicutivePage implements OnInit {
 
    
@@ -103,7 +103,7 @@ export class RoleofexicutivePage implements OnInit {
     // Page initialization code goes here
   }
   goBack() {
-    this.router.navigate(['/master']); 
+    this.router.navigate(['/roleofexicutive']); 
   }
 
 }
