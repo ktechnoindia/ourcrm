@@ -11,6 +11,8 @@ import { ExecutiveService,execut } from '../services/executive.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormValidationService } from '../form-validation.service';
+import { LegderService } from '../services/ledger.service';
+import { EncryptionService } from '../services/encryption.service';
 @Component({
   selector: 'app-add-executive',
   templateUrl: './add-executive.page.html',
@@ -40,9 +42,10 @@ export class AddExecutivePage implements OnInit {
   roletypes$: Observable<any[]>
   MenuController: any;
   roletypesservice: any;
+  ledgers$: Observable<any>;
  
 
-  constructor(private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice) {
+  constructor(private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice,private ledgerService:LegderService , private encService:EncryptionService) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
@@ -58,6 +61,10 @@ export class AddExecutivePage implements OnInit {
       eemail: [''],
      
     })
+    const compid='1';
+
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid,'','');
+    console.log(this.ledgers$);
   }
 
   

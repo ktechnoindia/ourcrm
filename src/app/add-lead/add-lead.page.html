@@ -133,7 +133,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]=" executivename" name="executive_name"
                   formControlName="executivename">
-                  <option value="0"> --- Executive Name --- </option><!-- Default option -->
+                  <option value="0"> -- Executive Name -- </option><!-- Default option -->
                   <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </option>
@@ -144,7 +144,7 @@
               <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                 <select class="select" [(ngModel)]=" leadassign" name="leadassign"
                   formControlName="leadassign">
-                  <option value="0"> --- Lead Assign To --- </option><!-- Default option -->
+                  <option value="0"> -- Lead Assign To -- </option><!-- Default option -->
                   <option *ngFor="let leadassigns of executive$ | async" [value]="leadassigns.executiveid">
                     {{ leadassigns.executivename }}
                   </option>

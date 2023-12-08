@@ -143,7 +143,7 @@
 
                     </td>
                     <td class="select-option">
-                      <select [(ngModel)]="dcout.unitname" id="unitname" formControlName="unitname" name="unit_name$">
+                      <select class="table_select" [(ngModel)]="dcout.unitname" id="unitname" formControlName="unitname" name="unit_name$">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -168,7 +168,7 @@
                         formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
                     <td class="select-option">
-                      <select #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcout.taxrate"
+                      <select class="table_select" #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcout.taxrate"
                         formControlName="taxrate" name="taxrate" id="taxrate">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">

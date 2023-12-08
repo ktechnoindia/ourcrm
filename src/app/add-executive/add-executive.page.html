@@ -39,13 +39,13 @@
                 </select>
                 
               </ion-col>
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2.8" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input  [ngModel]="excode"   formControlName="excode" name="execuitvecode" type="text" label=" Executive Code :" label-placement="floating" fill="outline" ></ion-input>
                  
                 </ion-row>
               </ion-col>
-              <ion-col size="12" size-lg="5" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="4.7" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="executivename"   formControlName="executivename" name="exectname" type="text" label=" Name :" label-placement="floating" fill="outline" ></ion-input>
                  
@@ -66,9 +66,8 @@
                 <select class="select" [ngModel]="ledger"  formControlName="ledger"  name="ledgertype">
                   <option value="" disabled selected>  --- ledger --- </option> <!-- Default option -->
 
-                  <option value="1">Stock ledger</option>
-                  <option value="1">Sales ledger</option>
-                  <option value="1">Purchase ledger</option>
+                  <option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}} </option>
+                 
                 </select>
                 <div *ngIf="form && form.controls['ledger']?.hasError('required') && form.controls['ledger']?.touched" class="error-message">
                   Service Type is required.

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService, rec } from '../services/recepit.service';
@@ -56,7 +56,7 @@ export class ReceiptPage implements OnInit {
 
   constructor(private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private custname1:CustomerService) {
     this.myform = this.formBuilder.group({
-      voucherNumber: [''],
+      voucherNumber: ['',Validators.required],
       paymentdate: [''],
       ledgername: [''],
       companyname: [''],
@@ -89,7 +89,7 @@ console.log(this.companys$);
     this.isOpen = true;
   }
   async onSubmit() {
-    const fields = {}
+    const fields = {voucherNumber:this.voucherNumber}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 

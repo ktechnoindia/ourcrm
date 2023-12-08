@@ -158,8 +158,8 @@
                   <td>
                     <input [(ngModel)]="purchase.itemcode" id="itemcode"  formControlName="itemcode" name="itemcode" class="table_input" type="text">
                   </td>
-                  <td class="select-option">
-                  <select  id="itemname"  [(ngModel)]="purchase.itemname" name="itemname" formControlName="itemname">
+                  <td >
+                  <select class="select-option" id="itemname"  [(ngModel)]="purchase.itemname" name="itemname" formControlName="itemname">
                     <option value="0">Item Name</option><!-- Default option -->
                     <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                       {{ itemname.itemDesc }}
@@ -173,8 +173,8 @@
                     <input [(ngModel)]="purchase.quantity" id="quantity"  formControlName="quantity" name="quantity" class="table_input" type="number">
 
                   </td>
-                  <td class="select-option">
-                    <select [(ngModel)]="purchase.unitname" id="unitname"   formControlName="unitname" name="unit_name$" >
+                  <td >
+                    <select class="select-option" [(ngModel)]="purchase.unitname" id="unitname"   formControlName="unitname" name="unit_name$" >
                       <option value="0">Unit Name</option>
                       <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                         {{ unitname.unitname }}
@@ -194,8 +194,8 @@
                   <td>
                     <input [(ngModel)]="purchase.grossrate" [value]="getgrossrate(purchase) " id="grossrate" formControlName="grossrate" name="grossrate" class="table_input" type="number">
                   </td>
-                  <td class="select-option">
-                    <select  #taxrate (change)="onSelectChange(taxrate)"  [(ngModel)]="purchase.taxrate" id="taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
+                  <td >
+                    <select class="select-option" #taxrate (change)="onSelectChange(taxrate)"  [(ngModel)]="purchase.taxrate" id="taxrate"  formControlName="taxrate" name="taxrate" id="taxrate">
                       <option value="0"> GST</option>
                       <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                         {{ gsttype.gstname }}
