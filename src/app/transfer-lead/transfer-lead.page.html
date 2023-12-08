@@ -62,7 +62,7 @@
                   <td>{{leadscore.lscore}}</td>
                   <td>{{leadscore.catPerson}}</td>
                   <td  >
-                    <select class="select-option" [(ngModel)]="select_sales_person" name="select_sales_person" >
+                    <select class="select-option" [(ngModel)]="leadscore.select_sales_person" name="select_sales_person" >
                       <option selected value="0" disabled>Lead Assign To</option><!-- Default option -->
                       <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                         {{ executive.executivename }}

@@ -30,4 +30,5 @@ export class ViewroleofexicutivePage implements OnInit {
   goBack() {
     this.router.navigate(['/viewroleofexicutive']); 
   }
+  
 }
