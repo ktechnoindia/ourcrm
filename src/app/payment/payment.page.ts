@@ -57,7 +57,7 @@ export class PaymentPage implements OnInit {
   constructor(private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
      
 this.myform= this.formBuilder.group({
-  voucherNumber:[''],
+  voucherNumber:['',Validators.required],
   paymentdate:[''],
   ledgername:[''],
   companyname:[''],
@@ -84,7 +84,7 @@ this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '
 
 
 async onSubmit() {
-  const fields = {}
+  const fields = {voucherNumber:this.voucherNumber}
   const isValid = await this.formService.validateForm(fields);
   if (await this.formService.validateForm(fields)) {
 
