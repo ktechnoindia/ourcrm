@@ -22,7 +22,7 @@
             <ion-row>
               <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
+                  <ion-input class="custom-label-padding" [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
                     label=" Company Name :" label-placement="floating" fill="outline"></ion-input>
                 
                 </ion-row>
@@ -214,7 +214,7 @@
             </ion-row>
             <ion-row>
               <ion-col style="display: flex; flex-direction: column;" size="6" size-lg="6" size-md="6" size-sm="6" class="date">
-                <ion-label>Select Image :</ion-label>
+                <ion-label style="color: #1a4174;font-size: 12px;"> Image :</ion-label>
                 <label for="fileInput" class="custom-file-upload">
                   Choose a file
                 </label>
@@ -222,7 +222,7 @@
                   style="display: none;">
               </ion-col>
               <ion-col style="display: flex; flex-direction: column;justify-content: end;"  size="6" size-lg="6" size-md="6" size-sm="6" class="date">
-                <ion-label>Starting From : </ion-label>
+                <ion-label style="color: #1a4174;font-size: 12px;">Starting From : </ion-label>
                 <input type="file" id="file-upload" name="file" accept="image/*">
                 <ion-input [(ngModel)]="rdate" formControlName="rdate" name="startdate" type="datetime"
                   placeholder="Enter Starting Date" class="custom-date-input"></ion-input>

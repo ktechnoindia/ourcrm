@@ -55,8 +55,7 @@ input::-webkit-inner-spin-button {
 
 .custom-alert-button.secondary {
     background-color: #3498db;
-    /* Customize secondary button color */
-    // border: 1px solid grey;
+    
     color: white;
     padding: 10px 20px;
 }
@@ -64,13 +63,9 @@ input::-webkit-inner-spin-button {
 /* Example styles for alert content */
 .custom-alert-content {
     background-color: #ecf0f1;
-    /* Change alert content background color */
     padding: 20px;
-    /* Add padding to alert content */
     border-radius: 10px;
-    /* Add rounded corners */
     color: #333;
-    /* Change text color */
 }
 
 .mars {
@@ -92,15 +87,12 @@ ion-item {
     --ripple-color: transparent;
     --background-activated: transparent;
 }
-.Customer select {
+.Customer .select {
     min-height: 35px;
-  
     width: 100%;
     text-align: left;
-    // border-color: #646464;
     border-radius: 4px;
     border-width: 1px;
-    // box-shadow: 0 0 2px 2px #fffbfb;
     color: #1a4174;
     padding-left: 12px;
     font-family: 'Times New Roman', Times, serif;
@@ -485,7 +477,7 @@ tr:nth-child(odd) {
     border: none;
     outline: none;
     text-align: center;
-    width: 170px;
+    width: 138px;
     max-height: 20px;
 
 }
@@ -495,10 +487,9 @@ tr:nth-child(odd) {
     border: none;
     outline: none;
     text-align: center;
-
-    margin-bottom: 5px;
-    margin-top: -5px;
-    width: 80px !important;
+    width: 90px !important;
+    padding: 0;
+    margin: 0;
 }
 
 .back {
@@ -654,7 +645,7 @@ input::placeholder {
 .input_table {
     border: none;
     outline: none;
-    width: 100px;
+    width: 80px;
     text-align: center;
 }
 
@@ -848,14 +839,15 @@ select option {
     text-align: center;
 }
 
-.select-option select {
-    border: none;
-    outline: none;
-    width: 85px !important;
+.select-option {
+    border: none !important;
+    outline: none !important;
+    width: 90px !important;
     margin: 2px;
     background: none;
     max-height: 20px !important;
 }
+
 
 .row_data {
     border-right: 1px solid grey;

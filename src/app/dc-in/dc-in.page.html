@@ -122,8 +122,8 @@
                       <input [(ngModel)]="dcin.itemcode" id="itemcode" formControlName="itemcode" name="itemcode"
                         class="table_input" type="text">
                     </td>
-                    <td class="select-option">
-                      <select style="width: 80px;" [(ngModel)]="dcin.itemname" name="itemname"
+                    <td style="width: 90px;">
+                      <select class="table_select" [(ngModel)]="dcin.itemname" name="itemname"
                         formControlName="itemname" id="itemname">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
@@ -140,8 +140,8 @@
                         class="table_input" type="number">
 
                     </td>
-                    <td>
-                      <select style="border: none;outline: none;width: 100px;" [(ngModel)]="dcin.unitname"
+                    <td style="width: 90px;">
+                      <select class="table_select" [(ngModel)]="dcin.unitname"
                         formControlName="unitname" name="unit_name" id="unitname">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
@@ -166,8 +166,8 @@
                       <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) " id="grossrate"
                         formControlName="grossrate" name="grossrate" class="table_input" type="number">
                     </td>
-                    <td class="select-option">
-                      <select #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcin.taxrate"
+                    <td style="width: 90px;">
+                      <select class="table_select" #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcin.taxrate"
                         formControlName="taxrate" name="taxrate" id="taxrate">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
