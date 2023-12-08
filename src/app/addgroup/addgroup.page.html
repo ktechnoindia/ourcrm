@@ -15,7 +15,7 @@
           <ion-row>
             <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
               <ion-row>
-                <ion-input [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input #firstInvalidInput [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -46,6 +46,7 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ itemgroup.itemgroupname }}<td>
                   <td>{{ itemgroup.parentgroup }}</td>
+                  
                  </tr>
               </table>
             </div>
@@ -53,9 +54,7 @@
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button id="open-loading">New</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
-            <ion-button type="submit" id="open-loading1">Save</ion-button>
-            <ion-loading class="custom-loading" trigger="open-loading1" message="Group Adding..." [duration]="1000"></ion-loading>
-    
+            <ion-button type="submit" id="open-loading1">Save</ion-button>    
             <ion-button id="open-loading4">Close</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
 

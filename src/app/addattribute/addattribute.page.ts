@@ -17,19 +17,19 @@ import { Observable } from 'rxjs';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,]
 })
 export class AddattributePage implements OnInit {
-  type = 'address';
+
   attname: string = '';
- companyid:number=1;
+  companyid: number = 1;
   myform: FormGroup;
-  submitted = false;
+
   attname$: Observable<any[]>
 
-  constructor(private router: Router, private addatt: AddattributeService,private formService:FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
-      attname: ['',Validators.required],
-      // attdetails: ['']
+      attname: ['', Validators.required],
+
     })
-    this.attname$=this.addatt.getattribute(1);
+    this.attname$ = this.addatt.getattribute(1);
   }
 
   ngOnInit() {
@@ -37,11 +37,11 @@ export class AddattributePage implements OnInit {
   }
 
 
-  async  onSubmit() {
-    const fields = {attname:this.attname}
-    const isValid =true;// this.formService.validateForm(fields);
-    if (isValid) {
-      this.submitted = true;
+  async onSubmit() {
+    const fields = { }
+    // const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+
       console.log('Your form data : ', this.myform.value);
       let attdata: addattribute = {
         attname: this.myform.value.attname,
@@ -60,10 +60,10 @@ export class AddattributePage implements OnInit {
       setTimeout(() => {
         this.myform.reset();
       }, 1000);
-    }else{
-      Object.keys(this.myform.controls).forEach(controlName =>{
+    } else {
+      Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
-        if(control?.invalid){
+        if (control?.invalid) {
           control.markAllAsTouched()
         }
       })

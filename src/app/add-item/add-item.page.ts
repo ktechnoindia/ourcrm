@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -49,11 +49,7 @@ export class AddItemPage implements OnInit {
   minimum: string='';
   maximum: string='';
   reorder: string = '';
-
   selectitemtype:number=0;
-
-  attname$: Observable<any[]>
- 
   selectPrimaryUnit:number=0;
   attr1: string = '';
   attr2: string = '';
@@ -70,12 +66,12 @@ export class AddItemPage implements OnInit {
   unitname$:any;
   // unitname!: string; 
   hsnname$:Observable<any[]>
-  
+  attname$: Observable<any[]>
   stocktypename$:Observable<any[]>
   itemtypename$:Observable<any[]>
   itemgroups$: Observable<any[]>
 
-
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
   attributes: string[] = [];
   itemname$: Observable<any>;
   
@@ -106,8 +102,6 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       minimum: [''],
       maximum: [''],
       reorder: [''],
-
-      
       selectItemGroup: [''],
      
       attr1: [''],
@@ -118,9 +112,6 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr6: [''],
       attr7: [''],
       attr8: [''],
-     
-     
-      
     })
 
   }
@@ -137,10 +128,10 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
   }
   
  async onSubmit() {
-    // const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
-    // const isValid = await this.formService.validateForm(fields);
-    // if (await this.formService.validateForm(fields)) {
-    //   this.submitted=true;
+    const fields = {itemDesc:this.itemDesc,itemCode:this.itemCode}
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      this.submitted=true;
     console.log('Your form data : ', this.myform.value);
     
     let itemdata:item={
@@ -178,7 +169,6 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr6: this.myform.value.attr6,
       attr7: this.myform.value.attr7,
       attr8: this.myform.value.attr8,
-     
    
       unitname$: this.myform.value.unitname,
       hsnname$: this.myform.value.hsnname,
@@ -196,19 +186,21 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
         this.formService.showFailedAlert();
       }
     );
-  //   setTimeout(() => {
-  //     // Reset the form and clear input fields
-  //     this.myform.reset();
-  //   }, 1000); 
-  //   else {
-  //   //If the form is not valid, display error messages
-  //   Object.keys(this.myform.controls).forEach(controlName => {
-  //     const control = this.myform.get(controlName);
-  //     if (control?.invalid) {
-  //       control.markAsTouched();
-  //     }
-  //   });
-  // }
+    setTimeout(() => {
+      this.myform.reset();
+    }, 1000); 
+  } else {
+    //If the form is not valid, display error messages
+    Object.keys(this.myform.controls).forEach(controlName => {
+      const control = this.myform.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
+  }
   
 }
 

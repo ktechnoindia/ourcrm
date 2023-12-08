@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormGroupName, FormsModule, NgForm, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -19,21 +19,17 @@ export class AddgroupPage implements OnInit {
 
   form:FormGroup;
   itemgroupname:string='';
-  // igname:string='';
-  // agname:string='';
-  // description:string='';
   parentgroup:number=0; 
+  
   subscription: Subscription = new Subscription();
   itemgroups$: Observable<any[]>
 
-
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   constructor(private router:Router,private formBuilder:FormBuilder, private formService: FormValidationService,private groupService:AddgroupService) {
     this.form = this.formBuilder.group({
-      // igname: ['', [Validators.required]],
-      // agname: [''],
-      // description: [''],
-      itemgroupname:[''],
+    
+      itemgroupname:['',Validators.required],
       parentgroup:[''],
 
   })
@@ -42,7 +38,7 @@ export class AddgroupPage implements OnInit {
    }
 
    async onSubmit() {
-    const fields = {groupname:this.itemgroupname,parentgroup:this.parentgroup,}
+    const fields = {groupname:this.itemgroupname}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
@@ -75,6 +71,9 @@ export class AddgroupPage implements OnInit {
         control.markAsTouched();
       }
     });
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
+    }
   }
 }
 

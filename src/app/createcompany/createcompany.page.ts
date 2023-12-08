@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -33,7 +33,7 @@ export class CreatecompanyPage implements OnInit {
   step2: boolean = false;
   step3: boolean = false;
 
-
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   form: FormGroup;
   rdate: string = '';
@@ -184,7 +184,6 @@ this.rdate = new Date().toLocaleDateString();
 
  async onSubmit() {
     const fields = { cpyname: this.cpyname}
-
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
@@ -216,9 +215,9 @@ this.rdate = new Date().toLocaleDateString();
        
       }
     );
-    // setTimeout(() => {
-      // this.form.reset();
-    // }, 3000);
+    setTimeout(() => {
+      this.form.reset();
+    }, 3000);
     }else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
@@ -227,6 +226,9 @@ this.rdate = new Date().toLocaleDateString();
           control.markAsTouched();
         }
       });
+    }
+    if (this.firstInvalidInput) {
+      this.firstInvalidInput.setFocus();
     }
   }
   onCountryChange() {
