@@ -28,7 +28,8 @@ export class FollowUpPage implements OnInit {
   custid: string = '';
   leadid: string = '';
   compid: string = '';
-
+  companyId: string = '1';
+  followUpCounter: number = 1;
   lead$: Observable<any[]>
   myform: FormGroup;
   showLeadDetails = false;
@@ -57,60 +58,53 @@ export class FollowUpPage implements OnInit {
         srNo: 1, // You can dynamically set these values based on leadscore
         companyId: leadscore.tid,
         leadDate: leadscore.leaddate,
-        remark: 'this remark',
-        nextFollowUpDate: '12/1/23',
+        remark: this.remark,
+        nextFollowUpDate: this.nextfollowupDate,
         enteredBy: leadscore.catPerson,
       },
     ];
+    this.companyId = leadscore.tid;
+    this.followUpCounter = 1;
   }
 
+  
   async onSubmit() {
-    const fields = {}
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    // ... (other existing code)
 
-      console.log('Your form data : ', this.myform.value);
-      const followupdata: followuptable = {
-        nextfollowupDate: this.myform.value.nextfollowupDate,
-        remark: this.myform.value.remark,
-        followupdate: '1',
-        enterdby: '1',
-        leadid: '1',
-        companyid: '1',
-        custid: '1'
-      };
+    const followupdata: followuptable = {
+      followupId: this.generateFollowUpId(), 
+      nextfollowupDate: this.myform.value.nextfollowupDate,
+      remark: this.myform.value.remark,
+      followupdate: '1',
+      enterdby: '1',
+      leadid: '1',
+      companyid: this.companyId,
+      custid: '1',
+      
+    };
+    
 
-      this.followService.createfollowup(followupdata, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
+    this.followService.createfollowup(followupdata, '', '').subscribe(
+      (response: any) => {
+        // ... (other existing code)
 
-          this.formService.showSaveLoader()
-          this.myform.reset()
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
-          this.formService.shoErrorLoader();
-        }
-      );
+        // Add the new follow-up detail to the selectedRowDetails array
+        this.selectedRowDetails.push({
+          srNo: this.selectedRowDetails.length + 1,
+          companyId: followupdata.companyid,
+          leadDate: '', // You may need to set an appropriate value
+          remark: followupdata.remark,
+          nextFollowUpDate: followupdata.nextfollowupDate,
+          enteredBy: followupdata.enterdby,
+          followid:this.followUpCounter
+        });
 
-    } else {
-
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
-        }
-      });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
+        // ... (other existing code)
+      },
+      (error: any) => {
+        // ... (other existing code)
       }
-    }
+    );
   }
 
   ngOnInit() {
@@ -119,5 +113,11 @@ export class FollowUpPage implements OnInit {
     this.router.navigate(["/leaddashboard"])
   }
 
-
+  private generateFollowUpId(): string {
+    const followUpId = `${this.companyId}_${this.followUpCounter}`;
+    this.followUpCounter++;
+    return followUpId;
+    
+  }
+  
 }
