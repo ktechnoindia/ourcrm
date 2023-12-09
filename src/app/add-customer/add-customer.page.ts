@@ -173,7 +173,7 @@ export class AddCustomerPage implements OnInit {
           }, 1000);
 
           this.formService.showSaveLoader()
-          this.myform.reset()
+     
         },
         (error: any) => {
           console.error('POST request failed', error);

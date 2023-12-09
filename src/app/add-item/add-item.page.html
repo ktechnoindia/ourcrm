@@ -23,7 +23,7 @@
 
                 <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="item_Code" type="text"
+                    <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="itemCode" type="text"
                       label=" Item code :" label-placement="floating" fill="outline"></ion-input>
 
                   </ion-row>
@@ -31,15 +31,15 @@
 
                 <ion-col size="12" size-lg="8" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="item_Desc" type="text"
+                    <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="itemDesc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
                     </ion-input>
                   </ion-row>
                 </ion-col>
 
                 <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="hsnname" formControlName="hsnname" name="hsn_name">
-                    <option value="0">  --- HSN --- </option> <!-- Default option with value 0 -->
+                  <select class="select" [(ngModel)]="hsnname" formControlName="hsnname" name="hsnname">
+                    <option value="">  --- HSN --- </option> <!-- Default option with value 0 -->
                     <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </option>
@@ -48,8 +48,8 @@
                 </ion-col>
               
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="select_Stock">
-                    <option value="0">  --- Stock Type --- </option> <!-- Default option with value 0 -->
+                  <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
+                    <option value="">  --- Stock Type --- </option> <!-- Default option with value 0 -->
                     <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
                     </option>
@@ -58,8 +58,8 @@
 
 
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="itemtypename" formControlName="itemtypename" name="select_Item">
-                    <option value="0">  --- Item Type --- </option> <!-- Default option with value 0 -->
+                  <select class="select" [(ngModel)]="itemtypename" formControlName="itemtypename" name="itemtypename">
+                    <option value="">  --- Item Type --- </option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
                     </option>
@@ -67,10 +67,10 @@
                 </ion-col>
 
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="unitname" formControlName="unitname$" name="unit_name$">
+                  <select class="select" [(ngModel)]="unitname" formControlName="unitname" name="unitname">
                     <option value="0">  --- Unit Name --- </option>
-                    <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
-                      {{ unitname.unitname }}
+                    <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                      {{ unitnames.unitname }}
                     </option>
                   </select>
                 </ion-col>
@@ -78,7 +78,7 @@
               <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="select_ItemGroup">
+                  <select class="select" [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="selectItemGroup">
                     <option value="0">  --- Item Group --- </option> <!-- Default option with value 0 -->
                     <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
@@ -89,7 +89,7 @@
 
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="selectGst" formControlName="selectGst" name="select_Gst">
+                  <select class="select" [(ngModel)]="selectGst" formControlName="selectGst" name="selectGst">
                     <option value="0">  --- GST Type --- </option> <!-- Default option with value 0 -->
                     <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
@@ -183,7 +183,7 @@
                     <ion-row style="margin-bottom: 10px;">
                       <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                         <ion-row>
-                          <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="text"
+                          <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="number"
                             label=" Barcode :" label-placement="floating" fill="outline"></ion-input>
                         </ion-row>
                       </ion-col>
@@ -200,20 +200,20 @@
 
                       <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                         <ion-row>
-                          <ion-input name="mini_mum" formControlName="minimum" [(ngModel)]="minimum" type="text"
+                          <ion-input name="minimum" formControlName="minimum" [(ngModel)]="minimum" type="number"
                             label="Minimum :" label-placement="floating" fill="outline"></ion-input>
                         </ion-row>
                       </ion-col>
                       <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                         <ion-row>
-                          <ion-input name="maxi_mum" formControlName="maximum" [(ngModel)]="maximum" type="text"
+                          <ion-input name="maximum" formControlName="maximum" [(ngModel)]="maximum" type="number"
                             label="Maximum :" label-placement="floating" fill="outline"></ion-input>
                         </ion-row>
                       </ion-col>
 
                       <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                         <ion-row>
-                          <ion-input name="re_order" formControlName="reorder" [(ngModel)]="reorder" type="text"
+                          <ion-input name="reorder" formControlName="reorder" [(ngModel)]="reorder" type="text"
                             label="Re-order :" label-placement="floating" fill="outline"></ion-input>
                         </ion-row>
                       </ion-col>

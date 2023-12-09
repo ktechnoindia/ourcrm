@@ -34,20 +34,20 @@ export class AddItemPage implements OnInit {
 
   itemCode:string = '';
   itemDesc: string = '';
-  hsnname:number=0;
+  hsnname:string='';
   selectItem:number=0;
-  stocktypename:number=0;
-  itemtypename:number=0;
-  unitname:number=0;
+  stocktypename:string='';
+  itemtypename:string='';
+  unitname:string='';
   selectItemGroup: number=0;
   selectGst: number=0;
   openingbalance:string='';
   closingbalance:string='';
   selectedAttribute: string='';
   files:string='';
-  barcode:string='';
-  minimum: string='';
-  maximum: string='';
+  barcode:number=0;
+  minimum: number=0;
+  maximum: number=0;
   reorder: string = '';
   selectitemtype:number=0;
   selectPrimaryUnit:number=0;
@@ -64,7 +64,7 @@ export class AddItemPage implements OnInit {
   selectGst$: any;
   selectStock:string='';
   unitname$:any;
-  // unitname!: string; 
+
   hsnname$:Observable<any[]>
   attname$: Observable<any[]>
   stocktypename$:Observable<any[]>
@@ -92,7 +92,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       hsnname: [''],
       stocktypename: [''],
       itemtypename: [''],
-      unitname$: [''],
+      unitname: [''],
       selectGst: [''],
       openingbalance: [''],
       closingbalance: [''],
@@ -139,7 +139,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       itemCode: this.myform.value.itemCode,
       hsnname: this.myform.value.hsnname,
       selectHSN:1,
-      unitname:'unitname',
+      unitname:this.myform.value.unitname,
       selectItem:1,
       selectStock:1,
       selectPrimaryUnit:1,
@@ -170,10 +170,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
       attr7: this.myform.value.attr7,
       attr8: this.myform.value.attr8,
    
-      unitname$: this.myform.value.unitname,
-      hsnname$: this.myform.value.hsnname,
-      stocktypename$: this.myform.value.stocktypename,
-      itemtypename$: this.myform.value.itemtypename,
+    
    
     };
     this.itemService.createItem(itemdata,'','').subscribe(
@@ -186,9 +183,7 @@ constructor(private groupService:AddgroupService, private itemtype1:ItemtypeServ
         this.formService.showFailedAlert();
       }
     );
-    setTimeout(() => {
-      this.myform.reset();
-    }, 1000); 
+   
   } else {
     //If the form is not valid, display error messages
     Object.keys(this.myform.controls).forEach(controlName => {

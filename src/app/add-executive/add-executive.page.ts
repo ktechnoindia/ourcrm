@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -35,7 +35,7 @@ export class AddExecutivePage implements OnInit {
   eemail: string = '';
   ewhatsapp: string='';
   epan: string = '';
-  ecommision: string='';
+  ecommision: number=0;
   ledger: string = '';
   companyid=1;
   
@@ -43,7 +43,7 @@ export class AddExecutivePage implements OnInit {
   MenuController: any;
   roletypesservice: any;
   ledgers$: Observable<any>;
- 
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   constructor(private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice,private ledgerService:LegderService , private encService:EncryptionService) {
     this.roletypes$ = this.roletypes.getroletypes();
@@ -69,35 +69,42 @@ export class AddExecutivePage implements OnInit {
 
   
   async onSubmit() {
-    // const fields = {executivename:this.executivename,excode:this.excode}
-    // const isValid = await this.formService.validateForm(fields);
-    // if (await this.formService.validateForm(fields)) {
+    const fields = {}
+    if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
-    let executdata:execut={roleid:this.form.value.roleid,excode:this.form.value.excode,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:1};
+    const executdata:execut={
+      roleid:this.form.value.roleid,excode:this.form.value.excode,executivename:this.form.value.executivename,emanager:this.form.value.emanager,emobile:this.form.value.emobile,eemail:this.form.value.eemail,ewhatsapp:this.form.value.ewhatsapp,epan:this.form.value.epan,ecommision:this.form.value.ecommision,ledger:this.form.value.ledger,companyid:1};
     this.addExecutiveService.createExecutive(executdata,'','').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        this.formService.showSuccessAlert();
+        setTimeout(() => {
+          this.formService.showSuccessAlert();
+        }, 1000);
+       
+        this.formService.showSaveLoader()
+
       },
       (error: any) => {
         console.error('POST request failed', error);
-        this.formService.showFailedAlert();
+        setTimeout(() => {
+          this.formService.showFailedAlert();
+        }, 1000);
+        this.formService.shoErrorLoader();
       }
     );
-    setTimeout(() => {
-      // Reset the form and clear input fields
-      this.form.reset()
-    }, 1000); 
     
-  // }else {
-  //   //If the form is not valid, display error messages
-  //   Object.keys(this.form.controls).forEach(controlName => {
-  //     const control = this.form.get(controlName);
-  //     if (control?.invalid) {
-  //       control.markAsTouched();
-  //     }
-  //   });
-  // }
+  }else {
+    //If the form is not valid, display error messages
+    Object.keys(this.form.controls).forEach(controlName => {
+      const control = this.form.get(controlName);
+      if (control?.invalid) {
+        control.markAsTouched();
+      }
+    });
+    if (this.firstInvalidInput) {
+     this.firstInvalidInput.setFocus();
+   }
+  }
 }
 
   ngOnInit() {

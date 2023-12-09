@@ -30,7 +30,7 @@ export class CreateamcPage implements OnInit {
   amc_id:string='';
   amc_date:string='';
   cust_code:string='';
-  cust_name:number=0;
+  cust_name:string='';
   bill_number:string='';
   renew_date:string='';
   service_type:number=0;
@@ -91,7 +91,6 @@ async onSubmit() {
         }, 1000);
        
         this.formService.showSaveLoader()
-        this.form.reset()
       },
       (error: any) => {
         console.error('POST request failed', error);

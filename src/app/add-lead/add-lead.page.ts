@@ -154,9 +154,7 @@ export class AddLeadPage {
         this.formService.showFailedAlert();
       }
     );
-    setTimeout(() => {
-      this.form.reset();
-    }, 1000);
+   
     } else {
         // If the form is not valid, display error messages
         Object.keys(this.form.controls).forEach(controlName => {

@@ -8,7 +8,7 @@ export interface item {
 
   itemDesc: string;
   itemCode: string;
-  hsnname: number;
+  hsnname: string;
   selectHSN:number;
   selectItem:number;
   selectStock:number;
@@ -17,8 +17,8 @@ export interface item {
 
   itemtype:string;
   stocktype:string;
-  stocktypename: number;
-  itemtypename: number;
+  stocktypename: string;
+  itemtypename: string;
   unitname: string;
   selectItemGroup: number;
   selectGst: number;
@@ -42,12 +42,6 @@ export interface item {
   attr8: string;
 
   selectGstservice: number;
-  unitname$: string;
-  hsnname$: any;
-  itemtypename$: any;
-  stocktypename$: any;
-  
-
 }
 
 @Injectable({

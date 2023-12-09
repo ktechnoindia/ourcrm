@@ -246,7 +246,6 @@ export class DcInPage implements OnInit {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
-            this.myform.reset();
           }, 1000);
           this.formService.showSaveLoader();
 

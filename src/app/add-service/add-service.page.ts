@@ -57,11 +57,6 @@ export class AddServicePage implements OnInit {
         this.formService.showFailedAlert();
       }
     );
-
-    setTimeout(() => {
-      this.myform.reset();
-    }, 1000);
-
   }else {
     //If the form is not valid, display error messages
     Object.keys(this.myform.controls).forEach(controlName => {

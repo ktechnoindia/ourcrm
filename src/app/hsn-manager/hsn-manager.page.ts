@@ -20,7 +20,6 @@ export class HsnManagerPage implements OnInit {
   unit:string='';
   desc: string = '';
   form: FormGroup;
-  subscription: Subscription = new Subscription();
 
   hsncode$: Observable<any[]>
   
@@ -28,14 +27,14 @@ export class HsnManagerPage implements OnInit {
   constructor(private router: Router,private formService:FormValidationService, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
       hsncode: ['', [Validators.required]],
-      unit: ['', [Validators.required]],
+      unit: [''],
       desc: [''],
   })
   this.hsncode$ = this.hsnService.getHSNNames(1);
   }
 
   async onSubmit() {
-    const fields = {hsncode:this.hsncode,unit:this.unit}
+    const fields = {hsncode:this.hsncode,}
     const isValid = await this.formService.validateForm(fields);
     if ( await this.formService.validateForm(fields)){
     console.log('Your form data : ', this.form.value);
@@ -45,7 +44,7 @@ export class HsnManagerPage implements OnInit {
      desc:this.form.value.desc,
      companyid: 1,
     };
-    this.subscription=this.hsnService.createHSN(hsndata,'','').subscribe(
+   this.hsnService.createHSN(hsndata,'','').subscribe(
       (response: any) => {
        if(response.status){
         console.log('POST request successful', response);
@@ -57,9 +56,7 @@ export class HsnManagerPage implements OnInit {
         this.formService.showFailedAlert();
       }
     );
-    setTimeout(() => {
-      this.form.reset();
-    },1000)
+   
   } else{
     Object.keys(this.form.controls).forEach(controlName =>{
       const control = this.form.get(controlName);
@@ -76,9 +73,6 @@ export class HsnManagerPage implements OnInit {
   goBack() {
     this.router.navigate(['/item-master']); 
   }
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-  }  }
+ 
 
 }

@@ -6,7 +6,7 @@ export interface amc{
   amc_id:string;
   amc_date:string;
   cust_code:string;
-  cust_name:number;
+  cust_name:string;
   bill_number:string;
   renew_date:string;
   service_type:number;

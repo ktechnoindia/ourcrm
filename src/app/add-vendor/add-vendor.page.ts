@@ -28,8 +28,6 @@ export class AddVendorPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-
-
   type: string = 'all';
   selectedSalutation: string='';
   companyName: string = '';
@@ -201,7 +199,7 @@ export class AddVendorPage implements OnInit {
           }, 1000);
          
           this.formService.showSaveLoader()
-          this.myform.reset()
+
         },
         (error: any) => {
           console.error('POST request failed', error);
