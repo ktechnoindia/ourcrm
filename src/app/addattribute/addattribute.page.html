@@ -15,42 +15,38 @@
               <ion-row>
               <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [ngModel]="attname" formControlName="attname" name="att_name" type="text"
+                  <ion-input color="dark" [ngModel]="attname" formControlName="attname" name="attname" type="text"
                     label="Attribute Name :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
+
               <ion-col class="attribute" size-lg="6" size-md="6" size-sm="6" size="6">
                 <ion-button type="submit" size="small" id="open-loading">Save</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading" message="Attribute Adding..." [duration]="1000"></ion-loading>
-
               </ion-col>
+
             </ion-row>
             </form>
+
           <ion-searchbar class="custom"></ion-searchbar>
           <ion-row>
             <div  class="scroll-container">
               <table style="width: 100%;">
                 <tr>
                   <th style="width: 100px;">SR.NO</th>
-                  <th>Attribute Name</th>
-                  <!-- <th>Attribute Details</th> -->
+                  <th >Attribute Name</th>
+                  <th  style="width: 100px;">Action</th>
                 </tr>
                 <tr *ngFor="let attname of attname$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{attname.attname}}</td>
-                  <!-- <td><ion-input style="border: none;"></ion-input></td> -->
-
+                  <td>
+                    <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                  </td>
                 </tr>
               </table>
             </div>
           </ion-row>
-          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row> -->
+        
         </ion-grid>
       </ion-card-content>
     </div>

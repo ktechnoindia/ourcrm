@@ -22,7 +22,7 @@
             <ion-row>
               <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input class="custom-label-padding" [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
+                  <ion-input #firstInvalidInput class="custom-label-padding" [(ngModel)]="cpyname" formControlName="cpyname" name="companyname" type="text"
                     label=" Company Name :" label-placement="floating" fill="outline"></ion-input>
                 
                 </ion-row>

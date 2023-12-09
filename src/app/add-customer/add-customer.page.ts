@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -13,65 +13,68 @@ import { CountryService } from '../services/country.service';
 import { CustomerService, cust } from '../services/customer.service';
 import { CustomertypeService } from '../services/customertype.service';
 import { ExecutiveService } from '../services/executive.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidationService } from '../form-validation.service';
+
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,RouterLink, RouterModule,],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
-  selectedSalutation: string='';
-  companyName: string='';
-  
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
+  selectedSalutation: string = '';
+  companyName: string = '';
+
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
-  selectedState: any;
-  selectedDistrict: string='';
+  state: number = 0;
+  district: number = 0;
 
   name: string = '';
-  customercode: number | null = null;
-  customer_code:string='';
-  selectedOption: string = '';
-  opening_balance: number | null = null;
-  closing_balance: number | null = null;
-  mobile: number | null = null;
-  whatsapp_number:string='';
+  customercode: string='';
+  customer_code: string = '';
+  country: number = 0;
+  opening_balance: number = 0;
+  closing_balance: number = 0;
+  mobile: string = '';
+  whatsapp_number: string = '';
   address: string = '';
-  gstin:string='';
-  email:string='';
-  select_sales_person:number=0;
-  pincode:string='';
-  tdn: number | null = null;
-  aadhar_no: number | null = null;
-  pan_no: number | null = null;
-  udhyog_aadhar: number | null = null;
-  account_number: string="";
-  ifsc_code: number | null = null;
+  gstin: string = '';
+  email: string = '';
+  select_sales_person: string = '';
+  pincode: string = '';
+  tdn: string = '';
+  aadhar_no: string = '';
+  pan_no: string = '';
+  udhyog_aadhar: string = '';
+  account_number: string = "";
+  ifsc_code: string = '';
   bank_name: string = '';
   branch_name: string = '';
-  credit_period: number | null = null;
-  credit_limit: number | null = null;
-  card_number: number | null = null;
-  opening_point: number | null = null;
-  closing_point: number | null = null;
-  district:any;
-  country:any;
-  state:any;
-  select_group:string='';
+  credit_period: number = 0;
+  credit_limit: number = 0;
+  card_number: string = "";
+  opening_point: number = 0;
+  closing_point: number = 0;
 
+  select_group: number = 0;
+  discount: number = 0;
 
-  selectedOption1:string='';
-selectedState1:string='';
-selectedDistrict1:string='';
-pincode1:string='';
-address1:string='';
+  selectedOption1: number = 0;
+  selectedState1: number = 0;
+  selectedDistrict1: number = 0;
+  pincode1: string = '';
+  address1: string = '';
 
   submitValue = false;
-  // selectedOption:string='';
-  //countries: any[] = [];
+
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -81,9 +84,49 @@ address1:string='';
   executive$: any;
   executive!: string;
 
+  myform: FormGroup;
 
+  constructor(private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
 
-  constructor(private custtp: CustomertypeService, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
+    this.myform = this.formBuilder.group({
+      selectedSalutation: [''],
+      companyName: [''],
+      customer_code: ['', Validators.required],
+      name: ['', Validators.required],
+      gstin: [''],
+      select_group: [''],
+      discount: [''],
+      opening_balance: [''],
+      closing_balance: [''],
+      mobile: [''],
+      whatsapp_number: [''],
+      email: [''],
+      country: [''],
+      state: [''],
+      district: [''],
+      pincode: [''],
+      address: [''],
+      selectedOption1: [''],
+      selectedState1: [''],
+      selectedDistrict1: [''],
+      pincode1: [''],
+      address1: [''],
+      tdn: [''],
+      aadhar_no: [''],
+      pan_no: [''],
+      udhyog_aadhar: [''],
+      account_number: [''],
+      ifsc_code: [''],
+      bank_name: [''],
+      branch_name: [''],
+      credit_period: [''],
+      credit_limit: [''],
+      select_sales_person: [''],
+      card_number: [''],
+      opening_point: [''],
+      closing_point: [''],
+    })
+
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
@@ -92,12 +135,12 @@ address1:string='';
 
   }
   onCountryChange() {
-    console.log('selected value' + this.selectedOption);
+    console.log('selected value' + this.country);
     this.states$ = this.stateservice.getStates(1);
   }
   onStateChange() {
-    console.log('selected value' + this.selectedState);
-    this.districts$ = this.districtservice.getDistricts(this.selectedState);
+    console.log('selected value' + this.state);
+    this.districts$ = this.districtservice.getDistricts(this.state);
   }
 
 
@@ -115,30 +158,51 @@ address1:string='';
     this.router.navigate(['/master']);
   }
 
-  onSubmit(myform: NgForm) {
-    
-    console.log('Your form data : ', myform.value);
-    let custdata:cust={name:myform.value.name,customer_code:myform.value.customer_code,gstin:myform.value.gstin,select_group:myform.value.select_group,opening_balance:myform.value.opening_balance,closing_balance:myform.value.closing_balance,mobile:myform.value.mobile,whatsapp_number:myform.value.whatsapp_number,email:myform.value.email,country:myform.value.country,state:myform.value.state,district:myform.value.district,pincode:myform.value.pincode,address:myform.value.address,tdn:myform.value.tdn,aadhar_no:myform.value.aadhar_no,pan_no:myform.value.pan_no,udhyog_aadhar:myform.value.udhyog_aadhar,account_number:myform.value.account_number,ifsc_code:myform.value.ifsc_code,bank_name:myform.value.bank_name,branch_name:myform.value.branch_name,credit_period:myform.value.credit_period,credit_limit:myform.value.credit_limit,select_sales_person:myform.value.select_sales_person,card_number:myform.value.card_number,opening_point:myform.value.opening_point,closing_point:myform.value.closing_point,selectedSalutation:myform.value.selectedSalutation,companyName:myform.value.companyName,country1:myform.value.country1,state1:myform.value.state1,district1:myform.value.district1,pincode1:myform.value.pincode1,address1:myform.value.address1};
-    this.myService.createCustomer(custdata,'','').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        // Handle the response as needed
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        // Handle the error as needed
+  async onSubmit() {
+    const fields = { name: this.name, }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.myform.value);
+      let custdata: cust = { name: this.myform.value.name, customer_code: this.myform.value.customer_code, gstin: this.myform.value.gstin, select_group: this.myform.value.select_group, opening_balance: this.myform.value.opening_balance, closing_balance: this.myform.value.closing_balance, mobile: this.myform.value.mobile, whatsapp_number: this.myform.value.whatsapp_number, email: this.myform.value.email, country: this.myform.value.country, state: this.myform.value.state, district: this.myform.value.district, pincode: this.myform.value.pincode, address: this.myform.value.address, tdn: this.myform.value.tdn, aadhar_no: this.myform.value.aadhar_no, pan_no: this.myform.value.pan_no, udhyog_aadhar: this.myform.value.udhyog_aadhar, account_number: this.myform.value.account_number, ifsc_code: this.myform.value.ifsc_code, bank_name: this.myform.value.bank_name, branch_name: this.myform.value.branch_name, credit_period: this.myform.value.credit_period, credit_limit: this.myform.value.credit_limit, select_sales_person: this.myform.value.select_sales_person, card_number: this.myform.value.card_number, opening_point: this.myform.value.opening_point, closing_point: this.myform.value.closing_point, selectedSalutation: this.myform.value.selectedSalutation, companyName: this.myform.value.companyName, selectedOption1: this.myform.value.selectedOption1, selectedState1: this.myform.value.selectedState1, selectedDistrict1: this.myform.value.selectedDistrict1, pincode1: this.myform.value.pincode1, address1: this.myform.value.address1,discount:this.myform.value.discount, };
+
+      this.myService.createCustomer(custdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          this.myform.reset()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
-    console.log('Form submitted with data:', {
-      salutation: this.selectedSalutation,
-      companyName: this.companyName,
-    });
+    }
   }
+
+
   copyBillingToShipping() {
     // Copy values from billing to shipping
-    this.selectedOption1 = this.selectedOption;
-    this.selectedState1 = this.selectedState;
-    this.selectedDistrict1 = this.selectedDistrict;
+    this.selectedOption1 = this.country;
+    this.selectedState1 = this.state;
+    this.selectedDistrict1 = this.district;
     this.pincode1 = this.pincode;
     this.address1 = this.address;
   }
