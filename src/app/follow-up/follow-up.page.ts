@@ -34,14 +34,14 @@ export class FollowUpPage implements OnInit {
   showLeadDetails = false;
   followup$: Observable<any>;
   followUps: { [key: string]: any[] } = {};
-selectedRowData: any;
+  selectedRowData: any;
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid),'', '');
+    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid), '', '');
 
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
@@ -59,25 +59,25 @@ selectedRowData: any;
     const fields = {}
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
- 
+
       console.log('Your form data : ', this.myform.value);
       const followupdata: followuptable = {
-        nextfollowupDate:this.myform.value.nextfollowupDate,
-        remark:this.myform.value.remark,
-        followupdate:'1',
-        enterdby:'1',
-        leadid:'1',
-        companyid:'1',
-        custid:'1'
+        nextfollowupDate: this.myform.value.nextfollowupDate,
+        remark: this.myform.value.remark,
+        followupdate: '1',
+        enterdby: '1',
+        leadid: '1',
+        companyid: '1',
+        custid: '1'
       };
-  
-      this.followService.createfollowup(followupdata,'','').subscribe(
+
+      this.followService.createfollowup(followupdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-         
+
           this.formService.showSaveLoader()
           this.myform.reset()
         },
@@ -89,21 +89,21 @@ selectedRowData: any;
           this.formService.shoErrorLoader();
         }
       );
-     
-    }  else {
-       
-       Object.keys(this.myform.controls).forEach(controlName => {
-         const control = this.myform.get(controlName);
-         if (control?.invalid) {
-           control.markAsTouched();
-         }
-       });
-       if (this.firstInvalidInput) {
+
+    } else {
+
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
-     }
     }
-  
+  }
+
   ngOnInit() {
   }
   goBack() {
