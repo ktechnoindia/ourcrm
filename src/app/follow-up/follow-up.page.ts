@@ -32,16 +32,15 @@ export class FollowUpPage implements OnInit {
   lead$: Observable<any[]>
   myform: FormGroup;
   showLeadDetails = false;
-  followup$: Observable<any>;
-  followUps: { [key: string]: any[] } = {};
-selectedRowData: any;
+  followups$: Observable<any>;
+  selectedRowDetails: any[] = [];
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    this.followup$ = this.followService.fetchallfollowup(encService.encrypt(compid),'', '');
+    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid),'', '');
 
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
@@ -51,8 +50,18 @@ selectedRowData: any;
 
   }
 
-  onRowClick(leadscore: any) {
-    this.selectedRowData = leadscore;
+  showDetails(leadscore: any) {
+    // Populate the details for the selected row
+    this.selectedRowDetails = [
+      {
+        srNo: 1, // You can dynamically set these values based on leadscore
+        companyId: leadscore.tid,
+        leadDate: leadscore.leaddate,
+        remark: 'this remark',
+        nextFollowUpDate: '12/1/23',
+        enteredBy: leadscore.catPerson,
+      },
+    ];
   }
 
   async onSubmit() {
