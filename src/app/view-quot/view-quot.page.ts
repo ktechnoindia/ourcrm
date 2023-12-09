@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { QuotationService } from '../services/quotation.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 
 @Component({
@@ -12,14 +12,14 @@ import { EncryptionService } from '../services/encryption.service';
   templateUrl: './view-quot.page.html',
   styleUrls: ['./view-quot.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class ViewQuotPage implements OnInit {
 
-  formDate:string='';
-  toDate:string='';
+  formDate: string = '';
+  toDate: string = '';
   quote$: Observable<any[]>
-  constructor( private encService: EncryptionService, private quoteservice: QuotationService,private router:Router,private toastCtrl:ToastController) { 
+  constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
     this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
@@ -30,34 +30,22 @@ export class ViewQuotPage implements OnInit {
     });
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success'
-      });
-      toast.present();
-    }
+  async onSubmit() {
+    const fromDateObj = new Date(this.formDate);
+    const toDateObj = new Date(this.toDate);
+  
+    // Filter quotes based on date range
+    this.quote$ = this.quote$.pipe(
+      map(quotes => quotes.filter(quote => {
+        const quoteDate = new Date(quote.quateDate);
+        return quoteDate >= fromDateObj && quoteDate <= toDateObj;
+      }))
+    );
   }
 
   ngOnInit() {
   }
-  goBack(){
+  goBack() {
     this.router.navigate(["/add-quote"])
   }
 

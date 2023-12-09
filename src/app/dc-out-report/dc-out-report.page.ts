@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { DcoutService } from '../services/dcout.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 
 
@@ -29,28 +29,16 @@ export class DcOutReportPage implements OnInit {
   }
 
   async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success'
-      });
-      toast.present();
-    }
+    const fromDateObj = new Date(this.formDate);
+  const toDateObj = new Date(this.toDate);
+
+  // Filter DC-OUT data based on date range
+  this.dcout$ = this.dcout$.pipe(
+    map(dcouts => dcouts.filter(dcout => {
+      const voucherDate = new Date(dcout.datetype);
+      return voucherDate >= fromDateObj && voucherDate <= toDateObj;
+    }))
+  );
   }
 
   ngOnInit() {

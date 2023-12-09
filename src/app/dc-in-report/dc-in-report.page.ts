@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { DcinService } from '../services/dcin.service';
 import { EncryptionService } from '../services/encryption.service';
 
@@ -32,28 +32,22 @@ export class DcInReportPage implements OnInit {
     });
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger'
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success'
-      });
-      toast.present();
+  filterData() {
+    if (this.formDate && this.toDate) {
+      // Assuming your date format is 'yyyy-MM-dd'
+      const fromDate = new Date(this.formDate);
+      const toDate = new Date(this.toDate);
+
+      // Filter the data based on date range
+      this.dcin$ = this.dcin$.pipe(
+        map(data => data.filter(dcin => {
+          const voucherDate = new Date(dcin.datetype); // Assuming datetype is the date property
+          return voucherDate >= fromDate && voucherDate <= toDate;
+        }))
+      );
+    } else {
+      // If no date range is provided, show all data
+      this.dcin$ = this.dcin$;
     }
   }
 
