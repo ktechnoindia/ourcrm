@@ -5,7 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { PurchasereturnService } from '../services/purchasereturn.service';
 @Component({
@@ -16,10 +16,10 @@ import { PurchasereturnService } from '../services/purchasereturn.service';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class ViewPurchasePage implements OnInit {
-  formDate:string='';
+  fromDate:string='';
   toDate:string='';
   purchase$: Observable<any[]>
-
+  filteredPurchase: Observable<any[]>;
   constructor( private purchasereturnService:PurchasereturnService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
 
@@ -29,31 +29,24 @@ export class ViewPurchasePage implements OnInit {
     this.purchase$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
     });
+    this.filteredPurchase = this.purchase$;
    }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+   filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredPurchase = this.purchase$.pipe(
+      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
+    );
+  }
+
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    // Parse the dates into JavaScript Date objects
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+
+    // Check if the saleDate is within the range
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 
   ngOnInit() {

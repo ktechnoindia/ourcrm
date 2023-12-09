@@ -23,11 +23,11 @@
           </ion-card-header>
 
           <ion-grid class="add_sale">
-            <form #viewPurchaseForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #viewPurchaseForm="ngForm" >
               <ion-row>
                 <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
                   <ion-row>
-                    <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                    <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
@@ -38,7 +38,7 @@
                   </ion-row>
                 </ion-col>
                 <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-                  <ion-button  expand="block">Ok</ion-button>
+                  <ion-button  expand="block" (click)="filterData()" >Ok</ion-button>
                 </ion-col>
               </ion-row>
 
@@ -88,7 +88,7 @@
                       <th>Action</th>
                     </tr>
 
-                    <tr *ngFor="let purchase of purchase$ | async; let i = index">
+                    <tr *ngFor="let purchase of filteredPurchase | async; let i = index">
                       <td>{{i+1}}</td>
                       <td>{{purchase.billformate}}</td>
                       <td>{{purchase.billNumber}}</td>
