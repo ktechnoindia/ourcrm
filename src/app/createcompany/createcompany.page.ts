@@ -82,13 +82,14 @@ export class CreatecompanyPage implements OnInit {
   //step : 3 
   language: number = 0;
   currency: number = 0;
-  sales: string = '';
-  purchase: string = '';
-  quotation: string = '';
-  lms: string = '';
-  challan: string = '';
-  amc: string = '';
-  alloftheabove: string = '';
+
+  sales: boolean=false;
+  purchase: boolean=false;
+  quotation: boolean=false;
+  lms: boolean=false;
+  challan: boolean=false;
+  amc: boolean=false;
+  alloftheabove: boolean=false;
   submitted = false;
 
   //step : 4
@@ -111,7 +112,7 @@ export class CreatecompanyPage implements OnInit {
     this.companytype$ = this.cmptype.getcgtype();
     this.businesstype$ = this.bustype.getbusinesstype();
     this.segmenttype$ = this.segment1.getsegments();
-this.rdate = new Date().toLocaleDateString();
+    this.rdate = new Date().toLocaleDateString();
 
 
     this.form = this.formBuilder.group({
@@ -121,7 +122,7 @@ this.rdate = new Date().toLocaleDateString();
       address: [''],
       phone: ['', [Validators.maxLength(10)]],
       cpyname: ['', [Validators.required]],
-      email: ['',[Validators.email]],
+      email: ['', [Validators.email]],
       rdate: [''],
       wpnumber: [''],
       pinCode: [''],
@@ -133,7 +134,7 @@ this.rdate = new Date().toLocaleDateString();
       selectedState1: [''],
       selectedDistrict1: [''],
       selectedCountry1: [''],
-      email1: ['',[Validators.email]],
+      email1: ['', [Validators.email]],
       wpnumber1: [''],
       phone1: [''],
       address1: [''],
@@ -150,13 +151,13 @@ this.rdate = new Date().toLocaleDateString();
       //step: 3
       language: [''],
       currency: [''],
-      sales: [''],
-      purchase: [''],
-      quotation: [''],
-      lms: [''],
-      challan: [''],
-      amc: [''],
-      alloftheabove: [''],
+      sales: [false],
+      purchase: [false],
+      quotation: [false],
+      challan: [false],
+      lms: [false],
+      amc: [false],
+      alloftheabove: [false],
 
       //step : 4
       bname: [''],
@@ -168,6 +169,21 @@ this.rdate = new Date().toLocaleDateString();
     })
 
   }
+
+  onAllOfTheAboveChange() {
+    const allOfTheAboveValue = this.form.get('alloftheabove')?.value;
+
+    // Set all other checkboxes to the value of "All Of The Above"
+    this.form.patchValue({
+      sales: allOfTheAboveValue,
+      purchase: allOfTheAboveValue,
+      quotation: allOfTheAboveValue,
+      challan: allOfTheAboveValue,
+      lms: allOfTheAboveValue,
+      amc: allOfTheAboveValue,
+    });
+  }
+
   ngOnInit() {
 
   }
@@ -182,41 +198,41 @@ this.rdate = new Date().toLocaleDateString();
     this.step3 = !this.step3;
   }
 
- async onSubmit() {
-    const fields = { cpyname: this.cpyname}
+  async onSubmit() {
+    const fields = { cpyname: this.cpyname }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-    console.log('Your form data : ', this.form.value);
-    let companydata: companystore = {
-      cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate, website: this.form.value.website, website1: this.form.value.website1, selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
-      industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno,
-      sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency,
-      bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,
-    };
+      console.log('Your form data : ', this.form.value);
+      let companydata: companystore = {
+        cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate, website: this.form.value.website, website1: this.form.value.website1, selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
+        industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno,
+        sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency,
+        bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,
+      };
 
-    this.createcompany.createCompany(companydata, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        this.formService.showSaveLoader()
-        setTimeout(() => {
-          this.formService.showSuccessAlert();
-        }, 1000);
-      
-      
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        this.formService.showSaveLoader
-        ()
-        setTimeout(() => {
-          this.formService.showFailedAlert();
-        }, 1000);
-        
-       
-      }
-    );
-   
-    }else {
+      this.createcompany.createCompany(companydata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          this.formService.showSaveLoader()
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          this.formService.showSaveLoader
+            ()
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+
+
+        }
+      );
+
+    } else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
         const control = this.form.get(controlName);
