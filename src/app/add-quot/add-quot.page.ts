@@ -31,6 +31,7 @@ interface Quote {
   discountamt: number;
   totaltax: number;
   total: number;
+  taxrate1:number;
 }
 
 @Component({
@@ -55,7 +56,7 @@ export class AddQuotPage implements OnInit {
   refdate: string = '';
 
   //table data
-  barcode: string = '';
+  /*barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -72,7 +73,7 @@ export class AddQuotPage implements OnInit {
   discount: string = '';
   discountamt: string = '';
   totaltax: string = '';
-  total: string = '';
+  total: string = '';*/
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -112,6 +113,7 @@ export class AddQuotPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -300,6 +302,7 @@ export class AddQuotPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
+      taxrate1:0,
       // Add more properties as needed
     };
     this.quoteData.push(newRow);
@@ -408,20 +411,22 @@ export class AddQuotPage implements OnInit {
   getdiscountamt(quote: Quote): number {
     return (quote.discount / 100) * quote.basicrate * quote.quantity;
   }
-
+  getdiscountp(quote: Quote) {
+     quote.total=quote.total-quote.total*(quote.discount/100)
+  }
   getTotalamt(quote: Quote): number {
     return quote.basicrate * quote.quantity + quote.totaltax - quote.discountamt;
   }
   getcgst(quote: Quote): number {
-    return quote.taxrate / 2;
+    return quote.taxrate1 / 2;
   }
 
   getsgst(quote: Quote): number {
-    return quote.taxrate / 2;
+    return quote.taxrate1 / 2;
   }
 
   getigst(quote: Quote): number {
-    return quote.taxrate;
+    return quote.taxrate1;
   }
   ngOnInit() {
     // Other initialization logic...
@@ -453,21 +458,23 @@ export class AddQuotPage implements OnInit {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
 
-  onSelectChange(select: HTMLSelectElement) {
+  onSelectChange(select: HTMLSelectElement,quote:Quote) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
 
     console.log('Selected value:', selectedValue);
     console.log('Selected text:', selectedText);
-
+    
     // Extracting a number from the selectedText using parseFloat
     const numericValue = parseFloat(selectedText);
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+      quote.taxrate1=numericValue;
       // Use numericValue as needed
     } else {
+      quote.taxrate1=0;
       console.error('Selected text does not represent a valid number.');
     }
   }

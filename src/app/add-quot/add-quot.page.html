@@ -116,16 +116,16 @@
                   <tr *ngFor="let quote of quoteData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="quote.barcode" formControlName="barcode" id="barcode" name="barcode" class="table_input"
+                      <input [(ngModel)]="quote.barcode"  [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="quote.itemcode" name="itemcode" id="itemcode" formControlName="itemcode" class="table_input"
+                      <input style="width: 70px;" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td >
-                      <select class="select-option" [(ngModel)]="quote.itemname"  name="itemname" formControlName="itemname" 
-                        id="itemname">
+                      <select class="select-option" [(ngModel)]="quote.itemname"  [ngModelOptions]="{standalone: true}" 
+                        >
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item .itemDesc }}
@@ -133,16 +133,16 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.description" formControlName="description" id="description" name="description"
+                      <input [(ngModel)]="quote.description"  [ngModelOptions]="{standalone: true}"
                         class="description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.quantity" formControlName="quantity" id="quantity" name="quantity" class="table_input"
+                      <input [(ngModel)]="quote.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number">
 
                     </td>
                     <td >
-                      <select class="select-option" [(ngModel)]="quote.unitname" formControlName="unitname" name="unit_name" id="unitname">
+                      <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -150,53 +150,50 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.mrp" formControlName="mrp" id="mrp" name="mrp" class="table_input" type="text">
+                      <input [(ngModel)]="quote.mrp"   [ngModelOptions]="{standalone: true}"class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="quote.basicrate" formControlName="basicrate" id="basicrate" name="basicrate"
+                      <input style="width: 70px;" [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="number">
 
                     </td>
                     <td>
-                      <input  style="width: 70px;" [(ngModel)]="quote.netrate" [value]="getnetrate(quote)" formControlName="netrate" id="netrate" name="netrate"
+                      <input  style="width: 70px;" [(ngModel)]="quote.netrate" [value]="getnetrate(quote)" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input  style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " formControlName="grossrate" id="grossrate"
-                        name="grossrate" class="table_input" type="number">
+                      <input  style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td >
-                      <select class="select-option" #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="quote.taxrate" formControlName="taxrate" name="taxrate" id="taxrate"  >
+                      <select class="select-option" #taxrate (change)="onSelectChange(taxrate,quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}"  >
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
                       </select>
                     </td>
-
+                    <input type="hidden"  [(ngModel)]="quote.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
-                      <input [value]="getsgst(quote)"  [(ngModel)]="quote.CGST" formControlName="CGST" name="CGST" class="table_input" id="CGST">
+                      <input [value]="getsgst(quote)"  [(ngModel)]="quote.CGST" [ngModelOptions]="{standalone: true}" class="table_input" >
                     </td>
                     <td>
-                      <input [value]="getcgst(quote)"  [(ngModel)]="quote.SGST" formControlName="SGST" name="SGST" class="table_input" id="SGST">
+                      <input [value]="getcgst(quote)"  [(ngModel)]="quote.SGST" [ngModelOptions]="{standalone: true}" class="table_input" >
                     </td>
                     <td>
-                      <input [value]="getigst(quote)"  [(ngModel)]="quote.IGST" formControlName="IGST" name="IGST" class="table_input" id="IGST">
+                      <input [value]="getigst(quote)"  [(ngModel)]="quote.IGST" [ngModelOptions]="{standalone: true}" class="table_input" >
                     </td>
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.discount"  formControlName="discount" name="discount" class="table_input"
-                        type="text" id="discount">
+                      <input style="width: 90px;" [(ngModel)]="quote.discount"  (ionBlur)="getdiscountp(quote)"  [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="text" >
                     </td>
                     <td>
-                      <input style="width: 100px;" [(ngModel)]="quote.discountamt" [value]="getdiscountamt(quote)" formControlName="discountamt" id="discount"
-                        name="discountamt" class="table_input" type="text">
+                      <input style="width: 100px;" [(ngModel)]="quote.discountamt" [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax()" formControlName="totaltax" id="totaltax"
-                        name="totaltax" class="table_input" type="text">
+                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax()" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.total" [value]="getTotalamt(quote)" formControlName="total" name="total" id="total"
+                      <input style="width: 90px;" [(ngModel)]="quote.total" [value]="getTotalamt(quote)" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
 
                     </td>
