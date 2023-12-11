@@ -342,7 +342,7 @@
                   </ion-item>
                   <ion-item line="none">
                     <ion-checkbox slot="start" [(ngModel)]="alloftheabove" formControlName="alloftheabove"
-                      name="allofabove" aria-label="All Of The Above"></ion-checkbox>
+                      name="allofabove" aria-label="All Of The Above" (ionChange)="onAllOfTheAboveChange()"></ion-checkbox>
                     <ion-label>All Of The Above</ion-label>
                   </ion-item>
                 </ion-col>
