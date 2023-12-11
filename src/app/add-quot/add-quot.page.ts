@@ -402,7 +402,7 @@ export class AddQuotPage implements OnInit {
     return quote.basicrate + quote.totaltax;
   }
   getTotaltax(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate / 100 * + quote.quantity), 0);
+    return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
