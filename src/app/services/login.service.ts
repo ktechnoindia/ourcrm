@@ -15,6 +15,10 @@ export class LoginService {
   constructor(private httpclient: HttpClient) {}
 
   createlogin(login:logindata,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addlogin,login,{headers:{'key':key,'user':user}})
+    const body = new URLSearchParams();
+    body.set('username', login.username);
+    body.set('password', login.password);
+    
+    return this.httpclient.post(environment.apiloginurl+environment.addlogin,body.toString(),{headers:{'key':key,'user':user,'Content-Type': 'application/x-www-form-urlencoded'}})
   }
 }
