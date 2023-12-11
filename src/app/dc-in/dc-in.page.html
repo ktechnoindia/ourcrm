@@ -56,14 +56,14 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode"
+                  <ion-input #firstInvalidInput  [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode"
                     type="text" label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
 
-                <select class="select" [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
+                <select class="select"   [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
                   <option value="0"> --- Supplier Name --- </option><!-- Default option -->
                   <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
@@ -120,10 +120,10 @@
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                        class="table_input" type="text" (ngModelChange)="getItems()">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="dcin.itemname" [ngModelOptions]="{standalone: true}">
+                      <select class="table_select" (ngModelChange)="getItems()" [(ngModel)]="dcin.itemname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}

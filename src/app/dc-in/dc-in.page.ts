@@ -127,6 +127,8 @@ export class DcInPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
 
+  items: any[]=[];
+
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   constructor(private encService: EncryptionService, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
@@ -277,6 +279,24 @@ export class DcInPage implements OnInit {
     }
   }
 
+  getItems() {
+    this.itemService.getItems().subscribe(
+      (data) => {
+        // Handle the data and update your component properties
+        console.log(data);
+
+          this.dcinData[0].itemcode = data[0].itemCode;
+          this.dcinData[0].itemname = data[0].itemDesc;
+        
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+  
+  
+
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);
@@ -383,9 +403,7 @@ export class DcInPage implements OnInit {
     return dcin.taxrate1;
   }
   ngOnInit() {
-    // Other initialization logic...
-  
-    // Subscribe to value changes of basicrate, taxrate, and discount
+
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
@@ -404,9 +422,6 @@ export class DcInPage implements OnInit {
     const gstAmount = (discount / 100)*basicrate*quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
-
-
-
     
   }
   goBack() {
