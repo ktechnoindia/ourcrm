@@ -165,6 +165,7 @@ export class DcOutPage implements OnInit {
       discountamt: [''],
       totaltax: [''],
       total: [''],
+      discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
       totalquantity: [''],
@@ -347,7 +348,7 @@ export class DcOutPage implements OnInit {
     }
   
     getTotalGrossAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * +dcout.quantity), 0);
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout .grossrate * +dcout.quantity), 0);
     }
   
     getTotalnetAmount(): number {
@@ -363,8 +364,8 @@ export class DcOutPage implements OnInit {
     getnetrate(quote: Dcout): number {
      return quote.basicrate  + quote.totaltax;
      }
-    getTotaltax(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.taxrate1/100 * + dcout.quantity), 0);
+    getTotaltax(dcout:Dcout): number {
+      return dcout.quantity *(dcout.taxrate1/100*dcout.basicrate);
     }
     getdiscountp(dcout: Dcout) {
       dcout.discountamt=dcout.total*(dcout.discount/100);
@@ -374,10 +375,16 @@ export class DcOutPage implements OnInit {
       return dcout.quantity * dcout.basicrate;
     }
    
-    getdiscountamt(dcout: Dcout): number {
-      return (dcout.discount/100) * dcout.basicrate * dcout.quantity;
-    }
-    
+    getdiscountamt(dcout: Dcout): number {const discountamt = dcout.discountamt || 0; // handle null/undefined values
+  const basicrate = dcout.basicrate || 0; // handle null/undefined values
+  const quantity = dcout.quantity || 0; // handle null/undefined values
+  // calculate discount percentage
+  const discount = (discountamt / (basicrate * quantity)) * 100;
+  // update discount percentage
+  dcout.discount = discount;
+  // return discount amount for display
+  return discountamt;
+  }
     getTotalamt(dcout:Dcout): number {
       return dcout.basicrate * dcout.quantity + dcout.totaltax - dcout.discountamt;
     }
@@ -396,10 +403,53 @@ export class DcOutPage implements OnInit {
       // Subscribe to value changes of basicrate, taxrate, and discount
       this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
       this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-      this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
       this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-    }
+
+      this.myform.get('discount')?.valueChanges.subscribe(() => {
+        this.calculateDiscount();
+        this.calculateNetRate();
+      });  
+      this.myform.get('discountamt')?.valueChanges.subscribe(() => {
+        this.calculateDiscountPercentage();
+      }); 
+      }
+      calculateDiscount() {
+        const discountType = this.myform.get('discountType')?.value;
+        const discount = +this.myform.get('discount')?.value || 0;
+        const basicrate = +this.myform.get('basicrate')?.value || 0;
+        const quantity = +this.myform.get('quantity')?.value || 0;
+      
+        if (discountType === 'amount') {
+          // Calculate discount amount based on user-entered amount
+          const discountAmt = discount;
+          this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+        } else if (discountType === 'percentage') {
+          // Calculate discount amount based on user-entered percentage
+          const discountAmt = (discount / 100) * basicrate * quantity;
+          this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+        }
+        
+      }
+      calculateDiscountPercentage() {
+        // Calculate discount percentage based on discountamt
+      const discountamt = this.myform.get('discountamt')?.value ?? 0;
+      const basicrate = this.myform.get('basicrate')?.value ?? 0;
+      const quantity = this.myform.get('quantity')?.value ?? 0;
     
+      const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+      }
+
+  calculateDiscountAmt() {
+    // Calculate discountamt based on discount percentage
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+  
+    const discountamt = (discount / 100) * basicrate * quantity;
+  
+    // Update the discountamt in the form
+    this.myform.get('discount')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
+  }  
     calculateNetRate() {
       // Add your logic to calculate netrate based on basicrate, taxrate, and discount
       const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -413,6 +463,7 @@ export class DcOutPage implements OnInit {
       const netrate = basicrate + taxrate;
       this.myform.get('netrate')?.setValue(netrate);
     }
+  
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
