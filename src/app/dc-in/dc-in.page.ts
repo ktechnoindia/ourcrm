@@ -425,7 +425,6 @@ export class DcInPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
-      dcin.taxrate1=numericValue;
 
       // Use numericValue as needed
     } else {

@@ -33,7 +33,7 @@ interface Sales {
   discountamt: number;
   totaltax: number;
   total: number;
-  
+  taxrate1:number;
 }
 @Component({
   selector: 'app-salesreturn',
@@ -59,7 +59,7 @@ export class SalesreturnPage implements OnInit {
 
   
   //table data
-  barcode: string = '';
+ /* barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -75,7 +75,8 @@ export class SalesreturnPage implements OnInit {
   discount: string = '';
   discountamt: string = '';
   totaltax: string = '';
-  total: string = '';
+  total: string = '';*/
+
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -111,6 +112,7 @@ export class SalesreturnPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
   }];
   ttotal!: number;
  
@@ -375,21 +377,30 @@ this.orderDate=new Date().toLocaleDateString();
         discountamt:0,
         totaltax:0,
         total:0,
+        taxrate1:0,
         // Add more properties as needed
       };
       this.salesData.push(newRow);
     }
-    removeSales(index: number,row:Sales) {
-      this.ttotal=this.ttotal-this.salereturnService.total;
+    calculateTotal(sales: Sales) {
+      sales.total = sales.totaltax + sales.grossrate;
+      this.calculateTotals();
+    }
+    removeSales(index: number, sales: Sales) {
+      this.ttotal = this.ttotal - this.salereturnService.total;
       this.salesData.splice(index, 1);
     }
-    calculateTotalSum() {
-      let sum = 0;
-      for (const row of this.salesData) {
-        sum += this.salereturnService.total;
-      }
-      this.ttotal= sum;
+    calculateTotals(): void {
+      // Add your logic to calculate totals based on the salesData array
+      this.totalItemNo = this.salesData.length;
+  
+      // Example calculation for total quantity and gross amount
+      this.totalQuantity = this.salesData.reduce((total, sale) => total + sale.quantity, 0);
+      this.totalGrossAmt = this.salesData.reduce((total, sale) => total + sale.grossrate, 0);
+  
+      // Add similar calculations for other totals
     }
+  
     getAllRows() {
       console.log('Number of Rows:', this.salesData.length);
     
@@ -398,6 +409,16 @@ this.orderDate=new Date().toLocaleDateString();
         console.log('Row:', quote);
       }
     }
+    // calculateTotalSum() {
+    //   let sum = 0;
+    //   for (const sales of this.salesData) {
+    //     sum += sales.total;
+  
+    //   }
+    //   this.ttotal = sum;
+      
+    // }
+  
     // if (this.form.valid) {
     //   console.log('Selected Value' + this.form.value);
     // } else {
@@ -408,18 +429,7 @@ this.orderDate=new Date().toLocaleDateString();
     //     }
     //   })
     // }
-    calculateTotals() {
-      // Add your logic to calculate totals based on the salesData array
-      this.totalItemNo = this.salesData.length;
-  
-      // Example calculation for total quantity and gross amount
-      this.totalQuantity = this.salesData.reduce((total, sale) => total + sale.quantity, 0);
-      this.totalGrossAmt = this.salesData.reduce((total, sale) => total + sale.grossrate, 0);
-  
-      // Add similar calculations for other totals
-    }
    
-  
     getTotalQuantity(): number {
       return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
     }
@@ -429,7 +439,7 @@ this.orderDate=new Date().toLocaleDateString();
     }
   
     getTotalnetAmount(): number {
-      return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate)  - sale.discount), 0)
+      return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1)  - sale.discount), 0)
     }
     getTotalTaxAmount(): number {
       return this.salesData.reduce((total, sale) => total + (+sale.totaltax* +sale.quantity), 0);
@@ -442,7 +452,7 @@ this.orderDate=new Date().toLocaleDateString();
      return sale.basicrate  + sale.totaltax;
      }
     getTotaltax(): number {
-      return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate/100 * + sale.quantity), 0);
+      return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate1/100 * + sale.quantity), 0);
     }
     getgrossrate(sale: Sales): number {
       return sale.quantity * sale.basicrate;
@@ -451,18 +461,21 @@ this.orderDate=new Date().toLocaleDateString();
     getdiscountamt(sale: Sales): number {
       return (sale.discount/100) * sale.basicrate * sale.quantity;
     }
-    
+    getdiscountp(sale: Sales) {
+      sale.discountamt=sale.total*(sale.discount/100);
+      sale.total=sale.total-sale.total*(sale.discount/100) 
+    }
     getTotalamt(sale:Sales): number {
       return sale.basicrate * sale.quantity + sale.totaltax - sale.discountamt;
     }
     getcgst(sale:Sales): number {
-      return sale.taxrate/2;
+      return sale.taxrate1/2;
     }
     getsgst(sale:Sales): number {
-      return sale.taxrate/2;
+      return sale.taxrate1/2;
     }
     getigst(sale:Sales): number {
-      return sale.taxrate;
+      return sale.taxrate1;
     }
     ngOnInit() {
       // Other initialization logic...
@@ -490,7 +503,7 @@ this.orderDate=new Date().toLocaleDateString();
     goBack() {
       this.router.navigate(["/transcationdashboard"])
     }
-    onSelectChange(select: HTMLSelectElement) {
+    onSelectChange(select: HTMLSelectElement,sale:Sales) {
       const selectedValue = select.value;
       const selectedIndex = select.selectedIndex;
       const selectedText = select.options[selectedIndex].text;
@@ -503,8 +516,12 @@ this.orderDate=new Date().toLocaleDateString();
   
       if (!isNaN(numericValue)) {
         console.log('Numeric value:', numericValue);
+        sale.taxrate1=numericValue;
+  
         // Use numericValue as needed
       } else {
+        sale.taxrate1=0;
+  
         console.error('Selected text does not represent a valid number.');
       }
     }

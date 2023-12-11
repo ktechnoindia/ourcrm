@@ -34,6 +34,7 @@ interface Sales {
   discountamt: number;
   totaltax: number;
   total: number;
+  taxrate1:number;
 
 }
 @Component({
@@ -59,7 +60,7 @@ export class AddSalePage implements OnInit {
   payment: number = 0;
 
   //table data
-  barcode: string = '';
+  /*barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -77,6 +78,8 @@ export class AddSalePage implements OnInit {
   discountamt: string = '';
   totaltax: string = '';
   total: string = '';
+  */
+ 
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -112,6 +115,8 @@ export class AddSalePage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
+
   }];
   ttotal:  number = 0;
   myform: FormGroup;
@@ -306,6 +311,8 @@ export class AddSalePage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
+      taxrate1:0,
+
       // Add more properties as needed
     };
     this.salesData.push(newRow);
@@ -367,7 +374,7 @@ export class AddSalePage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate)  - sale.discount), 0)
+    return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1)  - sale.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.salesData.reduce((total, sale) => total + (+sale.totaltax* +sale.quantity), 0);
@@ -380,7 +387,7 @@ export class AddSalePage implements OnInit {
    return sale.basicrate  + sale.totaltax;
    }
   getTotaltax(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate/100 * + sale.quantity), 0);
+    return this.salesData.reduce((total, sale) => total + (+sale.basicrate * +sale.taxrate1/100 * + sale.quantity), 0);
   }
   getgrossrate(sale: Sales): number {
     return sale.quantity * sale.basicrate;
@@ -389,18 +396,21 @@ export class AddSalePage implements OnInit {
   getdiscountamt(sale: Sales): number {
     return (sale.discount/100) * sale.basicrate * sale.quantity;
   }
-  
+  getdiscountp(sale: Sales) {
+    sale.discountamt=sale.total*(sale.discount/100);
+    sale.total=sale.total-sale.total*(sale.discount/100) 
+  }
   getTotalamt(sale:Sales): number {
     return sale.basicrate * sale.quantity + sale.totaltax - sale.discountamt;
   }
   getcgst(sale:Sales): number {
-    return sale.taxrate/2;
+    return sale.taxrate1/2;
   }
   getsgst(sale:Sales): number {
-    return sale.taxrate/2;
+    return sale.taxrate1/2;
   }
   getigst(sale:Sales): number {
-    return sale.taxrate;
+    return sale.taxrate1;
   }
   ngOnInit() {
     // Other initialization logic...
@@ -428,7 +438,7 @@ export class AddSalePage implements OnInit {
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
-  onSelectChange(select: HTMLSelectElement) {
+  onSelectChange(select: HTMLSelectElement,sale:Sales) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -441,8 +451,12 @@ export class AddSalePage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+      sale.taxrate1=numericValue;
+
       // Use numericValue as needed
     } else {
+      sale.taxrate1=0;
+
       console.error('Selected text does not represent a valid number.');
     }
   }
