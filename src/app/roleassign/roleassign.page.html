@@ -5,10 +5,11 @@
         <div class="dekstop-menu">
           <ion-card-header>
             <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back" ></ion-icon>
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Role Assign</ion-title>
               <div class="custom-primary">
-                <ion-button size="small" [routerLink]="['/viewroleassign']" id="open-loading5"> View Role Assigning Table </ion-button>
+                <ion-button size="small" [routerLink]="['/viewroleassign']" id="open-loading5"> View Role Assigning
+                  Table </ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="Role Assigning Table Showing ..."
                   [duration]="1000"></ion-loading>
 
@@ -17,6 +18,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
+          <form [formGroup]="myform" (ngSubmit)="onSubmit()">
           <ion-row style="margin: 10px 0; width: 100%;">
             <div style="overflow:auto; width: 100%;">
               <table style="width:100%;">
@@ -31,76 +33,68 @@
                 </tr>
                 <tr>
                   <td>Sales</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="all_sale" [(ngModel)]="all_sale"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="new_sale"   [(ngModel)]="new_sale"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="view_sale"  [(ngModel)]="view_sale"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="edit_sale"  [(ngModel)]="edit_sale"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="delete_sale"  [(ngModel)]="delete_sale"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="print_sale"  [(ngModel)]="print_sale"></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td>Purchase</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox   formControlName="all_purchase"  [(ngModel)]="all_purchase"></ion-checkbox></td>
+                  <td><ion-checkbox   formControlName="new_purchase"  [(ngModel)]="new_purchase"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="view_purchase"   [(ngModel)]="view_purchase"></ion-checkbox></td>
+                  <td><ion-checkbox   formControlName="edit_purchase"  [(ngModel)]="edit_purchase"></ion-checkbox></td>
+                  <td><ion-checkbox   formControlName="delete_purchase"  [(ngModel)]="delete_purchase"></ion-checkbox></td>
+                  <td><ion-checkbox   formControlName="print_purchase"  [(ngModel)]="print_purchase"></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td>Quotation</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="all_quote"  [(ngModel)]="all_quote"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="new_quote"  [(ngModel)]="new_quote"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="view_quote"  [(ngModel)]="view_quote"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="edit_quote"  [(ngModel)]="edit_quote"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="delete_quote"  [(ngModel)]="delete_quote"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="print_quote"  [(ngModel)]="print_quote"></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td>Challan</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="all_challan"   [(ngModel)]="all_challan"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="new_challan"   [(ngModel)]="new_challan"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="view_challan"   [(ngModel)]="view_challan"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="edit_challan"   [(ngModel)]="edit_challan"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="delete_challan"   [(ngModel)]="delete_challan"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="print_challan"   [(ngModel)]="print_challan"></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td>LMS</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="all_lms"  [(ngModel)]="all_lms"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="new_lms"  [(ngModel)]="new_lms"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="view_lms"  [(ngModel)]="view_lms"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="edit_lms"   [(ngModel)]="edit_lms"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="delete_lms"  [(ngModel)]="delete_lms"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="print_lms"  [(ngModel)]="print_lms"></ion-checkbox></td>
                 </tr>
                 <tr>
                   <td>AMC</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                </tr>
-                <tr>
-                  <td>Sales</td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
-                  <td><ion-checkbox></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="all_amc" [(ngModel)]="all_amc"></ion-checkbox></td>
+                  <td><ion-checkbox  formControlName="new_amc"  [(ngModel)]="new_amc"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="view_amc"  [(ngModel)]="view_amc"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="edit_amc"  [(ngModel)]="edit_amc"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="delete_amc"  [(ngModel)]="delete_amc"></ion-checkbox></td>
+                  <td><ion-checkbox formControlName="print_amc"  [(ngModel)]="print_amc"></ion-checkbox></td>
                 </tr>
 
               </table>
             </div>
           </ion-row>
           <ion-row class="custom-primary" style="justify-content: right;">
-              <ion-button>New</ion-button>
-              <ion-button type="submit" id="open-loading">Save</ion-button>
-              <ion-button>Close</ion-button>
+            <ion-button>New</ion-button>
+            <ion-button type="submit" id="open-loading">Save</ion-button>
+            <ion-button>Close</ion-button>
           </ion-row>
+        </form>
         </ion-grid>
       </ion-card-content>
     </div>
