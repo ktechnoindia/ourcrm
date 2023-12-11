@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddattributeService, addattribute } from '../services/addattribute.service';
 import { FormValidationService } from '../form-validation.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-addattribute',
@@ -23,19 +23,16 @@ export class AddattributePage implements OnInit {
   myform: FormGroup;
 
   attname$: Observable<any[]>
+  searchTerm: string = '';
+  filteredAttribute$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor(private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
       attname: ['', Validators.required],
-
+      searchTerm:['']
     })
     this.attname$ = this.addatt.getattribute(1);
   }
-
-  ngOnInit() {
-    // Page initialization code goes here
-  }
-
 
   async onSubmit() {
     const fields = { }
@@ -69,6 +66,28 @@ export class AddattributePage implements OnInit {
       })
     }
 
+  }
+
+  filterCustomers(): Observable<any[]> {
+    return this.attname$.pipe(
+      map(attiributename =>
+        attiributename.filter(attribute =>
+          Object.values(attribute).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermChanged(): void {
+    this.filteredAttribute$ = this.filterCustomers();
+  }
+ 
+  ngOnInit() {
+    this.filteredAttribute$ = this.attname$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
   }
 
   goBack() {

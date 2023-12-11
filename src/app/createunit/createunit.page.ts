@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { CreateunitService, unit } from '../services/createunit.service';
 import { FormValidationService } from '../form-validation.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 @Component({
   selector: 'app-createunit',
   templateUrl: './createunit.page.html',
@@ -22,6 +22,9 @@ export class CreateunitPage implements OnInit {
   decimal_place: number = 0;
   form: FormGroup;
   units$:  Observable<any[]>;
+  searchTerm: string = '';
+  filteredUnits$: Observable<any[]> = new Observable<any[]>(); 
+  customers$: any;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private unitService: CreateunitService,private encService:EncryptionService,) {
     this.form = this.formBuilder.group({
@@ -29,6 +32,7 @@ export class CreateunitPage implements OnInit {
       short_name: [''],
       primary_unit: [''],
       decimal_place: [''],
+      searchTerm:['']
 
     });
     const compid='1';
@@ -73,8 +77,26 @@ export class CreateunitPage implements OnInit {
     }
   }
 
+  filterCustomers(): Observable<any[]> {
+    return this.units$.pipe(
+      map(units =>
+        units.filter(unit =>
+          Object.values(unit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermChanged(): void {
+    this.filteredUnits$ = this.filterCustomers();
+  }
+ 
   ngOnInit() {
-    // Page initialization code goes here
+    this.filteredUnits$ = this.units$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
   }
   goBack() {
     this.router.navigate(['/item-master']);

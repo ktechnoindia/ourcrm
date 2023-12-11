@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { DcoutService } from '../services/dcout.service';
-import { Observable, map } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 
 
@@ -19,7 +19,9 @@ import { EncryptionService } from '../services/encryption.service';
 export class DcOutReportPage implements OnInit {
   formDate:string='';
   toDate:string='';
-  dcout$: Observable<any[]>
+  dcout$: Observable<any[]>;
+  searchTerm: string = '';
+  filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor(private router:Router,private toastCtrl:ToastController,private dcoutservice:DcoutService,private encService:EncryptionService,) { 
     const compid='1';
@@ -41,8 +43,28 @@ export class DcOutReportPage implements OnInit {
   );
   }
 
-  ngOnInit() {
+  filterCustomers(): Observable<any[]> {
+    return this.dcout$.pipe(
+      map(dcouts =>
+        dcouts.filter(dcout =>
+          Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
+
+  onSearchTermChanged(): void {
+    this.filteredDcout$ = this.filterCustomers();
+  }
+ 
+  ngOnInit() {
+    this.filteredDcout$ = this.dcout$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
   goBack(){
     this.router.navigate(["/dc-out"])
   }

@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 import { ExecutiveService } from '../services/executive.service';
 import { FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Observable, take } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap, take } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
 interface Lead{
@@ -47,7 +47,9 @@ export class ViewLeadPage implements OnInit {
   select_sales_person:number=0;
   formdate: string = '';
   toDate: string = '';
-  lead$:Observable<any[]>
+  lead$:Observable<any[]>;
+  searchTerm: string = '';
+  filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor(private encService: EncryptionService,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
     const compid = '1';
@@ -58,6 +60,7 @@ export class ViewLeadPage implements OnInit {
       select_sales_person:[''],
       formdate:[''],
       toDate:[''],
+      searchTerm:['']
     })
    }
 
@@ -80,10 +83,26 @@ export class ViewLeadPage implements OnInit {
     });
   }
 
- async onSubmit(){
+  filterCustomers(): Observable<any[]> {
+    return this.lead$.pipe(
+      map(leads =>
+        leads.filter(lead =>
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
- }
+  onSearchTermChanged(): void {
+    this.filteredLeads$ = this.filterCustomers();
+  }
+ 
   ngOnInit() {
+    this.filteredLeads$ = this.lead$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
     this.route.queryParams.subscribe(params => {
       if (params['data']) {
         const selectedLead = JSON.parse(params['data']) as Lead;
@@ -92,6 +111,8 @@ export class ViewLeadPage implements OnInit {
       }
     });
   }
+
+  
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }

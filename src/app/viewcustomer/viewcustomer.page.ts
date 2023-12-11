@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { CustomerService } from '../services/customer.service';
 import { NavigationExtras } from '@angular/router';
 import { SessionService } from '../services/session.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @Component({
@@ -21,9 +22,8 @@ import { SessionService } from '../services/session.service';
 export class ViewcustomerPage implements OnInit {
   formDate: string = '';
   toDate: string = '';
-  customers$: Observable<any[]>
 
-  searchText: string = '';
+
   availableColumns: string[] = [
     'Code',
     'Name',
@@ -55,8 +55,12 @@ export class ViewcustomerPage implements OnInit {
     'WhatsApp No.',
     'Email',
   ];
+  searchTerm: string = '';
+  filteredCustomers$: Observable<any[]> = new Observable<any[]>(); 
+  customers$: Observable<any[]>; // Assuming you have an Observable for your customers
 
   totalItems: number = 0;
+
   constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
     const compid = '1';
 
@@ -68,37 +72,29 @@ export class ViewcustomerPage implements OnInit {
       this.totalItems = data.length;
     });
 
+  
+  }
+  filterCustomers(): Observable<any[]> {
+    return this.customers$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  async onSubmit() {
-    if (this.formDate === '') {
-      const toast = await this.toastCtrl.create({
-        message: "Form Date is required",
-        duration: 3000,
-        color: 'danger',
-      });
-      toast.present();
-    } else if (this.toDate === '') {
-      const toast = await this.toastCtrl.create({
-        message: "To Date is required",
-        duration: 3000,
-        color: 'danger',
-      });
-      toast.present();
-    } else {
-      const toast = await this.toastCtrl.create({
-        message: "Successfully !",
-        duration: 3000,
-        color: 'success',
-      });
-      toast.present();
-    }
+  onSearchTermChanged(): void {
+    this.filteredCustomers$ = this.filterCustomers();
   }
-
-
+ 
   ngOnInit() {
+    this.filteredCustomers$ = this.customers$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
   }
-
 
   ///edit customer start
   editcustomer(customer: any) {

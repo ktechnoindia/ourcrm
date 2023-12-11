@@ -32,7 +32,7 @@
             </ion-col>
           </ion-row>
           <ion-row >
-           <ion-searchbar class="custom"></ion-searchbar>
+           <ion-searchbar class="custom" formControlName="searchTerm" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row>
             <div style="width: 100%;" class="scroll-container">
@@ -42,7 +42,7 @@
                   <th style="width: auto;">Group Name</th>
                   <th style="width: auto;">Parent Group</th>
                 </tr>
-                <tr *ngFor="let itemgroup of itemgroups$ | async; let i = index">
+                <tr *ngFor="let itemgroup of filteredGroups$ | async; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ itemgroup.itemgroupname }}<td>
                   <td>{{ itemgroup.parentgroup }}</td>

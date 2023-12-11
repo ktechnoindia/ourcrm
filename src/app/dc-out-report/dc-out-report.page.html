@@ -45,7 +45,7 @@
 
 
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
 
           <ion-row style="margin-top: 10px;">
@@ -84,7 +84,7 @@
                   <th>Net Amount</th>
                   <th>Action</th>
                 </tr>
-                <tr  *ngFor="let dcout of dcout$ | async; let i = index">
+                <tr  *ngFor="let dcout of filteredDcout$ | async; let i = index">
                   <td>{{i + 1}}</td>
                   <td>{{dcout.voucherformat}}</td>
                   <td>{{dcout.voucherNumber}}</td>
@@ -120,8 +120,6 @@
                     <ion-icon name="trash"></ion-icon>
                   </td>
                 </tr>
-              
-
               </table>
             </div>
           </ion-row>

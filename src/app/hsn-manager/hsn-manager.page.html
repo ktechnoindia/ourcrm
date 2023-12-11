@@ -15,7 +15,7 @@
     <div class="container_data">
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">HSN Manager</ion-title>
@@ -23,36 +23,37 @@
           </ion-card-header>
         </div>
         <ion-grid>
-         
+
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <ion-row style="margin-top: 5px;">
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="hsncode" formControlName="hsncode"  name="hsncode"  type="text" label="HSN Code :" label-placement="floating"
-                  fill="outline" ></ion-input>
-                  
+                  <ion-input [(ngModel)]="hsncode" formControlName="hsncode" name="hsncode" type="text"
+                    label="HSN Code :" label-placement="floating" fill="outline"></ion-input>
+
                 </ion-row>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="unit" formControlName="unit" name="unit" type="text" label="Unit :" label-placement="floating"
-                  fill="outline"  ></ion-input>
-                
+                  <ion-input [(ngModel)]="unit" formControlName="unit" name="unit" type="text" label="Unit :"
+                    label-placement="floating" fill="outline"></ion-input>
+
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <!-- <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-textarea [(ngModel)]="desc" formControlName="desc" value="1" name="desc"  type="text" label="Description :"
-                    label-placement="floating" fill="outline"></ion-textarea>
+                  <ion-textarea [(ngModel)]="desc" formControlName="desc" value="1" name="desc" type="text"
+                    label="Description :" label-placement="floating" fill="outline"></ion-textarea>
                 </ion-row>
-              </ion-col>
+              </ion-col> -->
             </ion-row>
 
             <ion-row>
-              <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+              <ion-searchbar class="custom " formControlName="searchTerm" showCancelButton="focus" [(ngModel)]="searchTerm"
+                (ionInput)="onSearchTermChanged()"></ion-searchbar>
               <div style="overflow-x:auto; width: 100% ;height: 330px;border: 1px solid grey;">
                 <table style="width: 100%;overflow-x:auto;">
                   <tr>
@@ -62,7 +63,7 @@
                     <th>Description</th>
                     <th>Action</th>
                   </tr>
-                  <tr *ngFor="let hsn of hsncode$ | async; let i = index">
+                  <tr *ngFor="let hsn of filteredHsncodes$ | async; let i = index">
                     <td>{{i+1}}</td>
                     <td>{{hsn.hsnname}}</td>
                     <td>{{hsn.unit}}</td>
@@ -76,15 +77,17 @@
               </div>
             </ion-row>
 
-              <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                <ion-button id="open-loading">New</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
-                <ion-button type="submit" id="open-loading1">Save</ion-button>
-                
-                <ion-button id="open-loading4">Close</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
-  
-              </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button id="open-loading">New</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
+              <ion-button type="submit" id="open-loading1">Save</ion-button>
+
+              <ion-button id="open-loading4">Close</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
+
+            </ion-row>
           </form>
 
         </ion-grid>

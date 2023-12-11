@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { SalesService } from '../services/sales.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable, map } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-view-sale',
@@ -19,7 +19,10 @@ export class ViewSalePage implements OnInit {
   fromDate:string='';
   toDate:string='';
 sales$: Observable<any[]>
-  filteredSales: Observable<any[]>;
+  // filteredSales: Observable<any[]>;
+
+  searchTerm: string = '';
+  filteredSales$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor( private encService: EncryptionService,private saleService: SalesService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
@@ -32,13 +35,35 @@ sales$: Observable<any[]>
     });
     
     // Initialize the filteredSales with the original sales data
-    this.filteredSales = this.sales$;
+    this.filteredSales$ = this.sales$;
   
    }
 
+   filterCustomers(): Observable<any[]> {
+    return this.sales$.pipe(
+      map(sales =>
+        sales.filter(sale =>
+          Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermChanged(): void {
+    this.filteredSales$ = this.filterCustomers();
+  }
+ 
+  ngOnInit() {
+    this.filteredSales$ = this.sales$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
    filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredSales = this.sales$.pipe(
+    this.filteredSales$ = this.sales$.pipe(
       map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
     );
   }
@@ -53,8 +78,6 @@ sales$: Observable<any[]>
     return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
  
-  ngOnInit() {
-  }
 goBack(){
   this.router.navigate(["/add-sale"])
 }

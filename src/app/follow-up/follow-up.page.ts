@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidationService } from '../form-validation.service';
 import { LeadService } from '../services/lead.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 @Component({
   selector: 'app-follow-up',
   templateUrl: './follow-up.page.html',
@@ -35,6 +35,10 @@ export class FollowUpPage implements OnInit {
   showLeadDetails = false;
   followups$: Observable<any>;
   selectedRowDetails: any[] = [];
+
+  searchTerm: string = '';
+  filteredFollowups$: Observable<any[]> = new Observable<any[]>(); 
+
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
@@ -46,7 +50,9 @@ export class FollowUpPage implements OnInit {
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
       remark: [''],
-      nextfollowupDate: ['']
+      nextfollowupDate: [''],
+      searchTerm:['']
+
     })
 
   }
@@ -107,8 +113,29 @@ export class FollowUpPage implements OnInit {
     );
   }
 
-  ngOnInit() {
+  filterCustomers(): Observable<any[]> {
+    return this.lead$.pipe(
+      map(followups =>
+        followups.filter((follow:any) =>
+          Object.values(follow).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
+
+  onSearchTermChanged(): void {
+    this.filteredFollowups$ = this.filterCustomers();
+  }
+ 
+  ngOnInit() {
+    this.filteredFollowups$ = this.lead$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
+ 
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }

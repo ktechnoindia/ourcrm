@@ -43,7 +43,7 @@
               </ion-row>
 
               <ion-row>
-                <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom " [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
               <ion-row style="margin: 0 auto; width: 100%;">
                 <div class="scroll-container" style="overflow-x:auto; width: 100%;">
@@ -88,7 +88,7 @@
                       <th>Action</th>
                     </tr>
 
-                    <tr *ngFor="let purchase of filteredPurchase | async; let i = index">
+                    <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
                       <td>{{i+1}}</td>
                       <td>{{purchase.billformate}}</td>
                       <td>{{purchase.billNumber}}</td>

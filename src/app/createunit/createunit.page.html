@@ -90,7 +90,7 @@
              
             </ion-row>
             <ion-row>
-              <ion-searchbar class="custom"></ion-searchbar>
+              <ion-searchbar class="custom" [(ngModel)]="searchTerm" formControlName="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
             </ion-row>
             <ion-row class="Executive">
               <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;">
@@ -107,7 +107,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr  *ngFor="let unit of units$ | async; let i = index">
+                    <tr  *ngFor="let unit of filteredUnits$ | async; let i = index">
                     <td>{{i+1}}</td>
                     <td>{{unit.unit_name}}</td>
                     <td>{{unit.short_name}}</td>

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { PurchasereturnService } from '../services/purchasereturn.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-view-purchasereturn',
@@ -18,7 +18,9 @@ import { Observable } from 'rxjs';
 export class ViewPurchasereturnPage implements OnInit {
   formDate:string='';
   toDate:string='';
-  purchasereturn$: Observable<any[]>
+  purchasereturn$: Observable<any[]>;
+  searchTerm: string = '';
+  filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor(private router:Router,private toastCtrl:ToastController,private purchasereturnservice:PurchasereturnService,private encService:EncryptionService ) { 
     const compid='1';
@@ -27,33 +29,28 @@ export class ViewPurchasereturnPage implements OnInit {
     console.log(this.purchasereturn$);
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+  filterCustomers(): Observable<any[]> {
+    return this.purchasereturn$.pipe(
+      map(purchasereturns =>
+        purchasereturns.filter(purchasereturn =>
+          Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  ngOnInit() {
+  onSearchTermChanged(): void {
+    this.filteredPurchasereturns$ = this.filterCustomers();
   }
+ 
+  ngOnInit() {
+    this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
 goBack(){
   this.router.navigate(["/purchasereturn"])
 }

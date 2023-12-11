@@ -25,7 +25,7 @@
         <ion-grid>
 
           <div style="overflow-x:auto; width: 100% ;height: 400px;">
-            <ion-searchbar class="custom"></ion-searchbar>
+            <ion-searchbar class="custom" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
             <table style="width: 1300px;overflow-x:auto;">
               <tr>
                 <th>Sr.No.</th>
@@ -46,7 +46,7 @@
                 <th>Remark</th>
                 <th>Action</th>
               </tr>
-              <tr *ngFor="let leadscore of lead$ | async; let i = index">
+              <tr *ngFor="let leadscore of filteredTransferlead$ | async; let i = index">
                 <td>{{i+1}}</td>
                   <td>{{leadscore.tid}}</td>
                   <td>{{leadscore.companyname}}</td>

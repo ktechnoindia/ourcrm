@@ -23,7 +23,7 @@
           </ion-card-header>
 
           <ion-grid class="add_sale">
-            <form #viewPurchaseForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #viewPurchaseForm="ngForm" >
              
               <ion-row>
                 <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
@@ -44,7 +44,7 @@
               </ion-row>
 
               <ion-row>
-                <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom "  [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
               <ion-row style="margin: 0 auto; width: 100%;">
                 <div class="scroll-container" style="overflow-x:auto; width: 100%;">
@@ -89,7 +89,7 @@
                       <th>Action</th>
                     </tr>
 
-                    <tr *ngFor="let purchasereturn of  purchasereturn$ | async; let i = index">
+                    <tr *ngFor="let purchasereturn of  filteredPurchasereturns$ | async; let i = index">
                       <td>{{i+1}}</td>
                       <td>{{purchasereturn.billformate}}</td>
                       <td>{{purchasereturn.billNumber}}</td>

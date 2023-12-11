@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export interface hsn{
   hsncode: string,
   unit: string,
-  desc: string,
+  // desc: string,
   companyid:number,
 }
 

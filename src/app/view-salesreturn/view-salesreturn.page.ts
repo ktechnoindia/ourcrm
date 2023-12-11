@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { SalereturnService } from '../services/salereturn.service';
 import { EncryptionService } from '../services/encryption.service';
 
@@ -18,7 +18,9 @@ import { EncryptionService } from '../services/encryption.service';
 export class ViewSalesreturnPage implements OnInit {
   formDate:string='';
   toDate:string='';
-  salreturn$: Observable<any[]>
+  salreturn$: Observable<any[]>;
+  searchTerm: string = '';
+  filteredSalereturns$: Observable<any[]> = new Observable<any[]>(); 
   constructor(private router:Router,private toastCtrl:ToastController,private salereturnservice:SalereturnService,private encService:EncryptionService
     ) { 
     const compid='1';
@@ -27,33 +29,28 @@ export class ViewSalesreturnPage implements OnInit {
     console.log(this.salreturn$);
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+  filterCustomers(): Observable<any[]> {
+    return this.salreturn$.pipe(
+      map(salereturns =>
+        salereturns.filter(salereturn =>
+          Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  ngOnInit() {
+  onSearchTermChanged(): void {
+    this.filteredSalereturns$ = this.filterCustomers();
   }
+ 
+  ngOnInit() {
+    this.filteredSalereturns$ = this.salreturn$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  } 
+
 goBack(){
   this.router.navigate(["/salesreturn"])
 }

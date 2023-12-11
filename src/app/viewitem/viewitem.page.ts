@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
 @Component({
@@ -14,13 +14,16 @@ import { AdditemService } from '../services/additem.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ViewitemPage implements OnInit {
-  formDate:string='';
-  toDate:string='';
-  items$: Observable<any[]>
+  formDate: string = '';
+  toDate: string = '';
+  items$: Observable<any[]>;
 
-  constructor(private additem : AdditemService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
-    const compid='1';
-    this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
+  searchTerm: string = '';
+  filteredItems$: Observable<any[]> = new Observable<any[]>();
+
+  constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
+    const compid = '1';
+    this.items$ = this.additem.fetchallItem(encService.encrypt(compid), '', '');
     console.log(this.items$);
 
 
@@ -29,34 +32,29 @@ export class ViewitemPage implements OnInit {
     });
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+  filterCustomers(): Observable<any[]> {
+    return this.items$.pipe(
+      map(items =>
+        items.filter(item =>
+          Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  ngOnInit() {
+  onSearchTermChanged(): void {
+    this.filteredItems$ = this.filterCustomers();
   }
-goBack(){
-  this.router.navigate(["/add-item"])
-}
+ 
+  ngOnInit() {
+    this.filteredItems$ = this.items$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
+  goBack() {
+    this.router.navigate(["/add-item"])
+  }
 }

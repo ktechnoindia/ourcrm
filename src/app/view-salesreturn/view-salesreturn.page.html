@@ -23,7 +23,7 @@
           </ion-card-header>
 
           <ion-grid>
-            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+            <form #viewSaleForm="ngForm" >
               <ion-row>
                 <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
                   <ion-row>
@@ -44,7 +44,7 @@
 
               
             <ion-row>
-              <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
             </ion-row>
 
               <ion-row>
@@ -89,7 +89,7 @@
                       <th>Net Amount</th>
                       <th>Action</th>
                     </tr>
-                    <tr  *ngFor="let salreturns of salreturn$ | async; let i = index">
+                    <tr  *ngFor="let salreturns of filteredSalereturns$ | async; let i = index">
                       <td>{{i+1}}</td>
                       <td>{{salreturns.billformate}}</td>
                       <td>{{salreturns.billNumber}}</td>
