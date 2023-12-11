@@ -399,7 +399,7 @@ export class AddQuotPage implements OnInit {
   }
   //table formaula
   getnetrate(quote: Quote): number {
-    return quote.basicrate + quote.totaltax;
+    return quote.basicrate + (quote.taxrate1/100*quote.basicrate);
   }
   getTotaltax(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
@@ -407,7 +407,7 @@ export class AddQuotPage implements OnInit {
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
-
+ 
   getdiscountamt(quote: Quote): number {
     return (quote.discount / 100) * quote.basicrate * quote.quantity;
   }
@@ -416,7 +416,7 @@ export class AddQuotPage implements OnInit {
      quote.total=quote.total-quote.total*(quote.discount/100)
   }
   getTotalamt(quote: Quote): number {
-    return quote.basicrate * quote.quantity + quote.totaltax - quote.discountamt;
+    return (quote.basicrate * quote.quantity)+ (quote.quantity * (quote.taxrate1/100*quote.basicrate))- quote.discountamt;
   }
   getcgst(quote: Quote): number {
     return quote.taxrate1 / 2;
