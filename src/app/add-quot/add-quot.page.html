@@ -190,10 +190,10 @@
                       <ion-select-option value="percentage">Percentage</ion-select-option>
                     </ion-select>
                   </td>
-                    <td *ngIf="myform.get('discountType')?.value === 'percentage'">
+                    <!-- <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input style="width: 90px;" [(ngModel)]="quote.discount"  (ionBlur)="getdiscountp(quote)"  [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text" >
-                    </td>
+                    </td> -->
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input style="width: 100px;" [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)" [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td> 
@@ -232,10 +232,9 @@
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount(quoteData)" [ngModelOptions]="{standalone: true}" class="input_table" type="text">
-
-
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [ngModelOptions]="{standalone: true}" class="input_table" type="text">
                   </ion-col>
+                  
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
