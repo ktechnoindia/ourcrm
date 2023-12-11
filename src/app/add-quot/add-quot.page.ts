@@ -412,6 +412,7 @@ export class AddQuotPage implements OnInit {
     return (quote.discount / 100) * quote.basicrate * quote.quantity;
   }
   getdiscountp(quote: Quote) {
+     quote.discountamt=quote.total*(quote.discount/100);
      quote.total=quote.total-quote.total*(quote.discount/100)
   }
   getTotalamt(quote: Quote): number {
