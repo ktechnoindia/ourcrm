@@ -389,7 +389,7 @@ export class AddQuotPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate) - quote.discount), 0)
+    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (+quote.totaltax * +quote.quantity), 0);
