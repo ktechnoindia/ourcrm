@@ -107,7 +107,9 @@
                     <th>CGST</th>
                     <th>SGST</th>
                     <th>IGST</th>
+                   
                     <th>Discount %</th>
+             
                     <th>Discount Amount</th>
                     <th>Tax Amount</th>
                     <th>Net Amount</th>
@@ -165,7 +167,7 @@
                       <input  style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td >
-                      <select class="select-option" #taxrate (change)="onSelectChange(taxrate,quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}"  >
+                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}"  >
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
@@ -182,15 +184,21 @@
                     <td>
                       <input [value]="getigst(quote)"  [(ngModel)]="quote.IGST" [ngModelOptions]="{standalone: true}" class="table_input" >
                     </td>
-                    <td>
+                    <td> 
+                      <ion-select formControlName="discountType">
+                      <ion-select-option value="amount">Amount</ion-select-option>
+                      <ion-select-option value="percentage">Percentage</ion-select-option>
+                    </ion-select>
+                  </td>
+                    <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input style="width: 90px;" [(ngModel)]="quote.discount"  (ionBlur)="getdiscountp(quote)"  [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text" >
                     </td>
+                    <td *ngIf="myform.get('discountType')?.value === 'amount'">
+                      <input style="width: 100px;" [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)" [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                    </td> 
                     <td>
-                      <input style="width: 100px;" [(ngModel)]="quote.discountamt" [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
-                    </td>
-                    <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax()" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax(quote)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
                       <input style="width: 90px;" [(ngModel)]="quote.total" [value]="getTotalamt(quote)" [ngModelOptions]="{standalone: true}"
@@ -224,7 +232,8 @@
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()" formControlName="totalgrossamt" class="input_table" type="text" >
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount(quoteData)" [ngModelOptions]="{standalone: true}" class="input_table" type="text">
+
 
                   </ion-col>
 
