@@ -90,7 +90,7 @@
             <ion-row style="margin-top: 7px; ">
               <div class="scroll-container">
 
-                <table >
+                <table  style="width:2055px;overflow-x:auto;" >
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>
@@ -108,7 +108,7 @@
                     <th>SGST</th>
                     <th>IGST</th>
                    
-                    <th>Discount %</th>
+                    <th>Discount By</th>
              
                     <th>Discount Amount</th>
                     <th>Tax Amount</th>
@@ -143,7 +143,7 @@
                         type="number">
 
                     </td>
-                    <td >
+                    <td style="width: 90px;">
                       <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
@@ -166,8 +166,8 @@
                     <td>
                       <input  style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) " [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
-                    <td >
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}"  >
+                    <td style="width: 50px;">
+                      <select class="select-option"  id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}"  >
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
@@ -184,11 +184,11 @@
                     <td>
                       <input [value]="getigst(quote)"  [(ngModel)]="quote.IGST" [ngModelOptions]="{standalone: true}" class="table_input" >
                     </td>
-                    <td> 
-                      <ion-select formControlName="discountType">
-                      <ion-select-option value="amount">Amount</ion-select-option>
-                      <ion-select-option value="percentage">Percentage</ion-select-option>
-                    </ion-select>
+                    <td style="width: 90px;"> 
+                      <select class="select-option" formControlName="discountType">
+                      <option value="amount">Amount</option>
+                      <option value="percentage">Percentage</option>
+                    </select>
                   </td>
                     <!-- <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input style="width: 90px;" [(ngModel)]="quote.discount"  (ionBlur)="getdiscountp(quote)"  [ngModelOptions]="{standalone: true}" class="table_input"

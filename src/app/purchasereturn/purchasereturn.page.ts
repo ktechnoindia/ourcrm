@@ -180,6 +180,7 @@ export class PurchasereturnPage implements OnInit {
       discountamt: [''],
       totaltax: [''],
       total: [''],
+      discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
       totalquantity: [''],
@@ -344,7 +345,6 @@ export class PurchasereturnPage implements OnInit {
 
     // Add similar calculations for other totals
   }
- 
   getTotalQuantity(): number {
     return this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
   }
@@ -366,15 +366,22 @@ export class PurchasereturnPage implements OnInit {
   getnetrate(purchase: Purchase): number {
    return purchase.basicrate  + purchase.totaltax;
    }
-  getTotaltax(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate1/100 * + purchase.quantity), 0);
+  getTotaltax(purchase:Purchase): number {
+    return purchase.quantity *(purchase.taxrate1/100*purchase.basicrate);
   }
   getgrossrate(purchase: Purchase): number {
     return purchase.quantity * purchase.basicrate;
   }
  
-  getdiscountamt(purchase: Purchase): number {
-    return (purchase.discount/100) * purchase.basicrate * purchase.quantity;
+  getdiscountamt(purchase: Purchase): number {const discountamt = purchase.discountamt || 0; // handle null/undefined values
+  const basicrate = purchase.basicrate || 0; // handle null/undefined values
+  const quantity = purchase.quantity || 0; // handle null/undefined values
+  // calculate discount percentage
+  const discount = (discountamt / (basicrate * quantity)) * 100;
+  // update discount percentage
+  purchase.discount = discount;
+  // return discount amount for display
+  return discountamt;
   }
   getdiscountp(purchase: Purchase) {
     purchase.discountamt=purchase.total*(purchase.discount/100);
@@ -398,10 +405,52 @@ export class PurchasereturnPage implements OnInit {
     // Subscribe to value changes of basicrate, taxrate, and discount
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-  }
+
+    this.myform.get('discount')?.valueChanges.subscribe(() => {
+      this.calculateDiscount();
+      this.calculateNetRate();
+    }); 
+    this.myform.get('discountamt')?.valueChanges.subscribe(() => {
+      this.calculateDiscountPercentage();
+    }); 
+   }
+   calculateDiscountAmt() {
+    // Calculate discountamt based on discount percentage
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
   
+    const discountamt = (discount / 100) * basicrate * quantity;
+  
+    // Update the discountamt in the form
+    this.myform.get('discount')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
+  }
+  calculateDiscountPercentage() {
+    // Calculate discount percentage based on discountamt
+  const discountamt = this.myform.get('discountamt')?.value ?? 0;
+  const basicrate = this.myform.get('basicrate')?.value ?? 0;
+  const quantity = this.myform.get('quantity')?.value ?? 0;
+
+  const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+  }
+    calculateDiscount() {
+      const discountType = this.myform.get('discountType')?.value;
+      const discount = +this.myform.get('discount')?.value || 0;
+      const basicrate = +this.myform.get('basicrate')?.value || 0;
+      const quantity = +this.myform.get('quantity')?.value || 0;
+    
+      if (discountType === 'amount') {
+        // Calculate discount amount based on user-entered amount
+        const discountAmt = discount;
+        this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+      } else if (discountType === 'percentage') {
+        // Calculate discount amount based on user-entered percentage
+        const discountAmt = (discount / 100) * basicrate * quantity;
+        this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+      }
+      
+    }
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
