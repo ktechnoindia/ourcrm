@@ -32,7 +32,8 @@ interface Purchase {
   discountamt: number;
   totaltax: number;
   total: number;
-  
+  taxrate1:number;
+
 }
 @Component({
   selector: 'app-add-purchase',
@@ -60,7 +61,7 @@ billformate:number=0;
   payment: number = 0;
 
   //table data
-  barcode: string = '';
+ /* barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -78,6 +79,7 @@ billformate:number=0;
   discountamt: string = '';
   totaltax: number = 0;
   total: string = '';
+  */
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -114,6 +116,8 @@ billformate:number=0;
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
+
   }];
   ttotal!: number;
  
@@ -310,6 +314,8 @@ billformate:number=0;
       discountamt:0,
       totaltax:0,
       total:0,
+      taxrate1:0,
+
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -355,7 +361,7 @@ billformate:number=0;
   }
 
   getTotalnetAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate)  - purchase.discount), 0)
+    return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1)  - purchase.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (+purchase.totaltax* +purchase.quantity), 0);
@@ -368,7 +374,7 @@ billformate:number=0;
    return purchase.basicrate  + purchase.totaltax;
    }
   getTotaltax(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate/100 * + purchase.quantity), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (+purchase.basicrate * +purchase.taxrate1/100 * + purchase.quantity), 0);
   }
   getgrossrate(purchase: Purchase): number {
     return purchase.quantity * purchase.basicrate;
@@ -377,18 +383,21 @@ billformate:number=0;
   getdiscountamt(purchase: Purchase): number {
     return (purchase.discount/100) * purchase.basicrate * purchase.quantity;
   }
-  
+  getdiscountp(purchase: Purchase) {
+    purchase.discountamt=purchase.total*(purchase.discount/100);
+    purchase.total=purchase.total-purchase.total*(purchase.discount/100) 
+  }
   getTotalamt(purchase:Purchase): number {
     return purchase.basicrate * purchase.quantity + purchase.totaltax - purchase.discountamt;
   }
   getcgst(purchase:Purchase): number {
-    return purchase.taxrate/2;
+    return purchase.taxrate1/2;
   }
   getsgst(purchase:Purchase): number {
-    return purchase.taxrate/2;
+    return purchase.taxrate1/2;
   }
   getigst(purchase:Purchase): number {
-    return purchase.taxrate;
+    return purchase.taxrate1;
   }
   ngOnInit() {
     // Other initialization logic...
@@ -416,7 +425,7 @@ billformate:number=0;
   goBack() {
     this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page
   }
-  onSelectChange(select: HTMLSelectElement) {
+  onSelectChange(select: HTMLSelectElement,purchase:Purchase) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -429,8 +438,12 @@ billformate:number=0;
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+      purchase.taxrate1=numericValue;
+
       // Use numericValue as needed
     } else {
+      purchase.taxrate1=0;
+
       console.error('Selected text does not represent a valid number.');
     }
   }

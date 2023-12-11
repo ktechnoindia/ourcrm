@@ -33,6 +33,8 @@ interface Dcout {
   discountamt: number;
   totaltax: number;
   total: number;
+  taxrate1:number;
+
 }
 @Component({
   selector: 'app-dc-out',
@@ -52,7 +54,7 @@ export class DcOutPage implements OnInit {
   // ponumber: string = '';
 
   //table data
-  barcode: string = '';
+ /* barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -69,7 +71,8 @@ export class DcOutPage implements OnInit {
   discount: string = '';
   discountamt: string = '';
   totaltax: string = '';
-  total: string = '';
+  total: string = '';*/
+
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -105,6 +108,8 @@ export class DcOutPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
+
   }];
   myform: FormGroup;
   ttotal!: number;
@@ -289,6 +294,8 @@ export class DcOutPage implements OnInit {
         discountamt:0,
         totaltax:0,
         total:0,
+        taxrate1:0,
+
         // Add more properties as needed
       };
       this.dcoutData.push(newRow);
@@ -344,7 +351,7 @@ export class DcOutPage implements OnInit {
     }
   
     getTotalnetAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate)  - dcout.discount), 0)
+      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1)  - dcout.discount), 0)
     }
     getTotalTaxAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax* +dcout.quantity), 0);
@@ -357,7 +364,11 @@ export class DcOutPage implements OnInit {
      return quote.basicrate  + quote.totaltax;
      }
     getTotaltax(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.taxrate/100 * + dcout.quantity), 0);
+      return this.dcoutData.reduce((total, dcout) => total + (+dcout.basicrate * +dcout.taxrate1/100 * + dcout.quantity), 0);
+    }
+    getdiscountp(dcout: Dcout) {
+      dcout.discountamt=dcout.total*(dcout.discount/100);
+      dcout.total=dcout.total-dcout.total*(dcout.discount/100) 
     }
     getgrossrate(dcout: Dcout): number {
       return dcout.quantity * dcout.basicrate;
@@ -371,13 +382,13 @@ export class DcOutPage implements OnInit {
       return dcout.basicrate * dcout.quantity + dcout.totaltax - dcout.discountamt;
     }
     getcgst(dcout:Dcout): number {
-      return dcout.taxrate/2;
+      return dcout.taxrate1/2;
     }
     getsgst(dcout:Dcout): number {
-      return dcout.taxrate/2;
+      return dcout.taxrate1/2;
     }
     getigst(dcout:Dcout): number {
-      return dcout.taxrate;
+      return dcout.taxrate1;
     }
     ngOnInit() {
       // Other initialization logic...
@@ -405,7 +416,7 @@ export class DcOutPage implements OnInit {
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
-  onSelectChange(select: HTMLSelectElement) {
+  onSelectChange(select: HTMLSelectElement,dcout:Dcout) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -418,8 +429,12 @@ export class DcOutPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+      dcout.taxrate1=numericValue;
+
       // Use numericValue as needed
     } else {
+      dcout.taxrate1=0;
+
       console.error('Selected text does not represent a valid number.');
     }
   }
