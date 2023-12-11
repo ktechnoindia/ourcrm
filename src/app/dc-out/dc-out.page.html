@@ -107,7 +107,7 @@
                     <th>CGST</th>
                     <th>SGST</th>
                     <th>IGST</th>
-                    <th>Discount %</th>
+                    <th>Discount BY</th>
                     <th>Discount Amount</th>
                     <th>Tax Amount</th>
                     <th>Net Amount</th>
@@ -166,7 +166,7 @@
                       [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td class="select-option">
-                      <select class="table_select" #taxrate (change)="onSelectChange(taxrate,dcout)" [(ngModel)]="dcout.taxrate"
+                      <select class="table_select"  id="taxrate" #taxrate (change)="onSelectChange(taxrate,dcout)" [(ngModel)]="dcout.taxrate"
                       [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
@@ -185,16 +185,22 @@
                     <td>
                       <input [(ngModel)]="dcout.IGST" [value]="getigst(dcout)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
-                    <td>
-                      <input [(ngModel)]="dcout.discount" [ngModelOptions]="{standalone: true}"
+                    <td class="select-option"> 
+                      <ion-select formControlName="discountType">
+                      <ion-select-option value="amount">Amount</ion-select-option>
+                      <ion-select-option value="percentage">Percentage</ion-select-option>
+                    </ion-select>
+                  </td>
+                  <td *ngIf="myform.get('discountType')?.value === 'percentage'">
+                    <input [(ngModel)]="dcout.discount" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
                     </td>
-                    <td>
+                    <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="dcout.discountamt"  [value]="getdiscountamt(dcout)" (ionBlur)="getdiscountp(dcout)"
                       [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.totaltax" [value]="getTotaltax()"
+                      <input [(ngModel)]="dcout.totaltax" [value]="getTotaltax(dcout)"
                       [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>

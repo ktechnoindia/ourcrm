@@ -33,7 +33,7 @@ interface Dcin {
   discountamt: number;
   totaltax: number;
   total: number;
-  taxrate1:number;
+  taxrate1: number;
 
 }
 @Component({
@@ -55,25 +55,25 @@ export class DcInPage implements OnInit {
   // ponumber: string = '';
 
   //table data
- /* barcode: string = '';
-  itemcode: string = '';
-  itemname: number = 0;
-  description: string = '';
-  quantity: string = '';
-  unitname: number = 0;
-  mrp: string = '';
-  basicrate: string = '';
-  netrate: string = '';
-  grossrate: string = '';
-  taxrate: string = '';
-  CGST: string = '';
-  SGST: string = '';
-  IGST: string = '';
-  discount: string = '';
-  discountamt: string = '';
-  totaltax: string = '';
-  total: string = '';*/
-  
+  /* barcode: string = '';
+   itemcode: string = '';
+   itemname: number = 0;
+   description: string = '';
+   quantity: string = '';
+   unitname: number = 0;
+   mrp: string = '';
+   basicrate: string = '';
+   netrate: string = '';
+   grossrate: string = '';
+   taxrate: string = '';
+   CGST: string = '';
+   SGST: string = '';
+   IGST: string = '';
+   discount: string = '';
+   discountamt: string = '';
+   totaltax: string = '';
+   total: string = '';*/
+
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -110,7 +110,7 @@ export class DcInPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
-    taxrate1:0,
+    taxrate1: 0,
 
   }];
 
@@ -172,6 +172,7 @@ export class DcInPage implements OnInit {
       discountamt: [''],
       totaltax: [''],
       total: [''],
+      discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
       totalquantity: [''],
@@ -258,15 +259,15 @@ export class DcInPage implements OnInit {
           this.formService.showSaveLoader();
 
         },
-        (error:any) =>{
-         console.log('POST request failed',error);
-         setTimeout(() => {
-          this.formService.showFailedAlert();
-         }, 1000);
-         this.formService.shoErrorLoader();
+        (error: any) => {
+          console.log('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
         }
       );
-    }  else {
+    } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
         if (control?.invalid) {
@@ -320,7 +321,7 @@ export class DcInPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
-      taxrate1:0,
+      taxrate1: 0,
 
       // Add more properties as needed
     };
@@ -357,6 +358,7 @@ export class DcInPage implements OnInit {
   }
   getTotalQuantity(): number {
     return this.dcinData.reduce((total, dcin) => total + +dcin.quantity, 0);
+
   }
 
   getTotalGrossAmount(): number {
@@ -364,7 +366,7 @@ export class DcInPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1)  - dcin.discount), 0)
+    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
@@ -372,44 +374,95 @@ export class DcInPage implements OnInit {
   getTotalDiscountAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
   }
- //table formaula
+  //table formaula
   getnetrate(dcin: Dcin): number {
-   return dcin.basicrate  + dcin.totaltax;
-   }
-  getTotaltax(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate1/100 * + dcin.quantity), 0);
+    return dcin.basicrate + (dcin.taxrate1 / 100 * dcin.basicrate);
+  }
+  getTotaltax(dcin: Dcin): number {
+    return dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate);
+        //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+
   }
   getgrossrate(dcin: Dcin): number {
     return dcin.quantity * dcin.basicrate;
   }
-  
+
   getdiscountamt(dcin: Dcin): number {
-    return (dcin.discount/100) * dcin.basicrate * dcin.quantity;
+    const discountamt = dcin.discountamt || 0; // handle null/undefined values
+    const basicrate = dcin.basicrate || 0; // handle null/undefined values
+    const quantity = dcin.quantity || 0; // handle null/undefined values
+    // calculate discount percentage
+    const discount = (discountamt / (basicrate * quantity)) * 100;
+    // update discount percentage
+    dcin.discount = discount;
+    // return discount amount for display
+    return discountamt;
   }
   getdiscountp(dcin: Dcin) {
-    dcin.discountamt=dcin.total*(dcin.discount/100);
-    dcin.total=dcin.total-dcin.total*(dcin.discount/100) 
+    dcin.discountamt = dcin.total * (dcin.discount / 100);
+    dcin.total = dcin.total - dcin.total * (dcin.discount / 100)
   }
-  getTotalamt(dcin:Dcin): number {
-    return dcin.basicrate * dcin.quantity + dcin.totaltax - dcin.discountamt;
+  getTotalamt(dcin: Dcin): number {
+    return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - dcin.discountamt;
   }
-  getcgst(dcin:Dcin): number {
-    return dcin.taxrate1/2;
+  getcgst(dcin: Dcin): number {
+    return dcin.taxrate1 / 2;
   }
-  getsgst(dcin:Dcin): number {
-    return dcin.taxrate1/2;
+  getsgst(dcin: Dcin): number {
+    return dcin.taxrate1 / 2;
   }
-  getigst(dcin:Dcin): number {
+  getigst(dcin: Dcin): number {
     return dcin.taxrate1;
   }
   ngOnInit() {
-
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-    this.myform.get('discount')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+
+    this.myform.get('discount')?.valueChanges.subscribe(() => {
+      this.calculateDiscount();
+      this.calculateNetRate();
+    });
+    this.myform.get('discountamt')?.valueChanges.subscribe(() => {
+      this.calculateDiscountPercentage();
+    }); 
   }
+  calculateDiscountPercentage() {
+    // Calculate discount percentage based on discountamt
+  const discountamt = this.myform.get('discountamt')?.value ?? 0;
+  const basicrate = this.myform.get('basicrate')?.value ?? 0;
+  const quantity = this.myform.get('quantity')?.value ?? 0;
+
+  const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+  }
+  calculateDiscount() {
+    const discountType = this.myform.get('discountType')?.value;
+    const discount = +this.myform.get('discount')?.value || 0;
+    const basicrate = +this.myform.get('basicrate')?.value || 0;
+    const quantity = +this.myform.get('quantity')?.value || 0;
   
+    if (discountType === 'amount') {
+      // Calculate discount amount based on user-entered amount
+      const discountAmt = discount;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    } else if (discountType === 'percentage') {
+      // Calculate discount amount based on user-entered percentage
+      const discountAmt = (discount / 100) * basicrate * quantity;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    }
+    
+  }
+  calculateDiscountAmt() {
+    // Calculate discountamt based on discount percentage
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+  
+    const discountamt = (discount / 100) * basicrate * quantity;
+  
+    // Update the discountamt in the form
+    this.myform.get('discount')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
+  }
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -419,7 +472,7 @@ export class DcInPage implements OnInit {
     const quantity = this.myform.get('quantity')?.value ?? 0;
 
     // Perform the calculation and update the netrate in the form
-    const gstAmount = (discount / 100)*basicrate*quantity;
+    const gstAmount = (discount / 100) * basicrate * quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
     
@@ -427,7 +480,7 @@ export class DcInPage implements OnInit {
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
-  onSelectChange(select: HTMLSelectElement,dcin:Dcin) {
+  onSelectChange(select: HTMLSelectElement, dcin: Dcin) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -440,10 +493,11 @@ export class DcInPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+      dcin.taxrate1=numericValue;
 
       // Use numericValue as needed
     } else {
-      dcin.taxrate1=0;
+      dcin.taxrate1 = 0;
 
       console.error('Selected text does not represent a valid number.');
     }
