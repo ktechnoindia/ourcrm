@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Route, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { LegderService } from '../services/ledger.service';
 import { EncryptionService } from '../services/encryption.service';
 
@@ -16,7 +16,8 @@ import { EncryptionService } from '../services/encryption.service';
 })
 export class ViewledgerPage implements OnInit {
 
-
+  searchTerm: string = '';
+  filteredLedgers$: Observable<any[]> = new Observable<any[]>(); 
   ledgers$: Observable<any[]>
   
   constructor(private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
@@ -26,12 +27,28 @@ export class ViewledgerPage implements OnInit {
     console.log(this.ledgers$);
   }
 
-  onSubmit(){
-    
+  filterCustomers(): Observable<any[]> {
+    return this.ledgers$.pipe(
+      map(ledgers =>
+        ledgers.filter(ledger =>
+          Object.values(ledger).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  ngOnInit() {
+  onSearchTermChanged(): void {
+    this.filteredLedgers$ = this.filterCustomers();
   }
+ 
+  ngOnInit() {
+    this.filteredLedgers$ = this.ledgers$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
   goBack() {
     this.router.navigate(['/ledger']); // Navigate back to the previous page
   }

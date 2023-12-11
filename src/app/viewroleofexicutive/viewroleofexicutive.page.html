@@ -12,7 +12,8 @@
         </div>
         <ion-grid>
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+              (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
 
           <ion-row class="Executive">
@@ -34,7 +35,7 @@
                   <th>Action</th>
                 </tr>
                 <!-- Sample Row -->
-                <tr *ngFor="let roleexective of roleexectives$ | async; let i = index">
+                <tr *ngFor="let roleexective of filteredRoleExecutives$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{roleexective.exname}} </td>
                   <td>{{roleexective.extilte}}</td>

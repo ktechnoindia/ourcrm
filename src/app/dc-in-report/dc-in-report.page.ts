@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule,ToastController } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { DcinService } from '../services/dcin.service';
 import { EncryptionService } from '../services/encryption.service';
 
@@ -13,15 +13,17 @@ import { EncryptionService } from '../services/encryption.service';
   templateUrl: './dc-in-report.page.html',
   styleUrls: ['./dc-in-report.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink]
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class DcInReportPage implements OnInit {
 
-  formDate:string='';
-  toDate:string='';
-  dcin$: Observable<any[]>
+  formDate: string = '';
+  toDate: string = '';
+  dcin$: Observable<any[]>;
+  searchTerm: string = '';
+  filteredDcin$: Observable<any[]> = new Observable<any[]>();
 
-  constructor( private encService: EncryptionService,private dcinservice: DcinService,private router:Router,private toastCtrl:ToastController) { 
+  constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
     this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
@@ -51,9 +53,29 @@ export class DcInReportPage implements OnInit {
     }
   }
 
-  ngOnInit() {
+  filterCustomers(): Observable<any[]> {
+    return this.dcin$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
-  goBack(){
+
+  onSearchTermChanged(): void {
+    this.filteredDcin$ = this.filterCustomers();
+  }
+
+  ngOnInit() {
+    this.filteredDcin$ = this.dcin$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
+  goBack() {
     this.router.navigate(["/dc-in"])
   }
 

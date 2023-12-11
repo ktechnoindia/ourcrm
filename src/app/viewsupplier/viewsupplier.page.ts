@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -18,11 +18,13 @@ import { EncryptionService } from '../services/encryption.service';
   ]
 })
 export class ViewsupplierPage implements OnInit {
-  searchText:string='';
-
+  
   formDate:string='';
   toDate:string='';
   vendors$: Observable<any[]>
+  searchTerm: string = '';
+
+  filteredSupplers$: Observable<any[]> = new Observable<any[]>(); 
 
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
     const compid='1';
@@ -31,32 +33,26 @@ export class ViewsupplierPage implements OnInit {
     console.log(this.vendors$);
   }
 
-  async onSubmit(){
-    if(this.formDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"Form Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else if(this.toDate===''){
-      const toast = await this.toastCtrl.create({
-        message:"To Date is required",
-        duration:3000,
-        color:'danger',
-      });
-      toast.present();
-    }else{
-      const toast = await this.toastCtrl.create({
-        message:"Successfully !",
-        duration:3000,
-        color:'success',
-      });
-      toast.present();
-    }
+  filterCustomers(): Observable<any[]> {
+    return this.vendors$.pipe(
+      map(vendors =>
+        vendors.filter(vendor =>
+          Object.values(vendor).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
+  onSearchTermChanged(): void {
+    this.filteredSupplers$ = this.filterCustomers();
+  }
+ 
   ngOnInit() {
+    this.filteredSupplers$ = this.vendors$ .pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
   }
 goBack(){
   this.router.navigate(["/add-vendor"])

@@ -115,16 +115,15 @@
                   <tr *ngFor="let dcin of dcinData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="dcin.barcode" id="barcode" formControlName="barcode" name="barcode"
+                      <input [(ngModel)]="dcin.barcode"  [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.itemcode" id="itemcode" formControlName="itemcode" name="itemcode"
+                      <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="dcin.itemname" name="itemname"
-                        formControlName="itemname" id="itemname">
+                      <select class="table_select" [(ngModel)]="dcin.itemname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
@@ -132,17 +131,16 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.description" formControlName="description" name="description"
-                        id="description" class="table_input description" type="text">
+                      <input [(ngModel)]="dcin.description"  [ngModelOptions]="{standalone: true}" class="table_input description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.quantity" id="quantity" formControlName="quantity" name="quantity"
+                      <input [(ngModel)]="dcin.quantity" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="number">
 
                     </td>
                     <td style="width: 90px;">
                       <select class="table_select" [(ngModel)]="dcin.unitname"
-                        formControlName="unitname" name="unit_name" id="unitname">
+                      [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -150,59 +148,54 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.mrp" id="mrp" formControlName="mrp" name="mrp" class="table_input"
+                      <input [(ngModel)]="dcin.mrp"  [ngModelOptions]="{standalone: true}"class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.basicrate" id="basicrate" formControlName="basicrate" name="basicrate"
+                      <input [(ngModel)]="dcin.basicrate"  [ngModelOptions]="{standalone: true}"
                         class="table_input" type="number">
 
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.netrate" [value]="getnetrate(dcin)" id="netrate"
-                        formControlName="netrate" name="netrate" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.netrate" [value]="getnetrate(dcin)"  [ngModelOptions]="{standalone: true}"class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) " id="grossrate"
-                        formControlName="grossrate" name="grossrate" class="table_input" type="number">
+                      <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) "  [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" #taxrate (change)="onSelectChange(taxrate)" [(ngModel)]="dcin.taxrate"
-                        formControlName="taxrate" name="taxrate" id="taxrate">
+                      <select class="table_select" #taxrate (change)="onSelectChange(taxrate,dcin)" [(ngModel)]="dcin.taxrate"
+                      [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
                       </select>
                     </td>
+                    <input type="hidden"  [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                     <td>
-                      <input [(ngModel)]="dcin.CGST" id="CGST" [value]="getcgst(dcin)" formControlName="CGST"
-                        name="CGST" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.CGST" [value]="getcgst(dcin)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.SGST" id="SGST" [value]="getsgst(dcin)" formControlName="SGST"
-                        name="SGST" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.SGST" [value]="getsgst(dcin)"  [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.IGST" id="IGST" [value]="getigst(dcin)" formControlName="IGST"
-                        name="IGST" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.IGST" [value]="getigst(dcin)"  [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.discount" id="discount" formControlName="discount" name="discount"
+                      <input [(ngModel)]="dcin.discount" [ngModelOptions]="{standalone: true}" (ionBlur)="getdiscountp(dcin)"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.discountamt" id="discountamt" [value]="getdiscountamt(dcin)"
-                        formControlName="discountamt" name="discountamt" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.discountamt" [value]="getdiscountamt(dcin)"
+                      [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.totaltax" id="totaltax" [value]="getTotaltax()"
-                        formControlName="totaltax" name="totaltax" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.totaltax" [value]="getTotaltax()"
+                      [ngModelOptions]="{standalone: true}"class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcin.total" id="total" [value]="getTotalamt(dcin)" formControlName="total"
-                        name="total" class="table_input" type="text">
+                      <input [(ngModel)]="dcin.total" [value]="getTotalamt(dcin)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
 
                     </td>
 

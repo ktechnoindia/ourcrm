@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
 import { RouterModule,RouterLink } from '@angular/router';
@@ -19,6 +19,9 @@ export class ViewexicutivePage implements OnInit {
   formDate:string='';
   toDate:string='';
   executives$: Observable<any[]>
+  searchTerm: string = '';
+  filteredExecutives$: Observable<any[]> = new Observable<any[]>(); 
+
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:ExecutiveService) { 
     const compid='1';
 
@@ -26,33 +29,31 @@ export class ViewexicutivePage implements OnInit {
     console.log(this.executives$);
   }
 
-   onSubmit(){
-    // if(this.formDate===''){
-    //   const toast = await this.toastCtrl.create({
-    //     message:"Form Date is required",
-    //     duration:3000,
-    //     color:'danger',
-    //   });
-    //   toast.present();
-    // }else if(this.toDate===''){
-    //   const toast = await this.toastCtrl.create({
-    //     message:"To Date is required",
-    //     duration:3000,
-    //     color:'danger',
-    //   });
-    //   toast.present();
-    // }else{
-    //   const toast = await this.toastCtrl.create({
-    //     message:"Successfully !",
-    //     duration:3000,
-    //     color:'success',
-    //   });
-    //   toast.present();
-    // }
+  filterCustomers(): Observable<any[]> {
+    return this.executives$.pipe(
+      map(executives =>
+        executives.filter(executive =>
+          Object.values(executive).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
 
-  ngOnInit() {
+  onSearchTermChanged(): void {
+    this.filteredExecutives$ = this.filterCustomers();
   }
+ 
+  ngOnInit() {
+    this.filteredExecutives$ = this.executives$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
+  ///edit customer start  
+
+
 goBack(){
   this.router.navigate(["/add-executive"])
 }

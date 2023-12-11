@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { ExecutiveService } from '../services/executive.service';
 @Component({
   selector: 'app-transfer-lead',
@@ -18,6 +18,10 @@ export class TransferLeadPage implements OnInit {
   lead$: Observable<any[]>;
   executive$: Observable<any>;
   select_sales_person:number=0;
+
+  searchTerm: string = '';
+  filteredTransferlead$: Observable<any[]> = new Observable<any[]>(); 
+
   constructor(private router: Router,private execut:ExecutiveService,private encService: EncryptionService,private leadser:LeadService,) { 
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
@@ -25,8 +29,30 @@ export class TransferLeadPage implements OnInit {
 
   }
 
-  ngOnInit() {
+ 
+  filterCustomers(): Observable<any[]> {
+    return this.lead$.pipe(
+      map(leads =>
+        leads.filter(lead =>
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
+
+  onSearchTermChanged(): void {
+    this.filteredTransferlead$ = this.filterCustomers();
+  }
+ 
+  ngOnInit() {
+    this.filteredTransferlead$ = this.lead$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+  }
+
+
   goBack(){
     this.router.navigate(["/leaddashboard"])
   }

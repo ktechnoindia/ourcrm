@@ -11,10 +11,8 @@
           </ion-card-header>
 
           <ion-grid>
-            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
-
               <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
 
               <ion-row>
@@ -52,7 +50,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let ledger of ledgers$ | async; let i = index">
+                      <tr *ngFor="let ledger of filteredLedgers$ | async; let i = index">
                         <td>{{ i + 1}}</td>
                         <td>{{ledger.ledger_code}}</td>
                         <td>{{ledger.lname}}</td>
@@ -88,7 +86,6 @@
                   </table>
                 </div>
               </ion-row>
-            </form>
           </ion-grid>
         </div>
       </ion-card-content>

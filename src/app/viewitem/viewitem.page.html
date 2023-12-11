@@ -11,11 +11,9 @@
           </ion-card-header>
 
           <ion-grid>
-            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
-              
-
+            
               <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
 
               <ion-row class="Executive">
@@ -52,7 +50,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let item of items$ | async; let i = index">
+                    <tr *ngFor="let item of filteredItems$ | async; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{item.itemCode}}</td>
                         <td>{{item.itemDesc}}</td>
@@ -88,7 +86,6 @@
                   </table>
                 </div>
               </ion-row>
-            </form>
           </ion-grid>
         </div>
       </ion-card-content>

@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddgroupService,group } from '../services/addgroup.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 
 @Component({
@@ -23,6 +23,8 @@ export class AddgroupPage implements OnInit {
   
   subscription: Subscription = new Subscription();
   itemgroups$: Observable<any[]>
+  searchTerm: string = '';
+  filteredGroups$: Observable<any[]> = new Observable<any[]>(); 
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -31,6 +33,7 @@ export class AddgroupPage implements OnInit {
     
       itemgroupname:['',Validators.required],
       parentgroup:[''],
+      searchTerm:['']
 
   })
   this.itemgroups$ = this.groupService.getAllGroups(1);
@@ -77,9 +80,27 @@ export class AddgroupPage implements OnInit {
   }
 }
 
-  ngOnInit() {
-    // Page initialization code goes here
-  }
+filterCustomers(): Observable<any[]> {
+  return this.itemgroups$.pipe(
+    map(groups =>
+      groups.filter(group =>
+        Object.values(group).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+      )
+    )
+  );
+}
+
+onSearchTermChanged(): void {
+  this.filteredGroups$ = this.filterCustomers();
+}
+
+ngOnInit() {
+  this.filteredGroups$ = this.itemgroups$.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap(() => this.filterCustomers())
+  );
+}
   goBack() {
     this.router.navigate(['/item-master']); 
   }

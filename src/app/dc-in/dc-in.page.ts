@@ -33,6 +33,8 @@ interface Dcin {
   discountamt: number;
   totaltax: number;
   total: number;
+  taxrate1:number;
+
 }
 @Component({
   selector: 'app-dc-in',
@@ -53,7 +55,7 @@ export class DcInPage implements OnInit {
   // ponumber: string = '';
 
   //table data
-  barcode: string = '';
+ /* barcode: string = '';
   itemcode: string = '';
   itemname: number = 0;
   description: string = '';
@@ -70,7 +72,8 @@ export class DcInPage implements OnInit {
   discount: string = '';
   discountamt: string = '';
   totaltax: string = '';
-  total: string = '';
+  total: string = '';*/
+  
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -87,6 +90,7 @@ export class DcInPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
+
   dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
@@ -106,6 +110,8 @@ export class DcInPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
+    taxrate1:0,
+
   }];
 
   ttotal!: number;
@@ -294,6 +300,8 @@ export class DcInPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
+      taxrate1:0,
+
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
@@ -336,7 +344,7 @@ export class DcInPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate)  - dcin.discount), 0)
+    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1)  - dcin.discount), 0)
   }
   getTotalTaxAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
@@ -349,7 +357,7 @@ export class DcInPage implements OnInit {
    return dcin.basicrate  + dcin.totaltax;
    }
   getTotaltax(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate/100 * + dcin.quantity), 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.basicrate * +dcin.taxrate1/100 * + dcin.quantity), 0);
   }
   getgrossrate(dcin: Dcin): number {
     return dcin.quantity * dcin.basicrate;
@@ -358,18 +366,21 @@ export class DcInPage implements OnInit {
   getdiscountamt(dcin: Dcin): number {
     return (dcin.discount/100) * dcin.basicrate * dcin.quantity;
   }
-  
+  getdiscountp(dcin: Dcin) {
+    dcin.discountamt=dcin.total*(dcin.discount/100);
+    dcin.total=dcin.total-dcin.total*(dcin.discount/100) 
+  }
   getTotalamt(dcin:Dcin): number {
     return dcin.basicrate * dcin.quantity + dcin.totaltax - dcin.discountamt;
   }
   getcgst(dcin:Dcin): number {
-    return dcin.taxrate/2;
+    return dcin.taxrate1/2;
   }
   getsgst(dcin:Dcin): number {
-    return dcin.taxrate/2;
+    return dcin.taxrate1/2;
   }
   getigst(dcin:Dcin): number {
-    return dcin.taxrate;
+    return dcin.taxrate1;
   }
   ngOnInit() {
     // Other initialization logic...
@@ -401,7 +412,7 @@ export class DcInPage implements OnInit {
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
-  onSelectChange(select: HTMLSelectElement) {
+  onSelectChange(select: HTMLSelectElement,dcin:Dcin) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -414,8 +425,11 @@ export class DcInPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
+
       // Use numericValue as needed
     } else {
+      dcin.taxrate1=0;
+
       console.error('Selected text does not represent a valid number.');
     }
   }

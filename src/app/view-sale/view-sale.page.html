@@ -45,7 +45,7 @@
               </ion-row>
 
               <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
 
               <ion-row>
@@ -89,7 +89,7 @@
                       <th>Net Amount</th>
                       <th>Action</th>
                     </tr>
-                    <tr *ngFor="let sales of filteredSales  | async; let i = index">
+                    <tr *ngFor="let sales of filteredSales$ | async; let i = index">
                       <td>{{i+1}}</td>
                       <td>{{sales.billformate}}</td>
                       <td>{{sales.billNumber}}</td>

@@ -42,7 +42,7 @@
           </ion-row>
 
           <ion-row  >
-            <ion-searchbar  class="custom" showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar  class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
 
           <ion-row style="margin-top: 10px;">
@@ -82,7 +82,7 @@
                   <th>Net Amount</th>
                   <th>Action</th>
                 </tr>
-                <tr *ngFor="let dcin of dcin$ | async; let i = index">
+                <tr *ngFor="let dcin of filteredDcin$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{dcin.voucherformat}}</td>
                   <td>{{dcin.voucherNumber}}</td>

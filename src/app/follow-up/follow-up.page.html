@@ -26,7 +26,7 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-card style="height: 445px;">
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
                   <div class="scroll-container" style="height: 360px;">
 
@@ -50,7 +50,7 @@
                         <th>Lead Score</th>
                         <th>Remark</th> -->
                       </tr>
-                      <tr *ngFor="let leadscore of lead$ | async; let i = index" (click)="showDetails(leadscore)">
+                      <tr *ngFor="let leadscore of filteredFollowups$ | async; let i = index" (click)="showDetails(leadscore)">
                         <td>{{i+1}}</td>
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.companyname}}</td>

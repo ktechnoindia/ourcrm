@@ -24,7 +24,7 @@
         </div>
         <ion-grid>
 
-          <form [formGroup]="viewLeadForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="viewLeadForm" >
 
             <ion-row>
               <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
@@ -57,7 +57,7 @@
            
             <ion-row>
               <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;margin-top: 10px;">
-                <ion-searchbar class="custom " showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom " formControlName="searchTerm" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <table style="width: 1500px;overflow-x:auto;overflow-y: auto;">
                   <tr>
                     <th>Sr.No.</th>
@@ -79,7 +79,7 @@
                     <th>Remark</th>
                     <th>Action</th>
                   </tr>
-                  <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                  <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
                     <td>{{i+1}}</td>
                       <td>{{leadscore.tid}}</td>
                       <td>{{leadscore.companyname}}</td>

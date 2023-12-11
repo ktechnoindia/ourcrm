@@ -12,34 +12,9 @@
           </ion-card-header>
 
           <ion-grid>
-            <form #viewSaleForm="ngForm" (ngSubmit)="onSubmit()">
+             
               <ion-row>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-                </ion-col>
-                <!-- <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
-                  <ion-row>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date"
-                          label=" From Date  :" label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
-                      <ion-row>
-                        <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                          label-placement="floating" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-
-                  </ion-row>
-                </ion-col>
-                <ion-col size-lg="2" size-md="2" size-sm="6" size="12" class="custom-primary">
-                  <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-                </ion-col> -->
-              </ion-row>
-
-              <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
 
               <ion-row>
@@ -104,7 +79,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let company of companys$ | async; let i = index">
+                      <tr *ngFor="let company of  filteredCompany$ | async; let i = index">
                         <td>{{i + 1}}</td>
                         <td>{{company.cpyname}}</td>
                         <td>{{company.companyid}}</td>
@@ -154,14 +129,10 @@
                             <ion-icon color="primary" icon-only clear (click)="editcompany(company)" name="create"></ion-icon>
                         </td>
                       </tr>
-
-
                     </tbody>
-
                   </table>
                 </div>
               </ion-row>
-            </form>
           </ion-grid>
         </div>
       </ion-card-content>

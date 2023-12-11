@@ -31,7 +31,7 @@
           </ion-row>
 
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row>
             <div  class="scroll-container"  style="overflow-x:auto; width: 100%;">
@@ -70,7 +70,7 @@
                   <th>Net Amount</th>
                   <th>Action</th>
                 </tr>
-                <tr *ngFor="let quote of quote$ | async; let i = index">
+                <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{quote.billformate}}</td>
                   <td>{{quote.quoteNumber}}</td>
@@ -110,13 +110,7 @@
               </table>
             </div>
           </ion-row>
-          <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-            <ion-button>New</ion-button>
-            <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
-            <ion-button>Preview</ion-button>
-            <ion-button>Close</ion-button>
-          </ion-row> -->
+        
         </form>
       </ion-grid>
 

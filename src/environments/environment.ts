@@ -84,7 +84,8 @@ fetchamc:'get_amc',
 fetchpayment:'get_payment',
 fetchrecepit:'get_receipt',
 fetchunit:'get_units',
-fetchroleofexecutive:'get_insert_executive_roles'
+fetchroleofexecutive:'get_insert_executive_roles',
+addroleassign:'roleassign'
 };
 
 
