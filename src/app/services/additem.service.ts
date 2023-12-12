@@ -31,7 +31,6 @@ export interface item {
   maximum: number;
   reorder: string;
 
- 
   attr1: string;
   attr2: string;
   attr3: string;
@@ -49,7 +48,7 @@ export interface item {
 })
 export class AdditemService {
 
-  private apiUrl = 'http://103.154.184.66:8000/actions/get_items/1/1';
+
 
   constructor(private httpclient: HttpClient) { }
   createItem(items: item, key: string, user: string) {
@@ -63,8 +62,8 @@ export class AdditemService {
   getAllItems(): Observable<any> {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallItem);
   }
+  getItems(companyid: number, tid: number): Observable<any> {
 
-  getItems(): Observable<any> {
-    return this.httpclient.get(this.apiUrl);
+    return this.httpclient.get(`${environment.apiactionurl}${environment.fetchitemauto}/${companyid}/${tid}`);
   }
 }

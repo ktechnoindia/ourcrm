@@ -48,7 +48,7 @@ grossrate:string;
   closingbalance: string;
   debit: string;
   credit: string;
-  
+
 }
 @Injectable({
   providedIn: 'root'
@@ -63,4 +63,5 @@ export class DcinService {
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apiactionurl+environment.fetchalldcin+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
+
 }

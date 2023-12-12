@@ -54,26 +54,6 @@ export class DcInPage implements OnInit {
   refdate: string = '';
   // ponumber: string = '';
 
-  //table data
-  /* barcode: string = '';
-   itemcode: string = '';
-   itemname: number = 0;
-   description: string = '';
-   quantity: string = '';
-   unitname: number = 0;
-   mrp: string = '';
-   basicrate: string = '';
-   netrate: string = '';
-   grossrate: string = '';
-   taxrate: string = '';
-   CGST: string = '';
-   SGST: string = '';
-   IGST: string = '';
-   discount: string = '';
-   discountamt: string = '';
-   totaltax: string = '';
-   total: string = '';*/
-
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -247,7 +227,6 @@ export class DcInPage implements OnInit {
         closingbalance: this.myform.value.closingbalance,
         debit: this.myform.value.debit,
         credit: this.myform.value.credit,
-
       };
 
       this.dcinService.createdcin(dcindata, '', '').subscribe(
@@ -281,13 +260,18 @@ export class DcInPage implements OnInit {
   }
 
   getItems() {
-    this.itemService.getItems().subscribe(
+    const compid = 1; // Replace with your actual dynamic value
+    const itemid = 1;  
+    this.itemService.getItems(compid,itemid).subscribe(
       (data) => {
         // Handle the data and update your component properties
-        console.log(data);
+        console.log('response',data);
 
           this.dcinData[0].itemcode = data[0].itemCode;
           this.dcinData[0].itemname = data[0].itemDesc;
+          this.dcinData[0].unitname = data[0].selectunitname;
+          this.dcinData[0].taxrate = data[0].selectGst;
+          this.dcinData[0].barcode = data[0].barcode;
         
       },
       (error) => {
@@ -296,8 +280,6 @@ export class DcInPage implements OnInit {
     );
   }
   
-  
-
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);

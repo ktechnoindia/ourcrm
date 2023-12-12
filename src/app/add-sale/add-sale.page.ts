@@ -290,6 +290,27 @@ export class AddSalePage implements OnInit {
   }
 }
 
+getItems() {
+  const compid = 1; // Replace with your actual dynamic value
+  const itemid = 1;  
+  this.itemService.getItems(compid,itemid).subscribe(
+    (data) => {
+      // Handle the data and update your component properties
+      console.log('response',data);
+
+        this.salesData[0].itemcode = data[0].itemCode;
+        this.salesData[0].itemname = data[0].itemDesc;
+        this.salesData[0].unitname = data[0].selectunitname;
+        this.salesData[0].taxrate = data[0].selectGst;
+        this.salesData[0].barcode = data[0].barcode;
+      
+    },
+    (error) => {
+      console.error('Error fetching data', error);
+    }
+  );
+}
+
   addSales() {
     console.log('addrowwww' + this.salesData.length);
     // You can initialize the new row data here

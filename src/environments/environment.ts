@@ -85,7 +85,8 @@ fetchpayment:'get_payment',
 fetchrecepit:'get_receipt',
 fetchunit:'get_units',
 fetchroleofexecutive:'get_insert_executive_roles',
-addroleassign:'roleassign'
+addroleassign:'roleassign',
+fetchitemauto:'get_items'
 };
 
 

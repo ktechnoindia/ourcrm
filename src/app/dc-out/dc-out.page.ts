@@ -273,6 +273,26 @@ export class DcOutPage implements OnInit {
     }
   }
 
+  getItems() {
+    const compid = 1; // Replace with your actual dynamic value
+    const itemid = 1;  
+    this.itemService.getItems(compid,itemid).subscribe(
+      (data) => {
+        // Handle the data and update your component properties
+        console.log('response',data);
+
+          this.dcoutData[0].itemcode = data[0].itemCode;
+          this.dcoutData[0].itemname = data[0].itemDesc;
+          this.dcoutData[0].unitname = data[0].selectunitname;
+          this.dcoutData[0].taxrate = data[0].selectGst;
+          this.dcoutData[0].barcode = data[0].barcode;
+        
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
     addDcout() {
       console.log('addrowwww'+this.dcoutData.length);
       // You can initialize the new row data here
@@ -321,16 +341,7 @@ export class DcOutPage implements OnInit {
       this.ttotal= sum;
     }
   
-    // if (this.form.valid) {
-    //   console.log('Selected Value' + this.form.value);
-    // } else {
-    //   Object.keys(this.form.controls).forEach(controlName => {
-    //     const control = this.form.get(controlName);
-    //     if (control.invalid) {
-    //       control.markAsTouched();
-    //     }
-    //   })
-    // }
+    
   
     calculateTotals() {
       // Add your logic to calculate totals based on the salesData array

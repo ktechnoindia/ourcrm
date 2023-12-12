@@ -195,7 +195,7 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input [(ngModel)]="dcin.discount" [ngModelOptions]="{standalone: true}"
-                        (ionBlur)="getdiscountp(dcin)" class="table_input" type="text">
+                         [value]="getdiscountp(dcin)" class="table_input" type="text">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="dcin.discountamt" [value]="getdiscountamt(dcin)"

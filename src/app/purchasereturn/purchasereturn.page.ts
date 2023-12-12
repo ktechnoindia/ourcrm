@@ -132,12 +132,12 @@ export class PurchasereturnPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private encService: EncryptionService, private vendname1: VendorService, private itemsname: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
-    this.itemnames$ = this.itemsname.getAllItems();
+    this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     this.billDate = new Date().toLocaleDateString();
     this.refdate = new Date().toLocaleDateString();
@@ -287,6 +287,28 @@ export class PurchasereturnPage implements OnInit {
       }
     }
   }
+
+  getItems() {
+    const compid = 1; // Replace with your actual dynamic value
+    const itemid = 1;  
+    this.itemService.getItems(compid,itemid).subscribe(
+      (data) => {
+        // Handle the data and update your component properties
+        console.log('response',data);
+
+          this.purchaseData[0].itemcode = data[0].itemCode;
+          this.purchaseData[0].itemname = data[0].itemDesc;
+          this.purchaseData[0].unitname = data[0].selectunitname;
+          this.purchaseData[0].taxrate = data[0].selectGst;
+          this.purchaseData[0].barcode = data[0].barcode;
+        
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+
   addPurchase() {
     console.log('addrowwww' + this.purchaseData.length);
     // You can initialize the new row data here
