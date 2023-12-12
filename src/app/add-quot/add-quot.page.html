@@ -245,7 +245,7 @@
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount(quoteData)"
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
                       [ngModelOptions]="{standalone: true}" class="input_table" type="text">
 
 
@@ -267,7 +267,7 @@
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getTotalnetAmount()"
                       class="input_table" type="text">
 
                   </ion-col>
@@ -362,8 +362,7 @@
 
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          id="roundoff" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff"                          id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
@@ -381,8 +380,8 @@
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                          id="totalnetamount" name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getGrandTotal()"
+                          id="totalnetamount" name="totalnetamount" class="row_input" type="text" >
                       </td>
                     </tr>
                   </table>

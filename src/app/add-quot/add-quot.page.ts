@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 
 interface Quote {
+  posttax: number;
+  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -114,6 +116,8 @@ export class AddQuotPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1:0,
+    pretax:0,
+    posttax:0
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -303,6 +307,8 @@ export class AddQuotPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1:0,
+      pretax:0,
+      posttax:0
       // Add more properties as needed
     };
     
@@ -385,18 +391,24 @@ export class AddQuotPage implements OnInit {
     return this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
   }
 
-  getTotalGrossAmount(quotes: Quote[]): number {
-    return quotes.reduce((total, quote) => total + (+quote.grossrate * +quote.quantity), 0);
+  getTotalGrossAmount(): number {
+    return this.quoteData.reduce((total, quote) => total + (quote.grossrate * quote.quantity), 0);
   }
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0)
+    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount ), 0)
+  }
+  getGrandTotal(): number {
+    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount +(+quote.pretax +quote.posttax)), 0)
   }
   getTotalTaxAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.totaltax * +quote.quantity), 0);
+    return this.quoteData.reduce((total, quote) => total + (quote.taxrate1/100*quote.basicrate)*quote.quantity, 0);
   }
   getTotalDiscountAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (+quote.grossrate * quote.discount / 100), 0);
+    return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity,0);
+  }
+  getRoundoff(): number {
+    return this.quoteData.reduce((total, quote) => total + (quote.total * quote.quantity), 0)
   }
   //table formaula
   getnetrate(quote: Quote): number {
