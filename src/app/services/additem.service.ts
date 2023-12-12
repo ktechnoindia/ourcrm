@@ -64,6 +64,6 @@ export class AdditemService {
   }
   getItems(companyid: number, tid: number): Observable<any> {
 
-    return this.httpclient.get(`${environment.apiactionurl}${environment.fetchitemauto}/${companyid}/${tid}`);
+    return this.httpclient.get(`${environment.apiactionurl}${environment.fetchitemauto}/${1}/${tid}`);
   }
 }
