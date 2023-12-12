@@ -308,13 +308,6 @@ export class AddQuotPage implements OnInit {
     
     this.quoteData.push(newRow);
   }
-  updateGrossRateForRow(index: number) {
-    this.calculateTotal(this.quoteData[index]);
-  }
-  calculateGrossRate(quote: Quote) {
-    quote.grossrate = quote.basicrate * quote.quantity;
-    this.calculateTotal(quote); // Make sure to recalculate the total
-  }
   calculateTotal(quote: Quote) {
     quote.total = quote.totaltax + quote.grossrate;
     this.calculateTotals();
@@ -417,7 +410,8 @@ export class AddQuotPage implements OnInit {
     return quote.quantity * quote.basicrate;
   }
  
-  getdiscountamt(quote: Quote): number {const discountamt = quote.discountamt || 0; // handle null/undefined values
+  getdiscountamt(quote: Quote): number {
+    const discountamt = quote.discountamt || 0; // handle null/undefined values
   const basicrate = quote.basicrate || 0; // handle null/undefined values
   const quantity = quote.quantity || 0; // handle null/undefined values
   // calculate discount percentage
@@ -427,12 +421,40 @@ export class AddQuotPage implements OnInit {
   // return discount amount for display
   return discountamt;
   }
+  calculateDiscountAmount(quot: Quote): number {
+    const discountType = this.myform.get('discountType')?.value;
+    const basicrate = +quot.basicrate || 0;
+    const quantity = +quot.quantity || 0;
+  
+    if (isNaN(basicrate) || isNaN(quantity)) {
+      return 0;
+    }
+  
+    if (discountType === 'amount') {
+      return quot.discountamt || 0;
+    } else if (discountType === 'percentage') {
+      const discountPercentage = quot.discount || 0;
+      return (discountPercentage / 100) * basicrate * quantity;
+    }
+  
+    return 0;
+  }
   getdiscountp(quote: Quote) {
-     quote.discountamt=quote.total*(quote.discount/100);
-     quote.total=quote.total-quote.total*(quote.discount/100)
+    const discountPercentage = quote.discount || 0; // assuming discount is a property in your dcin object
+    const basicrate = quote.basicrate || 0; // handle null/undefined values
+    const quantity = quote.quantity || 0; // handle null/undefined values
+  
+    // calculate discount amount based on the entered percentage
+    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
+  
+    // update discount amount
+    quote.discountamt = discountAmt;
+  
+    // return discount amount for display
+    return discountAmt;
   }
   getTotalamt(quote: Quote): number {
-    return (quote.basicrate * quote.quantity)+ (quote.quantity * (quote.taxrate1/100*quote.basicrate))- quote.discountamt;
+    return (quote.basicrate * quote.quantity)+ (quote.quantity * (quote.taxrate1/100*quote.basicrate))- this.calculateDiscountAmount(quote);
   }
   getcgst(quote: Quote): number {
     return quote.taxrate1 / 2;

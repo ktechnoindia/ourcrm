@@ -248,7 +248,7 @@
                       [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                   </td>
                   <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                    <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)"
+                    <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)"(keyup)="getdiscountamt(purchase)"
                       [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                   </td>
                   <td>

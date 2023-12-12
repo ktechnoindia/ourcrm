@@ -185,18 +185,18 @@
                     <td>
                       <input [(ngModel)]="dcout.IGST" [value]="getigst(dcout)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
-                    <td class="select-option"> 
-                      <ion-select formControlName="discountType">
-                      <ion-select-option value="amount">Amount</ion-select-option>
-                      <ion-select-option value="percentage">Percentage</ion-select-option>
-                    </ion-select>
+                    <td> 
+                      <select  class="select-option" formControlName="discountType">
+                      <option value="amount">Amount</option>
+                      <option value="percentage">Percentage</option>
+                    </select>
                   </td>
                   <td *ngIf="myform.get('discountType')?.value === 'percentage'">
-                    <input [(ngModel)]="dcout.discount" [ngModelOptions]="{standalone: true}"
+                    <input [(ngModel)]="dcout.discount" [ngModelOptions]="{standalone: true}" (ionBlur)="getdiscountp(dcout)"
                         class="table_input" type="text">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                      <input [(ngModel)]="dcout.discountamt"  [value]="getdiscountamt(dcout)" (ionBlur)="getdiscountp(dcout)"
+                      <input [(ngModel)]="dcout.discountamt"  [value]="getdiscountamt(dcout)" (keyup)="getdiscountamt(dcout)"
                       [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>

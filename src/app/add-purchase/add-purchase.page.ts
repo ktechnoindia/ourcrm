@@ -413,12 +413,40 @@ billformate:number=0;
   // return discount amount for display
   return discountamt;
   }
+  calculateDiscountAmount(purchase: Purchase): number {
+    const discountType = this.myform.get('discountType')?.value;
+    const basicrate = +purchase.basicrate || 0;
+    const quantity = +purchase.quantity || 0;
+  
+    if (isNaN(basicrate) || isNaN(quantity)) {
+      return 0;
+    }
+  
+    if (discountType === 'amount') {
+      return purchase.discountamt || 0;
+    } else if (discountType === 'percentage') {
+      const discountPercentage = purchase.discount || 0;
+      return (discountPercentage / 100) * basicrate * quantity;
+    }
+  
+    return 0;
+  }
   getdiscountp(purchase: Purchase) {
-    purchase.discountamt=purchase.total*(purchase.discount/100);
-    purchase.total=purchase.total-purchase.total*(purchase.discount/100) 
+    const discountPercentage = purchase.discount || 0; // assuming discount is a property in your dcin object
+    const basicrate = purchase.basicrate || 0; // handle null/undefined values
+    const quantity = purchase.quantity || 0; // handle null/undefined values
+  
+    // calculate discount amount based on the entered percentage
+    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
+  
+    // update discount amount
+    purchase.discountamt = discountAmt;
+  
+    // return discount amount for display
+    return discountAmt;
   }
   getTotalamt(purchase:Purchase): number {
-    return purchase.basicrate * purchase.quantity + purchase.totaltax - purchase.discountamt;
+    return (purchase.basicrate * purchase.quantity)+ (purchase.quantity * (purchase.taxrate1/100*purchase.basicrate))- this.calculateDiscountAmount(purchase);
   }
   getcgst(purchase:Purchase): number {
     return purchase.taxrate1/2;

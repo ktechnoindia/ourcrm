@@ -379,8 +379,18 @@ export class DcOutPage implements OnInit {
       return dcout.quantity *(dcout.taxrate1/100*dcout.basicrate);
     }
     getdiscountp(dcout: Dcout) {
-      dcout.discountamt=dcout.total*(dcout.discount/100);
-      dcout.total=dcout.total-dcout.total*(dcout.discount/100) 
+      const discountPercentage = dcout.discount || 0; // assuming discount is a property in your dcin object
+    const basicrate = dcout.basicrate || 0; // handle null/undefined values
+    const quantity = dcout.quantity || 0; // handle null/undefined values
+  
+    // calculate discount amount based on the entered percentage
+    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
+  
+    // update discount amount
+    dcout.discountamt = discountAmt;
+  
+    // return discount amount for display
+    return discountAmt;
     }
     getgrossrate(dcout: Dcout): number {
       return dcout.quantity * dcout.basicrate;
@@ -396,8 +406,26 @@ export class DcOutPage implements OnInit {
   // return discount amount for display
   return discountamt;
   }
+  calculateDiscountAmount(dcout: Dcout): number {
+    const discountType = this.myform.get('discountType')?.value;
+    const basicrate = +dcout.basicrate || 0;
+    const quantity = +dcout.quantity || 0;
+  
+    if (isNaN(basicrate) || isNaN(quantity)) {
+      return 0;
+    }
+  
+    if (discountType === 'amount') {
+      return dcout.discountamt || 0;
+    } else if (discountType === 'percentage') {
+      const discountPercentage = dcout.discount || 0;
+      return (discountPercentage / 100) * basicrate * quantity;
+    }
+  
+    return 0;
+  }
     getTotalamt(dcout:Dcout): number {
-      return dcout.basicrate * dcout.quantity + dcout.totaltax - dcout.discountamt;
+      return (dcout.basicrate * dcout.quantity)+ (dcout.quantity * (dcout.taxrate1/100*dcout.basicrate))- this.calculateDiscountAmount(dcout);
     }
     getcgst(dcout:Dcout): number {
       return dcout.taxrate1/2;
