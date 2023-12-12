@@ -121,11 +121,11 @@
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.itemcode" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text" (change)="getItems()">
+                        class="table_input" type="text" (ngModelChange)="getItems()">
                     </td>
                     <td class="select-option">
 
-                      <select class="select-option" (change)="getItems()" [(ngModel)]=" dcout.itemname"  [ngModelOptions]="{standalone: true}">
+                      <select class="select-option" (ngModelChange)="getItems()" [(ngModel)]=" dcout.itemname"  [ngModelOptions]="{standalone: true}">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}

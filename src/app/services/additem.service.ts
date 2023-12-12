@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 
 export interface item {
@@ -62,8 +62,17 @@ export class AdditemService {
   getAllItems(): Observable<any> {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallItem);
   }
-  getItems(companyid: number, tid: number): Observable<any> {
+  // getItems(companyid: number,tid:number): Observable<any> {
+  //   return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + '/' + companyid+ '/'+tid);
+  // }
 
-    return this.httpclient.get(`${environment.apiactionurl}${environment.fetchitemauto}/${1}/${tid}`);
+  getItems(companyId: number, itemIds: number[]): Observable<any[]> {
+    const requests = itemIds.map(itemid => {
+      return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + `/${companyId}/${itemid}`);
+    });
+  
+    return forkJoin(requests);
   }
+  
+  
 }

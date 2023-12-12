@@ -115,19 +115,18 @@
                   <tr *ngFor="let dcin of dcinData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="dcin.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="dcin.barcode" (ngModelChange)="getsItems(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text" (ngModelChange)="getItems()">
+                        type="text" (change)="getsItems(dcin)">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select"  [(ngModel)]="dcin.itemname"
-                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems()">
-                        <option value="0" dis>Item Name</option><!-- Default option -->
-                        <option *ngFor="let itemnames of itemnames$ | async" [value]="itemnames.tid">
-                          {{ itemnames.itemDesc }}
+                      <select class="table_select" [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getsItems(dcin)">
+                        <option value="0">Item Code</option><!-- Default option -->
+                        <option *ngFor="let item of itemnames$ | async" [value]="item.tid">
+                          {{ item.itemDesc }}
                         </option>
                       </select>
                     </td>
@@ -141,7 +140,7 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="dcin.unitname" [ngModelOptions]="{standalone: true}">
+                      <select class="table_select" [(ngModel)]="dcin.unitname" (ngModelChange)="getsItems(dcin)" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -166,7 +165,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" id="taxrate" #taxrate (change)="onSelectChange(taxrate,dcin)"
+                      <select class="table_select"  (ngModelChange)="getsItems(dcin)"
                         [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">

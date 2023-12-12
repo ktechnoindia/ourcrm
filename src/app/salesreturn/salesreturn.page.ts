@@ -357,19 +357,26 @@ this.orderDate=new Date().toLocaleDateString();
 }
 
 getItems() {
-  const compid = 1; // Replace with your actual dynamic value
-  const itemid = 1;  
-  this.itemService.getItems(compid,itemid).subscribe(
+  const companyId = 1; // Replace with your actual dynamic value
+  const itemIds = this.salesData.map(dcin => dcin.itemcode);
+
+  this.itemService.getItems(companyId, itemIds).subscribe(
     (data) => {
       // Handle the data and update your component properties
-      console.log('response',data);
+      console.log('response', data);
 
-        this.salesData[0].itemcode = data[0].itemCode;
-        this.salesData[0].itemname = data[0].itemDesc;
-        this.salesData[0].unitname = data[0].selectunitname;
-        this.salesData[0].taxrate = data[0].selectGst;
-        this.salesData[0].barcode = data[0].barcode;
-      
+      data.forEach((item, index) => {
+        const matchingDcin = this.salesData.find(dcin => dcin.itemcode === item.itemCode);
+
+        if (matchingDcin) {
+          matchingDcin.itemname = item.itemDesc;
+          matchingDcin.itemcode = item.itemCode;
+          matchingDcin.taxrate = item.selectGst;
+          matchingDcin.unitname = item.selectunitname;
+          matchingDcin.barcode = item.barcode;
+          // Update other properties as needed
+        }
+      });
     },
     (error) => {
       console.error('Error fetching data', error);

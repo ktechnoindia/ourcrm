@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -111,7 +111,7 @@ export class DcInPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private encService: EncryptionService, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService,private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -259,20 +259,20 @@ export class DcInPage implements OnInit {
     }
   }
 
-  getItems() {
-    const compid = 1; // Replace with your actual dynamic value
-    const itemid = 1;  
-    this.itemService.getItems(compid,itemid).subscribe(
-      (data) => {
-        // Handle the data and update your component properties
-        console.log('response',data);
+  getsItems(dcin: any) {
+    const companyId = 1; // Replace with your actual dynamic value
+    const itemIds = [dcin.itemcode]; // Pass the selected item code as an array
 
-          this.dcinData[0].itemcode = data[0].itemCode;
-          this.dcinData[0].itemname = data[0].itemDesc;
-          this.dcinData[0].unitname = data[0].selectunitname;
-          this.dcinData[0].taxrate = data[0].selectGst;
-          this.dcinData[0].barcode = data[0].barcode;
-        
+  
+    this.itemService.getItems(companyId, itemIds).subscribe(
+      (responses: any[]) => {
+        if (responses.length > 0) {
+          const selectedItem = responses[0]; // Assuming the API returns details for the first matching item
+  
+          // Update other properties based on the selected item
+          dcin.itemname = selectedItem.tid;
+          dcin.taxrate = selectedItem.gstname;
+        }
       },
       (error) => {
         console.error('Error fetching data', error);
