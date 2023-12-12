@@ -308,6 +308,13 @@ export class AddQuotPage implements OnInit {
     
     this.quoteData.push(newRow);
   }
+  updateGrossRateForRow(index: number) {
+    this.calculateTotal(this.quoteData[index]);
+  }
+  calculateGrossRate(quote: Quote) {
+    quote.grossrate = quote.basicrate * quote.quantity;
+    this.calculateTotal(quote); // Make sure to recalculate the total
+  }
   calculateTotal(quote: Quote) {
     quote.total = quote.totaltax + quote.grossrate;
     this.calculateTotals();
