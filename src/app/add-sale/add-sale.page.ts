@@ -433,11 +433,39 @@ getItems() {
   return discountamt;
 }
   getdiscountp(sale: Sales) {
-    sale.discountamt=sale.total*(sale.discount/100);
-    sale.total=sale.total-sale.total*(sale.discount/100) 
+    const discountPercentage = sale.discount || 0; // assuming discount is a property in your dcin object
+    const basicrate = sale.basicrate || 0; // handle null/undefined values
+    const quantity = sale.quantity || 0; // handle null/undefined values
+  
+    // calculate discount amount based on the entered percentage
+    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
+  
+    // update discount amount
+    sale.discountamt = discountAmt;
+  
+    // return discount amount for display
+    return discountAmt;
+  }
+  calculateDiscountAmount(sale: Sales): number {
+    const discountType = this.myform.get('discountType')?.value;
+    const basicrate = +sale.basicrate || 0;
+    const quantity = +sale.quantity || 0;
+  
+    if (isNaN(basicrate) || isNaN(quantity)) {
+      return 0;
+    }
+  
+    if (discountType === 'amount') {
+      return sale.discountamt || 0;
+    } else if (discountType === 'percentage') {
+      const discountPercentage = sale.discount || 0;
+      return (discountPercentage / 100) * basicrate * quantity;
+    }
+  
+    return 0;
   }
   getTotalamt(sale:Sales): number {
-    return sale.basicrate * sale.quantity + sale.totaltax - sale.discountamt;
+    return (sale.basicrate * sale.quantity)+ (sale.quantity * (sale.taxrate1/100*sale.basicrate))- this.calculateDiscountAmount(sale);
   }
   getcgst(sale:Sales): number {
     return sale.taxrate1/2;
