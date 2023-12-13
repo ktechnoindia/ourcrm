@@ -264,15 +264,16 @@ export class DcInPage implements OnInit {
     const itemIds = [dcin.itemcode]; // Pass the selected item code as an array
 
   
-    this.itemService.getItems(companyId, itemIds).subscribe(
-      (responses: any[]) => {
-        if (responses.length > 0) {
-          const selectedItem = responses[0]; // Assuming the API returns details for the first matching item
+    this.itemService.getItems(compid, dcin.itemcode).subscribe(
+      (data) => {
+        console.log(data);
   
-          // Update other properties based on the selected item
-          dcin.itemname = selectedItem.tid;
-          dcin.taxrate = selectedItem.gstname;
-        }
+        dcin.itemcode = data[0].itemCode;
+        dcin.itemname = data[0].itemDesc;
+        dcin.barcode = data[0].barcode;
+        dcin.unitname = data[0].unitname;
+        dcin.taxrate = data[0].selectGst;
+        // Update other properties as needed
       },
       (error) => {
         console.error('Error fetching data', error);

@@ -140,7 +140,7 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="dcin.unitname" (ngModelChange)="getsItems(dcin)" [ngModelOptions]="{standalone: true}">
+                      <select class="table_select" [(ngModel)]="dcin.unitname"  [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
@@ -165,7 +165,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select"  (ngModelChange)="getsItems(dcin)"
+                      <select class="table_select"  (ngModelChange)="getItems(dcin)"#taxrate (change)="onSelectChange(taxrate,dcin)"
                         [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
