@@ -87,8 +87,8 @@ export class FollowUpPage implements OnInit {
       phone: leadscore.phone,
       fulladdress: leadscore.fulladdress,
       selectpd: leadscore.selectpd,
-      remark: '',  // Set an appropriate default value
-      nextfollowupDate: ''  // Set an appropriate default value
+      remark: 'the',  // Set an appropriate default value
+      nextfollowupDate: '13/12/23'  // Set an appropriate default value
     };
   }
 
@@ -107,6 +107,7 @@ export class FollowUpPage implements OnInit {
     };
 
     this.followService.createfollowup(followupdata, '', '').subscribe(
+      
       (response: any) => {
 
         console.log(response);
