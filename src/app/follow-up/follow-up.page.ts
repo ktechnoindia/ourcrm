@@ -39,6 +39,20 @@ export class FollowUpPage implements OnInit {
   searchTerm: string = '';
   filteredFollowups$: Observable<any[]> = new Observable<any[]>();
   followups: any;
+  // FollowUpPage class ke andar
+  selectedRow: {
+    srNo?: number,
+    tid?: string,
+    companyname?: string,
+    crdate?: string,
+    executivename?: string,
+    phone?: string,
+    fulladdress?: string,
+    selectpd?: string,
+    remark?: string,
+    nextfollowupDate?: string
+  } = {};
+
 
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
@@ -60,6 +74,22 @@ export class FollowUpPage implements OnInit {
 
     })
 
+  }
+
+  showDetails(leadscore: any) {
+    // Populate the details for the selected row
+    this.selectedRow = {
+      // srNo: leadscore.srNo,
+      tid: leadscore.tid,
+      companyname: leadscore.companyname,
+      crdate: leadscore.crdate,
+      executivename: leadscore.executivename,
+      phone: leadscore.phone,
+      fulladdress: leadscore.fulladdress,
+      selectpd: leadscore.selectpd,
+      remark: '',  // Set an appropriate default value
+      nextfollowupDate: ''  // Set an appropriate default value
+    };
   }
 
   async onSubmit() {
