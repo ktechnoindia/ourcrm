@@ -298,41 +298,45 @@
                  
                    </ion-col>
 
+                  
                    <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount"  formControlName="totalnetamount" class="input_table" type="text" >
-               
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getTotalnetAmount()"
+                      class="input_table" type="text">
+
                   </ion-col>
                 </ion-row>
               </div>
-                   
+
             </ion-row>
             <ion-row>
-              <ion-col  class="row1"  size-lg="3" size-md="3" size-sm="3" size="12">
-                <div  class="row3" >
-                <ion-label class="delivery-label" style="font-size: small;">Scheduled Delivery</ion-label>
-                <div class="outstanding">
-                  <ion-row>
-                    <table class="delivery-table" style="width: 100%; overflow: hidden;">
-                      <tr>
-                        <th style="width: 100px !important;">Delivery Date</th>
-                        <td>
-                          <ion-input type="datetime"  [(ngModel)]="deliverydate"  formControlName="deliverydate" name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th style="width: 100px !important;">Delivery Place</th>
-                        <td>
-                          <ion-input type="text"  [(ngModel)]="deliveryplace"  formControlName="deliveryplace"  name="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
-                        </td>
-                      </tr>
-                    </table>
-                  </ion-row>
+              <ion-col class="row1" size-lg="3" size-md="3" size-sm="3" size="12">
+                <div class="row3">
+                  <ion-label class="delivery-label" style="font-size: small;">Scheduled Delivery</ion-label>
+                  <div class="outstanding">
+                    <ion-row>
+                      <table class="delivery-table" style="width: 100%; overflow: hidden;">
+                        <tr>
+                          <th style="width: 100px !important;">Delivery Date</th>
+                          <td>
+                            <ion-input type="datetime" [(ngModel)]="deliverydate" formControlName="deliverydate"
+                              name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style="width: 100px !important;">Delivery Place</th>
+                          <td>
+                            <ion-input type="text" [(ngModel)]="deliveryplace" formControlName="deliveryplace"
+                              name="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
+                          </td>
+                        </tr>
+                      </table>
+                    </ion-row>
+                  </div>
                 </div>
-              </div>
               </ion-col>
-  
-              <ion-col class="row1"  size-lg="4" size-md="6" size-sm="6" size="12">
+
+              <ion-col class="row1" size-lg="4" size-md="6" size-sm="6" size="12">
                 <ion-label class="delivery-label" style="font-size: smaller;">OutStanding</ion-label>
                 <div class="outstanding">
                   <ion-row>
@@ -340,21 +344,25 @@
                       <tr>
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
-                          <ion-input type="text"  [(ngModel)]="openingbalance"  formControlName="openingbalance"  name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                          <ion-input type="text" [(ngModel)]="openingbalance" formControlName="openingbalance"
+                            name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
-                          <ion-input type="text"  [(ngModel)]="debit"  formControlName="debit"  name="debit" placeholder="Enter  Dedit Amount"></ion-input>
+                          <ion-input type="text" [(ngModel)]="debit" formControlName="debit" name="debit"
+                            placeholder="Enter  Dedit Amount"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
-                          <ion-input type="text"  [(ngModel)]="closingbalance"  formControlName="closingbalance" name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                          <ion-input type="text" [(ngModel)]="closingbalance" formControlName="closingbalance"
+                            name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
-                          <ion-input type="text"  [(ngModel)]="credit"  formControlName="credit" name="credit" placeholder="Enter Credit Amount"></ion-input>
+                          <ion-input type="text" [(ngModel)]="credit" formControlName="credit" name="credit"
+                            placeholder="Enter Credit Amount"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -387,22 +395,24 @@
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>
-                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" id="totaldiscountamt"
-                          formControlName="totaldiscountamt" name="totaldiscountamt" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                          id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
+                          class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Tax Amount : </th>
-                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" id="totaltaxamount"
-                          formControlName="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                          id="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" id="roundoff"
-                          class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()"
+                          id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
@@ -413,29 +423,32 @@
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
-                      <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax" id="posttax"
-                          class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
+                          id="posttax" class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount" id="totalnetamount"
-                          name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getGrandTotal()"
+                          id="totalnetamount" name="totalnetamount" class="row_input" type="text">
                       </td>
                     </tr>
                   </table>
                 </div>
               </ion-col>
-            </ion-row> 
+            </ion-row>
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
               <ion-button id="open-loading">New</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
+                [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              
+              <ion-loading class="custom-loading" trigger="open-loading1" message="Saving..."
+                [duration]="1000"></ion-loading>
               <ion-button id="open-loading4">Close</ion-button>
-              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
+                [duration]="1000"></ion-loading>
 
             </ion-row>
 
@@ -443,5 +456,5 @@
         </ion-grid>
       </ion-card-content>
     </div>
-    </div>
+  </div>
 </ion-content>

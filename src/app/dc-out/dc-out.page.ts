@@ -34,7 +34,8 @@ interface Dcout {
   totaltax: number;
   total: number;
   taxrate1:number;
-
+  posttax: number;
+  pretax: number;
 }
 @Component({
   selector: 'app-dc-out',
@@ -109,7 +110,8 @@ export class DcOutPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1:0,
-
+    pretax:0,
+    posttax:0,
   }];
   myform: FormGroup;
   ttotal!: number;
@@ -297,7 +299,8 @@ export class DcOutPage implements OnInit {
         totaltax:0,
         total:0,
         taxrate1:0,
-
+        pretax:0,
+        posttax:0,
         // Add more properties as needed
       };
       this.dcoutData.push(newRow);
@@ -340,17 +343,38 @@ export class DcOutPage implements OnInit {
     }
   
     getTotalGrossAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout .grossrate * +dcout.quantity), 0);
+      const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
+        const grossAmount = dcout.quantity * dcout.basicrate;
+        return total + grossAmount;
+      }, 0);
+    
+      return totalGrossAmount;
     }
-  
     getTotalnetAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1)  - dcout.discount), 0)
     }
+    getGrandTotal(): number {
+      const grandTotal = this.dcoutData.reduce((total, dcout) => {
+        const itemTotal = (((+dcout.pretax + dcout.posttax)+(dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount);
+        return total + itemTotal;
+      }, 0);
+    
+      return grandTotal;
+    }
     getTotalTaxAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax* +dcout.quantity), 0);
+      return this.dcoutData.reduce((total, dcout) => total +  (dcout.taxrate1/100*dcout.basicrate)*dcout.quantity, 0);
     }
     getTotalDiscountAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * dcout.discount / 100), 0);
+      return this.dcoutData.reduce((total, dcout) => total +  (dcout.discount / 100) * dcout.basicrate * dcout.quantity,0);;
+    }
+    getRoundoff(): number {
+      // Calculate the total amount without rounding
+      const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount ), 0);
+    
+      // Use the toFixed method to round off the total to the desired number of decimal places
+      const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+    
+      return roundedTotalAmount;
     }
    //table formaula
     getnetrate(quote: Dcout): number {

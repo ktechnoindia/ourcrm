@@ -392,15 +392,28 @@ export class AddQuotPage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.grossrate * quote.quantity), 0);
+    const totalGrossAmount = this.quoteData.reduce((total, quote) => {
+      const grossAmount = quote.quantity * quote.basicrate;
+      return total + grossAmount;
+    }, 0);
+  
+    return totalGrossAmount;
   }
+  
 
   getTotalnetAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount ), 0)
   }
   getGrandTotal(): number {
-    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount +(+quote.pretax +quote.posttax)), 0)
+    const grandTotal = this.quoteData.reduce((total, quote) => {
+      const itemTotal = (((+quote.pretax + quote.posttax)+(quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount);
+      return total + itemTotal;
+    }, 0);
+  
+    return grandTotal;
   }
+  
+  
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.taxrate1/100*quote.basicrate)*quote.quantity, 0);
   }
@@ -408,8 +421,15 @@ export class AddQuotPage implements OnInit {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity,0);
   }
   getRoundoff(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.total * quote.quantity), 0)
+    // Calculate the total amount without rounding
+    const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount ), 0);
+  
+    // Use the toFixed method to round off the total to the desired number of decimal places
+    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+  
+    return roundedTotalAmount;
   }
+  
   //table formaula
   getnetrate(quote: Quote): number {
     return quote.basicrate + (quote.taxrate1/100*quote.basicrate);
