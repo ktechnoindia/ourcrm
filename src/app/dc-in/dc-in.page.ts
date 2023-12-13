@@ -268,14 +268,14 @@ export class DcInPage implements OnInit {
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
     const value = dcin.itemname || dcin.itemcode;
   
-    this.itemService.getItems(compid, value).subscribe(
+    this.itemService.getItems(compid, dcin.itemcode).subscribe(
       (data) => {
         console.log(data);
   
         dcin.itemcode = data[0].itemCode;
         dcin.itemname = data[0].itemDesc;
         dcin.barcode = data[0].barcode;
-        dcin.unitname = data[0].selectunitname;
+        dcin.unitname = data[0].unitname;
         dcin.taxrate = data[0].selectGst;
         // Update other properties as needed
       },
