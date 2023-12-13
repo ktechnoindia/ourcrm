@@ -155,15 +155,15 @@
                   <tr *ngFor="let purchase of purchaseData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="purchase.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="purchase.barcode" [ngModelOptions]="{standalone: true}" class="table_input"(ngModelChange)="getItems(purchase)"
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.itemcode"  [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="purchase.itemcode"  [ngModelOptions]="{standalone: true}" class="table_input"(ngModelChange)="getItems(purchase)"
                         type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="purchase.itemname"
+                      <select class="select-option" [(ngModel)]="purchase.itemcode"(ngModelChange)="getItems(purchase)"
                         [ngModelOptions]="{standalone: true}" >
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
@@ -208,7 +208,7 @@
                     </td>
                     <td>
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
-                        [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}">
+                        [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}"(ngModelChange)="getItems(purchase)">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}

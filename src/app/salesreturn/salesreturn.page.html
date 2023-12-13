@@ -161,16 +161,16 @@
                   <tr *ngFor="let sales of salesData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="sales.barcode" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                      <input [(ngModel)]="sales.barcode" [ngModelOptions]="{standalone: true}" class="table_input" (ngModelChange)="getItems(sales)"
+                        type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.itemcode"  [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                      <input [(ngModel)]="sales.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"(ngModelChange)="getItems(sales)"
+                        type="text">
                     </td>
                     <td>
-                      <select class="select-option" style="width: 100px;outline: none;border: none;" id="itemname"
-                        [(ngModel)]=" sales.itemname"[ngModelOptions]="{standalone: true}" >
+                      <select class="select-option"  style="width: 100px;outline: none;border: none;" id="itemname"(ngModelChange)="getItems(sales)"
+                        [(ngModel)]=" sales.itemcode" [ngModelOptions]="{standalone: true}">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
@@ -178,14 +178,15 @@
                       </select>
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.description"[ngModelOptions]="{standalone: true}" class="table_input description" type="text">
+                      <input [(ngModel)]="sales.description" [ngModelOptions]="{standalone: true}"
+                        class="table_input description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="number">
+                      <input [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
 
                     </td>
-                    <td >
+                    <td>
                       <select class="select-option" [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
@@ -198,18 +199,21 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.basicrate"[ngModelOptions]="{standalone: true}"
-                        class="table_input" type="number">
+                      <input [(ngModel)]="sales.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
 
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.grossrate" [value]="getgrossrate(sales) " [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                      <input [(ngModel)]="sales.grossrate" [value]="getgrossrate(sales) "
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
-                    <td >
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"  [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}">
+                    <td>
+                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
+                        [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
                         <option value="0"> GST</option>
                         <!-- Default option with value 0 -->
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
@@ -217,7 +221,7 @@
                         </option>
                       </select>
                     </td>
-                    <input type="hidden"  [(ngModel)]="sales.taxrate1" [ngModelOptions]="{standalone: true}" />
+                    <input type="hidden" [(ngModel)]="sales.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                     <td>
                       <input [(ngModel)]="sales.CGST" [value]="getcgst(sales)" [ngModelOptions]="{standalone: true}"
@@ -228,11 +232,10 @@
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.IGST" [value]="getigst(sales)"[ngModelOptions]="{standalone: true}"
+                      <input [(ngModel)]="sales.IGST" [value]="getigst(sales)" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="text">
                     </td>
 
-                    
                     <td>
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>
@@ -248,11 +251,12 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)"
-                      [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)" [ngModelOptions]="{standalone: true}"
+                        class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.total"   [ngModelOptions]="{standalone: true}" [value]="getTotalamt(sales)" class="table_input" type="text">
+                      <input [(ngModel)]="sales.total" [ngModelOptions]="{standalone: true}"
+                        [value]="getTotalamt(sales)" class="table_input" type="text">
 
                     </td>
 

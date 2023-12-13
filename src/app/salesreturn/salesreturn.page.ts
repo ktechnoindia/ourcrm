@@ -275,7 +275,28 @@ export class SalesreturnPage implements OnInit {
     }
   }
 
-
+  getItems(Sales: any) {
+    const compid = 1;
+    const identifier = Sales.itemcode ? 'itemname' : 'itemcode';
+    const value = Sales.itemname || Sales.itemcode;
+  
+    this.itemService.getItems(compid, Sales.itemcode).subscribe(
+      (data) => {
+        console.log(data);
+  
+        Sales.itemcode = data[0].itemCode;
+        Sales.itemname = data[0].itemDesc;
+        Sales.barcode = data[0].barcode;
+        Sales.unitname = data[0].unitname;
+        Sales.taxrate = data[0].selectGst;
+        // Update other properties as needed
+      
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
 
   addSales() {
     console.log('addrowwww' + this.salesData.length);

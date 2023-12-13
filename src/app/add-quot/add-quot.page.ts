@@ -288,18 +288,16 @@ export class AddQuotPage implements OnInit {
     const identifier = quote.itemcode ? 'itemname' : 'itemcode';
     const value = quote.itemname || quote.itemcode;
   
-    this.itemService.getItems(compid, value).subscribe(
+    this.itemService.getItems(compid, quote.itemcode).subscribe(
       (data) => {
         console.log(data);
   
         quote.itemcode = data[0].itemCode;
         quote.itemname = data[0].itemDesc;
         quote.barcode = data[0].barcode;
-        quote.unitname = data[0].selectunitname;
+        quote.unitname = data[0].unitname;
         quote.taxrate = data[0].selectGst;
-        quote.CGST = data[0].taxrate1;
-        quote.SGST = data[0].taxrate1;
-        quote.IGST = data[0].taxrate1;
+      
 
 
         // Update other properties as needed
