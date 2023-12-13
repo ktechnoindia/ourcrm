@@ -347,14 +347,24 @@ export class DcInPage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * +dcin.quantity), 0);
+    const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
+      const grossAmount = dcin.quantity * dcin.basicrate;
+      return total + grossAmount;
+    }, 0);
+  
+    return totalGrossAmount;
   }
 
   getTotalnetAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0)
   }
   getGrandTotal(): number {
-    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount +(+dcin.pretax +dcin.posttax)), 0)
+    const grandTotal = this.dcinData.reduce((total, dcin) => {
+      const itemTotal = (((+dcin.pretax + dcin.posttax)+(dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount);
+      return total + itemTotal;
+    }, 0);
+  
+    return grandTotal;
   }
     getTotalTaxAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (dcin.taxrate1/100*dcin.basicrate)*dcin.quantity, 0);
@@ -363,7 +373,13 @@ export class DcInPage implements OnInit {
     return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity,0);
   }
   getRoundoff(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.total * dcin.quantity), 0)
+    // Calculate the total amount without rounding
+    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount ), 0);
+  
+    // Use the toFixed method to round off the total to the desired number of decimal places
+    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+  
+    return roundedTotalAmount;
   }
   //table formaula
   getnetrate(dcin: Dcin): number {

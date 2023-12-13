@@ -369,14 +369,23 @@ export class DcOutPage implements OnInit {
     }
   
     getTotalGrossAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout .grossrate * +dcout.quantity), 0);
+      const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
+        const grossAmount = dcout.quantity * dcout.basicrate;
+        return total + grossAmount;
+      }, 0);
+    
+      return totalGrossAmount;
     }
-  
     getTotalnetAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1)  - dcout.discount), 0)
     }
     getGrandTotal(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount +(+dcout.pretax +dcout.posttax)), 0)
+      const grandTotal = this.dcoutData.reduce((total, dcout) => {
+        const itemTotal = (((+dcout.pretax + dcout.posttax)+(dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount);
+        return total + itemTotal;
+      }, 0);
+    
+      return grandTotal;
     }
     getTotalTaxAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total +  (dcout.taxrate1/100*dcout.basicrate)*dcout.quantity, 0);
@@ -385,7 +394,13 @@ export class DcOutPage implements OnInit {
       return this.dcoutData.reduce((total, dcout) => total +  (dcout.discount / 100) * dcout.basicrate * dcout.quantity,0);;
     }
     getRoundoff(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (dcout.total * dcout.quantity), 0)
+      // Calculate the total amount without rounding
+      const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount ), 0);
+    
+      // Use the toFixed method to round off the total to the desired number of decimal places
+      const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+    
+      return roundedTotalAmount;
     }
    //table formaula
     getnetrate(quote: Dcout): number {

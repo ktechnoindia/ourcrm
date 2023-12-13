@@ -402,14 +402,23 @@ export class AddSalePage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (+sale.grossrate * +sale.quantity), 0);
+    const totalGrossAmount = this.salesData.reduce((total, sale) => {
+      const grossAmount = sale.quantity * sale.basicrate;
+      return total + grossAmount;
+    }, 0);
+  
+    return totalGrossAmount;
   }
-
   getTotalnetAmount(): number {
     return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount), 0)
   }
   getGrandTotal(): number {
-    return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount + (+sale.pretax + sale.posttax)), 0)
+    const grandTotal = this.salesData.reduce((total, sale) => {
+      const itemTotal = (((+sale.pretax + sale.posttax)+(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
+      return total + itemTotal;
+    }, 0);
+  
+    return grandTotal;
   }
   getTotalTaxAmount(): number {
     return this.salesData.reduce((total, sale) => total + (sale.taxrate1 / 100 * sale.basicrate) * sale.quantity, 0);
@@ -418,7 +427,13 @@ export class AddSalePage implements OnInit {
     return this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
   }
   getRoundoff(): number {
-    return this.salesData.reduce((total, sale) => total + (sale.total * sale.quantity), 0)
+    // Calculate the total amount without rounding
+    const totalAmount = this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount ), 0);
+  
+    // Use the toFixed method to round off the total to the desired number of decimal places
+    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+  
+    return roundedTotalAmount;
   }
   //table formaula
   getnetrate(sale: Sales): number {

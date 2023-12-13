@@ -385,14 +385,23 @@ export class PurchasereturnPage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * +purchase.quantity), 0);
+    const totalGrossAmount = this.purchaseData.reduce((total, purchase) => {
+      const grossAmount = purchase.quantity * purchase.basicrate;
+      return total + grossAmount;
+    }, 0);
+  
+    return totalGrossAmount;
   }
-
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1)  - purchase.discount), 0)
   }
   getGrandTotal(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount +(+purchase.pretax +purchase.posttax)), 0)
+    const grandTotal = this.purchaseData.reduce((total, purchase) => {
+      const itemTotal = (((+purchase.pretax + purchase.posttax)+(purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
+      return total + itemTotal;
+    }, 0);
+  
+    return grandTotal;
   }
   getTotalTaxAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (purchase.taxrate1/100*purchase.basicrate)*purchase.quantity, 0);
@@ -401,7 +410,13 @@ export class PurchasereturnPage implements OnInit {
     return this.purchaseData.reduce((total, purchase) => total +  (purchase.discount / 100) * purchase.basicrate * purchase.quantity,0);
   }
   getRoundoff(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.total * purchase.quantity), 0)
+    // Calculate the total amount without rounding
+    const totalAmount = this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount ), 0);
+  
+    // Use the toFixed method to round off the total to the desired number of decimal places
+    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+  
+    return roundedTotalAmount;
   }
  //table formaula
   getnetrate(purchase: Purchase): number {
