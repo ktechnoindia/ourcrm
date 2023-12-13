@@ -34,7 +34,8 @@ interface Dcout {
   totaltax: number;
   total: number;
   taxrate1:number;
-
+  posttax: number;
+  pretax: number;
 }
 @Component({
   selector: 'app-dc-out',
@@ -109,7 +110,8 @@ export class DcOutPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1:0,
-
+    pretax:0,
+    posttax:0,
   }];
   myform: FormGroup;
   ttotal!: number;
@@ -323,7 +325,8 @@ export class DcOutPage implements OnInit {
         totaltax:0,
         total:0,
         taxrate1:0,
-
+        pretax:0,
+        posttax:0,
         // Add more properties as needed
       };
       this.dcoutData.push(newRow);
@@ -372,11 +375,17 @@ export class DcOutPage implements OnInit {
     getTotalnetAmount(): number {
       return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1)  - dcout.discount), 0)
     }
+    getGrandTotal(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount +(+dcout.pretax +dcout.posttax)), 0)
+    }
     getTotalTaxAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.totaltax* +dcout.quantity), 0);
+      return this.dcoutData.reduce((total, dcout) => total +  (dcout.taxrate1/100*dcout.basicrate)*dcout.quantity, 0);
     }
     getTotalDiscountAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (+dcout.grossrate * dcout.discount / 100), 0);
+      return this.dcoutData.reduce((total, dcout) => total +  (dcout.discount / 100) * dcout.basicrate * dcout.quantity,0);;
+    }
+    getRoundoff(): number {
+      return this.dcoutData.reduce((total, dcout) => total + (dcout.total * dcout.quantity), 0)
     }
    //table formaula
     getnetrate(quote: Dcout): number {

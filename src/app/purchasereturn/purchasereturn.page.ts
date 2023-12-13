@@ -32,6 +32,8 @@ interface Purchase {
   totaltax: number;
   total: number;
   taxrate1: number;
+  posttax: number;
+  pretax: number;
 }
 @Component({
   selector: 'app-purchasereturn',
@@ -106,6 +108,8 @@ export class PurchasereturnPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
+    pretax:0,
+    posttax:0
   }];
   ttotal!: number;
 
@@ -339,6 +343,8 @@ export class PurchasereturnPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
+      pretax:0,
+      posttax:0
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -385,11 +391,17 @@ export class PurchasereturnPage implements OnInit {
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1)  - purchase.discount), 0)
   }
+  getGrandTotal(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount +(+purchase.pretax +purchase.posttax)), 0)
+  }
   getTotalTaxAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.totaltax* +purchase.quantity), 0);
+    return this.purchaseData.reduce((total, purchase) => total + (purchase.taxrate1/100*purchase.basicrate)*purchase.quantity, 0);
   }
   getTotalDiscountAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (+purchase.grossrate * purchase.discount / 100), 0);
+    return this.purchaseData.reduce((total, purchase) => total +  (purchase.discount / 100) * purchase.basicrate * purchase.quantity,0);
+  }
+  getRoundoff(): number {
+    return this.purchaseData.reduce((total, purchase) => total + (purchase.total * purchase.quantity), 0)
   }
  //table formaula
   getnetrate(purchase: Purchase): number {
