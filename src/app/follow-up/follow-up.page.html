@@ -26,7 +26,8 @@
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
               <ion-card style="height: 445px;">
-                <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
+                <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus"
+                  [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
                   <div class="scroll-container" style="height: 360px;">
 
@@ -47,10 +48,11 @@
                         <th>Select Product</th>
                         <!-- <th>Lead Source</th>
                         <th>Lead Assign To</th>
-                        <th>Lead Score</th>
-                        <th>Remark</th> -->
+                        <th>Lead Score</th>-->
+                        <th>Remark</th> 
                       </tr>
-                      <tr *ngFor="let leadscore of filteredFollowups$ | async; let i = index" >
+                      <tr (click)="showDetails(leadscore)"
+                        *ngFor="let leadscore of filteredFollowups$ | async; let i = index">
                         <td>{{i+1}}</td>
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.companyname}}</td>
@@ -65,10 +67,10 @@
                         <!-- <td>{{leadscore.emails}}</td>-->
                         <td>{{leadscore.selectpd}}</td>
                         <!-- <td>{{leadscore.lscore}}</td> -->
-                        <!-- <td>{{leadscore.lscore}}</td>
+                        <!-- <td>{{leadscore.lscore}}</td>-->
                           <td>{{leadscore.executivename}}</td>
                           
-                          <td>{{leadscore.rmark}}</td> -->
+                          <!-- <td>{{leadscore.rmark}}</td>  -->
 
                       </tr>
 
@@ -90,25 +92,33 @@
                         <tr>
                           <th style="width: 50px;">SR. No.</th>
                           <!-- <th>followupId</th> -->
-                          <!-- <th style="width: 80px;">Company Id</th> -->
-                          <!-- <th style="width: 75px !important;">Lead Date</th> -->
+                          <!-- <th style="width: 80px;">Company Name</th> -->
+                          <th style="width: 75px !important;">Lead Id</th>
+                          <th style="width: 80px;">Company Name</th>
+                          <th style="width: 80px;">Lead Date</th>
+                          <th style="width: 80px;">Product</th>
+                          <th style="width: 80px;">Phone</th>
+                          <th>Address</th>
+                          <th style="width: 70px;">Entered By</th>
                           <th style="width: 200px;">Remark</th>
                           <th style="width: 130px !important;">Next Follow-Up Date</th>
-
-                          <!-- <th style="width: 70px;">Entered By</th> -->
                         </tr>
-                        <!-- <ng-container> -->
+                        <ng-container *ngIf="selectedRow">
                           <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
-                            <!-- <td>{{followUpDetail.followid}}</td> -->
-                            <!-- <td>{{followUpDetail.companyId}}</td> -->
-                            <!-- <td>{{followUpDetail.leadDate}}</td> -->
+                            <!-- <td>{{selectedRow.srNo}}</td> -->
+                            <td>{{selectedRow.tid}}</td>
+                            <td>{{selectedRow.companyname}}</td>
+                            <td>{{selectedRow.crdate}}</td>
+                            <td>{{selectedRow.executivename}}</td>
+                            <td>{{selectedRow.phone}}</td>
+                            <td>{{selectedRow.fulladdress}}</td>
+                            <td>{{selectedRow.selectpd}}</td>
                             <td>{{followup.remark}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
-                            <!-- <td>{{followUpDetail.enteredBy}}</td> -->
-                            
+
                           </tr>
-                        <!-- </ng-container> -->
+                        </ng-container>
 
                       </table>
                     </div>

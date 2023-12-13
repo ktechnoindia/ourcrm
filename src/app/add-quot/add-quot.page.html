@@ -127,7 +127,7 @@
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="quote.itemname" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(quote)">
+                      <select class="select-option" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(quote)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item .itemDesc }}
@@ -144,7 +144,7 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(quote)">
+                      <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}"  >
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
