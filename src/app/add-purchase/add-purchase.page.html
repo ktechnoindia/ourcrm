@@ -159,12 +159,12 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.itemcode" (ngModelChange)="getItems()" [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="purchase.itemcode"  [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
                       <select class="select-option" [(ngModel)]="purchase.itemname"
-                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems()">
+                        [ngModelOptions]="{standalone: true}" >
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}

@@ -293,33 +293,7 @@ billformate:number=0;
     }
   }
   }
-  getItems() {
-    const companyId = 1; // Replace with your actual dynamic value
-    const itemIds = this.purchaseData.map(dcin => dcin.itemcode);
   
-    this.itemService.getItems(companyId, itemIds).subscribe(
-      (data) => {
-        // Handle the data and update your component properties
-        console.log('response', data);
-  
-        data.forEach((item, index) => {
-          const matchingDcin = this.purchaseData.find(dcin => dcin.itemcode === item.itemCode);
-  
-          if (matchingDcin) {
-            matchingDcin.itemname = item.itemDesc;
-            matchingDcin.itemcode = item.itemCode;
-            matchingDcin.taxrate = item.selectGst;
-            matchingDcin.unitname = item.selectunitname;
-            matchingDcin.barcode = item.barcode;
-            // Update other properties as needed
-          }
-        });
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
   addPurchase() {
     console.log('addrowwww'+this.purchaseData.length);
     // You can initialize the new row data here

@@ -106,12 +106,12 @@ export class DcInPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-
-  items: any[]=[];
+  dcin = { itemcode: '', itemname: '', taxrate: '', unitname: '' };
+  items: any[] = [];
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private encService: EncryptionService,private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -259,20 +259,23 @@ export class DcInPage implements OnInit {
     }
   }
 
-  getsItems(dcin: any) {
-    const companyId = 1; // Replace with your actual dynamic value
-    const itemIds = [dcin.itemcode]; // Pass the selected item code as an array
 
+
+  getItems(dcin: any) {
+    const compid = 1;
+    const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
+    const value = dcin.itemname || dcin.itemcode;
   
-    this.itemService.getItems(companyId, itemIds).subscribe(
-      (responses: any[]) => {
-        if (responses.length > 0) {
-          const selectedItem = responses[0]; // Assuming the API returns details for the first matching item
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log(data);
   
-          // Update other properties based on the selected item
-          dcin.itemname = selectedItem.tid;
-          dcin.taxrate = selectedItem.gstname;
-        }
+        dcin.itemcode = data[0].itemCode;
+        dcin.itemname = data[0].itemDesc;
+        dcin.barcode = data[0].barcode;
+        dcin.unitname = data[0].selectunitname;
+        dcin.taxrate = data[0].selectGst;
+        // Update other properties as needed
       },
       (error) => {
         console.error('Error fetching data', error);
@@ -362,7 +365,7 @@ export class DcInPage implements OnInit {
   }
   getTotaltax(dcin: Dcin): number {
     return dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate);
-        //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
 
   }
   getgrossrate(dcin: Dcin): number {
@@ -388,13 +391,13 @@ export class DcInPage implements OnInit {
     const discountPercentage = dcin.discount || 0; // assuming discount is a property in your dcin object
     const basicrate = dcin.basicrate || 0; // handle null/undefined values
     const quantity = dcin.quantity || 0; // handle null/undefined values
-  
+
     // calculate discount amount based on the entered percentage
     const discountAmt = (discountPercentage / 100) * basicrate * quantity;
-  
+
     // update discount amount
     dcin.discountamt = discountAmt;
-  
+
     // return discount amount for display
     return discountAmt;
   }
@@ -403,24 +406,24 @@ export class DcInPage implements OnInit {
     const discountType = this.myform.get('discountType')?.value;
     const basicrate = +dcin.basicrate || 0;
     const quantity = +dcin.quantity || 0;
-  
+
     if (isNaN(basicrate) || isNaN(quantity)) {
       return 0;
     }
-  
+
     if (discountType === 'amount') {
       return dcin.discountamt || 0;
     } else if (discountType === 'percentage') {
       const discountPercentage = dcin.discount || 0;
       return (discountPercentage / 100) * basicrate * quantity;
     }
-  
+
     return 0;
   }
-  
-  
+
+
   getTotalamt(dcin: Dcin): number {
-    
+
     return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
   }
   getcgst(dcin: Dcin): number {
@@ -442,9 +445,9 @@ export class DcInPage implements OnInit {
     });
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       // this.calculateDiscountPercentage();
-    }); 
+    });
   }
- 
+
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -457,7 +460,7 @@ export class DcInPage implements OnInit {
     const gstAmount = (discount / 100) * basicrate * quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
-    
+
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
@@ -475,7 +478,7 @@ export class DcInPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
-      dcin.taxrate1=numericValue;
+      dcin.taxrate1 = numericValue;
 
       // Use numericValue as needed
     } else {

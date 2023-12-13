@@ -66,13 +66,11 @@ export class AdditemService {
   //   return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + '/' + companyid+ '/'+tid);
   // }
 
-  getItems(companyId: number, itemIds: number[]): Observable<any[]> {
-    const requests = itemIds.map(itemid => {
-      return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + `/${companyId}/${itemid}`);
-    });
+  getItems(companyid:number,itemid:number): Observable<any> {
+    return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto +'/'+ companyid +'/' + itemid);
+  }
   
-    return forkJoin(requests);
   }
   
   
-}
+

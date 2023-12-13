@@ -56,27 +56,6 @@ export class SalesreturnPage implements OnInit {
   billformate:number=0;
   custname: number = 0;
 
-
-  
-  //table data
- /* barcode: string = '';
-  itemcode: string = '';
-  itemname: number = 0;
-  description: string = '';
-  quantity: string = '';
-  unitname: number = 0;
-  mrp: string = '';
-  basicrate: string = '';
-  netrate: string = '';
-  grossrate: string = '';
-  CGST: string = '';
-  SGST: string = '';
-  IGST: string = '';
-  discount: string = '';
-  discountamt: string = '';
-  totaltax: string = '';
-  total: string = '';*/
-
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -204,71 +183,7 @@ this.orderDate=new Date().toLocaleDateString();
       ttotal: [''],
     })
   }
-  // onSubmit(salesData: any) {
-  //   console.log('Your form data : ', this.myform.value);
-  //   let salesreturndata: salereturnstore = {
-  //     billformate:this.myform.value.billformate,
-  //     billNumber:this.myform.value.billNumber,
-  //     billDate:this.myform.value.billDate,
-  //     payment:this.myform.value.payment,
-  //     orderDate:this.myform.value.orderDate,
-  //     orderNumber:this.myform.value.orderNumber,
-  //     gstin:this.myform.value.gstin,
-  //     salePerson:this.myform.value.salePerson,
-  //     taxrate:this.myform.value.taxrate,
-  //     custcode:this.myform.value.custcode,
-  //     custname:this.myform.value.custname,
-  //     // unitname$:this.myform.value.unitname$,
-  //     // ponumber:this.myform.value.ponumber,
-  //     refdate:this.myform.value.refdate,
-  //     refrence:this.myform.value.refrence,
-  //     frombill:this.myform.value.frombill,
 
-  //     barcode: this.myform.value.barcode,
-  //     itemcode: this.myform.value.itemcode,
-  //     itemname: this.myform.value.itemname,
-  //     description: this.myform.value.description,
-  //     quantity: this.myform.value.quantity,
-  //     unitname: this.myform.value.unitname,
-  //     mrp: this.myform.value.mrp,
-  //     basicrate: this.myform.value.basicrate,
-  //     netrate: this.myform.value.netrate,
-  //     grossrate: this.myform.value.grossrate,
-  //     CGST: this.myform.value.CGST,
-  //     SGST: this.myform.value.SGST,
-  //     IGST: this.myform.value.IGST,
-  //     discount: this.myform.value.discount,
-  //     discountamt: this.myform.value.discountamt,
-  //     totaltax: this.myform.value.totaltax,
-  //     total: this.myform.value.total,
-  //     totalitemno: this.myform.value.totalitemno,
-  //     totalquantity: this.myform.value.totalquantity,
-  //     totalgrossamt: this.myform.value.totalgrossamt,
-  //     totaldiscountamt: this.myform.value.totaldiscountamt,
-  //     totaltaxamount: this.myform.value.totaltaxamount,
-  //     totalnetamount: this.myform.value.totalnetamount,
-  //     roundoff: this.myform.value.roundoff,
-  //     pretax: this.myform.value.pretax,
-  //     posttax: this.myform.value.posttax,
-  //     deliverydate: this.myform.value.deliverydate,
-  //     deliveryplace: this.myform.value.deliveryplace,
-  //     openingbalance: this.myform.value.openingbalance,
-  //     closingbalance: this.myform.value.closingbalance,
-  //     debit: this.myform.value.debit,
-  //     credit: this.myform.value.credit,
-
-  //   };
-  //   this.salereturnService.createSaleReturn(salesreturndata, '', '').subscribe(
-  //     (response: any) => {
-  //       console.log('POST request successful', response);
-  //       // Handle the response as needed
-  //     },
-  //     (error: any) => {
-  //       console.error('POST request failed', error);
-  //       // Handle the error as needed
-  //     }
-  //   );
-  // }
 
   async onSubmit(salereturnData:any) {
     const fields = {billNumber:this.billNumber,custcode:this.custcode,custname:this.custname }
@@ -356,33 +271,7 @@ this.orderDate=new Date().toLocaleDateString();
   }
 }
 
-getItems() {
-  const companyId = 1; // Replace with your actual dynamic value
-  const itemIds = this.salesData.map(dcin => dcin.itemcode);
 
-  this.itemService.getItems(companyId, itemIds).subscribe(
-    (data) => {
-      // Handle the data and update your component properties
-      console.log('response', data);
-
-      data.forEach((item, index) => {
-        const matchingDcin = this.salesData.find(dcin => dcin.itemcode === item.itemCode);
-
-        if (matchingDcin) {
-          matchingDcin.itemname = item.itemDesc;
-          matchingDcin.itemcode = item.itemCode;
-          matchingDcin.taxrate = item.selectGst;
-          matchingDcin.unitname = item.selectunitname;
-          matchingDcin.barcode = item.barcode;
-          // Update other properties as needed
-        }
-      });
-    },
-    (error) => {
-      console.error('Error fetching data', error);
-    }
-  );
-}
 
   addSales() {
       console.log('addrowwww'+this.salesData.length);
