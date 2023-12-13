@@ -274,7 +274,28 @@ export class DcOutPage implements OnInit {
       }
     }
   }
-
+  getItems(dcout: any) {
+    const compid = 1;
+    const identifier = dcout.itemcode ? 'itemname' : 'itemcode';
+    const value = dcout.itemname || dcout.itemcode;
+  
+    this.itemService.getItems(compid, dcout.itemcode).subscribe(
+      (data) => {
+        console.log(data);
+  
+        dcout.itemcode = data[0].itemCode;
+        dcout.itemname = data[0].itemDesc;
+        dcout.barcode = data[0].barcode;
+        dcout.unitname = data[0].unitname;
+        dcout.taxrate = data[0].selectGst;
+        // Update other properties as needed
+      
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
   
     addDcout() {
       console.log('addrowwww'+this.dcoutData.length);

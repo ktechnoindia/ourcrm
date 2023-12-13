@@ -278,6 +278,7 @@ export class DcInPage implements OnInit {
         dcin.unitname = data[0].unitname;
         dcin.taxrate = data[0].selectGst;
         // Update other properties as needed
+      
       },
       (error) => {
         console.error('Error fetching data', error);
@@ -471,6 +472,7 @@ export class DcInPage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       // this.calculateDiscountPercentage();
     });
+    
   }
 
   calculateNetRate() {
