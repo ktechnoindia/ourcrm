@@ -87,8 +87,7 @@ export class FollowUpPage implements OnInit {
       phone: leadscore.phone,
       fulladdress: leadscore.fulladdress,
       selectpd: leadscore.selectpd,
-      remark: 'the',  // Set an appropriate default value
-      nextfollowupDate: '13/12/23'  // Set an appropriate default value
+     
     };
   }
 
