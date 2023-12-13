@@ -34,8 +34,7 @@ interface Dcin {
   totaltax: number;
   total: number;
   taxrate1: number;
-  posttax: number;
-  pretax: number;
+
 }
 @Component({
   selector: 'app-dc-in',
@@ -92,8 +91,7 @@ export class DcInPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax:0,
-    posttax:0,
+
   }];
 
   ttotal!: number;
@@ -108,12 +106,12 @@ export class DcInPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-  dcin = { itemcode: '', itemname: '', taxrate: '', unitname: '' };
-  items: any[] = [];
+
+  items: any[]=[];
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService,private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -261,8 +259,6 @@ export class DcInPage implements OnInit {
     }
   }
 
-
-
   getItems(dcin: any) {
     const compid = 1;
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
@@ -310,8 +306,7 @@ export class DcInPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax:0,
-      posttax:0,
+
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
@@ -351,39 +346,17 @@ export class DcInPage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
-      const grossAmount = dcin.quantity * dcin.basicrate;
-      return total + grossAmount;
-    }, 0);
-  
-    return totalGrossAmount;
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * +dcin.quantity), 0);
   }
 
   getTotalnetAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0)
   }
-  getGrandTotal(): number {
-    const grandTotal = this.dcinData.reduce((total, dcin) => {
-      const itemTotal = (((+dcin.pretax + dcin.posttax)+(dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount);
-      return total + itemTotal;
-    }, 0);
-  
-    return grandTotal;
-  }
-    getTotalTaxAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.taxrate1/100*dcin.basicrate)*dcin.quantity, 0);
+  getTotalTaxAmount(): number {
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
   }
   getTotalDiscountAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity,0);
-  }
-  getRoundoff(): number {
-    // Calculate the total amount without rounding
-    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount ), 0);
-  
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-  
-    return roundedTotalAmount;
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
   }
   //table formaula
   getnetrate(dcin: Dcin): number {
@@ -391,7 +364,7 @@ export class DcInPage implements OnInit {
   }
   getTotaltax(dcin: Dcin): number {
     return dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate);
-    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+        //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
 
   }
   getgrossrate(dcin: Dcin): number {
@@ -417,13 +390,13 @@ export class DcInPage implements OnInit {
     const discountPercentage = dcin.discount || 0; // assuming discount is a property in your dcin object
     const basicrate = dcin.basicrate || 0; // handle null/undefined values
     const quantity = dcin.quantity || 0; // handle null/undefined values
-
+  
     // calculate discount amount based on the entered percentage
     const discountAmt = (discountPercentage / 100) * basicrate * quantity;
-
+  
     // update discount amount
     dcin.discountamt = discountAmt;
-
+  
     // return discount amount for display
     return discountAmt;
   }
@@ -432,24 +405,24 @@ export class DcInPage implements OnInit {
     const discountType = this.myform.get('discountType')?.value;
     const basicrate = +dcin.basicrate || 0;
     const quantity = +dcin.quantity || 0;
-
+  
     if (isNaN(basicrate) || isNaN(quantity)) {
       return 0;
     }
-
+  
     if (discountType === 'amount') {
       return dcin.discountamt || 0;
     } else if (discountType === 'percentage') {
       const discountPercentage = dcin.discount || 0;
       return (discountPercentage / 100) * basicrate * quantity;
     }
-
+  
     return 0;
   }
-
-
+  
+  
   getTotalamt(dcin: Dcin): number {
-
+    
     return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
   }
   getcgst(dcin: Dcin): number {
@@ -474,7 +447,7 @@ export class DcInPage implements OnInit {
     });
     
   }
-
+ 
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -487,7 +460,7 @@ export class DcInPage implements OnInit {
     const gstAmount = (discount / 100) * basicrate * quantity;
     const netrate = basicrate + taxrate;
     this.myform.get('netrate')?.setValue(netrate);
-
+    
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
@@ -505,7 +478,7 @@ export class DcInPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
-      dcin.taxrate1 = numericValue;
+      dcin.taxrate1=numericValue;
 
       // Use numericValue as needed
     } else {

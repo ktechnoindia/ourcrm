@@ -37,7 +37,22 @@ export class FollowUpPage implements OnInit {
   selectedRowDetails: any[] = [];
 
   searchTerm: string = '';
-  filteredFollowups$: Observable<any[]> = new Observable<any[]>(); 
+  filteredFollowups$: Observable<any[]> = new Observable<any[]>();
+  followups: any;
+  // FollowUpPage class ke andar
+  selectedRow: {
+    srNo?: number,
+    tid?: string,
+    companyname?: string,
+    crdate?: string,
+    executivename?: string,
+    phone?: string,
+    fulladdress?: string,
+    selectpd?: string,
+    remark?: string,
+    nextfollowupDate?: string
+  } = {};
+
 
   constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
@@ -45,13 +60,17 @@ export class FollowUpPage implements OnInit {
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid),'', '');
+    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid), '', '');
+
+    this.followups$.subscribe(data => {
+      this.followups = data;
+    });
 
     this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
-      searchTerm:['']
+      searchTerm: ['']
 
     })
 
@@ -59,26 +78,24 @@ export class FollowUpPage implements OnInit {
 
   showDetails(leadscore: any) {
     // Populate the details for the selected row
-    this.selectedRowDetails = [
-      {
-        srNo: 1, // You can dynamically set these values based on leadscore
-        companyId: leadscore.tid,
-        leadDate: leadscore.leaddate,
-        remark: this.remark,
-        nextFollowUpDate: this.nextfollowupDate,
-        enteredBy: leadscore.catPerson,
-      },
-    ];
-    this.companyId = leadscore.tid;
-    this.followUpCounter = 1;
+    this.selectedRow = {
+      // srNo: leadscore.srNo,
+      tid: leadscore.tid,
+      companyname: leadscore.companyname,
+      crdate: leadscore.crdate,
+      executivename: leadscore.executivename,
+      phone: leadscore.phone,
+      fulladdress: leadscore.fulladdress,
+      selectpd: leadscore.selectpd,
+      remark: '',  // Set an appropriate default value
+      nextfollowupDate: ''  // Set an appropriate default value
+    };
   }
 
-  
   async onSubmit() {
-    // ... (other existing code)
 
     const followupdata: followuptable = {
-      followupId: this.generateFollowUpId(), 
+
       nextfollowupDate: this.myform.value.nextfollowupDate,
       remark: this.myform.value.remark,
       followupdate: '1',
@@ -86,29 +103,18 @@ export class FollowUpPage implements OnInit {
       leadid: '1',
       companyid: this.companyId,
       custid: '1',
-      
+
     };
-    
 
     this.followService.createfollowup(followupdata, '', '').subscribe(
       (response: any) => {
-        // ... (other existing code)
 
-        // Add the new follow-up detail to the selectedRowDetails array
-        this.selectedRowDetails.push({
-          srNo: this.selectedRowDetails.length + 1,
-          companyId: followupdata.companyid,
-          leadDate: '', // You may need to set an appropriate value
-          remark: followupdata.remark,
-          nextFollowUpDate: followupdata.nextfollowupDate,
-          enteredBy: followupdata.enterdby,
-          followid:this.followUpCounter
-        });
+        console.log(response);
 
-        // ... (other existing code)
       },
       (error: any) => {
-        // ... (other existing code)
+
+        console.log(error)
       }
     );
   }
@@ -116,7 +122,7 @@ export class FollowUpPage implements OnInit {
   filterCustomers(): Observable<any[]> {
     return this.lead$.pipe(
       map(followups =>
-        followups.filter((follow:any) =>
+        followups.filter((follow: any) =>
           Object.values(follow).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
         )
       )
@@ -126,7 +132,7 @@ export class FollowUpPage implements OnInit {
   onSearchTermChanged(): void {
     this.filteredFollowups$ = this.filterCustomers();
   }
- 
+
   ngOnInit() {
     this.filteredFollowups$ = this.lead$.pipe(
       debounceTime(300),
@@ -135,7 +141,7 @@ export class FollowUpPage implements OnInit {
     );
   }
 
- 
+
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }
@@ -144,7 +150,6 @@ export class FollowUpPage implements OnInit {
     const followUpId = `${this.companyId}_${this.followUpCounter}`;
     this.followUpCounter++;
     return followUpId;
-    
   }
-  
+
 }
