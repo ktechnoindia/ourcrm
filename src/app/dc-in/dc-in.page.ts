@@ -259,10 +259,10 @@ export class DcInPage implements OnInit {
     }
   }
 
-  getsItems(dcin: any) {
-    const companyId = 1; // Replace with your actual dynamic value
-    const itemIds = [dcin.itemcode]; // Pass the selected item code as an array
-
+  getItems(dcin: any) {
+    const compid = 1;
+    const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
+    const value = dcin.itemname || dcin.itemcode;
   
     this.itemService.getItems(compid, dcin.itemcode).subscribe(
       (data) => {

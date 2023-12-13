@@ -74,7 +74,7 @@ export const environment = {
   fetchallpurchasereturn:'get_purchase_return',
   fetchallItem:'get_all_items',
   fetchallleads:"get_lead_by_company",
-  fetchfollowup:'get_lead_followup',
+  fetchfollowup:'get_lead_followupx',
   getlang:'lang',
   toasttiming:2000,
   addpayment:'insert_payment',

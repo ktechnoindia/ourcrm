@@ -115,15 +115,15 @@
                   <tr *ngFor="let dcin of dcinData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="dcin.barcode" (ngModelChange)="getsItems(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="dcin.barcode" (ngModelChange)="getItems(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text" (change)="getsItems(dcin)">
+                        type="text" (change)="getItems(dcin)">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getsItems(dcin)">
+                      <select class="table_select" [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(dcin)">
                         <option value="0">Item Code</option><!-- Default option -->
                         <option *ngFor="let item of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}

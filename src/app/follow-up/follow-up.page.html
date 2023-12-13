@@ -50,7 +50,7 @@
                         <th>Lead Score</th>
                         <th>Remark</th> -->
                       </tr>
-                      <tr *ngFor="let leadscore of filteredFollowups$ | async; let i = index" (click)="showDetails(leadscore)">
+                      <tr *ngFor="let leadscore of filteredFollowups$ | async; let i = index" >
                         <td>{{i+1}}</td>
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.companyname}}</td>
@@ -89,23 +89,23 @@
                       <table style="overflow-x:auto; width: 645px;">
                         <tr>
                           <th style="width: 50px;">SR. No.</th>
-                          <th>followupId</th>
-                          <th style="width: 80px;">Company Id</th>
+                          <!-- <th>followupId</th> -->
+                          <!-- <th style="width: 80px;">Company Id</th> -->
                           <!-- <th style="width: 75px !important;">Lead Date</th> -->
                           <th style="width: 200px;">Remark</th>
                           <th style="width: 130px !important;">Next Follow-Up Date</th>
 
-                          <th style="width: 70px;">Entered By</th>
+                          <!-- <th style="width: 70px;">Entered By</th> -->
                         </tr>
                         <!-- <ng-container> -->
-                          <tr *ngFor="let followUpDetail of selectedRowDetails; let i = index">
+                          <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
-                            <td>{{followUpDetail.followid}}</td>
-                            <td>{{followUpDetail.companyId}}</td>
+                            <!-- <td>{{followUpDetail.followid}}</td> -->
+                            <!-- <td>{{followUpDetail.companyId}}</td> -->
                             <!-- <td>{{followUpDetail.leadDate}}</td> -->
-                            <td>{{followUpDetail.remark}}</td>
-                            <td>{{followUpDetail.nextFollowUpDate}}</td>
-                            <td>{{followUpDetail.enteredBy}}</td>
+                            <td>{{followup.remark}}</td>
+                            <td>{{followup.nextfollowupDate}}</td>
+                            <!-- <td>{{followUpDetail.enteredBy}}</td> -->
                             
                           </tr>
                         <!-- </ng-container> -->
