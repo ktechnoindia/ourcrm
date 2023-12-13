@@ -33,7 +33,7 @@ interface Quote {
   discountamt: number;
   totaltax: number;
   total: number;
-  taxrate1:number;
+  taxrate1: number;
 }
 
 @Component({
@@ -115,9 +115,9 @@ export class AddQuotPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
-    taxrate1:0,
-    pretax:0,
-    posttax:0
+    taxrate1: 0,
+    pretax: 0,
+    posttax: 0
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -132,7 +132,7 @@ export class AddQuotPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   customer$: any;
-  
+
   constructor(private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -283,7 +283,33 @@ export class AddQuotPage implements OnInit {
       }
     }
   }
+  getItems(quote: any) {
+    const compid = 1;
+    const identifier = quote.itemcode ? 'itemname' : 'itemcode';
+    const value = quote.itemname || quote.itemcode;
+  
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log(data);
+  
+        quote.itemcode = data[0].itemCode;
+        quote.itemname = data[0].itemDesc;
+        quote.barcode = data[0].barcode;
+        quote.unitname = data[0].selectunitname;
+        quote.taxrate = data[0].selectGst;
+        quote.CGST = data[0].taxrate1;
+        quote.SGST = data[0].taxrate1;
+        quote.IGST = data[0].taxrate1;
 
+
+        // Update other properties as needed
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+  
   addQuote() {
     console.log('addquotewww' + this.quoteData.length);
     // You can initialize the new row data here
@@ -306,12 +332,12 @@ export class AddQuotPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
-      taxrate1:0,
-      pretax:0,
-      posttax:0
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0
       // Add more properties as needed
     };
-    
+
     this.quoteData.push(newRow);
   }
   calculateTotal(quote: Quote) {
@@ -396,97 +422,97 @@ export class AddQuotPage implements OnInit {
       const grossAmount = quote.quantity * quote.basicrate;
       return total + grossAmount;
     }, 0);
-  
+
     return totalGrossAmount;
   }
-  
+
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount ), 0)
+    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.quoteData.reduce((total, quote) => {
-      const itemTotal = (((+quote.pretax + quote.posttax)+(quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount);
+      const itemTotal = (((+quote.pretax + quote.posttax) + (quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount);
       return total + itemTotal;
     }, 0);
-  
+
     return grandTotal;
   }
-  
-  
+
+
   getTotalTaxAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.taxrate1/100*quote.basicrate)*quote.quantity, 0);
+    return this.quoteData.reduce((total, quote) => total + (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity, 0);
   }
   getTotalDiscountAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity,0);
+    return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount ), 0);
-  
+    const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0);
+
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-  
+
     return roundedTotalAmount;
   }
-  
+
   //table formaula
   getnetrate(quote: Quote): number {
-    return quote.basicrate + (quote.taxrate1/100*quote.basicrate);
+    return quote.basicrate + (quote.taxrate1 / 100 * quote.basicrate);
   }
-  getTotaltax(quote: Quote): number{
-    return quote.quantity *(quote.taxrate1/100*quote.basicrate);
+  getTotaltax(quote: Quote): number {
+    return quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
     //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
- 
+
   getdiscountamt(quote: Quote): number {
     const discountamt = quote.discountamt || 0; // handle null/undefined values
-  const basicrate = quote.basicrate || 0; // handle null/undefined values
-  const quantity = quote.quantity || 0; // handle null/undefined values
-  // calculate discount percentage
-  const discount = (discountamt / (basicrate * quantity)) * 100;
-  // update discount percentage
-  quote.discount = discount;
-  // return discount amount for display
-  return discountamt;
+    const basicrate = quote.basicrate || 0; // handle null/undefined values
+    const quantity = quote.quantity || 0; // handle null/undefined values
+    // calculate discount percentage
+    const discount = (discountamt / (basicrate * quantity)) * 100;
+    // update discount percentage
+    quote.discount = discount;
+    // return discount amount for display
+    return discountamt;
   }
   calculateDiscountAmount(quot: Quote): number {
     const discountType = this.myform.get('discountType')?.value;
     const basicrate = +quot.basicrate || 0;
     const quantity = +quot.quantity || 0;
-  
+
     if (isNaN(basicrate) || isNaN(quantity)) {
       return 0;
     }
-  
+
     if (discountType === 'amount') {
       return quot.discountamt || 0;
     } else if (discountType === 'percentage') {
       const discountPercentage = quot.discount || 0;
       return (discountPercentage / 100) * basicrate * quantity;
     }
-  
+
     return 0;
   }
   getdiscountp(quote: Quote) {
     const discountPercentage = quote.discount || 0; // assuming discount is a property in your dcin object
     const basicrate = quote.basicrate || 0; // handle null/undefined values
     const quantity = quote.quantity || 0; // handle null/undefined values
-  
+
     // calculate discount amount based on the entered percentage
     const discountAmt = (discountPercentage / 100) * basicrate * quantity;
-  
+
     // update discount amount
     quote.discountamt = discountAmt;
-  
+
     // return discount amount for display
     return discountAmt;
   }
   getTotalamt(quote: Quote): number {
-    return (quote.basicrate * quote.quantity)+ (quote.quantity * (quote.taxrate1/100*quote.basicrate))- this.calculateDiscountAmount(quote);
+    return (quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) - this.calculateDiscountAmount(quote);
   }
   getcgst(quote: Quote): number {
     return quote.taxrate1 / 2;
@@ -512,14 +538,14 @@ export class AddQuotPage implements OnInit {
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
-    }); 
+    });
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;
     const discount = +this.myform.get('discount')?.value || 0;
     const basicrate = +this.myform.get('basicrate')?.value || 0;
     const quantity = +this.myform.get('quantity')?.value || 0;
-  
+
     if (discountType === 'amount') {
       // Calculate discount amount based on user-entered amount
       const discountAmt = discount;
@@ -529,7 +555,7 @@ export class AddQuotPage implements OnInit {
       const discountAmt = (discount / 100) * basicrate * quantity;
       this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
     }
-    
+
   }
 
   calculateDiscountAmt() {
@@ -537,23 +563,23 @@ export class AddQuotPage implements OnInit {
     const discount = this.myform.get('discount')?.value ?? 0;
     const basicrate = this.myform.get('basicrate')?.value ?? 0;
     const quantity = this.myform.get('quantity')?.value ?? 0;
-  
+
     const discountamt = (discount / 100) * basicrate * quantity;
-  
+
     // Update the discountamt in the form
     this.myform.get('discountamt')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
   }
   calculateDiscountPercentage() {
     // Calculate discount percentage based on discountamt
-  const discountamt = this.myform.get('discountamt')?.value ?? 0;
-  const basicrate = this.myform.get('basicrate')?.value ?? 0;
-  const quantity = this.myform.get('quantity')?.value ?? 0;
+    const discountamt = this.myform.get('discountamt')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
 
-  const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+    const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
 
-  // Update the discount in the form
-  this.myform.get('discount')?.setValue(discountPercentage, { emitEvent: false }); // Avoid triggering an infinite loop
-}
+    // Update the discount in the form
+    this.myform.get('discount')?.setValue(discountPercentage, { emitEvent: false }); // Avoid triggering an infinite loop
+  }
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -573,23 +599,23 @@ export class AddQuotPage implements OnInit {
     this.router.navigate(['/transactiondashboard']); // Navigate back to the previous page
   }
 
-  onSelectChange(select: HTMLSelectElement,quote:Quote) {
+  onSelectChange(select: HTMLSelectElement, quote: Quote) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
 
     console.log('Selected value:', selectedValue);
     console.log('Selected text:', selectedText);
-    
+
     // Extracting a number from the selectedText using parseFloat
     const numericValue = parseFloat(selectedText);
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
-      quote.taxrate1=numericValue;
+      quote.taxrate1 = numericValue;
       // Use numericValue as needed
     } else {
-      quote.taxrate1=0;
+      quote.taxrate1 = 0;
       console.error('Selected text does not represent a valid number.');
     }
   }
@@ -607,4 +633,5 @@ export class AddQuotPage implements OnInit {
   myaction(arg0: string) {
     throw new Error('Method not implemented.');
   }
+  
 }

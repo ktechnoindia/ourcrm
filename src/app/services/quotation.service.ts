@@ -6,37 +6,37 @@ export interface quotestore {
   billformate: number;
   quoteNumber: number;
   quateDate: string;
-  custcode:string;
+  custcode: string;
   custname: number;
-  refrence: string ;
-  refdate: string ;
-  
-  //table
-barcode:string;
-itemcode:string;
-itemname:number;
-description:string;
-quantity:number;
-unitname:number;
-mrp:string;
-basicrate:number;
-netrate:string;
-grossrate:string;
-  taxrate: number ;
- IGST:string;
-  CGST:string;
-  SGST:string;
-  discount:string;
-  discountamt:string;
-  totaltax: string ;
-  total: string ;
+  refrence: string;
+  refdate: string;
 
-  totalitemno:string;
-  totalquantity:string;
-  totalgrossamt:string;
-  totaldiscountamt:string;
-  totaltaxamount:string;
-  totalnetamount:string;
+  //table
+  barcode: string;
+  itemcode: string;
+  itemname: number;
+  description: string;
+  quantity: number;
+  unitname: number;
+  mrp: string;
+  basicrate: number;
+  netrate: string;
+  grossrate: string;
+  taxrate: number;
+  IGST: string;
+  CGST: string;
+  SGST: string;
+  discount: string;
+  discountamt: string;
+  totaltax: string;
+  total: string;
+
+  totalitemno: string;
+  totalquantity: string;
+  totalgrossamt: string;
+  totaldiscountamt: string;
+  totaltaxamount: string;
+  totalnetamount: string;
   deliverydate: string;
   deliveryplace: string;
 
@@ -48,7 +48,7 @@ grossrate:string;
   debit: string;
   credit: string;
 
-  ttotal:number;
+  ttotal: number;
 }
 @Injectable({
   providedIn: 'root'
@@ -57,14 +57,14 @@ export class QuotationService {
   total!: number;
   ttotal!: number;
   taxrate: any;
-  constructor(private httpclient:HttpClient) { }
-  createquote(quatation:quotestore,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addquote,quatation,{headers:{'key':key,'user':user}})
+  constructor(private httpclient: HttpClient) { }
+  createquote(quatation: quotestore, key: string, user: string) {
+    return this.httpclient.post(environment.apiactionurl + environment.addquote, quatation, { headers: { 'key': key, 'user': user } })
   }
 
-  fetchallQuote(companyid:string,key:string,user:string): Observable<any> {
-    console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl+environment.fetchallquote+'?p='+companyid,{headers:{'key':key,'user':user}})
+  fetchallQuote(companyid: string, key: string, user: string): Observable<any> {
+    console.log('companyyy ' + companyid);
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallquote + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
 }
 

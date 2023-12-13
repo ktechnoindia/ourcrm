@@ -9,14 +9,14 @@ export interface item {
   itemDesc: string;
   itemCode: string;
   hsnname: string;
-  selectHSN:number;
-  selectItem:number;
-  selectStock:number;
-  selectPrimaryUnit:number;
-  selectunitname:number;
+  selectHSN: number;
+  selectItem: number;
+  selectStock: number;
+  selectPrimaryUnit: number;
+  selectunitname: number;
 
-  itemtype:string;
-  stocktype:string;
+  itemtype: string;
+  stocktype: string;
   stocktypename: string;
   itemtypename: string;
   unitname: string;
@@ -25,12 +25,13 @@ export interface item {
   openingbalance: string;
   closingbalance: string;
   selectedAttribute: string;
-  files:string;
+  files: string;
   barcode: number;
   minimum: number;
   maximum: number;
   reorder: string;
-
+  mrp: number;
+  basicrate: number;
   attr1: string;
   attr2: string;
   attr3: string;
@@ -58,19 +59,19 @@ export class AdditemService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallItem + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
-   
+
   getAllItems(): Observable<any> {
-    return this.httpclient.get(environment.apiactionurl+environment.fetchallItem);
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallItem);
   }
   // getItems(companyid: number,tid:number): Observable<any> {
   //   return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + '/' + companyid+ '/'+tid);
   // }
 
-  getItems(companyid:number,itemid:number): Observable<any> {
-    return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto +'/'+ companyid +'/' + itemid);
+  getItems(companyid: number, itemid: number): Observable<any> {
+    return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + '/' + companyid + '/' + itemid);
   }
-  
-  }
-  
-  
+
+}
+
+
 
