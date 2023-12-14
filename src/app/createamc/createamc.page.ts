@@ -67,8 +67,8 @@ export class CreateamcPage implements OnInit {
    this.amc$ = this.amcService.fetchallAmc(encService.encrypt(compid),'','');
    console.log(this.amc$);
 
-   this.amc_date = new Date().toLocaleDateString();
-   this.renew_date = new Date().toLocaleDateString();
+   this.amc_date =new Date().toISOString().split('T')[0]; 
+   this.renew_date =new Date().toISOString().split('T')[0]; 
   }
 
 

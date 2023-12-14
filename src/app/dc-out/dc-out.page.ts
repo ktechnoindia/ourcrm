@@ -134,9 +134,9 @@ export class DcOutPage implements OnInit {
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.datetype= new Date().toLocaleDateString();
-    this.refdate=  new Date().toLocaleDateString();
-    this.deliverydate= new Date().toLocaleDateString();
+    this.datetype= new Date().toISOString().split('T')[0]; 
+    this.refdate=  new Date().toISOString().split('T')[0]; 
+    this.deliverydate= new Date().toISOString().split('T')[0]; 
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],

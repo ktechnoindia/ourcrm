@@ -61,9 +61,9 @@ export class AddLeadPage {
   selectedDistrict: number=0;
   rmark:string='';
   leadassign:number=0;
-  c=1;
-  u=1;
-  r=1;
+  c:number=1;
+u:number=1;
+  r:number=1;
   leadtype:number=0;
 
   countries$: Observable<any[]>
@@ -85,8 +85,7 @@ export class AddLeadPage {
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
-    this.leaddate= new Date().toLocaleDateString();
-
+    this.leaddate = new Date().toISOString().split('T')[0]; 
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 
@@ -120,7 +119,9 @@ export class AddLeadPage {
   
  async onSubmit() {
     const fields = {companyname:this.companyname,catPerson:this.catPerson}
-
+const companyid=1;
+const userid=1;
+const roleid=1;
     const isValid = await this.formService.validateForm(fields);
     if(await this.formService.validateForm(fields)){
       
@@ -138,9 +139,9 @@ export class AddLeadPage {
       selectedState:this.form.value.selectedState,
       selectedDistrict:this.form.value.selectedDistrict,
       pncode:this.form.value.pncode,
-      c:this.form.value.c,
-      u:this.form.value.u,
-      r:this.form.value.r,
+      c:companyid,
+      u:userid,
+      r:roleid,
       leadtype:this.form.value.leadtype,
     leaddate:this.form.value.leaddate};
 

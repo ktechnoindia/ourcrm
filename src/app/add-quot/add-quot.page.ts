@@ -142,9 +142,9 @@ export class AddQuotPage implements OnInit {
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    this.quateDate = new Date().toLocaleDateString();
-    this.refdate = new Date().toLocaleDateString();
-    this.deliverydate = new Date().toLocaleDateString();
+    this.quateDate = new Date().toISOString().split('T')[0]; 
+    this.refdate =  new Date().toISOString().split('T')[0]; 
+    this.deliverydate =  new Date().toISOString().split('T')[0]; 
 
 
 

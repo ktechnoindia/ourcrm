@@ -52,7 +52,7 @@
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="warning" [(ngModel)]="quateDate" formControlName="quateDate" name="quateDate"
-                    type="datetime" label="Date :" label-placement="floating" fill="outline"></ion-input>
+                    type="date" label="Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -82,7 +82,7 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="datetime"
+                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date"
                     label="Ref. Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -144,8 +144,8 @@
                     <td style="width: 90px;">
                       <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}"  >
                         <option value="0">Unit Name</option>
-                        <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
-                          {{ unitname.unitname }}
+                        <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                          {{ unitnames.unitname }}
                         </option>
                       </select>
                     </td>
@@ -284,7 +284,7 @@
                         <tr>
                           <th style="width: 100px !important;">Delivery Date</th>
                           <td>
-                            <ion-input type="datetime" [(ngModel)]="deliverydate" formControlName="deliverydate"
+                            <ion-input type="date" [(ngModel)]="deliverydate" formControlName="deliverydate"
                               name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
                           </td>
                         </tr>

@@ -147,10 +147,10 @@ export class AddPurchasePage implements OnInit {
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.billDate = new Date().toLocaleDateString();
-    this.refdate = new Date().toLocaleDateString();
-    this.deliverydate = new Date().toLocaleDateString();
-    this.orderDate = new Date().toLocaleDateString();
+    this.billDate = new Date().toISOString().split('T')[0]; 
+    this.refdate = new Date().toISOString().split('T')[0]; 
+    this.deliverydate = new Date().toISOString().split('T')[0]; 
+    this.orderDate = new Date().toISOString().split('T')[0]; 
 
     this.myform = this.formBuilder.group({
       billformate: [''],
