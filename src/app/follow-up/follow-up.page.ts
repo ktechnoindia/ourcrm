@@ -60,13 +60,13 @@ export class FollowUpPage implements OnInit {
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid), '', '');
+    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid),(leadid), '', '');
 
     this.followups$.subscribe(data => {
       this.followups = data;
     });
 
-    this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
+    this.nextfollowupDate = new Date().toLocaleDateString();
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
@@ -79,7 +79,7 @@ export class FollowUpPage implements OnInit {
   showDetails(leadscore: any) {
     // Populate the details for the selected row
     this.selectedRow = {
-      // srNo: leadscore.srNo,
+      srNo: leadscore.srNo,
       tid: leadscore.tid,
       companyname: leadscore.companyname,
       crdate: leadscore.crdate,
@@ -99,8 +99,8 @@ export class FollowUpPage implements OnInit {
       remark: this.myform.value.remark,
       followupdate: '1',
       enterdby: '1',
-      leadid: '1',
-      companyid: this.companyId,
+      leadid:this.myform.value.leadid,
+      companyid: this.myform.value.companyid,
       custid: '1',
 
     };
