@@ -87,35 +87,37 @@
                 </ion-row>
                 <div>
                   <ion-row style="height: 300px;padding: 10px;overflow-x:auto;">
-                    <div class="scroll-container" style="border: 1px solid grey;">
+                    <div class="scroll-container" >
                       <table style="overflow-x:auto; width: 645px;">
                         <tr>
                           <th style="width: 50px;">SR. No.</th>
                           <!-- <th>followupId</th> -->
                           <!-- <th style="width: 80px;">Company Name</th> -->
-                          <th style="width: 75px !important;">Lead Id</th>
+                          <!-- <th style="width: 75px !important;">Lead Id</th> -->
                           <th style="width: 80px;">Company Name</th>
                           <th style="width: 80px;">Lead Date</th>
-                          <th style="width: 80px;">Product</th>
-                          <th style="width: 80px;">Phone</th>
-                          <th>Address</th>
-                          <th style="width: 70px;">Entered By</th>
-                          <th style="width: 200px;">Remark</th>
+                          <!-- <th style="width: 80px;">Product</th> -->
+                          <!-- <th style="width: 80px;">Phone</th> -->
+                          <!-- <th>Address</th> -->
+                          <!-- <th style="width: 70px;">Entered By</th> -->
                           <th style="width: 130px !important;">Next Follow-Up Date</th>
+
+                          <th style="width: 200px;">Remark</th>
                         </tr>
                         <ng-container *ngIf="selectedRow">
                           <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
                             <!-- <td>{{selectedRow.srNo}}</td> -->
-                            <td>{{selectedRow.tid}}</td>
+                            <!-- <td>{{selectedRow.tid}}</td> -->
                             <td>{{selectedRow.companyname}}</td>
                             <td>{{selectedRow.crdate}}</td>
-                            <td>{{selectedRow.executivename}}</td>
-                            <td>{{selectedRow.phone}}</td>
-                            <td>{{selectedRow.fulladdress}}</td>
-                            <td>{{selectedRow.selectpd}}</td>
-                            <td>{{followup.remark}}</td>
+                            <!-- <td>{{selectedRow.executivename}}</td> -->
+                            <!-- <td>{{selectedRow.phone}}</td> -->
+                            <!-- <td>{{selectedRow.fulladdress}}</td> -->
+                            <!-- <td>{{selectedRow.selectpd}}</td> -->
                             <td>{{followup.nextfollowupDate}}</td>
+
+                            <td>{{followup.remark}}</td>
 
                           </tr>
                         </ng-container>
@@ -131,7 +133,7 @@
                     <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
                       <ion-row>
                         <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate"
-                          name="nextfollowupDate" type="datetime" label="Next Follow-Up Date :"
+                          name="nextfollowupDate" type="date" label="Next Follow-Up Date :"
                           label-placement="floating" fill="outline"></ion-input>
                       </ion-row>
                     </ion-col>

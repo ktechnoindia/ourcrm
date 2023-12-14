@@ -85,8 +85,7 @@ export class AddLeadPage {
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
-    this.leaddate= new Date().toLocaleDateString();
-
+    this.leaddate = new Date().toISOString().split('T')[0]; 
 
     this.form = this.formBuilder.group({
       catPerson: ['', [Validators.required]], 

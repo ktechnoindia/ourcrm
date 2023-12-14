@@ -36,7 +36,7 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
-                <ion-input [(ngModel)]="amc_date" formControlName="amc_date" name="amc_date" type="datetime"
+                <ion-input [(ngModel)]="amc_date" formControlName="amc_date" name="amc_date" type="date"
                   label="Amc Date : " label-placement="floating" fill="outline">
                 </ion-input>
 
@@ -52,7 +52,7 @@
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-row>
                   <select class="select" [(ngModel)]=" cust_name" name="cust_name" formControlName="cust_name">
-                    <option value="0"> --- Customer Name --- </option>
+                    <option value=""> --- Customer Name --- </option>
                     <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                       {{ customername.name }}
                     </option>
@@ -144,7 +144,7 @@
            
               <ion-col size-lg="2" size-md="6" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]=" renew_date" formControlName="renew_date" name="renew_date" type="datetime"
+                  <ion-input [(ngModel)]=" renew_date" formControlName="renew_date" name="renew_date" type="date"
                     label="Renew Date  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
 
