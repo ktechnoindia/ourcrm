@@ -282,6 +282,7 @@ export class AddQuotPage implements OnInit {
         this.firstInvalidInput.setFocus();
       }
     }
+    
   }
   getItems(quote: any) {
     const compid = 1;
@@ -441,6 +442,7 @@ export class AddQuotPage implements OnInit {
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity, 0);
   }
+  
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
@@ -537,6 +539,7 @@ export class AddQuotPage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
+    
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;

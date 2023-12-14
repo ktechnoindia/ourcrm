@@ -66,5 +66,6 @@ export class QuotationService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallquote + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
+  
 }
 
