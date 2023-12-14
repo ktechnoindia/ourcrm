@@ -26,9 +26,9 @@ export class FollowUpPage implements OnInit {
   remark: string = '';
   nextfollowupDate: string = '';
   custid: string = '';
-  leadid: string = '';
-  compid: string = '';
-  companyId: string = '1';
+  leadid: number = 0;
+  compid:  number = 0;
+  companyId: number = 0;
   followUpCounter: number = 1;
   lead$: Observable<any[]>
   myform: FormGroup;
@@ -42,7 +42,7 @@ export class FollowUpPage implements OnInit {
   // FollowUpPage class ke andar
   selectedRow: {
     srNo?: number,
-    tid?: string,
+    tid?: number,
     companyname?: string,
     crdate?: string,
     executivename?: string,
@@ -58,7 +58,7 @@ export class FollowUpPage implements OnInit {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
-    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
+    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid),(leadid), '');
 
     this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid),(leadid), '', '');
 
@@ -99,9 +99,9 @@ export class FollowUpPage implements OnInit {
       remark: this.myform.value.remark,
       followupdate: '1',
       enterdby: '1',
-      leadid:this.myform.value.leadid,
-      companyid: this.myform.value.companyid,
-      custid: '1',
+      leadid:1,
+      companyid:1,
+      custid: 1,
 
     };
 
