@@ -89,7 +89,7 @@
                   <ion-row style="height: 300px;padding: 10px;overflow-x:auto;">
                     <div class="scroll-container" style="border: 1px solid grey;">
                       <table style="overflow-x:auto; width: 645px;">
-                        <tr>
+                        <!-- <tr>
                           <th >
                             Company Name
                           </th>
@@ -100,15 +100,14 @@
                             Lead Id
                           </th>
                           <td  *ngIf="selectedRow">{{selectedRow.tid}}</td>
-                          <!-- <th>Lead Date</th>
-                          <td *ngIf="selectedRow">{{selectedRow.crdate}}</td> -->
-                        </tr>
+                        
+                        </tr> -->
                         <tr>
                           <th style="width: 50px;">SR. No.</th>
                           <!-- <th>followupId</th> -->
                           <!-- <th style="width: 80px;">Company Name</th> -->
-                          <!-- <th style="width: 75px !important;">Lead Id</th> -->
-                          <!-- <th style="width: 80px;">Company Name</th> -->
+                          <th style="width: 75px !important;">Lead Id</th>
+                          <th style="width: 80px;">Company Name</th>
                           <th style="width: 80px;">Lead Date</th>
                           <!-- <th style="width: 80px;">Product</th> -->
                           <!-- <th style="width: 80px;">Phone</th> -->
@@ -117,12 +116,13 @@
                           <th style="width: 200px;">Remark</th>
                           <th style="width: 130px !important;">Next Follow-Up Date</th>
                         </tr>
-                        <ng-container>
+                        <ng-container *ngIf="selectedRow">
+                        <!-- <ng-container  *ngFor="let follow of lead$; let i = index"> -->
                           <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
                             <!-- <td>{{selectedRow.srNo}}</td> -->
-                            <!-- <td>{{selectedRow.tid}}</td> -->
-                            <!-- <td>{{selectedRow.companyname}}</td> -->
+                            <td>{{selectedRow.tid}}</td>
+                            <td>{{selectedRow.companyname}}</td>
                             <td>{{selectedRow.crdate}}</td>
                             <!-- <td>{{selectedRow.executivename}}</td> -->
                             <!-- <td>{{selectedRow.phone}}</td> -->
@@ -132,8 +132,8 @@
                             <td>{{followup.nextfollowupDate}}</td>
 
                           </tr>
-                        </ng-container>
-
+                        <!-- </ng-container> -->
+                      </ng-container>
                       </table>
                     </div>
                   </ion-row>

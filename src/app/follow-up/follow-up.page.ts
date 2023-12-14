@@ -87,10 +87,11 @@ export class FollowUpPage implements OnInit {
       phone: leadscore.phone,
       fulladdress: leadscore.fulladdress,
       selectpd: leadscore.selectpd,
-     
+      remark: leadscore.rmark,
+      nextfollowupDate: leadscore.nextfollowupDate,
     };
   }
-
+ 
   async onSubmit() {
 
     const followupdata: followuptable = {

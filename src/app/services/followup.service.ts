@@ -37,12 +37,7 @@ export class FollowupService {
     return this.httpclient.get(environment.apiacturl + environment.fetchfollowup, { headers: { 'key': key, 'user': user }, params });
   }
 
-  fetchFollowupsByTid(tid: number): Observable<any[]> {
-    // Adjust this method based on your API or data structure
-    return this.httpclient.get(`your-api-endpoint/followups/${tid}`).pipe(
-      map((response: any) => response.data) // Adjust this based on your API response structure
-    );
-  }
+
   
 }
 
