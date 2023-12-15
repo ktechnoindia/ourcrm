@@ -34,7 +34,7 @@ export class FollowUpPage implements OnInit {
   myform: FormGroup;
   showLeadDetails = false; 
   selectedRowDetails: any[] = [];
-
+lid:number=0;
   searchTerm: string = '';
   filteredFollowups$: Observable<any[]> = new Observable<any[]>();
   followups: any;
@@ -64,8 +64,8 @@ export class FollowUpPage implements OnInit {
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
-      searchTerm: ['']
-
+      searchTerm: [''],
+      lid:0
     })
 
   }
@@ -84,6 +84,7 @@ export class FollowUpPage implements OnInit {
         this.formService.showFailedAlert();
       }
     );
+    this.lid=leadscore.tid;
     this.selectedRow = {
       srNo: leadscore.srNo,
       tid: leadscore.tid,
@@ -106,7 +107,7 @@ export class FollowUpPage implements OnInit {
       remark: this.myform.value.remark,
       followupdate: '1',
       enterdby: '1',
-      leadid:1,
+      leadid:this.myform.value.lid,
       companyid:1,
       custid: 1,
 
