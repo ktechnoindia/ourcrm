@@ -66,7 +66,7 @@ export class FollowUpPage implements OnInit {
       this.followups = data;
     });
 
-    this.nextfollowupDate = new Date().toLocaleDateString();
+    this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
