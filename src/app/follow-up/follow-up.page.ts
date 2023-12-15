@@ -60,7 +60,7 @@ export class FollowUpPage implements OnInit {
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid),(leadid), '');
    
 
-    this.nextfollowupDate = new Date().toLocaleDateString();
+    this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
