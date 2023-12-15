@@ -32,10 +32,9 @@ export class FollowUpPage implements OnInit {
   followUpCounter: number = 1;
   lead$: Observable<any[]>
   myform: FormGroup;
-  showLeadDetails = false;
-  followups$: Observable<any>;
+  showLeadDetails = false; 
   selectedRowDetails: any[] = [];
-
+lid:number=0;
   searchTerm: string = '';
   filteredFollowups$: Observable<any[]> = new Observable<any[]>();
   followups: any;
@@ -59,25 +58,33 @@ export class FollowUpPage implements OnInit {
     const custid = '1';
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid),(leadid), '');
+   
 
-    this.followups$ = this.followService.fetchallfollowup(encService.encrypt(compid),(leadid), '', '');
-
-    this.followups$.subscribe(data => {
-      this.followups = data;
-    });
-
-    this.nextfollowupDate = new Date().toLocaleDateString();
+    this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
-      searchTerm: ['']
-
+      searchTerm: [''],
+      lid:0
     })
 
   }
 
   showDetails(leadscore: any) {
     // Populate the details for the selected row
+
+
+    this.followService.fetchallfollowup(this.encService.encrypt('1'),leadscore.tid, '', '').subscribe(
+      (response:any)=>{
+        console.log('data',response);
+        this.followups=response;
+      },
+      (error:any)=>{
+       // console.log('Post request Failed',error);
+        this.formService.showFailedAlert();
+      }
+    );
+    this.lid=leadscore.tid;
     this.selectedRow = {
       srNo: leadscore.srNo,
       tid: leadscore.tid,
@@ -100,7 +107,7 @@ export class FollowUpPage implements OnInit {
       remark: this.myform.value.remark,
       followupdate: '1',
       enterdby: '1',
-      leadid:1,
+      leadid:this.myform.value.lid,
       companyid:1,
       custid: 1,
 
