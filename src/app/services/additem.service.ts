@@ -14,7 +14,7 @@ export interface item {
   selectStock: number;
   selectPrimaryUnit: number;
   selectunitname: number;
-
+  
   itemtype: string;
   stocktype: string;
   stocktypename: string;
@@ -42,6 +42,7 @@ export interface item {
   attr8: string;
 
   selectGstservice: number;
+  companyid:number;
 }
 
 @Injectable({

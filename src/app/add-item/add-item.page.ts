@@ -175,7 +175,7 @@ export class AddItemPage implements OnInit {
         attr7: this.myform.value.attr7,
         attr8: this.myform.value.attr8,
 
-
+        companyid:1
 
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
