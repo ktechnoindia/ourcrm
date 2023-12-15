@@ -84,15 +84,19 @@
             </ion-col>
 
             <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 500px;margin-right: 10%;width: 90%;">
+              <ion-card style="height: 500px;margin-right: 10%;width: 90%;padding: 10px;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <ion-item class="compname">
+                <!-- <ion-item class="compname">
                   <ion-label>Company Name :</ion-label>
                   <div  *ngIf="selectedRow" color="dark" label-placement="floating" fill="outline" name="companyname"
                     label="Company Name">{{selectedRow.companyname}}</div>
-                </ion-item>
+                </ion-item> -->
+                <div *ngIf="selectedRow" class="compname" >
+                  <ion-label>Company Name</ion-label>
+                  <p>{{selectedRow.companyname}}</p>
+                </div>
 
                 <div>
                   <ion-row style="height: 280px;overflow-x:auto;">

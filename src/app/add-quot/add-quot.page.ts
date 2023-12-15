@@ -47,7 +47,7 @@ interface Quote {
 export class AddQuotPage implements OnInit {
   gstTypes: any[] = [];
 
-  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  // @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   billformate: number = 0;
   quoteNumber: number = 0;
@@ -58,24 +58,24 @@ export class AddQuotPage implements OnInit {
   refdate: string = '';
 
   //table data
-  // barcode: string = '';
-  // itemcode: number = 0;
-  // itemname: number = 0;
-  // description: string = '';
-  // quantity: string = '';
-  // unitname: number = 0;
-  // mrp: string = '';
-  // basicrate: string = '';
-  // netrate: string = '';
-  // grossrate: string = '';
-  // taxrate: string = '';
-  // CGST: string = '';
-  // SGST: string = '';
-  // IGST: string = '';
-  // discount: string = '';
-  // discountamt: string = '';
-  // totaltax: string = '';
-  // total: string = '';
+  barcode: string = '';
+  itemcode: number = 0;
+  itemname: number = 0;
+  description: string = '';
+  quantity: number = 0;
+  unitname: number = 0;
+  mrp: number = 0;
+  basicrate: number = 0;
+  netrate: number = 0;
+  grossrate: number = 0;
+  taxrate: number = 0;
+  CGST: number = 0;
+  SGST: number = 0;
+  IGST: number = 0;
+  discount: number = 0;
+  discountamt: number = 0;
+  totaltax: number = 0;
+  total: number = 0;
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -194,7 +194,7 @@ export class AddQuotPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-
+      taxrate1:['']
 
     });
 
@@ -216,7 +216,7 @@ export class AddQuotPage implements OnInit {
 
         barcode: this.myform.value.barcode,
         itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
+        itemname: 1,
         description: this.myform.value.description,
         quantity: this.myform.value.quantity,
         unitname: this.myform.value.unitname,
@@ -276,9 +276,9 @@ export class AddQuotPage implements OnInit {
           control.markAsTouched();
         }
       });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
-      }
+      // if (this.firstInvalidInput) {
+      //   this.firstInvalidInput.setFocus();
+      // }
     }
 
   }
@@ -287,13 +287,13 @@ export class AddQuotPage implements OnInit {
     const identifier = quote.itemcode ? 'itemname' : 'itemcode';
     const value = quote.itemname || quote.itemcode;
 
-    this.itemService.getItems(compid, quote.itemcode).subscribe(
+    this.itemService.getItems(compid, quote.itemname).subscribe(
       (data) => {
         console.log(data);
 
         quote.itemcode = data[0].itemCode;
-        quote.itemname = data[0].itemDesc;
-        quote.barcode = data[0].barcode;
+        quote.itemname = data[0].itemDesc; 
+        quote.barcode = data[0].barcode.toString();
         quote.unitname = data[0].unitname;
         quote.taxrate = data[0].selectGst;
 

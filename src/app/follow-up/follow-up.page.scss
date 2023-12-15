@@ -52,10 +52,15 @@ ng-template ion-button {
     padding: 2px;
 font-size: 16px;
 }
+.compname{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+
+}
 .compname ion-label{
-    margin-top: -10px;
-    color: grey;
-    font-weight: bold;
+    font-size: 16px;
+    color: #0083b0;
 }
 .compname div{
     margin-top: -10px;

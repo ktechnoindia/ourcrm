@@ -18,18 +18,18 @@ export interface quotestore {
   description: string;
   quantity: number;
   unitname: number;
-  mrp: string;
+  mrp: number;
   basicrate: number;
-  netrate: string;
-  grossrate: string;
+  netrate: number;
+  grossrate: number;
   taxrate: number;
-  IGST: string;
-  CGST: string;
-  SGST: string;
-  discount: string;
-  discountamt: string;
-  totaltax: string;
-  total: string;
+  IGST: number;
+  CGST: number;
+  SGST: number;
+  discount: number;
+  discountamt: number;
+  totaltax: number;
+  total: number;
 
   totalitemno: string;
   totalquantity: string;
@@ -56,7 +56,7 @@ export interface quotestore {
 export class QuotationService {
   total!: number;
   ttotal!: number;
-  taxrate: any;
+
   constructor(private httpclient: HttpClient) { }
   createquote(quatation: quotestore, key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addquote, quatation, { headers: { 'key': key, 'user': user } })

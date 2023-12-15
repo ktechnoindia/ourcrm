@@ -56,6 +56,26 @@ export class DcInPage implements OnInit {
   referenceNumber: number = 0;
   refdate: string = '';
 
+   //table data
+  barcode: string = '';
+  itemcode: number = 0;
+  itemname: number = 0;
+  description: string = '';
+  quantity: number = 0;
+  unitname: number = 0;
+  mrp: number = 0;
+  basicrate: number = 0;
+  netrate: number = 0;
+  grossrate: number = 0;
+  taxrate: number = 0;
+  CGST: number = 0;
+  SGST: number = 0;
+  IGST: number = 0;
+  discount: number = 0;
+  discountamt: number = 0;
+  totaltax: number = 0;
+  total: number = 0;
+
   totalitemno: string = '';
   totalquantity: string = '';
   totalgrossamt: string = '';
@@ -117,7 +137,7 @@ export class DcInPage implements OnInit {
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
-    this.itemnames$ = this.itemService.getAllItems();
+
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0]; 
     this.refdate = new Date().toISOString().split('T')[0]; 
@@ -173,7 +193,7 @@ export class DcInPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-
+      taxrate1:['']
     })
 
   }
@@ -264,13 +284,13 @@ export class DcInPage implements OnInit {
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
     const value = dcin.itemname || dcin.itemcode;
 
-    this.itemService.getItems(compid, dcin.itemcode).subscribe(
+    this.itemService.getItems(compid, dcin.itemname).subscribe(
       (data) => {
         console.log(data);
 
         dcin.itemcode = data[0].itemCode;
         dcin.itemname = data[0].itemDesc;
-        dcin.barcode = data[0].barcode;
+        dcin.barcode = data[0].barcode.toString();
         dcin.unitname = data[0].unitname;
         dcin.taxrate = data[0].selectGst;
         // Update other properties as needed
