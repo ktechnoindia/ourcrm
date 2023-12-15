@@ -195,15 +195,17 @@
                           <option value="percentage">Percentage</option>
                         </select>
                       </td>
-                      <td *ngIf="myform.get('discountType')?.value === 'percentage'">
-                        <input [(ngModel)]="dcin.discount" [ngModelOptions]="{standalone: true}"
-                          (ionBlur)="getdiscountp(dcin)" [value]="getdiscountp(dcin)" class="table_input" type="text">
-                      </td>
-                      <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                        <input [(ngModel)]="dcin.discountamt" [value]="dcin.discountamt"
+                    
+                      <td>
+                        <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
+                          style="width: 90px;" [(ngModel)]="dcin.discount" (ionBlur)="getdiscountp(dcin)"
                           [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        <ng-template #amountField>
+                          <input style="width: 100px;" [(ngModel)]="dcin.discountamt" (keyup)="getdiscountamt(dcin)"
+                            [value]="getdiscountamt(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
+                            type="text">
+                        </ng-template>
                       </td>
-
                       <td>
                         <input [(ngModel)]="dcin.totaltax" [value]="getTotaltax(dcin)"
                           [ngModelOptions]="{standalone: true}" class="table_input" type="text">

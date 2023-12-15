@@ -41,7 +41,7 @@ interface Quote {
   templateUrl: './add-quot.page.html',
   styleUrls: ['./add-quot.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule,
     ReactiveFormsModule]
 })
 export class AddQuotPage implements OnInit {
@@ -121,7 +121,6 @@ export class AddQuotPage implements OnInit {
   }];
   ttotal!: number;
   myform: FormGroup;
-
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -142,9 +141,9 @@ export class AddQuotPage implements OnInit {
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    this.quateDate = new Date().toISOString().split('T')[0]; 
-    this.refdate =  new Date().toISOString().split('T')[0]; 
-    this.deliverydate =  new Date().toISOString().split('T')[0]; 
+    this.quateDate = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
 
 
 
@@ -203,9 +202,8 @@ export class AddQuotPage implements OnInit {
 
   async onSubmit() {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    // const isValid = await this.formService.validateForm(fields);
+    const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-
       console.log('Your form data : ', this.myform.value);
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
@@ -282,23 +280,23 @@ export class AddQuotPage implements OnInit {
         this.firstInvalidInput.setFocus();
       }
     }
-    
+
   }
   getItems(quote: any) {
     const compid = 1;
     const identifier = quote.itemcode ? 'itemname' : 'itemcode';
     const value = quote.itemname || quote.itemcode;
-  
+
     this.itemService.getItems(compid, quote.itemcode).subscribe(
       (data) => {
         console.log(data);
-  
+
         quote.itemcode = data[0].itemCode;
         quote.itemname = data[0].itemDesc;
         quote.barcode = data[0].barcode;
         quote.unitname = data[0].unitname;
         quote.taxrate = data[0].selectGst;
-      
+
 
 
         // Update other properties as needed
@@ -308,7 +306,7 @@ export class AddQuotPage implements OnInit {
       }
     );
   }
-  
+
   addQuote() {
     console.log('addquotewww' + this.quoteData.length);
     // You can initialize the new row data here
@@ -339,15 +337,15 @@ export class AddQuotPage implements OnInit {
 
     this.quoteData.push(newRow);
   }
+  removeQuote(index: number, quote: Quote) {
+    this.ttotal = this.ttotal - quote.total;
+    this.quoteData.splice(index, 1);
+  }
   calculateTotal(quote: Quote) {
     quote.total = quote.totaltax + quote.grossrate;
     this.calculateTotals();
   }
 
-  removeQuote(index: number, quote: Quote) {
-    this.ttotal = this.ttotal - quote.total;
-    this.quoteData.splice(index, 1);
-  }
   calculateTotals() {
     // Add your logic to calculate totals based on the salesData array
     this.totalItemNo = this.quoteData.length;
@@ -442,7 +440,7 @@ export class AddQuotPage implements OnInit {
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity, 0);
   }
-  
+
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
@@ -539,7 +537,7 @@ export class AddQuotPage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
-    
+
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;
@@ -634,5 +632,5 @@ export class AddQuotPage implements OnInit {
   myaction(arg0: string) {
     throw new Error('Method not implemented.');
   }
-  
+
 }
