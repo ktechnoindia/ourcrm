@@ -13,7 +13,7 @@ export interface quotestore {
 
   //table
   barcode: string;
-  itemcode: string;
+  itemcode: number;
   itemname: number;
   description: string;
   quantity: number;

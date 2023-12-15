@@ -33,41 +33,44 @@
 
                     <table style="width: 800px;overflow-x:auto;overflow-y: auto;">
                       <tr>
-                        <th>Sr.No.</th>
+                        <!-- <th>Sr.No.</th> -->
                         <th>Lead ID</th>
-                        <th>Company Name</th>
                         <th>Lead Date</th>
-                        <th>Contact Person</th>
+                        <th>Company Name</th>
+                    
+                        <!-- <th>Contact Person</th> -->
                         <th>Mobile No.</th>
                         <!-- <th>Country</th>
                         <th>State</th>
                         <th>City </th> -->
-                        <th>Address</th>
+                        <!-- <th>Address</th> -->
                         <!-- <th>Pincode</th>
                         <th>Email ID</th> -->
                         <th>Select Product</th>
-                        <!-- <th>Lead Source</th>
-                        <th>Lead Assign To</th>
-                        <th>Lead Score</th>-->
-                        <th>Remark</th> 
+                        <!-- <th>Lead Source</th>-->
+                        
+                        <th>Lead Score</th>
+                        <th>Lead Owner</th>
+                        <!-- <th>Remark</th>   -->
                       </tr>
                       <tr (click)="showDetails(leadscore)"
                         *ngFor="let leadscore of filteredFollowups$ | async; let i = index">
-                        <td>{{i+1}}</td>
+                        <!-- <td>{{i+1}}</td> -->
                         <td>{{leadscore.tid}}</td>
-                        <td>{{leadscore.companyname}}</td>
                         <td>{{leadscore.crdate}}</td>
-                        <td>{{leadscore.catPerson}}</td>
+                        <td>{{leadscore.companyname}}</td>
+                      
+                        <!-- <td>{{leadscore.catPerson}}</td> -->
                         <td>{{leadscore.phone}}</td>
                         <!-- <td>{{leadscore.selectedCountry}}</td>
                           <td>{{leadscore.selectedState}}</td>
                           <td>{{leadscore.selectedDistrict}}</td> -->
-                        <td> {{leadscore.fulladdress}}</td>
+                        <!-- <td> {{leadscore.fulladdress}}</td> -->
                         <!-- <td>{{leadscore.pncode}}</td> -->
                         <!-- <td>{{leadscore.emails}}</td>-->
                         <td>{{leadscore.selectpd}}</td>
                         <!-- <td>{{leadscore.lscore}}</td> -->
-                        <!-- <td>{{leadscore.lscore}}</td>-->
+                         <td>{{leadscore.lscore}}</td>
                           <td>{{leadscore.executivename}}</td>
                           
                           <!-- <td>{{leadscore.rmark}}</td>  -->
@@ -84,6 +87,8 @@
               <ion-card style="height: 445px;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
+                  <ion-label>Company Name</ion-label>
+                  <ion-input *ngIf="selectedRow">{{selectedRow.companyname}}</ion-input>
                 </ion-row>
                 <div>
                   <ion-row style="height: 300px;padding: 10px;overflow-x:auto;">
@@ -106,30 +111,32 @@
                           <th style="width: 50px;">SR. No.</th>
                           <!-- <th>followupId</th> -->
                           <!-- <th style="width: 80px;">Company Name</th> -->
-                          <th style="width: 75px !important;">Lead Id</th>
+                          <!-- <th style="width: 75px !important;">Lead Id</th>
                           <th style="width: 80px;">Company Name</th>
-                          <th style="width: 80px;">Lead Date</th>
+                          <th style="width: 80px;">Lead Date</th> -->
                           <!-- <th style="width: 80px;">Product</th> -->
                           <!-- <th style="width: 80px;">Phone</th> -->
                           <!-- <th>Address</th> -->
                           <!-- <th style="width: 70px;">Entered By</th> -->
-                          <th style="width: 200px;">Remark</th>
-                          <th style="width: 130px !important;">Next Follow-Up Date</th>
+                          <th style="width: 200px;">Lead Update</th>
+                          <th style="width: 130px !important;">Next Follow-Up</th>
+                          <th style="width: 130px !important;" >Update By</th>
                         </tr>
                         <ng-container *ngIf="selectedRow">
                         <!-- <ng-container  *ngFor="let follow of lead$; let i = index"> -->
                           <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
                             <!-- <td>{{selectedRow.srNo}}</td> -->
-                            <td>{{selectedRow.tid}}</td>
+                            <!-- <td>{{selectedRow.tid}}</td>
                             <td>{{selectedRow.companyname}}</td>
-                            <td>{{selectedRow.crdate}}</td>
+                            <td>{{selectedRow.crdate}}</td> -->
                             <!-- <td>{{selectedRow.executivename}}</td> -->
                             <!-- <td>{{selectedRow.phone}}</td> -->
                             <!-- <td>{{selectedRow.fulladdress}}</td> -->
                             <!-- <td>{{selectedRow.selectpd}}</td> -->
                             <td>{{followup.remark}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
+                            <td>{{followup.username}}</td>
 
                           </tr>
                         <!-- </ng-container> -->

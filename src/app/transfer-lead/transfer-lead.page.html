@@ -28,39 +28,39 @@
             <ion-searchbar class="custom" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
             <table style="width: 1300px;overflow-x:auto;">
               <tr>
-                <th>Sr.No.</th>
+                <!-- <th>Sr.No.</th> -->
                 <th>Lead ID</th>
                 <th>Company Name</th>
                 <th>Lead Date</th>
                 <th>Mobile No.</th>
-                <th>Country</th>
-                <th>State</th>
+                <!-- <th>Country</th>
+                <th>State</th> -->
                 <th>City </th>
-                <th>Address</th>
+                <!-- <th>Address</th> -->
                 <th>Pincode</th>
                 <th>Email ID</th>
                 <th> Product Name</th>
-                <th>Lead Source</th>
-                <th>Contact Person</th>
+                <!-- <th>Lead Source</th> -->
+                <th>Lead Owner</th>
                 <th>Lead Assign To</th>
-                <th>Remark</th>
+                <!-- <th>Remark</th> -->
                 <th>Action</th>
               </tr>
               <tr *ngFor="let leadscore of filteredTransferlead$ | async; let i = index">
-                <td>{{i+1}}</td>
+                <!-- <td>{{i+1}}</td> -->
                   <td>{{leadscore.tid}}</td>
                   <td>{{leadscore.companyname}}</td>
-                  <td>{{leadscore.leaddate}}</td>
+                  <td>{{leadscore.crdate}}</td>
                   <td>{{leadscore.phone}}</td>
-                  <td>{{leadscore.selectedCountry}}</td>
-                  <td>{{leadscore.selectedState}}</td>
+                  <!-- <td>{{leadscore.selectedCountry}}</td>
+                  <td>{{leadscore.selectedState}}</td> -->
                   <td>{{leadscore.selectedDistrict}}</td>
-                  <td> {{leadscore.fulladdress}}</td>
+                  <!-- <td> {{leadscore.fulladdress}}</td> -->
                   <td>{{leadscore.pncode}}</td>
                   <td>{{leadscore.emails}}</td>
                   <td>{{leadscore.selectpd}}</td>
-                  <td>{{leadscore.lscore}}</td>
-                  <td>{{leadscore.catPerson}}</td>
+                  <!-- <td>{{leadscore.lscore}}</td> -->
+                  <td>{{leadscore.executivename}}</td>
                   <td  >
                     <select class="select-option" [(ngModel)]="leadscore.select_sales_person" name="select_sales_person" >
                       <option selected value="" disabled>Lead Assign To</option>Default option
@@ -70,7 +70,7 @@
     
                     </select>
                   </td>
-                  <td>{{leadscore.rmark}}</td>
+                  <!-- <td>{{leadscore.rmark}}</td> -->
                   <td>
                     <ion-button style="font-size: 10px;margin: 0;padding: 0;" size="small" type="submit" (click)="updateCatPerson(leadscore)" >Ok</ion-button>
                   </td>

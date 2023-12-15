@@ -58,24 +58,24 @@ export class AddQuotPage implements OnInit {
   refdate: string = '';
 
   //table data
-  /*barcode: string = '';
-  itemcode: string = '';
-  itemname: number = 0;
-  description: string = '';
-  quantity: string = '';
-  unitname: number = 0;
-  mrp: string = '';
-  basicrate: string = '';
-  netrate: string = '';
-  grossrate: string = '';
-  taxrate: string = '';
-  CGST: string = '';
-  SGST: string = '';
-  IGST: string = '';
-  discount: string = '';
-  discountamt: string = '';
-  totaltax: string = '';
-  total: string = '';*/
+  // barcode: string = '';
+  // itemcode: number = 0;
+  // itemname: number = 0;
+  // description: string = '';
+  // quantity: string = '';
+  // unitname: number = 0;
+  // mrp: string = '';
+  // basicrate: string = '';
+  // netrate: string = '';
+  // grossrate: string = '';
+  // taxrate: string = '';
+  // CGST: string = '';
+  // SGST: string = '';
+  // IGST: string = '';
+  // discount: string = '';
+  // discountamt: string = '';
+  // totaltax: string = '';
+  // total: string = '';
 
   totalitemno: string = '';
   totalquantity: string = '';
