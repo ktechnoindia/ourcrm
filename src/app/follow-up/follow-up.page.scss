@@ -44,3 +44,23 @@ ng-template ion-button {
         font-size: 10px;
     }
 }
+.compname {
+    border: solid 1px grey;
+    border-radius: 4px;
+    max-height:30px ;
+    margin: 2px;
+    padding: 2px;
+font-size: 16px;
+}
+.compname ion-label{
+    margin-top: -10px;
+    color: grey;
+    font-weight: bold;
+}
+.compname div{
+    margin-top: -10px;
+    justify-content: left;
+    text-align: left;
+    font-weight: lighter;
+}
+

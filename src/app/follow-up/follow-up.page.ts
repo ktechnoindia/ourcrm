@@ -11,12 +11,16 @@ import { FormValidationService } from '../form-validation.service';
 import { LeadService } from '../services/lead.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-follow-up',
   templateUrl: './follow-up.page.html',
   styleUrls: ['./follow-up.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [DatePipe]
+
 })
 export class FollowUpPage implements OnInit {
 
@@ -53,23 +57,42 @@ lid:number=0;
   } = {};
 
 
-  constructor(private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
+  constructor(private datePipe: DatePipe,private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid),(leadid), '');
-   
+    // fo: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
 
+this.followupdate = new Date().toISOString().split('T')[0];
     this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
       searchTerm: [''],
-      lid:0
+      lid:0,
+      followupdate:['']
     })
 
   }
+  // showFollowups(followup:any)
+  // {
+  //   this.followService.fetchallfollowup(this.encService.encrypt('1'),followup.tid, '', '').subscribe(
+  //     (response:any)=>{
+  //       console.log('data',response);
+  //       this.followups=response;
+  //     },
+  //     (error:any)=>{
+  //      // console.log('Post request Failed',error);
+  //       this.formService.showFailedAlert();
+  //     }
+  //   );
+  //   this.followups = {
+  //     remark: followup.rmark,
+  //     nextfollowupDate: followup.nextfollowupDate,
+  //   };
 
+  // }
   showDetails(leadscore: any) {
     // Populate the details for the selected row
 
@@ -105,7 +128,7 @@ lid:number=0;
 
       nextfollowupDate: this.myform.value.nextfollowupDate,
       remark: this.myform.value.remark,
-      followupdate: '1',
+      followupdate: this.myform.value.followupdate,
       enterdby: '1',
       leadid:this.myform.value.lid,
       companyid:1,

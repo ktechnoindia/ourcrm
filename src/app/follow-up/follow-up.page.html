@@ -25,19 +25,19 @@
         <form [formGroup]="myform" (ngSubmit)="onSubmit()">
           <ion-row>
             <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 445px;">
+              <ion-card style="height: 500px;margin-left: 10%;width: 90%;">
                 <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus"
                   [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
                   <div class="scroll-container" style="height: 360px;">
 
-                    <table style="width: 800px;overflow-x:auto;overflow-y: auto;">
+                    <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
                         <!-- <th>Sr.No.</th> -->
                         <th>Lead ID</th>
                         <th>Lead Date</th>
                         <th>Company Name</th>
-                    
+
                         <!-- <th>Contact Person</th> -->
                         <th>Mobile No.</th>
                         <!-- <th>Country</th>
@@ -48,8 +48,8 @@
                         <th>Email ID</th> -->
                         <th>Select Product</th>
                         <!-- <th>Lead Source</th>-->
-                        
-                        <th>Lead Score</th>
+
+                        <!-- <th>Lead Score</th> -->
                         <th>Lead Owner</th>
                         <!-- <th>Remark</th>   -->
                       </tr>
@@ -59,7 +59,7 @@
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.crdate}}</td>
                         <td>{{leadscore.companyname}}</td>
-                      
+
                         <!-- <td>{{leadscore.catPerson}}</td> -->
                         <td>{{leadscore.phone}}</td>
                         <!-- <td>{{leadscore.selectedCountry}}</td>
@@ -70,10 +70,10 @@
                         <!-- <td>{{leadscore.emails}}</td>-->
                         <td>{{leadscore.selectpd}}</td>
                         <!-- <td>{{leadscore.lscore}}</td> -->
-                         <td>{{leadscore.lscore}}</td>
-                          <td>{{leadscore.executivename}}</td>
-                          
-                          <!-- <td>{{leadscore.rmark}}</td>  -->
+                        <!-- <td>{{leadscore.lscore}}</td> -->
+                        <td>{{leadscore.executivename}}</td>
+
+                        <!-- <td>{{leadscore.rmark}}</td>  -->
 
                       </tr>
 
@@ -84,16 +84,20 @@
             </ion-col>
 
             <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 445px;">
+              <ion-card style="height: 500px;margin-right: 10%;width: 90%;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
-                  <ion-label>Company Name</ion-label>
-                  <ion-input *ngIf="selectedRow">{{selectedRow.companyname}}</ion-input>
                 </ion-row>
+                <ion-item class="compname">
+                  <ion-label>Company Name :</ion-label>
+                  <div  *ngIf="selectedRow" color="dark" label-placement="floating" fill="outline" name="companyname"
+                    label="Company Name">{{selectedRow.companyname}}</div>
+                </ion-item>
+
                 <div>
                   <ion-row style="height: 280px;overflow-x:auto;">
                     <div class="scroll-container" style="border: 1px solid grey;">
-                      <table style="overflow-x:auto; width: 645px;">
+                      <table style="overflow-x:auto; width: 100%;">
                         <!-- <tr>
                           <th >
                             Company Name
@@ -108,7 +112,9 @@
                         
                         </tr> -->
                         <tr>
-                          <th style="width: 50px;">SR. No.</th>
+                          <th >SR. No.</th>
+                          <th>Date</th>
+                          <th>Remark</th>
                           <!-- <th>followupId</th> -->
                           <!-- <th style="width: 80px;">Company Name</th> -->
                           <!-- <th style="width: 75px !important;">Lead Id</th>
@@ -118,14 +124,15 @@
                           <!-- <th style="width: 80px;">Phone</th> -->
                           <!-- <th>Address</th> -->
                           <!-- <th style="width: 70px;">Entered By</th> -->
-                          <th style="width: 200px;">Lead Update</th>
-                          <th style="width: 130px !important;">Next Follow-Up</th>
-                          <th style="width: 130px !important;" >Update By</th>
+                          <th>Next Follow-Up</th>
+                          <th>Update By</th>
                         </tr>
                         <ng-container *ngIf="selectedRow">
-                        <!-- <ng-container  *ngFor="let follow of lead$; let i = index"> -->
+                          <!-- <ng-container  *ngFor="let follow of lead$; let i = index"> -->
                           <tr *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
+                            <td>{{followup.followupdate}}</td>
+                            <td>{{followup.remark}}</td>
                             <!-- <td>{{selectedRow.srNo}}</td> -->
                             <!-- <td>{{selectedRow.tid}}</td>
                             <td>{{selectedRow.companyname}}</td>
@@ -134,32 +141,29 @@
                             <!-- <td>{{selectedRow.phone}}</td> -->
                             <!-- <td>{{selectedRow.fulladdress}}</td> -->
                             <!-- <td>{{selectedRow.selectpd}}</td> -->
-                            <td>{{followup.remark}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
-                            <td>{{followup.username}}</td>
+                            <td>{{followup.enterdby}}</td>
 
                           </tr>
-                        <!-- </ng-container> -->
-                      </ng-container>
+                          <!-- </ng-container> -->
+                        </ng-container>
                       </table>
                     </div>
                   </ion-row>
                 </div>
 
                 <div>
-                  <ion-row style="padding:0px 10px ;">
-
+                  <ion-row style="padding:0px 10px;">
                     <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
                       <ion-row>
                         <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate"
-                          name="nextfollowupDate" type="date" label="Next Follow-Up Date :"
-                          label-placement="floating" fill="outline"></ion-input>
-                          <ion-input [(ngModel)]="lid" formControlName="lid"
-                          name="lid" type="hidden"></ion-input>
+                          name="nextfollowupDate" type="date" label="Next Follow-Up Date :" label-placement="floating"
+                          fill="outline"></ion-input>
+                        <ion-input [(ngModel)]="lid" formControlName="lid" name="lid" type="hidden"></ion-input>
                       </ion-row>
                     </ion-col>
                     <ion-col size="6" size-lg="8" size-md="8" size-sm="8">
-                      <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
+                      <ion-textarea  [(ngModel)]="remark" formControlName="remark" label-placement="floating"
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>
                   </ion-row>
@@ -171,6 +175,8 @@
                     <ion-loading class="custom-loading" trigger="open-loading1" message="New Follow Up Saving..."
                       [duration]="1000"></ion-loading>
                   </ion-row>
+                  <ion-input  formControlName="followupdate"  name="followupdate"  type="hidden" [(ngModel)]="followupdate"></ion-input>
+
                 </div>
               </ion-card>
             </ion-col>
