@@ -92,6 +92,7 @@ myform:FormGroup;
       address: this.myform.value.address,
       selectedarea: this.myform.value.selectedarea,
       salutation: this.myform.value.salutation,
+      companyid:1
     };
     this.signUp.createsignup(signupdata, '', '').subscribe(
       (response: any) => {

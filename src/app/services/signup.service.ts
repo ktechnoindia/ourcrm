@@ -17,6 +17,7 @@ export interface signup{
   selectedDistrict: number;
   address: string;
   selectedarea:number;
+  companyid:number
 }
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,6 @@ export class SignupService {
     
    }
    createsignup(signup:signup,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addsignup,signup,{headers:{'key':key,'user':user}})
+    return this.httpclient.post(environment.apiloginurl+environment.addsignup,signup,{headers:{'key':key,'user':user}})
   }
 }
