@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastController } from '@ionic/angular'; 
 import { LoginService,logindata } from '../services/login.service';
 import { SharedService } from '../shared.service';
+import { SessionService } from '../services/session.service';
 
 
 
@@ -26,7 +27,7 @@ export class LoginPage implements OnInit {
 
    submitValue = false;
 myform:FormGroup;
-   constructor(private sharedService: SharedService,private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService){
+   constructor(private sharedService: SharedService,private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService,private session:SessionService){
     this.myform = this.formBuilder.group({
       username:[''],
       password:['']
@@ -45,6 +46,9 @@ myform:FormGroup;
       (response: any) => {
         console.log('POST request successful', response);
         // Handle the response as needed
+        this.session.setValue('userid',response.tid);
+        this.session.setValue('token',response.access_token);
+        
       },
       (error: any) => {
         console.error('POST request failed', error);

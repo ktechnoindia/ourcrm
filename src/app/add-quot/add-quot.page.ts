@@ -209,6 +209,7 @@ export class AddQuotPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', this.myform.value);
+      let quotedatas: quotestore[]=[];
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
         quoteNumber: this.myform.value.quoteNumber,
@@ -254,8 +255,8 @@ export class AddQuotPage implements OnInit {
 
         ttotal: this.myform.value.ttotal,
       };
-
-      this.quote.createquote(quotedata, '', '').subscribe(
+      quotedatas.push(quotedata);
+      this.quote.createquote(quotedatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
