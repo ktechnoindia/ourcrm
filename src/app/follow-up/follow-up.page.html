@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
+<ion-content >
   <div class="Customer">
     <div>
       <ion-card-content>
@@ -24,8 +24,8 @@
         </div>
         <form [formGroup]="myform" (ngSubmit)="onSubmit()">
           <ion-row>
-            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 500px;margin-left: 10%;width: 90%;">
+            <ion-col size="12" size-lg="5" size-md="5" size-sm="6">
+              <ion-card style="height: 500px;">
                 <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus"
                   [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
@@ -34,7 +34,7 @@
                     <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
                         <!-- <th>Sr.No.</th> -->
-                        <th>Lead ID</th>
+                        <th >Lead ID</th>
                         <th>Lead Date</th>
                         <th>Company Name</th>
 
@@ -57,7 +57,7 @@
                         *ngFor="let leadscore of filteredFollowups$ | async; let i = index">
                         <!-- <td>{{i+1}}</td> -->
                         <td>{{leadscore.tid}}</td>
-                        <td>{{leadscore.crdate}}</td>
+                        <td>{{leadscore.crdate | date:'dd/MM/YYYY'}}</td>
                         <td>{{leadscore.companyname}}</td>
 
                         <!-- <td>{{leadscore.catPerson}}</td> -->
@@ -68,9 +68,9 @@
                         <!-- <td> {{leadscore.fulladdress}}</td> -->
                         <!-- <td>{{leadscore.pncode}}</td> -->
                         <!-- <td>{{leadscore.emails}}</td>-->
+                        <!-- <td>{{leadscore.lscore}}</td> -->
+                        <!-- <td>{{leadscore.lscore}}</td> -->
                         <td>{{leadscore.selectpd}}</td>
-                        <!-- <td>{{leadscore.lscore}}</td> -->
-                        <!-- <td>{{leadscore.lscore}}</td> -->
                         <td>{{leadscore.executivename}}</td>
 
                         <!-- <td>{{leadscore.rmark}}</td>  -->
@@ -83,8 +83,8 @@
               </ion-card>
             </ion-col>
 
-            <ion-col class="followuplist" size="12" size-lg="6" size-md="6" size-sm="6">
-              <ion-card style="height: 500px;margin-right: 10%;width: 90%;padding: 10px;">
+            <ion-col class="followuplist" size="12" size-lg="7" size-md="7" size-sm="6">
+              <ion-card style="height: 500px;padding: 5px;">
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
@@ -93,13 +93,13 @@
                   <div  *ngIf="selectedRow" color="dark" label-placement="floating" fill="outline" name="companyname"
                     label="Company Name">{{selectedRow.companyname}}</div>
                 </ion-item> -->
-                <div *ngIf="selectedRow" class="compname" >
+                <div  *ngIf="selectedRow" class="compname" >
                   <ion-label>Company Name</ion-label>
                   <p>{{selectedRow.companyname}}</p>
                 </div>
 
-                <div>
-                  <ion-row style="height: 280px;overflow-x:auto;">
+                <div style="padding: 10px;">
+                  <ion-row style="overflow-x:auto;">
                     <div class="scroll-container" style="border: 1px solid grey;">
                       <table style="overflow-x:auto; width: 100%;">
                         <!-- <tr>

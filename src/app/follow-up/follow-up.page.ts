@@ -12,6 +12,8 @@ import { LeadService } from '../services/lead.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { AdditemService } from '../services/additem.service';
+import { ExecutiveService } from '../services/executive.service';
 
 @Component({
   selector: 'app-follow-up',
@@ -31,14 +33,14 @@ export class FollowUpPage implements OnInit {
   nextfollowupDate: string = '';
   custid: string = '';
   leadid: number = 0;
-  compid:  number = 0;
+  compid: number = 0;
   companyId: number = 0;
   followUpCounter: number = 1;
   lead$: Observable<any[]>
   myform: FormGroup;
-  showLeadDetails = false; 
+  showLeadDetails = false;
   selectedRowDetails: any[] = [];
-lid:number=0;
+  lid: number = 0;
   searchTerm: string = '';
   filteredFollowups$: Observable<any[]> = new Observable<any[]>();
   followups: any;
@@ -48,6 +50,7 @@ lid:number=0;
     tid?: number,
     companyname?: string,
     crdate?: string,
+    leaddate?:string,
     executivename?: string,
     phone?: string,
     fulladdress?: string,
@@ -57,62 +60,47 @@ lid:number=0;
   } = {};
 
 
-  constructor(private datePipe: DatePipe,private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
+  constructor(private productService:AdditemService, private executiveService :ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
-    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid),(leadid), '');
+    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), (leadid), '');
     // fo: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
 
-this.followupdate = new Date().toISOString().split('T')[0];
-    this.nextfollowupDate = new Date().toISOString().split('T')[0]; 
+    this.followupdate = new Date().toISOString().split('T')[0];
+    this.nextfollowupDate = new Date().toISOString().split('T')[0];
     this.myform = this.formBuilder.group({
       remark: [''],
       nextfollowupDate: [''],
       searchTerm: [''],
-      lid:0,
-      followupdate:['']
+      lid: 0,
+      followupdate: ['']
     })
 
   }
-  // showFollowups(followup:any)
-  // {
-  //   this.followService.fetchallfollowup(this.encService.encrypt('1'),followup.tid, '', '').subscribe(
-  //     (response:any)=>{
-  //       console.log('data',response);
-  //       this.followups=response;
-  //     },
-  //     (error:any)=>{
-  //      // console.log('Post request Failed',error);
-  //       this.formService.showFailedAlert();
-  //     }
-  //   );
-  //   this.followups = {
-  //     remark: followup.rmark,
-  //     nextfollowupDate: followup.nextfollowupDate,
-  //   };
-
-  // }
+  
   showDetails(leadscore: any) {
     // Populate the details for the selected row
 
 
-    this.followService.fetchallfollowup(this.encService.encrypt('1'),leadscore.tid, '', '').subscribe(
-      (response:any)=>{
-        console.log('data',response);
-        this.followups=response;
+    this.followService.fetchallfollowup(this.encService.encrypt('1'), leadscore.tid, '', '').subscribe(
+      (response: any) => {
+        console.log('data', response);
+        this.followups = response;
       },
-      (error:any)=>{
-       // console.log('Post request Failed',error);
+      (error: any) => {
+        console.log('Post request Failed',error);
         this.formService.showFailedAlert();
       }
     );
-    this.lid=leadscore.tid;
+    
+    this.lid = leadscore.tid;
     this.selectedRow = {
       srNo: leadscore.srNo,
       tid: leadscore.tid,
       companyname: leadscore.companyname,
       crdate: leadscore.crdate,
+      leaddate:leadscore.leaddate,
       executivename: leadscore.executivename,
       phone: leadscore.phone,
       fulladdress: leadscore.fulladdress,
@@ -121,7 +109,7 @@ this.followupdate = new Date().toISOString().split('T')[0];
       nextfollowupDate: leadscore.nextfollowupDate,
     };
   }
- 
+
   async onSubmit() {
 
     const followupdata: followuptable = {
@@ -130,14 +118,14 @@ this.followupdate = new Date().toISOString().split('T')[0];
       remark: this.myform.value.remark,
       followupdate: this.myform.value.followupdate,
       enterdby: '1',
-      leadid:this.myform.value.lid,
-      companyid:1,
+      leadid: this.myform.value.lid,
+      companyid: 1,
       custid: 1,
 
     };
 
     this.followService.createfollowup(followupdata, '', '').subscribe(
-      
+
       (response: any) => {
 
         console.log(response);
@@ -148,7 +136,7 @@ this.followupdate = new Date().toISOString().split('T')[0];
         console.log(error)
       }
     );
-    
+
   }
 
   filterCustomers(): Observable<any[]> {
@@ -167,7 +155,7 @@ this.followupdate = new Date().toISOString().split('T')[0];
 
   ngOnInit() {
     this.filteredFollowups$ = this.lead$.pipe(
-      debounceTime(300),
+      debounceTime(600),
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
