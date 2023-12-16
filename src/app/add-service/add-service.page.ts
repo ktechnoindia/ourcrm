@@ -33,7 +33,7 @@ export class AddServicePage implements OnInit {
       service_code:['',[Validators.required]],
       service_name:['',[Validators.required]],
       gst:[''],
-      sac_code:[''],
+      sac_code:['',Validators.pattern(/^\d{6}$/)],
       description:['']
     })
   }

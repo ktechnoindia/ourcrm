@@ -51,7 +51,7 @@ export class RoleofexicutivePage implements OnInit {
       selectedState: [''],
       selectedDistrict: [''],
       fulladdress: [''],
-      email: [''],
+      email: ['',Validators.email],
       wpnumber: [''],
       pin_code: ['']
     })

@@ -14,6 +14,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { DatePipe } from '@angular/common';
 import { AdditemService } from '../services/additem.service';
 import { ExecutiveService } from '../services/executive.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-follow-up',
@@ -60,7 +61,7 @@ export class FollowUpPage implements OnInit {
   } = {};
 
 
-  constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
+  constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,private navCtrl: NavController) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
@@ -110,6 +111,16 @@ export class FollowUpPage implements OnInit {
     };
   }
 
+  selectFollowup(selectedFollowup: any) {
+    // Update the remark field with the selected follow-up's remark
+    this.remark = selectedFollowup.remark;
+
+    // You might want to update other fields as well, e.g., nextfollowupDate, lid, etc.
+    this.nextfollowupDate = selectedFollowup.nextfollowupDate;
+    this.lid = selectedFollowup.tid;
+    // ... other fields
+  }
+
   async onSubmit() {
     const fields = { remark: this.remark, followupdate: this.followupdate, }
     // const isValid = await this.formService.validateForm(fields);
@@ -136,7 +147,8 @@ export class FollowUpPage implements OnInit {
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-          this.formService.showSaveLoader()
+          this.formService.showSaveLoader();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -144,6 +156,7 @@ export class FollowUpPage implements OnInit {
             this.formService.showFailedAlert();
           }, 100);
           this.formService.shoErrorLoader();
+          
         }
       );
     }

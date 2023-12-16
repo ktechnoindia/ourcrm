@@ -133,7 +133,7 @@
                         </tr>
                         <ng-container *ngIf="selectedRow">
                           <!-- <ng-container  *ngFor="let follow of lead$; let i = index"> -->
-                          <tr *ngFor="let followup of followups; let i = index">
+                          <tr (click)="selectFollowup(followup)" *ngFor="let followup of followups; let i = index">
                             <td>{{i+1}}</td>
                             <td>{{followup.followupdate}}</td>
                             <td>{{followup.remark}}</td>
