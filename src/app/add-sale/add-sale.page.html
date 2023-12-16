@@ -155,15 +155,15 @@
                   <tr *ngFor="let sales of salesData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="sales.barcode" [ngModelOptions]="{standalone: true}" class="table_input" (ngModelChange)="getItems(sales)"
+                      <input [(ngModel)]="sales.barcode" [ngModelOptions]="{standalone: true}" class="table_input" 
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"(ngModelChange)="getItems(sales)"
+                      <input [(ngModel)]="sales.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <select class="select-option"  style="width: 100px;outline: none;border: none;" id="itemname"(ngModelChange)="getItems(sales)"
+                      <select class="select-option"  style="width: 100px;outline: none;border: none;" id="itemname"
                         [(ngModel)]=" sales.itemcode" [ngModelOptions]="{standalone: true}">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
@@ -207,7 +207,7 @@
                     </td>
                     <td>
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
-                        [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
+                        [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <!-- Default option with value 0 -->
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
