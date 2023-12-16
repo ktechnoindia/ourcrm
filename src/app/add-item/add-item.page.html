@@ -154,22 +154,23 @@
 
                 <ng-container [ngSwitch]="type">
                   <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
-
-                    <ion-row *ngFor="let attribute of attributes; let i = index">
-
+                    <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
                       <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                         <ion-row>
-                          <!-- <ion-input [(ngModel)]="attributes[i]" type="text" [name]="'attr' + (i + 1)" label=" Attribute {{ i + 1 }}" label-placement="floating" fill="outline"></ion-input> -->
-                          <select class="select" [(ngModel)]="selectedAttribute" formControlName="selectedAttribute" name="selectedAttribute" (ionChange)="onAttributeChange()">
-                            <option value=""> Select Attribute</option>
-                            <option *ngFor="let attributename of attname$ | async ;  let i = index">{{attributename.attname}}
-                            </option>
+                          <select
+                            class="select"
+                            [(ngModel)]="attributes[attributeKey]"
+                            formControlName="{{ attributeKey }}"
+                            name="{{ attributeKey }}"
+                            (ionChange)="onAttributeChange()"
+                          >
+                            <option value="">Select Attribute</option>
+                            <option *ngFor="let attributename of attname$ | async; let i = index">{{ attributename.attname }}</option>
                           </select>
-
                         </ion-row>
                       </ion-col>
                     </ion-row>
-
+                  
                     <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
                   </div>
 

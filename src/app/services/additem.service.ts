@@ -6,6 +6,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 export interface item {
 
+  attributes: any;
   itemDesc: string;
   itemCode: string;
   hsnname: string;
