@@ -28,6 +28,7 @@ import { AddattributeService } from '../services/addattribute.service';
 
 })
 export class AddItemPage implements OnInit {
+
   myform: FormGroup;
   submitted = false;
   type = 'address';
@@ -43,7 +44,7 @@ export class AddItemPage implements OnInit {
   selectGst: number = 0;
   openingbalance: string = '';
   closingbalance: string = '';
-  selectedAttribute: string = '';
+  // selectedAttribute: string = '';
   files: string = '';
   barcode: number = 0;
   minimum: number = 0;
@@ -73,8 +74,9 @@ export class AddItemPage implements OnInit {
   itemgroups$: Observable<any[]>
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  attributes: string[] = [];
-  itemname$: Observable<any>;
+  selectedAttribute: string = '';
+  attributes: { [key: string]: string } = {}; 
+   itemname$: Observable<any>;
 
   constructor(private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService) {
     this.selectGst$ = this.gstsrvs.getgsttype();
@@ -115,11 +117,19 @@ export class AddItemPage implements OnInit {
       attr8: [''],
       mrp:[''],
       basicrate:[''],
+      attributes: this.formBuilder.group({}),
+
     })
 
   }
   addAttribute() {
-    this.attributes.push(''); // Add a new empty attribute
+    const newAttributeKey = `attr${Object.keys(this.attributes).length + 1}`;
+    this.attributes = { ...this.attributes, [newAttributeKey]: '' };
+    this.myform.addControl(newAttributeKey, this.formBuilder.control(''));
+  }
+
+  getAttributeKeys() {
+    return Object.keys(this.attributes);
   }
   onAttributeChange() {
     // Handle the selected attribute here
@@ -174,6 +184,7 @@ export class AddItemPage implements OnInit {
         attr6: this.myform.value.attr6,
         attr7: this.myform.value.attr7,
         attr8: this.myform.value.attr8,
+        attributes: this.attributes,
 
         companyid:1
 

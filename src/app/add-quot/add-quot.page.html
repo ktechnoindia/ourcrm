@@ -129,7 +129,7 @@
                         (ngModelChange)="getItems(quote)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
-                          {{ item .itemDesc }}
+                          {{ item.itemDesc }}
                         </option>
                       </select>
                       <!-- Use a hidden input for sending itemcode -->

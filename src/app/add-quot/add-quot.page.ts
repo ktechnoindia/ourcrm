@@ -161,23 +161,23 @@ export class AddQuotPage implements OnInit {
 
       //table
       barcode: [''],
-      itemcode: [''],
+      itemcode: 0,
       itemname: [''],
       description: [''],
-      quantity: [''],
-      unitname: [''],
-      mrp: [''],
-      basicrate: [''],
-      netrate: [''],
-      grossrate: [''],
-      taxrate: [''],
-      IGST: [''],
-      CGST: [''],
-      SGST: [''],
-      discount: [''],
-      discountamt: [''],
-      totaltax: [''],
-      total: [''],
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate:0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
       totalitemno: [''],
       totalquantity: [''],
@@ -209,6 +209,7 @@ export class AddQuotPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', this.myform.value);
+      let quotedatas: quotestore[]=[];
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
         quoteNumber: this.myform.value.quoteNumber,
@@ -217,45 +218,43 @@ export class AddQuotPage implements OnInit {
         custname: this.myform.value.custname,
         refrence: this.myform.value.refrence,
         refdate: this.myform.value.refdate,
-
-        barcode: this.myform.value.barcode,
-        itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
-        description: this.myform.value.description,
-        quantity: this.myform.value.quantity,
-        unitname: this.myform.value.unitname,
-        mrp: this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
-        netrate: this.myform.value.netrate,
-        grossrate: this.myform.value.grossrate,
-        taxrate: this.myform.value.taxrate,
-        CGST: this.myform.value.CGST,
-        SGST: this.myform.value.SGST,
-        IGST: this.myform.value.IGST,
-        discount: this.myform.value.discount,
-        discountamt: this.myform.value.discountamt,
-        totaltax: this.myform.value.totaltax,
-        total: this.myform.value.total,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        roundoff: this.myform.value.roundoff,
-        pretax: '0',
-        posttax: '0',
-        deliverydate: '01/12/23',
-        deliveryplace: 'jaipur',
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit: this.myform.value.debit,
-        credit: this.myform.value.credit,
-
-        ttotal: this.myform.value.ttotal,
+        barcode: '',
+        itemcode: '',
+        itemname: 0,
+        description: '',
+        quantity: 0,
+        unitname: 0,
+        mrp: '',
+        basicrate: 0,
+        netrate: '',
+        grossrate: '',
+        taxrate: 0,
+        IGST: '',
+        CGST: '',
+        SGST: '',
+        discount: '',
+        discountamt: '',
+        totaltax: '',
+        total: '',
+        totalitemno: '',
+        totalquantity: '',
+        totalgrossamt: '',
+        totaldiscountamt: '',
+        totaltaxamount: '',
+        totalnetamount: '',
+        deliverydate: '',
+        deliveryplace: '',
+        roundoff: '',
+        pretax: '',
+        posttax: '',
+        openingbalance: '',
+        closingbalance: '',
+        debit: '',
+        credit: '',
+        ttotal: 0
       };
-
-      this.quote.createquote(quotedata, '', '').subscribe(
+      quotedatas.push(quotedata);
+      this.quote.createquote(quotedatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -289,7 +288,7 @@ export class AddQuotPage implements OnInit {
   getItems(quote: any) {
     const compid = 1;
     const identifier = quote.itemcode ? 'itemname' : 'itemcode';
-    const value = quote.itemname || quote.itemcode;
+    const value =  quote.itemcode;
   
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
