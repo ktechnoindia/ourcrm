@@ -116,7 +116,7 @@ export class FollowUpPage implements OnInit {
     this.remark = selectedFollowup.remark;
 
     // You might want to update other fields as well, e.g., nextfollowupDate, lid, etc.
-    this.nextfollowupDate = selectedFollowup.nextfollowupDate;
+    // this.nextfollowupDate = selectedFollowup.nextfollowupDate;
     this.lid = selectedFollowup.tid;
     // ... other fields
   }
