@@ -15,6 +15,8 @@ import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 interface Dcin {
+  posttax: number;
+  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -34,8 +36,7 @@ interface Dcin {
   totaltax: number;
   total: number;
   taxrate1: number;
-  pretax: number;
-  posttax: number;
+  itemid:number;
 }
 @Component({
   selector: 'app-dc-in',
@@ -94,6 +95,7 @@ export class DcInPage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
+    itemid:0
   }];
 
   ttotal!: number;
@@ -137,25 +139,24 @@ export class DcInPage implements OnInit {
 
       //table
       barcode: [''],
-      itemcode: [''],
+      itemcode: 0,
       itemname: [''],
       description: [''],
-      quantity: [''],
-      unitname: [''],
-      mrp: [''],
-      basicrate: [''],
-      netrate: [''],
-      grossrate: [''],
-      taxrate: [''],
-      IGST: [''],
-      CGST: [''],
-      SGST: [''],
-      discount: [''],
-      discountamt: [''],
-      totaltax: [''],
-      total: [''],
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate:0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
-
       totalitemno: [''],
       totalquantity: [''],
       totalgrossamt: [''],
@@ -174,18 +175,21 @@ export class DcInPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
+      itemid:['']
+
 
     })
 
   }
 
-  async onSubmit() {
+  async onSubmit(form: NgForm,dcinData:any) {
 
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.myform.value);
-
+      let decindatas: dcinstore[]=[];
+      for (const dcins of this.dcinData) { 
       let dcindata: dcinstore = {
         voucherformat: this.myform.value.voucherformat,
         voucherNumber: this.myform.value.voucherNumber,
@@ -194,44 +198,46 @@ export class DcInPage implements OnInit {
         suppliertype: this.myform.value.suppliertype,
         referenceNumber: this.myform.value.referenceNumber,
         refdate: this.myform.value.refdate,
-        // ponumber: this.myform.value.ponumber,
-
         barcode: this.myform.value.barcode,
-        itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
-        description: this.myform.value.description,
-        quantity: this.myform.value.quantity,
-        unitname: this.myform.value.unitname,
-        mrp: this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
-        netrate: this.myform.value.netrate,
-        grossrate: this.myform.value.grossrate,
-        taxrate: this.myform.value.taxrate,
-        CGST: this.myform.value.CGST,
-        SGST: this.myform.value.SGST,
-        IGST: this.myform.value.IGST,
-        discount: this.myform.value.discount,
-        discountamt: this.myform.value.discountamt,
-        totaltax: this.myform.value.totaltax,
-        total: this.myform.value.total,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        roundoff: this.myform.value.roundoff,
-        pretax: this.myform.value.pretax,
-        posttax: this.myform.value.posttax,
-        deliverydate: this.myform.value.deliverydate,
-        deliveryplace: this.myform.value.deliveryplace,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit: this.myform.value.debit,
-        credit: this.myform.value.credit,
-      };
+        itemcode: dcins.itemcode,
+        itemname: dcins.itemname,
+        description: dcins.description,
+        quantity: dcins.quantity,
+        unitname: dcins.unitname,
+        mrp: dcins.mrp,
+        basicrate: dcins.basicrate,
+        netrate: dcins.netrate,
+        grossrate: dcins.grossrate,
+        taxrate: dcins.taxrate,
+        IGST: dcins.IGST,
+        CGST: dcins.CGST,
+        SGST: dcins.SGST,
+        discount: dcins.discount,
+        discountamt: dcins.discountamt,
+        totaltax: dcins.totaltax,
+        total: dcins.total,
+        totalitemno: '',
+        totalquantity: '',
+        totalgrossamt: '',
+        totaldiscountamt: '',
+        totaltaxamount: '',
+        totalnetamount: '',
+        deliverydate: '',
+        deliveryplace: '',
+        roundoff: '',
+        pretax: dcins.pretax,
+        posttax: dcins.posttax,
+        openingbalance: '',
+        closingbalance: '',
+        debit: '',
+        credit: '',
+        taxrate1: dcins.taxrate1
+      }
+      decindatas.push(dcindata);
+    }
+      
 
-      this.dcinService.createdcin(dcindata, '', '').subscribe(
+      this.dcinService.createdcin(decindatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -310,6 +316,7 @@ export class DcInPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
+      itemid:0
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
