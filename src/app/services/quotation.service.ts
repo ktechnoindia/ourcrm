@@ -13,23 +13,23 @@ export interface quotestore {
 
   //table
   barcode: string;
-  itemcode: number;
+  itemcode: string;
   itemname: number;
   description: string;
   quantity: number;
   unitname: number;
-  mrp: number;
+  mrp: string;
   basicrate: number;
-  netrate: number;
-  grossrate: number;
+  netrate: string;
+  grossrate: string;
   taxrate: number;
-  IGST: number;
-  CGST: number;
-  SGST: number;
-  discount: number;
-  discountamt: number;
-  totaltax: number;
-  total: number;
+  IGST: string;
+  CGST: string;
+  SGST: string;
+  discount: string;
+  discountamt: string;
+  totaltax: string;
+  total: string;
 
   totalitemno: string;
   totalquantity: string;
@@ -56,10 +56,10 @@ export interface quotestore {
 export class QuotationService {
   total!: number;
   ttotal!: number;
-
+  taxrate: any;
   constructor(private httpclient: HttpClient) { }
   createquote(quatation: quotestore, key: string, user: string) {
-    return this.httpclient.post(environment.apiactionurl + environment.addquote, quatation, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.post(environment.apiactionurl + environment.addquote, quatation, { headers: { 'key': key, 'user': user } });
   }
 
   fetchallQuote(companyid: string, key: string, user: string): Observable<any> {
