@@ -34,6 +34,7 @@ interface Quote {
   totaltax: number;
   total: number;
   taxrate1: number;
+  itemid:number;
 }
 
 @Component({
@@ -117,7 +118,8 @@ export class AddQuotPage implements OnInit {
     total: 0,
     taxrate1: 0,
     pretax: 0,
-    posttax: 0
+    posttax: 0,
+    itemid:0,
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -195,7 +197,7 @@ export class AddQuotPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-
+      itemid:['']
 
     });
 
@@ -345,7 +347,9 @@ export class AddQuotPage implements OnInit {
       total: 0,
       taxrate1: 0,
       pretax: 0,
-      posttax: 0
+      posttax: 0,
+      itemid:0,
+
       // Add more properties as needed
     };
 

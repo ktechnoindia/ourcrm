@@ -295,28 +295,7 @@ export class AddPurchasePage implements OnInit {
       }
     }
   }
-  getItems(Purchase: any) {
-    const compid = 1;
-    const identifier = Purchase.itemcode ? 'itemname' : 'itemcode';
-    const value = Purchase.itemname || Purchase.itemcode;
-  
-    this.itemService.getItems(compid, Purchase.itemcode).subscribe(
-      (data) => {
-        console.log(data);
-  
-        Purchase.itemcode = data[0].itemCode;
-        Purchase.itemname = data[0].itemDesc;
-        Purchase.barcode = data[0].barcode;
-        Purchase.unitname = data[0].unitname;
-        Purchase.taxrate = data[0].selectGst;
-        // Update other properties as needed
-      
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
+ 
   addPurchase() {
     console.log('addrowwww' + this.purchaseData.length);
     // You can initialize the new row data here
