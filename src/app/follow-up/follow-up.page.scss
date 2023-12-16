@@ -5,7 +5,7 @@
 }
 
 .Customer ion-textarea {
-    min-height: 35px;
+    max-height: 35px;
 }
 
 .Customer select {
@@ -23,16 +23,19 @@
     height: 280px;
     overflow-x: auto
 }
-table tr td select{
+
+table tr td select {
     border: solid 1px lightgray;
     color: darkgray;
     font-weight: 400;
     cursor: pointer;
-    
+
 }
-table{
+
+table {
     cursor: pointer;
 }
+
 ng-template ion-button {
     color: goldenrod;
 }
@@ -40,36 +43,48 @@ ng-template ion-button {
 @media(max-width:540px) {
     .Customer ion-input {
         min-height: 25px;
-       font-size: 10px;
+        font-size: 10px;
     }
-    
+
     .Customer ion-textarea {
         min-height: 25px;
         font-size: 10px;
     }
 }
+
 .compname {
     border: solid 1px grey;
     border-radius: 4px;
-    max-height:30px ;
+    max-height: 30px;
     margin: 2px;
     padding: 2px;
-font-size: 16px;
+    font-size: 16px;
 }
-.compname{
+
+.compname {
     display: flex;
     justify-content: space-around;
     border: 1px solid grey;
 
 }
-.compname ion-label{
+
+.compname ion-label {
     font-size: 16px;
     color: #0083b0;
 }
-.compname div{
+
+.compname div {
     margin-top: -10px;
     justify-content: left;
     text-align: left;
     font-weight: lighter;
 }
 
+.scroll-container table tr:hover {
+    color: rgb(0, 0, 0);
+    background: rgb(0, 183, 255);
+    font-weight: bold;
+    border: solid   1px black;
+    border-radius: 30px;
+    padding: 5px;
+}
