@@ -14,7 +14,6 @@ import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
-import { QuotationService } from '../services/quotation.service';
 interface Dcin {
   barcode: string;
   itemcode: number;
@@ -114,7 +113,7 @@ export class DcInPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private encService: EncryptionService, private quote:QuotationService,private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -267,7 +266,7 @@ export class DcInPage implements OnInit {
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
     const value = dcin.itemname || dcin.itemcode;
 
-    this.quote.getItems(compid, dcin.itemcode).subscribe(
+    this.itemService.getItems(compid, dcin.itemcode).subscribe(
       (data) => {
         console.log(data);
 
