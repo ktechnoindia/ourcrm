@@ -50,7 +50,7 @@ export class FollowUpPage implements OnInit {
     tid?: number,
     companyname?: string,
     crdate?: string,
-    leaddate?:string,
+    leaddate?: string,
     executivename?: string,
     phone?: string,
     fulladdress?: string,
@@ -60,7 +60,7 @@ export class FollowUpPage implements OnInit {
   } = {};
 
 
-  constructor(private productService:AdditemService, private executiveService :ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
+  constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
@@ -70,15 +70,15 @@ export class FollowUpPage implements OnInit {
     this.followupdate = new Date().toISOString().split('T')[0];
     this.nextfollowupDate = new Date().toISOString().split('T')[0];
     this.myform = this.formBuilder.group({
-      remark: [''],
-      nextfollowupDate: [''],
+      remark: ['', Validators.required],
+      nextfollowupDate: ['', Validators.required],
       searchTerm: [''],
       lid: 0,
       followupdate: ['']
     })
 
   }
-  
+
   showDetails(leadscore: any) {
     // Populate the details for the selected row
 
@@ -89,18 +89,18 @@ export class FollowUpPage implements OnInit {
         this.followups = response;
       },
       (error: any) => {
-        console.log('Post request Failed',error);
+        console.log('Post request Failed', error);
         this.formService.showFailedAlert();
       }
     );
-    
+
     this.lid = leadscore.tid;
     this.selectedRow = {
       srNo: leadscore.srNo,
       tid: leadscore.tid,
       companyname: leadscore.companyname,
       crdate: leadscore.crdate,
-      leaddate:leadscore.leaddate,
+      leaddate: leadscore.leaddate,
       executivename: leadscore.executivename,
       phone: leadscore.phone,
       fulladdress: leadscore.fulladdress,
@@ -111,32 +111,54 @@ export class FollowUpPage implements OnInit {
   }
 
   async onSubmit() {
+    const fields = { remark: this.remark, followupdate: this.followupdate, }
+    // const isValid = await this.formService.validateForm(fields);
+    const isValid = await this.formService.validateForm(fields);
 
-    const followupdata: followuptable = {
+    if (await this.formService.validateForm(fields)) {
+      const followupdata: followuptable = {
 
-      nextfollowupDate: this.myform.value.nextfollowupDate,
-      remark: this.myform.value.remark,
-      followupdate: this.myform.value.followupdate,
-      enterdby: '1',
-      leadid: this.myform.value.lid,
-      companyid: 1,
-      custid: 1,
+        nextfollowupDate: this.myform.value.nextfollowupDate,
+        remark: this.myform.value.remark,
+        followupdate: this.myform.value.followupdate,
+        enterdby: '1',
+        leadid: this.myform.value.lid,
+        companyid: 1,
+        custid: 1,
 
-    };
+      };
 
-    this.followService.createfollowup(followupdata, '', '').subscribe(
 
-      (response: any) => {
+      this.followService.createfollowup(followupdata, '', '').subscribe(
 
-        console.log(response);
-
-      },
-      (error: any) => {
-
-        console.log(error)
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 100);
+          this.formService.shoErrorLoader();
+        }
+      );
+    }
+    else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
-
+    }
   }
 
   filterCustomers(): Observable<any[]> {
