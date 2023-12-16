@@ -125,9 +125,9 @@ export class CreatecompanyPage implements OnInit {
       email: ['', [Validators.email]],
       rdate: [''],
       wpnumber: [''],
-      pinCode: [''],
+      pinCode: ['',[Validators.pattern(/^[1-9][0-9]{5}$/)],],
       tanno: [''],
-      gstin: [''],
+      gstin: ['',[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       logo: [''],
       website: [''],
       website1: [''],
@@ -145,8 +145,8 @@ export class CreatecompanyPage implements OnInit {
       businesstype: [''],
       segmenttype: [''],
       companytype: [''],
-      pannumber: [''],
-      tanumber: [''],
+      pannumber: ['',[Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/)]],
+      tanumber: ['', [Validators.pattern(/^([a-zA-Z]){4}([0-9]){5}([a-zA-Z]){1}?$/)]],
 
       //step: 3
       language: [''],
@@ -161,10 +161,10 @@ export class CreatecompanyPage implements OnInit {
 
       //step : 4
       bname: [''],
-      accno: [''],
-      ifsc: [''],
+      accno: ['', [Validators.pattern(/^\d+$/)]],
+      ifsc: ['', [Validators.pattern(/^[A-Za-z]{4}\d{7}$/)]],
       branchname: [''],
-      upiid: [''],
+      upiid: ['', [Validators.pattern(/^[\w\d._-]+@[\w\d.-]+\.[\w]{2,}$/)]],
 
     })
 
@@ -182,6 +182,14 @@ export class CreatecompanyPage implements OnInit {
       lms: allOfTheAboveValue,
       amc: allOfTheAboveValue,
     });
+  }
+
+  onCheckboxChange() {
+    // Check if all individual checkboxes are selected
+    const allSelected = this.sales && this.purchase && this.quotation && this.challan && this.lms && this.amc /* && other checkboxes */;
+    
+    // Update the "All Of The Above" checkbox based on the selection
+    this.alloftheabove = allSelected;
   }
 
   ngOnInit() {

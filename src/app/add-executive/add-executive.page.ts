@@ -56,9 +56,9 @@ export class AddExecutivePage implements OnInit {
       emobile: [''],
       ledger: [''],
       ecommision: [''],
-      epan: [''],
+      epan: ['',Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/)],
       ewhatsapp: [''],
-      eemail: [''],
+      eemail: ['',Validators.email],
      
     })
     const compid='1';
