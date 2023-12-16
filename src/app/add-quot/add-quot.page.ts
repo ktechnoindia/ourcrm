@@ -41,13 +41,13 @@ interface Quote {
   templateUrl: './add-quot.page.html',
   styleUrls: ['./add-quot.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule,
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
     ReactiveFormsModule]
 })
 export class AddQuotPage implements OnInit {
   gstTypes: any[] = [];
 
-  // @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   billformate: number = 0;
   quoteNumber: number = 0;
@@ -58,24 +58,24 @@ export class AddQuotPage implements OnInit {
   refdate: string = '';
 
   //table data
-  barcode: string = '';
-  itemcode: number = 0;
+  /*barcode: string = '';
+  itemcode: string = '';
   itemname: number = 0;
   description: string = '';
-  quantity: number = 0;
+  quantity: string = '';
   unitname: number = 0;
-  mrp: number = 0;
-  basicrate: number = 0;
-  netrate: number = 0;
-  grossrate: number = 0;
-  taxrate: number = 0;
-  CGST: number = 0;
-  SGST: number = 0;
-  IGST: number = 0;
-  discount: number = 0;
-  discountamt: number = 0;
-  totaltax: number = 0;
-  total: number = 0;
+  mrp: string = '';
+  basicrate: string = '';
+  netrate: string = '';
+  grossrate: string = '';
+  taxrate: string = '';
+  CGST: string = '';
+  SGST: string = '';
+  IGST: string = '';
+  discount: string = '';
+  discountamt: string = '';
+  totaltax: string = '';
+  total: string = '';*/
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -121,6 +121,7 @@ export class AddQuotPage implements OnInit {
   }];
   ttotal!: number;
   myform: FormGroup;
+
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -141,9 +142,9 @@ export class AddQuotPage implements OnInit {
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    this.quateDate = new Date().toISOString().split('T')[0];
-    this.refdate = new Date().toISOString().split('T')[0];
-    this.deliverydate = new Date().toISOString().split('T')[0];
+    this.quateDate = new Date().toISOString().split('T')[0]; 
+    this.refdate =  new Date().toISOString().split('T')[0]; 
+    this.deliverydate =  new Date().toISOString().split('T')[0]; 
 
 
 
@@ -194,7 +195,7 @@ export class AddQuotPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-      taxrate1:['']
+
 
     });
 
@@ -202,8 +203,9 @@ export class AddQuotPage implements OnInit {
 
   async onSubmit() {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    const isValid = await this.formService.validateForm(fields);
+    // const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
+
       console.log('Your form data : ', this.myform.value);
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
@@ -216,7 +218,7 @@ export class AddQuotPage implements OnInit {
 
         barcode: this.myform.value.barcode,
         itemcode: this.myform.value.itemcode,
-        itemname: 1,
+        itemname: this.myform.value.itemname,
         description: this.myform.value.description,
         quantity: this.myform.value.quantity,
         unitname: this.myform.value.unitname,
@@ -276,37 +278,49 @@ export class AddQuotPage implements OnInit {
           control.markAsTouched();
         }
       });
-      // if (this.firstInvalidInput) {
-      //   this.firstInvalidInput.setFocus();
-      // }
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
-
+    
   }
   getItems(quote: any) {
     const compid = 1;
     const identifier = quote.itemcode ? 'itemname' : 'itemcode';
     const value = quote.itemname || quote.itemcode;
-
-    this.itemService.getItems(compid, quote.itemname).subscribe(
+  
+    this.itemService.getItems(compid, value).subscribe(
       (data) => {
-        console.log(data);
-
-        quote.itemcode = data[0].itemCode;
-        quote.itemname = data[0].itemDesc; 
-        quote.barcode = data[0].barcode.toString();
-        quote.unitname = data[0].unitname;
-        quote.taxrate = data[0].selectGst;
-
-
-
-        // Update other properties as needed
+        console.log('Data received:', data);
+  
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+  
+          // Update the quote properties
+          quote.itemcode = itemDetails.itemCode;
+          quote.itemname = itemDetails.itemDesc;
+          quote.barcode = itemDetails.barcode;
+          quote.unitname = itemDetails.unitname;
+          quote.taxrate = itemDetails.selectGst;
+  
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: quote.itemcode,
+            itemname: quote.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
       },
       (error) => {
         console.error('Error fetching data', error);
       }
     );
   }
-
+  
+  
+  
   addQuote() {
     console.log('addquotewww' + this.quoteData.length);
     // You can initialize the new row data here
@@ -337,15 +351,15 @@ export class AddQuotPage implements OnInit {
 
     this.quoteData.push(newRow);
   }
-  removeQuote(index: number, quote: Quote) {
-    this.ttotal = this.ttotal - quote.total;
-    this.quoteData.splice(index, 1);
-  }
   calculateTotal(quote: Quote) {
     quote.total = quote.totaltax + quote.grossrate;
     this.calculateTotals();
   }
 
+  removeQuote(index: number, quote: Quote) {
+    this.ttotal = this.ttotal - quote.total;
+    this.quoteData.splice(index, 1);
+  }
   calculateTotals() {
     // Add your logic to calculate totals based on the salesData array
     this.totalItemNo = this.quoteData.length;
@@ -440,7 +454,7 @@ export class AddQuotPage implements OnInit {
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity, 0);
   }
-
+  
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
@@ -537,7 +551,7 @@ export class AddQuotPage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
-
+    
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;
@@ -632,5 +646,5 @@ export class AddQuotPage implements OnInit {
   myaction(arg0: string) {
     throw new Error('Method not implemented.');
   }
-
+  
 }

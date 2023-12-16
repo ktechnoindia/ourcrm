@@ -9,11 +9,11 @@ import { RouterLink } from '@angular/router';
 import { FormValidationService } from '../form-validation.service';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
+import { NgForm } from '@angular/forms';
 import { AdditemService } from '../services/additem.service';
 import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
-
 interface Dcin {
   barcode: string;
   itemcode: number;
@@ -45,9 +45,7 @@ interface Dcin {
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule]
 })
 export class DcInPage implements OnInit {
-  items: any[] = [];
 
-  @ViewChild('firstInvalidInput') firstInvalidInput: any;
   voucherformat: number = 0;
   voucherNumber: string = '';
   datetype: string = '';
@@ -55,26 +53,7 @@ export class DcInPage implements OnInit {
   suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate: string = '';
-
-   //table data
-  barcode: string = '';
-  itemcode: number = 0;
-  itemname: number = 0;
-  description: string = '';
-  quantity: number = 0;
-  unitname: number = 0;
-  mrp: number = 0;
-  basicrate: number = 0;
-  netrate: number = 0;
-  grossrate: number = 0;
-  taxrate: number = 0;
-  CGST: number = 0;
-  SGST: number = 0;
-  IGST: number = 0;
-  discount: number = 0;
-  discountamt: number = 0;
-  totaltax: number = 0;
-  total: number = 0;
+  // ponumber: string = '';
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -130,14 +109,16 @@ export class DcInPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
 
- 
+  items: any[] = [];
+
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   constructor(private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
-
+    this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0]; 
     this.refdate = new Date().toISOString().split('T')[0]; 
@@ -193,7 +174,7 @@ export class DcInPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-      taxrate1:['']
+
     })
 
   }
@@ -204,7 +185,8 @@ export class DcInPage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.myform.value);
-      const dcindata: dcinstore = {
+
+      let dcindata: dcinstore = {
         voucherformat: this.myform.value.voucherformat,
         voucherNumber: this.myform.value.voucherNumber,
         datetype: this.myform.value.datetype,
@@ -284,13 +266,13 @@ export class DcInPage implements OnInit {
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
     const value = dcin.itemname || dcin.itemcode;
 
-    this.itemService.getItems(compid, dcin.itemname).subscribe(
+    this.itemService.getItems(compid, dcin.itemcode).subscribe(
       (data) => {
         console.log(data);
 
         dcin.itemcode = data[0].itemCode;
         dcin.itemname = data[0].itemDesc;
-        dcin.barcode = data[0].barcode.toString();
+        dcin.barcode = data[0].barcode;
         dcin.unitname = data[0].unitname;
         dcin.taxrate = data[0].selectGst;
         // Update other properties as needed
@@ -304,7 +286,7 @@ export class DcInPage implements OnInit {
 
 
   addDcin() {
-    console.log('addrow' + this.dcinData.length);
+    console.log('addrowwww' + this.dcinData.length);
     // You can initialize the new row data here
     const newRow: Dcin = {
       barcode: '',
@@ -336,7 +318,13 @@ export class DcInPage implements OnInit {
     this.ttotal = this.ttotal - this.dcinService.total;
     this.dcinData.splice(index, 1);
   }
-  
+  calculateTotalSum() {
+    let sum = 0;
+    for (const row of this.dcinData) {
+      sum += this.dcinService.total;
+    }
+    this.ttotal = sum;
+  }
   calculateTotals() {
     // Add your logic to calculate totals based on the salesData array
     this.totalItemNo = this.dcinData.length;
@@ -355,26 +343,15 @@ export class DcInPage implements OnInit {
       console.log('Row:', quote);
     }
   }
-  // calculateTotalSum() {
-  //   let sum = 0;
-  //   for (const row of this.dcinData) {
-  //     sum += this.dcinService.total;
-  //   }
-  //   this.ttotal = sum;
-  // }
   getTotalQuantity(): number {
     return this.dcinData.reduce((total, dcin) => total + +dcin.quantity, 0);
 
   }
 
   getTotalGrossAmount(): number {
-    const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
-      const grossAmount = dcin.quantity * dcin.basicrate;
-      return total + grossAmount;
-    }, 0);
-
-    return totalGrossAmount;
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * +dcin.quantity), 0);
   }
+
   getTotalnetAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0)
   }
@@ -387,10 +364,10 @@ export class DcInPage implements OnInit {
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity, 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
   }
   getTotalDiscountAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity, 0);
+    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
@@ -429,7 +406,20 @@ export class DcInPage implements OnInit {
   //   dcin.discountamt = dcin.total * (dcin.discount / 100);
   //   dcin.total = dcin.total - dcin.total * (dcin.discount / 100)
   // }
- 
+  getdiscountp(dcin: any): number {
+    const discountPercentage = dcin.discount || 0; // assuming discount is a property in your dcin object
+    const basicrate = dcin.basicrate || 0; // handle null/undefined values
+    const quantity = dcin.quantity || 0; // handle null/undefined values
+
+    // calculate discount amount based on the entered percentage
+    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
+
+    // update discount amount
+    dcin.discountamt = discountAmt;
+
+    // return discount amount for display
+    return discountAmt;
+  }
 
   calculateDiscountAmount(dcin: Dcin): number {
     const discountType = this.myform.get('discountType')?.value;
@@ -449,20 +439,7 @@ export class DcInPage implements OnInit {
 
     return 0;
   }
-  getdiscountp(dcin: any): number {
-    const discountPercentage = dcin.discount || 0; // assuming discount is a property in your dcin object
-    const basicrate = dcin.basicrate || 0; // handle null/undefined values
-    const quantity = dcin.quantity || 0; // handle null/undefined values
 
-    // calculate discount amount based on the entered percentage
-    const discountAmt = (discountPercentage / 100) * basicrate * quantity;
-
-    // update discount amount
-    dcin.discountamt = discountAmt;
-
-    // return discount amount for display
-    return discountAmt;
-  }
 
   getTotalamt(dcin: Dcin): number {
 
@@ -480,33 +457,17 @@ export class DcInPage implements OnInit {
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+
     this.myform.get('discount')?.valueChanges.subscribe(() => {
-      this.calculateDiscount();
-      this.calculateNetRate();
+      // this.calculateDiscount();
     });
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       // this.calculateDiscountPercentage();
     });
 
   }
-  calculateDiscount() {
-    const discountType = this.myform.get('discountType')?.value;
-    const discount = +this.myform.get('discount')?.value || 0;
-    const basicrate = +this.myform.get('basicrate')?.value || 0;
-    const quantity = +this.myform.get('quantity')?.value || 0;
 
-    if (discountType === 'amount') {
-      // Calculate discount amount based on user-entered amount
-      const discountAmt = discount;
-      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
-    } else if (discountType === 'percentage') {
-      // Calculate discount amount based on user-entered percentage
-      const discountAmt = (discount / 100) * basicrate * quantity;
-      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
-    }
-
-  }
-  
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
