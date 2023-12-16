@@ -27,7 +27,11 @@ table tr td select{
     border: solid 1px lightgray;
     color: darkgray;
     font-weight: 400;
+    cursor: pointer;
     
+}
+table{
+    cursor: pointer;
 }
 ng-template ion-button {
     color: goldenrod;
