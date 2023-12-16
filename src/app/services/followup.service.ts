@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpParams } from '@angular/common/http';
 export interface followuptable {
+
   followupdate: string;
   enterdby: string;
   remark:string;
