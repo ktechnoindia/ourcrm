@@ -1,13 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>maindashborad</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">maindashborad</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-list>
+  <ion-list-header>
+    <ion-label>Account</ion-label>
+  </ion-list-header>
+  <ion-menu-toggle autoHide="false" *ngFor="let p of accountPages; let i = index">
+    <ion-item [routerLink]="p.url">
+      <ion-icon slot="start" [name]="p.ionicIcon? p.ionicIcon: ''" [src]="p.customIcon? p.customIcon: ''"></ion-icon>
+      <ion-label>
+        {{p.title}}
+      </ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+</ion-list>
