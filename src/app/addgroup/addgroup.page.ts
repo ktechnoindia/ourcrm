@@ -80,6 +80,10 @@ export class AddgroupPage implements OnInit {
   }
 }
 
+onNew(){
+  location.reload();
+}
+
 filterCustomers(): Observable<any[]> {
   return this.itemgroups$.pipe(
     map(groups =>

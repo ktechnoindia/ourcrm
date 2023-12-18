@@ -68,6 +68,10 @@ export class AddattributePage implements OnInit {
 
   }
 
+  onNew(){
+    location.reload();
+  }
+
   filterCustomers(): Observable<any[]> {
     return this.attname$.pipe(
       map(attiributename =>

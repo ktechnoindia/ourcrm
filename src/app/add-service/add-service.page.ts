@@ -68,6 +68,10 @@ export class AddServicePage implements OnInit {
   }
 }
 
+onNew(){
+  location.reload();
+}
+
   ngOnInit() {
   }
   goBack() {

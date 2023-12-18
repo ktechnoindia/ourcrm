@@ -197,7 +197,9 @@ export class AddCustomerPage implements OnInit {
     }
   }
 
-
+  onNew() {
+    location.reload();
+  }
   copyBillingToShipping() {
     // Copy values from billing to shipping
     this.selectedOption1 = this.country;
