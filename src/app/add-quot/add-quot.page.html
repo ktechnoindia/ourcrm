@@ -29,7 +29,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform"  (ngSubmit)="onSubmit(myform,quoteData)">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <select class="select" [(ngModel)]="billformate" name="billformate" formControlName="billformate"
@@ -133,9 +133,12 @@
                         </option>
                       </select>
                       <!-- Use a hidden input for sending itemcode -->
-                      <ion-input style="display: none;"   [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
-                      <ion-input style="display: none;"   [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
-                      <ion-input style="display: none;"   [(ngModel)]="userid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
                     </td>
                     <td>
                       <input [(ngModel)]="quote.description" [ngModelOptions]="{standalone: true}" class="description"
@@ -173,7 +176,8 @@
                     </td>
                     <td style="width: 50px;">
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)"
-                        (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}">
+                        (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
+                        [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
@@ -205,7 +209,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       <ng-template #amountField>
                         <input style="width: 100px;" [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
-                        [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
+                          [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
                           type="number">
                       </ng-template>
                     </td>
@@ -271,7 +275,7 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                    [value]="getTotalnetAmount()" class="input_table" type="text">
+                      [value]="getTotalnetAmount()" class="input_table" type="text">
 
                   </ion-col>
                 </ion-row>
@@ -366,7 +370,7 @@
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                        [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
