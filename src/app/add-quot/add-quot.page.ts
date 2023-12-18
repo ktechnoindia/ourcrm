@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
@@ -203,12 +203,16 @@ export class AddQuotPage implements OnInit {
 
   }
 
-  async onSubmit() {
+ async onSubmit(form: FormGroup,quoteData: Quote[]) {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     // const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
-      console.log('Your form data : ', this.myform.value);
+      console.log('Your form data : ', JSON.stringify(this.myform.value)+   '    -> '+JSON.stringify(quoteData));
+     
+      for (const element of quoteData) {
+        console.log(element); 
+    }
       let quotedatas: quotestore[]=[];
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
@@ -298,7 +302,7 @@ export class AddQuotPage implements OnInit {
           const itemDetails = data[0];
   
           // Update the quote properties
-          quote.itemcode = itemDetails.itemCode;
+          quote.itemcode = itemDetails.tid;
           quote.itemname = itemDetails.itemDesc;
           quote.barcode = itemDetails.barcode;
           quote.unitname = itemDetails.unitname;
