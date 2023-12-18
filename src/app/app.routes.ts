@@ -891,10 +891,12 @@ export const routes: Routes = [
   {
     path: 'viewroleofexicutive',
     loadComponent: () => import('./viewroleofexicutive/viewroleofexicutive.page').then( m => m.ViewroleofexicutivePage)
-  },  {
-    path: 'maindashborad',
-    loadComponent: () => import('./maindashborad/maindashborad.page').then( m => m.MaindashboradPage)
   },
+
+
+
+
+ 
 
 
 
