@@ -126,7 +126,9 @@ async onSubmit() {
    }
   }
 
-  
+  onNew(){
+    location.reload();
+  }
 
   presentPopover(e: Event) {
     this.popover.event = e;

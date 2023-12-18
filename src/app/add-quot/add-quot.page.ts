@@ -84,7 +84,8 @@ export class AddQuotPage implements OnInit {
   totaldiscountamt: string = '';
   totaltaxamount: string = '';
   totalnetamount: string = '';
-
+  companyid:number=0;
+  userid:number=0;
   roundoff: string = '';
   pretax: string = '0';
   posttax: string = '0';
@@ -212,8 +213,10 @@ export class AddQuotPage implements OnInit {
      
       for (const element of quoteData) {
         console.log(element); 
-    }
-      let quotedatas: quotestore[]=[];
+        const companyid=1;
+        const userid=1;
+        let quotedatas: quotestore[]=[];
+    
       const quotedata: quotestore = {
         billformate: this.myform.value.billformate,
         quoteNumber: this.myform.value.quoteNumber,
@@ -222,41 +225,45 @@ export class AddQuotPage implements OnInit {
         custname: this.myform.value.custname,
         refrence: this.myform.value.refrence,
         refdate: this.myform.value.refdate,
-        barcode: '',
-        itemcode: '',
-        itemname: 0,
-        description: '',
-        quantity: 0,
-        unitname: 0,
-        mrp: '',
-        basicrate: 0,
-        netrate: '',
-        grossrate: '',
-        taxrate: 0,
-        IGST: '',
-        CGST: '',
-        SGST: '',
-        discount: '',
-        discountamt: '',
-        totaltax: '',
-        total: '',
-        totalitemno: '',
-        totalquantity: '',
-        totalgrossamt: '',
-        totaldiscountamt: '',
-        totaltaxamount: '',
-        totalnetamount: '',
-        deliverydate: '',
-        deliveryplace: '',
-        roundoff: '',
-        pretax: '',
-        posttax: '',
-        openingbalance: '',
-        closingbalance: '',
-        debit: '',
-        credit: '',
-        ttotal: 0
+        barcode: element.barcode,
+        itemcode: element.itemcode,
+        itemname: element.itemname,
+        description: element.description,
+        quantity: element.quantity,
+        unitname: element.unitname,
+        mrp: element.mrp,
+        basicrate: element.basicrate,
+        netrate: element.netrate,
+        grossrate:element.grossrate,
+        taxrate: element.taxrate,
+        IGST: element.IGST,
+        CGST: element.CGST,
+        SGST: element.SGST,
+        discount: element.discount,
+        discountamt: element.discountamt,
+        totaltax: element.totaltax,
+        total: element.total,
+        totalitemno: this.myform.value.totalitemno,
+        totalquantity: this.myform.value.totalquantity,
+        totalgrossamt: this.myform.value.totalgrossamt,
+        totaldiscountamt: this.myform.value.totaldiscountamt,
+        totaltaxamount: this.myform.value.totaltaxamount,
+        totalnetamount: this.myform.value.totalnetamount,
+        deliverydate: this.myform.value.deliverydate,
+        deliveryplace: this.myform.value.deliveryplace,
+        roundoff: this.myform.value.roundoff,
+        pretax: element.pretax,
+        posttax: element.posttax,
+        openingbalance: this.myform.value.openingbalance,
+        closingbalance: this.myform.value.closingbalance,
+        debit:this.myform.value.debit,
+        credit: this.myform.value.credit,
+        ttotal:0,
+
+        companyid:companyid,
+        userid:userid,
       };
+      
       quotedatas.push(quotedata);
       this.quote.createquote(quotedatas, '', '').subscribe(
         (response: any) => {
@@ -274,7 +281,7 @@ export class AddQuotPage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
-
+    }
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -304,7 +311,7 @@ export class AddQuotPage implements OnInit {
           // Update the quote properties
           quote.itemcode = itemDetails.tid;
           quote.itemname = itemDetails.itemDesc;
-          quote.barcode = itemDetails.barcode;
+          quote.barcode = itemDetails.barcode.toString();
           quote.unitname = itemDetails.unitname;
           quote.taxrate = itemDetails.selectGst;
   
@@ -388,7 +395,9 @@ export class AddQuotPage implements OnInit {
     }
   }
 
-
+  onNew(){
+    location.reload();
+  }
 
   // calculateTotalSum() {
   //   let sum = 0;

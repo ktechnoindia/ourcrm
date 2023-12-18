@@ -129,6 +129,10 @@ console.log(this.companys$);
         this.firstInvalidInput.setFocus();
       }
     }
+  };
+
+  onNew(){
+    location.reload();
   }
 
   ngOnInit() {

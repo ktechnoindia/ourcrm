@@ -174,6 +174,10 @@ export class FollowUpPage implements OnInit {
     }
   }
 
+  onNew(){
+    location.reload();
+  }
+
   filterCustomers(): Observable<any[]> {
     return this.lead$.pipe(
       map(followups =>

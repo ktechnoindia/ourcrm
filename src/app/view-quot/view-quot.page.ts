@@ -25,8 +25,8 @@ export class ViewQuotPage implements OnInit {
 
   constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
-
-    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
+    const userid = '1';
+    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid),(userid), '', '');
     console.log(this.quote$);
 
     this.quote$.subscribe(data => {

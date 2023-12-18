@@ -182,14 +182,19 @@ export class DcInPage implements OnInit {
 
   }
 
-  async onSubmit(form: NgForm,dcinData:any) {
+  async onSubmit(form: FormGroup,dcinData:Dcin[]) {
 
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      console.log('Your form data : ', this.myform.value);
-      let decindatas: dcinstore[]=[];
-      for (const dcins of this.dcinData) { 
+
+      console.log('Your form data : ', JSON.stringify(this.myform.value)+   '    -> '+JSON.stringify(dcinData));
+
+     
+      for (const element of dcinData) { 
+        console.log(element); 
+        let decindatas: dcinstore[]=[];
+
       let dcindata: dcinstore = {
         voucherformat: this.myform.value.voucherformat,
         voucherNumber: this.myform.value.voucherNumber,
@@ -198,44 +203,43 @@ export class DcInPage implements OnInit {
         suppliertype: this.myform.value.suppliertype,
         referenceNumber: this.myform.value.referenceNumber,
         refdate: this.myform.value.refdate,
-        barcode: this.myform.value.barcode,
-        itemcode: dcins.itemcode,
-        itemname: dcins.itemname,
-        description: dcins.description,
-        quantity: dcins.quantity,
-        unitname: dcins.unitname,
-        mrp: dcins.mrp,
-        basicrate: dcins.basicrate,
-        netrate: dcins.netrate,
-        grossrate: dcins.grossrate,
-        taxrate: dcins.taxrate,
-        IGST: dcins.IGST,
-        CGST: dcins.CGST,
-        SGST: dcins.SGST,
-        discount: dcins.discount,
-        discountamt: dcins.discountamt,
-        totaltax: dcins.totaltax,
-        total: dcins.total,
-        totalitemno: '',
-        totalquantity: '',
-        totalgrossamt: '',
-        totaldiscountamt: '',
-        totaltaxamount: '',
-        totalnetamount: '',
-        deliverydate: '',
-        deliveryplace: '',
-        roundoff: '',
-        pretax: dcins.pretax,
-        posttax: dcins.posttax,
-        openingbalance: '',
-        closingbalance: '',
-        debit: '',
-        credit: '',
-        taxrate1: dcins.taxrate1
+        barcode: element.barcode,
+        itemcode: element.itemcode,
+        itemname: element.itemname,
+        description: element.description,
+        quantity: element.quantity,
+        unitname: element.unitname,
+        mrp: element.mrp,
+        basicrate: element.basicrate,
+        netrate: element.netrate,
+        grossrate:element.grossrate,
+        taxrate: element.taxrate,
+        IGST: element.IGST,
+        CGST: element.CGST,
+        SGST: element.SGST,
+        discount: element.discount,
+        discountamt: element.discountamt,
+        totaltax: element.totaltax,
+        total: element.total,
+        taxrate1:element.taxrate1,
+        pretax: element.pretax,
+        posttax: element.posttax,
+        totalitemno: this.myform.value.totalitemno,
+        totalquantity: this.myform.value.totalquantity,
+        totalgrossamt: this.myform.value.totalgrossamt,
+        totaldiscountamt: this.myform.value.totaldiscountamt,
+        totaltaxamount: this.myform.value.totaltaxamount,
+        totalnetamount: this.myform.value.totalnetamount,
+        deliverydate: this.myform.value.deliverydate,
+        deliveryplace: this.myform.value.deliveryplace,
+        roundoff: this.myform.value.roundoff,
+        openingbalance: this.myform.value.openingbalance,
+        closingbalance: this.myform.value.closingbalance,
+        debit:this.myform.value.debit,
+        credit: this.myform.value.credit,
+       
       }
       decindatas.push(dcindata);
-    }
-      
 
       this.dcinService.createdcin(decindatas, '', '').subscribe(
         (response: any) => {
@@ -254,6 +258,7 @@ export class DcInPage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
+    }
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -267,22 +272,34 @@ export class DcInPage implements OnInit {
     }
   }
 
-  getItems(dcin: any) {
+  getItems(quote: any) {
     const compid = 1;
-    const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
-    const value = dcin.itemname || dcin.itemcode;
-
-    this.itemService.getItems(compid, dcin.itemcode).subscribe(
+    const identifier = quote.itemcode ? 'itemname' : 'itemcode';
+    const value =  quote.itemcode;
+  
+    this.itemService.getItems(compid, value).subscribe(
       (data) => {
-        console.log(data);
-
-        dcin.itemcode = data[0].itemCode;
-        dcin.itemname = data[0].itemDesc;
-        dcin.barcode = data[0].barcode;
-        dcin.unitname = data[0].unitname;
-        dcin.taxrate = data[0].selectGst;
-        // Update other properties as needed
-
+        console.log('Data received:', data);
+  
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+  
+          // Update the quote properties
+          quote.itemcode = itemDetails.tid;
+          quote.itemname = itemDetails.itemDesc;
+          quote.barcode = itemDetails.barcode.toString();
+          quote.unitname = itemDetails.unitname;
+          quote.taxrate = itemDetails.selectGst;
+  
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: quote.itemcode,
+            itemname: quote.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
       },
       (error) => {
         console.error('Error fetching data', error);
@@ -321,6 +338,11 @@ export class DcInPage implements OnInit {
     };
     this.dcinData.push(newRow);
   }
+
+  onNew(){
+    location.reload();
+  }
+
   removeDcin(index: number, row: Dcin) {
     this.ttotal = this.ttotal - this.dcinService.total;
     this.dcinData.splice(index, 1);

@@ -172,7 +172,7 @@
                     </ion-col>
                   </ion-row>
                   <ion-row class="custom-primary" style="justify-content: right;padding: 10px;">
-                    <ion-button id="open-loading">New</ion-button>       
+                    <ion-button id="open-loading" (click)="onNew()">New</ion-button>       
                     <ion-button type="submit" id="open-loading1">Save</ion-button>                    
                   </ion-row>
                   <ion-input  formControlName="followupdate"  name="followupdate"  type="hidden" [(ngModel)]="followupdate"></ion-input>

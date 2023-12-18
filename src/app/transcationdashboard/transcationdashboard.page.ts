@@ -43,8 +43,8 @@ export class TranscationdashboardPage implements OnInit {
 
   constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,private salereturnservice:SalereturnService,private purchasereturnservice:PurchasereturnService, ) { 
     const compid = '1';
-
-    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), '', '');
+    const userid = '1';
+    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid),(userid), '', '');
     console.log(this.quote$);
 
     this.quote$.subscribe(data => {

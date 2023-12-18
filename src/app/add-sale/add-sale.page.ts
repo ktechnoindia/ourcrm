@@ -321,6 +321,11 @@ export class AddSalePage implements OnInit {
     };
     this.salesData.push(newRow);
   }
+
+  onNew(){
+    location.reload();
+  }
+
   calculateTotal(sales: Sales) {
     sales.total = sales.totaltax + sales.grossrate;
     this.calculateTotals();

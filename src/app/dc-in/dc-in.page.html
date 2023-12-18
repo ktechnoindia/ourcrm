@@ -29,7 +29,7 @@
           </div>
           <ion-grid>
 
-            <form [formGroup]="myform" (ngSubmit)="onSubmit(myform.value,dcinData)">
+            <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,dcinData)">
 
               <ion-row>
                 <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
@@ -115,8 +115,7 @@
                     <tr *ngFor="let dcin of dcinData; let i = index">
                       <td>{{i+1}}</td>
                       <td>
-                        <input [(ngModel)]="dcin.barcode" (ngModelChange)="getItems(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
-                          type="text">
+                        <input [(ngModel)]="dcin.barcode" (ngModelChange)="getItems(dcin)" [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                       </td>
                       <td>
                         <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -168,8 +167,7 @@
                           [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       </td>
                       <td style="width: 90px;">
-                        <select class="table_select"  (ngModelChange)="getItems(dcin) "#taxrate (change)="onSelectChange(taxrate,dcin)"
-                          [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
+                        <select class="table_select"  (ngModelChange)="getItems(dcin) "#taxrate (change)="onSelectChange(taxrate,dcin)" [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
                           <option value="0"> GST</option>
                           <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                             {{ gsttype.gstname }}
@@ -402,7 +400,7 @@
                 </ion-col>
               </ion-row>
               <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
-                <ion-button id="open-loading">New</ion-button>
+                <ion-button id="open-loading" (click)="onNew()">New</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                   [duration]="1000"></ion-loading>
                 <ion-button type="submit" id="open-loading1">Save</ion-button>

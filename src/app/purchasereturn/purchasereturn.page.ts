@@ -322,7 +322,12 @@ export class PurchasereturnPage implements OnInit {
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
+  };
+
+  onNew(){
+    location.reload();
   }
+
   removePurchase(index: number,row:Purchase) {
     this.ttotal=this.ttotal-this.purchase.total;
     this.purchaseData.splice(index, 1);

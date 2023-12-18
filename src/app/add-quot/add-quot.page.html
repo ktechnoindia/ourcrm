@@ -134,6 +134,8 @@
                       </select>
                       <!-- Use a hidden input for sending itemcode -->
                       <ion-input style="display: none;"   [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
+                      <ion-input style="display: none;"   [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
+                      <ion-input style="display: none;"   [(ngModel)]="userid" [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
                     </td>
                     <td>
                       <input [(ngModel)]="quote.description" [ngModelOptions]="{standalone: true}" class="description"
@@ -154,7 +156,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="quote.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                        type="number">
                     </td>
                     <td>
                       <input style="width: 70px;" [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}"
@@ -171,8 +173,7 @@
                     </td>
                     <td style="width: 50px;">
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)"
-                        (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
-                        [ngModelOptions]="{standalone: true}">
+                        (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
@@ -201,11 +202,11 @@
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
                         style="width: 90px;" [(ngModel)]="quote.discount" (ionBlur)="getdiscountp(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       <ng-template #amountField>
                         <input style="width: 100px;" [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
-                          [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
-                          type="text">
+                        [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
+                          type="number">
                       </ng-template>
                     </td>
 
@@ -270,7 +271,7 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                      [value]="getTotalnetAmount()" class="input_table" type="text">
+                    [value]="getTotalnetAmount()" class="input_table" type="text">
 
                   </ion-col>
                 </ion-row>
@@ -365,7 +366,7 @@
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
+                        [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
@@ -394,7 +395,7 @@
             </ion-row>
 
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-              <ion-button id="open-loading">New</ion-button>
+              <ion-button id="open-loading" (click)="onNew()">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit">Save</ion-button>

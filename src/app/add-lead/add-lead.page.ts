@@ -167,6 +167,10 @@ export class AddLeadPage {
         }
       });
     }
+  };
+
+  onNew(){
+    location.reload();
   }
 
   ngOnInit() {

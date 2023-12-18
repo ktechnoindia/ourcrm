@@ -119,6 +119,10 @@ export class RoleofexicutivePage implements OnInit {
     }
   }
 
+  onNew(){
+    location.reload();
+  }
+
     ngOnInit() {
       // Page initialization code goes here
     }

@@ -203,7 +203,7 @@
                  
                 </ion-row>
                 <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
-                  <ion-button id="open-loading">New</ion-button>
+                  <ion-button id="open-loading" (click)="onNew()">New</ion-button>
                   <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                     [duration]="1000"></ion-loading>
                   <ion-button type="submit" id="open-loading1">Save</ion-button>

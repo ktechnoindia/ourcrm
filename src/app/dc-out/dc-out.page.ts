@@ -304,6 +304,11 @@ export class DcOutPage implements OnInit {
       };
       this.dcoutData.push(newRow);
     }
+
+    onNew(){
+      location.reload();
+    }
+
     removeDcout(index: number,row:Dcout) {
       this.ttotal=this.ttotal-this.dcout.total;
       this.dcoutData.splice(index, 1);
