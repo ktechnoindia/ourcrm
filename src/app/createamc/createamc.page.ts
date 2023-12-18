@@ -75,9 +75,7 @@ export class CreateamcPage implements OnInit {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
-  onNew(){
-    location.reload();
-  }
+
 async onSubmit() {
   const fields = {amc_id:this.amc_id}
   const isValid = await this.formService.validateForm(fields);
