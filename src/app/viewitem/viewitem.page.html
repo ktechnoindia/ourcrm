@@ -11,85 +11,89 @@
           </ion-card-header>
 
           <ion-grid>
-            
-              <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
-              </ion-row>
 
-              <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;">
-                  <table style="width: 2000px;overflow-x:auto;overflow-y: auto;">
-                    <thead>
-                      <tr>
-                        <th >Sr. No.</th>
-                        <th  >Item Code</th>
-                        <th >Item Description</th>
-                        <th>HSN No.</th>
-                        <th>Stock Type</th>
-                        <th>Item Type</th>
-                        <th>Unit Name</th>
-                        <th>Item Group</th>
-                        <th>GST %</th>
-                        <th>MRP</th>
-                        <th>Basic Rate</th>
-                        <th >Opening Balance</th>
-                        <th >Closing Balance</th>
-                        <!-- <th >Selected Attribute</th> -->
-                        <th >Attribute :1</th>
-                        <th >Attribute :2</th>
-                        <th >Attribute :3</th>
-                        <th >Attribute :4</th>
-                        <th >Attribute :5</th>
-                        <th >Attribute :6</th>
-                        <th >Attribute :7</th>
-                        <th >Attribute :8</th>
-                        <th>Image</th>
-                        <th>Barcode</th>
-                        <th >Minimum Level</th>
-                        <th >Maximum Level</th>
-                        <th>Re-order</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+            <ion-row>
+              <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+                (ionInput)="onSearchTermChanged()"></ion-searchbar>
+            </ion-row>
+
+            <ion-row class="Executive">
+              <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;">
+                <table style="width: 2000px;overflow-x:auto;overflow-y: auto;">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th>Item Code</th>
+                      <th>Item Description</th>
+                      <th>HSN No.</th>
+                      <th>Stock Type</th>
+                      <th>Item Type</th>
+                      <th>Unit Name</th>
+                      <th>Item Group</th>
+                      <th>GST %</th>
+                      <th>MRP</th>
+                      <th>Basic Rate</th>
+                      <th>Opening Balance</th>
+                      <th>Closing Balance</th>
+                      <!-- <th >Selected Attribute</th> -->
+                      <th>Attribute :1</th>
+                      <th>Attribute :2</th>
+                      <th>Attribute :3</th>
+                      <th>Attribute :4</th>
+                      <th>Attribute :5</th>
+                      <th>Attribute :6</th>
+                      <th>Attribute :7</th>
+                      <th>Attribute :8</th>
+                      <th>Image</th>
+                      <th>Barcode</th>
+                      <th>Minimum Level</th>
+                      <th>Maximum Level</th>
+                      <th>Re-order</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     <tr *ngFor="let item of filteredItems$ | async; let i = index">
-                        <td>{{i + 1}}</td>
-                        <td>{{item.itemCode}}</td>
-                        <td>{{item.itemDesc}}</td>
-                        <td>{{item.hsnname}}</td>
-                        <td>{{item.stocktypename}}</td>
-                        <td>{{item.itemtypename}}</td>
-                        <td>{{item.unitname}}</td>
-                        <td>{{item.selectItemGroup}}</td>
-                        <td>{{item.selectGst}}</td>
-                        <td>{{item.mrp}}</td>
-                        <td>{{item.basicrate}}</td>
-                        <td>{{item.openingbalance}}</td>
-                        <td>{{item.closingbalance}}</td>
-                        <!-- <td>{{item.selectedAttribute}}</td> -->
-                        <td>{{item.attr1}}</td>
-                        <td>{{item.attr2}}</td>
-                        <td>{{item.attr3}}</td>
-                        <td>{{item.attr4}}</td>
-                        <td>{{item.attr5}}</td>
-                        <td>{{item.attr6}}</td>
-                        <td>{{item.attr7}}</td>
-                        <td>{{item.attr8}}</td>
-                        <td>{{item.files}}</td>
-                        <td>{{item.barcode}}</td>
-                        <td>{{item.minimum}}</td> 
-                        <td>{{item.maximum}}</td> 
-                        <td>{{item.reorder}}</td> 
-                        <td class="Action">
-                          <ion-icon color="danger" name="trash"></ion-icon> 
-                            <ion-icon color="primary"  name="create"></ion-icon>
-                        </td>
-                      </tr>
-                    </tbody>
+                      <td>{{i + 1}}</td>
+                      <td>{{item.itemCode}}</td>
+                      <td>{{item.itemDesc}}</td>
+                      <td>{{item.hsnname}}</td>
+                      <td>{{item.stocktypename}}</td>
+                      <td>{{item.itemtypename}}</td>
+                      <td>{{item.unitname}}</td>
+                      <td>{{item.selectItemGroup}}</td>
+                      <td>{{item.selectGst}}</td>
+                      <td>{{item.mrp}}</td>
+                      <td>{{item.basicrate}}</td>
+                      <td>{{item.openingbalance}}</td>
+                      <td>{{item.closingbalance}}</td>
+                      <!-- <td>{{item.selectedAttribute}}</td> -->
+                      <td>{{item.attr1}}</td>
+                      <td>{{item.attr2}}</td>
+                      <td>{{item.attr3}}</td>
+                      <td>{{item.attr4}}</td>
+                      <td>{{item.attr5}}</td>
+                      <td>{{item.attr6}}</td>
+                      <td>{{item.attr7}}</td>
+                      <td>{{item.attr8}}</td>
+                      <td>
+                        <img [src]="item.files" alt="Image" width="100" height="100" />
+                      </td>
 
-                  </table>
-                </div>
-              </ion-row>
+                      <td>{{item.barcode}}</td>
+                      <td>{{item.minimum}}</td>
+                      <td>{{item.maximum}}</td>
+                      <td>{{item.reorder}}</td>
+                      <td class="Action">
+                        <ion-icon color="danger" name="trash"></ion-icon>
+                        <ion-icon color="primary" name="create"></ion-icon>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+            </ion-row>
           </ion-grid>
         </div>
       </ion-card-content>

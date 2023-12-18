@@ -123,9 +123,16 @@ export class AddItemPage implements OnInit {
 
   }
   addAttribute() {
-    const newAttributeKey = `attr${Object.keys(this.attributes).length + 1}`;
-    this.attributes = { ...this.attributes, [newAttributeKey]: '' };
-    this.myform.addControl(newAttributeKey, this.formBuilder.control(''));
+    const attributeKeys = this.getAttributeKeys();
+  
+    // Check if the maximum number of attributes (8) has been reached
+    if (attributeKeys.length < 8) {
+      const newAttributeKey = `attr${attributeKeys.length + 1}`;
+      this.attributes = { ...this.attributes, [newAttributeKey]: '' };
+      this.myform.addControl(newAttributeKey, this.formBuilder.control(''));
+    } else {
+      console.warn('Maximum number of attributes reached (8).');
+    }
   }
 
   getAttributeKeys() {
