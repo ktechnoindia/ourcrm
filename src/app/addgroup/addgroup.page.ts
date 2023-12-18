@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormGroupName, FormsModule, NgForm, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddgroupService,group } from '../services/addgroup.service';
@@ -28,7 +28,7 @@ export class AddgroupPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private router:Router,private formBuilder:FormBuilder, private formService: FormValidationService,private groupService:AddgroupService) {
+  constructor(private navCtrl: NavController,private router:Router,private formBuilder:FormBuilder, private formService: FormValidationService,private groupService:AddgroupService) {
     this.form = this.formBuilder.group({
     
       itemgroupname:['',Validators.required],
@@ -36,6 +36,7 @@ export class AddgroupPage implements OnInit {
       searchTerm:['']
 
   })
+  
   this.itemgroups$ = this.groupService.getAllGroups(1);
 
    }
@@ -79,7 +80,10 @@ export class AddgroupPage implements OnInit {
     }
   }
 }
-
+onButtonClick() {
+  // Add any additional logic you may need before closing the page
+  this.navCtrl.back(); // This will navigate back to the previous page
+}
 onNew(){
   location.reload();
 }

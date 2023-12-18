@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,14 +24,20 @@ export class ChangepasswordPage implements OnInit {
   subscription: any;
   passcreate: any;
 
-  constructor(private passwordChange: ChangepasswordService, private router: Router, private formBuilder: FormBuilder,) {
+  constructor(private navCtrl: NavController,private passwordChange: ChangepasswordService, private router: Router, private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
       oldpass: ['', [Validators.required]],
       newpass: ['', [Validators.required]],
       cunfpass: ['', [Validators.required]],
     })
   }
-
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onSubmit() {
     if (this.form) {
       console.log('Your form data : ', this.form.value);

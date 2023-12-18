@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
@@ -85,8 +85,9 @@ export class AddCustomerPage implements OnInit {
   executive!: string;
 
   myform: FormGroup;
+ 
 
-  constructor(private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
+  constructor(private navCtrl: NavController,private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
 
     this.myform = this.formBuilder.group({
       selectedSalutation: [''],
@@ -134,6 +135,10 @@ export class AddCustomerPage implements OnInit {
     this.executive$ = this.execut.getexecutive();
 
   }
+ 
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   onCountryChange() {
     console.log('selected value' + this.country);
     this.states$ = this.stateservice.getStates(1);
@@ -145,9 +150,8 @@ export class AddCustomerPage implements OnInit {
 
 
   ngOnInit() {
-
   }
-
+ 
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
 
@@ -199,6 +203,10 @@ export class AddCustomerPage implements OnInit {
 
   onNew() {
     location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
   }
   copyBillingToShipping() {
     // Copy values from billing to shipping

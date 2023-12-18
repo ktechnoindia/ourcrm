@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -86,7 +86,7 @@ export class LedgerPage implements OnInit {
 
 
 
-  constructor(private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledger: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService) {
+  constructor(private navCtrl: NavController,private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledger: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService) {
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       ledger_code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -188,7 +188,10 @@ export class LedgerPage implements OnInit {
   onNew(){
     location.reload();
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   toggleSegment(segment: string) {
     this.activeSegment = segment;
   }

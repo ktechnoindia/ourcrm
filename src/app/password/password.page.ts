@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,11 +23,18 @@ export class PasswordPage implements OnInit {
   submitted = false;
   subscription: any;
   passcreate: any;
-  constructor(private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
+  constructor(private navCtrl: NavController,private password1: PasswordService, private router: Router, private formBuilder: FormBuilder,) {
     this.form = this.formBuilder.group({
       create_pass: ['', [Validators.required]],
       confirm_pass: ['', [Validators.required]],
     })
+  }
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
   }
   ngOnInit() {
     // Page initialization code goes here

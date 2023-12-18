@@ -431,6 +431,9 @@
               <ion-button (click)="onNew()">New </ion-button>
               <ion-button type="submit" >Create Company<ion-icon name="cloud-download" size="small"
                   slot="end"></ion-icon></ion-button>
+                  <ion-button id="open-loading4"(click)="onButtonClick()">Close</ion-button>
+              <ion-loading class="custom-loading" trigger="open-loading4" message="Company Closing..."
+                [duration]="1000"></ion-loading>
             </ion-row>
           </form>
          

@@ -86,7 +86,9 @@ fetchrecepit:'get_receipt',
 fetchunit:'get_units',
 fetchroleofexecutive:'get_insert_executive_roles',
 addroleassign:'roleassign',
-fetchitemauto:'get_items'
+fetchitemauto:'get_items',
+quoteno:'viewinv.php',
+
 };
 
 

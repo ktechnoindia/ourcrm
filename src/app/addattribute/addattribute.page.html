@@ -21,7 +21,11 @@
               </ion-col>
 
               <ion-col class="attribute" size-lg="6" size-md="6" size-sm="6" size="6">
+                <ion-button id="open-loading" size="small" (click)="onNew()">New</ion-button>
                 <ion-button type="submit" size="small" id="open-loading">Save</ion-button>
+                <ion-button id="open-loading4"size="small"  (click)="onButtonClick()">Close</ion-button>
+                <ion-loading class="custom-loading"  trigger="open-loading4" message="Attribute Closing..."
+                  [duration]="1000"></ion-loading>
               </ion-col>
 
             </ion-row>

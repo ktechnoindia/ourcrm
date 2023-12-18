@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
@@ -25,7 +25,7 @@ export class HsnManagerPage implements OnInit {
   searchTerm: string = '';
   filteredHsncodes$: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private router: Router,private formService:FormValidationService, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
+  constructor(private navCtrl: NavController,private router: Router,private formService:FormValidationService, private formBuilder:FormBuilder,private hsnService:HsnService,private toastCtrl: ToastController) { 
     this.form = this.formBuilder.group({
       hsncode: ['', [Validators.required]],
       unit: [''],
@@ -68,7 +68,10 @@ export class HsnManagerPage implements OnInit {
     })
   }
 }
-
+onButtonClick() {
+  // Add any additional logic you may need before closing the page
+  this.navCtrl.back(); // This will navigate back to the previous page
+}
 onNew(){
   location.reload();
 }

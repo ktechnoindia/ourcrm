@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { FormValidationService } from '../form-validation.service';
 import { RoleassignService,roleassign } from '../services/roleassign.service';
@@ -53,7 +53,7 @@ print_amc:boolean=false;
 
   myform: FormGroup;
 
-  constructor(private router: Router, private formService: FormValidationService,private roleService:RoleassignService,private formBuilder:FormBuilder) { 
+  constructor(private navCtrl: NavController,private router: Router, private formService: FormValidationService,private roleService:RoleassignService,private formBuilder:FormBuilder) { 
     this.myform = formBuilder.group({
       all_sale: [false],
       new_sale: [false],
@@ -93,7 +93,13 @@ print_amc:boolean=false;
       print_amc: [false],
     })
   }
-
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   async onSubmit() {
     
       console.log('Your form data : ', this.myform.value);
