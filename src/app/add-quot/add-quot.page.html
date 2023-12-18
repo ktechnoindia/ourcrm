@@ -171,9 +171,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.grossrate" [value]="getgrossrate(quote) "
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
-                    </td>
+                      <input style="width: 90px;" [value]="getgrossrate(quote)" [readonly]="true" class="table_input" type="number">                    </td>
                     <td style="width: 50px;">
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
