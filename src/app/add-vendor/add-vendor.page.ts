@@ -137,7 +137,9 @@ export class AddVendorPage implements OnInit {
 
   }
 
-
+  onNew(){
+    location.reload();
+  }
   onCountryChange() {
     console.log('selected value' + this.country);
     this.states$ = this.stateservice.getStates(1);

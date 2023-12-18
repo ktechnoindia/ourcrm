@@ -69,6 +69,10 @@ export class HsnManagerPage implements OnInit {
   }
 }
 
+onNew(){
+  location.reload();
+}
+
 filterCustomers(): Observable<any[]> {
   return this.hsncode$.pipe(
     map(hsncodes =>

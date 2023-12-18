@@ -87,6 +87,9 @@ export class CreateunitPage implements OnInit {
     );
   }
 
+  onNew(){
+    location.reload();
+  }
   onSearchTermChanged(): void {
     this.filteredUnits$ = this.filterCustomers();
   }

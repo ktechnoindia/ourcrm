@@ -222,6 +222,10 @@ export class AddItemPage implements OnInit {
 
   }
 
+  onNew(){
+    location.reload();
+  }
+
   ngOnInit() {
   }
   selectedImage!: string | ArrayBuffer;

@@ -107,6 +107,10 @@ export class AddExecutivePage implements OnInit {
   }
 }
 
+onNew(){
+  location.reload();
+}
+
   ngOnInit() {
   }
   navigateToVieweExecutivePage() {

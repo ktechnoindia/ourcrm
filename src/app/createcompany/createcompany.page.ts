@@ -253,6 +253,10 @@ export class CreatecompanyPage implements OnInit {
       this.firstInvalidInput.setFocus();
     }
   }
+
+  onNew() {
+    location.reload();
+  }
   onCountryChange() {
     console.log('selected value' + this.selectedCountry);
     this.states$ = this.state.getStates(1);
