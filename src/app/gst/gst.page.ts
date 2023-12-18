@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -34,7 +34,7 @@ export class GstPage implements OnInit {
   pin_code:string='';
   address:string='';
   
-  constructor(private router:Router,private gstService:GstService,private formService:FormValidationService,private formBuilder:FormBuilder,) { 
+  constructor(private navCtrl: NavController,private router:Router,private gstService:GstService,private formService:FormValidationService,private formBuilder:FormBuilder,) { 
     this.myform = this.formBuilder.group({
       service_name:['',[Validators.required]],
       invoice_date:['',[Validators.required]],
@@ -53,6 +53,13 @@ export class GstPage implements OnInit {
     })
   }
 
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   async onSubmit() {
     const fields = {service_name:this.service_name,gst_code:this.gst_code,selectedState:this.selectedState,phone_number:this.phone_number,}
     const isValid = await this.formService.validateForm(fields);

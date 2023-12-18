@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +42,7 @@ export class RoleofexicutivePage implements OnInit {
   states$: Observable<any[]>
   districts$: Observable<any[]>
 
-  constructor(private router: Router, private roleExecuitveService: RoleofexecutiveService, private formBuilder: FormBuilder, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
+  constructor(private navCtrl: NavController,private router: Router, private roleExecuitveService: RoleofexecutiveService, private formBuilder: FormBuilder, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
     this.form = this.formBuilder.group({
       exname: ['', [Validators.required]],
       extilte: ['', [Validators.required]],
@@ -118,7 +118,13 @@ export class RoleofexicutivePage implements OnInit {
       }
     }
   }
-
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
     ngOnInit() {
       // Page initialization code goes here
     }

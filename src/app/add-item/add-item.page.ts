@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
@@ -78,7 +78,7 @@ export class AddItemPage implements OnInit {
   attributes: { [key: string]: string } = {}; 
    itemname$: Observable<any>;
 
-  constructor(private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService) {
+  constructor(private navCtrl: NavController,private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService) {
     this.selectGst$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.hsnname$ = this.hsnservices.getHSNNames(1);
@@ -225,7 +225,10 @@ export class AddItemPage implements OnInit {
   onNew(){
     location.reload();
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   ngOnInit() {
   }
   selectedImage!: string | ArrayBuffer;

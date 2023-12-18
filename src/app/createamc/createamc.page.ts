@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -44,7 +44,7 @@ export class CreateamcPage implements OnInit {
   customer$: any;
   itemnames$: any;
   amc$: Observable<any[]>
-  constructor(private router: Router,private toastCtrl:ToastController,private formBuilder:FormBuilder,private custname1:CustomerService,private encService: EncryptionService,private itemService:AdditemService,private amcService:AmcService,private formService: FormValidationService,) { 
+  constructor(private navCtrl: NavController,private router: Router,private toastCtrl:ToastController,private formBuilder:FormBuilder,private custname1:CustomerService,private encService: EncryptionService,private itemService:AdditemService,private amcService:AmcService,private formService: FormValidationService,) { 
     this.form = this.formBuilder.group({
       amc_id:['',Validators.required],
       amc_date:['',],
@@ -71,7 +71,13 @@ export class CreateamcPage implements OnInit {
    this.renew_date =new Date().toISOString().split('T')[0]; 
   }
 
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
+  onNew(){
+    location.reload();
+  }
 async onSubmit() {
   const fields = {amc_id:this.amc_id}
   const isValid = await this.formService.validateForm(fields);

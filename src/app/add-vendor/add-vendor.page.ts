@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -90,7 +90,7 @@ export class AddVendorPage implements OnInit {
   executive$: any;
   executive: string='';
 
-  constructor(private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
+  constructor(private navCtrl: NavController,private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -136,7 +136,10 @@ export class AddVendorPage implements OnInit {
     this.custtype$ = this.custtp.getcustomertype();
 
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onNew(){
     location.reload();
   }

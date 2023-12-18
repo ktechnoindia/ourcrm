@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ export class AddattributePage implements OnInit {
   searchTerm: string = '';
   filteredAttribute$: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(private navCtrl: NavController,private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
       attname: ['', Validators.required],
       searchTerm:['']
@@ -67,7 +67,10 @@ export class AddattributePage implements OnInit {
     }
 
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onNew(){
     location.reload();
   }

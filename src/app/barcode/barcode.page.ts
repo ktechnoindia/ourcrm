@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -20,14 +20,20 @@ export class BarcodePage implements OnInit {
   barcodeaddress: string = '';
   sacnumber: string = '';
   description: string = '';
-  constructor(private router: Router, private formBuilder: FormBuilder, private barcodeService: BarcodeService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController,private router: Router, private formBuilder: FormBuilder, private barcodeService: BarcodeService, private formService: FormValidationService) {
     this.form = formBuilder.group({
       barcodeaddress: [''],
       sacnumber: [''],
       description: [''],
     })
   }
-
+  onNew() {
+    location.reload();
+  }
+   onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   async onSubmit() {
     const fields = {};
     const isValid = await this.formService.validateForm(fields);

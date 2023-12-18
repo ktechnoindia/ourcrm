@@ -66,6 +66,9 @@ export class QuotationService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallquote + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
-  
+  fetchallQuoteno(cust_code:number,key:string,user:string){
+    const body = { cust_code: cust_code};
+    return this.httpclient.post(environment.apibaseurl+environment.quoteno,body,{headers:{'key':key,'user':user}})
+  }
 }
 

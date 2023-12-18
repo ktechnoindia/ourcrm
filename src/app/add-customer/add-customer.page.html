@@ -49,7 +49,7 @@
               <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code" type="text" label=" Customer Code :"
-                    label-placement="floating" fill="outline" maxlength="5"></ion-input>
+                    label-placement="floating" fill="outline" maxlength="5"  readonly></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -389,7 +389,7 @@
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
         
-              <ion-button id="open-loading4">Close</ion-button>
+            <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
 

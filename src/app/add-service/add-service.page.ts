@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ export class AddServicePage implements OnInit {
   gst$: any;
   gst: string = '';
 
-  constructor(private gstsrvs:GsttypeService,private formService:FormValidationService,private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
+  constructor(private navCtrl: NavController,private gstsrvs:GsttypeService,private formService:FormValidationService,private router: Router, private addService:AddserviceService,private formBuilder:FormBuilder, private toastCtrl:ToastController) { 
     this.gst$=this.gstsrvs.getgsttype();
 
     this.myform = this.formBuilder.group({
@@ -68,8 +68,12 @@ export class AddServicePage implements OnInit {
   }
 }
 
-onNew(){
+onNew() {
   location.reload();
+}
+ onButtonClick() {
+  // Add any additional logic you may need before closing the page
+  this.navCtrl.back(); // This will navigate back to the previous page
 }
 
   ngOnInit() {

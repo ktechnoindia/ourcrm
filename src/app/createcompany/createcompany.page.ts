@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -100,7 +100,7 @@ export class CreatecompanyPage implements OnInit {
   upiid: string = '';
   bankForm: string = '';
 
-  constructor(private createcompany: CreatecompanyService, private formService: FormValidationService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
+  constructor(private navCtrl: NavController,private createcompany: CreatecompanyService, private formService: FormValidationService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
     , private industry1: IndustrytypeService, private cmptype: CgsttypeService, private bustype: BusinesstypeService, private segment1: SegmentService) {
     // this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -253,7 +253,10 @@ export class CreatecompanyPage implements OnInit {
       this.firstInvalidInput.setFocus();
     }
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onNew() {
     location.reload();
   }

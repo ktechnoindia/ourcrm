@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
@@ -45,7 +45,7 @@ export class AddExecutivePage implements OnInit {
   ledgers$: Observable<any>;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice,private ledgerService:LegderService , private encService:EncryptionService) {
+  constructor(private navCtrl: NavController,private router: Router,private addExecutiveService:ExecutiveService,private formService: FormValidationService,  private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice,private ledgerService:LegderService , private encService:EncryptionService) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
@@ -107,8 +107,12 @@ export class AddExecutivePage implements OnInit {
   }
 }
 
-onNew(){
+onNew() {
   location.reload();
+}
+ onButtonClick() {
+  // Add any additional logic you may need before closing the page
+  this.navCtrl.back(); // This will navigate back to the previous page
 }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CreateunitService, unit } from '../services/createunit.service';
 import { FormValidationService } from '../form-validation.service';
@@ -26,7 +26,7 @@ export class CreateunitPage implements OnInit {
   filteredUnits$: Observable<any[]> = new Observable<any[]>(); 
   customers$: any;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private unitService: CreateunitService,private encService:EncryptionService,) {
+  constructor(private navCtrl: NavController,private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private unitService: CreateunitService,private encService:EncryptionService,) {
     this.form = this.formBuilder.group({
       unit_name: ['', [Validators.required]],
       short_name: [''],
@@ -41,7 +41,12 @@ export class CreateunitPage implements OnInit {
     console.log(this.units$);
   
   }
-
+ 
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
+ 
   async onSubmit() {
     const fields = { unit_name: this.unit_name }
     const isValid = await this.formService.validateForm(fields);

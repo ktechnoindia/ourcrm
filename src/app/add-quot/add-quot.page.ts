@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
@@ -134,6 +134,7 @@ export class AddQuotPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   customer$: any;
+  session: any;
 
   constructor(private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
@@ -202,7 +203,25 @@ export class AddQuotPage implements OnInit {
     });
 
   }
-
+  async getquoteNo(){
+    const user =await this.session.getValue('userid');
+    const keys = formatDate(new Date(), 'yMMddHH', 'en-IN'); 
+    this.quote.fetchallQuoteno(0,keys,user).subscribe((response:any)=>{
+      if(response.status){
+      //  this.cname=response![0].username;
+      this.quoteNumber=response!.invno;
+      }else{
+        this.openToast('Error fetching invoice no');
+      }
+     // console.log('--'+response);
+    //  this.filteredTableData = this.products;
+    }, (error) => {                              //Error callback
+    console.log('error caught in component'+error.message) 
+    });  
+  }
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
  async onSubmit(form: FormGroup,quoteData: Quote[]) {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     // const isValid = await this.formService.validateForm(fields);
@@ -545,6 +564,8 @@ export class AddQuotPage implements OnInit {
     return quote.taxrate1;
   }
   ngOnInit() {
+    this.getquoteNo();
+
     // Other initialization logic...
 
     // Subscribe to value changes of basicrate, taxrate, and discount
