@@ -195,9 +195,9 @@ export class DcInPage implements OnInit {
 
         element.grossrate = element.basicrate * element.quantity;
         element.netrate=element.basicrate + element.taxrate1;
-        element.CGST= element.taxrate1/2;
-        element.SGST = element.taxrate1/2;
-        element.IGST = element.taxrate1;
+        element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
         element.total= element.totaltax+element.grossrate;
         element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
 
@@ -396,11 +396,11 @@ export class DcInPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0)
+    return this.dcinData.reduce((total, dcin) =>  total + (((dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) + dcin.totaltax) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcinData.reduce((total, dcin) => {
-      const itemTotal = (((+dcin.pretax + dcin.posttax) + (dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount);
+      const itemTotal =(((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity))
       return total + itemTotal;
     }, 0);
 
@@ -414,8 +414,7 @@ export class DcInPage implements OnInit {
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + dcin.taxrate1) - dcin.discount), 0);
-
+    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0);
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
 
@@ -487,13 +486,13 @@ export class DcInPage implements OnInit {
     return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
   }
   getcgst(dcin: Dcin): number {
-    return dcin.taxrate1 / 2;
+    return ((dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity)/2;
   }
   getsgst(dcin: Dcin): number {
-    return dcin.taxrate1 / 2;
+    return ((dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity)/2;
   }
   getigst(dcin: Dcin): number {
-    return dcin.taxrate1;
+    return (dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity;
   }
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
