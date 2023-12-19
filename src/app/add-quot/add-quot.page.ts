@@ -234,11 +234,11 @@
         for (const element of quoteData) {
           element.grossrate = element.basicrate * element.quantity;
           element.netrate=element.basicrate + element.taxrate1;
-          element.CGST= element.taxrate1/2;
-          element.SGST = element.taxrate1/2;
-          element.IGST = element.taxrate1;
+          element.CGST= (element.taxrate1 / 100 * element.basicrate)/2;
+          element.SGST = (element.taxrate1 / 100 * element.basicrate)/2;
+          element.IGST = (element.taxrate1 / 100 * element.basicrate);
           element.total= element.totaltax+element.grossrate;
-          element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
+          element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate)
          
           console.log(element); 
           const companyid=1;
@@ -253,7 +253,6 @@
           custname: this.myform.value.custname,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
-          
           barcode: element.barcode,
           itemcode: element.itemcode,
           itemname: element.itemname,
@@ -575,15 +574,15 @@
       return (quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) - this.calculateDiscountAmount(quote);
     }
     getcgst(quote: Quote): number {
-      return quote.taxrate1 / 2;
+      return (quote.taxrate1 / 100 * quote.basicrate)/2;
     }
 
     getsgst(quote: Quote): number {
-      return quote.taxrate1 / 2;
+      return (quote.taxrate1 / 100 * quote.basicrate)/ 2;
     }
 
     getigst(quote: Quote): number {
-      return quote.taxrate1;
+      return (quote.taxrate1 / 100 * quote.basicrate);
     }
     ngOnInit() {
       this.getquoteNo();
