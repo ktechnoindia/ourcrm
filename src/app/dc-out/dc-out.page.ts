@@ -207,9 +207,9 @@ export class DcOutPage implements OnInit {
 
         element.grossrate = element.basicrate * element.quantity;
         element.netrate = element.basicrate + element.taxrate1;
-        element.CGST = element.taxrate1 / 2;
-        element.SGST = element.taxrate1 / 2;
-        element.IGST = element.taxrate1;
+        element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
 
@@ -418,11 +418,11 @@ export class DcOutPage implements OnInit {
     return totalGrossAmount;
   }
   getTotalnetAmount(): number {
-    return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount), 0)
+    return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcoutData.reduce((total, dcout) => {
-      const itemTotal = (((+dcout.pretax + dcout.posttax) + (dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount);
+      const itemTotal = (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity));
       return total + itemTotal;
     }, 0);
 
@@ -436,7 +436,7 @@ export class DcOutPage implements OnInit {
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount), 0);
+    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0);
 
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
@@ -501,13 +501,13 @@ export class DcOutPage implements OnInit {
     return (dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) - this.calculateDiscountAmount(dcout);
   }
   getcgst(dcout: Dcout): number {
-    return dcout.taxrate1 / 2;
+    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity)/2;
   }
   getsgst(dcout: Dcout): number {
-    return dcout.taxrate1 / 2;
+    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity)/2;
   }
   getigst(dcout: Dcout): number {
-    return dcout.taxrate1;
+    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity);
   }
   ngOnInit() {
     // Other initialization logic...

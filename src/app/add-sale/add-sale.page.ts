@@ -124,9 +124,8 @@ export class AddSalePage implements OnInit {
   }];
   ttotal: number = 0;
   myform: FormGroup;
-
-  companyid:number=0;
-  userid:number=0;
+userid:number=0;
+companyid:number=0;
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
