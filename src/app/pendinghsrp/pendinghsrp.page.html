@@ -1,0 +1,134 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <div>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Pending HSRP</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+              <ion-row>
+                <ion-input color="warning" name="formDate" type="date" label=" From Date  :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+              <ion-row>
+                <ion-input color="warning" name="toDate" type="date" label=" To Date :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+              <ion-button expand="block">Ok</ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+          </ion-row>
+
+          <ion-row style="margin-top: 10px;">
+            <div class="scroll-container">
+              <table style="width:1300px;overflow-x: auto;overflow-y: auto;">
+                <tr>
+                  <th> Sr.No.</th>
+                  <th>Customer Code</th>
+                  <th>Customer Name</th>
+                  <th>Part No.</th>
+                  <th>Frame No.</th>
+                  <th>Engine No.</th>
+                  <th>Vehicle No</th>
+                  <th>Veh. Reg. No.</th>
+                  <th>Veh. Reg. Date</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>C001</td>
+                  <td>John Doe</td>
+                  <td>P123</td>
+                  <td>F456</td>
+                  <td>E789</td>
+                  <td>XYZ123</td>
+                  <td>ABCD123</td>
+                  <td>2023-01-01</td>
+                  <td>
+                    <ion-button size="small">Send SMS<ion-icon slot="end" size="small"
+                        name="chatbubble-ellipses-sharp"></ion-icon></ion-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>C002</td>
+                  <td>Jane Smith</td>
+                  <td>P456</td>
+                  <td>F789</td>
+                  <td>E123</td>
+                  <td>ABC456</td>
+                  <td>EFGH456</td>
+                  <td>2023-02-01</td>
+                  <td>
+                    <ion-button size="small">Send SMS<ion-icon slot="end" size="small"
+                        name="chatbubble-ellipses-sharp"></ion-icon></ion-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>C003</td>
+                  <td>Bob Johnson</td>
+                  <td>P789</td>
+                  <td>F123</td>
+                  <td>E456</td>
+                  <td>MNO789</td>
+                  <td>IJKL789</td>
+                  <td>2023-03-01</td>
+                  <td>
+                    <ion-button size="small">Send SMS<ion-icon slot="end" size="small"
+                        name="chatbubble-ellipses-sharp"></ion-icon></ion-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>C004</td>
+                  <td>Alice Brown</td>
+                  <td>P234</td>
+                  <td>F567</td>
+                  <td>E890</td>
+                  <td>LMN234</td>
+                  <td>QRST234</td>
+                  <td>2023-04-01</td>
+                  <td>
+                    <ion-button size="small" >Send SMS<ion-icon slot="end" size="small"
+                        name="chatbubble-ellipses-sharp"></ion-icon></ion-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>C005</td>
+                  <td>Chris White</td>
+                  <td>P567</td>
+                  <td>F890</td>
+                  <td>E234</td>
+                  <td>OPQ567</td>
+                  <td>UVWX567</td>
+                  <td>2023-05-01</td>
+                  <td>
+                    <ion-button size="small">Send SMS<ion-icon slot="end" size="small"
+                        name="chatbubble-ellipses-sharp"></ion-icon></ion-button>
+                  </td>
+                </tr>
+
+              </table>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </div>
+  </div>
+</ion-content>

@@ -151,6 +151,17 @@
         <li><a routerLink="/pendingamc">Pending AMC</a></li>
       </ul>
     </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/AMC.png" alt="">
+        <p>HSRP</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/hsrpin">HSRP In</a></li>
+        <li><a routerLink="/hsrpout">HSRP Out</a></li>
+        <li><a routerLink="/pendinghsrp">Pending HSRP</a></li>
+      </ul>
+    </div>
   </div>
 
 
@@ -324,6 +335,17 @@
         <li><a routerLink="/createamc" (click)="closeMobileMenu()">Create AMC</a></li>
         <li><a routerLink="/amcreport" (click)="closeMobileMenu()">AMC Report</a></li>
         <li><a routerLink="/pendingamc" (click)="closeMobileMenu()">Pending AMC</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-title">
+        <img src="assets/AMC.png" alt="">
+        <p>HSRP</p>
+      </button>
+      <ul class="dropdown-list">
+        <li><a routerLink="/hsrpin" (click)="closeMobileMenu()">HSRP In</a></li>
+        <li><a routerLink="/hsrpout" (click)="closeMobileMenu()">HSRP Out</a></li>
+        <li><a routerLink="/pendinghsrp" (click)="closeMobileMenu()">Pending HSRP</a></li>
       </ul>
     </div>
   </div>

@@ -1,0 +1,420 @@
+<ion-content [fullscreen]="true">
+  <div class="Customer">
+    <div>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">HSRP IN</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <form>
+
+            <ion-row>
+              <ion-col class="ionselect" size-lg="2.5" size-md="2.5" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="HSRP Formate" label-placement="floating" fill="outline" name="billformate">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input name="billno" type="number" label=" HSRP No.  :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input name="hsrpdate" type="date" label="Date   :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" name="suppliercode" type="text" label="Code :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+
+              <ion-col class="ionselect" size-lg="3.5" size-md="3.5" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Supplier Name---" label-placement="floating" fill="outline" name="spler">
+                  <ion-select-option value="">Supplier 1</ion-select-option>
+                  <ion-select-option value="">Supplier 2</ion-select-option>
+                  <ion-select-option value="">Supplier 3</ion-select-option>
+                  <ion-select-option value="">Supplier 4</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" name="refrence" type="text" label="Refrence No.:" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input color="dark" name="refdate" type="date" label="Ref. Date :" label-placement="floating"
+                    fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col class="ionselect" size-lg="3" size-md="3" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Executive Name --- " label-placement="floating" fill="outline" name="executive_name">
+                  <ion-select-option value="">Executive 1</ion-select-option>
+                  <ion-select-option value="">Executive 2</ion-select-option>
+                  <ion-select-option value="">Executive 3</ion-select-option>
+                  <ion-select-option value="">Executive 4</ion-select-option>
+                  <ion-select-option value="">Executive 5</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-row style="margin-top: 7px;">
+              <div class="scroll-container">
+
+                <table style="width:1355px;">
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th>Part No.</th>
+                    <th>Frame No.</th>
+                    <th>Engine No.</th>
+                    <th>Vehicle No</th>
+                    <th>Veh. Reg. No.</th>
+                    <th>Veh. Reg. Date</th>
+                    <th>HSRP Front</th>
+                    <th>HSRP Rear</th>
+                    <th>Description</th>
+                    <th>HSN/SAC Code</th>
+                    <th>Quantity</th>
+                    <th>Basic Rate</th>
+                    <th>Tax Amount</th>
+                    <th>TCS value</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" type="text">
+                    </td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>P123</td>
+                    <td>F456</td>
+                    <td>E789</td>
+                    <td>XYZ123</td>
+                    <td>ABCD123</td>
+                    <td>2023-01-01</td>
+                    <td>Front123</td>
+                    <td>Rear456</td>
+                    <td>Example Description 1</td>
+                    <td>1234</td>
+                    <td>2</td>
+                    <td>50.00</td>
+                    <td>10.00</td>
+                    <td>5.00</td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>P456</td>
+                    <td>F789</td>
+                    <td>E123</td>
+                    <td>ABC456</td>
+                    <td>EFGH456</td>
+                    <td>2023-02-01</td>
+                    <td>Front456</td>
+                    <td>Rear789</td>
+                    <td>Example Description 2</td>
+                    <td>5678</td>
+                    <td>3</td>
+                    <td>75.00</td>
+                    <td>15.00</td>
+                    <td>7.50</td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>P789</td>
+                    <td>F123</td>
+                    <td>E456</td>
+                    <td>MNO789</td>
+                    <td>IJKL789</td>
+                    <td>2023-03-01</td>
+                    <td>Front789</td>
+                    <td>Rear123</td>
+                    <td>Example Description 3</td>
+                    <td>9101</td>
+                    <td>1</td>
+                    <td>30.00</td>
+                    <td>6.00</td>
+                    <td>3.00</td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>P234</td>
+                    <td>F567</td>
+                    <td>E890</td>
+                    <td>LMN234</td>
+                    <td>QRST234</td>
+                    <td>2023-04-01</td>
+                    <td>Front234</td>
+                    <td>Rear567</td>
+                    <td>Example Description 4</td>
+                    <td>1122</td>
+                    <td>4</td>
+                    <td>100.00</td>
+                    <td>20.00</td>
+                    <td>10.00</td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>P567</td>
+                    <td>F890</td>
+                    <td>E234</td>
+                    <td>OPQ567</td>
+                    <td>UVWX567</td>
+                    <td>2023-05-01</td>
+                    <td>Front567</td>
+                    <td>Rear890</td>
+                    <td>Example Description 5</td>
+                    <td>3344</td>
+                    <td>2</td>
+                    <td>60.00</td>
+                    <td>12.00</td>
+                    <td>6.00</td>
+                    <td>
+                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
+                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                    </td>
+                  </tr>
+
+                </table>
+              </div>
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+
+                <ion-row>
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total Item :</label>
+                    <input name="totalitemno" class="input_table" type="text">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Quantity : </label>
+                    <input name="totalquantity" class="input_table" type="text">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Gross Amount :</label>
+                    <input name="totalgrossamt" class="input_table" type="text">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Discount Amount : </label>
+                    <input name="totaldiscountamt" class="input_table" type="text">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Tax Amount :</label>
+                    <input name="totaltaxamount" class="input_table" type="text">
+
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                    <label class="label_table" for="">Total :</label>
+                    <input name="totalnetamount" class="input_table" type="text">
+
+                  </ion-col>
+                </ion-row>
+              </div>
+
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col class="row1" size-lg="3" size-md="3" size-sm="3" size="12">
+                <div class="row3">
+                  <ion-label class="delivery-label" style="font-size: small;">Scheduled Delivery</ion-label>
+                  <div class="outstanding">
+                    <ion-row>
+                      <table class="delivery-table" style="width: 100%; overflow: hidden;">
+                        <tr>
+                          <th style="width: 100px !important;">Delivery Date</th>
+                          <td>
+                            <ion-input type="date" name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style="width: 100px !important;">Delivery Place</th>
+                          <td>
+                            <ion-input type="text" name="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
+                          </td>
+                        </tr>
+                      </table>
+                    </ion-row>
+                  </div>
+                </div>
+              </ion-col>
+
+              <ion-col class="row1" size-lg="4" size-md="6" size-sm="6" size="12">
+                <ion-label class="delivery-label" style="font-size: smaller;">OutStanding</ion-label>
+                <div class="outstanding">
+                  <ion-row>
+                    <table style="width: 100%; overflow: hidden; max-height: 60px;">
+                      <tr>
+                        <th style="width: 100px !important;">Opening Balance</th>
+                        <td>
+                          <ion-input type="text" name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                        </td>
+                        <th style="width: 100px !important;">Debit</th>
+                        <td>
+                          <ion-input type="text" name="debit" placeholder="Enter  Dedit Amount"></ion-input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th style="width: 100px !important;">Closing Balance</th>
+                        <td>
+                          <ion-input type="text" name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                        </td>
+                        <th style="width: 100px !important;">Credit</th>
+                        <td>
+                          <ion-input type="text" name="credit" placeholder="Enter Credit Amount"></ion-input>
+                        </td>
+                      </tr>
+                    </table>
+                  </ion-row>
+                </div>
+              </ion-col>
+              <ion-col class="row1" size-lg="2" size-md="3" size-sm="3" size="12">
+                <!-- <ion-label class="delivery-label" style="font-size: smaller;">Total</ion-label>
+              <div class="outstanding">
+                <ion-row>
+                  <table style="width: 100%; overflow: hidden; max-height: 60px;">
+                    <tr>
+                      <th style="text-align: left;">Total Item :</th>
+                      <td> <input  [(ngModel)]="totalitemno"  formControlName="totalitemno" name="totalitemno"  class="table_input" type="text">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th style="text-align: left;">Total Quantity :</th>
+                      <td> <input  [(ngModel)]="totalquantity"  formControlName="totalquantity"  name="totalquantity"  class="table_input" type="text">
+                      </td>
+                    </tr>
+                  </table>
+                </ion-row>
+              </div> -->
+              </ion-col>
+
+              <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">
+                <div class="output" style="border: none;margin-left: 30px;">
+                  <table>
+
+                    <tr>
+                      <th colspan="2">Discount Amount :</th>
+                      <td colspan="2"> <input id="totaldiscountamt" name="totaldiscountamt" class="row_input"
+                          type="text">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th colspan="2">Tax Amount : </th>
+                      <td colspan="2"> <input id="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th colspan="2">Round Off : </th>
+                      <td colspan="2"> <input name="roundoff" id="roundoff" class="row_input" type="text">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="2">Pre-Tax : </th>
+                      <td colspan="2"> <input name="pretax" id="pretax" class="row_input" type="text">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="2">Post-Tax : </th>
+                      <td colspan="2"> <input name="posttax" id="posttax" class="row_input" type="text">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th colspan="2">Grand Total : </th>
+                      <td colspan="2"> <input id="totalnetamount" name="totalnetamount" class="row_input" type="text">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </ion-col>
+
+            </ion-row>
+
+          </form>
+        </ion-grid>
+      </ion-card-content>
+    </div>
+  </div>
+</ion-content>

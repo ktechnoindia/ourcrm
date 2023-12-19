@@ -891,7 +891,19 @@ export const routes: Routes = [
   {
     path: 'viewroleofexicutive',
     loadComponent: () => import('./viewroleofexicutive/viewroleofexicutive.page').then( m => m.ViewroleofexicutivePage)
+  },  {
+    path: 'hsrpin',
+    loadComponent: () => import('./hsrpin/hsrpin.page').then( m => m.HsrpinPage)
   },
+  {
+    path: 'hsrpout',
+    loadComponent: () => import('./hsrpout/hsrpout.page').then( m => m.HsrpoutPage)
+  },
+  {
+    path: 'pendinghsrp',
+    loadComponent: () => import('./pendinghsrp/pendinghsrp.page').then( m => m.PendinghsrpPage)
+  },
+
 
 
 
