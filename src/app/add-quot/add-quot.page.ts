@@ -287,7 +287,7 @@
           debit:this.myform.value.debit,
           credit: this.myform.value.credit,
           ttotal:0,
-
+itemid:element.itemid,
           companyid:companyid,
           userid:userid,
         };
@@ -337,7 +337,7 @@
             const itemDetails = data[0];
     
             // Update the quote properties
-            quote.itemcode = itemDetails.tid;
+            quote.itemcode = itemDetails.itemCode;
             quote.itemname = itemDetails.itemDesc;
             quote.barcode = itemDetails.barcode.toString();
             quote.unitname = itemDetails.unitname;
@@ -347,6 +347,39 @@
             this.myform.patchValue({
               itemcode: quote.itemcode,
               itemname: quote.itemname,
+              // Other form controls...
+            });
+          } else {
+            console.error('No data found for the selected item.');
+          }
+        },
+        (error) => {
+          console.error('Error fetching data', error);
+        }
+      );
+    }
+
+    getCustomers(event:any) {
+      const compid = '1';
+      const identifier =this.custcode ? 'custname' : 'custcode';
+      const value =  this.custcode;
+    
+      this.custname1.fetchallCustomer(compid,value,'').subscribe(
+        (data) => {
+          console.log('Data received:', data);
+    
+          if (data && data.length > 0) {
+            const itemDetails = data[0];
+    
+            // Update the quote properties
+            event.custcode = itemDetails.customer_code;
+            event.custname = itemDetails.name;
+          
+    
+            // Update form control values
+            this.myform.patchValue({
+              custcode: itemDetails.itemcode,
+              custname: itemDetails.itemname,
               // Other form controls...
             });
           } else {
