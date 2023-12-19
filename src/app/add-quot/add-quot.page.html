@@ -171,7 +171,9 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [value]="getgrossrate(quote)" [readonly]="true" class="table_input" type="number">                    </td>
+                      <input style="width: 90px;" [value]="getgrossrate(quote)" [readonly]="true" class="table_input"
+                        type="number">
+                    </td>
                     <td style="width: 50px;">
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
@@ -184,16 +186,13 @@
                     </td>
                     <input type="hidden" [(ngModel)]="quote.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
-                      <input [value]="getsgst(quote)" [(ngModel)]="quote.CGST" [ngModelOptions]="{standalone: true}"
-                        class="table_input">
+                      <input [value]="getsgst(quote)"  [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [value]="getcgst(quote)" [(ngModel)]="quote.SGST" [ngModelOptions]="{standalone: true}"
-                        class="table_input">
+                      <input [value]="getcgst(quote)"  [readonly]="true"  class="table_input" type="number">
                     </td>
                     <td>
-                      <input [value]="getigst(quote)" [(ngModel)]="quote.IGST" [ngModelOptions]="{standalone: true}"
-                        class="table_input">
+                      <input [value]="getigst(quote)"  type="number" class="table_input">
                     </td>
                     <td style="width: 90px;">
                       <select class="select-option" formControlName="discountType">
@@ -213,12 +212,10 @@
                     </td>
 
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.totaltax" [value]="getTotaltax(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input style="width: 90px;" [readonly]="true" [value]="getTotaltax(quote)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [(ngModel)]="quote.total" [value]="getTotalamt(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input style="width: 90px;" [readonly]="true" [value]="getTotalamt(quote)" class="table_input" type="text">
 
                     </td>
 

@@ -192,6 +192,15 @@ export class DcInPage implements OnInit {
 
      
       for (const element of dcinData) { 
+
+        element.grossrate = element.basicrate * element.quantity;
+        element.netrate=element.basicrate + element.taxrate1;
+        element.CGST= element.taxrate1/2;
+        element.SGST = element.taxrate1/2;
+        element.IGST = element.taxrate1;
+        element.total= element.totaltax+element.grossrate;
+        element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
+
         console.log(element); 
         let decindatas: dcinstore[]=[];
 
@@ -364,6 +373,11 @@ export class DcInPage implements OnInit {
 
     // Add similar calculations for other totals
   }
+
+  getTotaltax(quote: Dcin): number {
+    return quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
+    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+  }
   getAllRows() {
     console.log('Number of Rows:', this.dcinData.length);
 
@@ -411,11 +425,7 @@ export class DcInPage implements OnInit {
   getnetrate(dcin: Dcin): number {
     return dcin.basicrate + (dcin.taxrate1 / 100 * dcin.basicrate);
   }
-  getTotaltax(dcin: Dcin): number {
-    return dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate);
-    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
 
-  }
   getgrossrate(dcin: Dcin): number {
     return dcin.quantity * dcin.basicrate;
   }
@@ -449,6 +459,8 @@ export class DcInPage implements OnInit {
     // return discount amount for display
     return discountAmt;
   }
+
+  
 
   calculateDiscountAmount(dcin: Dcin): number {
     const discountType = this.myform.get('discountType')?.value;

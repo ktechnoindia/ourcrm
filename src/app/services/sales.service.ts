@@ -16,44 +16,47 @@ export interface salesstore {
   gstin:number;
   salePerson: number;
   payment: number;
-  unitname: number;
  
   //table
-  barcode:string;
-itemcode:string;
-itemname:number;
-description:string;
-quantity:number;
-mrp:string;
-basicrate:number;
-netrate:string;
-grossrate:string;
-  taxrate: number ;
- IGST:string;
-  CGST:string;
-  SGST:string;
-  discount:string;
-  discountamt:string;
-  totaltax: string ;
-  total: string ;
+  barcode: string;
+  itemcode: number;
+  itemname: number;
+  description: string;
+  quantity: number;
+  unitname: number;
+  mrp: number;
+  basicrate: number;
+  netrate: number;
+  grossrate: number;
+  taxrate: number;
+  IGST: number;
+  CGST: number;
+  SGST: number;
+  discount: number;
+  discountamt: number;
+  totaltax: number;
+  total: number;
 
-  totalitemno:string;
-  totalquantity:string;
-  totalgrossamt:string;
-  totaldiscountamt:string;
-  totaltaxamount:string;
-  totalnetamount:string;
+  totalitemno: string;
+  totalquantity: string;
+  totalgrossamt: string;
+  totaldiscountamt: string;
+  totaltaxamount: string;
+  totalnetamount: string;
   deliverydate: string;
   deliveryplace: string;
 
   roundoff: string;
-  pretax: string;
-  posttax: string;
+  pretax: number;
+  posttax: number;
   openingbalance: string;
   closingbalance: string;
   debit: string;
   credit: string;
-  ttotal:number;
+
+  ttotal: number;
+  companyid:number;
+  userid:number;
 }
 @Injectable({
   providedIn: 'root'
@@ -64,7 +67,7 @@ export class SalesService {
   }
   total!: number;
   constructor(private httpclient:HttpClient) { }
-  createsale(sales:salesstore,key:string,user:string){
+  createsale(sales:salesstore[],key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addsales,sales,{headers:{'key':key,'user':user}})
   }
   fetchallSales(companyid:string,key:string,user:string): Observable<any> {

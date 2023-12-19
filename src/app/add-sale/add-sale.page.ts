@@ -16,6 +16,8 @@ import { FormValidationService } from '../form-validation.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
+  posttax: number;
+  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -35,8 +37,7 @@ interface Sales {
   totaltax: number;
   total: number;
   taxrate1: number;
-  posttax: number;
-  pretax: number;
+  itemid:number;
 }
 @Component({
   selector: 'app-add-sale',
@@ -99,31 +100,33 @@ export class AddSalePage implements OnInit {
   credit: string = '';
   salesData: Sales[] = [{
     barcode: '',
-    itemcode: 0,
-    itemname: 0,
-    description: '',
-    quantity: 0,
-    unitname: 0,
-    mrp: 0,
-    basicrate: 0,
-    netrate: 0,
-    grossrate: 0,
-    taxrate: 0,
-    CGST: 0,
-    SGST: 0,
-    IGST: 0,
-    discount: 0,
-    discountamt: 0,
-    totaltax: 0,
-    total: 0,
-    taxrate1: 0,
-    pretax: 0,
-    posttax: 0
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid:0,
   }];
   ttotal: number = 0;
   myform: FormGroup;
 
-
+  companyid:number=0;
+  userid:number=0;
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -165,27 +168,25 @@ export class AddSalePage implements OnInit {
       salePerson: [''],
       payment: [''],
 
-      //table
       barcode: [''],
-      itemcode: [''],
+      itemcode: 0,
       itemname: [''],
       description: [''],
-      quantity: [''],
-      unitname: [''],
-      mrp: [''],
-      basicrate: [''],
-      netrate: [''],
-      grossrate: [''],
-      taxrate: [''],
-      IGST: [''],
-      CGST: [''],
-      SGST: [''],
-      discount: [''],
-      discountamt: [''],
-      totaltax: [''],
-      total: [''],
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate:0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
-
       totalitemno: [''],
       totalquantity: [''],
       totalgrossamt: [''],
@@ -204,14 +205,30 @@ export class AddSalePage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-
+      itemid:['']
     })
   }
-  async onSubmit() {
+  async onSubmit(form: FormGroup,salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
-    const isValid = await this.formService.validateForm(fields);
+
+    console.log('Your form data : ', JSON.stringify(this.myform.value)+   '    -> '+JSON.stringify(salesData));
+
     if (await this.formService.validateForm(fields)) {
-      console.log('Your form data : ', this.myform.value);
+      
+      for (const element of salesData) {
+        element.grossrate = element.basicrate * element.quantity;
+        element.netrate=element.basicrate + element.taxrate1;
+        element.CGST= element.taxrate1/2;
+        element.SGST = element.taxrate1/2;
+        element.IGST = element.taxrate1;
+        element.total= element.totaltax+element.grossrate;
+        element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
+       
+        console.log(element); 
+        const companyid=1;
+        const userid=1;
+        let salesdatas: salesstore[]=[];
+
       let saledata: salesstore = {
         billformate: this.myform.value.billformate,
         billNumber: this.myform.value.billNumber,
@@ -227,43 +244,48 @@ export class AddSalePage implements OnInit {
         salePerson: this.myform.value.salePerson,
         payment: this.myform.value.payment,
 
-        barcode: this.myform.value.barcode,
-        itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
-        description: this.myform.value.description,
-        quantity: this.myform.value.quantity,
-        unitname: this.myform.value.unitname,
-        mrp: this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
-        netrate: this.myform.value.netrate,
-        grossrate: this.myform.value.grossrate,
-        taxrate: this.myform.value.taxrate,
-        CGST: this.myform.value.CGST,
-        SGST: this.myform.value.SGST,
-        IGST: this.myform.value.IGST,
-        discount: this.myform.value.discount,
-        discountamt: this.myform.value.discountamt,
-        totaltax: this.myform.value.totaltax,
-        total: this.myform.value.total,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        roundoff: this.myform.value.roundoff,
-        pretax: this.myform.value.pretax,
-        posttax: this.myform.value.posttax,
-        deliverydate: this.myform.value.deliverydate,
-        deliveryplace: this.myform.value.deliveryplace,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit: this.myform.value.debit,
-        credit: this.myform.value.credit,
-        ttotal: this.myform.value.ttotal,
+        barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          unitname: element.unitname,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          grossrate: element.grossrate, // Add grossrate
+          taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
+          discount: element.discount,
+          discountamt: element.discountamt,
+          totaltax: element.totaltax,
+          total: element.total,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          totalnetamount: this.myform.value.totalnetamount,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          roundoff: this.myform.value.roundoff,
+          pretax: element.pretax,
+          posttax: element.posttax,
+          openingbalance: this.myform.value.openingbalance,
+          closingbalance: this.myform.value.closingbalance,
+          debit:this.myform.value.debit,
+          credit: this.myform.value.credit,
+          ttotal:0,
 
+          companyid:companyid,
+          userid:userid,
       };
-      this.saleService.createsale(saledata, '', '').subscribe(
+
+      salesdatas.push(saledata);
+
+      this.saleService.createsale(salesdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -279,6 +301,7 @@ export class AddSalePage implements OnInit {
           this.formService.shoErrorLoader();
         }
     );
+      }
   }  else {
     Object.keys(this.myform.controls).forEach(controlName => {
       const control = this.myform.get(controlName);
@@ -290,6 +313,41 @@ export class AddSalePage implements OnInit {
       this.firstInvalidInput.setFocus();
     }
   }
+};
+
+getItems(sales: any) {
+  const compid = 1;
+  const identifier = sales.itemcode ? 'itemname' : 'itemcode';
+  const value =  sales.itemcode;
+
+  this.itemService.getItems(compid, value).subscribe(
+    (data) => {
+      console.log('Data received:', data);
+
+      if (data && data.length > 0) {
+        const itemDetails = data[0];
+
+        // Update the quote properties
+        sales.itemcode = itemDetails.tid;
+        sales.itemname = itemDetails.itemDesc;
+        sales.barcode = itemDetails.barcode.toString();
+        sales.unitname = itemDetails.unitname;
+        sales.taxrate = itemDetails.selectGst;
+
+        // Update form control values
+        this.myform.patchValue({
+          itemcode: sales.itemcode,
+          itemname: sales.itemname,
+          // Other form controls...
+        });
+      } else {
+        console.error('No data found for the selected item.');
+      }
+    },
+    (error) => {
+      console.error('Error fetching data', error);
+    }
+  );
 }
 
   addSales() {
@@ -316,8 +374,8 @@ export class AddSalePage implements OnInit {
       total: 0,
       taxrate1: 0,
       pretax: 0,
-      posttax: 0
-      // Add more properties as needed
+      posttax: 0,
+      itemid:0,
     };
     this.salesData.push(newRow);
   }

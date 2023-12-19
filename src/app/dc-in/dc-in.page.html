@@ -159,8 +159,7 @@
 
                       </td>
                       <td>
-                        <input [(ngModel)]="dcin.netrate" [value]="getnetrate(dcin)" [ngModelOptions]="{standalone: true}"
-                          class="table_input" type="text">
+                        <input  [value]="getnetrate(dcin)" [readonly]="true" class="table_input" type="text">
                       </td>
                       <td>
                         <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) "
@@ -177,16 +176,13 @@
                       <input type="hidden" [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                       <td>
-                        <input [(ngModel)]="dcin.CGST" [value]="getcgst(dcin)" [ngModelOptions]="{standalone: true}"
-                          class="table_input" type="text">
+                        <input [value]="getcgst(dcin)"  [readonly]="true"  class="table_input" type="text">
                       </td>
                       <td>
-                        <input [(ngModel)]="dcin.SGST" [value]="getsgst(dcin)" [ngModelOptions]="{standalone: true}"
-                          class="table_input" type="text">
+                        <input [value]="getsgst(dcin)"  [readonly]="true"  class="table_input" type="text">
                       </td>
                       <td>
-                        <input [(ngModel)]="dcin.IGST" [value]="getigst(dcin)" [ngModelOptions]="{standalone: true}"
-                          class="table_input" type="text">
+                        <input [value]="getigst(dcin)"  [readonly]="true"  class="table_input" type="text">
                       </td>
                       <td>
                         <select class="table_select" formControlName="discountType">
@@ -204,12 +200,10 @@
                       </td>
 
                       <td>
-                        <input [(ngModel)]="dcin.totaltax" [value]="getTotaltax(dcin)"
-                          [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        <input [value]="getTotaltax(dcin)"  [readonly]="true"  class="table_input" type="text">
                       </td>
                       <td>
-                        <input [(ngModel)]="dcin.total" [value]="getTotalamt(dcin)" [ngModelOptions]="{standalone: true}"
-                          class="table_input" type="text">
+                        <input [value]="getTotalamt(dcin)"  [readonly]="true"  class="table_input" type="text">
 
                       </td>
 

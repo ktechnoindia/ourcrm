@@ -8,13 +8,14 @@ import { DcoutService, dcoutstore } from '../services/dcout.service';
 import { NgForm } from '@angular/forms';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
-import { quotestore } from '../services/quotation.service';
 import { AdditemService } from '../services/additem.service';
 import { EncryptionService } from '../services/encryption.service';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 interface Dcout {
+  posttax: number;
+  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -33,16 +34,15 @@ interface Dcout {
   discountamt: number;
   totaltax: number;
   total: number;
-  taxrate1:number;
-  posttax: number;
-  pretax: number;
+  taxrate1: number;
+  itemid: number;
 }
 @Component({
   selector: 'app-dc-out',
   templateUrl: './dc-out.page.html',
   styleUrls: ['./dc-out.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class DcOutPage implements OnInit {
   voucherformat: number = 0;
@@ -55,24 +55,24 @@ export class DcOutPage implements OnInit {
   // ponumber: string = '';
 
   //table data
- /* barcode: string = '';
-  itemcode: string = '';
-  itemname: number = 0;
-  description: string = '';
-  quantity: string = '';
-  unitname: number = 0;
-  mrp: string = '';
-  basicrate: string = '';
-  netrate: string = '';
-  grossrate: string = '';
-  taxrate: string = '';
-  CGST: string = '';
-  SGST: string = '';
-  IGST: string = '';
-  discount: string = '';
-  discountamt: string = '';
-  totaltax: string = '';
-  total: string = '';*/
+  /* barcode: string = '';
+   itemcode: string = '';
+   itemname: number = 0;
+   description: string = '';
+   quantity: string = '';
+   unitname: number = 0;
+   mrp: string = '';
+   basicrate: string = '';
+   netrate: string = '';
+   grossrate: string = '';
+   taxrate: string = '';
+   CGST: string = '';
+   SGST: string = '';
+   IGST: string = '';
+   discount: string = '';
+   discountamt: string = '';
+   totaltax: string = '';
+   total: string = '';*/
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -90,6 +90,7 @@ export class DcOutPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
+
   dcoutData: Dcout[] = [{
     barcode: '',
     itemcode: 0,
@@ -100,7 +101,6 @@ export class DcOutPage implements OnInit {
     mrp: 0,
     basicrate: 0,
     netrate: 0,
-    grossrate: 0,
     taxrate: 0,
     CGST: 0,
     SGST: 0,
@@ -109,10 +109,14 @@ export class DcOutPage implements OnInit {
     discountamt: 0,
     totaltax: 0,
     total: 0,
-    taxrate1:0,
-    pretax:0,
-    posttax:0,
+    taxrate1: 0,
+    pretax: 0,
+    posttax: 0,
+    itemid: 0,// Calculate grossrate after other properties
+    grossrate: 0,
   }];
+  companyid: number = 0;
+  userid: number = 0;
   myform: FormGroup;
   ttotal!: number;
   supplier$: any;
@@ -122,147 +126,167 @@ export class DcOutPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  itemnames$: Observable<any[]>; 
-  unitname$: Observable<any[]>; 
-  taxrate$: Observable<any[]>; 
+  itemnames$: Observable<any[]>;
+  unitname$: Observable<any[]>;
+  taxrate$: Observable<any[]>;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  
-  constructor(private vendname1:VendorService,private encService: EncryptionService,private formBuilder: FormBuilder,private itemService:AdditemService,private unittype: UnitnameService, private gstsrvs: GsttypeService,private router: Router, private toastCtrl: ToastController,private dcout: DcoutService,private formService: FormValidationService) { 
+
+  constructor(private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.datetype= new Date().toISOString().split('T')[0]; 
-    this.refdate=  new Date().toISOString().split('T')[0]; 
-    this.deliverydate= new Date().toISOString().split('T')[0]; 
+    this.datetype = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],
-      voucherNumber: ['',Validators.required],
+      voucherNumber: ['', Validators.required],
       datetype: [''],
-      vendcode: ['',Validators.required],
-      suppliertype: ['',Validators.required],
+      vendcode: ['', Validators.required],
+      suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
       // ponumber: [''],
 
-      //table
-      barcode: [''],
-      itemcode: [''],
-      itemname: [''],
-      description: [''],
-      quantity: [''],
-      unitname: [''],
-      mrp: [''],
-      basicrate: [''],
-      netrate: [''],
-      grossrate: [''],
-      taxrate: [''],
-      IGST: [''],
-      CGST: [''],
-      SGST: [''],
-      discount: [''],
-      discountamt: [''],
-      totaltax: [''],
-      total: [''],
-      discountType: ['amount'], // 'amount' or 'percentage'
+     //table
+        barcode: [''],
+        itemcode: 0,
+        itemname: [''],
+        description: [''],
+        quantity: 0,
+        unitname: 0,
+        mrp: 0,
+        basicrate:0,
+        netrate: 0,
+        grossrate: 0,
+        taxrate: 0,
+        IGST: 0,
+        CGST: 0,
+        SGST: 0,
+        discount: 0,
+        discountamt: 0,
+        totaltax: 0,
+        total: 0,
+        discountType: ['amount'], // 'amount' or 'percentage'
+        totalitemno: [''],
+        totalquantity: [''],
+        totalgrossamt: [''],
+        totaldiscountamt: [''],
+        totaltaxamount: [''],
+        totalnetamount: [''],
+        deliverydate: [''],
+        deliveryplace: [''],
 
-      totalitemno: [''],
-      totalquantity: [''],
-      totalgrossamt: [''],
-      totaldiscountamt: [''],
-      totaltaxamount: [''],
-      totalnetamount: [''],
-      deliverydate: [''],
-      deliveryplace: [''],
+        roundoff: [''],
+        pretax: [''],
+        posttax: [''],
+        openingbalance: [''],
+        closingbalance: [''],
+        debit: [''],
+        credit: [''],
 
-      roundoff: [''],
-      pretax: [''],
-      posttax: [''],
-      openingbalance: [''],
-      closingbalance: [''],
-      debit: [''],
-      credit: [''],
-
-      ttotal: [''],
-
+        ttotal: [''],
+        itemid:['']
     })
   }
 
- 
-  async onSubmit() {
+
+  async onSubmit(form: FormGroup, dcoutData: Dcout[]) {
 
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      console.log('Your form data : ', this.myform.value);
 
-      let dcoutdata: dcoutstore = {
-        voucherformat: this.myform.value.voucherformat,
-        voucherNumber: this.myform.value.voucherNumber,
-        datetype: this.myform.value.datetype,
-        vendcode: this.myform.value.vendcode,
-        suppliertype: this.myform.value.suppliertype,
-        referenceNumber: this.myform.value.referenceNumber,
-        refdate: this.myform.value.refdate,
-        // ponumber: this.myform.value.ponumber,
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcoutData));
 
-        barcode: this.myform.value.barcode,
-        itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
-        description: this.myform.value.description,
-        quantity: this.myform.value.quantity,
-        unitname: this.myform.value.unitname,
-        mrp: this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
-        netrate: this.myform.value.netrate,
-        grossrate: this.myform.value.grossrate,
-        taxrate: this.myform.value.taxrate,
-        CGST: this.myform.value.CGST,
-        SGST: this.myform.value.SGST,
-        IGST: this.myform.value.IGST,
-        discount: this.myform.value.discount,
-        discountamt: this.myform.value.discountamt,
-        totaltax: this.myform.value.totaltax,
-        total: this.myform.value.total,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        roundoff: this.myform.value.roundoff,
-        pretax: this.myform.value.pretax,
-        posttax: this.myform.value.posttax,
-        deliverydate: this.myform.value.deliverydate,
-        deliveryplace: this.myform.value.deliveryplace,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit: this.myform.value.debit,
-        credit: this.myform.value.credit,
+      for (const element of dcoutData) {
 
-      };
+        element.grossrate = element.basicrate * element.quantity;
+        element.netrate = element.basicrate + element.taxrate1;
+        element.CGST = element.taxrate1 / 2;
+        element.SGST = element.taxrate1 / 2;
+        element.IGST = element.taxrate1;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
 
-      this.dcout.createdcout(dcoutdata, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
-          this.formService.showSaveLoader();
+        console.log(element);
+        const companyid = 1;
+        const userid = 1;
+        let dcoutdatas: dcoutstore[] = [];
 
-        },
-        (error:any) =>{
-         console.log('POST request failed',error);
-         setTimeout(() => {
-          this.formService.showFailedAlert();
-         }, 1000);
-         this.formService.shoErrorLoader();
-        }
-      );
-    }  else {
+        let dcoutdata: dcoutstore = {
+          voucherformat: this.myform.value.voucherformat,
+          voucherNumber: this.myform.value.voucherNumber,
+          datetype: this.myform.value.datetype,
+          vendcode: this.myform.value.vendcode,
+          suppliertype: this.myform.value.suppliertype,
+          referenceNumber: this.myform.value.referenceNumber,
+          refdate: this.myform.value.refdate,
+
+          barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          unitname: element.unitname,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          grossrate: element.grossrate, // Add grossrate
+          taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
+          discount: element.discount,
+          discountamt: element.discountamt,
+          totaltax: element.totaltax,
+          total: element.total,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          totalnetamount: this.myform.value.totalnetamount,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          roundoff: this.myform.value.roundoff,
+          pretax: element.pretax,
+          posttax: element.posttax,
+          openingbalance: this.myform.value.openingbalance,
+          closingbalance: this.myform.value.closingbalance,
+          debit:this.myform.value.debit,
+          credit: this.myform.value.credit,
+          companyid:companyid,
+          userid:userid,
+          taxrate1: element.taxrate1,
+          
+        };
+
+        dcoutdatas.push(dcoutdata);
+
+        this.dcout.createdcout(dcoutdatas, '', '').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            setTimeout(() => {
+              this.formService.showSuccessAlert();
+            }, 1000);
+            this.formService.showSaveLoader();
+
+          },
+          (error: any) => {
+            console.log('POST request failed', error);
+            setTimeout(() => {
+              this.formService.showFailedAlert();
+            }, 1000);
+            this.formService.shoErrorLoader();
+          }
+        );
+      }
+    } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
         if (control?.invalid) {
@@ -274,248 +298,288 @@ export class DcOutPage implements OnInit {
       }
     }
   }
-  
-    addDcout() {
-      console.log('addrowwww'+this.dcoutData.length);
-      // You can initialize the new row data here
-      const newRow :Dcout= {
-        barcode: '',
-        itemcode: 0,
-        itemname: 0,
-        description:'',
-        quantity:0,
-        unitname:0,
-        mrp:0,
-        basicrate:0,
-        netrate:0,
-        grossrate:0,
-        taxrate:0,
-        CGST:0,
-        SGST:0,
-        IGST:0,
-        discount:0,
-        discountamt:0,
-        totaltax:0,
-        total:0,
-        taxrate1:0,
-        pretax:0,
-        posttax:0,
-        // Add more properties as needed
-      };
-      this.dcoutData.push(newRow);
-    }
 
-    onNew(){
-      location.reload();
-    }
+  addDcout() {
+    console.log('addrowwww' + this.dcoutData.length);
+    // You can initialize the new row data here
+    const newRow: Dcout = {
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid: 0,// Calculate grossrate after other properties
+      grossrate: 0,
 
-    removeDcout(index: number,row:Dcout) {
-      this.ttotal=this.ttotal-this.dcout.total;
-      this.dcoutData.splice(index, 1);
-    }
-    getAllRows() {
-      console.log('Number of Rows:', this.dcoutData.length);
-    
-      for (let i = 0; i < this.dcoutData.length; i++) {
-        const quote = this.dcoutData[i];
-        console.log('Row:', quote);
+      // Add more properties as needed
+    };
+    this.dcoutData.push(newRow);
+  }
+
+  getItems(dcout: any) {
+    const compid = 1;
+    const identifier = dcout.itemcode ? 'itemname' : 'itemcode';
+    const value = dcout.itemcode;
+
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          dcout.itemcode = itemDetails.tid;
+          dcout.itemname = itemDetails.itemDesc;
+          dcout.barcode = itemDetails.barcode.toString();
+          dcout.unitname = itemDetails.unitname;
+          dcout.taxrate = itemDetails.selectGst;
+
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: dcout.itemcode,
+            itemname: dcout.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
       }
+    );
+  }
+
+
+
+  onNew() {
+    location.reload();
+  }
+
+  removeDcout(index: number, row: Dcout) {
+    this.ttotal = this.ttotal - this.dcout.total;
+    this.dcoutData.splice(index, 1);
+  }
+  getAllRows() {
+    console.log('Number of Rows:', this.dcoutData.length);
+
+    for (let i = 0; i < this.dcoutData.length; i++) {
+      const quote = this.dcoutData[i];
+      console.log('Row:', quote);
     }
-    calculateTotalSum() {
-      let sum = 0;
-      for (const row of this.dcoutData) {
-        sum += this.dcout.total;
-      }
-      this.ttotal= sum;
+  }
+  calculateTotalSum() {
+    let sum = 0;
+    for (const row of this.dcoutData) {
+      sum += this.dcout.total;
     }
-  
-    
-  
-    calculateTotals() {
-      // Add your logic to calculate totals based on the salesData array
-      this.totalItemNo = this.dcoutData.length;
-  
-      // Example calculation for total quantity and gross amount
-      this.totalQuantity = this.dcoutData.reduce((total, dcout) => total + dcout.quantity, 0);
-      this.totalGrossAmt = this.dcoutData.reduce((total, dcout) => total + dcout.grossrate, 0);
-  
-      // Add similar calculations for other totals
-    }
-   
-    getTotalQuantity(): number {
-      return this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
-    }
-  
-    getTotalGrossAmount(): number {
-      const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
-        const grossAmount = dcout.quantity * dcout.basicrate;
-        return total + grossAmount;
-      }, 0);
-    
-      return totalGrossAmount;
-    }
-    getTotalnetAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1)  - dcout.discount), 0)
-    }
-    getGrandTotal(): number {
-      const grandTotal = this.dcoutData.reduce((total, dcout) => {
-        const itemTotal = (((+dcout.pretax + dcout.posttax)+(dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount);
-        return total + itemTotal;
-      }, 0);
-    
-      return grandTotal;
-    }
-    getTotalTaxAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total +  (dcout.taxrate1/100*dcout.basicrate)*dcout.quantity, 0);
-    }
-    getTotalDiscountAmount(): number {
-      return this.dcoutData.reduce((total, dcout) => total +  (dcout.discount / 100) * dcout.basicrate * dcout.quantity,0);;
-    }
-    getRoundoff(): number {
-      // Calculate the total amount without rounding
-      const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount ), 0);
-    
-      // Use the toFixed method to round off the total to the desired number of decimal places
-      const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-    
-      return roundedTotalAmount;
-    }
-   //table formaula
-    getnetrate(quote: Dcout): number {
-     return quote.basicrate  + quote.totaltax;
-     }
-    getTotaltax(dcout:Dcout): number {
-      return dcout.quantity *(dcout.taxrate1/100*dcout.basicrate);
-    }
-    getdiscountp(dcout: Dcout) {
-      const discountPercentage = dcout.discount || 0; // assuming discount is a property in your dcin object
+    this.ttotal = sum;
+  }
+
+
+
+  calculateTotals() {
+    // Add your logic to calculate totals based on the salesData array
+    this.totalItemNo = this.dcoutData.length;
+
+    // Example calculation for total quantity and gross amount
+    this.totalQuantity = this.dcoutData.reduce((total, dcout) => total + dcout.quantity, 0);
+    this.totalGrossAmt = this.dcoutData.reduce((total, dcout) => total + dcout.grossrate, 0);
+
+    // Add similar calculations for other totals
+  }
+
+  getTotalQuantity(): number {
+    return this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
+  }
+
+  getTotalGrossAmount(): number {
+    const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
+      const grossAmount = dcout.quantity * dcout.basicrate;
+      return total + grossAmount;
+    }, 0);
+
+    return totalGrossAmount;
+  }
+  getTotalnetAmount(): number {
+    return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount), 0)
+  }
+  getGrandTotal(): number {
+    const grandTotal = this.dcoutData.reduce((total, dcout) => {
+      const itemTotal = (((+dcout.pretax + dcout.posttax) + (dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount);
+      return total + itemTotal;
+    }, 0);
+
+    return grandTotal;
+  }
+  getTotalTaxAmount(): number {
+    return this.dcoutData.reduce((total, dcout) => total + (dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity, 0);
+  }
+  getTotalDiscountAmount(): number {
+    return this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
+  }
+  getRoundoff(): number {
+    // Calculate the total amount without rounding
+    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + dcout.taxrate1) - dcout.discount), 0);
+
+    // Use the toFixed method to round off the total to the desired number of decimal places
+    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+
+    return roundedTotalAmount;
+  }
+  //table formaula
+  getnetrate(quote: Dcout): number {
+    return quote.basicrate + quote.totaltax;
+  }
+  getTotaltax(dcout: Dcout): number {
+    return dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate);
+  }
+  getdiscountp(dcout: Dcout) {
+    const discountPercentage = dcout.discount || 0; // assuming discount is a property in your dcin object
     const basicrate = dcout.basicrate || 0; // handle null/undefined values
     const quantity = dcout.quantity || 0; // handle null/undefined values
-  
+
     // calculate discount amount based on the entered percentage
     const discountAmt = (discountPercentage / 100) * basicrate * quantity;
-  
+
     // update discount amount
     dcout.discountamt = discountAmt;
-  
+
     // return discount amount for display
     return discountAmt;
-    }
-    getgrossrate(dcout: Dcout): number {
-      return dcout.quantity * dcout.basicrate;
-    }
-   
-    getdiscountamt(dcout: Dcout): number {const discountamt = dcout.discountamt || 0; // handle null/undefined values
-  const basicrate = dcout.basicrate || 0; // handle null/undefined values
-  const quantity = dcout.quantity || 0; // handle null/undefined values
-  // calculate discount percentage
-  const discount = (discountamt / (basicrate * quantity)) * 100;
-  // update discount percentage
-  dcout.discount = discount;
-  // return discount amount for display
-  return discountamt;
+  }
+  getgrossrate(dcout: Dcout): number {
+    return dcout.quantity * dcout.basicrate;
+  }
+
+  getdiscountamt(dcout: Dcout): number {
+    const discountamt = dcout.discountamt || 0; // handle null/undefined values
+    const basicrate = dcout.basicrate || 0; // handle null/undefined values
+    const quantity = dcout.quantity || 0; // handle null/undefined values
+    // calculate discount percentage
+    const discount = (discountamt / (basicrate * quantity)) * 100;
+    // update discount percentage
+    dcout.discount = discount;
+    // return discount amount for display
+    return discountamt;
   }
   calculateDiscountAmount(dcout: Dcout): number {
     const discountType = this.myform.get('discountType')?.value;
     const basicrate = +dcout.basicrate || 0;
     const quantity = +dcout.quantity || 0;
-  
+
     if (isNaN(basicrate) || isNaN(quantity)) {
       return 0;
     }
-  
+
     if (discountType === 'amount') {
       return dcout.discountamt || 0;
     } else if (discountType === 'percentage') {
       const discountPercentage = dcout.discount || 0;
       return (discountPercentage / 100) * basicrate * quantity;
     }
-  
+
     return 0;
   }
-    getTotalamt(dcout:Dcout): number {
-      return (dcout.basicrate * dcout.quantity)+ (dcout.quantity * (dcout.taxrate1/100*dcout.basicrate))- this.calculateDiscountAmount(dcout);
-    }
-    getcgst(dcout:Dcout): number {
-      return dcout.taxrate1/2;
-    }
-    getsgst(dcout:Dcout): number {
-      return dcout.taxrate1/2;
-    }
-    getigst(dcout:Dcout): number {
-      return dcout.taxrate1;
-    }
-    ngOnInit() {
-      // Other initialization logic...
-    
-      // Subscribe to value changes of basicrate, taxrate, and discount
-      this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-      this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
-      this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+  getTotalamt(dcout: Dcout): number {
+    return (dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) - this.calculateDiscountAmount(dcout);
+  }
+  getcgst(dcout: Dcout): number {
+    return dcout.taxrate1 / 2;
+  }
+  getsgst(dcout: Dcout): number {
+    return dcout.taxrate1 / 2;
+  }
+  getigst(dcout: Dcout): number {
+    return dcout.taxrate1;
+  }
+  ngOnInit() {
+    // Other initialization logic...
 
-      this.myform.get('discount')?.valueChanges.subscribe(() => {
-        this.calculateDiscount();
-        this.calculateNetRate();
-      });  
-      this.myform.get('discountamt')?.valueChanges.subscribe(() => {
-        this.calculateDiscountPercentage();
-      }); 
-      }
-      calculateDiscount() {
-        const discountType = this.myform.get('discountType')?.value;
-        const discount = +this.myform.get('discount')?.value || 0;
-        const basicrate = +this.myform.get('basicrate')?.value || 0;
-        const quantity = +this.myform.get('quantity')?.value || 0;
-      
-        if (discountType === 'amount') {
-          // Calculate discount amount based on user-entered amount
-          const discountAmt = discount;
-          this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
-        } else if (discountType === 'percentage') {
-          // Calculate discount amount based on user-entered percentage
-          const discountAmt = (discount / 100) * basicrate * quantity;
-          this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
-        }
-        
-      }
-      calculateDiscountPercentage() {
-        // Calculate discount percentage based on discountamt
-      const discountamt = this.myform.get('discountamt')?.value ?? 0;
-      const basicrate = this.myform.get('basicrate')?.value ?? 0;
-      const quantity = this.myform.get('quantity')?.value ?? 0;
-    
-      const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
-      }
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+
+    this.myform.get('discount')?.valueChanges.subscribe(() => {
+      this.calculateDiscount();
+      this.calculateNetRate();
+    });
+    this.myform.get('discountamt')?.valueChanges.subscribe(() => {
+      this.calculateDiscountPercentage();
+    });
+  }
+  calculateDiscount() {
+    const discountType = this.myform.get('discountType')?.value;
+    const discount = +this.myform.get('discount')?.value || 0;
+    const basicrate = +this.myform.get('basicrate')?.value || 0;
+    const quantity = +this.myform.get('quantity')?.value || 0;
+
+    if (discountType === 'amount') {
+      // Calculate discount amount based on user-entered amount
+      const discountAmt = discount;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    } else if (discountType === 'percentage') {
+      // Calculate discount amount based on user-entered percentage
+      const discountAmt = (discount / 100) * basicrate * quantity;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    }
+
+  }
+  calculateDiscountPercentage() {
+    // Calculate discount percentage based on discountamt
+    const discountamt = this.myform.get('discountamt')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+  }
 
   calculateDiscountAmt() {
     // Calculate discountamt based on discount percentage
     const discount = this.myform.get('discount')?.value ?? 0;
     const basicrate = this.myform.get('basicrate')?.value ?? 0;
     const quantity = this.myform.get('quantity')?.value ?? 0;
-  
+
     const discountamt = (discount / 100) * basicrate * quantity;
-  
+
     // Update the discountamt in the form
     this.myform.get('discount')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
-  }  
-    calculateNetRate() {
-      // Add your logic to calculate netrate based on basicrate, taxrate, and discount
-      const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
-      const taxrate = this.myform.get('taxrate')?.value ?? 0;
-      const discount = this.myform.get('discount')?.value ?? 0;
-      const grossrate = this.myform.get('grossrate')?.value ?? 0;
-      const quantity = this.myform.get('quantity')?.value ?? 0;
-  
-      // Perform the calculation and update the netrate in the form
-      const gstAmount = (discount / 100)*basicrate*quantity;
-      const netrate = basicrate + taxrate;
-      this.myform.get('netrate')?.setValue(netrate);
-    }
-  
+  }
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (discount / 100) * basicrate * quantity;
+    const netrate = basicrate + taxrate;
+    this.myform.get('netrate')?.setValue(netrate);
+  }
+
   goBack() {
     this.router.navigate(["/transcationdashboard"])
   }
-  onSelectChange(select: HTMLSelectElement,dcout:Dcout) {
+  onSelectChange(select: HTMLSelectElement, dcout: Dcout) {
     const selectedValue = select.value;
     const selectedIndex = select.selectedIndex;
     const selectedText = select.options[selectedIndex].text;
@@ -528,11 +592,11 @@ export class DcOutPage implements OnInit {
 
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
-      dcout.taxrate1=numericValue;
+      dcout.taxrate1 = numericValue;
 
       // Use numericValue as needed
     } else {
-      dcout.taxrate1=0;
+      dcout.taxrate1 = 0;
 
       console.error('Selected text does not represent a valid number.');
     }
