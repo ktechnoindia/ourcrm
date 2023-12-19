@@ -234,9 +234,9 @@
         for (const element of quoteData) {
           element.grossrate = element.basicrate * element.quantity;
           element.netrate=element.basicrate + element.taxrate1;
-          element.CGST= (element.taxrate1 / 100 * element.basicrate)/2;
-          element.SGST = (element.taxrate1 / 100 * element.basicrate)/2;
-          element.IGST = (element.taxrate1 / 100 * element.basicrate);
+          element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+          element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
+          element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
           element.total= element.totaltax+element.grossrate;
           element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate)
          
@@ -486,16 +486,18 @@
 
 
     getTotalnetAmount(): number {
-      return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0)
+      return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) + quote.totaltax) - ( (quote.discount / 100) * quote.basicrate * quote.quantity)), 0)
     }
     getGrandTotal(): number {
       const grandTotal = this.quoteData.reduce((total, quote) => {
-        const itemTotal = (((+quote.pretax + quote.posttax) + (quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount);
+        const itemTotal =(((quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ( (quote.discount / 100) * quote.basicrate * quote.quantity));
         return total + itemTotal;
       }, 0);
 
       return grandTotal;
     }
+
+    
 
 
     getTotalTaxAmount(): number {
@@ -507,7 +509,7 @@
     }
     getRoundoff(): number {
       // Calculate the total amount without rounding
-      const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + quote.taxrate1) - quote.discount), 0);
+      const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ( (quote.discount / 100) * quote.basicrate * quote.quantity)), 0);
 
       // Use the toFixed method to round off the total to the desired number of decimal places
       const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
@@ -574,15 +576,15 @@
       return (quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) - this.calculateDiscountAmount(quote);
     }
     getcgst(quote: Quote): number {
-      return (quote.taxrate1 / 100 * quote.basicrate)/2;
+      return ((quote.taxrate1 / 100 * quote.basicrate)*quote.quantity)/2;
     }
 
     getsgst(quote: Quote): number {
-      return (quote.taxrate1 / 100 * quote.basicrate)/ 2;
+      return ((quote.taxrate1 / 100 * quote.basicrate)*quote.quantity)/ 2;
     }
 
     getigst(quote: Quote): number {
-      return (quote.taxrate1 / 100 * quote.basicrate);
+      return (quote.taxrate1 / 100 * quote.basicrate)*quote.quantity;
     }
     ngOnInit() {
       this.getquoteNo();
