@@ -118,7 +118,9 @@ ion-select {
     justify-content: center;
     
 }
-
+table ion-select{
+    min-height: 15px !important;
+  }
 .Customer ion-select-option{
     max-height: 10px;
     width: 100%;

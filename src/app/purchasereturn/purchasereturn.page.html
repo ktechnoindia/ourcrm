@@ -33,11 +33,12 @@
         
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="billformate"  formControlName="billformate" name="billformate">
-                  <option value="0" >Bill Formate</option> <!-- Default option -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                </select>
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Bill Formate" label-placement="floating" fill="outline"  [(ngModel)]="billformate"  formControlName="billformate" name="billformate">
+                  <!-- <ion-select-option value="0" >Bill Formate</ion-select-option> Default option -->
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                </ion-select>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
@@ -70,12 +71,13 @@
              
   
               <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="supplier"  formControlName="supplier"  name="spler">
-                  <option value="0"> --- Supplier Name --- </option><!-- Default option -->
-                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Supplier Name --- " label-placement="floating" fill="outline"  [(ngModel)]="supplier"  formControlName="supplier"  name="spler">
+                  <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
+                  <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
-                  </option>
-                </select>
+                  </ion-select-option>
+                </ion-select>
              
             
               </ion-col>
@@ -115,20 +117,22 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="payment" formControlName="payment" name="pyt">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Payment Mode" label-placement="floating" fill="outline"  [(ngModel)]="payment" formControlName="payment" name="pyt">
                   <!-- <option value="0">
                    Payment Mode</option> -->
-                  <option value="0"> --- Cash --- </option>
-                  <option value="1">Credit</option>
-                </select>
+                  <ion-select-option value="0">Cash</ion-select-option>
+                  <ion-select-option value="1">Credit</ion-select-option>
+                </ion-select>
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]=" executive$"  formControlName="executive$" name="executive_name" >
-                  <option value="">  --- Executive Name --- </option><!-- Default option -->
-                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Executive Name ---" label-placement="floating" fill="outline"  [(ngModel)]=" executive$"  formControlName="executive$" name="executive_name" >
+                  <!-- <ion-select-option value="">  --- Executive Name --- </ion-select-option>Default option -->
+                  <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
-                  </option>
-                </select>
+                  </ion-select-option>
+                </ion-select>
               </ion-col>
              
             </ion-row>
