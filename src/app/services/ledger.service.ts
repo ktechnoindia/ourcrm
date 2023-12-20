@@ -39,7 +39,8 @@ lname:string;
     district1: number;
     pincode1: string;
     address1: string;
-    companyid:number
+    companyid:number;
+    discount:number;
   }
 
 @Injectable({

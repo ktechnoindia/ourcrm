@@ -29,14 +29,13 @@
             <ion-row>
               <ion-col size="3" size-lg="1" size-md="2" size-sm="3">
                 <ion-row>
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="-- Title --" label-placement="floating" fill="outline" [(ngModel)]="selectedSalutation"
+                  <select class="select" [(ngModel)]="selectedSalutation"
                     formControlName="selectedSalutation" name="selectedSalutation">
-                    <!-- <ion-select-option value="">-- Title -- </ion-select-option> -->
-                    <ion-select-option value="">Mr.</ion-select-option>
-                    <ion-select-option value="">Mrs.</ion-select-option>
-                    <ion-select-option value="M/S">M/S</ion-select-option>
-                  </ion-select>
+                    <ion-select-option value="">-- Title -- </ion-select-option>
+                    <option value="">Mr.</option>
+                    <option value="">Mrs.</option>
+                    <option value="M/S">M/S</option>
+                  </select>
                 </ion-row>
 
               </ion-col>
@@ -65,7 +64,7 @@
               </ion-col>
 
 
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
                     label-placement="floating" name="gstincode" fill="outline" maxlength="15"></ion-input>
@@ -73,9 +72,9 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Customer Type --- " label-placement="floating" fill="outline" [(ngModel)]="select_group"
+                  label="Vendor Type" label-placement="floating" fill="outline" [(ngModel)]="select_group"
                   formControlName="select_group" name="select_group">
                   <!-- <ion-select-option value="0"> -Customer Type- </ion-select-option> -->
                   <ion-select-option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
@@ -85,10 +84,10 @@
               </ion-col>
             </ion-row>
             <ion-row style="margin-top: 4px;">
-              <ion-col size="6" size-lg="1.5 " size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="--- Default Discount ---" label-placement="floating" fill="outline" [(ngModel)]="discount"
+                    label="Default Discount" label-placement="floating" fill="outline" [(ngModel)]="discount"
                     formControlName="discount" name="discount">
                     <!-- <option value="0">  --- Default Discount ---  </option> Default option -->
                     <ion-select-option value="5">5%</ion-select-option>
@@ -122,14 +121,14 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
                     label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text"
                     label=" Whatsapp Number :" label-placement="floating" name="wpnumber" fill="outline"
@@ -137,7 +136,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="2.5 " size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="email" formControlName="email" type="email" label="Email :"
                     label-placement="floating" name="emails" fill="outline"></ion-input>

@@ -27,14 +27,13 @@
             <ion-row>
               <ion-col size="3" size-lg="1" size-md="2" size-sm="3">
                 <ion-row>
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="-- Title --" label-placement="floating" fill="outline" [(ngModel)]="selectedSalutation"
+                  <select class="select" [(ngModel)]="selectedSalutation"
                   formControlName="selectedSalutation" name="selectedSalutation">
-                  <!-- <ion-select-option value="">-- Title -- </ion-select-option> -->
-                  <ion-select-option value="">Mr.</ion-select-option>
-                  <ion-select-option value="">Mrs.</ion-select-option>
-                  <ion-select-option value="M/S">M/S</ion-select-option>
-                </ion-select>
+                  <option value="">--Title--</option>
+                  <option value="">Mr.</option>
+                  <option value="">Mrs.</option>
+                  <option value="M/S">M/S</option>
+                </select>
                 </ion-row>
 
               </ion-col>
@@ -86,20 +85,42 @@
             <ion-row style="margin-top: 5px;">
               <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Default Discount" label-placement="floating" fill="outline" [(ngModel)]="discount"
+                    formControlName="discount" name="discount">
+                    <!-- <option value="0">  --- Default Discount ---  </option> Default option -->
+                    <ion-select-option value="5">5%</ion-select-option>
+                    <ion-select-option value="8">8%</ion-select-option>
+                    <ion-select-option value="10">10%</ion-select-option>
+                    <ion-select-option value="12">12%</ion-select-option>
+                    <ion-select-option value="15">15%</ion-select-option>
+                    <ion-select-option value="18">15%</ion-select-option>
+                    <ion-select-option value="20">20%</ion-select-option>
+                    <ion-select-option value="25">25%</ion-select-option>
+                    <ion-select-option value="50">50%</ion-select-option>
+                    <ion-select-option value="70">70%</ion-select-option>
+                    <ion-select-option value="90">90%</ion-select-option>
+                  </ion-select>
+
+                </ion-row>
+
+              </ion-col>
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" name="opening_balance"
                     class="sign_input" type="text" label="Ledger Opening Balance :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_balance " formControlName="closing_balance" name="closing_balance"
                     type="text" label="Ledger Closing Balance :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="mobile" name="mobile" formControlName="mobile" type="tel"
                     label=" Mobile Number :" label-placement="floating" fill="outline" maxlength="10"></ion-input>
@@ -114,7 +135,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="email" name="email" formControlName="email" type="email" label="Email :"
                     label-placement="floating" fill="outline"></ion-input>
