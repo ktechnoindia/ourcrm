@@ -29,10 +29,11 @@
             <ion-row>
               <ion-col size="3" size-lg="1" size-md="2" size-sm="3">
                 <ion-row>
-                  <select class="select" [(ngModel)]="selectedSalutation" formControlName="selectedSalutation" name="salutation">
-                    <option value=""> -- Title -- </option> <!-- Default option with value 0 -->
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
+                  <select class="select" [(ngModel)]="selectedSalutation"
+                    formControlName="selectedSalutation" name="selectedSalutation">
+                    <ion-select-option value="">-- Title -- </ion-select-option>
+                    <option value="">Mr.</option>
+                    <option value="">Mrs.</option>
                     <option value="M/S">M/S</option>
                   </select>
                 </ion-row>
@@ -63,7 +64,7 @@
               </ion-col>
 
 
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
                     label-placement="floating" name="gstincode" fill="outline" maxlength="15"></ion-input>
@@ -71,38 +72,41 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
-                <select class="select" [(ngModel)]="select_group" formControlName="select_group" name="select_group">
-                  <option value="0">  Customer Type  </option> <!-- Default option with value 0 -->
-                  <option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Vendor Type" label-placement="floating" fill="outline" [(ngModel)]="select_group"
+                  formControlName="select_group" name="select_group">
+                  <!-- <ion-select-option value="0"> -Customer Type- </ion-select-option> -->
+                  <ion-select-option *ngFor="let custtype of custtype$ | async" [value]="custtype.customertypeid">
                     {{ custtype.customertypename }}
-                  </option>
-
-                </select>
+                  </ion-select-option>
+                </ion-select>
               </ion-col>
             </ion-row>
             <ion-row style="margin-top: 4px;">
-              <ion-col size="6" size-lg="1.5 " size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
-                  <select class="select" name="" id="">
-                    <option value="0">  Default Discount </option> <!-- Default option -->
-                    <option value="5">5%</option>
-                    <option value="8">8%</option>
-                    <option value="10">10%</option>
-                    <option value="12">12%</option>
-                    <option value="15">15%</option>
-                    <option value="18">15%</option>
-                    <option value="20">20%</option>
-                    <option value="25">25%</option>
-                    <option value="50">50%</option>
-                    <option value="70">70%</option>
-                    <option value="90">90%</option>
-                  </select>
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Default Discount" label-placement="floating" fill="outline" [(ngModel)]="discount"
+                    formControlName="discount" name="discount">
+                    <!-- <option value="0">  --- Default Discount ---  </option> Default option -->
+                    <ion-select-option value="5">5%</ion-select-option>
+                    <ion-select-option value="8">8%</ion-select-option>
+                    <ion-select-option value="10">10%</ion-select-option>
+                    <ion-select-option value="12">12%</ion-select-option>
+                    <ion-select-option value="15">15%</ion-select-option>
+                    <ion-select-option value="18">15%</ion-select-option>
+                    <ion-select-option value="20">20%</ion-select-option>
+                    <ion-select-option value="25">25%</ion-select-option>
+                    <ion-select-option value="50">50%</ion-select-option>
+                    <ion-select-option value="70">70%</ion-select-option>
+                    <ion-select-option value="90">90%</ion-select-option>
+                  </ion-select>
 
                 </ion-row>
 
               </ion-col>
-          
+
               <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number"
@@ -117,14 +121,14 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
                     label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" type="text"
                     label=" Whatsapp Number :" label-placement="floating" name="wpnumber" fill="outline"
@@ -132,136 +136,137 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="12" size-lg="2.5 " size-md="6" size-sm="6">
+              <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="email" formControlName="email" type="email" label="Email :"
                     label-placement="floating" name="emails" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-             
+
             </ion-row>
 
             <ion-row>
-              
-                <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
-                  <ion-row class="headinglabel">
-                    <ion-label>Billing Address:</ion-label><span
-                      style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <select class="select" [(ngModel)]="country" formControlName="country" name="selectedCountry"
-                        label-placement="floating" fill="outline" (change)="onCountryChange()">
-                        <option value="0"> ---  Country --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
-                          {{ country.countryname }}
-                        </option>
-                      </select>
-                    </ion-col>
 
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <select class="select" [(ngModel)]="state" formControlName="state" name="selectedState"
-                        label-placement="floating" (change)="onStateChange()">
-                        <option value="0"> --- State --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
-                          {{ state.statename }}
-                        </option>
-                      </select>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
+                <ion-row class="headinglabel">
+                  <ion-label>Billing Address:</ion-label><span
+                    style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <select class="select" [(ngModel)]="country" formControlName="country" name="selectedCountry"
+                      label-placement="floating" fill="outline" (change)="onCountryChange()">
+                      <option value="0"> --- Country --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
+                        {{ country.countryname }}
+                      </option>
+                    </select>
+                  </ion-col>
 
-                    </ion-col>
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <select class="select" [(ngModel)]="state" formControlName="state" name="selectedState"
+                      label-placement="floating" (change)="onStateChange()">
+                      <option value="0"> --- State --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                        {{ state.statename }}
+                      </option>
+                    </select>
 
-                      <select class="select" [(ngModel)]="district" formControlName="district" name="selectedDistrict"
-                        label-placement="floating" fill="outline" >
-                        <option value="0">  --- District --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
-                          {{ district.districtname }}
-                        </option>
-                      </select>
-                    </ion-col>
+                  </ion-col>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-input [(ngModel)]="pincode" formControlName="pincode" type="text" label=" PinCode  :"
-                          label-placement="floating" name="pcode" fill="outline" inputmode="numeric"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row style="margin-top: 5px;">
-                    <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-input [(ngModel)]="address" formControlName="address" type="text" label="Full Address :"
-                          label-placement="floating" name="fname" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
-                </ion-col>
+                    <select class="select" [(ngModel)]="district" formControlName="district" name="selectedDistrict"
+                      label-placement="floating" fill="outline">
+                      <option value="0"> --- District --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
+                        {{ district.districtname }}
+                      </option>
+                    </select>
+                  </ion-col>
 
-                <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
-                  <ion-row class="headinglabel"
-                    style="display: flex; justify-content: space-between;align-items: center;">
-                    <ion-label>Shipping Address:</ion-label>
-                    <ion-checkbox [(ngModel)]="copyData" formControlName="copyData" (ionChange)="onCopyboxChange()">Same as
-                      Billing Address</ion-checkbox>
-                    <span
-                      style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <select class="select" [(ngModel)]="country1" formControlName="country1" name="selectedCountry1"
-                        label-placement="floating" fill="outline" (change)="onCountryChange()">
-                        <option value="0">  --- Country --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
-                          {{ country.countryname }}
-                        </option>
-                      </select>
-                    </ion-col>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <ion-row>
+                      <ion-input [(ngModel)]="pincode" formControlName="pincode" type="text" label=" PinCode  :"
+                        label-placement="floating" name="pcode" fill="outline" inputmode="numeric"></ion-input>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="margin-top: 5px;">
+                  <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+                    <ion-row>
+                      <ion-input [(ngModel)]="address" formControlName="address" type="text" label="Full Address :"
+                        label-placement="floating" name="fname" fill="outline"></ion-input>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
 
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <select class="select" [(ngModel)]="state1" formControlName="state1" name="selectedState1"
-                        label-placement="floating" (change)="onStateChange()">
-                        <option value="0">  --- State --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
-                          {{ state.statename }}
-                        </option>
-                      </select>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
+                <ion-row class="headinglabel"
+                  style="display: flex; justify-content: space-between;align-items: center;">
+                  <ion-label>Shipping Address:</ion-label>
+                  <ion-checkbox [(ngModel)]="copyData" formControlName="copyData" (ionChange)="onCopyboxChange()">Same as
+                    Billing Address</ion-checkbox>
+                  <span
+                    style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <select class="select" [(ngModel)]="country1" formControlName="country1" name="selectedCountry1"
+                      label-placement="floating" fill="outline" (change)="onCountryChange()">
+                      <option value="0"> --- Country --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
+                        {{ country.countryname }}
+                      </option>
+                    </select>
+                  </ion-col>
 
-                    </ion-col>
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <select class="select" [(ngModel)]="state1" formControlName="state1" name="selectedState1"
+                      label-placement="floating" (change)="onStateChange()">
+                      <option value="0"> --- State --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                        {{ state.statename }}
+                      </option>
+                    </select>
 
-                      <select class="select" [(ngModel)]="district1" formControlName="district1" name="selectedDistrict1"
-                        label-placement="floating" fill="outline" >
-                        <option value="0">  --- District --- </option> <!-- Default option with value 0 -->
-                        <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
-                          {{ district.districtname }}
-                        </option>
-                      </select>
-                    </ion-col>
+                  </ion-col>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
-                    <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-input [(ngModel)]="pincode1" formControlName="pincode1" type="number" label=" PinCode  :"
-                          label-placement="floating" name="pcode" fill="outline" inputmode="numeric"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row style="margin-top: 5px;">
-                    <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
-                      <ion-row>
-                        <ion-input [(ngModel)]="address1" formControlName="address1" type="text" label="Full Address :"
-                          label-placement="floating" name="address" fill="outline"></ion-input>
-                      </ion-row>
-                    </ion-col>
-                  </ion-row>
+                    <select class="select" [(ngModel)]="district1" formControlName="district1" name="selectedDistrict1"
+                      label-placement="floating" fill="outline">
+                      <option value="0"> --- District --- </option> <!-- Default option with value 0 -->
+                      <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
+                        {{ district.districtname }}
+                      </option>
+                    </select>
+                  </ion-col>
 
-                </ion-col>
+                  <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                    <ion-row>
+                      <ion-input [(ngModel)]="pincode1" formControlName="pincode1" type="number" label=" PinCode  :"
+                        label-placement="floating" name="pcode" fill="outline" inputmode="numeric"></ion-input>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="margin-top: 5px;">
+                  <ion-col size="12" size-lg="12" size-md="6" size-sm="6">
+                    <ion-row>
+                      <ion-input [(ngModel)]="address1" formControlName="address1" type="text" label="Full Address :"
+                        label-placement="floating" name="address" fill="outline"></ion-input>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
 
             </ion-row>
 
             <ion-row>
               <ion-col size="12">
                 <ion-row class="headinglabel">
-                  <ion-label>Registration :</ion-label><span style="width: 100%; height: 2px;margin-bottom:5px; background-image: linear-gradient(to right, #00b4db, #0083b0); "></span>
+                  <ion-label>Registration :</ion-label><span
+                    style="width: 100%; height: 2px;margin-bottom:5px; background-image: linear-gradient(to right, #00b4db, #0083b0); "></span>
                 </ion-row>
                 <ion-row>
 
@@ -298,7 +303,8 @@
               </ion-col>
               <ion-col size="12">
                 <ion-row class="headinglabel">
-                  <ion-label>Bank Details :</ion-label><span style="width: 100%; height: 2px;        margin-bottom:5px; background-image:linear-gradient(to right, #00b4db, #0083b0);"></span>
+                  <ion-label>Bank Details :</ion-label><span
+                    style="width: 100%; height: 2px;        margin-bottom:5px; background-image:linear-gradient(to right, #00b4db, #0083b0);"></span>
                 </ion-row>
                 <ion-row>
 
@@ -338,7 +344,8 @@
             <ion-row>
               <ion-col size="12">
                 <ion-row class="headinglabel">
-                  <ion-label>Other Details :</ion-label><span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
+                  <ion-label>Other Details :</ion-label><span
+                    style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom:5px;"></span>
                 </ion-row>
 
                 <ion-row>
@@ -356,13 +363,16 @@
                   </ion-col>
 
                   <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                    <select class="select" [(ngModel)]=" select_sales_person" name="select_sales_person"
-                      [ngModelOptions]="{standalone: true}">
-                      <option value="0">  --- Executive Name --- </option><!-- Default option -->
-                      <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                      label=" --- Executive Name ---" label-placement="floating" fill="outline"
+                      [(ngModel)]=" select_sales_person" formControlName="select_sales_person"
+                      name="select_sales_person">
+                      <!-- <option value="0">  --- Executive Name ---  </option>Default option -->
+                      <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executivename">
                         {{ executive.executivename }}
-                      </option>
-                    </select>
+                      </ion-select-option>
+
+                    </ion-select>
                   </ion-col>
 
                   <ion-col size="6" size-lg="2" size-md="4" size-sm="6">
@@ -397,7 +407,7 @@
               <ion-button type="submit">Save</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Vendor Adding..."
                 [duration]="1000"></ion-loading>
-              <ion-button id="open-loading4"(click)="onButtonClick()">Close</ion-button>
+              <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
 

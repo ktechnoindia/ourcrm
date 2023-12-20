@@ -38,63 +38,69 @@
                 </ion-col>
 
                 <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="hsnname" formControlName="hsnname" name="hsnname">
-                    <option value="">  --- HSN --- </option> <!-- Default option with value 0 -->
-                    <option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
+                  
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- HSN ---" label-placement="floating" fill="outline"  [(ngModel)]="hsnname" formControlName="hsnname" name="hsnname">
+                    <!-- <ion-select-option value="">  --- HSN --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
-                    </option>
+                    </ion-select-option>
 
-                  </select>
+                  </ion-select>
                 </ion-col>
               
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
-                    <option value="">  --- Stock Type --- </option> <!-- Default option with value 0 -->
-                    <option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Stock Type---" label-placement="floating" fill="outline"  [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
+                    <!-- <ion-select-option value="">  --- Stock Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
 
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="itemtypename" formControlName="itemtypename" name="itemtypename">
-                    <option value="">  --- Item Type --- </option> <!-- Default option with value 0 -->
-                    <option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Item Type ---" label-placement="floating" fill="outline"  [(ngModel)]="itemtypename" formControlName="itemtypename" name="itemtypename">
+                    <!-- <ion-select-option value="">  --- Item Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
                 <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="unitname" formControlName="unitname" name="unitname">
-                    <option value="0">  --- Unit Name --- </option>
-                    <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Unit Name ---" label-placement="floating" fill="outline"  [(ngModel)]="unitname" formControlName="unitname" name="unitname">
+                    <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
+                    <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                       {{ unitnames.unitname }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
               </ion-row>
               <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="selectItemGroup">
-                    <option value="0">  --- Item Group --- </option> <!-- Default option with value 0 -->
-                    <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Item Group ---" label-placement="floating" fill="outline"  [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="selectItemGroup">
+                    <!-- <ion-select-option value="0">  --- Item Group --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
-                    </option>
-                  </select>
-
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <select class="select" [(ngModel)]="selectGst" formControlName="selectGst" name="selectGst">
-                    <option value="0">  --- GST Type --- </option> <!-- Default option with value 0 -->
-                    <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- GST Type ---" label-placement="floating" fill="outline"  [(ngModel)]="selectGst" formControlName="selectGst" name="selectGst">
+                    <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
 
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
@@ -157,16 +163,17 @@
                     <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
                       <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                         <ion-row>
-                          <select
-                            class="select"
+                          <ion-select
+                          class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                          label="---Select Attribute--- " label-placement="floating" fill="outline" 
                             [(ngModel)]="attributes[attributeKey]"
                             formControlName="{{ attributeKey }}"
                             name="{{ attributeKey }}"
                             (ionChange)="onAttributeChange()"
                           >
-                            <option value="">Select Attribute</option>
-                            <option *ngFor="let attributename of attname$ | async; let i = index">{{ attributename.attname }}</option>
-                          </select>
+                            <ion-select-option value="">Select Attribute</ion-select-option>
+                            <ion-select-option *ngFor="let attributename of attname$ | async; let i = index">{{ attributename.attname }}</ion-select-option>
+                          </ion-select>
                         </ion-row>
                       </ion-col>
                     </ion-row>
