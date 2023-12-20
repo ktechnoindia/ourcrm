@@ -151,7 +151,7 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <ion-select interface="popover" label="Unit Name" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
+                      <ion-select interface="popover" (ngModelChange)="getItems(quote)" label="Unit Name" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
                         <!-- <ion-select-option value="0">Unit Name</ion-select-option> -->
                         <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                           {{ unitnames.unitname }}
