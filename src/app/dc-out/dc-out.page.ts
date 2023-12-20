@@ -13,6 +13,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
+import { CustomerService } from '../services/customer.service';
 interface Dcout {
   posttax: number;
   pretax: number;
@@ -49,7 +50,7 @@ export class DcOutPage implements OnInit {
   voucherNumber: string = '';
   datetype: string = '';
   vendcode: string = '';
-  suppliertype: number = 0;
+  custname: number = 0;
   referenceNumber: number = 0;
   refdate: string = '';
   // ponumber: string = '';
@@ -129,15 +130,16 @@ export class DcOutPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
+  customer$: any;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
+  constructor( private custname1: CustomerService,private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
-    this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
+    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
@@ -147,7 +149,7 @@ export class DcOutPage implements OnInit {
       voucherNumber: ['', Validators.required],
       datetype: [''],
       vendcode: ['', Validators.required],
-      suppliertype: ['', Validators.required],
+      custname: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
       // ponumber: [''],
@@ -197,7 +199,7 @@ export class DcOutPage implements OnInit {
 
   async onSubmit(form: FormGroup, dcoutData: Dcout[]) {
 
-    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
+    const fields = { voucherNumber: this.voucherNumber, custname: this.custname, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -223,7 +225,7 @@ export class DcOutPage implements OnInit {
           voucherNumber: this.myform.value.voucherNumber,
           datetype: this.myform.value.datetype,
           vendcode: this.myform.value.vendcode,
-          suppliertype: this.myform.value.suppliertype,
+          custname: this.myform.value.custname,
           referenceNumber: this.myform.value.referenceNumber,
           refdate: this.myform.value.refdate,
 

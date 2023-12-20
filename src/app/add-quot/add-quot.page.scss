@@ -8,6 +8,7 @@
 }
 
 
+
 .scroll-container table{
   // width: 1000px;
 }
@@ -25,14 +26,14 @@
 }
 @media(max-width:540px) {
   .Customer ion-input {
-    min-height: 25px;
-    text-align: center;
-    font-size: 11px;
+    min-height: 33px;
+   font-size: 10px;
   }
-
-
-
-}
+  .ionselect ion-select {
+     min-height: 25px;
+     font-size: 10px;
+ }
+ }
 
 .output td {
     border: 1px solid grey;

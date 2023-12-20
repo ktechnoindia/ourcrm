@@ -11,6 +11,7 @@
 }
 
 
+
 .scroll-container td {
  background-color: #fff;
  border: .1px solid grey;
@@ -58,11 +59,15 @@
 }
 @media(max-width:540px) {
    .Customer ion-input {
-     min-height: 25px;
-    font-size: 10px;
+      min-height: 33px;
+      font-size: 10px;
    }
-  
-  }
+
+   .ionselect ion-select {
+      min-height: 25px;
+      font-size: 10px;
+   }
+}
 
   .row{
    margin-top: -103px;

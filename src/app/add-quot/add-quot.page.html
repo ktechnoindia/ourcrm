@@ -31,13 +31,14 @@
         <ion-grid>
           <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
             <ion-row>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="billformate" name="billformate" formControlName="billformate"
-                  name="bill formate">
+              <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Bill Formate --- " label-placement="floating" fill="outline" [(ngModel)]="billformate"
+                  name="billformate" formControlName="billformate" name="bill formate">
                   <!-- <option value="0" disabled selected>Bill Formate</option> Default option -->
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                </select>
+                  <ion-select-option value="0">1</ion-select-option>
+                  <ion-select-option value="1">2</ion-select-option>
+                </ion-select>
               </ion-col>
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
@@ -63,14 +64,14 @@
                     label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="4" size-md="2" size-sm="6" size="6">
-
-                <select class="select" [(ngModel)]=" custname" name="custname" formControlName="custname">
-                  <option value="0"> --- Customer Name --- </option>
-                  <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+              <ion-col class="ionselect" size-lg="4" size-md="2" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custname"
+                  name="custname" formControlName="custname">
+                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
-                  </option>
-                </select>
+                  </ion-select-option>
+                </ion-select>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
@@ -124,14 +125,14 @@
                       <input style="width: 70px;" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(quote)" class="table_input" type="text">
                     </td>
-                    <td>
-                      <select class="select-option" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
+                    <td style="width: 100px !important;">
+                      <ion-select interface="popover" label="Item Name" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(quote)">
-                        <option value="0">Item Name</option><!-- Default option -->
-                        <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
+                        <!-- <ion-select-option value="0">Item Name</ion-select-option>Default option -->
+                        <ion-select-option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
-                        </option>
-                      </select>
+                        </ion-select-option>
+                      </ion-select>
                       <!-- Use a hidden input for sending itemcode -->
                       <ion-input style="display: none;" [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}"
                         type="hidden"></ion-input>
@@ -150,12 +151,12 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="select-option" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
-                        <option value="0">Unit Name</option>
-                        <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                      <ion-select interface="popover" label="Unit Name" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
+                        <!-- <ion-select-option value="0">Unit Name</ion-select-option> -->
+                        <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                           {{ unitnames.unitname }}
-                        </option>
-                      </select>
+                        </ion-select-option>
+                      </ion-select>
                     </td>
                     <td>
                       <input [(ngModel)]="quote.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -195,10 +196,10 @@
                       <input [value]="getigst(quote)" type="number" class="table_input">
                     </td>
                     <td style="width: 90px;">
-                      <select class="select-option" formControlName="discountType">
-                        <option value="amount">Amount</option>
-                        <option value="percentage">Percentage</option>
-                      </select>
+                      <ion-select interface="popover" formControlName="discountType">
+                        <ion-select-option value="amount">Amount</ion-select-option>
+                        <ion-select-option value="percentage">Percentage</ion-select-option>
+                      </ion-select>
                     </td>
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
@@ -212,12 +213,12 @@
                     </td>
 
                     <td>
-                      <input style="width: 90px;" name="totaltax" [readonly]="true" [value]="getTotaltax(quote)" class="table_input"
-                        type="text">
+                      <input style="width: 90px;" name="totaltax" [readonly]="true" [value]="getTotaltax(quote)"
+                        class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" name="total" [readonly]="true" [value]="getTotalamt(quote)" class="table_input"
-                        type="text">
+                      <input style="width: 90px;" name="total" [readonly]="true" [value]="getTotalamt(quote)"
+                        class="table_input" type="text">
                     </td>
 
                     <td>

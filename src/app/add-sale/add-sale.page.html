@@ -34,11 +34,12 @@
           <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,salesData)">
             <ion-row>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Bill Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
                   <!-- <option value="0" >Bill Formate</option> Default option -->
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                </select>
+                  <ion-select-option value="0">1</ion-select-option>
+                  <ion-select-option value="1">2</ion-select-option>
+                </ion-select>
               </ion-col>
 
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
@@ -61,13 +62,14 @@
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-                <select #firstInvalidInput class="select" [(ngModel)]=" custname" name="custname"
+                <ion-select #firstInvalidInput  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custname" name="custname"
                   formControlName="custname">
-                  <option value="0"> --- Customer Name --- </option>
-                  <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                  <!-- <option value="0"> --- Customer Name --- </option> -->
+                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
-                  </option>
-                </select>
+                  </ion-select-option>
+                </ion-select>
 
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
@@ -109,20 +111,22 @@
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
 
-                <select class="select" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
-                  <option value="0"> --- Sales Person --- </option><!-- Default option -->
-                  <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="---Sales Person---" label-placement="floating" fill="outline" [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
+                  <!-- <ion-select-option value="0"> --- Sales Person --- </option>Default option -->
+                  <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
-                  </option>
-                </select>
+                  </ion-select-option>
+                </ion-select>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="payment" formControlName="payment" name="pyt">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment" formControlName="payment" name="pyt">
                   <!-- <option value="0" disabled selected>Select Payment Mode</option> Default option -->
-                  <option value="0"> --- Credit --- </option>
-                  <option value="1">Cash</option>
+                  <ion-select-option value="0">Cash</ion-select-option>
+                  <ion-select-option value="1">Credit</ion-select-option>
 
-                </select>
+                </ion-select>
               </ion-col>
             </ion-row>
 

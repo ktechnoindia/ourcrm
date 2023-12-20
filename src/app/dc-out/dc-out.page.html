@@ -32,12 +32,13 @@
 
           <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,dcoutData)">
             <ion-row>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <select class="select" [(ngModel)]="voucherformat" name="voucherformat" formControlName="voucherformat">
+              <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Voucher Formate" label-placement="floating" fill="outline" [(ngModel)]="voucherformat" name="voucherformat" formControlName="voucherformat">
                   <!-- <option value="0" disabled selected>Voucher Formate</option> Default option -->
-                  <option value="0">1</option>
-                  <option value="1">2</option>
-                </select>
+                  <ion-select-option value="0">1</ion-select-option>
+                  <ion-select-option value="1">2</ion-select-option>
+                </ion-select>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
@@ -61,15 +62,14 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-
-
-                <select class="select" [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
-                  <option value="0"> --- Supplier Name --- </option><!-- Default option -->
-                  <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
-                    {{ suppliername.name }}
-                  </option>
-                </select>
+              <ion-col class="ionselect" size-lg="4" size-md="2" size-sm="6" size="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custname"
+                  name="custname" formControlName="custname">
+                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                    {{ customername.name }}
+                  </ion-select-option>
+                </ion-select>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
