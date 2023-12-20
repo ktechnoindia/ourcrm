@@ -60,7 +60,7 @@
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text"
+                  <ion-input [(ngModel)]="custcode" (ngModelChange)="getCustomers($event)" formControlName="custcode" name="custcode" type="text"
                     label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -134,7 +134,7 @@
                         </ion-select-option>
                       </ion-select>
                       <!-- Use a hidden input for sending itemcode -->
-                      <ion-input style="display: none;" [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}"
+                      <ion-input style="display: none;"  [(ngModel)]="quote.itemid" [ngModelOptions]="{standalone: true}"
                         type="hidden"></ion-input>
                       <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
                         type="hidden"></ion-input>

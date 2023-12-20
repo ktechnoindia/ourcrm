@@ -51,6 +51,7 @@ export interface quotestore {
   ttotal: number;
   companyid:number;
   userid:number;
+  itemid:number;
 }
 @Injectable({
   providedIn: 'root'
