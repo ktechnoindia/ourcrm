@@ -257,7 +257,7 @@ export class DcInPage implements OnInit {
             this.formService.showSuccessAlert();
           }, 1000);
           this.formService.showSaveLoader();
-
+          location.reload()
         },
         (error: any) => {
           console.log('POST request failed', error);

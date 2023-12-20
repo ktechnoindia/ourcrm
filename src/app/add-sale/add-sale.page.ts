@@ -291,6 +291,7 @@ companyid:number=0;
             this.formService.showSuccessAlert();
           }, 1000);
           this.formService.showSaveLoader();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);

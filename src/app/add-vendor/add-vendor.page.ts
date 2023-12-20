@@ -31,7 +31,7 @@ export class AddVendorPage implements OnInit {
   type: string = 'all';
   selectedSalutation: string='';
   companyName: string = '';
-
+copyData:boolean=false;
   selectTabs = 'address';
   selectedCountry: number=0;
   selectedState: number=0;
@@ -127,6 +127,7 @@ export class AddVendorPage implements OnInit {
       district1: [''],
       pincode1: [''],
       address1: [''],
+      copyData:[false]
     });
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
 
@@ -204,7 +205,7 @@ export class AddVendorPage implements OnInit {
           }, 1000);
          
           this.formService.showSaveLoader()
-
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -237,12 +238,23 @@ export class AddVendorPage implements OnInit {
     this.router.navigate(['/master']); // Navigate back to the previous page
   }
 
-  copyBillingToShipping() {
-    // Copy values from billing to shipping
-    this.country1 = this.country;
-    this.state1 = this.state;
-    this.district1 = this.district;
-    this.pincode1 = this.pincode;
-    this.address1 = this.address;
+  onCopyboxChange() {
+    if (this.copyData) {
+      // Copy values from the first row to the second row
+      this.country1 = this.country;
+      this.state1 = this.state;
+      this.district1 = this.district;
+      this.pincode1 = this.pincode;
+      this.address1 = this.address;
+
+
+    } else {
+      // Clear values in the second row
+      this.selectedOption1 = 0;
+      this.selectedState1 = 0;
+      this.selectedDistrict1 = 0;
+      this.pincode1 = '';
+      this.address1 = '';
+    }
   }
 }

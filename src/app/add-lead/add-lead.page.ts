@@ -151,6 +151,7 @@ export class AddLeadPage {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);

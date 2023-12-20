@@ -299,7 +299,8 @@ itemid:element.itemid,
             setTimeout(() => {
               this.formService.showSuccessAlert();
             }, 1000);
-            this.formService.showSaveLoader()
+            this.formService.showSaveLoader();
+            location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);

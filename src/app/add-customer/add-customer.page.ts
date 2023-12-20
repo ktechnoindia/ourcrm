@@ -30,7 +30,7 @@ export class AddCustomerPage implements OnInit {
 
   selectedSalutation: string = '';
   companyName: string = '';
-
+  copyData:boolean=false;
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
@@ -126,6 +126,7 @@ export class AddCustomerPage implements OnInit {
       card_number: [''],
       opening_point: [''],
       closing_point: [''],
+      copyData:[false]
     })
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -209,14 +210,41 @@ export class AddCustomerPage implements OnInit {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
   copyBillingToShipping() {
-    // Copy values from billing to shipping
-    this.selectedOption1 = this.country;
-    this.selectedState1 = this.state;
-    this.selectedDistrict1 = this.district;
-    this.pincode1 = this.pincode;
-    this.address1 = this.address;
-  }
+    if(this.copyData){
+      this.selectedOption1 = this.country;
+      this.selectedState1 = this.state;
+      this.selectedDistrict1 = this.district;
+      this.pincode1 = this.pincode;
+      this.address1 = this.address;
+    }else{
 
+    }
+   this.selectedOption1 = 0;
+      this.selectedState1 = 0;
+      this.selectedDistrict1 = 0;
+      this.pincode1 = '';
+      this.address1 = '';
+   
+  }
+  onCopyboxChange() {
+    if (this.copyData) {
+      // Copy values from the first row to the second row
+      this.selectedOption1 = this.country;
+      this.selectedState1 = this.state;
+      this.selectedDistrict1 = this.district;
+      this.pincode1 = this.pincode;
+      this.address1 = this.address;
+
+
+    } else {
+      // Clear values in the second row
+      this.selectedOption1 = 0;
+      this.selectedState1 = 0;
+      this.selectedDistrict1 = 0;
+      this.pincode1 = '';
+      this.address1 = '';
+    }
+  }
 
   toggleSegment(segment: string) {
     this.activeSegment = segment;
