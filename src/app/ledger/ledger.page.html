@@ -27,12 +27,14 @@
             <ion-row>
               <ion-col size="3" size-lg="1" size-md="2" size-sm="3">
                 <ion-row>
-                  <select class="select" [(ngModel)]="selectedSalutation" [ngModelOptions]="{standalone: true}" name="title">
-                    <option value=> -- Title -- </option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option value="M/S">M/S</option>
-                  </select>
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="-- Title --" label-placement="floating" fill="outline" [(ngModel)]="selectedSalutation"
+                  formControlName="selectedSalutation" name="selectedSalutation">
+                  <!-- <ion-select-option value="">-- Title -- </ion-select-option> -->
+                  <ion-select-option value="">Mr.</ion-select-option>
+                  <ion-select-option value="">Mrs.</ion-select-option>
+                  <ion-select-option value="M/S">M/S</ion-select-option>
+                </ion-select>
                 </ion-row>
 
               </ion-col>
@@ -63,12 +65,13 @@
 
               <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
-                  <select class="select" fill="outline" name="lgroup_name" formControlName="lgroup_name" [(ngModel)]="lgroup_name">
-                    <option value="">  -- Group Name -- </option> <!-- Default option with value 0 --> 
-                    <option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--Group Name--" label-placement="floating" fill="outline"  fill="outline" name="lgroup_name" formControlName="lgroup_name" [(ngModel)]="lgroup_name">
+                    <!-- <ion-select-option value="">  -- Group Name -- </ion-select-option> Default option with value 0  -->
+                    <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-row>
               </ion-col>
 
@@ -334,14 +337,16 @@
                     </ion-row>
                   </ion-col>
                   <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
-                    <select class="select" [(ngModel)]=" select_sales_person" name="select_sales_person"
-                      [ngModelOptions]="{standalone: true}">
-                      <option value="" disabled selected>  --- Executive Name --- </option><!-- Default option -->
-                      <option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                      label=" --- Executive Name ---" label-placement="floating" fill="outline"
+                      [(ngModel)]=" select_sales_person" formControlName="select_sales_person"
+                      name="select_sales_person">
+                      <!-- <option value="0">  --- Executive Name ---  </option>Default option -->
+                      <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executivename">
                         {{ executive.executivename }}
-                      </option>
+                      </ion-select-option>
 
-                    </select>
+                    </ion-select>
                   </ion-col>
                
                   <ion-col size="6" size-lg="2" size-md="4" size-sm="6">

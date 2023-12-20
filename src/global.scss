@@ -109,13 +109,13 @@ ion-menu.md ion-content {
 ion-select {
     margin-top: 5px !important;
     font-size: 14px;
-    text-align: center;
+    --text-align: center;
     min-height: 33px !important;
     border-radius: 4px;
     --placeholder-color: #1a4174;
     --placeholder-opacity: 1;
     width: 100%;
-    justify-content: center;
+    --justify-content: center;
     
 }
 table ion-select{

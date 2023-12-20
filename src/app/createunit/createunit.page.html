@@ -28,63 +28,65 @@
 
             
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
-                <select class="select" name="decimal_place" formControlName="decimal_place" [(ngModel)]="decimal_place">
-                  <option value="0"> --- Decimal Places --- </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Decimal Places ---" label-placement="floating" fill="outline"  name="decimal_place" formControlName="decimal_place" [(ngModel)]="decimal_place">
+                  <!-- <ion-select-option value="0"> --- Decimal Places --- </ion-select-option> -->
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                  <ion-select-option value="4">4</ion-select-option>
 
-                </select>
+                </ion-select>
               </ion-col>
               <ion-col size-lg="3" size-md="4" size-sm="6" size="6">
                 <ion-row>
-                  <select class="select" name="primary_unit" formControlName="primary_unit" [(ngModel)]="primary_unit">
-                    <option value="0">  --- UQC --- </option>
-                    <option value="2">Meter (m)</option>
-                    <option value="3">Centimeter (cm)</option>
-                    <option value="4">Millimeter (mm)</option>
-                    <option value="5">Kilometer (km)</option>
-                    <option value="6">Inch (in)</option>
-                    <option value="7">Foot (ft)</option>
-                    <option value="8">Yard (yd)</option>
-                    <option value="9">Square Meter (m²)</option>
-                    <option value="10">Square Centimeter (cm²)</option>
-                    <option value="11">Square Kilometer (km²)</option>
-                    <option value="12">Square Inch (in²)</option>
-                    <option value="13">Square Foot (ft²)</option>
-                    <option value="14">Square Yard (yd²)</option>
-                    <option value="15">Acre (ac)</option>
-                    <option value="16">Liter (L)</option>
-                    <option value="17">Milliliter (mL)</option>
-                    <option value="18">Cubic Meter (m³)</option>
-                    <option value="19">Cubic Centimeter (cm³)</option>
-                    <option value="21">Gallon (gal)</option>
-                    <option value="22">Quart (qt)</option>
-                    <option value="23">Pint (pt)</option>
-                    <option value="24">Fluid Ounce (fl oz)</option>
-                    <option value="25">Gram (g)</option>
-                    <option value="26">Kilogram (kg)</option>
-                    <option value="27">Milligram (mg)</option>
-                    <option value="28">Ounce (oz)</option>
-                    <option value="29">Pound (lb)</option>
-                    <option value="30">Ton (metric ton)</option>
-                    <option value="31">Second (s)</option>
-                    <option value="32">Minute (min)</option>
-                    <option value="33">Hour (hr)</option>
-                    <option value="34">Day (d)</option>
-                    <option value="35">Week (wk)</option>
-                    <option value="36">Month (mo)</option>
-                    <option value="37">Year (yr)</option>
-                    <option value="38">Each (ea)</option>
-                    <option value="39">Dozen (dz)</option>
-                    <option value="40">Gross (gr)</option>
-                    <option value="41">Pair (pr)</option>
-                    <option value="42">Celsius (°C)</option>
-                    <option value="43">Fahrenheit (°F)</option>
-                    <option value="45">Kelvin (K)</option>
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- UQC ---" label-placement="floating" fill="outline"  name="primary_unit" formControlName="primary_unit" [(ngModel)]="primary_unit">
+                    <!-- <ion-select-option value="0">  --- UQC --- </ion-select-option> -->
+                    <ion-select-option value="2">Meter (m)</ion-select-option>
+                    <ion-select-option value="3">Centimeter (cm)</ion-select-option>
+                    <ion-select-option value="4">Millimeter (mm)</ion-select-option>
+                    <ion-select-option value="5">Kilometer (km)</ion-select-option>
+                    <ion-select-option value="6">Inch (in)</ion-select-option>
+                    <ion-select-option value="7">Foot (ft)</ion-select-option>
+                    <ion-select-option value="8">Yard (yd)</ion-select-option>
+                    <ion-select-option value="9">Square Meter (m²)</ion-select-option>
+                    <ion-select-option value="10">Square Centimeter (cm²)</ion-select-option>
+                    <ion-select-option value="11">Square Kilometer (km²)</ion-select-option>
+                    <ion-select-option value="12">Square Inch (in²)</ion-select-option>
+                    <ion-select-option value="13">Square Foot (ft²)</ion-select-option>
+                    <ion-select-option value="14">Square Yard (yd²)</ion-select-option>
+                    <ion-select-option value="15">Acre (ac)</ion-select-option>
+                    <ion-select-option value="16">Liter (L)</ion-select-option>
+                    <ion-select-option value="17">Milliliter (mL)</ion-select-option>
+                    <ion-select-option value="18">Cubic Meter (m³)</ion-select-option>
+                    <ion-select-option value="19">Cubic Centimeter (cm³)</ion-select-option>
+                    <ion-select-option value="21">Gallon (gal)</ion-select-option>
+                    <ion-select-option value="22">Quart (qt)</ion-select-option>
+                    <ion-select-option value="23">Pint (pt)</ion-select-option>
+                    <ion-select-option value="24">Fluid Ounce (fl oz)</ion-select-option>
+                    <ion-select-option value="25">Gram (g)</ion-select-option>
+                    <ion-select-option value="26">Kilogram (kg)</ion-select-option>
+                    <ion-select-option value="27">Milligram (mg)</ion-select-option>
+                    <ion-select-option value="28">Ounce (oz)</ion-select-option>
+                    <ion-select-option value="29">Pound (lb)</ion-select-option>
+                    <ion-select-option value="30">Ton (metric ton)</ion-select-option>
+                    <ion-select-option value="31">Second (s)</ion-select-option>
+                    <ion-select-option value="32">Minute (min)</ion-select-option>
+                    <ion-select-option value="33">Hour (hr)</ion-select-option>
+                    <ion-select-option value="34">Day (d)</ion-select-option>
+                    <ion-select-option value="35">Week (wk)</ion-select-option>
+                    <ion-select-option value="36">Month (mo)</ion-select-option>
+                    <ion-select-option value="37">Year (yr)</ion-select-option>
+                    <ion-select-option value="38">Each (ea)</ion-select-option>
+                    <ion-select-option value="39">Dozen (dz)</ion-select-option>
+                    <ion-select-option value="40">Gross (gr)</ion-select-option>
+                    <ion-select-option value="41">Pair (pr)</ion-select-option>
+                    <ion-select-option value="42">Celsius (°C)</ion-select-option>
+                    <ion-select-option value="43">Fahrenheit (°F)</ion-select-option>
+                    <ion-select-option value="45">Kelvin (K)</ion-select-option>
 
-                  </select>
+                  </ion-select>
                 </ion-row>
               </ion-col>
              

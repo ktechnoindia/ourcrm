@@ -78,6 +78,7 @@ export class AddVendorPage implements OnInit {
   districts$: Observable<any[]>
   myform: FormGroup;
   submitted = false;
+  discount: number = 0;
 
 
   custtype$: any;
@@ -106,6 +107,7 @@ export class AddVendorPage implements OnInit {
       district: [''],
       pincode: [''],
       address: [''],
+      discount: [''],
       tdn: ['', Validators.pattern(/^\d{10}$/),], // TDN validation for 10 digits
       aadhar_no: ['', Validators.pattern(/^\d{12}$/)], // Aadhar number validation for 12 digits
       pan_no: ['', Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/)], // PAN number validation
@@ -194,6 +196,7 @@ export class AddVendorPage implements OnInit {
         district1: this.myform.value.district1 ,
         pincode1: this.myform.value.pincode1 ,
         address1: this.myform.value.address1 ,
+        discount:this.myform.value.discount,
       };
   
       this.vendService.createVendor(venddata,'','').subscribe(

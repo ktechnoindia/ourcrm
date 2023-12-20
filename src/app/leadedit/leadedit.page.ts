@@ -96,7 +96,9 @@ export class LeadeditPage implements OnInit {
     console.log('selected value' + this.selectedState);
     this.districts$ = this.districtservice.getDistricts(this.selectedState);
   }
-
+  onNew(){
+    location.reload();
+  }
   
   async onSubmit() {
     const fields =  {companyname:this.companyname,catPerson:this.catPerson}

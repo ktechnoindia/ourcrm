@@ -43,6 +43,7 @@ export interface vend{
       district1: number;
       pincode1: string;
       address1: string;
+      discount:number;
   }
  
   @Injectable({

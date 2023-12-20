@@ -243,40 +243,44 @@
               </ion-row>
               <ion-row>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select class="select"  [(ngModel)]="industry" formControlName="industry" name="selectindustry">
-                    <option value="0">---Select Industry Type---</option> <!-- Default option with value 0 -->
-                    <option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Industry Type---" label-placement="floating" fill="outline"   [(ngModel)]="industry" formControlName="industry" name="selectindustry">
+                    <!-- <ion-select-option value="0">---Select Industry Type---</ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select class="select"  [(ngModel)]="businesstype" formControlName="businesstype" name="business">
-                    <option value="0">---Select Business Type---</option> <!-- Default option with value 0 -->
-                    <option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Business Type---" label-placement="floating" fill="outline"   [(ngModel)]="businesstype" formControlName="businesstype" name="business">
+                    <!-- <ion-select-option value="0">---Select Business Type---</ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                       {{ businesstype.businesstypename }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select class="select"  [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
-                    <option value="0">---Select Segment Type---</option> <!-- Default option with value 0 -->
-                    <option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Segment Type---" label-placement="floating" fill="outline"   [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
+                    <!-- <ion-select-option value="0">---Select Segment Type---</ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                       {{ segmenttype.segmentname }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select class="select"  [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
-                    <option value="0">---Select GST Type---</option> <!-- Default option with value 0 -->
-                    <option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
+                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select GST Type---" label-placement="floating" fill="outline"   [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
+                    <!-- <option value="0">---Select GST Type---</option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                       {{ companytype.gsttypename }}
-                    </option>
-                  </select>
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
@@ -349,23 +353,25 @@
               </ion-row>
               <ion-row>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select class="select"  fill="outline"  [(ngModel)]="language" formControlName="language"
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Language---" label-placement="floating" fill="outline"   fill="outline"  [(ngModel)]="language" formControlName="language"
                     name="languages">
-                    <option value="0">---Select Language---</option> <!-- Default option with value 0 -->
-                    <option value="English">English</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="Punjabi">Punjabi</option>
-                    <option value="Tamil">Tamil</option>
-                    <option value="French">French</option>
-                  </select>
+                    <!-- <option value="0">---Select Language---</option> Default option with value 0 -->
+                    <ion-select-option value="English">English</ion-select-option>
+                    <ion-select-option value="Hindi">Hindi</ion-select-option>
+                    <ion-select-option value="Punjabi">Punjabi</ion-select-option>
+                    <ion-select-option value="Tamil">Tamil</ion-select-option>
+                    <ion-select-option value="French">French</ion-select-option>
+                  </ion-select>
                 </ion-col>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                  <select  class="select"  fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
-                    <option value="0">---Select Currency---</option> <!-- Default option with value 0 -->
-                    <option value="Rupees">Rupees</option>
-                    <option value="Doller">Doller</option>
-                    <option value="euro">Euro</option>
-                  </select>
+                  <ion-select   class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Currency---" label-placement="floating" fill="outline"   fill="outline" [(ngModel)]="currency" formControlName="currency" name="currencytype">
+                    <!-- <ion-select-option value="0">---Select Currency---</ion-select-option> Default option with value 0 -->
+                    <ion-select-option value="Rupees">Rupees</ion-select-option>
+                    <ion-select-option value="Doller">Doller</ion-select-option>
+                    <ion-select-option value="euro">Euro</ion-select-option>
+                  </ion-select>
                  
                 </ion-col>
               </ion-row>

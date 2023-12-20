@@ -35,11 +35,13 @@
                         [(ngModel)]="paymentdate" label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
-                      <select class="select" name="ledgername" [(ngModel)]="ledgername" formControlName="ledgername">
-                        <option value="0"> --- Cash --- </option>
-                        <option value="1">Bank</option>
-                        <option value="2">Card</option>
-                      </select>
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                        label="Payemnt Mode" label-placement="floating" fill="outline" name="ledgername"
+                        [(ngModel)]="ledgername" formControlName="ledgername">
+                        <ion-select-option value="0">Cash</ion-select-option>
+                        <ion-select-option value="1">Bank</ion-select-option>
+                        <ion-select-option value="2">Card</ion-select-option>
+                      </ion-select>
                     </ion-col>
                 </ion-row>
 
