@@ -112,7 +112,6 @@ export class DcInPage implements OnInit {
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
 
-  items: any[] = [];
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -203,6 +202,9 @@ export class DcInPage implements OnInit {
         element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
 
         console.log(element); 
+
+        const companyid = 1;
+        const userid = 1;
         let decindatas: dcinstore[]=[];
 
       let dcindata: dcinstore = {
@@ -247,7 +249,8 @@ export class DcInPage implements OnInit {
         closingbalance: this.myform.value.closingbalance,
         debit:this.myform.value.debit,
         credit: this.myform.value.credit,
-       
+       companyid:companyid,
+       userid:userid,
       }
       decindatas.push(dcindata);
 
@@ -282,10 +285,10 @@ export class DcInPage implements OnInit {
     }
   }
 
-  getItems(quote: any) {
+  getItems(dcin: any) {
     const compid = 1;
-    const identifier = quote.itemcode ? 'itemname' : 'itemcode';
-    const value =  quote.itemcode;
+    const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
+    const value =  dcin.itemcode;
   
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -295,16 +298,16 @@ export class DcInPage implements OnInit {
           const itemDetails = data[0];
   
           // Update the quote properties
-          quote.itemcode = itemDetails.tid;
-          quote.itemname = itemDetails.itemDesc;
-          quote.barcode = itemDetails.barcode.toString();
-          quote.unitname = itemDetails.unitname;
-          quote.taxrate = itemDetails.selectGst;
+          dcin.itemcode = itemDetails.tid;
+          dcin.itemname = itemDetails.itemDesc;
+          dcin.barcode = itemDetails.barcode.toString();
+          dcin.unitname = itemDetails.unitname;
+          dcin.taxrate = itemDetails.selectGst;
   
           // Update form control values
           this.myform.patchValue({
-            itemcode: quote.itemcode,
-            itemname: quote.itemname,
+            itemcode: dcin.itemcode,
+            itemname: dcin.itemname,
             // Other form controls...
           });
         } else {
@@ -317,6 +320,38 @@ export class DcInPage implements OnInit {
     );
   }
 
+  getSuppliers(event: any) {
+    const compid = '1';
+    const identifier = this.vendcode ? 'suppliertype' : 'vendcode';
+    const value = this.vendcode;
+
+    this.vendname1.fetchallVendor(compid, value, '').subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          event.vendcode = itemDetails.vendor_code;
+          event.suppliertype = itemDetails.name;
+
+
+          // Update form control values
+          this.myform.patchValue({
+            vendcode: itemDetails.vendcode,
+            suppliertype: itemDetails.suppliertype,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);

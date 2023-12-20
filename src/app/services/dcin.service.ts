@@ -50,7 +50,8 @@ export interface dcinstore {
   closingbalance: string;
   debit: string;
   credit: string;
-
+companyid:number;
+userid:number;
 }
 @Injectable({
   providedIn: 'root'

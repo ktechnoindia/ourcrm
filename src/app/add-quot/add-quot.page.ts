@@ -470,47 +470,7 @@ export class AddQuotPage implements OnInit {
     location.reload();
   }
 
-  // calculateTotalSum() {
-  //   let sum = 0;
-  //   for (const row of this.quoteData) {
-  //     sum += this.quote.total;
-  //   }
-  //   this.ttotal = sum;
-  // }
-  // async onSubmit() {
-  //   if (this.quoteNumber === null) {
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Number is required",
-  //       duration: 3000,
-  //       color: 'danger',
 
-  //     });
-  //     toast.present();
-  //   }else if(this.quateDate===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Date is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.quoteGroup===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Group is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   
-  //   }else{
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Successfully !",
-  //       duration: 3000,
-  //       color: 'success',
-  //       position:'top'
-  //     });
-  //     toast.present();
-  //   }
-  // }
   getTotalQuantity(): number {
     return this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
   }
@@ -536,8 +496,6 @@ export class AddQuotPage implements OnInit {
 
     return grandTotal;
   }
-
-
 
 
   getTotalTaxAmount(): number {
