@@ -32,7 +32,7 @@ export class CreatecompanyPage implements OnInit {
   step1: boolean = false;
   step2: boolean = false;
   step3: boolean = false;
-
+  copyData: boolean = false;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   form: FormGroup;
@@ -165,7 +165,7 @@ export class CreatecompanyPage implements OnInit {
       ifsc: ['', [Validators.pattern(/^[A-Za-z]{4}\d{7}$/)]],
       branchname: [''],
       upiid: ['', [Validators.pattern(/^[\w\d._-]+@[\w\d.-]+\.[\w]{2,}$/)]],
-
+      copyData:[false]
     })
 
   }
@@ -226,7 +226,7 @@ export class CreatecompanyPage implements OnInit {
             this.formService.showSuccessAlert();
           }, 1000);
 
-
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -281,17 +281,29 @@ export class CreatecompanyPage implements OnInit {
   goBack() {
     this.router.navigate(['/master']);
   }
-  copyBillingToShipping() {
-    // Copy values from billing to shipping
-    this.selectedCountry1 = this.selectedCountry;
-    this.selectedState1 = this.selectedState;
-    this.selectedDistrict1 = this.selectedDistrict;
-    this.pinCode1 = this.pinCode;
-    this.address1 = this.address;
-    this.phone1 = this.phone;
-    this.wpnumber1 = this.wpnumber;
-    this.email1 = this.email;
-    this.website1 = this.website;
-
-  }
+  onCopyboxChange() {
+    if (this.copyData) {
+      // Copy values from the first row to the second row
+      this.selectedCountry1 = this.selectedCountry;
+      this.selectedState1 = this.selectedState;
+      this.selectedDistrict1 = this.selectedDistrict;
+      this.pinCode1 = this.pinCode;
+      this.address1 = this.address;
+      this.phone1 = this.phone;
+      this.wpnumber1 = this.wpnumber;
+      this.email1 = this.email;
+      this.website1 = this.website;
+    } else {
+      // Clear values in the second row
+      this.selectedCountry1 = 0;
+      this.selectedState1 = 0;
+      this.selectedDistrict1 = 0;
+      this.pinCode1 = '';
+      this.address1 = '';
+      this.phone1 = '';
+      this.wpnumber1 = '';
+      this.email1 = '';
+      this.website1 = '';
+    }
+}
 }

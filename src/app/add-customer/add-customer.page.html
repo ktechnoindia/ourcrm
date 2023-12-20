@@ -51,9 +51,8 @@
 
               <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code"
-                    type="text" label=" Customer Code :" label-placement="floating" fill="outline" maxlength="5"
-                    readonly></ion-input>
+                  <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code" type="text" label=" Customer Code :"
+                    label-placement="floating" fill="outline" maxlength="5"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -205,7 +204,7 @@
               <ion-col size-lg="6" size="12">
                 <ion-row class="headinglabel" style="justify-content: space-between;align-items: center; ">
                   <ion-label>Shipping Address :</ion-label>
-                  <ion-checkbox (click)="copyBillingToShipping()">Same as Billing Address</ion-checkbox>
+                  <ion-checkbox [(ngModel)]="copyData" formControlName="copyData" (ionChange)="onCopyboxChange()">Same as Billing Address</ion-checkbox>
 
                   <span
                     style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);margin-bottom: 5px;"></span>

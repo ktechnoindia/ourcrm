@@ -185,7 +185,7 @@
 
                 <ion-row class="headinglabel" style="display: flex;justify-content: space-between;align-items: center;">
                   <ion-label>Shipping Address :</ion-label>
-                  <ion-checkbox  (click)="copyBillingToShipping()">Same as Billing Address</ion-checkbox>
+                  <ion-checkbox [(ngModel)]="copyData" formControlName="copyData" (ionChange)="onCopyboxChange()">Same as Billing Address</ion-checkbox>
                   <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0); "></span>
                 </ion-row>
 

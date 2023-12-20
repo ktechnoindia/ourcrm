@@ -15,6 +15,7 @@ import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
 import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
+import { NavController } from '@ionic/angular';
 interface lead {
   catPerson: string;
   companyname: string
@@ -76,7 +77,7 @@ export class AddLeadPage {
   itemnames$: Observable<any>;
 
 
-  constructor(private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService,
+  constructor(private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService,
   ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -151,6 +152,7 @@ export class AddLeadPage {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -171,6 +173,10 @@ export class AddLeadPage {
 
   onNew(){
     location.reload();
+  }
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
   }
 
   ngOnInit() {

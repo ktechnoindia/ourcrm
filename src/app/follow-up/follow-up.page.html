@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content >
+<ion-content>
   <div class="Customer">
     <div>
       <ion-card-content>
@@ -34,7 +34,7 @@
                     <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
                         <!-- <th>Sr.No.</th> -->
-                        <th >Lead ID</th>
+                        <th>Lead ID</th>
                         <th>Lead Date</th>
                         <th>Company Name</th>
 
@@ -93,7 +93,7 @@
                   <div  *ngIf="selectedRow" color="dark" label-placement="floating" fill="outline" name="companyname"
                     label="Company Name">{{selectedRow.companyname}}</div>
                 </ion-item> -->
-                <div  *ngIf="selectedRow" class="compname" >
+                <div *ngIf="selectedRow" class="compname">
                   <ion-label>Company Name</ion-label>
                   <p>{{selectedRow.companyname}}</p>
                 </div>
@@ -116,7 +116,7 @@
                         
                         </tr> -->
                         <tr>
-                          <th >SR. No.</th>
+                          <th>SR. No.</th>
                           <th>Date</th>
                           <th>Remark</th>
                           <!-- <th>followupId</th> -->
@@ -167,16 +167,18 @@
                       </ion-row>
                     </ion-col>
                     <ion-col size="6" size-lg="8" size-md="8" size-sm="8">
-                      <ion-textarea  [(ngModel)]="remark" formControlName="remark" label-placement="floating"
+                      <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>
                   </ion-row>
                   <ion-row class="custom-primary" style="justify-content: right;padding: 10px;">
-                    <ion-button id="open-loading" (click)="onNew()">New</ion-button>       
-                    <ion-button type="submit" id="open-loading1">Save</ion-button>                    
+                    <ion-button id="open-loading" (click)="onNew()">New</ion-button>
+                    <ion-button type="submit" id="open-loading1">Save</ion-button>  
+                    <ion-button (click)="onButtonClick()">Cancel</ion-button>
                   </ion-row>
-                  <ion-input  formControlName="followupdate"  name="followupdate"  type="hidden" [(ngModel)]="followupdate"></ion-input>
-
+                  <ion-input formControlName="followupdate" name="followupdate" type="hidden"
+                    [(ngModel)]="followupdate"></ion-input>
+                
                 </div>
               </ion-card>
             </ion-col>

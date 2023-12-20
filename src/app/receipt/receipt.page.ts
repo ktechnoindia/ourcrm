@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
@@ -54,7 +54,7 @@ export class ReceiptPage implements OnInit {
   supplier$: any;
   customer$: Observable<any>;
 
-  constructor(private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private custname1:CustomerService) {
+  constructor(private navCtrl:NavController,private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private custname1:CustomerService) {
     this.myform = this.formBuilder.group({
       voucherNumber: ['',Validators.required],
       paymentdate: [''],
@@ -106,7 +106,8 @@ console.log(this.companys$);
             this.formService.showSuccessAlert();
           }, 1000);
 
-          this.formService.showSaveLoader()
+          this.formService.showSaveLoader();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -130,7 +131,10 @@ console.log(this.companys$);
       }
     }
   };
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onNew(){
     location.reload();
   }

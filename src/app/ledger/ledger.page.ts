@@ -31,7 +31,7 @@ export class LedgerPage implements OnInit {
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
-
+copyData:boolean=false;
   country: number = 0;
   state: number = 0;
   district: number = 0;
@@ -129,7 +129,7 @@ export class LedgerPage implements OnInit {
       selectedOption1: [''],
       selectedState1: [''],
       selectedDistrict1: [''],
-
+      copyData:[false]
     });
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
@@ -169,6 +169,7 @@ export class LedgerPage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
+          location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -212,13 +213,22 @@ export class LedgerPage implements OnInit {
     }
   }
 
-  copyBillingToShipping() {
-    // Copy values from billing to shipping
-    this.country1 = this.country;
-    this.state1 = this.state;
-    this.district1 = this.district;
-    this.pincode1 = this.pincode;
-    this.address1 = this.address;
+  onCopyboxChange() {
+    if (this.copyData) {
+      // Copy values from the first row to the second row
+      this.country1 = this.country;
+      this.state1 = this.state;
+      this.district1 = this.district;
+      this.pincode1 = this.pincode;
+      this.address1 = this.address;
+    } else {
+      // Clear values in the second row
+      this.country1 = 0;
+      this.state1 = 0;
+      this.district1 = 0;
+      this.pincode1 = '';
+      this.address1 = '';
+    }
   }
 }
 

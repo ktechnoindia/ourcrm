@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
@@ -52,6 +53,7 @@ export class HsnManagerPage implements OnInit {
         console.log('POST request successful', response);
        }
         this.formService.showSuccessAlert();
+        location.reload()
       },
       (error: any) => {
         console.error('POST request failed', error);

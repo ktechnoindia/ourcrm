@@ -95,6 +95,7 @@ export class RoleofexicutivePage implements OnInit {
           }, 1000);
 
           this.formService.showSaveLoader()
+          location.reload()
          
         },
         (error: any) => {

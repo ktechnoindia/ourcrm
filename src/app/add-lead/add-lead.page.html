@@ -181,7 +181,7 @@
               <ion-button type="submit" id="open-loading1">Save</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Lead Adding..."
                 [duration]="1000"></ion-loading>
-              <ion-button id="open-loading4">Close</ion-button>
+              <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
 

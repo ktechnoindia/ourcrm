@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { PaymentService,pay,  } from '../services/payment.service';
@@ -54,7 +54,7 @@ export class PaymentPage implements OnInit {
   companys$: Observable<any[]>;
   customer$: any;
   supplier$: Observable<any>;
-  constructor(private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
+  constructor(private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
      
 this.myform= this.formBuilder.group({
   voucherNumber:['',Validators.required],
@@ -101,7 +101,8 @@ async onSubmit() {
           this.formService.showSuccessAlert();
         }, 1000);
        
-        this.formService.showSaveLoader()
+        this.formService.showSaveLoader();
+        location.reload()
       },
       (error: any) => {
         console.error('POST request failed', error);
@@ -125,7 +126,10 @@ async onSubmit() {
     }
    }
   }
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   onNew(){
     location.reload();
   }
