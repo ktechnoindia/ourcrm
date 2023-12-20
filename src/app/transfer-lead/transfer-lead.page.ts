@@ -7,6 +7,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { ExecutiveService } from '../services/executive.service';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-transfer-lead',
   templateUrl: './transfer-lead.page.html',
@@ -22,7 +23,7 @@ export class TransferLeadPage implements OnInit {
   searchTerm: string = '';
   filteredTransferlead$: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private router: Router,private execut:ExecutiveService,private encService: EncryptionService,private leadser:LeadService,) { 
+  constructor(private router: Router,private navCtrl:NavController,private execut:ExecutiveService,private encService: EncryptionService,private leadser:LeadService,) { 
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
     this.executive$ = this.execut.getexecutive();
@@ -52,7 +53,10 @@ export class TransferLeadPage implements OnInit {
     );
   }
 
-
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   goBack(){
     this.router.navigate(["/leaddashboard"])
   }

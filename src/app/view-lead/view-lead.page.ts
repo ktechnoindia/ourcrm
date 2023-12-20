@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap, take } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
+import { NavController } from '@ionic/angular';
 interface Lead{
   catPerson:string,
   companyname:string,
@@ -51,7 +52,7 @@ export class ViewLeadPage implements OnInit {
   searchTerm: string = '';
   filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private encService: EncryptionService,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
+  constructor(private encService: EncryptionService,private navCtrl:NavController,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
     this.executive$ = this.execut.getexecutive();
@@ -112,7 +113,10 @@ export class ViewLeadPage implements OnInit {
     });
   }
 
-  
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }

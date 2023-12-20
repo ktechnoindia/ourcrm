@@ -178,6 +178,11 @@ export class FollowUpPage implements OnInit {
     location.reload();
   }
 
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+  }
+
   filterCustomers(): Observable<any[]> {
     return this.lead$.pipe(
       map(followups =>
