@@ -36,14 +36,14 @@
                   label="--- Bill Formate --- " label-placement="floating" fill="outline" [(ngModel)]="billformate"
                   name="billformate" formControlName="billformate" name="bill formate">
                   <!-- <option value="0" disabled selected>Bill Formate</option> Default option -->
-                  <ion-select-option value="0">1</ion-select-option>
+                  <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="1">2</ion-select-option>
                 </ion-select>
               </ion-col>
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="quoteNumber" formControlName="quoteNumber"
+                  <ion-input  [(ngModel)]="quoteNumber" formControlName="quoteNumber"
                     name="quoteNumber" type="text" label="Quote No. :" label-placement="floating"
                     fill="outline" ></ion-input>
                 </ion-row>

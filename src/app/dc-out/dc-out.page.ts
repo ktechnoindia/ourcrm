@@ -346,7 +346,7 @@ export class DcOutPage implements OnInit {
           const itemDetails = data[0];
 
           // Update the quote properties
-          dcout.itemcode = itemDetails.tid;
+          dcout.itemcode = itemDetails.itemCode;
           dcout.itemname = itemDetails.itemDesc;
           dcout.barcode = itemDetails.barcode.toString();
           dcout.unitname = itemDetails.unitname;
@@ -356,6 +356,39 @@ export class DcOutPage implements OnInit {
           this.myform.patchValue({
             itemcode: dcout.itemcode,
             itemname: dcout.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  };
+
+  getCustomers(event: any) {
+    const compid = '1';
+    const identifier = this.vendcode ? 'custname' : 'vendcode';
+    const value = this.vendcode;
+
+    this.custname1.fetchallCustomer(compid, value, '').subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          event.custcode = itemDetails.customer_code;
+          event.custname = itemDetails.name;
+
+
+          // Update form control values
+          this.myform.patchValue({
+            custcode: itemDetails.vendcode,
+            custname: itemDetails.custcode,
             // Other form controls...
           });
         } else {
