@@ -95,13 +95,15 @@ ion-icon {
   background-color: lightgrey;
 
 }
+ion-content{
+  --margin-top: 80px !important;
 
+}
 .container_fluid {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80px;
 }
 
 .table-container {

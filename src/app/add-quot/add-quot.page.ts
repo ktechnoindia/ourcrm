@@ -205,6 +205,7 @@ export class AddQuotPage implements OnInit {
     });
 
   }
+ 
   async getquoteNo() {
     const user = await this.session.getValue('userid');
     const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
@@ -586,6 +587,7 @@ export class AddQuotPage implements OnInit {
     return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
   }
   ngOnInit() {
+
     this.getquoteNo();
 
     // Other initialization logic...

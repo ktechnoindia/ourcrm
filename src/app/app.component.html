@@ -1,3 +1,5 @@
+
+
 <ion-header class="dropdown_menu" *ngIf="showHeader">
   <ion-button id="mobile-menu-button" class="buttons" fill="clear" (click)="toggleMobileMenu()">
     <ion-icon name="menu"></ion-icon>
@@ -124,7 +126,11 @@
 
         </div>
         <li><a routerLink="/view-lead">Leads Report</a></li>
-        <li (click)="toggleDropdown6()"> Transaction Report ></li>
+        <li><a routerLink="/outstandingreport">Outstanding</a></li>
+        <li><a routerLink="/itemledger">Item Ledger</a></li>
+        <li><a routerLink="/generalledger">General Ledger</a></li>
+
+        <li (click)="toggleDropdown6()">Transaction Report</li>
         <div *ngIf="isDropdownOpen6" class="right-dropdown">
 
           <a (click)="selectOption6('Option 23')" isDropdownOpen5 = false; routerLink="/view-sale">Sales Report</a>
@@ -309,6 +315,9 @@
 
         </div>
         <li><a routerLink="/view-lead" (click)="closeMobileMenu()">Leads Report</a></li>
+        <li><a routerLink="/outstandingreport" (click)="closeMobileMenu()">Outstanding</a></li>
+        <li><a routerLink="/itemledger" (click)="closeMobileMenu()">Item Ledger</a></li>
+        <li><a routerLink="/generalledger" (click)="closeMobileMenu()">General Ledger</a></li>
 
        <li (click)="toggleDropdown6()"> Transaction Report ></li>
         <div *ngIf="isDropdownOpen6" class="right-dropdown">

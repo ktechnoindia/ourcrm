@@ -33,12 +33,14 @@
                 <p>Unlock your personalized experience – Log in to access a world tailored just for you.</p>
               </ion-row>
               <ion-row class="custom-primary1">
-                <ion-button [routerLink]="'/signup'" fill="outline" type="submit" class="home_buttons1">Signup
+                <ion-button size="small" [routerLink]="'/signup'" fill="outline" type="submit" class="home_buttons1">Signup
                   Now</ion-button>
-                <ion-button [routerLink]="'/login'" fill="outline" type="submit" class="home_buttons1">Login
+                <ion-button size="small" [routerLink]="'/login'" fill="outline" type="submit" class="home_buttons1">Login
                 </ion-button>
-                <ion-button [routerLink]="'/createcompany'" fill="outline" type="submit" class="home_buttons1">Go to
+                <ion-button size="small" [routerLink]="'/createcompany'" fill="outline" type="submit" class="home_buttons1">Go to
                   Master</ion-button>
+                  <ion-button size="small" (click)="goDemo()" fill="outline" type="submit" class="home_buttons1">Go to
+                    Demo</ion-button>
               </ion-row>
             </ion-col>
             <ion-col class="custom-primary" size="12" size-lg="6">

@@ -5,7 +5,7 @@ import { AuthGuard } from './interceptors/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'masterdashboard',
     pathMatch: 'full'
    // canActivate:[AuthGuard]
   },
@@ -891,7 +891,8 @@ export const routes: Routes = [
   {
     path: 'viewroleofexicutive',
     loadComponent: () => import('./viewroleofexicutive/viewroleofexicutive.page').then( m => m.ViewroleofexicutivePage)
-  },  {
+  },
+  {
     path: 'hsrpin',
     loadComponent: () => import('./hsrpin/hsrpin.page').then( m => m.HsrpinPage)
   },
@@ -903,6 +904,15 @@ export const routes: Routes = [
     path: 'pendinghsrp',
     loadComponent: () => import('./pendinghsrp/pendinghsrp.page').then( m => m.PendinghsrpPage)
   },
+  {
+    path: 'outstandingreport',
+    loadComponent: () => import('./outstandingreport/outstandingreport.page').then( m => m.OutstandingreportPage)
+  },
+  {
+    path: 'generalledger',
+    loadComponent: () => import('./generalledger/generalledger.page').then( m => m.GeneralledgerPage)
+  },
+
 
 
 
