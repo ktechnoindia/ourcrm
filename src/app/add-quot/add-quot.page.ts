@@ -225,7 +225,7 @@ export class AddQuotPage implements OnInit {
     throw new Error('Method not implemented.');
   }
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
-    const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
+    const fields = {  custcode: this.custcode, custname: this.custcode }
     // const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -363,7 +363,7 @@ export class AddQuotPage implements OnInit {
 
   getCustomers(event: any) {
     const compid = '1';
-    const identifier = this.custcode ? 'custname' : 'custcode';
+    const identifier = this.custcode ? 'custcode' : 'custname';
     const value = this.custcode;
 
     this.custname1.fetchallCustomer(compid, value, '').subscribe(
@@ -380,8 +380,8 @@ export class AddQuotPage implements OnInit {
 
           // Update form control values
           this.myform.patchValue({
-            custcode: itemDetails.itemcode,
-            custname: itemDetails.itemname,
+            custcode: itemDetails.custcode,
+            custname: itemDetails.custname,
             // Other form controls...
           });
         } else {
@@ -675,7 +675,7 @@ export class AddQuotPage implements OnInit {
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
       quote.taxrate1 = numericValue;
-      // Use numericValue as needed
+     
     } else {
       quote.taxrate1 = 0;
       console.error('Selected text does not represent a valid number.');
