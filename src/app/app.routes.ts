@@ -903,13 +903,10 @@ export const routes: Routes = [
   {
     path: 'pendinghsrp',
     loadComponent: () => import('./pendinghsrp/pendinghsrp.page').then( m => m.PendinghsrpPage)
-  },  {
-    path: 'outstandingreport',
-    loadComponent: () => import('./outstandingreport/outstandingreport.page').then( m => m.OutstandingreportPage)
   },
   {
-    path: 'itemledger',
-    loadComponent: () => import('./itemledger/itemledger.page').then( m => m.ItemledgerPage)
+    path: 'outstandingreport',
+    loadComponent: () => import('./outstandingreport/outstandingreport.page').then( m => m.OutstandingreportPage)
   },
   {
     path: 'generalledger',

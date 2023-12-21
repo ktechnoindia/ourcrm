@@ -6,14 +6,160 @@
           <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">View Customers</ion-title>
+              <ion-title style="text-align: center;">OutStanding Report</ion-title>
             </ion-row>
           </ion-card-header>
-
           <ion-grid>
+            <ion-row>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+              </ion-col>
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="6" style="margin-top: 5px;">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Ledger Formate" label-placement="floating" fill="outline" name="ledgerformate">
+                  <ion-select-option>Standerd</ion-select-option>
+                  <ion-select-option>Group By Party</ion-select-option>
+                  <ion-select-option>Ageing By Bill</ion-select-option>
+                  <ion-select-option>Ageing By Party</ion-select-option>
+                  <ion-select-option>Ledger List</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="6" style="margin-top: 5px;">
+                <ion-input type="date" label="As On" color="dark" label-placement="floating" fill="outline"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="Executive">
+              <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;margin-top: 10px;">
+                <table style="width: 1300px;overflow-x:auto;overflow-y: auto;">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th>Date</th>
+                      <th>Ref. Type</th>
+                      <th>Ref/Bill No.</th>
+                      <th>Voucher Type</th>
+                      <th>Party Name</th>
+                      <th>Bill Amount</th>
+                      <th>Original Amount</th>
+                      <th>Received Amount</th>
+                      <th>Pending Amount</th>
+                      <th>Due On</th>
+                      <th>Due Days</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Dummy data entries -->
+                    <tr>
+                      <td>1</td>
+                      <td>2023-01-01</td>
+                      <td>Sales</td>
+                      <td>SB001</td>
+                      <td>Cash</td>
+                      <td>Customer A</td>
+                      <td>1000.0</td>
+                      <td>950.0</td>
+                      <td>800.0</td>
+                      <td>150.0</td>
+                      <td>2023-02-01</td>
+                      <td>31</td>
+                      <td><!-- Action buttons or links --></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>2023-01-05</td>
+                      <td>Purchase</td>
+                      <td>PB002</td>
+                      <td>Credit</td>
+                      <td>Supplier B</td>
+                      <td>1500.0</td>
+                      <td>1500.0</td>
+                      <td>0.0</td>
+                      <td>1500.0</td>
+                      <td>2023-02-10</td>
+                      <td>36</td>
+                      <td><!-- Action buttons or links --></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>2023-01-10</td>
+                      <td>Sales</td>
+                      <td>SB002</td>
+                      <td>Cheque</td>
+                      <td>Customer C</td>
+                      <td>1200.0</td>
+                      <td>1200.0</td>
+                      <td>1200.0</td>
+                      <td>0.0</td>
+                      <td>2023-02-10</td>
+                      <td>31</td>
+                      <td><!-- Action buttons or links --></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>2023-01-15</td>
+                      <td>Purchase</td>
+                      <td>PB003</td>
+                      <td>Credit</td>
+                      <td>Supplier D</td>
+                      <td>1800.0</td>
+                      <td>1800.0</td>
+                      <td>0.0</td>
+                      <td>1800.0</td>
+                      <td>2023-02-15</td>
+                      <td>31</td>
+                      <td><!-- Action buttons or links --></td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>2023-01-20</td>
+                      <td>Sales</td>
+                      <td>SB003</td>
+                      <td>Credit</td>
+                      <td>Customer E</td>
+                      <td>2000.0</td>
+                      <td>2000.0</td>
+                      <td>1800.0</td>
+                      <td>200.0</td>
+                      <td>2023-02-20</td>
+                      <td>31</td>
+                      <td><!-- Action buttons or links --></td>
+                    </tr>
+                  </tbody>
+                </table>
 
-              <ion-row>
-              </ion-row>
+              </div>
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+
+                <ion-row>
+                  <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
+                    <label class="label_table" for="">Total Bill Amount :</label>
+                    <input name="totallbillamount" class="input_table" type="text"placeholder="0.00">
+                  </ion-col>
+                  <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
+                    <label class="label_table" for="">Original Amount :</label>
+                    <input name="originalamount" class="input_table" type="text"placeholder="0.00">
+                  </ion-col>
+
+                  <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
+                    <label class="label_table" for="">Receiveable Amount : </label>
+                    <input name="receiveableamount" class="input_table" type="text"placeholder="0.00">
+                  </ion-col>
+                  <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
+                    <label class="label_table" for="">Pending Amount : </label>
+                    <input name="pendingamount" class="input_table" type="text" placeholder="0.00">
+                  </ion-col>
+                </ion-row>
+
+              </div>
+            </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+              <ion-button>New</ion-button>
+              <ion-button type="submit">Save</ion-button>
+              <ion-button>Print</ion-button>
+              <ion-button>Preview</ion-button>
+              <ion-button>Close</ion-button>
+            </ion-row>
           </ion-grid>
         </div>
       </ion-card-content>

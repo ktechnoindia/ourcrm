@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class OutstandingreportPage implements OnInit {
+  selectedOption: string=''; // Property to store the selected option
 
   constructor(private router :Router) { }
 
