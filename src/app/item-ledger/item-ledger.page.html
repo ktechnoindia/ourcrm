@@ -17,7 +17,7 @@
     <ion-card>
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Item Ledger Report</ion-title>
@@ -25,67 +25,118 @@
           </ion-card-header>
         </div>
         <ion-grid>
-         <ion-row>
-          <ion-col size-lg="10" size-md="10" size-sm="10" size="12" class="custom-primary">
-          <ion-searchbar class="custom"  showCancelButton="focus"></ion-searchbar>
-          </ion-col>
-          <ion-col size-lg="2" size-md="2" size-sm="2" size="12" class="custom-primary">
-            <ion-button style="justify-content: right;margin-top: 10px;" expand="block">Ok</ion-button>
-          </ion-col>
-         </ion-row>
-          <ion-row >
-            <div class="scroll-container" style="overflow-x:auto; ">
-             
-            <table  >
-              <tr>
-                <th width="100px">SI NO.</th>
-                <th  width="150px">Product Code</th>
-                <th  width="200px">Product Name</th>
-                <th width="150px" >Category</th>
-                <th  width="200px" >Supplier</th>
-                <th  width="150px">Purchase Price</th>
-                <th  width="150px">Selling Price</th>
-                <th  width="150px">Quantity</th>
-                <th  width="200px"> Re-Oreder Point</th>
-                <th  width="150px">Re-Order Quantity</th>
-                <th  width="200px">Location</th>
-                <th  width="200px">QR code</th>
-                <th  width="200px"> Expire Date</th>
-                <th  width="200px"> Purchase Date</th>
-                <th  width="200px">Sale Date</th>
-                <th  width="200px">Warranty Information</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>23df</td>
-                <td>Mehta </td>
-                <td>Deepak </td>
-                <td>dkjdksj</td>
-                <td>ndsd</td>
-                <td>sdfs</td>
-                <td>gggc</td>
-                <td>cjhg</td>
-                <td>hjnm</td>
-                <td>hsgdhfgs</td>
-                <td>Jaipur</td>
-                <td>deepus</td>
-                <td>01/10/2023</td>
-                <td>0/33/353</td>
-                <td>
-                  <ion-icon name="create"></ion-icon>
-                  <ion-icon name="trash"></ion-icon>
-                </td>
-              </tr>
-            
-            </table>
-            
+          <ion-row>
+            <ion-col size-lg="5" size-md="5" size-sm="6" size="12">
+              <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+            </ion-col>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="6" style="margin-top: 5px;">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Ledger Formate" label-placement="floating" fill="outline" name="ledgerformate">
+                <ion-select-option>Standerd</ion-select-option>
+                <ion-select-option>Group By Party</ion-select-option>
+                <ion-select-option>Ageing By Bill</ion-select-option>
+                <ion-select-option>Ageing By Party</ion-select-option>
+                <ion-select-option>Ledger List</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="6" style="margin-top: 5px;">
+              <ion-input type="date" label="From Date" color="dark" label-placement="floating"
+                fill="outline"></ion-input>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="6" style="margin-top: 5px;">
+              <ion-input type="date" label="To Date" color="dark" label-placement="floating" fill="outline"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row class="Executive">
+            <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;margin-top: 10px;">
+              <table style="width: 1300px;overflow-x:auto;overflow-y: auto;">
+                <thead>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Date</th>
+                    <th>Voucher No.</th>
+                    <th>Ref/Bill No.</th>
+                    <th>Particulars</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dummy data entries -->
+                  <tr>
+                    <td>1</td>
+                    <td>2023-01-01</td>
+                    <td>V001</td>
+                    <td>RB001</td>
+                    <td>Item A</td>
+                    <td>500.0</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>2023-01-05</td>
+                    <td>V002</td>
+                    <td>PB002</td>
+                    <td>Item B</td>
+                    <td></td>
+                    <td>700.0</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>2023-01-10</td>
+                    <td>V003</td>
+                    <td>RB002</td>
+                    <td>Item C</td>
+                    <td>300.0</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>2023-01-15</td>
+                    <td>V004</td>
+                    <td>PB003</td>
+                    <td>Item D</td>
+                    <td></td>
+                    <td>400.0</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>2023-01-20</td>
+                    <td>V005</td>
+                    <td>RB003</td>
+                    <td>Item E</td>
+                    <td>600.0</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+              <ion-row>
+                <ion-col class="row_data" size="12" size-lg="4" size-md="4" size-sm="6">
+                  <label class="label_table" for="">Current Period Total :</label>
+                  <input name="currentperiodtotal" class="input_table" type="text" placeholder="00.000">
+                  <input name="currentperiodtotal" class="input_table" type="text" placeholder="0.00">
+                </ion-col>
+
+                <ion-col class="row_data" size="12" size-lg="4" size-md="4" size-sm="6">
+                  <label class="label_table" for="">Opening  : </label>
+                  <input name="opening" class="input_table" type="text"placeholder="0.00 Cr.">
+                  <input name="opening" class="input_table" type="text" placeholder="0.00 Dr.">
+                </ion-col>
+
+                <ion-col class="row_data" size="12" size-lg="4" size-md="4" size-sm="6">
+                  <label class="label_table" for="">Closing :</label>
+                  <input name="closing" class="input_table" type="text"placeholder="0.00 Cr.">
+                  <input name="closing" class="input_table" type="text" placeholder="0.00 Dr.">
+                </ion-col>
+              </ion-row>
             </div>
           </ion-row>
-
           <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
             <ion-button>New</ion-button>
             <ion-button type="submit">Save</ion-button>
-            <ion-button>Delete</ion-button>
+            <ion-button>Print</ion-button>
             <ion-button>Preview</ion-button>
             <ion-button>Close</ion-button>
           </ion-row>

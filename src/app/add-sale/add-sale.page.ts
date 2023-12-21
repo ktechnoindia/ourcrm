@@ -37,7 +37,7 @@ interface Sales {
   totaltax: number;
   total: number;
   taxrate1: number;
-  itemid:number;
+  itemid: number;
 }
 @Component({
   selector: 'app-add-sale',
@@ -100,32 +100,32 @@ export class AddSalePage implements OnInit {
   credit: string = '';
   salesData: Sales[] = [{
     barcode: '',
-      itemcode: 0,
-      itemname: 0,
-      description: '',
-      quantity: 0,
-      unitname: 0,
-      mrp: 0,
-      basicrate: 0,
-      netrate: 0,
-      grossrate: 0,
-      taxrate: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      discount: 0,
-      discountamt: 0,
-      totaltax: 0,
-      total: 0,
-      taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
-      itemid:0,
+    itemcode: 0,
+    itemname: 0,
+    description: '',
+    quantity: 0,
+    unitname: 0,
+    mrp: 0,
+    basicrate: 0,
+    netrate: 0,
+    grossrate: 0,
+    taxrate: 0,
+    CGST: 0,
+    SGST: 0,
+    IGST: 0,
+    discount: 0,
+    discountamt: 0,
+    totaltax: 0,
+    total: 0,
+    taxrate1: 0,
+    pretax: 0,
+    posttax: 0,
+    itemid: 0,
   }];
   ttotal: number = 0;
   myform: FormGroup;
-userid:number=0;
-companyid:number=0;
+  userid: number = 0;
+  companyid: number = 0;
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -140,17 +140,17 @@ companyid:number=0;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    this.billDate = new Date().toISOString().split('T')[0]; 
-    this.refdate = new Date().toISOString().split('T')[0]; 
-    this.deliverydate = new Date().toISOString().split('T')[0]; 
-    this.orderDate = new Date().toISOString().split('T')[0]; 
+    this.billDate = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
+    this.orderDate = new Date().toISOString().split('T')[0];
 
     this.myform = this.formBuilder.group({
       billformate: [''],
@@ -163,7 +163,7 @@ companyid:number=0;
       orderDate: [''],
       orderNumber: [''],
       // ponumber: [''],
-      gstin: ['',[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       salePerson: [''],
       payment: [''],
 
@@ -174,7 +174,7 @@ companyid:number=0;
       quantity: 0,
       unitname: 0,
       mrp: 0,
-      basicrate:0,
+      basicrate: 0,
       netrate: 0,
       grossrate: 0,
       taxrate: 0,
@@ -204,46 +204,46 @@ companyid:number=0;
       credit: [''],
 
       ttotal: [''],
-      itemid:['']
+      itemid: ['']
     })
   }
-  async onSubmit(form: FormGroup,salesData: Sales[]) {
+  async onSubmit(form: FormGroup, salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
-    console.log('Your form data : ', JSON.stringify(this.myform.value)+   '    -> '+JSON.stringify(salesData));
+    console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));
 
     if (await this.formService.validateForm(fields)) {
-      
+
       for (const element of salesData) {
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate=element.basicrate + element.taxrate1;
-        element.CGST= element.taxrate1/2;
-        element.SGST = element.taxrate1/2;
-        element.IGST = element.taxrate1;
-        element.total= element.totaltax+element.grossrate;
-        element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
-       
-        console.log(element); 
-        const companyid=1;
-        const userid=1;
-        let salesdatas: salesstore[]=[];
+        element.netrate = element.basicrate + element.taxrate1;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate)
 
-      let saledata: salesstore = {
-        billformate: this.myform.value.billformate,
-        billNumber: this.myform.value.billNumber,
-        billDate: this.myform.value.billDate,
-        custcode: this.myform.value.custcode,
-        custname: this.myform.value.custname,
-        refdate: this.myform.value.refdate,
-        refrence: this.myform.value.refrence,
-        orderDate: this.myform.value.orderDate,
-        orderNumber: this.myform.value.orderNumber,
-        // ponumber: this.myform.value.ponumber,
-        gstin: this.myform.value.gstin,
-        salePerson: this.myform.value.salePerson,
-        payment: this.myform.value.payment,
+        console.log(element);
+        const companyid = 1;
+        const userid = 1;
+        let salesdatas: salesstore[] = [];
 
-        barcode: element.barcode,
+        let saledata: salesstore = {
+          billformate: this.myform.value.billformate,
+          billNumber: this.myform.value.billNumber,
+          billDate: this.myform.value.billDate,
+          custcode: this.myform.value.custcode,
+          custname: this.myform.value.custname,
+          refdate: this.myform.value.refdate,
+          refrence: this.myform.value.refrence,
+          orderDate: this.myform.value.orderDate,
+          orderNumber: this.myform.value.orderNumber,
+          // ponumber: this.myform.value.ponumber,
+          gstin: this.myform.value.gstin,
+          salePerson: this.myform.value.salePerson,
+          payment: this.myform.value.payment,
+
+          barcode: element.barcode,
           itemcode: element.itemcode,
           itemname: element.itemname,
           description: element.description,
@@ -274,81 +274,117 @@ companyid:number=0;
           posttax: element.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
-          debit:this.myform.value.debit,
+          debit: this.myform.value.debit,
           credit: this.myform.value.credit,
-          ttotal:0,
+          ttotal: 0,
 
-          companyid:companyid,
-          userid:userid,
-      };
+          companyid: companyid,
+          userid: userid,
+        };
 
-      salesdatas.push(saledata);
+        salesdatas.push(saledata);
 
-      this.saleService.createsale(salesdatas, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
-          this.formService.showSaveLoader();
-          location.reload()
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
-          this.formService.shoErrorLoader();
+        this.saleService.createsale(salesdatas, '', '').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            setTimeout(() => {
+              this.formService.showSuccessAlert();
+            }, 1000);
+            this.formService.showSaveLoader();
+            location.reload()
+          },
+          (error: any) => {
+            console.error('POST request failed', error);
+            setTimeout(() => {
+              this.formService.showFailedAlert();
+            }, 1000);
+            this.formService.shoErrorLoader();
+          }
+        );
+      }
+    } else {
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
         }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
+    }
+  };
+
+  getItems(sales: any) {
+    const compid = 1;
+    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
+    const value = sales.itemcode;
+
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          sales.itemid = itemDetails.tid;
+          sales.itemcode = itemDetails.itemCode;
+          sales.itemname = itemDetails.itemDesc;
+          sales.barcode = itemDetails.barcode.toString();
+          sales.unitname = itemDetails.unitname;
+          sales.taxrate = itemDetails.selectGst;
+
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: sales.itemcode,
+            itemname: sales.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
     );
-      }
-  }  else {
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
-    if (this.firstInvalidInput) {
-      this.firstInvalidInput.setFocus();
-    }
   }
-};
 
-getItems(sales: any) {
-  const compid = 1;
-  const identifier = sales.itemcode ? 'itemname' : 'itemcode';
-  const value =  sales.itemcode;
+  getCustomers(event: any) {
+    const compid = '1';
+    const identifier = this.custcode ? 'custcode' : 'custname';
+    const value = this.custcode;
 
-  this.itemService.getItems(compid, value).subscribe(
-    (data) => {
-      console.log('Data received:', data);
+    this.custname1.fetchallCustomer(compid, '', value).subscribe(
+      (data) => {
 
-      if (data && data.length > 0) {
-        const itemDetails = data[0];
 
-        // Update the quote properties
-        sales.itemcode = itemDetails.tid;
-        sales.itemname = itemDetails.itemDesc;
-        sales.barcode = itemDetails.barcode.toString();
-        sales.unitname = itemDetails.unitname;
-        sales.taxrate = itemDetails.selectGst;
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
 
-        // Update form control values
-        this.myform.patchValue({
-          itemcode: sales.itemcode,
-          itemname: sales.itemname,
-          // Other form controls...
-        });
-      } else {
-        console.error('No data found for the selected item.');
+          // Update the quote properties
+          event.custcode = itemDetails.customer_code;
+          event.custname = itemDetails.name;
+
+
+          // Update form control values
+          this.myform.patchValue({
+            custcode: itemDetails.custcode,
+            custname: itemDetails.custname,
+            // Other form controls...
+          });
+
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
       }
-    },
-    (error) => {
-      console.error('Error fetching data', error);
-    }
-  );
-}
+    );
+  }
+
+
 
   addSales() {
     console.log('addrowwww' + this.salesData.length);
@@ -375,12 +411,12 @@ getItems(sales: any) {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid:0,
+      itemid: 0,
     };
     this.salesData.push(newRow);
   }
 
-  onNew(){
+  onNew() {
     location.reload();
   }
 
@@ -441,7 +477,7 @@ getItems(sales: any) {
       const grossAmount = sale.quantity * sale.basicrate;
       return total + grossAmount;
     }, 0);
-  
+
     return totalGrossAmount;
   }
   getTotalnetAmount(): number {
@@ -449,10 +485,10 @@ getItems(sales: any) {
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+sale.pretax + sale.posttax)+(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
+      const itemTotal = (((+sale.pretax + sale.posttax) + (sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
       return total + itemTotal;
     }, 0);
-  
+
     return grandTotal;
   }
   getTotalTaxAmount(): number {
@@ -463,11 +499,11 @@ getItems(sales: any) {
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount ), 0);
-  
+    const totalAmount = this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount), 0);
+
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-  
+
     return roundedTotalAmount;
   }
   //table formaula
@@ -527,14 +563,16 @@ getItems(sales: any) {
   getTotalamt(sale: Sales): number {
     return (sale.basicrate * sale.quantity) + (sale.quantity * (sale.taxrate1 / 100 * sale.basicrate)) - this.calculateDiscountAmount(sale);
   }
-  getcgst(sale: Sales): number {
-    return sale.taxrate1 / 2;
+  getcgst(quote: Sales): number {
+    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
   }
-  getsgst(sale: Sales): number {
-    return sale.taxrate1 / 2;
+
+  getsgst(quote: Sales): number {
+    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
   }
-  getigst(sale: Sales): number {
-    return sale.taxrate1;
+
+  getigst(quote: Sales): number {
+    return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
   }
   ngOnInit() {
     // Other initialization logic...

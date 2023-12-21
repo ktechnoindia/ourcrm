@@ -11,65 +11,59 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form>
+          <form [formGroup]="myform" (ngSubmit)="onSubmit()" >
 
             <ion-row>
               <ion-col class="ionselect" size-lg="2.5" size-md="2.5" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="HSRP Formate" label-placement="floating" fill="outline" name="billformate">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="HSRP Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                 </ion-select>
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input name="billno" type="number" label=" HSRP No.  :" label-placement="floating"
+                  <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number" label=" HSRP No.  :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="hsrpdate" formControlName="hsrpdate" name="hsrpdate" type="date" label="Date   :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input name="hsrpdate" type="date" label="Date   :" label-placement="floating"
+                  <ion-input color="dark"  [(ngModel)]="suppliercode" formControlName="suppliercode" name="suppliercode" type="text" label="Code :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <ion-row>
-                  <ion-input color="dark" name="suppliercode" type="text" label="Code :" label-placement="floating"
-                    fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-
 
               <ion-col class="ionselect" size-lg="3.5" size-md="3.5" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="---Supplier Name---" label-placement="floating" fill="outline" name="spler">
-                  <ion-select-option value="">Supplier 1</ion-select-option>
-                  <ion-select-option value="">Supplier 2</ion-select-option>
-                  <ion-select-option value="">Supplier 3</ion-select-option>
-                  <ion-select-option value="">Supplier 4</ion-select-option>
+
+                <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Supplier Name---"  label-placement="floating" fill="outline" [(ngModel)]="spler" formControlName="spler" name="spler">
+                  <ion-select-option *ngFor="let supplier of supplier$ | async" [value]="supplier.id">
+                    {{ supplier.name }}
+                  </ion-select-option>
                 </ion-select>
+
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" name="refrence" type="text" label="Refrence No.:" label-placement="floating"
+                  <ion-input color="dark"  [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text" label="Refrence No.:" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" name="refdate" type="date" label="Ref. Date :" label-placement="floating"
+                  <ion-input color="dark"  [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label="Ref. Date :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col class="ionselect" size-lg="3" size-md="3" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Executive Name --- " label-placement="floating" fill="outline" name="executive_name">
-                  <ion-select-option value="">Executive 1</ion-select-option>
-                  <ion-select-option value="">Executive 2</ion-select-option>
-                  <ion-select-option value="">Executive 3</ion-select-option>
-                  <ion-select-option value="">Executive 4</ion-select-option>
-                  <ion-select-option value="">Executive 5</ion-select-option>
+                <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Executive Name---"  label-placement="floating" fill="outline" [(ngModel)]="executive_name" formControlName="executive_name" name="executive_name">
+                  <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
+                    {{ executive.executivename }}
+                  </ion-select-option>
                 </ion-select>
               </ion-col>
             </ion-row>
@@ -80,6 +74,7 @@
                   <tr>
                     <th>Sr.No.</th>
                     <th>Part No.</th>
+                    <th>Item Name</th>
                     <th>Frame No.</th>
                     <th>Engine No.</th>
                     <th>Vehicle No</th>
@@ -101,7 +96,7 @@
                       <input class="table_input" type="text">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select">
+                      <select class="table_select" [(ngModel)]="part" formControlName="part" name="part">
                         <option value="0">Part No.</option>
                         <option value="">part 1</option>
                         <option value="">part 2</option>
@@ -111,7 +106,18 @@
                       </select>
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select">
+                      <select class="table_select"  [(ngModel)]="itemname" formControlName="itemname" name="itemname">
+
+                        <option value="0">Item No.</option>
+                        <option value="">Item 1</option>
+                        <option value="">Item 2</option>
+                        <option value="">Item 3</option>
+                        <option value="">Item 4</option>
+                        <option value="">Item 5</option>
+                      </select>
+                    </td>
+                    <td style="width: 90px;">
+                      <select class="table_select"  [(ngModel)]="frame" formControlName="frame" name="frame">
                         <option value="0">Frame No.</option>
                         <option value="">frame 1</option>
                         <option value="">frame 2</option>
@@ -122,50 +128,48 @@
                     </td>
 
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"  [(ngModel)]="engine_no" formControlName="engine_no" name="engine_no" type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"  [(ngModel)]="vehicle_no" formControlName="vehicle_no" name="vehicle_no" type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"  [(ngModel)]="vehicle_reg_no" formControlName="vehicle_reg_no" name="vehicle_reg_no"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input" [(ngModel)]="vehicle_reg_date" formControlName="vehicle_reg_date" name="vehicle_reg_date"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"  [(ngModel)]="hsrp_front" formControlName="hsrp_front" name="hsrp_front"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input" [(ngModel)]="hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input" [(ngModel)]="description" formControlName="description" name="description"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"  [(ngModel)]="hsn_code" formControlName="hsn_code" name="hsn_code"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input" [(ngModel)]="quantity" formControlName="quantity" name="quantity"  type="text">
                     </td>
                     <td style="width: 90px;">
-                      <select class="table_select">
-                        <option value="0">GST%</option>
-                        <option value="">3%</option>
-                        <option value="">5%</option>
-                        <option value="">8%</option>
-                        <option value="">18%</option>
-                        <option value="">28%</option>
+                      <input class="table_input"[(ngModel)]="basic_rate" formControlName="basic_rate" name="basic_rate" type="text">
+                    </td>
+                    <td>  
+                      <select class="table_select"  [(ngModel)]="gst_type" formControlName="gst_type" name="gst_type" >
+                        <option value="0">GST</option>
+                        <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                        {{gsttype.gstname}}
+                        </option>
                       </select>
                     </td>
                     <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"[(ngModel)]="tax_amt" formControlName="tax_amt" name="tax_amt" type="text">
                     </td>
                     <td>
-                      <input class="table_input" type="text">
-                    </td>
-                    <td>
-                      <input class="table_input" type="text">
+                      <input class="table_input"[(ngModel)]="tcs_value" formControlName="tcs_value" name="tcs_value" type="text">
                     </td>
                     <td>
                       <ion-icon icon-only clear color="primary" name="add"></ion-icon>
@@ -181,33 +185,33 @@
                 <ion-row>
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total Item :</label>
-                    <input name="totalitemno" class="input_table" type="text">
+                    <input name="totalitemno" [(ngModel)]="totalitemno" formControlName="totalitemno" class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
-                    <input name="totalquantity" class="input_table" type="text">
+                    <input name="totalquantity"[(ngModel)]="totalquantity" formControlName="totalquantity" class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" class="input_table" type="text">
+                    <label class="label_table"  for="">Gross Amount :</label>
+                    <input name="totalgrossamt"[(ngModel)]="totalgrossamt" formControlName="totalgrossamt" class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt" class="input_table" type="text">
+                    <input name="totaldiscountamt"[(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt" class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount" class="input_table" type="text">
+                    <input name="totaltaxamount"[(ngModel)]="totaltaxamount" formControlName="totaltaxamount" class="input_table" type="text">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" class="input_table" type="text">
+                    <input name="totalnetamount"[(ngModel)]="totalnetamount" formControlName="totalnetamount" name="totalnetamount" class="input_table" type="text">
 
                   </ion-col>
                 </ion-row>
@@ -226,13 +230,13 @@
                         <tr>
                           <th style="width: 100px !important;">Delivery Date</th>
                           <td>
-                            <ion-input type="date" name="deliverydate" placeholder="Enter Delivery Date"></ion-input>
+                            <ion-input type="date" name="deliverydate"[(ngModel)]="deliverydate" formControlName="deliverydate" placeholder="Enter Delivery Date"></ion-input>
                           </td>
                         </tr>
                         <tr>
                           <th style="width: 100px !important;">Delivery Place</th>
                           <td>
-                            <ion-input type="text" name="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
+                            <ion-input type="text" name="deliveryplace" [(ngModel)]="deliveryplace" formControlName="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
                           </td>
                         </tr>
                       </table>
@@ -249,21 +253,21 @@
                       <tr>
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
-                          <ion-input type="text" name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                          <ion-input type="text" name="openingbalance" [(ngModel)]="openingbalance" formControlName="openingbalance" placeholder="Enter Opening Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
-                          <ion-input type="text" name="debit" placeholder="Enter  Dedit Amount"></ion-input>
+                          <ion-input type="text" name="debit"[(ngModel)]="debit" formControlName="debit" placeholder="Enter  Dedit Amount"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
-                          <ion-input type="text" name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                          <ion-input type="text" name="closingbalance" [(ngModel)]="closingbalance" formControlName="closingbalance" placeholder="Enter Closing Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
-                          <ion-input type="text" name="credit" placeholder="Enter Credit Amount"></ion-input>
+                          <ion-input type="text" name="credit" [(ngModel)]="credit" formControlName="credit" placeholder="Enter Credit Amount"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -296,36 +300,36 @@
 
                     <tr>
                       <th colspan="2">Discount Amount :</th>
-                      <td colspan="2"> <input id="totaldiscountamt" name="totaldiscountamt" class="row_input"
+                      <td colspan="2"> <input id="totaldiscountamt" [(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt" class="row_input"
                           type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Tax Amount : </th>
-                      <td colspan="2"> <input id="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
+                      <td colspan="2"> <input id="totaltaxamount" [(ngModel)]="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input name="roundoff" id="roundoff" class="row_input" type="text">
+                      <td colspan="2"> <input name="roundoff"  [(ngModel)]="roundoff" formControlName="roundoff"  id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
-                      <td colspan="2"> <input name="pretax" id="pretax" class="row_input" type="text">
+                      <td colspan="2"> <input name="pretax"  [(ngModel)]="pretax" formControlName="pretax"  id="pretax" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
-                      <td colspan="2"> <input name="posttax" id="posttax" class="row_input" type="text">
+                      <td colspan="2"> <input name="posttax"  [(ngModel)]="posttax" formControlName="posttax"  id="posttax" class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input id="totalnetamount" name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input id="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"  name="totalnetamount" class="row_input" type="text">
                       </td>
                     </tr>
                   </table>

@@ -143,10 +143,10 @@ export class PurchasereturnPage implements OnInit {
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.billDate = new Date().toLocaleDateString();
-    this.refdate = new Date().toLocaleDateString();
-    this.deliverydate = new Date().toLocaleDateString();
-    this.orderDate = new Date().toLocaleDateString();
+    this.billDate = new Date().toISOString().split('T')[0]; 
+    this.refdate = new Date().toISOString().split('T')[0]; 
+    this.deliverydate = new Date().toISOString().split('T')[0]; 
+    this.orderDate = new Date().toISOString().split('T')[0]; 
 
 
     this.myform = this.formBuilder.group({
@@ -290,6 +290,74 @@ export class PurchasereturnPage implements OnInit {
         this.firstInvalidInput.setFocus();
       }
     }
+  }
+
+  getItems(sales: any) {
+    const compid = 1;
+    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
+    const value =  sales.itemcode;
+  
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log('Data received:', data);
+  
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+  
+          sales.itemid = itemDetails.tid;
+          sales.itemcode = itemDetails.itemCode;
+          sales.itemname = itemDetails.itemDesc;
+          sales.barcode = itemDetails.barcode.toString();
+          sales.unitname = itemDetails.unitname;
+          sales.taxrate = itemDetails.selectGst;
+  
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: sales.itemcode,
+            itemname: sales.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+
+  getSuppliers(event: any) {
+    const compid = '1';
+    const identifier = this.vendcode ? 'suppliertype' : 'vendcode';
+    const value = this.vendcode;
+
+    this.vendname1.fetchallVendor(compid, value, '').subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          event.vendcode = itemDetails.vendor_code;
+          event.suppliertype = itemDetails.name;
+
+
+          // Update form control values
+          this.myform.patchValue({
+            vendcode: itemDetails.vendcode,
+            suppliertype: itemDetails.suppliertype,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
   }
 
  

@@ -127,7 +127,7 @@
                     </td>
                     <td style="width: 100px !important;">
                       <select class="table_select" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
-                        (ngModelChange)="getItems(quote)">
+                        (change)="getItems(quote)">
                         <option value="0">Item Name</option> <!--//Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
@@ -176,7 +176,7 @@
                         type="number">
                     </td>
                     <td style="width: 50px;">
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,quote)"
+                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>

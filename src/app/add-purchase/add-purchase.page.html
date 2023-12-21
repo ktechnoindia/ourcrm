@@ -29,7 +29,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit(purchaseData)">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,purchaseData)">
 
             <ion-row>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
@@ -55,14 +55,13 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode" type="text"
-                    label="Code :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input color="dark"  [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode" type="text"  label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" 
                 label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="supplier" formControlName="supplier" name="spler">
                   <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
@@ -159,21 +158,27 @@
                   <tr *ngFor="let purchase of purchaseData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="purchase.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="purchase.barcode" (ngModelChange)="getItems(purchase)"  [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.itemcode"  [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input [(ngModel)]="purchase.itemcode" (ngModelChange)="getItems(purchase)"  [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
                       <select class="select-option" [(ngModel)]="purchase.itemcode"
-                        [ngModelOptions]="{standalone: true}" >
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(purchase)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
                         </option>
                       </select>
+
+                      <ion-input style="display: none;"  [(ngModel)]="purchase.itemid" [ngModelOptions]="{standalone: true}"
+                      type="hidden"></ion-input>
+                    <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
+                      type="hidden"></ion-input>
+                    <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
+                      type="hidden"></ion-input>
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.description" [ngModelOptions]="{standalone: true}"
@@ -185,7 +190,7 @@
 
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="purchase.unitname"
+                      <select class="select-option" [(ngModel)]="purchase.unitname" (ngModelChange)="getItems(purchase)"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
@@ -203,17 +208,15 @@
 
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.netrate" [value]="getnetrate(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getnetrate(purchase)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.grossrate" [value]="getgrossrate(purchase) "
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                      <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number">
                     </td>
                     <td>
                       <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
                         [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}">
-                        <option value="0"> GST</option>
+                        <option value="0" (ngModelChange)="getItems(purchase)"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
@@ -222,16 +225,13 @@
                     <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                     <td>
-                      <input [(ngModel)]="purchase.CGST" [value]="getcgst(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getcgst(purchase)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.SGST" [value]="getsgst(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getsgst(purchase)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.IGST" [value]="getigst(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getigst(purchase)" class="table_input" type="text">
                     </td>
                     <td style="width: 90px;">
                       <select class="select-option" formControlName="discountType">
@@ -248,12 +248,10 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.totaltax" [value]="getTotaltax(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                      <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.total" [ngModelOptions]="{standalone: true}"
-                        [value]="getTotalamt(purchase)" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotalamt(purchase)" class="table_input" type="text">
 
                     </td>
 
