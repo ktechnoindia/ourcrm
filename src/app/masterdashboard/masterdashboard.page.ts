@@ -17,6 +17,7 @@ import { AdditemService } from '../services/additem.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
+
 export class MasterdashboardPage implements OnInit {
   customers$: Observable<any[]>;
   vendors$: Observable<any[]>;
@@ -25,6 +26,7 @@ export class MasterdashboardPage implements OnInit {
   totalCustomer: number = 0;
   totalSupplier:number=0;
   totalItems:number=0;
+  sharedService: any;
 
   constructor(private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     const compid = '1';
@@ -62,5 +64,7 @@ export class MasterdashboardPage implements OnInit {
   ngOnInit() {
     
   }
-
+  get showHeader(): boolean {
+    return this.sharedService.showHeader;
+  }
 }
