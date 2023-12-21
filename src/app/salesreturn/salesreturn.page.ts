@@ -276,7 +276,76 @@ export class SalesreturnPage implements OnInit {
     }
   }
 
- 
+  getItems(sales: any) {
+    const compid = 1;
+    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
+    const value =  sales.itemcode;
+  
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log('Data received:', data);
+  
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+  
+          sales.itemid = itemDetails.tid;
+          sales.itemcode = itemDetails.itemCode;
+          sales.itemname = itemDetails.itemDesc;
+          sales.barcode = itemDetails.barcode.toString();
+          sales.unitname = itemDetails.unitname;
+          sales.taxrate = itemDetails.selectGst;
+  
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: sales.itemcode,
+            itemname: sales.itemname,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+
+  getCustomers(event: any) {
+    const compid = '1';
+    const identifier = this.custcode ? 'custcode' : 'custname';
+    const value = this.custcode;
+  
+    this.custname1.fetchallCustomer(compid, '', value).subscribe(
+      (data) => {
+       
+  
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+  
+          // Update the quote properties
+          event.custcode = itemDetails.customer_code;
+          event.custname = itemDetails.name;
+  
+  
+          // Update form control values
+          this.myform.patchValue({
+            custcode: itemDetails.custcode,
+            custname: itemDetails.custname,
+            // Other form controls...
+          });
+          
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+  
+  
 
   addSales() {
     console.log('addrowwww' + this.salesData.length);

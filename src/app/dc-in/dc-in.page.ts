@@ -37,7 +37,7 @@ interface Dcin {
   totaltax: number;
   total: number;
   taxrate1: number;
-  itemid:number;
+  itemid: number;
 }
 @Component({
   selector: 'app-dc-in',
@@ -96,7 +96,7 @@ export class DcInPage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
-    itemid:0
+    itemid: 0
   }];
 
   ttotal!: number;
@@ -115,16 +115,16 @@ export class DcInPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.datetype = new Date().toISOString().split('T')[0]; 
-    this.refdate = new Date().toISOString().split('T')[0]; 
-    this.deliverydate =  new Date().toISOString().split('T')[0]; 
+    this.datetype = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
 
 
     this.myform = this.formBuilder.group({
@@ -145,7 +145,7 @@ export class DcInPage implements OnInit {
       quantity: 0,
       unitname: 0,
       mrp: 0,
-      basicrate:0,
+      basicrate: 0,
       netrate: 0,
       grossrate: 0,
       taxrate: 0,
@@ -175,103 +175,102 @@ export class DcInPage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-      itemid:['']
+      itemid: ['']
 
 
     })
 
   }
 
-  async onSubmit(form: FormGroup,dcinData:Dcin[]) {
+  async onSubmit(form: FormGroup, dcinData: Dcin[]) {
 
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
-      console.log('Your form data : ', JSON.stringify(this.myform.value)+   '    -> '+JSON.stringify(dcinData));
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
 
-     
-      for (const element of dcinData) { 
+      for (const element of dcinData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate=element.basicrate + element.taxrate1;
-        element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
-        element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
-        element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
-        element.total= element.totaltax+element.grossrate;
-        element.totaltax =  element.quantity*(element.taxrate1/100*element.basicrate);
+        element.netrate = element.basicrate + element.taxrate1;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
 
-        console.log(element); 
+        console.log(element);
 
         const companyid = 1;
         const userid = 1;
-        let decindatas: dcinstore[]=[];
+        let decindatas: dcinstore[] = [];
 
-      let dcindata: dcinstore = {
-        voucherformat: this.myform.value.voucherformat,
-        voucherNumber: this.myform.value.voucherNumber,
-        datetype: this.myform.value.datetype,
-        vendcode: this.myform.value.vendcode,
-        suppliertype: this.myform.value.suppliertype,
-        referenceNumber: this.myform.value.referenceNumber,
-        refdate: this.myform.value.refdate,
-        barcode: element.barcode,
-        itemcode: element.itemcode,
-        itemname: element.itemname,
-        description: element.description,
-        quantity: element.quantity,
-        unitname: element.unitname,
-        mrp: element.mrp,
-        basicrate: element.basicrate,
-        netrate: element.netrate,
-        grossrate:element.grossrate,
-        taxrate: element.taxrate,
-        IGST: element.IGST,
-        CGST: element.CGST,
-        SGST: element.SGST,
-        discount: element.discount,
-        discountamt: element.discountamt,
-        totaltax: element.totaltax,
-        total: element.total,
-        taxrate1:element.taxrate1,
-        pretax: element.pretax,
-        posttax: element.posttax,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        deliverydate: this.myform.value.deliverydate,
-        deliveryplace: this.myform.value.deliveryplace,
-        roundoff: this.myform.value.roundoff,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit:this.myform.value.debit,
-        credit: this.myform.value.credit,
-       companyid:companyid,
-       userid:userid,
-      }
-      decindatas.push(dcindata);
-
-      this.dcinService.createdcin(decindatas, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
-          this.formService.showSaveLoader();
-          location.reload()
-        },
-        (error: any) => {
-          console.log('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
-          this.formService.shoErrorLoader();
+        let dcindata: dcinstore = {
+          voucherformat: this.myform.value.voucherformat,
+          voucherNumber: this.myform.value.voucherNumber,
+          datetype: this.myform.value.datetype,
+          vendcode: this.myform.value.vendcode,
+          suppliertype: this.myform.value.suppliertype,
+          referenceNumber: this.myform.value.referenceNumber,
+          refdate: this.myform.value.refdate,
+          barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          unitname: element.unitname,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          grossrate: element.grossrate,
+          taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
+          discount: element.discount,
+          discountamt: element.discountamt,
+          totaltax: element.totaltax,
+          total: element.total,
+          taxrate1: element.taxrate1,
+          pretax: element.pretax,
+          posttax: element.posttax,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          totalnetamount: this.myform.value.totalnetamount,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          roundoff: this.myform.value.roundoff,
+          openingbalance: this.myform.value.openingbalance,
+          closingbalance: this.myform.value.closingbalance,
+          debit: this.myform.value.debit,
+          credit: this.myform.value.credit,
+          companyid: companyid,
+          userid: userid,
         }
-      );
-    }
+        decindatas.push(dcindata);
+
+        this.dcinService.createdcin(decindatas, '', '').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            setTimeout(() => {
+              this.formService.showSuccessAlert();
+            }, 1000);
+            this.formService.showSaveLoader();
+            location.reload()
+          },
+          (error: any) => {
+            console.log('POST request failed', error);
+            setTimeout(() => {
+              this.formService.showFailedAlert();
+            }, 1000);
+            this.formService.shoErrorLoader();
+          }
+        );
+      }
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -288,22 +287,22 @@ export class DcInPage implements OnInit {
   getItems(dcin: any) {
     const compid = 1;
     const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
-    const value =  dcin.itemcode;
-  
+    const value = dcin.itemcode;
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
-  
+
         if (data && data.length > 0) {
           const itemDetails = data[0];
-  
+
           // Update the quote properties
-          dcin.itemcode = itemDetails.tid;
+          dcin.itemcode = itemDetails.itemCode;
           dcin.itemname = itemDetails.itemDesc;
           dcin.barcode = itemDetails.barcode.toString();
           dcin.unitname = itemDetails.unitname;
           dcin.taxrate = itemDetails.selectGst;
-  
+
           // Update form control values
           this.myform.patchValue({
             itemcode: dcin.itemcode,
@@ -378,13 +377,13 @@ export class DcInPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid:0
+      itemid: 0
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
   }
 
-  onNew(){
+  onNew() {
     location.reload();
   }
 
@@ -432,11 +431,11 @@ export class DcInPage implements OnInit {
   }
 
   getTotalnetAmount(): number {
-    return this.dcinData.reduce((total, dcin) =>  total + (((dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) + dcin.totaltax) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0)
+    return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) + dcin.totaltax) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcinData.reduce((total, dcin) => {
-      const itemTotal =(((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity))
+      const itemTotal = (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity))
       return total + itemTotal;
     }, 0);
 
@@ -450,7 +449,7 @@ export class DcInPage implements OnInit {
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ( (dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0);
+    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0);
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
 
@@ -495,7 +494,7 @@ export class DcInPage implements OnInit {
     return discountAmt;
   }
 
-  
+
 
   calculateDiscountAmount(dcin: Dcin): number {
     const discountType = this.myform.get('discountType')?.value;
@@ -522,13 +521,13 @@ export class DcInPage implements OnInit {
     return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
   }
   getcgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity)/2;
+    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
   }
   getsgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity)/2;
+    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
   }
   getigst(dcin: Dcin): number {
-    return (dcin.taxrate1 / 100 * dcin.basicrate)*dcin.quantity;
+    return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
   }
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());

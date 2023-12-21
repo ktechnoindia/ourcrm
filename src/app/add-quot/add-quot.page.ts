@@ -366,9 +366,9 @@ export class AddQuotPage implements OnInit {
     const identifier = this.custcode ? 'custcode' : 'custname';
     const value = this.custcode;
 
-    this.custname1.fetchallCustomer(compid, value, '').subscribe(
+    this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
-        console.log('Data received:', data);
+       
 
         if (data && data.length > 0) {
           const itemDetails = data[0];
@@ -384,6 +384,7 @@ export class AddQuotPage implements OnInit {
             custname: itemDetails.custname,
             // Other form controls...
           });
+          
         } else {
           console.error('No data found for the selected item.');
         }

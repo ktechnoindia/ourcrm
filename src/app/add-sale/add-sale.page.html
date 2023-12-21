@@ -57,14 +57,14 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="custcode" formControlName="custcode" name="custcode"
+                  <ion-input #firstInvalidInput (change)="getCustomers($event)" [(ngModel)]="custcode" formControlName="custcode" name="custcode"
                     type="text" label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
                 <ion-select #firstInvalidInput  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custname" name="custname"
-                  formControlName="custname">
+                label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custcode" name="custname"
+                  formControlName="custname" (change)="getCustomers($event)">
                   <!-- <option value="0"> --- Customer Name --- </option> -->
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}

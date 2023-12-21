@@ -19,27 +19,25 @@ export interface purchasestore {
   executive$: number;
   taxrate$: number;
   
-
-
   //table
   barcode: string;
-  itemcode: string;
+  itemcode: number;
   itemname: number;
   description: string;
   quantity: number;
   unitname: number;
-  mrp: string;
+  mrp: number;
   basicrate: number;
-  netrate: string;
-  grossrate: string;
+  netrate: number;
+  grossrate: number;
   taxrate: number;
-  IGST: string;
-  CGST: string;
-  SGST: string;
-  discount: string;
-  discountamt: string;
+  IGST: number;
+  CGST: number;
+  SGST: number;
+  discount: number;
+  discountamt: number;
   totaltax: number;
-  total: string;
+  total: number;
 
   totalitemno: string;
   totalquantity: string;
@@ -51,12 +49,15 @@ export interface purchasestore {
   deliveryplace: string;
 
   roundoff: string;
-  pretax: string;
-  posttax: string;
+  pretax: number;
+  posttax: number;
   openingbalance: string;
   closingbalance: string;
   debit: string;
   credit: string;
+  companyid:number;
+  itemid:number;
+  userid:number;
 }
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,7 @@ export interface purchasestore {
 export class PurchaseService {
 
   constructor(private httpclient: HttpClient) { }
-  createpurchase(purchase: purchasestore, key: string, user: string) {
+  createpurchase(purchase: purchasestore[], key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addpurchase, purchase, { headers: { 'key': key, 'user': user } })
   }
   fetchallPurchase(companyid: string, key: string, user: string): Observable<any> {

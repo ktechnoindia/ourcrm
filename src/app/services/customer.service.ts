@@ -41,7 +41,7 @@ export interface cust{
   selectedDistrict1: number;
   pincode1: string;
   address1: string;
-
+companyid:number;
   }
 @Injectable({
   providedIn: 'root'
