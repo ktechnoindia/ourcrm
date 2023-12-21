@@ -21,7 +21,7 @@ import { FormValidationService } from '../form-validation.service';
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
