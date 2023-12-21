@@ -205,7 +205,6 @@ export class AddQuotPage implements OnInit {
     });
 
   }
- 
   async getquoteNo() {
     const user = await this.session.getValue('userid');
     const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
@@ -226,7 +225,7 @@ export class AddQuotPage implements OnInit {
     throw new Error('Method not implemented.');
   }
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
-    const fields = {  custcode: this.custcode, custname: this.custcode }
+    const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     // const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -302,7 +301,7 @@ export class AddQuotPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            location.reload()
+            // location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);
@@ -364,7 +363,7 @@ export class AddQuotPage implements OnInit {
 
   getCustomers(event: any) {
     const compid = '1';
-    const identifier = this.custcode ? 'custcode' : 'custname';
+    const identifier = this.custcode ? 'custname' : 'custcode';
     const value = this.custcode;
 
     this.custname1.fetchallCustomer(compid, value, '').subscribe(
@@ -381,8 +380,8 @@ export class AddQuotPage implements OnInit {
 
           // Update form control values
           this.myform.patchValue({
-            custcode: itemDetails.custcode,
-            custname: itemDetails.custname,
+            custcode: itemDetails.itemcode,
+            custname: itemDetails.itemname,
             // Other form controls...
           });
         } else {
@@ -470,8 +469,47 @@ export class AddQuotPage implements OnInit {
   onNew() {
     location.reload();
   }
+// calculateTotalSum() {
+  //   let sum = 0;
+  //   for (const row of this.quoteData) {
+  //     sum += this.quote.total;
+  //   }
+  //   this.ttotal = sum;
+  // }
+  // async onSubmit() {
+  //   if (this.quoteNumber === null) {
+  //     const toast = await this.toastCtrl.create({
+  //       message: "Quatation Number is required",
+  //       duration: 3000,
+  //       color: 'danger',
 
-
+  //     });
+  //     toast.present();
+  //   }else if(this.quateDate===''){
+  //     const toast = await this.toastCtrl.create({
+  //       message: "Quatation Date is required",
+  //       duration: 3000,
+  //       color: 'danger'
+  //     });
+  //     toast.present();
+  //   }else if(this.quoteGroup===''){
+  //     const toast = await this.toastCtrl.create({
+  //       message: "Quatation Group is required",
+  //       duration: 3000,
+  //       color: 'danger'
+  //     });
+  //     toast.present();
+  //   
+  //   }else{
+  //     const toast = await this.toastCtrl.create({
+  //       message: "Successfully !",
+  //       duration: 3000,
+  //       color: 'success',
+  //       position:'top'
+  //     });
+  //     toast.present();
+  //   }
+  // }
   getTotalQuantity(): number {
     return this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
   }
@@ -586,7 +624,6 @@ export class AddQuotPage implements OnInit {
     return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
   }
   ngOnInit() {
-
     this.getquoteNo();
 
     // Other initialization logic...
@@ -677,7 +714,7 @@ export class AddQuotPage implements OnInit {
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
       quote.taxrate1 = numericValue;
-     
+      // Use numericValue as needed
     } else {
       quote.taxrate1 = 0;
       console.error('Selected text does not represent a valid number.');

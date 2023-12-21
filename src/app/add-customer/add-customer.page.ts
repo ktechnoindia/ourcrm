@@ -21,7 +21,7 @@ import { FormValidationService } from '../form-validation.service';
   templateUrl: './add-customer.page.html',
   styleUrls: ['./add-customer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCustomerPage implements OnInit {
@@ -178,7 +178,7 @@ export class AddCustomerPage implements OnInit {
           }, 1000);
 
           this.formService.showSaveLoader()
-          location.reload()
+          // location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
