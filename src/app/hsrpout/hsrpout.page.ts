@@ -31,6 +31,7 @@ export class HsrpoutPage implements OnInit {
   executive_name: number = 0;
   part: number = 0;
   frame: number = 0;
+  itemname:number=0;
   engine_no: number = 0;
   vehicle_no: number = 0;
   vehicle_reg_no: number = 0;
@@ -79,6 +80,7 @@ export class HsrpoutPage implements OnInit {
       executive_name: [''],
       part: [''],
       frame: [''],
+      itemname:[''],
       engine_no: [''],
       vehicle_no: [''],
       vehicle_reg_no: [''],
