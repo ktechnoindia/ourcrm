@@ -74,7 +74,7 @@ export class AddCustomerPage implements OnInit {
   address1: string = '';
 
   submitValue = false;
-
+  phoneData:boolean=false;
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -85,7 +85,7 @@ export class AddCustomerPage implements OnInit {
   executive!: string;
 
   myform: FormGroup;
- 
+  showShippingAddress:boolean=false;
 
   constructor(private navCtrl: NavController,private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
 
@@ -94,14 +94,14 @@ export class AddCustomerPage implements OnInit {
       companyName: [''],
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
-      gstin: [''],
+      gstin: ['',[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       select_group: [''],
       discount: [''],
       opening_balance: [''],
       closing_balance: [''],
       mobile: [''],
       whatsapp_number: [''],
-      email: [''],
+      email: ['',Validators.email],
       country: [''],
       state: [''],
       district: [''],
@@ -126,7 +126,9 @@ export class AddCustomerPage implements OnInit {
       card_number: [''],
       opening_point: [''],
       closing_point: [''],
-      copyData:[false]
+      copyData:[false],
+      phoneData:[false],
+      showShippingAddress:[false]
     })
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -244,6 +246,14 @@ export class AddCustomerPage implements OnInit {
       this.selectedDistrict1 = 0;
       this.pincode1 = '';
       this.address1 = '';
+    }
+  }
+
+  onWhatshappCheck(){
+    if(this.phoneData){
+      this.whatsapp_number = this.mobile;
+    }else{
+      this.whatsapp_number = '';
     }
   }
 

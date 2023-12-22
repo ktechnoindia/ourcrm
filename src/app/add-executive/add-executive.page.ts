@@ -82,7 +82,7 @@ export class AddExecutivePage implements OnInit {
         }, 1000);
        
         this.formService.showSaveLoader()
-        location.reload()
+
       },
       (error: any) => {
         console.error('POST request failed', error);

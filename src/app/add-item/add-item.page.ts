@@ -92,10 +92,10 @@ export class AddItemPage implements OnInit {
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
-      hsnname: [''],
-      stocktypename: [''],
+      hsnname: [''].toString(),
+      stocktypename: [''].toString(),
       itemtypename: [''],
-      unitname: [''],
+      unitname: [''].toString(),
       selectGst: [''],
       openingbalance: [''],
       closingbalance: [''],
@@ -157,9 +157,9 @@ export class AddItemPage implements OnInit {
       let itemdata: item = {
         itemDesc: this.myform.value.itemDesc,
         itemCode: this.myform.value.itemCode,
-        hsnname: this.myform.value.hsnname,
+        hsnname: this.myform.value.hsnname.toString(),
         selectHSN: 1,
-        unitname: this.myform.value.unitname,
+        unitname: this.myform.value.unitname.toString(),
         selectItem: 1,
         selectStock: 1,
         selectPrimaryUnit: 1,
@@ -167,8 +167,8 @@ export class AddItemPage implements OnInit {
         itemtype: '',
         stocktype: '',
         selectGstservice: 1,
-        stocktypename: this.myform.value.stocktypename,
-        itemtypename: this.myform.value.itemtypename,
+        stocktypename: this.myform.value.stocktypename.toString(),
+        itemtypename: this.myform.value.itemtypename.toString(),
 
         selectItemGroup: this.myform.value.selectItemGroup,
         selectGst: this.myform.value.selectGst,
@@ -200,7 +200,7 @@ export class AddItemPage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-          location.reload()
+        
         },
         (error: any) => {
           console.error('POST request failed', error);
