@@ -31,7 +31,7 @@
         <ion-grid>
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="--- Role---" label-placement="floating" fill="outline"  [ngModel]="roleid" name="roleid" formControlName="roleid">
                   <!-- <ion-select-option value="0"> --- Role --- </option> Default option -->
@@ -42,21 +42,21 @@
                 </ion-select>
 
               </ion-col>
-              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="excode" formControlName="excode" name="excode" type="text"
                     label=" Executive Code :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
-              <ion-col size="12" size-lg="7" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="executivename" formControlName="executivename" name="executivename" type="text"
                     label=" Name :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="--- Manager ---" label-placement="floating" fill="outline"  [ngModel]="emanager" formControlName="emanager" name="emanager">
                   <!-- <ion-select-option value="" disabled selected> --- Manager --- </option> Default option -->
@@ -68,7 +68,7 @@
                 </ion-select>
 
               </ion-col>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="---Select Ledger ---" label-placement="floating" fill="outline"  [ngModel]="ledger" formControlName="ledger" name="ledger">
                   <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
@@ -85,7 +85,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="ewhatsapp" formControlName="ewhatsapp" name="ewhatsapp" type="tel"
                     maxlength="10" label="WhatsApp No. :" label-placement="floating" fill="outline"></ion-input>
@@ -93,20 +93,20 @@
               </ion-col>
 
 
-              <ion-col size="12" size-lg="5" size-md="6" size-sm="12">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="eemail" formControlName="eemail" name="eemail" type="email" label="Email :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="epan" formControlName="epan" name="epan" type="text" label="PAN No. :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="ecommision" formControlName="ecommision" name="ecommision" type="number"
                     label="Commission :" label-placement="floating" fill="outline"></ion-input>

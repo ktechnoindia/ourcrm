@@ -57,14 +57,14 @@
                 </ion-col>
                 <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                   <ion-row>
-                    <ion-input #firstInvalidInput (ngModelChange)="getSuppliers($event)" [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode"
+                    <ion-input #firstInvalidInput [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode"
                       type="text" label="Code :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
 
                 <ion-col class="ionselect" size-lg="3" size-md="2" size-sm="6" size="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Supplier Name ---" (ngModelChange)="getSuppliers($event)" label-placement="floating" fill="outline" [(ngModel)]="vendcode" formControlName="suppliertype" name="supplier">
+                  label="--- Supplier Name ---"  label-placement="floating" fill="outline" [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
                     <!-- <option value="0"> --- Supplier Name --- </option>Default option -->
                     <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                       {{ suppliername.name }}
@@ -236,7 +236,7 @@
                     <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                       <label class="label_table" for="">Gross Amount :</label>
                       <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
-                      formControlName="totalgrossamt" class="input_table" type="text">
+                        [ngModelOptions]="{standalone: true}" class="input_table" type="text">
   
   
                     </ion-col>
