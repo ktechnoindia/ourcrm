@@ -25,12 +25,47 @@ export class ViewsupplierPage implements OnInit {
   searchTerm: string = '';
 
   filteredSupplers$: Observable<any[]> = new Observable<any[]>(); 
+  availableColumns: string[] = [
+    'vendor_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
+    'stateid',
+    'districtid',
+    'pincode',
+    'address',
+    'aadhar_no',
+   'pan_no',
+    'udhyog_aadhar',
+    'account_number',
+   'ifsc_code',
+    'bank_name',
+   'branch_name',
+    '.card_number',
+    'credit_period',
+    'credit_limit',
+  ];
+  selectedColumns: string[] = [
+   'vendor_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
+  ];
+  totalItems: number = 0;
 
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
     const compid='1';
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
     console.log(this.vendors$);
+    this.vendors$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+    });
   }
 
   filterCustomers(): Observable<any[]> {

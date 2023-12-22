@@ -20,6 +20,37 @@ export class ViewitemPage implements OnInit {
 
   searchTerm: string = '';
   filteredItems$: Observable<any[]> = new Observable<any[]>();
+  availableColumns: string[] = [
+    'customer_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
+    'stateid',
+    'districtid',
+    'pincode',
+    'address',
+    'aadhar_no',
+   'pan_no',
+    'udhyog_aadhar',
+    'account_number',
+   'ifsc_code',
+    'bank_name',
+   'branch_name',
+    '.card_number',
+    'credit_period',
+    'credit_limit',
+  ];
+  selectedColumns: string[] = [
+   'customer_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
+  ];
+  totalItems: number = 0;
 
   constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
     const compid = '1';
@@ -29,6 +60,8 @@ export class ViewitemPage implements OnInit {
 
     this.items$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+
     });
   }
 
