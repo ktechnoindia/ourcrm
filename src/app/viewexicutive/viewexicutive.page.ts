@@ -21,12 +21,38 @@ export class ViewexicutivePage implements OnInit {
   executives$: Observable<any[]>
   searchTerm: string = '';
   filteredExecutives$: Observable<any[]> = new Observable<any[]>(); 
-
+  availableColumns: string[] = [
+    'companyid',
+    'roleid',
+    'excode',
+    'executivename',
+    'emanager',
+    'emobile',
+    'eemail',
+    'ewhatsapp',
+    'epan',
+    'ecommision',
+    'ledger',
+  ];
+  selectedColumns: string[] = [
+    'companyid',
+    'roleid',
+    'excode',
+    'executivename',
+    'emanager',
+    'emobile',
+    'eemail',
+  ];
+  totalItems: number = 0;
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:ExecutiveService) { 
     const compid='1';
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
     console.log(this.executives$);
+    this.executives$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+    });
   }
 
   filterCustomers(): Observable<any[]> {

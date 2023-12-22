@@ -25,36 +25,36 @@ export class ViewcustomerPage implements OnInit {
 
 
   availableColumns: string[] = [
-    'Code',
-    'Name',
-    'GSTIN',
-    'Mobile No.',
-    'WhatsApp No.',
-    'Email',
-    'Country',
-    'State',
-    'District',
-    'Pincode',
-    'Full Address',
-    'Aadhar No.',
-    'PAN No.',
-    'Udhyog Aadhar No.',
-    'Account No.',
-    'IFSC Code',
-    'Bank Name',
-    'Branch Name',
-    'Card No.',
-    'Credit Period',
-    'Credit Limit',
+    'customer_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
+    'stateid',
+    'districtid',
+    'pincode',
+    'address',
+    'aadhar_no',
+   'pan_no',
+    'udhyog_aadhar',
+    'account_number',
+   'ifsc_code',
+    'bank_name',
+   'branch_name',
+    '.card_number',
+    'credit_period',
+    'credit_limit',
   ];
   selectedColumns: string[] = [
-    'Code',
-    'Name',
-    'GSTIN',
-    'Mobile No.',
-    'WhatsApp No.',
-    'Email',
+   'customer_code',
+    'name',
+    'gstin',
+    'whatsapp_number',
+    'email',
+    'countryid',
   ];
+ 
   searchTerm: string = '';
   filteredCustomers$: Observable<any[]> = new Observable<any[]>(); 
   customers$: Observable<any[]>; // Assuming you have an Observable for your customers
@@ -116,4 +116,5 @@ export class ViewcustomerPage implements OnInit {
   goBack() {
     this.router.navigate(["/add-customer"])
   }
+  
 }
