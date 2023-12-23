@@ -52,7 +52,7 @@
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Stock Type---" label-placement="floating" fill="outline"  [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
-                    <!-- <ion-select-option value="">  --- Stock Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option value="">  --- Stock Type --- </ion-select-option> Default option with value 0
                     <ion-select-option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
                     </ion-select-option>
