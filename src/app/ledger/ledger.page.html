@@ -25,7 +25,7 @@
 
           <form [formGroup]="myform" (ngSubmit)="onSubmit()">
             <ion-row>
-              <ion-col size="3" size-lg="1" size-md="2" size-sm="3">
+              <ion-col size="3" size-lg="2" size-md="2" size-sm="3">
                 <ion-row>
                   <select class="select" [(ngModel)]="selectedSalutation" formControlName="selectedSalutation"
                     name="selectedSalutation">
@@ -48,21 +48,23 @@
                   </ion-row>
                 </ion-col>
               </div>
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="ledger_code" formControlName="ledger_code" name="ledger_code" type="text"
                     label=" Ledger Code :" label-placement="floating" fill="outline" maxlength="5"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="3.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="lname" formControlName="lname" name="lnames" type="text" label="Ledger Name :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
+            </ion-row>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--Group Name--" label-placement="floating" fill="outline" fill="outline" name="lgroup_name"
@@ -74,17 +76,15 @@
                   </ion-select>
                 </ion-row>
               </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+           
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="gstin" formControlName="gstin" formControlName="gstin" name="gstincode"
                     type="text" label=" GSTIN :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-            </ion-row>
-
-            <ion-row style="margin-top: 5px;">
-              <ion-col size="6" size-lg="1.7" size-md="6" size-sm="6">
+          
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="Default Discount" label-placement="floating" fill="outline" [(ngModel)]="discount"
@@ -106,22 +106,25 @@
                 </ion-row>
 
               </ion-col>
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" name="opening_balance"
                     class="sign_input" type="text" label="Ledger Opening Balance :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
+            </ion-row>
 
-              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+            <ion-row>
+
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_balance " formControlName="closing_balance" name="closing_balance"
                     type="text" label="Ledger Closing Balance :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+           
+              <ion-col size="6" size-lg="2.9" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="mobile" name="mobile" formControlName="mobile" type="tel"
                     label=" Mobile Number :" label-placement="floating" fill="outline" maxlength="10"></ion-input>
@@ -136,7 +139,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="2.8" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="whatsapp_number" formControlName="whatsapp_number" name="whatsapp_number"
                     type="text" label=" Whatsapp Number :" label-placement="floating" fill="outline"
