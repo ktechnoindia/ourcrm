@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
+import { ExcelService } from '../services/excel.service';
+import jsPDF from 'jspdf';
+
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
@@ -18,9 +21,31 @@ import { EncryptionService } from '../services/encryption.service';
   ]
 })
 export class ViewsupplierPage implements OnInit {
-  
-  formDate:string='';
-  toDate:string='';
+  @ViewChild('content', { static: false }) el!: ElementRef
+  formDate: string = '';
+  toDate: string = '';
+
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  generateExcelReport() {
+    const data: any[] = [
+      // Your data rows here
+    ];
+    const fileName = 'Excel Report';
+
+    this.excelService.generateExcel(data, fileName);
+  }
   vendors$: Observable<any[]>
   searchTerm: string = '';
 
@@ -57,7 +82,7 @@ export class ViewsupplierPage implements OnInit {
   ];
   totalItems: number = 0;
 
-  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
+  constructor(private excelService: ExcelService,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
     const compid='1';
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');

@@ -135,14 +135,17 @@
                   </table>
                 </div>
               </ion-row>
-
-              <!-- <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-                <ion-button>New</ion-button>
-                <ion-button type="submit">Save</ion-button>
-                <ion-button>Delete</ion-button>
-                <ion-button>Preview</ion-button>
-                <ion-button>Close</ion-button>
-              </ion-row> -->
+              <ion-row class="custom-primary" style="justify-content: right;">
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                    color="secondry"></ion-icon>Print</ion-button>
+                <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                    color="secondry"></ion-icon>Export To PDF</ion-button>
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                    color="secondry"></ion-icon>Preview</ion-button>
+                <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
+                  color="secondry"></ion-icon>Export Excel</ion-button>
+              </ion-row>
+            
             </form>
           </ion-grid>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
+import jsPDF from 'jspdf';
+import { ExcelService } from '../services/excel.service';
+
 @Component({
   selector: 'app-viewitem',
   templateUrl: './viewitem.page.html',
@@ -14,10 +17,34 @@ import { AdditemService } from '../services/additem.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ViewitemPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
-  items$: Observable<any[]>;
 
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  generateExcelReport() {
+    const data: any[] = [
+      // Your data rows here
+    ];
+    const fileName = 'Excel Report';
+
+    this.excelService.generateExcel(data, fileName);
+  }
+
+
+  items$: Observable<any[]>;
   searchTerm: string = '';
   filteredItems$: Observable<any[]> = new Observable<any[]>();
   availableColumns: string[] = [
@@ -56,7 +83,7 @@ export class ViewitemPage implements OnInit {
   ];
   totalItems: number = 0;
 
-  constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
+  constructor(private excelService: ExcelService,private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
     const compid = '1';
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid), '', '');
     console.log(this.items$);
