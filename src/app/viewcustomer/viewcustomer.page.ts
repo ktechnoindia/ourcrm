@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -9,6 +9,8 @@ import { CustomerService } from '../services/customer.service';
 import { NavigationExtras } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import jsPDF from 'jspdf';
+import { ExcelService } from '../services/excel.service';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @Component({
@@ -16,14 +18,34 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   templateUrl: './viewcustomer.page.html',
   styleUrls: ['./viewcustomer.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,
-  ]
+  imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ViewcustomerPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
 
+  generatePdf() {
+    let pdf = new jsPDF()
 
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  generateExcelReport() {
+    const data: any[] = [
+      // Your data rows here
+    ];
+    const fileName = 'Excel Report';
+
+    this.excelService.generateExcel(data, fileName);
+  }
   availableColumns: string[] = [
     'customer_code',
     'name',
@@ -32,36 +54,36 @@ export class ViewcustomerPage implements OnInit {
     'email',
     'countryid',
     'stateid',
-    'districtid',
+    'districtname',
     'pincode',
     'address',
     'aadhar_no',
-   'pan_no',
+    'pan_no',
     'udhyog_aadhar',
     'account_number',
-   'ifsc_code',
+    'ifsc_code',
     'bank_name',
-   'branch_name',
+    'branch_name',
     '.card_number',
     'credit_period',
     'credit_limit',
   ];
   selectedColumns: string[] = [
-   'customer_code',
+    'customer_code',
     'name',
     'gstin',
     'whatsapp_number',
     'email',
     'countryid',
   ];
- 
+
   searchTerm: string = '';
-  filteredCustomers$: Observable<any[]> = new Observable<any[]>(); 
+  filteredCustomers$: Observable<any[]> = new Observable<any[]>();
   customers$: Observable<any[]>; // Assuming you have an Observable for your customers
 
   totalItems: number = 0;
 
-  constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
+  constructor(private excelService: ExcelService,public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
     const compid = '1';
 
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -72,7 +94,7 @@ export class ViewcustomerPage implements OnInit {
       this.totalItems = data.length;
     });
 
-  
+
   }
   filterCustomers(): Observable<any[]> {
     return this.customers$.pipe(
@@ -87,7 +109,7 @@ export class ViewcustomerPage implements OnInit {
   onSearchTermChanged(): void {
     this.filteredCustomers$ = this.filterCustomers();
   }
- 
+
   ngOnInit() {
     this.filteredCustomers$ = this.customers$.pipe(
       debounceTime(300),
@@ -111,10 +133,19 @@ export class ViewcustomerPage implements OnInit {
   async openToast(msg: string) {
     this.session.openToast(msg);
   }
-  
+
 
   goBack() {
     this.router.navigate(["/add-customer"])
   }
-  
+  deleteCustomer(id: number) {
+    this.custservice.deleteCustomer(id).subscribe({
+      next: (res) => {
+        alert('Employee Delete!');
+        this.availableColumns
+      },
+      error: console.log
+    })
+  }
+
 }

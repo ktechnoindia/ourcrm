@@ -47,9 +47,8 @@ companyid:number;
   providedIn: 'root'
 })
 export class CustomerService {
-  deleteCustomer(arg0: string, keys: string, userid: void) {
-    throw new Error('Method not implemented.');
-  }
+  generateExcel: any;
+ 
 
   constructor(private httpclient:HttpClient) { }
   createCustomer(customer:cust,key:string,user:string){
@@ -62,5 +61,7 @@ export class CustomerService {
   getCustomer(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallcust);
   }
-  
+  deleteCustomer(id:number): Observable<any> {
+    return this.httpclient.delete(environment.apiactionurl+environment.fetchallcust);
+  }
 }

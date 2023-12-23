@@ -34,34 +34,28 @@
                     <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
                         <!-- <th>Sr.No.</th> -->
-                        <th>Lead ID</th>
-                        <th>Lead Date</th>
-                        <th>Company Name</th>
-
                         <!-- <th>Contact Person</th> -->
-                        <th>Mobile No.</th>
                         <!-- <th>Country</th>
                         <th>State</th>
                         <th>City </th> -->
                         <!-- <th>Address</th> -->
                         <!-- <th>Pincode</th>
                         <th>Email ID</th> -->
-                        <th>Select Product</th>
                         <!-- <th>Lead Source</th>-->
-
-                        <!-- <th>Lead Score</th> -->
-                        <th>Lead Owner</th>
                         <!-- <th>Remark</th>   -->
+                        <th>Lead ID</th>
+                        <th>Lead Date</th>
+                        <th>Company Name</th>
+                        <th>Mobile No.</th>
+                        <th>Select Product</th>
+                        <th>Lead Type</th>
+                        <th>Lead Owner</th>
                       </tr>
                       <tr (click)="showDetails(leadscore)"
                         *ngFor="let leadscore of filteredFollowups$ | async; let i = index">
                         <!-- <td>{{i+1}}</td> -->
-                        <td>{{leadscore.tid}}</td>
-                        <td>{{leadscore.crdate | date:'dd/MM/YYYY'}}</td>
-                        <td>{{leadscore.companyname}}</td>
 
                         <!-- <td>{{leadscore.catPerson}}</td> -->
-                        <td>{{leadscore.phone}}</td>
                         <!-- <td>{{leadscore.selectedCountry}}</td>
                           <td>{{leadscore.selectedState}}</td>
                           <td>{{leadscore.selectedDistrict}}</td> -->
@@ -69,11 +63,15 @@
                         <!-- <td>{{leadscore.pncode}}</td> -->
                         <!-- <td>{{leadscore.emails}}</td>-->
                         <!-- <td>{{leadscore.lscore}}</td> -->
-                        <!-- <td>{{leadscore.lscore}}</td> -->
+                        <!-- <td>{{leadscore.rmark}}</td>  -->
+                        <td>{{leadscore.tid}}</td>
+                        <td>{{leadscore.crdate | date:'dd/MM/YYYY'}}</td>
+                        <td>{{leadscore.companyname}}</td>
+                        <td>{{leadscore.phone}}</td>
                         <td>{{leadscore.selectpd}}</td>
+                        <td>{{leadscore.leadtype}}</td>
                         <td>{{leadscore.executivename}}</td>
 
-                        <!-- <td>{{leadscore.rmark}}</td>  -->
 
                       </tr>
 
@@ -88,11 +86,10 @@
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <!-- <ion-item class="compname">
-                  <ion-label>Company Name :</ion-label>
-                  <div  *ngIf="selectedRow" color="dark" label-placement="floating" fill="outline" name="companyname"
-                    label="Company Name">{{selectedRow.companyname}}</div>
-                </ion-item> -->
+                <ion-item >
+                 <ion-range>fsfs</ion-range>
+                </ion-item>
+
                 <div *ngIf="selectedRow" class="compname">
                   <ion-label>Company Name</ion-label>
                   <p>{{selectedRow.companyname}}</p>
@@ -128,6 +125,7 @@
                           <!-- <th style="width: 80px;">Phone</th> -->
                           <!-- <th>Address</th> -->
                           <!-- <th style="width: 70px;">Entered By</th> -->
+                          <th>Lead Type</th>
                           <th>Next Follow-Up</th>
                           <th>Update By</th>
                         </tr>
@@ -145,6 +143,7 @@
                             <!-- <td>{{selectedRow.phone}}</td> -->
                             <!-- <td>{{selectedRow.fulladdress}}</td> -->
                             <!-- <td>{{selectedRow.selectpd}}</td> -->
+                            <td>{{followup.leadtype}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
                             <td>{{followup.enterdby}}</td>
 
@@ -158,7 +157,7 @@
 
                 <div>
                   <ion-row style="padding:0px 10px;">
-                    <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
+                    <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                       <ion-row>
                         <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate"
                           name="nextfollowupDate" type="date" label="Next Follow-Up Date :" label-placement="floating"
@@ -166,19 +165,32 @@
                         <ion-input [(ngModel)]="lid" formControlName="lid" name="lid" type="hidden"></ion-input>
                       </ion-row>
                     </ion-col>
-                    <ion-col size="6" size-lg="8" size-md="8" size-sm="8">
+                    <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                        label="---Lead Type---" label-placement="floating" fill="outline" [(ngModel)]="leadtype"
+                        formControlName="leadtype" name="leadtype">
+                        <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
+                        <ion-select-option value="1">Cold</ion-select-option>
+                        <ion-select-option value="2">Warm </ion-select-option>
+                        <ion-select-option value="3">Cold</ion-select-option>
+                        <ion-select-option value="4">Not Interested </ion-select-option>
+                        <ion-select-option value="5">Closed </ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                       <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>
+
                   </ion-row>
                   <ion-row class="custom-primary" style="justify-content: right;padding: 10px;">
                     <ion-button id="open-loading" (click)="onNew()">New</ion-button>
-                    <ion-button type="submit" id="open-loading1">Save</ion-button>  
+                    <ion-button type="submit" id="open-loading1">Save</ion-button>
                     <ion-button (click)="onButtonClick()">Cancel</ion-button>
                   </ion-row>
                   <ion-input formControlName="followupdate" name="followupdate" type="hidden"
                     [(ngModel)]="followupdate"></ion-input>
-                
+
                 </div>
               </ion-card>
             </ion-col>
