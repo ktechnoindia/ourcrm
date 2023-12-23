@@ -33,7 +33,7 @@ ion-header {
   padding: 5px 0px;
   border-radius: 5px;
   box-shadow: 1px 2px 4px 0px #51c9b9;
-  background-color: lightblue;
+  background-color: #2a52be;
   width: 100px;
 
 }
@@ -61,7 +61,7 @@ ion-col {
 .navigation a {
   float: right;
   padding: 10px;
-  background-color: lightsteelblue;
+  background-color: #2a52be;
   width: 400px;
   margin: 5px;
 }
@@ -197,7 +197,7 @@ input[type="date"] {
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-color: lightsteelblue;
+  background-color: #38419D;
 }
 
 .leadscard ion-card {
@@ -236,14 +236,14 @@ input[type="date"] {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  background-color: lightsteelblue;
+  background-color: #38419D;
   padding: 3px;
   margin: 5px;
   border-radius: 10px;
 }
 
 .dash ion-chip {
-  background-color: lightsteelblue;
+  background-color: #2a52be;
   text-align: center;
   height: 40px;
   margin-top: 6px;
@@ -269,7 +269,7 @@ input[type="date"] {
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: purple;
+  color: white;
 }
 ion-item:hover {
   background-color: rgb(224, 215, 215);

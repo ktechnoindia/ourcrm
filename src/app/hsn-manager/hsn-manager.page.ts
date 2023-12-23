@@ -53,7 +53,7 @@ export class HsnManagerPage implements OnInit {
         console.log('POST request successful', response);
        }
         this.formService.showSuccessAlert();
-        location.reload()
+
       },
       (error: any) => {
         console.error('POST request failed', error);

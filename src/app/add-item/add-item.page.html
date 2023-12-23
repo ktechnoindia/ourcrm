@@ -21,7 +21,7 @@
             <form [formGroup]="myform" (ngSubmit)="onSubmit()">
               <ion-row>
 
-                <ion-col size="12" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="itemCode" type="text"
                       label=" Item code :" label-placement="floating" fill="outline"></ion-input>
@@ -29,7 +29,7 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="12" size-lg="8" size-md="6" size-sm="6">
+                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="itemDesc" type="text"
                       label=" Item Description :" label-placement="floating" fill="outline">
@@ -37,7 +37,7 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- HSN ---" label-placement="floating" fill="outline"  [(ngModel)]="hsnname" formControlName="hsnname" name="hsnname">
@@ -49,7 +49,7 @@
                   </ion-select>
                 </ion-col>
               
-                <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Stock Type---" label-placement="floating" fill="outline"  [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
                     <!-- <ion-select-option value="">  --- Stock Type --- </ion-select-option> Default option with value 0 -->
@@ -60,7 +60,7 @@
                 </ion-col>
 
 
-                <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Item Type ---" label-placement="floating" fill="outline"  [(ngModel)]="itemtypename" formControlName="itemtypename" name="itemtypename">
                     <!-- <ion-select-option value="">  --- Item Type --- </ion-select-option> Default option with value 0 -->
@@ -70,7 +70,7 @@
                   </ion-select>
                 </ion-col>
 
-                <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Unit Name ---" label-placement="floating" fill="outline"  [(ngModel)]="unitname" formControlName="unitname" name="unitname">
                     <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
@@ -79,8 +79,6 @@
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
-              </ion-row>
-              <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -92,6 +90,8 @@
                   </ion-select>
                 </ion-col>
 
+              </ion-row>
+              <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -103,21 +103,20 @@
                   </ion-select>
 
                 </ion-col>
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP"
                       type="number" label=" MRP:" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate"
                       type="number" label="Basic Rate :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-              </ion-row>
-              <ion-row style="margin-top: 4px;">
+             
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"

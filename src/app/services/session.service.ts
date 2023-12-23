@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Device } from '@capacitor/device';
 import { AlertController, Platform, ToastController } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -30,7 +30,7 @@ export class SessionService {
 
       
     });
-    this.chkSessionAndsub();
+   // this.chkSessionAndsub();
  }
  
 

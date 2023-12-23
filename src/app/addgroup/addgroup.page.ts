@@ -36,20 +36,21 @@ export class AddgroupPage implements OnInit {
       searchTerm:['']
 
   })
-  
-  this.itemgroups$ = this.groupService.getAllGroups(1);
+  const compid=1
+  this.itemgroups$ = this.groupService.getAllGroups(compid);
 
    }
 
    async onSubmit() {
     const fields = {groupname:this.itemgroupname}
+    const companyid=1
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
     console.log('Your form data : ', this.form.value);
     let groupdata:group={
       itemgroupname: this.form.value.itemgroupname, 
       parentgroupid: this.form.value.parentgroup,
-      companyid: 1,
+      companyid: companyid,
     };
     this.subscription=this.groupService.createGroup(groupdata,'','').subscribe(
       (response: any) => {
@@ -57,7 +58,7 @@ export class AddgroupPage implements OnInit {
         console.log('POST request successful', response);
        }
         this.formService.showSuccessAlert();
-        location.reload()
+
       },
       (error: any) => {
         console.error('POST request failed', error);

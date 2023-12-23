@@ -77,7 +77,9 @@ export class AddItemPage implements OnInit {
   selectedAttribute: string = '';
   attributes: { [key: string]: string } = {}; 
    itemname$: Observable<any>;
-
+   items: string[] = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+   filteredItems: string[] = [];
+   searchTerm: string = '';
   constructor(private navCtrl: NavController,private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService) {
     this.selectGst$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -88,14 +90,14 @@ export class AddItemPage implements OnInit {
     this.selectedAttribute = 'default value';
     this.attname$ = this.attname.getattribute(1);
     this.itemname$ = this.itemService.getAllItems();
-
+    this.filteredItems = this.items;
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
-      hsnname: [''],
-      stocktypename: [''],
+      hsnname: [''].toString(),
+      stocktypename: [''].toString(),
       itemtypename: [''],
-      unitname: [''],
+      unitname: [''].toString(),
       selectGst: [''],
       openingbalance: [''],
       closingbalance: [''],
@@ -118,9 +120,14 @@ export class AddItemPage implements OnInit {
       mrp:[''],
       basicrate:[''],
       attributes: this.formBuilder.group({}),
-
+      searchTerm:['']
     })
 
+  }
+
+  filterItems() {
+    // Filter items based on the search term
+    this.filteredItems = this.items.filter(item => item.toLowerCase().includes(this.searchTerm.toLowerCase()));
   }
   addAttribute() {
     const attributeKeys = this.getAttributeKeys();
@@ -157,9 +164,9 @@ export class AddItemPage implements OnInit {
       let itemdata: item = {
         itemDesc: this.myform.value.itemDesc,
         itemCode: this.myform.value.itemCode,
-        hsnname: this.myform.value.hsnname,
+        hsnname: this.myform.value.hsnname.toString(),
         selectHSN: 1,
-        unitname: this.myform.value.unitname,
+        unitname: this.myform.value.unitname.toString(),
         selectItem: 1,
         selectStock: 1,
         selectPrimaryUnit: 1,
@@ -167,8 +174,8 @@ export class AddItemPage implements OnInit {
         itemtype: '',
         stocktype: '',
         selectGstservice: 1,
-        stocktypename: this.myform.value.stocktypename,
-        itemtypename: this.myform.value.itemtypename,
+        stocktypename: this.myform.value.stocktypename.toString(),
+        itemtypename: this.myform.value.itemtypename.toString(),
 
         selectItemGroup: this.myform.value.selectItemGroup,
         selectGst: this.myform.value.selectGst,
@@ -200,7 +207,7 @@ export class AddItemPage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-          location.reload()
+        
         },
         (error: any) => {
           console.error('POST request failed', error);

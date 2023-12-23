@@ -427,7 +427,12 @@ export class DcInPage implements OnInit {
   }
 
   getTotalGrossAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * +dcin.quantity), 0);
+    const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
+      const grossAmount = dcin.quantity * dcin.basicrate;
+      return total + grossAmount;
+    }, 0);
+
+    return totalGrossAmount;
   }
 
   getTotalnetAmount(): number {
@@ -442,10 +447,10 @@ export class DcInPage implements OnInit {
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.totaltax), 0);
+    return this.dcinData.reduce((total, dcin) => total + (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity, 0);
   }
   getTotalDiscountAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (+dcin.grossrate * dcin.discount / 100), 0);
+    return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity, 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
