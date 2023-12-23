@@ -77,7 +77,9 @@ export class AddItemPage implements OnInit {
   selectedAttribute: string = '';
   attributes: { [key: string]: string } = {}; 
    itemname$: Observable<any>;
-
+   items: string[] = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+   filteredItems: string[] = [];
+   searchTerm: string = '';
   constructor(private navCtrl: NavController,private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService) {
     this.selectGst$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -88,7 +90,7 @@ export class AddItemPage implements OnInit {
     this.selectedAttribute = 'default value';
     this.attname$ = this.attname.getattribute(1);
     this.itemname$ = this.itemService.getAllItems();
-
+    this.filteredItems = this.items;
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
@@ -118,9 +120,14 @@ export class AddItemPage implements OnInit {
       mrp:[''],
       basicrate:[''],
       attributes: this.formBuilder.group({}),
-
+      searchTerm:['']
     })
 
+  }
+
+  filterItems() {
+    // Filter items based on the search term
+    this.filteredItems = this.items.filter(item => item.toLowerCase().includes(this.searchTerm.toLowerCase()));
   }
   addAttribute() {
     const attributeKeys = this.getAttributeKeys();
