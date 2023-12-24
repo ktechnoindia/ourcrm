@@ -27,7 +27,7 @@
               <ion-row>
                 <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
                   <ion-row>
-                    <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
+                    <ion-input color="warning" [(ngModel)]="formDate" name="fromDate" type="date" label=" From Date  :"
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
@@ -141,8 +141,8 @@
                     color="secondry"></ion-icon>Export To PDF</ion-button>
                 <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
                     color="secondry"></ion-icon>Preview</ion-button>
-                <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
-                  color="secondry"></ion-icon>Export Excel</ion-button>
+                <!-- <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
+                  color="secondry"></ion-icon>Export Excel</ion-button> -->
               </ion-row>
 
             </form>

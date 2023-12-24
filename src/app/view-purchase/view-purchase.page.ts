@@ -8,7 +8,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { PurchasereturnService } from '../services/purchasereturn.service';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 import jsPDF from 'jspdf';
 
 @Component({
@@ -36,19 +36,19 @@ export class ViewPurchasePage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   purchase$: Observable<any[]>
   searchTerm: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
   
-  constructor( private excelService: ExcelService,private purchasereturnService:PurchasereturnService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
+  constructor( private purchasereturnService:PurchasereturnService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
 
     this.purchase$ = this.purchasereturnService.fetchallPurchasereturn(encService.encrypt(compid), '', '');

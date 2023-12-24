@@ -8,7 +8,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { SalereturnService } from '../services/salereturn.service';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-view-salesreturn',
@@ -35,18 +35,18 @@ export class ViewSalesreturnPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   salreturn$: Observable<any[]>;
   searchTerm: string = '';
   filteredSalereturns$: Observable<any[]> = new Observable<any[]>(); 
-  constructor(private excelService: ExcelService,private router:Router,private toastCtrl:ToastController,private salereturnservice:SalereturnService,private encService:EncryptionService
+  constructor(private router:Router,private toastCtrl:ToastController,private salereturnservice:SalereturnService,private encService:EncryptionService
     ) { 
     const compid='1';
 

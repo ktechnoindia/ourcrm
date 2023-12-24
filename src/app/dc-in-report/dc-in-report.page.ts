@@ -7,7 +7,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { DcinService } from '../services/dcin.service';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 
 
 @Component({
@@ -36,19 +36,19 @@ export class DcInReportPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   dcin$: Observable<any[]>;
   searchTerm: string = '';
   filteredDcin$: Observable<any[]> = new Observable<any[]>();
 
-  constructor(private excelService: ExcelService,private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
+  constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
     this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');

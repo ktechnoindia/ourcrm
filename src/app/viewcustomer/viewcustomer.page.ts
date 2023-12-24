@@ -10,7 +10,7 @@ import { NavigationExtras } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import jsPDF from 'jspdf';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @Component({
@@ -38,14 +38,14 @@ export class ViewcustomerPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   availableColumns: string[] = [
     'customer_code',
     'name',
@@ -83,7 +83,7 @@ export class ViewcustomerPage implements OnInit {
 
   totalItems: number = 0;
 
-  constructor(private excelService: ExcelService,public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
+  constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
     const compid = '1';
 
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');

@@ -7,7 +7,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { LegderService } from '../services/ledger.service';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 @Component({
   selector: 'app-viewledger',
   templateUrl: './viewledger.page.html',
@@ -33,19 +33,19 @@ export class ViewledgerPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   searchTerm: string = '';
   filteredLedgers$: Observable<any[]> = new Observable<any[]>(); 
   ledgers$: Observable<any[]>
   
-  constructor(private excelService: ExcelService,private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
+  constructor(private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
     const compid='1';
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid,'','');

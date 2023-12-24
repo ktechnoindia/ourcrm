@@ -7,7 +7,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
 import jsPDF from 'jspdf';
-import { ExcelService } from '../services/excel.service';
+// import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-viewitem',
@@ -34,14 +34,14 @@ export class ViewitemPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
 
 
   items$: Observable<any[]>;
@@ -83,7 +83,7 @@ export class ViewitemPage implements OnInit {
   ];
   totalItems: number = 0;
 
-  constructor(private excelService: ExcelService,private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
+  constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
     const compid = '1';
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid), '', '');
     console.log(this.items$);

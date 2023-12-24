@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
-import { ExcelService } from '../services/excel.service';
 import jsPDF from 'jspdf';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -38,14 +37,14 @@ export class ViewsupplierPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  generateExcelReport() {
-    const data: any[] = [
-      // Your data rows here
-    ];
-    const fileName = 'Excel Report';
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
 
-    this.excelService.generateExcel(data, fileName);
-  }
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   vendors$: Observable<any[]>
   searchTerm: string = '';
 
@@ -82,7 +81,7 @@ export class ViewsupplierPage implements OnInit {
   ];
   totalItems: number = 0;
 
-  constructor(private excelService: ExcelService,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
+  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
     const compid='1';
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
