@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
@@ -6,6 +6,8 @@ import { Router, RouterLink } from '@angular/router';
 import { DcoutService } from '../services/dcout.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
+import jsPDF from 'jspdf';
+// import { ExcelService } from '../services/excel.service';
 
 
 
@@ -17,8 +19,31 @@ import { EncryptionService } from '../services/encryption.service';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class DcOutReportPage implements OnInit {
-  formDate:string='';
-  toDate:string='';
+  @ViewChild('content', { static: false }) el!: ElementRef
+  formDate: string = '';
+  toDate: string = '';
+
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
+
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   dcout$: Observable<any[]>;
   searchTerm: string = '';
   filteredDcout$: Observable<any[]> = new Observable<any[]>(); 

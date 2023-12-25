@@ -10,48 +10,53 @@
             </ion-row>
           </ion-card-header>
 
-          <ion-grid>  
-              <ion-row>
-                <ion-col  size-lg="8" size-md="8" size-sm="6" size="12">
-                  <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
-                </ion-col>
-                <ion-col  size-lg="4" size-md="4" size-sm="6" size="12">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns" name="selectedColumns" multiple="true">
-                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ col }}</ion-select-option>
-                  </ion-select>
-                </ion-col>
-                
-              </ion-row>
+          <ion-grid>
+            <ion-row class="header">
+              <ion-col size-lg="8" size-md="8" size-sm="6" size="12">
+                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+                  (ionInput)="onSearchTermChanged()"></ion-searchbar>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                  name="selectedColumns" multiple="true">
+                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ col }}</ion-select-option>
+                </ion-select>
+              </ion-col>
 
-              <ion-row class="Executive">
-                <div style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+            </ion-row>
 
-                  <table style="width: 100%;">
-                    <thead>
-                      <tr>
-                        <th>Sr. No.</th>
-                        <th *ngFor="let col of selectedColumns">{{ col }}</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let customer of filteredCustomers$ | async; let i = index"> 
-                        <td>{{ i + 1 }}</td>
-                        <td *ngFor="let col of selectedColumns">{{ customer[col.toLowerCase()] }}</td>
-                        <td class="Action">
-                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                          <ion-icon color="primary" icon-only name="create"></ion-icon>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td [attr.colspan]="selectedColumns.length + 1">
-                          <p>Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                   <!-- <table style="width: 2000px;overflow-x:auto;overflow-y: auto;">
+            <ion-row class="Executive">
+              <div #content style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+
+
+                <table style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th *ngFor="let col of selectedColumns">{{ col }}</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td *ngFor="let col of selectedColumns">{{ customer[col.toLowerCase()] }}</td>
+                      <td class="Action">
+                        <ion-icon color="danger" icon-only name="trash"
+                          (click)="deleteCustomer(customer.index)"></ion-icon>
+                        <ion-icon color="primary" icon-only name="create"></ion-icon>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td [attr.colspan]="selectedColumns.length + 1">
+                        <p>Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- <table style="width: 2000px;overflow-x:auto;overflow-y: auto;">
                     <thead>
                       <tr>
                         <th>Sr. No.</th>
@@ -116,11 +121,21 @@
                     </tbody>
 
                   </table>  -->
-                </div>
-              </ion-row>
+              </div>
+            </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;">
+              <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                  color="secondry"></ion-icon>Print</ion-button>
+              <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                  color="secondry"></ion-icon>Export To PDF</ion-button>
+              <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                  color="secondry"></ion-icon>Preview</ion-button>
+              <!-- <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
+                color="secondry"></ion-icon>Export Excel</ion-button> -->
+            </ion-row>
           </ion-grid>
         </div>
       </ion-card-content>
     </div>
-    </div>
+  </div>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -7,7 +7,8 @@ import { RouterLink } from '@angular/router';
 import { PurchasereturnService } from '../services/purchasereturn.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
-
+import jsPDF from 'jspdf';
+// import { ExcelService } from '../services/excel.service';
 @Component({
   selector: 'app-view-purchasereturn',
   templateUrl: './view-purchasereturn.page.html',
@@ -16,8 +17,31 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class ViewPurchasereturnPage implements OnInit {
-  formDate:string='';
-  toDate:string='';
+  @ViewChild('content', { static: false }) el!: ElementRef
+  formDate: string = '';
+  toDate: string = '';
+
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
+
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   purchasereturn$: Observable<any[]>;
   searchTerm: string = '';
   filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>(); 

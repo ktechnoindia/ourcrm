@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -8,6 +8,9 @@ import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { PurchasereturnService } from '../services/purchasereturn.service';
+// import { ExcelService } from '../services/excel.service';
+import jsPDF from 'jspdf';
+
 @Component({
   selector: 'app-view-purchase',
   templateUrl: './view-purchase.page.html',
@@ -16,8 +19,31 @@ import { PurchasereturnService } from '../services/purchasereturn.service';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class ViewPurchasePage implements OnInit {
-  fromDate:string='';
-  toDate:string='';
+  @ViewChild('content', { static: false }) el!: ElementRef
+  formDate: string = '';
+  toDate: string = '';
+
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
+
+  //   this.excelService.generateExcel(data, fileName);
+  // }
   purchase$: Observable<any[]>
   searchTerm: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
@@ -59,7 +85,7 @@ export class ViewPurchasePage implements OnInit {
    filterData() {
     // Update the filteredSales observable based on the date range
     this.filteredPurchase$ = this.purchase$.pipe(
-      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
+      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.formDate, this.toDate)))
     );
   }
 

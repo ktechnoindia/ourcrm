@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
+import jsPDF from 'jspdf';
+// import { ExcelService } from '../services/excel.service';
+
 @Component({
   selector: 'app-viewitem',
   templateUrl: './viewitem.page.html',
@@ -14,41 +17,69 @@ import { AdditemService } from '../services/additem.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ViewitemPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
-  items$: Observable<any[]>;
 
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
+
+  //   this.excelService.generateExcel(data, fileName);
+  // }
+
+
+  items$: Observable<any[]>;
   searchTerm: string = '';
   filteredItems$: Observable<any[]> = new Observable<any[]>();
   availableColumns: string[] = [
-    'customer_code',
-    'name',
-    'gstin',
-    'whatsapp_number',
-    'email',
-    'countryid',
-    'stateid',
-    'districtid',
-    'pincode',
-    'address',
-    'aadhar_no',
-   'pan_no',
-    'udhyog_aadhar',
-    'account_number',
-   'ifsc_code',
-    'bank_name',
-   'branch_name',
-    '.card_number',
-    'credit_period',
-    'credit_limit',
+    'itemCode',
+    'itemDesc',
+    'hsnname',
+    'stocktypename',
+    'itemtypename',
+    'unitname',
+    'selectItemGroup',
+    'selectGst',
+    'mrp',
+    'basicrate',
+    'openingbalance',
+   'closingbalance',
+    'attr1',
+    'attr2',
+   'attr3',
+    'attr4',
+   'attr5',
+    '.attr6',
+    'attr7',
+    'attr8',
+    'files',
+    'barcode',
+     '.minimum',
+     'maximum',
+     'reorder',
   ];
   selectedColumns: string[] = [
-   'customer_code',
-    'name',
-    'gstin',
-    'whatsapp_number',
-    'email',
-    'countryid',
+    'itemCode',
+    'itemDesc',
+    'hsnname',
+    'selectGst',
+    'mrp',
   ];
   totalItems: number = 0;
 
