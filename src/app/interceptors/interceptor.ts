@@ -20,7 +20,7 @@ constructor(private session:SessionService,private router:Router){}
       skipauth=true;
      // return next.handle(request);
     }
-    const token = "my-token-string-from-server";
+    const token = this.session.getValue('token')?.valueOf();
  //   const tkeys =  this.session.get('tkey');
     // const tkeys =  this.session.getValue('tkey')?.valueOf();
     // const userid =  this.session.getValue('userid')?.valueOf();
@@ -40,7 +40,7 @@ constructor(private session:SessionService,private router:Router){}
     if (token) {
       request = request.clone({
         setHeaders: {
-          'Authorization': token,
+          'Authorization': 'Bearer '+token,
           // 'key':keyz,
           //headers for security ** Gurpreet
           "Permissions-Policy": "camera=,geolocation=,microphone=,autoplay=,fullscreen=,picture-in-picture=,sync-xhr=,encrypted-media=,oversized-images=*",
