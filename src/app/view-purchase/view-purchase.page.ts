@@ -55,7 +55,7 @@ export class ViewPurchasePage implements OnInit {
     console.log(this.purchase$);
 
     this.purchase$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
+      console.log(data); // Log the data to the  console to verify if it's being fetched
     });
     this.filteredPurchase$ = this.purchase$;
    }
