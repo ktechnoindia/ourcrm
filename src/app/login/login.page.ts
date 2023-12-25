@@ -48,7 +48,7 @@ myform:FormGroup;
         // Handle the response as needed
         this.session.setValue('userid',response.tid);
         this.session.setValue('token',response.access_token);
-        this.navCtrl.navigateForward('/dashboard'); 
+        this.navCtrl.navigateForward('/masterdashboard'); 
 
         
       },
