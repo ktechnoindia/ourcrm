@@ -82,6 +82,7 @@ export class AddExecutivePage implements OnInit {
         }, 1000);
        
         this.formService.showSaveLoader()
+        this.form.reset();
 
       },
       (error: any) => {

@@ -145,6 +145,8 @@ print_amc:boolean=false;
       this.roleService.createRoleassign(roledata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          this.myform.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);

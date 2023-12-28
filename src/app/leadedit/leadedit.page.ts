@@ -112,6 +112,8 @@ export class LeadeditPage implements OnInit {
       (response: any) => {
         console.log('POST request successful', response);
        this.formService.showSuccessAlert();
+       this.form.reset();
+
       },
       (error: any) => {
         console.error('POST request failed', error);

@@ -298,7 +298,7 @@ export class AddPurchasePage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            location.reload()
+            this.form.reset();
           },
           (error: any) => {
             console.log('POST request failed', error);

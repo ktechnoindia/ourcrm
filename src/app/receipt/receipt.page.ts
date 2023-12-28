@@ -107,7 +107,7 @@ console.log(this.companys$);
           }, 1000);
 
           this.formService.showSaveLoader();
-          location.reload()
+          this.myform.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);

@@ -46,6 +46,7 @@ export class UpdateQuotPage implements OnInit {
       salePerson: myform.value.salePerson,
       unit: myform.value.unit,
     };
+    
   }
   // async onSubmit() {
   //   if (this.quoteNumber === null) {

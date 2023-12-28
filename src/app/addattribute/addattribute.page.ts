@@ -48,7 +48,8 @@ export class AddattributePage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-       
+          this.myform.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);

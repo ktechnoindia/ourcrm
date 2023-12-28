@@ -49,6 +49,7 @@ myform:FormGroup;
         this.session.setValue('userid',response.tid);
         this.session.setValue('token',response.access_token);
         this.navCtrl.navigateForward('/masterdashboard'); 
+        this.myform.reset();
 
         
       },

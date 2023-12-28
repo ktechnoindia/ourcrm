@@ -51,6 +51,8 @@ export class PasswordPage implements OnInit {
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);
+            this.form.reset();
+
           }
           // Handle the response as needed
         },

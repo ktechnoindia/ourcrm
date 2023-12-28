@@ -62,6 +62,7 @@ export class CreateunitPage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
+          this.form.reset();
 
         },
         (error: any) => {
