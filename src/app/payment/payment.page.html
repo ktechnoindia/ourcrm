@@ -25,30 +25,27 @@
                 <ion-card>
 
                   <ion-row>
-
-                    <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-col size-lg="3" size-md="6" size-sm="6" size="6">
                       <ion-input [(ngModel)]="voucherNumber" formControlName="voucherNumber" name="voucherNumber"
                         type="text" label="Voucher No.:" label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
-                    <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+                    <ion-col size-lg="3.5" size-md="6" size-sm="6" size="6">
                       <ion-input [(ngModel)]="paymentdate" formControlName="paymentdate" name="paymentdate" type="date"
                         label="Payment Date:" [(ngModel)]="paymentdate" label-placement="floating"
                         fill="outline"></ion-input>
                     </ion-col>
-                    <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
-                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                      label="Payemnt Mode" label-placement="floating" fill="outline" name="ledgername"
-                      [(ngModel)]="ledgername" formControlName="ledgername">
-                      <ion-select-option *ngFor="let ledgername of ledger$ | async" [value]="ledgername.ledgerid">
-                        {{ ledgername.ledgername }}
-                      </ion-select-option>
-                    </ion-select>
+                    <ion-col size-lg="5.5" size-md="12" size-sm="12" size="12" style="margin-bottom: 4px;">
+                      <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                      label="Select Ledger" label-placement="floating" fill="outline"  [ngModel]="ledger" formControlName="ledger" name="ledger">
+                        <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
+                        <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}} </ion-select-option>
+                      </ion-select>
                     </ion-col>
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;">
-                    <div style="overflow-x:auto;height: 300px;border: 1px solledgerid grey;">
-                      <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
+                    <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
+                      <table style="width: 100%;overflow-x:auto;border: 1px solid grey; ">
                         <tr>
                           <th>Ledger Name</th>
                           <th>OutStanding</th>
@@ -60,8 +57,8 @@
                         <tr>
                           <td>
                             <select class="select-option" name="suppliername" [(ngModel)]="suppliername"
-                              formControlName="suppliername">
-                              <option value="0">Ledger Name</option>
+                              formControlName="suppliername" (change)="onSupplierChange()">
+                              <option value="0">Select Ledger Name</option>
                               <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                                 {{ suppliername.name }}
                               </option>
@@ -69,23 +66,23 @@
 
                           </td>
                           <td>
-                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" formControlName="outstanding"
-                              type="text"></ion-input>
-                          </td>
-
-                          <td>
-                            <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade" formControlName="paymentmade"
-                              type="text"></ion-input>
+                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
+                              formControlName="outstanding" type="text"></ion-input>
                           </td>
                           <td>
-                            <ion-input class="table_input" name="balance" [(ngModel)]="balance"
-                              formControlName="balance" type="text"></ion-input>
+                            <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"
+                              formControlName="paymentmade" type="text"></ion-input>
+                          </td>
+                          <td>
+                            <ion-input class="table_input" name="pendingamt" [(ngModel)]="pendingamt"
+                              formControlName="pendingamt" type="text"></ion-input>
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
-                            formControlName="paymentway" id="">
-                              <option value="">By Bill</option>
-                              <option value="">By Bank</option>
+                              formControlName="paymentway" id="">
+                              <option value="">Select Payment Way</option>
+                              <option value="">BillWise</option>
+                              <option value="">On Account</option>
                             </select>
                           </td>
                         </tr>
@@ -110,8 +107,8 @@
                 <ion-card>
 
                   <ion-row>
-                    <ion-col size-lg="8" size-md="6" size-sm="6" size="6">
-                      <ion-input name="ledgername" [(ngModel)]="ledgername" formControlName="ledgername" type="text"
+                    <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
+                      <ion-input name="ledger" [(ngModel)]="ledger" formControlName="ledger" type="text"
                         label="Ledger Name:" label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
@@ -124,121 +121,38 @@
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
-                          <th>Sr. No.</th>
+                          <th style="width: 40px;">Sr. No.</th>
                           <th>Bill No.</th>
                           <th>Total Amt. Due</th>
-                          <th>Particular</th>
                           <th>Receive Amt.</th>
-                          <th>Date</th>
+                          <th>Current Amt.</th>
                           <th>Pending Amt.</th>
 
                         </tr>
                         <tr>
-                          <!-- <td>
-                            <select class="select-option" name="billtype" [(ngModel)]="billtype"
-                              formControlName="billtype">
-                              <option value="0"> Type</option>
-                              <option value="1">New Bill</option>
-                              <option value="2">Towards Bill/Refrence</option>
-                              <option value="3">On A/c</option>
-                              <option value="4">Advance</option>
-                            </select>
-                          </td> -->
-                          <!-- <td>
-                            <select class="select-option" name="selectdrcr" [(ngModel)]="selectdrcr"
-                              formControlName="selectdrcr">
-                              <option value="0"> Dr/Cr</option>
-                              <option value="1">Debit</option>
-                              <option value="2">Credit</option>
-
-                            </select>
-                          </td> -->
-                          <td>1</td>
+                                                   <td>1</td>
                           <td>
-                            <ion-input class="date" type="text" name="billno " [(ngModel)]="billno"
+                            <ion-input type="text" name="billno " [(ngModel)]="billno"
                               formControlName="billno"></ion-input>
                           </td>
-                           <td>
+                          <td>
                             <ion-input class="date" type="text" name="totalamt" [(ngModel)]="totalamt"
                               formControlName="totalamt"></ion-input>
                           </td>
-                          <td class="select-option">
-                            <ion-button class="btn" color="undefined" size="small" style="margin-top: 5px;"
-                              (click)="presentPopover($event)"> Particulars <ion-icon
-                                name="chevron-down-outline"></ion-icon></ion-button>
-                            <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
-                              <ng-template>
-                                <ion-content class="ion-padding ">
-                                  <div class="scroll-container">
-                                    <table style="width:700px;" class="custom-popover-table">
-                                      <tr>
-                                        <th style="width:70px;">Action</th>
-                                        <th style="width:200px;"> Particulars</th>
-                                        <th style="width:80px;">Date</th>
-                                        <th style="width:100px;">Refrence</th>
-                                        <th style="width:100px;">Original Amount</th>
-                                        <th style="width:80px;">Balance</th>
-                                        <th style="width:100px;">Sales Person</th>
-                                      </tr>
-
-                                      <tbody>
-                                        <tr>
-                                          <td class="icons">
-                                            <ion-icon name="checkmark-circle-sharp" color="primary"></ion-icon>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input" name="particular" [(ngModel)]="particular"
-                                              formControlName="particular" type="text"></ion-input>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input date" name="datetype" [(ngModel)]="datetype"
-                                              formControlName="datetype" type="date"></ion-input>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input" name="reference" [(ngModel)]="reference"
-                                              formControlName="reference" type="text"></ion-input>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input" name="oriamount" [(ngModel)]="oriamount"
-                                              formControlName="oriamount" type="text"></ion-input>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input" name="balanceamt" [(ngModel)]="balanceamt"
-                                              formControlName="balanceamt" type="text"></ion-input>
-                                          </td>
-                                          <td>
-                                            <ion-input class="table_input" name="sale_person" [(ngModel)]="sale_person"
-                                              formControlName="sale_person" type="text"></ion-input>
-                                          </td>
-
-                                        </tr>
-
-                                        <!-- Add more rows as needed -->
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                </ion-content>
-                              </ng-template>
-                            </ion-popover>
-                          </td>
+                        
                           <td>
                             <ion-input class="date" type="text" name="receiveamt" [(ngModel)]="receiveamt"
                               formControlName="receiveamt"></ion-input>
                           </td>
                           <td>
-                            <ion-input class="date" type="date" name="datetype" [(ngModel)]="datetype"
-                              formControlName="datetype"></ion-input>
+                            <ion-input class="date" type="text" name="currentamt" [(ngModel)]="currentamt"
+                              formControlName="currentamt"></ion-input>
                           </td>
                           <td>
-                            <ion-input type="text" name="debit" [(ngModel)]="pendingamt" formControlName="pendingamt"></ion-input>
+                            <ion-input type="text" name="pendingamt" [(ngModel)]="pendingamt"
+                              formControlName="pendingamt"></ion-input>
                           </td>
-                          <!-- <td>
-                            <ion-input type="text" name="debit" [(ngModel)]="debit" formControlName="debit"></ion-input>
-                          </td>
-                          <td>
-                            <ion-input type="text" name="credit" [(ngModel)]="credit"
-                              formControlName="credit"></ion-input>
-                          </td> -->
+                         
                         </tr>
                       </table>
                     </div>

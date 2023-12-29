@@ -63,7 +63,7 @@ export class FollowUpPage implements OnInit {
     leadstatus: ''
   };
   leadstatus: number = 0;
-
+  progressValue: number = 0;
 
   constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,private navCtrl: NavController) {
     const compid = '1';
@@ -149,7 +149,6 @@ export class FollowUpPage implements OnInit {
 
 
       this.followService.createfollowup(followupdata, '', '').subscribe(
-
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -157,6 +156,13 @@ export class FollowUpPage implements OnInit {
           }, 1000);
           this.formService.showSaveLoader();
           this.myform.reset();
+      
+          // Add the new follow-up data to the array
+          this.followups.push(response);
+          this.searchTerm = '';
+
+          // If you are using observables, you might need to refresh the observable here
+          // Example: this.followups$ = this.followService.getFollowups();
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -183,7 +189,7 @@ export class FollowUpPage implements OnInit {
   }
 
   onNew(){
-    location.reload();
+    //location.reload();
   }
 
   onButtonClick() {
@@ -211,6 +217,7 @@ export class FollowUpPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    
   }
 
 

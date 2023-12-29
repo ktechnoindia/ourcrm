@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export interface pay{
   voucherNumber:string;
   paymentdate:string;
-  ledgername:number;
+  ledger:number;
   suppliername:number;
   outstanding:string;
   paymentmade:string;
@@ -31,6 +31,11 @@ export interface pay{
   billno:string;
   receiveamt:string;
   pendingamt:string;
+  currentamt:string;
+  ledgername:string;
+  companyname:string;
+  credit:string;
+  
 }
 
 @Injectable({
@@ -39,6 +44,9 @@ export interface pay{
 
 
 export class PaymentService {
+  filter(arg0: (payment: any) => boolean): any {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private httpclient:HttpClient) { }
 
