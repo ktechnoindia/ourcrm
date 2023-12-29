@@ -58,11 +58,11 @@ export class FollowUpPage implements OnInit {
     selectpd?: string,
     remark?: string,
     nextfollowupDate?: string
-    leadtype:string,
+    leadstatus:string,
   } = {
-    leadtype: ''
+    leadstatus: ''
   };
-  leadtype: number = 0;
+  leadstatus: number = 0;
 
 
   constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,private navCtrl: NavController) {
@@ -80,7 +80,7 @@ export class FollowUpPage implements OnInit {
       searchTerm: [''],
       lid: 0,
       followupdate: [''],
-      leadtype: [''],
+      leadstatus: [''],
 
     })
 
@@ -114,7 +114,7 @@ export class FollowUpPage implements OnInit {
       selectpd: leadscore.selectpd,
       remark: leadscore.rmark,
       nextfollowupDate: leadscore.nextfollowupDate,
-      leadtype:leadscore.leadtype,
+      leadstatus:leadscore.leadstatus,
     };
   }
 
@@ -143,7 +143,7 @@ export class FollowUpPage implements OnInit {
         leadid: this.myform.value.lid,
         companyid: 1,
         custid: 1,
-        leadtype: this.myform.value.leadtype,
+        leadstatus: this.myform.value.leadstatus,
 
       };
 

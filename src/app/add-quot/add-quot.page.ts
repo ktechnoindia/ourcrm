@@ -96,6 +96,16 @@ export class AddQuotPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
+
+  attr1:string='';
+  attr2:string='';
+  attr3:string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
+
   // deliveryplace: string = "Jaipur";
 
 
@@ -137,7 +147,9 @@ export class AddQuotPage implements OnInit {
   taxrate$: Observable<any[]>;
   customer$: any;
   session: any;
-
+//quote: Quote ;
+rows: any[] = [] ;
+showTable: boolean = false ;
   constructor(private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -626,6 +638,7 @@ export class AddQuotPage implements OnInit {
   }
   ngOnInit() {
     this.getquoteNo();
+    this.generateRows();
 
     // Other initialization logic...
 
@@ -641,6 +654,19 @@ export class AddQuotPage implements OnInit {
       this.calculateDiscountPercentage();
     });
 
+  }
+  toggleTableVisibility() {
+    this.showTable = !this.showTable;
+    if (this.showTable) {
+      this.generateRows(); // Refresh rows based on current quantity
+    }
+  }
+  generateRows() {
+    // ... (same as previous response)
+  }
+  openTableModal() {
+    this.generateRows(); // Generate rows before opening
+    //this.modalService.open(this.tableModalContent);
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;

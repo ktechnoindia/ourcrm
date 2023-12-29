@@ -66,7 +66,8 @@ export class AddItemPage implements OnInit {
   selectStock: string = '';
   unitname$: any;
   mrp: number = 0;
-  basicrate: number = 0;
+  salerate: number = 0;
+  purchaserate:number=0;
   hsnname$: Observable<any[]>
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
@@ -118,9 +119,10 @@ export class AddItemPage implements OnInit {
       attr7: [''],
       attr8: [''],
       mrp:[''],
-      basicrate:[''],
+      salerate:[''],
       attributes: this.formBuilder.group({}),
-      searchTerm:['']
+      searchTerm:[''],
+      purchaserate:['']
     })
 
   }
@@ -188,7 +190,8 @@ export class AddItemPage implements OnInit {
         maximum: this.myform.value.maximum,
         reorder: this.myform.value.reorder,
         mrp : this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
+        salerate: this.myform.value.salerate,
+        purchaserate: this.myform.value.purchaserate,
 
         attr1: this.myform.value.attr1,
         attr2: this.myform.value.attr2,

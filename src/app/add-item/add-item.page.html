@@ -23,8 +23,8 @@
 
                 <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="itemCode" type="text"
-                      label=" Item code :" label-placement="floating" fill="outline"></ion-input>
+                    <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="itemCode"
+                      type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
 
                   </ion-row>
                 </ion-col>
@@ -38,9 +38,10 @@
                 </ion-col>
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- HSN ---" label-placement="floating" fill="outline"  [(ngModel)]="hsnname" formControlName="hsnname" name="hsnname">
+
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- HSN ---" label-placement="floating" fill="outline" [(ngModel)]="hsnname"
+                    formControlName="hsnname" name="hsnname">
                     <!-- <ion-select-option value="">  --- HSN --- </ion-select-option> Default option with value 0 -->
                     <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
@@ -48,12 +49,14 @@
 
                   </ion-select>
                 </ion-col>
-              
+
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="---Stock Type---" label-placement="floating" fill="outline"  [(ngModel)]="stocktypename" formControlName="stocktypename" name="stocktypename">
-                    <ion-select-option value="">  --- Stock Type --- </ion-select-option> Default option with value 0
-                    <ion-select-option *ngFor="let stocktypename of stocktypename$ | async" [value]="stocktypename.stocktypeid">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="---Stock Type---" label-placement="floating" fill="outline" [(ngModel)]="stocktypename"
+                    formControlName="stocktypename" name="stocktypename">
+                    <ion-select-option value=""> --- Stock Type --- </ion-select-option> Default option with value 0
+                    <ion-select-option *ngFor="let stocktypename of stocktypename$ | async"
+                      [value]="stocktypename.stocktypeid">
                       {{ stocktypename.stocktypename }}
                     </ion-select-option>
                   </ion-select>
@@ -61,18 +64,21 @@
 
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Item Type ---" label-placement="floating" fill="outline"  [(ngModel)]="itemtypename" formControlName="itemtypename" name="itemtypename">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- Item Type ---" label-placement="floating" fill="outline" [(ngModel)]="itemtypename"
+                    formControlName="itemtypename" name="itemtypename">
                     <!-- <ion-select-option value="">  --- Item Type --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let itemtypename of itemtypename$ | async" [value]="itemtypename.itemtypeid">
+                    <ion-select-option *ngFor="let itemtypename of itemtypename$ | async"
+                      [value]="itemtypename.itemtypeid">
                       {{ itemtypename.itemtypename }}
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Unit Name ---" label-placement="floating" fill="outline"  [(ngModel)]="unitname" formControlName="unitname" name="unitname">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
+                    formControlName="unitname" name="unitname">
                     <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
                     <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                       {{ unitnames.unitname }}
@@ -81,8 +87,9 @@
                 </ion-col>
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Item Group ---" label-placement="floating" fill="outline"  [(ngModel)]="selectItemGroup" formControlName="selectItemGroup" name="selectItemGroup">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- Item Group ---" label-placement="floating" fill="outline" [(ngModel)]="selectItemGroup"
+                    formControlName="selectItemGroup" name="selectItemGroup">
                     <!-- <ion-select-option value="0">  --- Item Group --- </ion-select-option> Default option with value 0 -->
                     <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                       {{ itemgroup.itemgroupname }}
@@ -94,8 +101,9 @@
               <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- GST Type ---" label-placement="floating" fill="outline"  [(ngModel)]="selectGst" formControlName="selectGst" name="selectGst">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- GST Type ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
+                    formControlName="selectGst" name="selectGst">
                     <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
                     <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                       {{ gsttype.gstname }}
@@ -103,20 +111,26 @@
                   </ion-select>
 
                 </ion-col>
-                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP"
-                      type="number" label=" MRP:" label-placement="floating" fill="outline"></ion-input>
+                    <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
+                      label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
-                    <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate"
-                      type="number" label="Basic Rate :" label-placement="floating" fill="outline"></ion-input>
+                    <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
+                      label="Sale Rate :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-             
+                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
+                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+                </ion-col>
+
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"
@@ -162,21 +176,18 @@
                     <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
                       <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
                         <ion-row>
-                          <ion-select
-                          class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                          label="---Select Attribute--- " label-placement="floating" fill="outline" 
-                            [(ngModel)]="attributes[attributeKey]"
-                            formControlName="{{ attributeKey }}"
-                            name="{{ attributeKey }}"
-                            (ionChange)="onAttributeChange()"
-                          >
+                          <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                            label="---Select Attribute--- " label-placement="floating" fill="outline"
+                            [(ngModel)]="attributes[attributeKey]" formControlName="{{ attributeKey }}"
+                            name="{{ attributeKey }}" (ionChange)="onAttributeChange()">
                             <ion-select-option value="">Select Attribute</ion-select-option>
-                            <ion-select-option *ngFor="let attributename of attname$ | async; let i = index">{{ attributename.attname }}</ion-select-option>
+                            <ion-select-option *ngFor="let attributename of attname$ | async; let i = index">{{
+                              attributename.attname }}</ion-select-option>
                           </ion-select>
                         </ion-row>
                       </ion-col>
                     </ion-row>
-                  
+
                     <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
                   </div>
 
@@ -185,11 +196,12 @@
                     <ion-row>
                       <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                         <div class="images">
-                          <input class="file" type="file" formControlName="files" (change)="onFileSelected($event)" accept="image/*" />
+                          <input class="file" type="file" formControlName="files" (change)="onFileSelected($event)"
+                            accept="image/*" />
                           <img [src]="selectedImage" class="image_url" *ngIf="selectedImage" alt="Selected Image" />
                         </div>
                       </ion-col>
-                      
+
                       <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                         <div></div>
                       </ion-col>
@@ -333,7 +345,7 @@
                 <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                   [duration]="1000"></ion-loading>
                 <ion-button type="submit" id="open-loading1">Save</ion-button>
-               
+
                 <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                   [duration]="1000"></ion-loading>

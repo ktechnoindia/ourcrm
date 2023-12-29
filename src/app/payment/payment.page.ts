@@ -11,6 +11,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { CustomerService } from '../services/customer.service';
 import { VendorService } from '../services/vendor.service';
+import { LegderService } from '../services/ledger.service';
 
 @Component({
   selector: 'app-payment',
@@ -28,8 +29,8 @@ export class PaymentPage implements OnInit {
   voucherNumber:string='';
   paymentdate:string='';
   ledgername:number=0;
-  companyname:number=0;
-  debit:string='';
+  suppliername:number=0;
+  outstanding:string='';
   credit:string='';
   total:string='';
   balance:string='';
@@ -45,24 +46,34 @@ export class PaymentPage implements OnInit {
   oriamount:string='';
   balanceamt:string='';
   sale_person:string='';
-  debittype:string='';
-  credittype:string='';
+  outstandingtype:string='';
+  paymentmadetype:string='';
+  debit:string='';
+  cradit:string='';
+  paymentmade:string='';
+  paymentway:string='';
   totalamt:string='';
+  billno:string='';
+  receiveamt:string='';
+  pendingamt:string='';
+
 
   myform:FormGroup;
   isOpen = false;
   companys$: Observable<any[]>;
   customer$: any;
   supplier$: Observable<any>;
-  constructor(private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
+  ledger$:Observable<any>;
+  constructor(private ledgername1:LegderService,private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
      
 this.myform= this.formBuilder.group({
   voucherNumber:['',Validators.required],
   paymentdate:[''],
   ledgername:[''],
-  companyname:[''],
-  debit:[''],
-  credit:[''],
+  suppliername:[''],
+  outstanding:[''],
+  paymentmade:[''],
+  paymentway:[''],
   total:[''],
   balance:[''],
   total_payment:[''],
@@ -74,12 +85,17 @@ this.myform= this.formBuilder.group({
   oriamount:[''],
   balanceamt:[''],
   sale_person:[''],
+  totalamt:[''],
+  billno:[''],
+  receiveamt:[''],
+  pendingamt:[''],
 })
 
 const compid='1';
 this.companys$ = this.companyService.fetchallcompany(compid,'','');
 
 this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
+this.ledger$ = this.ledgername1.getledger();
   }
 
 
@@ -90,8 +106,14 @@ async onSubmit() {
 
     console.log('Your form data : ', this.myform.value);
     const paymentdata: pay = {
-      voucherNumber:this.myform.value.voucherNumber,paymentdate:this.myform.value.paymentdate,ledgername:this.myform.value.ledgername,companyname:this.myform.value.companyname,debit:this.myform.value.debit,credit:this.myform.value.credit,total:this.myform.value.total,balance:this.myform.value.balance, total_payment:this.myform.value.total_payment,billtype:this.myform.value.billtype,selectdrcr:this.myform.value.selectdrcr,particular:this.myform.value.particular,datetype:this.myform.value.datetype,reference:this.myform.value.reference,oriamount:this.myform.value.oriamount,balanceamt:this.myform.value.balanceamt,sale_person:this.myform.value.sale_person,
-      
+      voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledgername: this.myform.value.ledgername, suppliername: this.myform.value.suppliername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, balance: this.myform.value.balance, total_payment: this.myform.value.total_payment, billtype: this.myform.value.billtype, selectdrcr: this.myform.value.selectdrcr, particular: this.myform.value.particular, datetype: this.myform.value.datetype, reference: this.myform.value.reference, oriamount: this.myform.value.oriamount, balanceamt: this.myform.value.balanceamt, sale_person: this.myform.value.sale_person,
+      paymentway: this.myform.value.paymentway,
+      debit: this.myform.value.debit,
+      cradit: this.myform.value.cradit,
+      totalamt: this.myform.value.totalamt,
+      billno:this.myform.value.billno,
+      receiveamt:this.myform.value.receiveamt,
+      pendingamt:this.myform.value.pendingamt,
     };
 
     this.payService.createPayment(paymentdata,'','').subscribe(

@@ -32,7 +32,7 @@ export interface item {
   maximum: number;
   reorder: string;
   mrp: number;
-  basicrate: number;
+  salerate: number;
   attr1: string;
   attr2: string;
   attr3: string;
@@ -44,6 +44,8 @@ export interface item {
 
   selectGstservice: number;
   companyid:number;
+  purchaserate:number;
+  
 }
 
 @Injectable({

@@ -125,7 +125,7 @@
                           <!-- <th style="width: 80px;">Phone</th> -->
                           <!-- <th>Address</th> -->
                           <!-- <th style="width: 70px;">Entered By</th> -->
-                          <th>Lead Type</th>
+                          <th>Lead Status</th>
                           <th>Next Follow-Up</th>
                           <th>Update By</th>
                         </tr>
@@ -143,7 +143,7 @@
                             <!-- <td>{{selectedRow.phone}}</td> -->
                             <!-- <td>{{selectedRow.fulladdress}}</td> -->
                             <!-- <td>{{selectedRow.selectpd}}</td> -->
-                            <td>{{followup.leadtype}}</td>
+                            <td>{{followup.leadstatus}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
                             <td>{{followup.enterdby}}</td>
 
@@ -167,14 +167,14 @@
                     </ion-col>
                     <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                        label="---Lead Type---" label-placement="floating" fill="outline" [(ngModel)]="leadtype"
-                        formControlName="leadtype" name="leadtype">
+                        label="---Lead Status---" label-placement="floating" fill="outline" [(ngModel)]="leadstatus"
+                        formControlName="leadstatus" name="leadstatus">
                         <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
-                        <ion-select-option value="1">Cold</ion-select-option>
-                        <ion-select-option value="2">Warm </ion-select-option>
-                        <ion-select-option value="3">Cold</ion-select-option>
-                        <ion-select-option value="4">Not Interested </ion-select-option>
-                        <ion-select-option value="5">Closed </ion-select-option>
+                        <ion-select-option value="1">Cold/Initiate</ion-select-option>
+                        <ion-select-option value="2">Warm/Intalk </ion-select-option>
+                        <ion-select-option value="3">Hot/Intersted</ion-select-option>
+                        <ion-select-option value="4">Order Closed </ion-select-option>
+                        <ion-select-option value="5">Not Interested </ion-select-option>
                       </ion-select>
                     </ion-col>
                     <ion-col size-lg="6" size-md="6" size-sm="6" size="12">

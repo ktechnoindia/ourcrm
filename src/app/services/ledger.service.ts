@@ -57,4 +57,7 @@ export class LegderService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallledger +'/'+ companyid, { headers: { 'key': key, 'user': user } })
   }
+  getledger(): Observable<any> {
+    return this.httpclient.get(environment.apibaseurl+environment.fetchallledger);
+  }
 }

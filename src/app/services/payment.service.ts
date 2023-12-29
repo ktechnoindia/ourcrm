@@ -9,9 +9,12 @@ export interface pay{
   voucherNumber:string;
   paymentdate:string;
   ledgername:number;
-  companyname:number;
+  suppliername:number;
+  outstanding:string;
+  paymentmade:string;
+  paymentway:string;
   debit:string;
-  credit:string;
+  cradit:string;
   total:string;
   balance:string;
 
@@ -24,6 +27,10 @@ export interface pay{
   oriamount:string;
   balanceamt:string;
   sale_person:string;
+  totalamt:string;
+  billno:string;
+  receiveamt:string;
+  pendingamt:string;
 }
 
 @Injectable({

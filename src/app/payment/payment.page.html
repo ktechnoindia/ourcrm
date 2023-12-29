@@ -37,29 +37,30 @@
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                        label="Payemnt Mode" label-placement="floating" fill="outline" name="ledgername"
-                        [(ngModel)]="ledgername" formControlName="ledgername">
-                        <ion-select-option value="0">Cash</ion-select-option>
-                        <ion-select-option value="1">Bank</ion-select-option>
-                        <ion-select-option value="2">Card</ion-select-option>
-                      </ion-select>
+                      label="Payemnt Mode" label-placement="floating" fill="outline" name="ledgername"
+                      [(ngModel)]="ledgername" formControlName="ledgername">
+                      <ion-select-option *ngFor="let ledgername of ledger$ | async" [value]="ledgername.ledgerid">
+                        {{ ledgername.ledgername }}
+                      </ion-select-option>
+                    </ion-select>
                     </ion-col>
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;">
-                    <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
+                    <div style="overflow-x:auto;height: 300px;border: 1px solledgerid grey;">
                       <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                         <tr>
                           <th>Ledger Name</th>
-                          <th>Dedit</th>
-                          <th>Credit</th>
-                          <th>Balance</th>
+                          <th>OutStanding</th>
+                          <th>Payment Made</th>
+                          <th>Pending Amt.</th>
+                          <th>Payment By</th>
 
                         </tr>
                         <tr>
                           <td>
-                            <select class="select-option" name="companyname" [(ngModel)]="companyname"
-                              formControlName="companyname">
+                            <select class="select-option" name="suppliername" [(ngModel)]="suppliername"
+                              formControlName="suppliername">
                               <option value="0">Ledger Name</option>
                               <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                                 {{ suppliername.name }}
@@ -68,17 +69,24 @@
 
                           </td>
                           <td>
-                            <ion-input class="table_input" name="debit" [(ngModel)]="debit" formControlName="debit"
+                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" formControlName="outstanding"
                               type="text"></ion-input>
                           </td>
 
                           <td>
-                            <ion-input class="table_input" name="credit" [(ngModel)]="credit" formControlName="credit"
+                            <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade" formControlName="paymentmade"
                               type="text"></ion-input>
                           </td>
                           <td>
                             <ion-input class="table_input" name="balance" [(ngModel)]="balance"
                               formControlName="balance" type="text"></ion-input>
+                          </td>
+                          <td>
+                            <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
+                            formControlName="paymentway" id="">
+                              <option value="">By Bill</option>
+                              <option value="">By Bank</option>
+                            </select>
                           </td>
                         </tr>
                       </table>
@@ -116,16 +124,17 @@
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
-                          <th>Type</th>
-                          <th>Dr/Cr</th>
+                          <th>Sr. No.</th>
+                          <th>Bill No.</th>
+                          <th>Total Amt. Due</th>
                           <th>Particular</th>
+                          <th>Receive Amt.</th>
                           <th>Date</th>
-                          <th>Dedit</th>
-                          <th>Credit</th>
+                          <th>Pending Amt.</th>
 
                         </tr>
                         <tr>
-                          <td>
+                          <!-- <td>
                             <select class="select-option" name="billtype" [(ngModel)]="billtype"
                               formControlName="billtype">
                               <option value="0"> Type</option>
@@ -134,8 +143,8 @@
                               <option value="3">On A/c</option>
                               <option value="4">Advance</option>
                             </select>
-                          </td>
-                          <td>
+                          </td> -->
+                          <!-- <td>
                             <select class="select-option" name="selectdrcr" [(ngModel)]="selectdrcr"
                               formControlName="selectdrcr">
                               <option value="0"> Dr/Cr</option>
@@ -143,6 +152,15 @@
                               <option value="2">Credit</option>
 
                             </select>
+                          </td> -->
+                          <td>1</td>
+                          <td>
+                            <ion-input class="date" type="text" name="billno " [(ngModel)]="billno"
+                              formControlName="billno"></ion-input>
+                          </td>
+                           <td>
+                            <ion-input class="date" type="text" name="totalamt" [(ngModel)]="totalamt"
+                              formControlName="totalamt"></ion-input>
                           </td>
                           <td class="select-option">
                             <ion-button class="btn" color="undefined" size="small" style="margin-top: 5px;"
@@ -204,16 +222,23 @@
                             </ion-popover>
                           </td>
                           <td>
+                            <ion-input class="date" type="text" name="receiveamt" [(ngModel)]="receiveamt"
+                              formControlName="receiveamt"></ion-input>
+                          </td>
+                          <td>
                             <ion-input class="date" type="date" name="datetype" [(ngModel)]="datetype"
                               formControlName="datetype"></ion-input>
                           </td>
                           <td>
+                            <ion-input type="text" name="debit" [(ngModel)]="pendingamt" formControlName="pendingamt"></ion-input>
+                          </td>
+                          <!-- <td>
                             <ion-input type="text" name="debit" [(ngModel)]="debit" formControlName="debit"></ion-input>
                           </td>
                           <td>
                             <ion-input type="text" name="credit" [(ngModel)]="credit"
                               formControlName="credit"></ion-input>
-                          </td>
+                          </td> -->
                         </tr>
                       </table>
                     </div>
