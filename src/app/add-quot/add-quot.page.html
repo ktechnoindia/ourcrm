@@ -145,8 +145,8 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="quote.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (ngModelChange)="toggleTableVisibility()">
+                      <input style="width: 70px;" [ngModelOptions]="{standalone: true}" [(ngModel)]="quantity" type="number" (ngModelChange)="updateRows(quantity)">
+
                     </td>
                     <div *ngIf="showTable">
                       <table>
@@ -164,25 +164,16 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let row of rows; let i = index">
-                            <td>{{i+1}}</td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr1" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr2" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr3" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr4" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr5" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr6" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr7" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-                            <td> <input style="width: 70px;" [(ngModel)]="attr8" [ngModelOptions]="{standalone: true}"
-                                class="table_input" type="number"></td>
-
+                          <tr *ngFor="let row of rows; let i = index; trackBy: trackByFn">
+                            <td>{{ i + 1 }}</td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr1" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr2" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr3" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr4" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr5" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr6" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr7" class="table_input" type="number"></td>
+                            <td><input style="width: 70px;" [(ngModel)]="row.attr8" class="table_input" type="number"></td>
                           </tr>
                         </tbody>
                       </table>

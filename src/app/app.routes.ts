@@ -911,7 +911,11 @@ export const routes: Routes = [
   {
     path: 'generalledger',
     loadComponent: () => import('./generalledger/generalledger.page').then( m => m.GeneralledgerPage)
+  },  {
+    path: 'attribute-modal',
+    loadComponent: () => import('./attribute-modal/attribute-modal.page').then( m => m.AttributeModalPage)
   },
+
 
 
 
