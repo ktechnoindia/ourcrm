@@ -54,7 +54,7 @@ export class UsercreatePage implements OnInit {
       console.log('Your form data : ', this.form.value);
       let userstore: userdata = {
         username: this.form.value.username,
-        usercode: this.form.value.usercode,
+        companyid: 1,
         fathname: this.form.value.fathname,
         phone: this.form.value.phone,
         email: this.form.value.email,
