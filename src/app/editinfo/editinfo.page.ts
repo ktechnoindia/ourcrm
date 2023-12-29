@@ -48,6 +48,8 @@ export class EditinfoPage implements OnInit {
   onSubmit(data: any) {
     if (this.myform.valid) {
       console.log('Selected Value' + this.myform.value);
+      this.myform.reset();
+
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

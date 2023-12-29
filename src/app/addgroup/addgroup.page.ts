@@ -58,6 +58,7 @@ export class AddgroupPage implements OnInit {
         console.log('POST request successful', response);
        }
         this.formService.showSuccessAlert();
+        this.form.reset();
 
       },
       (error: any) => {

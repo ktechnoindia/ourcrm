@@ -52,7 +52,7 @@ export class ChangepasswordPage implements OnInit {
           if (response.status) {
             console.log('POST request successful', response);
           }
-          // Handle the response as needed
+          this.form.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);

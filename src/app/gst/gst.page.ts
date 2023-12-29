@@ -79,6 +79,8 @@ export class GstPage implements OnInit {
      (response:any) => {
           console.log('POST Request falied',response);
           this.formService.showSuccessAlert();
+          this.myform.reset();
+
      },
      (error:any) => {
           console.log('POST Request falied',error);

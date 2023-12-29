@@ -97,7 +97,7 @@ myform:FormGroup;
     this.signUp.createsignup(signupdata, '', '').subscribe(
       (response: any) => {
         console.log('POST request successful', response);
-        // Handle the response as needed
+        this.myform.reset();
       },
       (error: any) => {
         console.error('POST request failed', error);

@@ -95,7 +95,8 @@ export class RoleofexicutivePage implements OnInit {
           }, 1000);
 
           this.formService.showSaveLoader()
-         
+          this.form.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);
