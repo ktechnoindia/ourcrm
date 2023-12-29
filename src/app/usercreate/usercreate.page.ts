@@ -64,11 +64,13 @@ export class UsercreatePage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           // Handle the response as needed
+          this.form.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
           // Handle the error as needed
         }
+        
       );
       setTimeout(() => {
         this.form.reset();

@@ -86,6 +86,7 @@ export class AddCustomerPage implements OnInit {
 
   myform: FormGroup;
   showShippingAddress:boolean=false;
+  form: any;
 
   constructor(private navCtrl: NavController,private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
 
@@ -182,6 +183,8 @@ export class AddCustomerPage implements OnInit {
 
           this.formService.showSaveLoader()
           // location.reload()
+          this.myform.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);

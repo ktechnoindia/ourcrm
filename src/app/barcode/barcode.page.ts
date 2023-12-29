@@ -45,6 +45,8 @@ export class BarcodePage implements OnInit {
         (response:any)=>{
           console.log('Post request Successfully',response);
           this.formService.showSuccessAlert();
+          this.form.reset();
+
         },
         (error:any)=>{
           console.log('Post request Failed',error);

@@ -91,6 +91,7 @@ export class AddVendorPage implements OnInit {
   select_sales_person: number = 0;
   executive$: any;
   executive: string = '';
+  form: any;
 
   constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
     this.myform = this.formBuilder.group({
@@ -210,7 +211,8 @@ export class AddVendorPage implements OnInit {
           }, 1000);
 
           this.formService.showSaveLoader()
-         
+          this.myform.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);

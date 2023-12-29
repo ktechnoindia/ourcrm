@@ -225,8 +225,7 @@ export class CreatecompanyPage implements OnInit {
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          location.reload()
+          this.form.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -239,7 +238,6 @@ export class CreatecompanyPage implements OnInit {
 
         }
       );
-
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
@@ -252,6 +250,7 @@ export class CreatecompanyPage implements OnInit {
     if (this.firstInvalidInput) {
       this.firstInvalidInput.setFocus();
     }
+
   }
   onButtonClick() {
     // Add any additional logic you may need before closing the page
