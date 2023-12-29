@@ -90,7 +90,7 @@ copyData:boolean=false;
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required,]],
       ledger_code: ['', [Validators.required, Validators.maxLength(10)]],
-      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      gstin: [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)],
       mobile: ['', [Validators.maxLength(10)]],
       email: ['', [Validators.email]],
       lgroup_name: [''].toString(),
@@ -103,12 +103,12 @@ copyData:boolean=false;
       pincode: [''],
       address: [''],
       discount: [''],
-      tdn: ['', Validators.pattern(/^\d{10}$/),], // TDN validation for 10 digits
-      aadhar_no: ['', Validators.pattern(/^\d{12}$/)], // Aadhar number validation for 12 digits
-      pan_no: ['', Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/)], // PAN number validation
-      udhyog_aadhar: ['', Validators.pattern(/^\d{12}$/)], // Udyog Aadhar number validation for 12 digits
-      account_number: ['', Validators.pattern(/^\d{9,18}$/)], // Account number validation (between 9 and 18 digits)
-      ifsc_code: ['', Validators.pattern(/^[A-Za-z]{4}\d{7}$/)], // IFSC code validation (4 alphabets + 7 digits)
+      tdn: [Validators.pattern(/^\d{10}$/)], // TDN validation for 10 digits
+      aadhar_no: [Validators.pattern(/^\d{12}$/)], // Aadhar number validation for 12 digits
+      pan_no: [Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/)], // PAN number validation
+      udhyog_aadhar: [Validators.pattern(/^\d{12}$/)], // Udyog Aadhar number validation for 12 digits
+      account_number: [Validators.pattern(/^\d{9,18}$/)], // Account number validation (between 9 and 18 digits)
+      ifsc_code: [Validators.pattern(/^[A-Za-z]{4}\d{7}$/)], // IFSC code validation (4 alphabets + 7 digits)
       bank_name: [''],
       branch_name: [''],
       credit_period: [''],

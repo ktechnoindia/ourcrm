@@ -7,82 +7,80 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Payment Transaction Report</ion-title>
-             
+
             </ion-row>
           </ion-card-header>
         </div>
         <ion-grid>
           <ion-row style="margin-top: 5px;">
-           
+
             <ion-col size-lg="2" size-md="6" size-sm="5" size="5">
               <ion-row>
-                <ion-input color="warning" name="formDate" type="date" label="From Date :"
-                  label-placement="floating" fill="outline" id="startDate" name="startDate"></ion-input>
+                <ion-input color="warning" name="formDate" type="date" label="From Date :" label-placement="floating"
+                  fill="outline" id="startDate" name="startDate"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="2" size-md="6" size-sm="5" size="5">
               <ion-row>
-                <ion-input color="warning"name="toDate" type="date" label="To Date :"
-                  label-placement="floating" fill="outline" id="endDate" name="endDate"></ion-input>
+                <ion-input color="warning" name="toDate" type="date" label="To Date :" label-placement="floating"
+                  fill="outline" id="endDate" name="endDate"></ion-input>
               </ion-row>
             </ion-col>
             <ion-col size-lg="1" size-md="2" size-sm="2" size="2" class="custom-primary">
-              <ion-button  style="justify-content: right;" expand="block">Ok</ion-button>
+              <ion-button style="justify-content: right;" expand="block">Ok</ion-button>
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"></ion-searchbar>
           </ion-row>
           <ion-row>
-            <div  class="scroll-container">
+            <div class="scroll-container">
               <table style="width: 1330px;overflow-x:auto;border: 1px solid grey; ">
                 <tr>
-                  <th  style="width: 70px !important;">Sr. No.</th>
-                  <th style="width: 100px !important;">Voucher Number</th>
-                  <th style="width: 100px !important;">Payment Date</th>
-                  <th style="width: 200px !important;">Ledger Name</th>
-                  <th style="width: 100px !important;">Payment Transaction Mode</th>
-                  <th style="width: 100px !important;">Debit Amount</th>
-                  <th style="width: 100px !important;">Credit Amount</th>
-                  <th style="width: 140px !important;">Prepared By</th>
-                  <th style="width: 100px !important;">Bank Name</th>
-                  <th style="width: 70px !important;">Action</th>
+                  <th rowspan="2" style="width: 50px !important;">Sr. No.</th>
+                  <th rowspan="2" style="width: 100px !important;">Voucher Number</th>
+                  <th rowspan="2" style="width: 100px !important;">Payment Date</th>
+                  <th rowspan="2" style="width: 200px !important;">Ledger Name</th>
+                  <th rowspan="2" style="width: 200px !important;">Supplier Name</th>
+                  <th colspan="4" style="background-color: antiquewhite;">Payment IN Account</th>
+                  <th colspan="5" style="background-color: antiquewhite;">Payment By Bill Number</th>
+                  <th rowspan="2" style="width: 70px !important;">Action</th>
                 </tr>
                 <tr>
-                  <td>1</td>
-                  <td>Voucher-001</td>
-                  <td>2023-11-20</td>
-                  <td>John Doe</td>
-                  <td>Credit Card</td>
-                  <td>5000</td>
-                  <td></td> <!-- Assuming this is a credit transaction, so Credit Amount is empty -->
-                  <td>Alice Smith</td>
-                  <td>ABC Bank</td>
+                  <th style="width: 100px !important;">Outstanding</th>
+                  <th style="width: 100px !important;">Payment Made</th>
+                  <th style="width: 100px !important;">Pending Amt.</th>
+                  <th style="width: 140px !important;">Payment By</th>
+                  <th style="width: 100px !important;">Bill No.</th>
+                  <th style="width: 100px !important;">Total Amt.</th>
+                  <th style="width: 100px !important;">Receive Amt.</th>
+                  <th style="width: 100px !important;">Current Amt.</th>
+                  <th style="width: 100px !important;">Pending Amt</th>
+                </tr>
+                <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{payment.voucherNumber}}</td>
+                  <td>{{payment.paymentdate}}</td>
+                  <td>{{payment.ledger}}</td>
+                  <td>{{payment.suppliername}}</td>
+                  <td>{{payment.outstanding}}</td>
+                  <td>{{payment.paymentmade}}</td>
+                  <td>{{payment.paymentway}}</td>
+                  <td>{{payment.billno}}</td>
+                  <td>{{payment.totalamt}}</td>
+                  <td>{{payment.receiveamt}}</td>
+                  <td>{{payment.currentamt}}</td>
+                  <td>{{payment.pendingamt}}</td>
                   <td>
                     <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
                     <ion-icon name="create"></ion-icon>
                     <ion-icon name="trash"></ion-icon>
                   </td>
                 </tr>
-                
-                <tr>
-                  <td>2</td>
-                  <td>Voucher-002</td>
-                  <td>2023-11-21</td>
-                  <td>Jane Doe</td>
-                  <td>Cash</td>
-                  <td></td> <!-- Assuming this is a debit transaction, so Debit Amount is empty -->
-                  <td>3000</td>
-                  <td>Bob Johnson</td>
-                  <td>XYZ Bank</td>
-                  <td>
-                    <!-- Add your action buttons/icons here, e.g., edit and delete icons -->
-                    <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash"></ion-icon>
-                  </td>
-                </tr>
-                
+
+
+
               </table>
             </div>
           </ion-row>

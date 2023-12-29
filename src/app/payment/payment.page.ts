@@ -28,10 +28,9 @@ export class PaymentPage implements OnInit {
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   voucherNumber:string='';
   paymentdate:string='';
-  ledgername:number=0;
+  ledger:string='';
   suppliername:number=0;
   outstanding:string='';
-  credit:string='';
   total:string='';
   balance:string='';
 
@@ -48,7 +47,6 @@ export class PaymentPage implements OnInit {
   sale_person:string='';
   outstandingtype:string='';
   paymentmadetype:string='';
-  debit:string='';
   cradit:string='';
   paymentmade:string='';
   paymentway:string='';
@@ -56,20 +54,22 @@ export class PaymentPage implements OnInit {
   billno:string='';
   receiveamt:string='';
   pendingamt:string='';
-
+currentamt:string='';
 
   myform:FormGroup;
   isOpen = false;
   companys$: Observable<any[]>;
   customer$: any;
   supplier$: Observable<any>;
-  ledger$:Observable<any>;
-  constructor(private ledgername1:LegderService,private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
+  ledgers$:Observable<any>;
+  debit:string='';
+  credit:string=''
+  constructor(private ledgerService:LegderService,private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
      
 this.myform= this.formBuilder.group({
   voucherNumber:['',Validators.required],
   paymentdate:[''],
-  ledgername:[''],
+  ledger:[''],
   suppliername:[''],
   outstanding:[''],
   paymentmade:[''],
@@ -89,14 +89,20 @@ this.myform= this.formBuilder.group({
   billno:[''],
   receiveamt:[''],
   pendingamt:[''],
+  currentamt:[''],
+  ledgername:1,
+  companyname:1,
+  debit:1,
+  credit:1,
 })
 
 const compid='1';
 this.companys$ = this.companyService.fetchallcompany(compid,'','');
 
 this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-this.ledger$ = this.ledgername1.getledger();
-  }
+this.ledgers$ = this.ledgerService.fetchAllLedger(compid,'','');
+
+}
 
 
 async onSubmit() {
@@ -106,7 +112,7 @@ async onSubmit() {
 
     console.log('Your form data : ', this.myform.value);
     const paymentdata: pay = {
-      voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledgername: this.myform.value.ledgername, suppliername: this.myform.value.suppliername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, balance: this.myform.value.balance, total_payment: this.myform.value.total_payment, billtype: this.myform.value.billtype, selectdrcr: this.myform.value.selectdrcr, particular: this.myform.value.particular, datetype: this.myform.value.datetype, reference: this.myform.value.reference, oriamount: this.myform.value.oriamount, balanceamt: this.myform.value.balanceamt, sale_person: this.myform.value.sale_person,
+      voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledger: this.myform.value.ledger, suppliername: this.myform.value.suppliername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, balance: this.myform.value.balance, total_payment: this.myform.value.total_payment, billtype: this.myform.value.billtype, selectdrcr: this.myform.value.selectdrcr, particular: this.myform.value.particular, datetype: this.myform.value.datetype, reference: this.myform.value.reference, oriamount: this.myform.value.oriamount, balanceamt: this.myform.value.balanceamt, sale_person: this.myform.value.sale_person,
       paymentway: this.myform.value.paymentway,
       debit: this.myform.value.debit,
       cradit: this.myform.value.cradit,
@@ -114,6 +120,11 @@ async onSubmit() {
       billno:this.myform.value.billno,
       receiveamt:this.myform.value.receiveamt,
       pendingamt:this.myform.value.pendingamt,
+      currentamt:this.myform.value.currentamt,
+      ledgername:this.myform.value.ledgername,
+      companyname:this.myform.value.companyname,
+      credit:this.myform.value.credit,
+
     };
 
     this.payService.createPayment(paymentdata,'','').subscribe(
@@ -148,6 +159,22 @@ async onSubmit() {
     }
    }
   }
+  onSupplierChange() {
+    // Assuming supplier$ is an Observable<Array<any>>
+
+// Subscribe to the observable to get the actual data
+this.supplier$.subscribe((suppliers: any[]) => {
+  // Use the find method on the array
+  const selectedSupplier: any | null = suppliers.find(supplier => supplier.id === this.suppliername);
+
+  // Check if selectedSupplier is not null or undefined before accessing its properties
+  this.ledger = selectedSupplier?.name || '';
+});
+
+    
+  }
+  
+  
   onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page

@@ -19,6 +19,9 @@ export interface followuptable {
   providedIn: 'root'
 })
 export class FollowupService {
+  getFollowups() {
+    throw new Error('Method not implemented.');
+  }
   constructor(private httpclient:HttpClient) { }
   createfollowup(followup:followuptable,key:string,user:string){
     return this.httpclient.post(environment.apiacturl+environment.addfollowup,followup,{headers:{'key':key,'user':user}})

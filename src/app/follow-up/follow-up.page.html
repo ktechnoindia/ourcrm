@@ -29,7 +29,7 @@
                 <ion-searchbar class="custom" formControlName="searchTerm" showCancelButton="focus"
                   [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
-                  <div class="scroll-container" style="height: 360px;">
+                  <div class="scroll-container">
 
                     <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
@@ -87,7 +87,7 @@
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
                 <ion-item >
-                 <ion-range>fsfs</ion-range>
+                 <ion-range></ion-range>
                 </ion-item>
 
                 <div *ngIf="selectedRow" class="compname">
@@ -97,7 +97,7 @@
 
                 <div style="padding: 10px;">
                   <ion-row style="overflow-x:auto;">
-                    <div class="scroll-container" style="border: 1px solid grey;">
+                    <div class="scroll-container1">
                       <table style="overflow-x:auto; width: 100%;">
                         <!-- <tr>
                           <th >
@@ -165,7 +165,7 @@
                         <ion-input [(ngModel)]="lid" formControlName="lid" name="lid" type="hidden"></ion-input>
                       </ion-row>
                     </ion-col>
-                    <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+                    <ion-col size-lg="3.5" size-md="3" size-sm="3" size="6">
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                         label="---Lead Status---" label-placement="floating" fill="outline" [(ngModel)]="leadstatus"
                         formControlName="leadstatus" name="leadstatus">
@@ -177,7 +177,7 @@
                         <ion-select-option value="5">Not Interested </ion-select-option>
                       </ion-select>
                     </ion-col>
-                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                    <ion-col size-lg="5.5" size-md="6" size-sm="6" size="12">
                       <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>
