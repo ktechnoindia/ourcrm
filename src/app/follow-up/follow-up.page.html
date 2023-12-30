@@ -86,10 +86,10 @@
                 <ion-row class="headinglabel">
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
-                <ion-item >
-                 <ion-range></ion-range>
-                </ion-item>
+                <ion-item>
+                  <ion-range aria-label="Custom range" [min]="0" [max]="100" [value]="rangeValue" [pin]="true" [ticks]="true" [snaps]="true"></ion-range>
 
+                </ion-item>
                 <div *ngIf="selectedRow" class="compname">
                   <ion-label>Company Name</ion-label>
                   <p>{{selectedRow.companyname}}</p>
@@ -168,13 +168,13 @@
                     <ion-col size-lg="3.5" size-md="3" size-sm="3" size="6">
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                         label="---Lead Status---" label-placement="floating" fill="outline" [(ngModel)]="leadstatus"
-                        formControlName="leadstatus" name="leadstatus">
+                        formControlName="leadstatus" name="leadstatus" (ionChange)="updateProgressBar()">
                         <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
-                        <ion-select-option value="1">Cold/Initiate</ion-select-option>
-                        <ion-select-option value="2">Warm/Intalk </ion-select-option>
-                        <ion-select-option value="3">Hot/Intersted</ion-select-option>
-                        <ion-select-option value="4">Order Closed </ion-select-option>
-                        <ion-select-option value="5">Not Interested </ion-select-option>
+                        <ion-select-option value="2">Cold/Initiate</ion-select-option>
+                        <ion-select-option value="3">Warm/Intalk </ion-select-option>
+                        <ion-select-option value="4">Hot/Intersted</ion-select-option>
+                        <ion-select-option value="5">Order Closed </ion-select-option>
+                        <ion-select-option value="1">Not Interested </ion-select-option>
                       </ion-select>
                     </ion-col>
                     <ion-col size-lg="5.5" size-md="6" size-sm="6" size="12">

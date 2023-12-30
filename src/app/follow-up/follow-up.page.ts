@@ -63,7 +63,7 @@ export class FollowUpPage implements OnInit {
     leadstatus: ''
   };
   leadstatus: number = 0;
-  progressValue: number = 0;
+  rangeValue: number = 0; // Initial value for ion-range
 
   constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,private navCtrl: NavController) {
     const compid = '1';
@@ -80,7 +80,7 @@ export class FollowUpPage implements OnInit {
       searchTerm: [''],
       lid: 0,
       followupdate: [''],
-      leadstatus: [''],
+      leadstatus: [this.leadstatus],
 
     })
 
@@ -159,8 +159,7 @@ export class FollowUpPage implements OnInit {
       
           // Add the new follow-up data to the array
           this.followups.push(response);
-          this.searchTerm = '';
-
+      
           // If you are using observables, you might need to refresh the observable here
           // Example: this.followups$ = this.followService.getFollowups();
         },
@@ -217,7 +216,6 @@ export class FollowUpPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
-    
   }
 
 
@@ -230,5 +228,14 @@ export class FollowUpPage implements OnInit {
     this.followUpCounter++;
     return followUpId;
   }
-
+  updateProgressBar() {
+    // If "Not Interested" is selected, set the range value to 0
+    if (this.leadstatus === 1) {
+      this.rangeValue = 0;
+    } else {
+      // Increment of 25% for other lead statuses
+      this.rangeValue = (this.leadstatus - 1) * 25;
+    }
+  }
+  
 }
