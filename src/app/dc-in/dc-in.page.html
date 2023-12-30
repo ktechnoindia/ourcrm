@@ -139,7 +139,7 @@
                       </td>
                       <td>
                         <input [(ngModel)]="dcin.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                          type="number">
+                          type="number" (input)="presentPopover(dcin)">
 
                       </td>
                       <td style="width: 90px;">

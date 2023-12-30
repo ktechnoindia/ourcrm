@@ -17,6 +17,10 @@ ion-content {
     --ion-background-color: #ffffff;
     color: #0083b0;
 }
+.popover-content {
+    --width: 800px !important; /* Set your desired width */
+    --height: 500px !important; /* Set your desired height */
+  }
 
 .main {
     width: 100%;

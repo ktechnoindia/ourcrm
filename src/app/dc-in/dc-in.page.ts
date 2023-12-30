@@ -15,6 +15,10 @@ import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { NavController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
+
+
 interface Dcin {
   posttax: number;
   pretax: number;
@@ -111,11 +115,11 @@ export class DcInPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-
+ 
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl: NavController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController,private popoverController:PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -181,6 +185,28 @@ export class DcInPage implements OnInit {
     })
 
   }
+
+  async presentPopover(dcin: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: dcin.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(dcin:Dcin) {
+    // Open the popover when quantity changes
+    if (dcin.quantity > 0) {
+      this.presentPopover(dcin);
+    }
+  }
+  
+
 
   async onSubmit(form: FormGroup, dcinData: Dcin[]) {
 

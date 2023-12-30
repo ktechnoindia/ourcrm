@@ -915,6 +915,10 @@ export const routes: Routes = [
     path: 'attribute-modal',
     loadComponent: () => import('./attribute-modal/attribute-modal.page').then( m => m.AttributeModalPage)
   },
+  {
+    path: 'quantitypopover',
+    loadComponent: () => import('./quantitypopover/quantitypopover.page').then( m => m.QuantitypopoverPage)
+  },
 
 
 
