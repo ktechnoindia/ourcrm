@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -58,6 +58,8 @@ export class AddQuotPage implements OnInit {
   custname: number = 0;
   refrence: string = '';
   refdate: string = '';
+  quantity: number = 0; // Initial value can be set based on your requirements
+
 
   //table data
   /*barcode: string = '';
@@ -148,9 +150,12 @@ export class AddQuotPage implements OnInit {
   customer$: any;
   session: any;
 //quote: Quote ;
-rows: any[] = [] ;
+rows = [
+  { attr1: null, attr2: null,attr3: null,attr4: null,attr5: null,attr6: null,attr7: null,  attr8: null },
+  // Add more rows as needed
+];
 showTable: boolean = false ;
-  constructor(private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
+  constructor(private cdr: ChangeDetectorRef,private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.gstsrvs.getgsttype().subscribe((types) => {
@@ -761,5 +766,33 @@ showTable: boolean = false ;
   myaction(arg0: string) {
     throw new Error('Method not implemented.');
   }
+  // Function to update rows based on quantity
+updateRows(quantity: number): void {
+  // Clear existing rows
+  console.log('Updating rows with quantity:', quantity);
 
+  this.rows = [];
+  // Generate new rows based on the quantity
+  for (let i = 0; i < quantity; i++) {
+    this.rows.push({
+      attr1: null,
+      attr2: null,
+      // ... other attributes
+      attr8: null,
+      attr3: null,
+      attr4: null,
+      attr5: null,
+      attr6: null,
+      attr7: null
+    });
+    this.cdr.detectChanges();
+
+  }
+
+  console.log('Updated rows:', this.rows);
+
+}
+trackByFn(index: number, item: any): any {
+  return index;
+}
 }
