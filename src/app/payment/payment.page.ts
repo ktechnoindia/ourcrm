@@ -63,7 +63,8 @@ currentamt:string='';
   supplier$: Observable<any>;
   ledgers$:Observable<any>;
   debit:string='';
-  credit:string=''
+  credit:string='';
+  
   constructor(private ledgerService:LegderService,private navCtrl:NavController,private datePipe: DatePipe,private router: Router,private formBuilder:FormBuilder,private payService:PaymentService,private companyService : CreatecompanyService ,private encService:EncryptionService, private formService: FormValidationService,private vendname1:VendorService,) { 
      
 this.myform= this.formBuilder.group({
@@ -160,21 +161,11 @@ async onSubmit() {
    }
   }
   onSupplierChange() {
-    // Assuming supplier$ is an Observable<Array<any>>
-
-// Subscribe to the observable to get the actual data
-this.supplier$.subscribe((suppliers: any[]) => {
-  // Use the find method on the array
-  const selectedSupplier: any | null = suppliers.find(supplier => supplier.id === this.suppliername);
-
-  // Check if selectedSupplier is not null or undefined before accessing its properties
-  this.ledger = selectedSupplier?.name || '';
-});
-
-    
-  }
-  
-  
+    // Update the 'ledger' field with the selected supplier's name
+    this.myform.patchValue({
+      ledger: this.suppliername,
+    });
+  }  
   onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page

@@ -35,10 +35,12 @@
                         fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size-lg="5.5" size-md="12" size-sm="12" size="12" style="margin-bottom: 4px;">
-                      <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                      label="Select Ledger" label-placement="floating" fill="outline"  [ngModel]="ledger" formControlName="ledger" name="ledger">
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                        label="Select Ledger" label-placement="floating" fill="outline" [ngModel]="ledger"
+                        formControlName="ledger" name="ledger">
                         <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
-                        <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}} </ion-select-option>
+                        <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
+                        </ion-select-option>
                       </ion-select>
                     </ion-col>
                   </ion-row>
@@ -81,8 +83,8 @@
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
                               formControlName="paymentway" id="">
                               <option value="">Select Payment Way</option>
-                              <option value="">BillWise</option>
-                              <option value="">On Account</option>
+                              <option value="BillWise">BillWise</option>
+                              <option value="On Account">On Account</option>
                             </select>
                           </td>
                         </tr>
@@ -104,7 +106,7 @@
 
               </ion-col>
               <ion-col size="12" size-lg="6" size-md="6" size-sm="4">
-                <ion-card>
+                <ion-card >
 
                   <ion-row>
                     <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
@@ -117,7 +119,7 @@
                     </ion-col>
                   </ion-row>
 
-                  <ion-row style="margin-top: 10px;">
+                  <ion-row style="margin-top: 10px;" *ngIf="paymentway === 'BillWise'">
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
@@ -130,7 +132,7 @@
 
                         </tr>
                         <tr>
-                                                   <td>1</td>
+                          <td>1</td>
                           <td>
                             <ion-input type="text" name="billno " [(ngModel)]="billno"
                               formControlName="billno"></ion-input>
@@ -139,7 +141,7 @@
                             <ion-input class="date" type="text" name="totalamt" [(ngModel)]="totalamt"
                               formControlName="totalamt"></ion-input>
                           </td>
-                        
+
                           <td>
                             <ion-input class="date" type="text" name="receiveamt" [(ngModel)]="receiveamt"
                               formControlName="receiveamt"></ion-input>
@@ -152,7 +154,7 @@
                             <ion-input type="text" name="pendingamt" [(ngModel)]="pendingamt"
                               formControlName="pendingamt"></ion-input>
                           </td>
-                         
+
                         </tr>
                       </table>
                     </div>

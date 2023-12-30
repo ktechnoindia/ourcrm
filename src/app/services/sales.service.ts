@@ -13,7 +13,7 @@ export interface salesstore {
   orderDate: string;
   orderNumber: string;
   // ponumber:string;
-  gstin:number;
+  gstin:string;
   salePerson: number;
   payment: number;
  
