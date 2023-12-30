@@ -59,7 +59,7 @@ export class AddPurchasePage implements OnInit {
   orderDate: string = '';
   orderNumber: string = '';
   ponumber: string = '';
-  gstin: number = 0;
+  gstin: string='';
   payment: number = 0;
 
   //table data
@@ -243,7 +243,7 @@ export class AddPurchasePage implements OnInit {
           payment: this.myform.value.payment,
           supplier: this.myform.value.supplier,
           gstin: this.myform.value.gstin,
-          executive$: this.myform.value.executive$,
+          exicutive: this.myform.value.executive,
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
