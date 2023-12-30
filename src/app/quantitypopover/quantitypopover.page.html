@@ -12,6 +12,7 @@
         <th>Attr7</th>
         <th>Attr8</th>
       </tr>
+      <tbody >
       <tr *ngFor="let row of rows; let i = index">
         <td style="width: 100px;">{{ i + 1 }}</td> <!-- Serial Number -->
         <td><input type="text" [(ngModel)]="rowData[i].attr1" class="pop_input"></td>
@@ -23,6 +24,7 @@
         <td><input type="text" [(ngModel)]="rowData[i].attr7" class="pop_input"></td>
         <td><input type="text" [(ngModel)]="rowData[i].attr8" class="pop_input"></td>
       </tr>
+    </tbody>
     </table>
     <ion-button style="float: right;bottom: 0;" size="small" (click)="closePopover()">Close</ion-button>
   </div>
