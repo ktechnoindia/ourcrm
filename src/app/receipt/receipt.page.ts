@@ -28,7 +28,7 @@ export class ReceiptPage implements OnInit {
   voucherNumber:string='';
   paymentdate:string='';
   ledger:string='';
-  suppliername:number=0;
+  customername:number=0;
   outstanding:string='';
   total:string='';
   balance:string='';
@@ -64,7 +64,7 @@ currentamt:string='';
   credit:string=''
   companyname:number=0;
   ledgername:string='';
-    
+
   constructor(private ledgerService:LegderService,private navCtrl:NavController,private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService,private companyService : CreatecompanyService ,private custname1:CustomerService) {
     this.myform= this.formBuilder.group({
       voucherNumber:['',Validators.required],
@@ -179,5 +179,10 @@ console.log(this.companys$);
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
-
+  onCustomerChange() {
+    // Update the 'ledger' field with the selected supplier's name
+    this.myform.patchValue({
+      ledger: this.companyname,
+    });
+  }  
 }
