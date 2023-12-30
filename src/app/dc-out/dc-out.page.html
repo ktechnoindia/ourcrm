@@ -65,7 +65,7 @@
               <ion-col class="ionselect" size-lg="4" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" vendcode"
-                  name="custname" formControlName="custname" (ngModelChange)="getCustomers($event)" >
+                  name="suppliertype" formControlName="suppliertype" (ngModelChange)="getCustomers($event)" >
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
@@ -83,6 +83,13 @@
                 <ion-row>
                   <ion-input [(ngModel)]="refdate" name="refdate" formControlName="refdate" type="date"
                     label=" Reference Date :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="ponumber" name="ponumber" formControlName="ponumber" type="text"
+                    label=" Po Number :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 

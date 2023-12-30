@@ -30,7 +30,7 @@
         <ion-grid>
 
 
-          <form [formGroup]="myform"  (ngSubmit)="onSubmit(salesData)">
+          <form [formGroup]="myform"  (ngSubmit)="onSubmit(myform,salesData)">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -111,7 +111,7 @@
              
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="number" label=" GSTIN  :"
+                  <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -125,6 +125,7 @@
                   </ion-select-option>
                 </ion-select>
               </ion-col>
+
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment" formControlName="payment" name="pyt">
@@ -132,6 +133,13 @@
                   <ion-select-option value="0">Cash</ion-select-option>
                   <ion-select-option value="1">Credit</ion-select-option>
                 </ion-select>
+              </ion-col>
+
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input  [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text" label=" Po Number  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
               </ion-col>
             </ion-row>
 
@@ -180,6 +188,12 @@
                           {{ itemname.itemDesc }}
                         </option>
                       </select>
+                      <ion-input style="display: none;" [(ngModel)]="sales.itemid" [ngModelOptions]="{standalone: true}"
+                      type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
                     </td>
                     <td>
                       <input [(ngModel)]="sales.description" [ngModelOptions]="{standalone: true}"
@@ -248,11 +262,11 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input [(ngModel)]="sales.discount" (ionBlur)="getdiscountp(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)" (keyup)="getdiscountamt(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)" [ngModelOptions]="{standalone: true}"

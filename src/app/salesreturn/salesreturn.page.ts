@@ -36,6 +36,7 @@ interface Sales {
   taxrate1: number;
   posttax: number;
   pretax: number;
+  itemid:number;
 }
 @Component({
   selector: 'app-salesreturn',
@@ -51,7 +52,7 @@ export class SalesreturnPage implements OnInit {
   payment: number = 0;
   orderDate: string = '';
   orderNumber: string = '';
-  gstin: number = 0;
+  gstin: string = '';
   salePerson: number = 0;
   taxrate: string = '';
   custcode: string = '';
@@ -64,7 +65,7 @@ export class SalesreturnPage implements OnInit {
   totaldiscountamt: string = '';
   totaltaxamount: string = '';
   totalnetamount: string = '';
-
+  ponumber:string='';
   roundoff: string = '';
   pretax: string = '0';
   posttax: string = '0';
@@ -74,6 +75,7 @@ export class SalesreturnPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
+  itemid:number=0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
@@ -96,9 +98,11 @@ export class SalesreturnPage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
+    itemid: 0,
   }];
   ttotal!: number;
-
+  companyid:number=0;
+  userid:number=0;
   // ponumber:string='';
   refrence: string = '';
   refdate: string = '';
@@ -148,23 +152,23 @@ export class SalesreturnPage implements OnInit {
 
       //table
       barcode: [''],
-      itemcode: [''],
+      itemcode: 0,
       itemname: [''],
       description: [''],
-      quantity: [''],
-      unitname: [''],
-      mrp: [''],
-      basicrate: [''],
-      netrate: [''],
-      grossrate: [''],
-      taxrate: [''],
-      IGST: [''],
-      CGST: [''],
-      SGST: [''],
-      discount: [''],
-      discountamt: [''],
-      totaltax: [''],
-      total: [''],
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
@@ -183,17 +187,39 @@ export class SalesreturnPage implements OnInit {
       closingbalance: [''],
       debit: [''],
       credit: [''],
-
+      ponumber:[''],
       ttotal: [''],
+      itemid:['']
     })
   }
 
 
-  async onSubmit(salereturnData: any) {
+  async onSubmit(form: FormGroup, salereturnData: Sales[]) {
+
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
+      
       console.log('Your form data : ', this.myform.value);
+
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salereturnData));
+
+
+      for (const element of salereturnData) {
+        element.grossrate = element.basicrate * element.quantity;
+        element.netrate = element.basicrate + element.taxrate1;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate)
+
+        console.log(element);
+        const companyid = 1;
+        const userid = 1;
+        let salereturn: salereturnstore[] = [];
+
+
       let salereturndata: salereturnstore = {
         billformate: this.myform.value.billformate,
         billNumber: this.myform.value.billNumber,
@@ -203,7 +229,6 @@ export class SalesreturnPage implements OnInit {
         orderNumber: this.myform.value.orderNumber,
         gstin: this.myform.value.gstin,
         salePerson: this.myform.value.salePerson,
-        taxrate: this.myform.value.taxrate,
         custcode: this.myform.value.custcode,
         custname: this.myform.value.custname,
         // unitname$:this.myform.value.unitname$,
@@ -212,23 +237,24 @@ export class SalesreturnPage implements OnInit {
         refrence: this.myform.value.refrence,
         frombill: this.myform.value.frombill,
 
-        barcode: this.myform.value.barcode,
-        itemcode: this.myform.value.itemcode,
-        itemname: this.myform.value.itemname,
-        description: this.myform.value.description,
-        quantity: this.myform.value.quantity,
-        unitname: this.myform.value.unitname,
-        mrp: this.myform.value.mrp,
-        basicrate: this.myform.value.basicrate,
-        netrate: this.myform.value.netrate,
-        grossrate: this.myform.value.grossrate,
-        CGST: this.myform.value.CGST,
-        SGST: this.myform.value.SGST,
-        IGST: this.myform.value.IGST,
-        discount: this.myform.value.discount,
-        discountamt: this.myform.value.discountamt,
-        totaltax: this.myform.value.totaltax,
-        total: this.myform.value.total,
+        barcode: element.barcode,
+        itemcode: element.itemcode,
+        itemname: element.itemname,
+        description: element.description,
+        quantity: element.quantity,
+        unitname: element.unitname,
+        mrp: element.mrp,
+        basicrate: element.basicrate,
+        netrate: element.netrate,
+        grossrate: element.grossrate, // Add grossrate
+        taxrate: element.taxrate,
+        IGST: element.IGST,
+        CGST: element.CGST,
+        SGST: element.SGST,
+        discount: element.discount,
+        discountamt: element.discountamt,
+        totaltax: element.totaltax,
+        total: element.total,
         totalitemno: this.myform.value.totalitemno,
         totalquantity: this.myform.value.totalquantity,
         totalgrossamt: this.myform.value.totalgrossamt,
@@ -236,17 +262,21 @@ export class SalesreturnPage implements OnInit {
         totaltaxamount: this.myform.value.totaltaxamount,
         totalnetamount: this.myform.value.totalnetamount,
         roundoff: this.myform.value.roundoff,
-        pretax: this.myform.value.pretax,
-        posttax: this.myform.value.posttax,
+        pretax: element.pretax,
+        posttax: element.posttax,
         deliverydate: this.myform.value.deliverydate,
         deliveryplace: this.myform.value.deliveryplace,
         openingbalance: this.myform.value.openingbalance,
         closingbalance: this.myform.value.closingbalance,
         debit: this.myform.value.debit,
         credit: this.myform.value.credit,
-
+        companyid: companyid,
+        userid: userid,
+        ponumber: this.myform.value.ponumber,
       };
-      this.salereturnService.createSaleReturn(salereturndata, '', '').subscribe(
+
+      salereturn.push(salereturndata);
+      this.salereturnService.createSaleReturn(salereturn, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -263,6 +293,7 @@ export class SalesreturnPage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
+      }
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -372,6 +403,7 @@ export class SalesreturnPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
+      itemid:0
       // Add more properties as needed
     };
     this.salesData.push(newRow);

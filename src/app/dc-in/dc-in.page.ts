@@ -59,7 +59,7 @@ export class DcInPage implements OnInit {
   suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate: string = '';
-  // ponumber: string = '';
+  ponumber: string = '';
 
   totalitemno: string = '';
   totalquantity: string = '';
@@ -139,7 +139,7 @@ export class DcInPage implements OnInit {
       suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
-      // ponumber: [''],
+      ponumber: [''],
 
       //table
       barcode: [''],
@@ -276,6 +276,7 @@ export class DcInPage implements OnInit {
           credit: this.myform.value.credit,
           companyid: companyid,
           userid: userid,
+          ponumber: this.myform.value.ponumber,
         }
         decindatas.push(dcindata);
 

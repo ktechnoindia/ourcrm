@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 export interface salereturnstore {
 
   billNumber: number;
-  billDate: string ;
-  frombill:number;
+  billDate: string;
+  frombill: number;
   payment: number;
   orderDate: string;
   orderNumber: string;
@@ -15,48 +15,51 @@ export interface salereturnstore {
   salePerson: number;
   taxrate: number;
   custcode: string;
-  billformate:number;
+  billformate: number;
   custname: number;
   // unitname$: number;
   // ponumber:string;
-  refrence:string;
-  refdate:string;
+  refrence: string;
+  refdate: string;
 
   //table
-  barcode:string;
-itemcode:number;
-itemname:number;
-description:string;
-quantity:number;
-unitname:number;
-mrp:number;
-basicrate:number;
-netrate:number;
-grossrate:number;
- IGST:number;
-  CGST:number;
-  SGST:number;
-  discount:number;
-  discountamt:number;
-  totaltax: number ;
-  total: number ;
+  barcode: string;
+  itemcode: number;
+  itemname: number;
+  description: string;
+  quantity: number;
+  unitname: number;
+  mrp: number;
+  basicrate: number;
+  netrate: number;
+  grossrate: number;
+  IGST: number;
+  CGST: number;
+  SGST: number;
+  discount: number;
+  discountamt: number;
+  totaltax: number;
+  total: number;
 
-  totalitemno:string;
-  totalquantity:string;
-  totalgrossamt:string;
-  totaldiscountamt:string;
-  totaltaxamount:string;
-  totalnetamount:string;
+  totalitemno: string;
+  totalquantity: string;
+  totalgrossamt: string;
+  totaldiscountamt: string;
+  totaltaxamount: string;
+  totalnetamount: string;
   deliverydate: string;
   deliveryplace: string;
 
   roundoff: string;
-  pretax: string;
-  posttax: string;
+  pretax: number;
+  posttax: number;
   openingbalance: string;
   closingbalance: string;
   debit: string;
   credit: string;
+  companyid:number;
+  userid:number;
+  ponumber:string;
 }
 
 @Injectable({
@@ -64,12 +67,12 @@ grossrate:number;
 })
 export class SalereturnService {
   total!: number;
-  constructor(private httpclient:HttpClient) { }
-  createSaleReturn(salesreturn:salereturnstore,key:string,user:string){
-    return this.httpclient.post(environment.apiactionurl+environment.addsalesreturn,salesreturn,{headers:{'key':key,'user':user}})
+  constructor(private httpclient: HttpClient) { }
+  createSaleReturn(salesreturn: salereturnstore[], key: string, user: string) {
+    return this.httpclient.post(environment.apiactionurl + environment.addsalesreturn, salesreturn, { headers: { 'key': key, 'user': user } })
   }
-  fetchallSalesreturn(companyid:string,key:string,user:string): Observable<any> {
-    console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl+environment.fetchallsalesreturn+'?p='+companyid,{headers:{'key':key,'user':user}})
+  fetchallSalesreturn(companyid: string, key: string, user: string): Observable<any> {
+    console.log('companyyy ' + companyid);
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallsalesreturn + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
 }
