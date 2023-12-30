@@ -141,6 +141,7 @@ export class AddPurchasePage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
+  executive:string='';
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -169,7 +170,6 @@ export class AddPurchasePage implements OnInit {
       ponumber: [''],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       payment: [''],
-      // executive$: ['', Validators.required],
       executivename: [''],
 
       //table
@@ -191,6 +191,7 @@ export class AddPurchasePage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
+      //executive:1,
       discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
@@ -288,6 +289,7 @@ export class AddPurchasePage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
+          executive: ''
         };
 
         purchases.push(purchasedata);

@@ -12,7 +12,7 @@ export interface salesstore {
   refdate:string;
   orderDate: string;
   orderNumber: string;
-  // ponumber:string;
+  ponumber:string;
   gstin:string;
   salePerson: number;
   payment: number;

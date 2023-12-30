@@ -58,6 +58,8 @@ export interface purchasestore {
   companyid:number;
   itemid:number;
   userid:number;
+  executive:string;
+
 }
 @Injectable({
   providedIn: 'root'

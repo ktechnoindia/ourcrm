@@ -5,57 +5,63 @@ import { environment } from 'src/environments/environment';
 
 export interface purchasereturnstore {
 
+  billformate: number;
   billNumber: number;
   billDate: string;
-  frombill:number;
-  payment: number;
+  vendcode: string;
   supplier: number;
-  gstin: number ;
-  exicutive$:number;
+  refrence: string;
+  refdate: string;
+  orderDate: string;
+  orderNumber: string;
+  ponumber: string;
+
+  gstin: number;
+  payment: number;
+  exicutive: number;
   taxrate$: number;
-  refrence:string;
-  refdate:string;
-  billformate:number;
-  vendcode:string;
-  orderDate:string;
-  orderNumber:string;
-
+  
   //table
-  barcode:string;
-itemcode:string;
-itemname:string;
-description:string;
-quantity:number;
-unitname:number;
-mrp:string;
-basicrate:number;
-netrate:string;
-grossrate:string;
-  taxrate: number ;
- IGST:string;
-  CGST:string;
-  SGST:string;
-  discount:string;
-  discountamt:string;
-  totaltax: number ;
-  total: string ;
+  barcode: string;
+  itemcode: number;
+  itemname: number;
+  description: string;
+  quantity: number;
+  unitname: number;
+  mrp: number;
+  basicrate: number;
+  netrate: number;
+  grossrate: number;
+  taxrate: number;
+  IGST: number;
+  CGST: number;
+  SGST: number;
+  discount: number;
+  discountamt: number;
+  totaltax: number;
+  total: number;
 
-  totalitemno:string;
-  totalquantity:string;
-  totalgrossamt:string;
-  totaldiscountamt:string;
-  totaltaxamount:string;
-  totalnetamount:string;
+  totalitemno: string;
+  totalquantity: string;
+  totalgrossamt: string;
+  totaldiscountamt: string;
+  totaltaxamount: number;
+  totalnetamount: string;
   deliverydate: string;
   deliveryplace: string;
 
   roundoff: string;
-  pretax: string;
-  posttax: string;
+  pretax: number;
+  posttax: number;
   openingbalance: string;
   closingbalance: string;
   debit: string;
   credit: string;
+  companyid:number;
+  itemid:number;
+  userid:number;
+  executive:string;
+frombill:number;
 }
 
 @Injectable({
@@ -64,7 +70,7 @@ grossrate:string;
 export class PurchasereturnService {
 
   constructor(private httpclient:HttpClient) { }
-  createpurchasereturn(purchasesreturn:purchasereturnstore,key:string,user:string){
+  createpurchasereturn(purchasesreturn:purchasereturnstore[],key:string,user:string){
     return this.httpclient.post(environment.apiactionurl+environment.addpurchasereturn,purchasesreturn,{headers:{'key':key,'user':user}})
   }
   fetchallPurchasereturn(companyid:string,key:string,user:string): Observable<any> {

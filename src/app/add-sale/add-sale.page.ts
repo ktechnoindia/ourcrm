@@ -56,11 +56,10 @@ export class AddSalePage implements OnInit {
   refdate: string = '';
   orderDate: string = '';
   orderNumber: string = '';
-  // ponumber: string = '';
+   ponumber: string = '';
   gstin: string = '';
   salePerson: number = 0;
   payment: number = 0;
-
   //table data
   /*barcode: string = '';
   itemcode: string = '';
@@ -204,7 +203,8 @@ export class AddSalePage implements OnInit {
       credit: [''],
 
       ttotal: [''],
-      itemid: ['']
+      itemid: [''],
+      ponumber:['1'],
     })
   }
   async onSubmit(form: FormGroup, salesData: Sales[]) {
@@ -276,6 +276,8 @@ export class AddSalePage implements OnInit {
           closingbalance: this.myform.value.closingbalance,
           debit: this.myform.value.debit,
           credit: this.myform.value.credit,
+          ponumber: this.myform.value.ponumber,
+
           ttotal: 0,
 
           companyid: companyid,
