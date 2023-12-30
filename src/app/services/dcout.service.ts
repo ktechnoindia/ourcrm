@@ -7,10 +7,10 @@ export interface dcoutstore {
   voucherNumber: string;
   datetype: string;
   vendcode: string;
-  custname: number;
+  suppliertype: number;
   referenceNumber: number;
   refdate: string;
-
+  ponumber:string;
   barcode: string;
   itemcode: number;
   itemname: number;

@@ -50,10 +50,10 @@ export class DcOutPage implements OnInit {
   voucherNumber: string = '';
   datetype: string = '';
   vendcode: string = '';
-  custname: number = 0;
+  suppliertype: number = 0;
   referenceNumber: number = 0;
   refdate: string = '';
-  // ponumber: string = '';
+  ponumber: string = '';
 
   //table data
   /* barcode: string = '';
@@ -149,10 +149,10 @@ export class DcOutPage implements OnInit {
       voucherNumber: ['', Validators.required],
       datetype: [''],
       vendcode: ['', Validators.required],
-      custname: ['', Validators.required],
+      suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
-      // ponumber: [''],
+      ponumber: [''],
 
      //table
         barcode: [''],
@@ -199,7 +199,7 @@ export class DcOutPage implements OnInit {
 
   async onSubmit(form: FormGroup, dcoutData: Dcout[]) {
 
-    const fields = { voucherNumber: this.voucherNumber, custname: this.custname, vendcode: this.vendcode }
+    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -225,7 +225,7 @@ export class DcOutPage implements OnInit {
           voucherNumber: this.myform.value.voucherNumber,
           datetype: this.myform.value.datetype,
           vendcode: this.myform.value.vendcode,
-          custname: this.myform.value.custname,
+          suppliertype: this.myform.value.suppliertype,
           referenceNumber: this.myform.value.referenceNumber,
           refdate: this.myform.value.refdate,
 
@@ -260,12 +260,12 @@ export class DcOutPage implements OnInit {
           posttax: element.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
-          debit:this.myform.value.debit,
+          debit: this.myform.value.debit,
           credit: this.myform.value.credit,
-          companyid:companyid,
-          userid:userid,
+          companyid: companyid,
+          userid: userid,
           taxrate1: element.taxrate1,
-          
+          ponumber: this.myform.value.ponumber
         };
 
         dcoutdatas.push(dcoutdata);
