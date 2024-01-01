@@ -919,6 +919,10 @@ export const routes: Routes = [
     path: 'quantitypopover',
     loadComponent: () => import('./quantitypopover/quantitypopover.page').then( m => m.QuantitypopoverPage)
   },
+  {
+    path: 'transactionsetting',
+    loadComponent: () => import('./transactionsetting/transactionsetting.page').then( m => m.TransactionsettingPage)
+  },
 
 
 
