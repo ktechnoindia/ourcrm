@@ -19,7 +19,7 @@ ion-header {
   letter-spacing: 0.5px;
   font-size: 14px;
   margin-right: 20px;
-  background-color: rgb(235, 231, 231);
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   padding: 5px;
   border-radius: 20px;
 }
@@ -33,7 +33,7 @@ ion-header {
   padding: 5px 0px;
   border-radius: 5px;
   box-shadow: 1px 2px 4px 0px #51c9b9;
-  background-color: lightblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   width: 100px;
 
 }
@@ -61,7 +61,7 @@ ion-col {
 .navigation a {
   float: right;
   padding: 10px;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   width: 400px;
   margin: 5px;
 }
@@ -85,14 +85,47 @@ ion-icon {
 }
 
 .table-data {
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 }
 
 .table-container {
-  background-color: lightgrey;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 
 }
+ion-item:hover {
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
+  border-radius: 8px;
+  ion-icon{
+    transition: 0.5s all linear;
+    color: white;
+  }
+  ion-label{
+    color: #000;
+  }
+}
 
+.leadsrouter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.leadsrouter ion-icon {
+  padding: 5px;
+  color: rgb(0, 0, 0);
+}
+
+.leadsrouter ion-card {
+  margin: 10px;
+  width: 80%;
+}
+
+.leadsrouter ion-label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
 .container_fluid {
   width: 100%;
   display: flex;
@@ -188,17 +221,21 @@ input[type="date"] {
 
 .icon-container {
   width: 100%;
+  height: 350px;
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 }
 
 .leadscard ion-card {
   height:100px;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
 }
+
+
 
 .leadscard ion-icon {
   font-size: 22px;
@@ -215,7 +252,7 @@ input[type="date"] {
 
 .leadscard ion-label {
   font-size: 16px;
-  color: purple;
+  color: black;
   font-weight: bold;
 }
 
@@ -234,14 +271,14 @@ input[type="date"] {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   padding: 3px;
   margin: 5px;
   border-radius: 10px;
 }
 
 .dash ion-chip {
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   text-align: center;
   height: 40px;
   margin-top: 6px;
@@ -267,12 +304,12 @@ input[type="date"] {
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: purple;
+  color: black;
 }
 ion-item:hover {
-  background-color: rgb(224, 215, 215);
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   ion-icon{
-    color: purple;
+    color: white;
   }
   ion-label{
     color: #000;
@@ -286,19 +323,19 @@ ion-item:hover {
 
 .leadscard ion-title{
   font-size: 26px;
-  color: purple;
+  color: black;
   font-weight: bolder;
 }
 .leadscard ion-icon{
   font-size: 32px;
-  color: purple;
+  color:  rgb(211, 129, 142);
   font-weight: bolder;
 }
 .leadscard ion-label{
   font-size: 18px;
   color: black;
   font-weight: bold;
-  color: purple;
+  color: #5899E2;
 }
 .leadscard ion-card{
   height: 100%;
@@ -306,13 +343,13 @@ ion-item:hover {
 }
 .leadsrouter ion-icon{
   padding: 5px;
-  color: purple;
+  color: black;
 }
 .leadsrouter  ion-label{
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: purple;
+  color: white;
 }
 .leadsrouter ion-card{
   margin: 10px;

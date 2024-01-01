@@ -17,10 +17,10 @@
       <ion-row>
         <ion-col size="12" size-lg="9" size-md="8" size-sm="9">
           <div class="icon-container">
-            <ion-row class="leadscard">
+            <ion-row class="leadscard" style="margin-top: 40px;">
 
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" [routerLink]="'/view-quot'">
                   <ion-icon name="person-outline" ></ion-icon><br>
                   <ion-label >
                     Quatations
@@ -29,7 +29,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);">
+                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);" [routerLink]="'/dc-in-report'">
                   <ion-icon name="list-outline"></ion-icon><br>
                   <ion-label>
                     DC-IN
@@ -39,7 +39,7 @@
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightgray;">
+                <ion-card style="text-align: center;background-color: lightgray;" [routerLink]="'/dc-out-report'">
                   <ion-icon name="trophy-outline"></ion-icon><br>
                   <ion-label>
                     DC-OUT </ion-label>
@@ -47,7 +47,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightpink;">
+                <ion-card style="text-align: center;background-color: lightpink;" [routerLink]="'/view-sale'">
                   <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                   <ion-label>
                     Sales 
@@ -56,7 +56,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightsalmon;">
+                <ion-card style="text-align: center;background-color: lightsalmon;" [routerLink]="'/view-purchase'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
                     Purchase 
@@ -65,7 +65,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lemonchiffon;">
+                <ion-card style="text-align: center;background-color: lemonchiffon;" [routerLink]="'/view-salesreturn'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
                     Sales Return 
@@ -74,7 +74,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightblue;">
+                <ion-card style="text-align: center;background-color: lightblue;" [routerLink]="'/view-purchasereturn'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
                     Purchase Return 
@@ -142,8 +142,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Purchase List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -174,8 +174,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Sales List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -207,8 +207,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Quatations List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -231,8 +231,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Dc-in List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -258,8 +258,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Dc-out List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -285,8 +285,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Sales Return List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -315,8 +315,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Purchase Return List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>

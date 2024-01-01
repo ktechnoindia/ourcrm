@@ -1006,6 +1006,38 @@ ion-textarea[fill="outline"] input:focus {
     color: #ffffff;
 }
 
+.customs .searchbar-input {
+    background: linear-gradient(to right, #5899E2, #a8c3e2,#5899E2,#a8c3e2);
+    border: solid 1.5px white;
+    border-radius: 7px;
+  
+  }
+  
+  /* Change the text color of the search bar */
+  .customs.searchbar-input {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  
+  
+  /* Change the placeholder color of the search bar */
+  .customs .searchbar-input::placeholder {
+    color: #ffffff;
+  }
+  
+  /* Change the icon color of the search bar */
+  .customs .searchbar-icon {
+    color: #000000;
+  }
+  
+  /* Change the color of the cancel button */
+  .customs .searchbar-clear-icon {
+    color: #ffffff;
+  }
+.customs:focus{
+    background-color: white;
+}
 
 //progress bar
 ion-progress-bar::part(track) {

@@ -19,36 +19,13 @@ ion-header {
   letter-spacing: 0.5px;
   font-size: 14px;
   margin-right: 20px;
-  background-color: rgb(235, 231, 231);
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
   padding: 5px;
   border-radius: 20px;
 }
 
-.lead_icon {
-  margin: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 2px solid rgb(0, 191, 255);
-  padding: 5px 0px;
-  border-radius: 5px;
-  box-shadow: 1px 2px 4px 0px #51c9b9;
-  background-color: #2a52be;
-  width: 100px;
-
-}
-
 .line {
   line-height: 16px;
-}
-
-.lead_icon ion-icon {
-  color: black;
-  font-size: 20px;
-}
-
-.lead_icon a {
-  color: black;
 }
 
 ion-col {
@@ -57,27 +34,8 @@ ion-col {
 
 }
 
-
-.navigation a {
-  float: right;
-  padding: 10px;
-  background-color: #2a52be;
-  width: 400px;
-  margin: 5px;
-}
-
 .line {
   line-height: 11px;
-}
-
-ion-icon {
-  color: lightblue;
-  font-size: 20px;
-}
-
-.dash ion-label {
-  font-size: 13px;
-
 }
 
 .table_data {
@@ -88,12 +46,12 @@ ion-icon {
 }
 
 .table-data {
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
 }
 
 .table-container {
-  background-color: lightgrey;
-
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
+width: 500px;
 }
 ion-content{
   --margin-top: 80px !important;
@@ -108,16 +66,10 @@ ion-content{
 
 .table-container {
   width: 100%;
-  /* Set the width of the container */
   height: 400px;
-  /* Set the height of the container */
-  // overflow-x: scroll; /* Enable horizontal scrollbar when content overflows */
-  // overflow-y: scroll;
   padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  /* Enable vertical scrollbar when content overflows */
-  // background-color: rgb(169, 252, 241);
 }
 
 .scroll-container {
@@ -142,7 +94,7 @@ ion-content{
 
 /* Style the table inside the container */
 .table-container table {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: none;
   // border: 1px solid grey;
@@ -179,6 +131,7 @@ a {
 
 tr:hover {
   background-color: rgb(224, 215, 215);
+  border-radius: 10px;
 }
 
 tr a:hover {
@@ -197,7 +150,7 @@ input[type="date"] {
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-color: #38419D;
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
 }
 
 .leadscard ion-card {
@@ -208,18 +161,22 @@ input[type="date"] {
 
 .leadscard ion-title{
   font-size: 26px;
-  color: purple;
+  color: black;
   font-weight: bolder;
 }
 .leadscard ion-icon{
   font-size: 28px;
-  color: purple;
+  color: rgb(211, 129, 142);
   font-weight: bolder;
 }
 .leadscard ion-label{
   font-size: 18px;
   font-weight: bold;
-  color: purple;
+  color:#5899E2;
+}
+.hovers:hover{
+  background-color: white;
+  cursor: pointer;
 }
 .headinglabel ion-label {
   font-weight: bolder;
@@ -236,14 +193,16 @@ input[type="date"] {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  background-color: #38419D;
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
   padding: 3px;
   margin: 5px;
   border-radius: 10px;
+  color: black;
 }
 
 .dash ion-chip {
-  background-color: #2a52be;
+  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
+
   text-align: center;
   height: 40px;
   margin-top: 6px;
@@ -272,9 +231,11 @@ input[type="date"] {
   color: white;
 }
 ion-item:hover {
-  background-color: rgb(224, 215, 215);
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
+  border-radius: 8px;
   ion-icon{
-    color: purple;
+    transition: 0.5s all linear;
+    color: white;
   }
   ion-label{
     color: #000;
@@ -285,4 +246,5 @@ ion-item:hover {
     margin-top: 10px;
   }
 }
+
 

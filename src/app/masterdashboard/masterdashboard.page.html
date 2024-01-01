@@ -20,10 +20,9 @@
           <ion-col size="12"size-md="8" size-sm="9" size-lg="9" >
             <div class="icon-container">
               <ion-row class="leadscard">
-                
-               
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
+          
+                <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" class="hovers" [routerLink]="'/viewcustomer'">
                     <ion-icon name="list-outline"></ion-icon><br>
                     <ion-label>
                       Active Customer
@@ -31,8 +30,8 @@
                     <ion-title>{{totalCustomer }}</ion-title>
                   </ion-card>
                 </ion-col>
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center;background-color:rgb(199, 250, 199);">
+                <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color:rgb(199, 250, 199);" class="hovers" [routerLink]="'/viewsupplier'">
                     <ion-icon name="trophy-outline"></ion-icon><br>
                     <ion-label>
                       Active Supplier
@@ -41,11 +40,21 @@
                   </ion-card>
                 </ion-col>
 
-                <ion-col size="6" size-lg="4" size-md="4" size-sm="4">
-                  <ion-card style="text-align: center;background-color: lightgray;">
+                <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: lightgray;" class="hovers" [routerLink]="'/viewitem'">
                     <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                     <ion-label>
                       Total Items
+                    </ion-label>
+                    <ion-title>{{totalItems}}</ion-title>
+                  </ion-card>
+                </ion-col>
+
+                <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                  <ion-card style="text-align: center;background-color: rgb(228, 228, 163);" class="hovers" [routerLink]="'/viewexicutive'">
+                    <ion-icon name="shield-checkmark-outline"></ion-icon><br>
+                    <ion-label>
+                      Executive
                     </ion-label>
                     <ion-title>{{totalItems}}</ion-title>
                   </ion-card>
@@ -93,8 +102,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Customer List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container" style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container" style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 100px !important">Sr. No.</th>
@@ -120,8 +129,8 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Supplier List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 100px !important">Sr. No.</th>
@@ -142,12 +151,12 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="lead_details">
+    <ion-row class="">
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Executive List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
-          <div class="scroll-container"style="width: 550px;">
+          <ion-searchbar class="customs"></ion-searchbar>
+          <div class="scroll-container"style="width: 630px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px;">Sr. No.</th>
@@ -172,7 +181,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Item List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
+          <ion-searchbar class="customs"></ion-searchbar>
           <div class="scroll-container"style="width: 550px;">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>

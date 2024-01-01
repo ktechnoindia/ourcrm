@@ -19,7 +19,7 @@ ion-header {
   letter-spacing: 0.5px;
   font-size: 14px;
   margin-right: 20px;
-  background-color: rgb(235, 231, 231);
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   padding: 5px;
   border-radius: 20px;
 }
@@ -61,7 +61,7 @@ ion-col {
 .navigation a {
   float: right;
   padding: 10px;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   width: 400px;
   margin: 5px;
 }
@@ -88,11 +88,11 @@ ion-icon {
 }
 
 .table-data {
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 }
 
 .table-container {
-  background-color: lightgrey;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 
 }
 
@@ -176,7 +176,7 @@ a {
 }
 
 tr:hover {
-  background-color: rgb(224, 215, 215);
+  background-color: lightgrey;
 }
 
 tr a:hover {
@@ -195,7 +195,7 @@ input[type="date"] {
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
 }
 
 .leadscard ion-card {
@@ -206,18 +206,18 @@ input[type="date"] {
 
 .leadscard ion-title{
   font-size: 26px;
-  color: purple;
+  color: black;
   font-weight: bolder;
 }
 .leadscard ion-icon{
   font-size: 28px;
-  color: purple;
+  color: rgb(211, 129, 142);
   font-weight: bolder;
 }
 .leadscard ion-label{
   font-size: 18px;
   font-weight: bold;
-  color: purple;
+  color: #5899E2;
 }
 .headinglabel ion-label {
   font-weight: bolder;
@@ -225,6 +225,7 @@ input[type="date"] {
   font-size: 16px;
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
+
 }
 
 .dash ion-title {
@@ -234,14 +235,15 @@ input[type="date"] {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   padding: 3px;
   margin: 5px;
   border-radius: 10px;
+  color:black;
 }
 
 .dash ion-chip {
-  background-color: lightsteelblue;
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   text-align: center;
   height: 40px;
   margin-top: 6px;
@@ -267,12 +269,12 @@ input[type="date"] {
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: purple;
+  color: white;
 }
 ion-item:hover {
-  background-color: rgb(224, 215, 215);
+  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
   ion-icon{
-    color: purple;
+    color: white;
   }
   ion-label{
     color: #000;
