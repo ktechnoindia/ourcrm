@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DcoutService, dcoutstore } from '../services/dcout.service';
@@ -14,6 +14,7 @@ import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 import { CustomerService } from '../services/customer.service';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 interface Dcout {
   posttax: number;
   pretax: number;
@@ -134,7 +135,7 @@ export class DcOutPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor( private navCtrl:NavController,private custname1: CustomerService,private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
+  constructor( private navCtrl:NavController,private popoverController:PopoverController,private custname1: CustomerService,private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -194,6 +195,26 @@ export class DcOutPage implements OnInit {
         ttotal: [''],
         itemid:['']
     })
+  }
+
+  async presentPopover(dcin: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: dcin.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(dcout:Dcout) {
+    // Open the popover when quantity changes
+    if (dcout.quantity > 0) {
+      this.presentPopover(dcout);
+    }
   }
 
 

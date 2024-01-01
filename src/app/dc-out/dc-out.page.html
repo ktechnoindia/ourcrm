@@ -152,7 +152,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (ngModelChange)="presentPopover(dcout)">
 
                     </td>
                     <td style="width: 90px;">

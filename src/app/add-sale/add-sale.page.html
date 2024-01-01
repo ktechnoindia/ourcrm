@@ -188,7 +188,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (ngModelChange)="presentPopover(sales)">
 
                     </td>
                     <td style="width: 90px;">

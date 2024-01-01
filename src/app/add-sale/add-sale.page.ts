@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SalesService, salesstore } from '../services/sales.service';
@@ -13,6 +13,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { ExecutiveService } from '../services/executive.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -139,7 +140,7 @@ export class AddSalePage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl: NavController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController,private popoverController:PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -206,7 +207,29 @@ export class AddSalePage implements OnInit {
       itemid: [''],
       ponumber:['1'],
     })
+  };
+
+  async presentPopover(dcin: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: dcin.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
   }
+
+
+  updateRows(sales:Sales) {
+    // Open the popover when quantity changes
+    if (sales.quantity > 0) {
+      this.presentPopover(sales);
+    }
+  }
+  
+
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
