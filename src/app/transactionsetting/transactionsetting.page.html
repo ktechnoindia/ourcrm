@@ -1,0 +1,965 @@
+<ion-content>
+  <div class="Customer">
+    <ion-card>
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Transaction Pages Setting</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <form action="">
+            <ion-row style="border-bottom: solid 1px grey; padding: 3px;">
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOption" class="always-flip"
+                  toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Transaction Pages"
+                  label-placement="floating" fill="outline">
+                  <ion-select-option value="addquote">Add Quotation</ion-select-option>
+                  <ion-select-option value="addSales">Add Sales</ion-select-option>
+                  <ion-select-option value="addPurchase">Add Purchase</ion-select-option>
+                  <ion-select-option value="dcin">DC-IN</ion-select-option>
+                  <ion-select-option value="dcout">DC-OUT</ion-select-option>
+                  <ion-select-option value="salesreturn">Sales Return</ion-select-option>
+                  <ion-select-option value="purchasereturn">Purchase Return</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                <ion-row class="custom-primary">
+                  <ion-button expand="block">Ok</ion-button>
+                  <ion-button expand="block" type="submit">Save</ion-button>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="selectedOption === 'addSales'">
+              <h1>Sales Bill Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'addPurchase'">
+              <h1>Purchase Bill Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'purchasereturn'">
+              <h1>Purchase Return Page Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'salesreturn'">
+              <h1>Sales Return Page Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'dcin'">
+              <h1>DC-IN Page Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'dcout'">
+              <h1>DC-OUT Page Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+            <div *ngIf="selectedOption === 'addquote'">
+              <h1>Add Quotation Page Setting</h1>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bill Formate : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Bill Formate" label-placement="floating" fill="outline">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Billing No. :</ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Auto</ion-toggle>Manual
+                  <ion-row style="margin-top: 5px;">
+                    <input type="text" placeholder="Prefix"><input type="tel" placeholder="Number"><input type="text"
+                      placeholder="Postfix">
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Refrence Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order No. : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Order Date : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Sale Person : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Pre Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Post Tax : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Bar Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Item Code : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>Description : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>CGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>SGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+              <ion-row style="margin-top: 5px;border-bottom: solid 1px grey; padding: 3px;">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-label>IGST : </ion-label>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                  <ion-toggle aria-label="Secondary toggle" color="secondary" [checked]="true">Show</ion-toggle>Hide
+                </ion-col>
+              </ion-row>
+
+            </div>
+          </form>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

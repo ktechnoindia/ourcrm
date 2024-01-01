@@ -16,12 +16,13 @@
         <!-- <li><a routerLink="closecompany">Close</a></li> -->
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown">
-          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate">User Create</a>
-          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/viewuser">View User</a>
+          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/transactionsetting">Transaction Setting</a>
+          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/usercreate">User Create</a>
+          <a (click)="selectOption('Option 3')" isDropdownOpen=false; routerLink="/viewuser">View User</a>
           <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/roleassign">Role Assign</a>
-          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/password"> Create Password</a>
-          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/changepassword">Change Password</a>
-          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/login">Login</a>
+          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/password"> Create Password</a>
+          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/changepassword">Change Password</a>
+          <a (click)="selectOption('Option 7')" isDropdownOpen=false; routerLink="/login">Login</a>
 
 
         </div>
@@ -189,17 +190,19 @@
         <!-- <li><a routerLink="closecompany" (click)="closeMobileMenu()">Close</a></li> -->
         <li (click)="toggleDropdown()">Setting > </li>
         <div *ngIf="isDropdownOpen" class="right-dropdown ">
-          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/usercreate"
+          <a (click)="selectOption('Option 1')" isDropdownOpen=false; routerLink="/transactionsetting"
+          (click)="closeMobileMenu()">Transaction Setting</a>
+          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/usercreate"
             (click)="closeMobileMenu()">User Create</a>
-          <a (click)="selectOption('Option 2')" isDropdownOpen=false; routerLink="/viewuser"
+          <a (click)="selectOption('Option 3')" isDropdownOpen=false; routerLink="/viewuser"
             (click)="closeMobileMenu()">View User</a>
-          <a (click)="selectOption('Option 3')" isDropdownOpen=false; routerLink="/roleassign"
+          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/roleassign"
             (click)="closeMobileMenu()">Role Assign</a>
-          <a (click)="selectOption('Option 4')" isDropdownOpen=false; routerLink="/password"
+          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/password"
             (click)="closeMobileMenu()">Password</a>
-          <a (click)="selectOption('Option 5')" isDropdownOpen=false; routerLink="/changepassword"
+          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/changepassword"
             (click)="closeMobileMenu()">Change Password</a>
-          <a (click)="selectOption('Option 6')" isDropdownOpen=false; routerLink="/login"
+          <a (click)="selectOption('Option 7')" isDropdownOpen=false; routerLink="/login"
             (click)="closeMobileMenu()">Login</a>
         </div>
       </ul>
