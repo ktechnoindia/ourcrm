@@ -7,7 +7,7 @@ import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { CreatecompanyService } from '../services/createcompany.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { VendorService } from '../services/vendor.service';
 import { CustomerService } from '../services/customer.service';
@@ -234,15 +234,18 @@ userid:number=0;
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
   
     // Assuming outstanding_amount is a regular variable
-    this.myform.get('companyname')?.valueChanges.subscribe((companyId: number) => {
-      // Fetch outstanding amount based on the selected companyname
-      this.receiptservice.fetchUserOutstanding(companyId).subscribe((outstanding: any) => {
-        // Update the outstanding_amount variable
-        this.outstanding_amount = outstanding.amount;
-      });
+    this.myform.get('companyname')?.valueChanges.pipe(
+      switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
+    ).subscribe((outstandingArray: any[]) => {
+      if (outstandingArray && outstandingArray.length > 0) {
+        const firstItem = outstandingArray[0];
+        this.outstanding_amount = firstItem.outstanding_amount;
+        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
+      } else {
+        console.error('Invalid outstanding response:', outstandingArray);
+      }
     });
-    
-  }
+  }    
 onCompanyChange(event: any) {
     // Handle any additional logic when the company name is selected
   }

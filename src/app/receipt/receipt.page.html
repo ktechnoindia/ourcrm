@@ -67,17 +67,11 @@
                               </option>
                             </select>
                           </td>
-                          <td *ngIf="outstanding_amount !== undefined">
-                            <ion-input class="table_input" name="outstanding_amount" [(ngModel)]="outstanding_amount" 
-                              formControlName="outstanding_amount" type="text">{{outstanding_amount}}
-                              
-                            </ion-input>
-                         
-                          
-                         
-                              
-                              <ion-input   [(ngModel)]="companyname" type="number" name="userid" formControlName="userid"></ion-input>
-                          </td>
+                       <!-- Assuming the input field for outstanding_amount is in the first row -->
+<td *ngIf="outstanding_amount !== null">
+  <ion-input class="table_input" name="outstanding" [value]="outstanding_amount" formControlName="outstanding_amount" type="number"></ion-input>
+</td>
+
                           <td>
                             <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"(input)="calculatePendingAmount()"
                               formControlName="paymentmade" type="text"></ion-input>
