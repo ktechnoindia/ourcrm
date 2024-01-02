@@ -39,6 +39,7 @@ interface Sales {
   total: number;
   taxrate1: number;
   itemid: number;
+  selectedItemId:number;
 }
 @Component({
   selector: 'app-add-sale',
@@ -121,6 +122,7 @@ export class AddSalePage implements OnInit {
     pretax: 0,
     posttax: 0,
     itemid: 0,
+    selectedItemId:0
   }];
   ttotal: number = 0;
   myform: FormGroup;
@@ -342,8 +344,8 @@ export class AddSalePage implements OnInit {
 
   getItems(sales: any) {
     const compid = 1;
-    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
-    const value = sales.itemcode;
+    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
+    const value = sales.selectedItemId ||sales.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -437,6 +439,7 @@ export class AddSalePage implements OnInit {
       pretax: 0,
       posttax: 0,
       itemid: 0,
+      selectedItemId:0
     };
     this.salesData.push(newRow);
   }

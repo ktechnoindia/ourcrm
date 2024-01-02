@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
@@ -12,6 +12,7 @@ import { VendorService } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 
 interface Purchase {
   barcode: string;
@@ -36,6 +37,7 @@ interface Purchase {
   posttax: number;
   pretax: number;
   itemid: number;
+  selectedItemId:number;
 }
 @Component({
   selector: 'app-add-purchase',
@@ -121,7 +123,8 @@ export class AddPurchasePage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
-    itemid: 0
+    itemid: 0,
+    selectedItemId:0
   }];
   ttotal!: number;
   itemid: number = 0;
@@ -145,7 +148,7 @@ export class AddPurchasePage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl: NavController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController,private popoverController:PopoverController ,private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -215,6 +218,26 @@ export class AddPurchasePage implements OnInit {
       companyid: [0],
       userid: [0],
     })
+  }
+
+  async presentPopover(purchase: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: purchase.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(purchase:Purchase) {
+    // Open the popover when quantity changes
+    if (purchase.quantity > 0) {
+      this.presentPopover(purchase);
+    }
   }
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
@@ -327,8 +350,8 @@ export class AddPurchasePage implements OnInit {
 
   getItems(sales: any) {
     const compid = 1;
-    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
-    const value = sales.itemcode;
+    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
+    const value = sales.selectedItemId ||sales.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -419,7 +442,8 @@ export class AddPurchasePage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid:0
+      itemid:0,
+      selectedItemId:0
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);

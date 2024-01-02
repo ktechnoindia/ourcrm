@@ -131,7 +131,7 @@
                         (ngModelChange)="getItems(dcout)" class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="dcout.itemcode" [ngModelOptions]="{standalone: true}"
+                      <select class="select-option" [(ngModel)]="dcout.selectedItemId" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(dcout)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
@@ -151,7 +151,7 @@
                         type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="dcout.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                      <input *ngIf="dcout.itemcode !==0" [(ngModel)]="dcout.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number" (ngModelChange)="presentPopover(dcout)">
 
                     </td>

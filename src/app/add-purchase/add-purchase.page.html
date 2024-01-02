@@ -165,7 +165,7 @@
                         type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="purchase.itemcode"
+                      <select class="select-option" [(ngModel)]="purchase.selectedItemId"
                         [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(purchase)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
@@ -185,8 +185,8 @@
                         class="table_input  description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                      <input *ngIf="purchase.itemcode !== 0" [(ngModel)]="purchase.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number" (ngModelChange)="presentPopover(purchase)">
 
                     </td>
                     <td>

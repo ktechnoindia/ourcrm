@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
@@ -13,6 +13,7 @@ import { AdditemService } from '../services/additem.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { purchasestore } from '../services/purchase.service';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 interface Purchase {
   barcode: string;
   itemcode: number;
@@ -36,6 +37,7 @@ interface Purchase {
   posttax: number;
   pretax: number;
   itemid: number;
+  selectedItemId:number;
 }
 @Component({
   selector: 'app-purchasereturn',
@@ -118,7 +120,8 @@ export class PurchasereturnPage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
-    itemid: 0
+    itemid: 0,
+    selectedItemId:0
   }];
   ttotal!: number;
   itemid: number = 0;
@@ -143,7 +146,7 @@ export class PurchasereturnPage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
+  constructor(private navCtrl:NavController,private popoverController:PopoverController,private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -215,6 +218,26 @@ export class PurchasereturnPage implements OnInit {
       companyid: [0],
       userid: [0],
     })
+  }
+
+  async presentPopover(purchasereturn: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: purchasereturn.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(purchasereturn:Purchase) {
+    // Open the popover when quantity changes
+    if (purchasereturn.quantity > 0) {
+      this.presentPopover(purchasereturn);
+    }
   }
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
@@ -328,8 +351,8 @@ export class PurchasereturnPage implements OnInit {
 
   getItems(sales: any) {
     const compid = 1;
-    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
-    const value = sales.itemcode;
+    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
+    const value = sales.selectedItemId || sales.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -420,7 +443,8 @@ export class PurchasereturnPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid:0
+      itemid:0,
+      selectedItemId:0
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
