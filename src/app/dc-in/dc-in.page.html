@@ -130,7 +130,7 @@
                           type="number" (ngModelChange)="getItems(dcin)">
                       </td>
                       <td style="width: 90px;">
-                        <select class="table_select" [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(dcin)">
+                        <select class="table_select" [(ngModel)]="dcin.selectedItemId" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(dcin)">
                           <option value="0">Item Name</option><!-- Default option -->
                           <option *ngFor="let item of itemnames$ | async" [value]="item.tid">
                             {{ item.itemDesc }}
@@ -145,7 +145,7 @@
                           
                       </td>
                       <td>
-                        <input [(ngModel)]="dcin.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                        <input *ngIf="dcin.itemcode !== 0" [(ngModel)]="dcin.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
                           type="number" (ngModelChange)="presentPopover(dcin)">
 
                       </td>

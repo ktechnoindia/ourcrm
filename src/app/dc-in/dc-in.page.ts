@@ -42,6 +42,7 @@ interface Dcin {
   total: number;
   taxrate1: number;
   itemid: number;
+  selectedItemId:number;
 }
 @Component({
   selector: 'app-dc-in',
@@ -100,7 +101,8 @@ export class DcInPage implements OnInit {
     taxrate1: 0,
     pretax: 0,
     posttax: 0,
-    itemid: 0
+    itemid: 0,
+    selectedItemId:0
   }];
 
   ttotal!: number;
@@ -313,23 +315,23 @@ export class DcInPage implements OnInit {
 
   getItems(dcin: any) {
     const compid = 1;
-    const identifier = dcin.itemcode ? 'itemname' : 'itemcode';
-    const value = dcin.itemcode;
-
+    const identifier = dcin.selectedItemId ? 'itemname' : 'itemcode'; // Update this line
+    const value = dcin.selectedItemId || dcin.itemcode; // Update this line
+  
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
-
+  
         if (data && data.length > 0) {
           const itemDetails = data[0];
-
+  
           // Update the quote properties
           dcin.itemcode = itemDetails.itemCode;
           dcin.itemname = itemDetails.itemDesc;
           dcin.barcode = itemDetails.barcode.toString();
           dcin.unitname = itemDetails.unitname;
           dcin.taxrate = itemDetails.selectGst;
-
+  
           // Update form control values
           this.myform.patchValue({
             itemcode: dcin.itemcode,
@@ -345,6 +347,7 @@ export class DcInPage implements OnInit {
       }
     );
   }
+  
 
   getSuppliers(event: any) {
     const compid = '1';
@@ -404,7 +407,8 @@ export class DcInPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid: 0
+      itemid: 0,
+      selectedItemId:0
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
