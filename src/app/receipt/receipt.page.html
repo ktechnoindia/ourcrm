@@ -60,19 +60,26 @@
                         <tr>
                           <td>
                             <select class="select-option" name="companyname" [(ngModel)]="companyname"
-                              formControlName="companyname" (change)="onCustomerChange()">
+                              formControlName="companyname" (change)="onCompanyChange($event)">
                               <option value="0">Ledger Name</option>
-                              <option *ngFor="let customername of customer$ | async" [value]="customername.id">
-                                {{ customername.name }}
+                              <option *ngFor="let customer of customer$ | async" [value]="customer.id">
+                                {{ customer.name }}
                               </option>
                             </select>
                           </td>
-                          <td>
-                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
-                              formControlName="outstanding" type="text"></ion-input>
+                          <td *ngIf="outstanding_amount !== undefined">
+                            <ion-input class="table_input" name="outstanding_amount" [(ngModel)]="outstanding_amount" 
+                              formControlName="outstanding_amount" type="text">{{outstanding_amount}}
+                              
+                            </ion-input>
+                         
+                          
+                         
+                              
+                              <ion-input   [(ngModel)]="companyname" type="number" name="userid" formControlName="userid"></ion-input>
                           </td>
                           <td>
-                            <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"
+                            <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"(input)="calculatePendingAmount()"
                               formControlName="paymentmade" type="text"></ion-input>
                           </td>
                           <td>

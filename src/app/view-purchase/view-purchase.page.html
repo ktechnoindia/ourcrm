@@ -25,6 +25,7 @@
           <ion-grid class="add_sale">
             <form #viewPurchaseForm="ngForm" >
               <ion-row>
+
                 <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
                   <ion-row>
                     <ion-input color="warning" [(ngModel)]="formDate" name="fromDate" type="date" label=" From Date  :"
@@ -37,15 +38,72 @@
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
+
                 <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-                  <ion-button  expand="block" (click)="filterData()" >Ok</ion-button>
+                  <ion-button expand="block" (click)="filterData()">Ok</ion-button>
+                </ion-col>
+                <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                    name="selectedColumns" multiple="true">
+                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ col }}</ion-select-option>
+                  </ion-select>
+                </ion-col>
+                <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                    <ion-select-option value="Standard">Standard</ion-select-option>
+                    <ion-select-option value="PartyWise">PartyWise</ion-select-option>
+                    <ion-select-option value="ItemWise">ItemWise</ion-select-option>
+                    <ion-select-option value="Detailed">Detailed</ion-select-option>
+
+                  </ion-select>
                 </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-searchbar class="custom " [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
-              <ion-row style="margin: 0 auto; width: 100%;">
+              <ion-row class="Executive">
+                <div #content style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+                  <table style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th>Sr. No.</th>
+                        <th *ngFor="let col of selectedColumns">{{ col }}</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td *ngFor="let col of selectedColumns">{{ purchase[col.toLowerCase()] }}</td>
+                        <td class="Action">
+                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                          <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td [attr.colspan]="selectedColumns.length + 1">
+                          <p style="text-align: left; justify-content: left; margin-left: 20px; font-weight: bold;">Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </ion-row>
+              <ion-row class="custom-primary" style="justify-content: right;">
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                    color="secondry"></ion-icon>Print</ion-button>
+                <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                    color="secondry"></ion-icon>Export To PDF</ion-button>
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                    color="secondry"></ion-icon>Preview</ion-button>
+                <!-- <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
+                  color="secondry"></ion-icon>Export Excel</ion-button> -->
+              </ion-row>
+              <!-- <ion-row style="margin: 0 auto; width: 100%;">
                 <div class="scroll-container" style="overflow-x:auto; width: 100%;">
                   <table style="width:3000px;overflow-x: auto;overflow-y: auto;">
                     <tr>
@@ -133,18 +191,7 @@
 
                   </table>
                 </div>
-              </ion-row>
-              <ion-row class="custom-primary" style="justify-content: right;">
-                <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
-                    color="secondry"></ion-icon>Print</ion-button>
-                <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
-                    color="secondry"></ion-icon>Export To PDF</ion-button>
-                <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
-                    color="secondry"></ion-icon>Preview</ion-button>
-                <!-- <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
-                  color="secondry"></ion-icon>Export Excel</ion-button> -->
-              </ion-row>
-
+              </ion-row> -->
             </form>
           </ion-grid>
         </div>
