@@ -21,7 +21,8 @@ export class LeaddashboardPage implements OnInit {
 
   menuType = 'push';
   public number: number = 1000;
-  
+  selectedOptions: string[] = [];
+
 
   dataTable = [
     ['City', '2010 Population', '2000 Population'],

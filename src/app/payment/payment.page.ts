@@ -78,8 +78,8 @@ this.myform= this.formBuilder.group({
   total:[''],
   balance:[''],
   total_payment:[''],
-  billtype:[''],
-  selectdrcr:[''],
+  billtype:1,
+  selectdrcr:1,
   particular:[''],
   datetype:[''],
   reference:[''],
@@ -93,8 +93,8 @@ this.myform= this.formBuilder.group({
   currentamt:[''],
   ledgername:1,
   companyname:1,
-  debit:1,
-  credit:1,
+  debit:['1'],
+  credit:['1'],
 })
 
 const compid='1';

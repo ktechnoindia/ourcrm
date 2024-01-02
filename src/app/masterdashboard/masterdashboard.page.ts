@@ -27,6 +27,7 @@ export class MasterdashboardPage implements OnInit {
   totalSupplier:number=0;
   totalItems:number=0;
   sharedService: any;
+  selectedOptions: string[] = [];
 
   constructor(private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     const compid = '1';

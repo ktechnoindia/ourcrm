@@ -87,9 +87,22 @@
         </ion-col>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
           <div class="icon-container">
-            <!-- <ion-row class="headinglabel" style="text-align: center;">
-              <ion-label color="dark">Manage Master :</ion-label>
-            </ion-row> -->
+            <ion-row>
+              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
+              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
+              label-placement="floating" fill="outline">
+                <ion-select-option value="purchaselist">Purchase List</ion-select-option>
+                <ion-select-option value="saleslist">Sales List</ion-select-option>
+                <ion-select-option value="quotelist">Quatations List</ion-select-option>
+                <ion-select-option value="dcinlist">DC-IN List</ion-select-option>
+                <ion-select-option value="dcoutlist">DC-OUT List</ion-select-option>
+                <ion-select-option value="purchasereturnlist">Purchase Return List</ion-select-option>
+                <ion-select-option value="salreturnslist">Sales Return List</ion-select-option>
+              </ion-select>
+            </ion-row>
+            <ion-row class="headinglabel" style="text-align: center;">
+              <ion-label color="dark">Manage Transtaction Pages:</ion-label>
+            </ion-row>
             <ion-row class="leadsrouter">
               <ion-item [routerLink]="['/add-quot']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
@@ -140,10 +153,10 @@
     <ion-row class="lead_details">
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container"*ngIf="selectedOptions.includes('purchaselist')">
           <p>Purchase List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container" >
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -172,10 +185,10 @@
 
      
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
           <p>Sales List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -205,10 +218,10 @@
     <ion-row class="lead_details">
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('quotelist')">
           <p>Quatations List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -229,10 +242,10 @@
 
      
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Dc-in List</p>
+        <div class="table-container" *ngIf="selectedOptions.includes('dcinlist')">
+          <p>DC-IN List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -256,10 +269,10 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
-          <p>Dc-out List</p>
+        <div class="table-container" *ngIf="selectedOptions.includes('dc-out')">
+          <p>DC-OUT List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -283,10 +296,10 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('salreturnslist')">
           <p>Sales Return List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -313,10 +326,10 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container"*ngIf="selectedOptions.includes('purchasereturnlist')">
           <p>Purchase Return List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>

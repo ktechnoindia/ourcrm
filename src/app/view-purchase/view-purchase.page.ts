@@ -22,6 +22,7 @@ export class ViewPurchasePage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
+  totalItems: number = 0;
 
   generatePdf() {
     let pdf = new jsPDF()
@@ -44,6 +45,58 @@ export class ViewPurchasePage implements OnInit {
 
   //   this.excelService.generateExcel(data, fileName);
   // }
+  // filteredSales: Observable<any[]>;
+  availableColumns: string[] = [
+    'billformate',
+    'billNumber',
+    'billDate',
+    'custcode',
+    'custname',
+    'refrence',
+    'refdate',
+    'orderDate',
+    'orderNumber',
+    'gstin',
+    'salePerson',
+    'payment',
+    'deliverydate',
+    'deliveryplace',
+    'barcode',
+    'itemcode',
+    'itemname',
+    '.description',
+    'quantity',
+    'unitname',
+    'mrp',
+    'basicrate',
+    'netrate',
+    'grossrate',
+    'taxrate',
+    'IGST',
+    'CGST',
+    'SGST',
+    'discount',
+    'discountamt',
+    'totaltax',
+    'pretax',
+    'posttax',
+    'total',
+
+  ];
+  selectedColumns: string[] = [
+    'billformate',
+    'billDate',
+    'billNumber',
+    'custcode',
+    'custname',
+    'itemcode',
+    'itemname',
+    'quantity',
+    'unitname',
+    'taxrate',
+    'totaltax',
+    'total',
+  ];
   purchase$: Observable<any[]>
   searchTerm: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
@@ -55,8 +108,10 @@ export class ViewPurchasePage implements OnInit {
     console.log(this.purchase$);
 
     this.purchase$.subscribe(data => {
-      console.log(data); // Log the data to the  console to verify if it's being fetched
-    });
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+      this.totalItems = data.length;
+        });
     this.filteredPurchase$ = this.purchase$;
    }
 
