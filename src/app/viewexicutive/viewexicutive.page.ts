@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -7,6 +7,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
 import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
 import { RouterModule,RouterLink } from '@angular/router';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-viewexicutive',
@@ -16,6 +17,7 @@ import { RouterModule,RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink]
 })
 export class ViewexicutivePage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
   formDate:string='';
   toDate:string='';
   executives$: Observable<any[]>
@@ -43,6 +45,19 @@ export class ViewexicutivePage implements OnInit {
     'emobile',
     'eemail',
   ];
+  generatePdf() {
+    let pdf = new jsPDF()
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
   totalItems: number = 0;
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:ExecutiveService) { 
     const compid='1';

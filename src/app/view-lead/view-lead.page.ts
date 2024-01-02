@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -12,6 +12,7 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap, take } 
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
 import { NavController } from '@ionic/angular';
+import jsPDF from 'jspdf';
 interface Lead{
   catPerson:string,
   companyname:string,
@@ -41,6 +42,7 @@ interface Lead{
   imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink,ReactiveFormsModule]
 })
 export class ViewLeadPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
 
   viewLeadForm: FormGroup;
   executive$: any;
@@ -51,7 +53,19 @@ export class ViewLeadPage implements OnInit {
   lead$:Observable<any[]>;
   searchTerm: string = '';
   filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
+  generatePdf() {
+    let pdf = new jsPDF()
 
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
   constructor(private encService: EncryptionService,private navCtrl:NavController,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');

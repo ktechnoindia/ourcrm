@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class AccountdashboardPage implements OnInit {
+  selectedOptions: string[] = [];
 
   constructor() { }
 

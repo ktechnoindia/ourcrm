@@ -40,6 +40,7 @@ export class TranscationdashboardPage implements OnInit {
   salreturn$: Observable<any[]>;
   totalsalesreturn: number=0;
   totalpurchasereturn: number=0;
+  selectedOptions: string[] = [];
 
   constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,private salereturnservice:SalereturnService,private purchasereturnservice:PurchasereturnService, ) { 
     const compid = '1';

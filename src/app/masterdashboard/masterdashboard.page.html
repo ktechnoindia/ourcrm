@@ -6,6 +6,7 @@
       <ion-title>
         Master Dashboard
       </ion-title>
+     
       <ion-chip>
         <ion-avatar>
           <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
@@ -54,7 +55,7 @@
                   <ion-card style="text-align: center;background-color: rgb(228, 228, 163);" class="hovers" [routerLink]="'/viewexicutive'">
                     <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                     <ion-label>
-                      Executive
+                      Total Executive
                     </ion-label>
                     <ion-title>{{totalItems}}</ion-title>
                   </ion-card>
@@ -65,7 +66,19 @@
           </ion-col>
           <ion-col size="12" size-lg="3"  size-sm="3"size-md="4">
             <div class="icon-container">
-             
+              <ion-row>
+                <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
+                toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
+                label-placement="floating" fill="outline">
+                  <ion-select-option value="customerlist">Customer List</ion-select-option>
+                  <ion-select-option value="vendorlist">Vendor List</ion-select-option>
+                  <ion-select-option value="executivelist">Executive List</ion-select-option>
+                  <ion-select-option value="itemlist">Item List</ion-select-option>
+                </ion-select>
+              </ion-row>
+              <ion-row class="headinglabel" style="text-align: center;">
+                <ion-label color="dark">Master Page Manage :</ion-label>
+              </ion-row>
               <ion-row class="leadsrouter">
                 <ion-item [routerLink]="['/add-customer']">
                   <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
@@ -88,6 +101,7 @@
                   </ion-label><ion-icon name="arrow-forward-outline" ></ion-icon>
                 </ion-item>
               </ion-row>
+             
             </div>
           </ion-col>
         </ion-row>
@@ -97,10 +111,10 @@
   <ion-grid>
     <ion-row class="lead_details">
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
           <p>Customer List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container" style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 750px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th >Sr. No.</th>
@@ -124,10 +138,10 @@
         </div>
       </ion-col>
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
           <p>Supplier List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 700px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th >Sr. No.</th>
@@ -150,10 +164,10 @@
     </ion-row>
     <ion-row class="">
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
           <p>Executive List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 900px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th >Sr. No.</th>
@@ -176,10 +190,10 @@
         </div>
       </ion-col>
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container">
+        <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
           <p>Item List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container"style="width: 630px;">
+          <div class="scroll-container">
             <table style="width: 700px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th >Sr. No.</th>

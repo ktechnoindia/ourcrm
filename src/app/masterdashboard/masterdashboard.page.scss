@@ -71,7 +71,7 @@ ion-content{
 }
 
 .scroll-container {
-  width: 630px;
+  width: 580px;
   /* Set the width of the container */
   height: 290px;
   /* Set the height of the container */
@@ -144,7 +144,7 @@ input[type="date"] {
 }
 
 .icon-container {
-  height: 235px;
+  height: 300px;
   width: 100%;
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -243,6 +243,19 @@ ion-item:hover {
 @media(max-width:575px){
   .icon-container {
     margin-top: 10px;
+  }
+  
+}
+@media(max-width:375px){
+  .scroll-container {
+    width: 350px;
+    /* Set the width of the container */
+    height: 290px;
+    /* Set the height of the container */
+    overflow-x: scroll;
+    /* Enable horizontal scrollbar when content overflows */
+    overflow-y: scroll;
+    // background-color: white;
   }
 }
 
