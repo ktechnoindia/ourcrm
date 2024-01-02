@@ -441,7 +441,7 @@ export class DcInPage implements OnInit {
   }
 
   getTotaltax(quote: Dcin): number {
-    return quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
+    return quote.quantity * (quote.taxrate / 100 * quote.basicrate);
     //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getAllRows() {
@@ -614,7 +614,7 @@ export class DcInPage implements OnInit {
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
       dcin.taxrate1 = numericValue;
-
+      this.calculateCGST(numericValue,dcin)
       // Use numericValue as needed
     } else {
       dcin.taxrate1 = 0;
@@ -624,33 +624,31 @@ export class DcInPage implements OnInit {
   }
 
   // Add a function to calculate igst, cgst, and sgst based on the selected taxrate
-calculateGST(dcin: any) {
+calculateGST(dcin: Dcin) {
   // Implement your logic here to calculate igst, cgst, and sgst based on the selected taxrate
   // You can access the selected taxrate using dcin.taxrate
   const selectedTaxRate = dcin.taxrate;
 
   // Update igst, cgst, and sgst values based on the selectedTaxRate
-  dcin.cgst = this.calculateCGST(selectedTaxRate);
-  dcin.sgst = this.calculateSGST(selectedTaxRate);
-  dcin.igst = this.calculateIGST(selectedTaxRate);
+  dcin.CGST = this.calculateCGST(selectedTaxRate,dcin);
+  dcin.SGST = this.calculateSGST(selectedTaxRate,dcin);
+  dcin.IGST = this.calculateIGST(selectedTaxRate,dcin);
 }
 
 // Implement your own logic for calculating cgst, sgst, and igst
-calculateCGST(taxRate: number): number {
+calculateCGST(taxRate: number,dcin:Dcin): number {
   // Replace the following line with your actual logic to calculate CGST
-  return taxRate * 2; // Example: CGST is 50% of the tax rate
-  
- 
+  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity) / 2; 
 }
 
-calculateSGST(taxRate: number): number {
+calculateSGST(taxRate: number,dcin:Dcin): number {
   // Replace the following line with your actual logic to calculate SGST
-  return taxRate * 0.5; // Example: SGST is 50% of the tax rate
+  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity) / 2; 
 }
 
-calculateIGST(taxRate: number): number {
+calculateIGST(taxRate: number,dcin:Dcin): number {
   // Replace the following line with your actual logic to calculate IGST
-  return taxRate; // Example: IGST is equal to the tax rate
+  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity); 
 }
 
 
