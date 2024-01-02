@@ -174,7 +174,7 @@
                           [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       </td>
                       <td style="width: 90px;">
-                        <select class="table_select"  (ngModelChange)="getItems(dcin) "#taxrate (change)="onSelectChange(taxrate,dcin)" [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
+                        <select class="table_select"  (ngModelChange)="getItems(dcin)"#taxrate (change)="calculateGST(dcin)" [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
                           <option value="0"> GST</option>
                           <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                             {{ gsttype.gstname }}
@@ -184,13 +184,13 @@
                       <input type="hidden" [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                       <td>
-                        <input [value]="getcgst(dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="calculateCGST(dcin.taxrate)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
-                        <input [value]="getsgst(dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="calculateSGST(dcin.taxrate)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
-                        <input [value]="getigst(dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="calculateIGST(dcin.taxrate)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
                         <select class="table_select" formControlName="discountType">

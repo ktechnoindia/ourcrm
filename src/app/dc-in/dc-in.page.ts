@@ -556,15 +556,15 @@ export class DcInPage implements OnInit {
 
     return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
   }
-  getcgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
-  }
-  getsgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
-  }
-  getigst(dcin: Dcin): number {
-    return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
-  }
+  // getcgst(dcin: Dcin): number {
+  //   return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+  // }
+  // getsgst(dcin: Dcin): number {
+  //   return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+  // }
+  // getigst(dcin: Dcin): number {
+  //   return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
+  // }
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
@@ -622,5 +622,36 @@ export class DcInPage implements OnInit {
       console.error('Selected text does not represent a valid number.');
     }
   }
+
+  // Add a function to calculate igst, cgst, and sgst based on the selected taxrate
+calculateGST(dcin: any) {
+  // Implement your logic here to calculate igst, cgst, and sgst based on the selected taxrate
+  // You can access the selected taxrate using dcin.taxrate
+  const selectedTaxRate = dcin.taxrate;
+
+  // Update igst, cgst, and sgst values based on the selectedTaxRate
+  dcin.cgst = this.calculateCGST(selectedTaxRate);
+  dcin.sgst = this.calculateSGST(selectedTaxRate);
+  dcin.igst = this.calculateIGST(selectedTaxRate);
+}
+
+// Implement your own logic for calculating cgst, sgst, and igst
+calculateCGST(taxRate: number): number {
+  // Replace the following line with your actual logic to calculate CGST
+  return taxRate * 2; // Example: CGST is 50% of the tax rate
+  
+ 
+}
+
+calculateSGST(taxRate: number): number {
+  // Replace the following line with your actual logic to calculate SGST
+  return taxRate * 0.5; // Example: SGST is 50% of the tax rate
+}
+
+calculateIGST(taxRate: number): number {
+  // Replace the following line with your actual logic to calculate IGST
+  return taxRate; // Example: IGST is equal to the tax rate
+}
+
 
 }
