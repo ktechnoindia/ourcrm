@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
 import { GsttypeService } from '../services/gsttype.service';
@@ -12,6 +12,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 import { NavController } from '@ionic/angular';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 
 interface Quote {
   posttax: number;
@@ -36,6 +37,7 @@ interface Quote {
   total: number;
   taxrate1: number;
   itemid: number;
+  selectedItemId:number;
 }
 
 @Component({
@@ -134,6 +136,7 @@ export class AddQuotPage implements OnInit {
     pretax: 0,
     posttax: 0,
     itemid: 0,
+    selectedItemId:0
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -155,7 +158,7 @@ rows = [
   // Add more rows as needed
 ];
 showTable: boolean = false ;
-  constructor(private cdr: ChangeDetectorRef,private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
+  constructor(private cdr: ChangeDetectorRef,private popoverController:PopoverController,private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.gstsrvs.getgsttype().subscribe((types) => {
@@ -222,6 +225,27 @@ showTable: boolean = false ;
     });
 
   }
+
+  async presentPopover(quote: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: quote.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(quote:Quote) {
+    // Open the popover when quantity changes
+    if (quote.quantity > 0) {
+      this.presentPopover(quote);
+    }
+  }
+
   async getquoteNo() {
     const user = await this.session.getValue('userid');
     const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
@@ -345,8 +369,8 @@ showTable: boolean = false ;
   }
   getItems(quote: any) {
     const compid = 1;
-    const identifier = quote.itemcode ? 'itemname' : 'itemcode';
-    const value = quote.itemcode;
+    const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
+    const value = quote.selectedItemId || quote.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -441,7 +465,7 @@ showTable: boolean = false ;
       posttax: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
-
+      selectedItemId:0
     };
 
 
@@ -767,32 +791,32 @@ showTable: boolean = false ;
     throw new Error('Method not implemented.');
   }
   // Function to update rows based on quantity
-updateRows(quantity: number): void {
-  // Clear existing rows
-  console.log('Updating rows with quantity:', quantity);
+// updateRows(quantity: number): void {
+//   // Clear existing rows
+//   console.log('Updating rows with quantity:', quantity);
 
-  this.rows = [];
-  // Generate new rows based on the quantity
-  for (let i = 0; i < quantity; i++) {
-    this.rows.push({
-      attr1: null,
-      attr2: null,
-      // ... other attributes
-      attr8: null,
-      attr3: null,
-      attr4: null,
-      attr5: null,
-      attr6: null,
-      attr7: null
-    });
-    this.cdr.detectChanges();
+//   this.rows = [];
+//   // Generate new rows based on the quantity
+//   for (let i = 0; i < quantity; i++) {
+//     this.rows.push({
+//       attr1: null,
+//       attr2: null,
+//       // ... other attributes
+//       attr8: null,
+//       attr3: null,
+//       attr4: null,
+//       attr5: null,
+//       attr6: null,
+//       attr7: null
+//     });
+//     this.cdr.detectChanges();
 
-  }
+//   }
 
-  console.log('Updated rows:', this.rows);
+//   console.log('Updated rows:', this.rows);
 
-}
-trackByFn(index: number, item: any): any {
-  return index;
-}
+// }
+// trackByFn(index: number, item: any): any {
+//   return index;
+// }
 }

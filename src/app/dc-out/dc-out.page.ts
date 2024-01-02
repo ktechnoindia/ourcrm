@@ -38,6 +38,7 @@ interface Dcout {
   total: number;
   taxrate1: number;
   itemid: number;
+  selectedItemId:0
 }
 @Component({
   selector: 'app-dc-out',
@@ -116,6 +117,7 @@ export class DcOutPage implements OnInit {
     posttax: 0,
     itemid: 0,// Calculate grossrate after other properties
     grossrate: 0,
+    selectedItemId:0
   }];
   companyid: number = 0;
   userid: number = 0;
@@ -348,7 +350,7 @@ export class DcOutPage implements OnInit {
       posttax: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
-
+      selectedItemId:0
       // Add more properties as needed
     };
     this.dcoutData.push(newRow);
@@ -356,8 +358,8 @@ export class DcOutPage implements OnInit {
 
   getItems(dcout: any) {
     const compid = 1;
-    const identifier = dcout.itemcode ? 'itemname' : 'itemcode';
-    const value = dcout.itemcode;
+    const identifier = dcout.selectedItemId ? 'itemname' : 'itemcode';
+    const value = dcout.selectedItemId ||dcout.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {

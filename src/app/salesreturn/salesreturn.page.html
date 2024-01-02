@@ -182,7 +182,7 @@
                     </td>
                     <td>
                       <select class="select-option"  style="width: 100px;outline: none;border: none;" id="itemname"
-                        [(ngModel)]=" sales.itemcode" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
+                        [(ngModel)]=" sales.selectedItemId" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
@@ -200,8 +200,8 @@
                         class="table_input description" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                      <input *ngIf="sales.itemcode !== 0" [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number"  (ngModelChange)="presentPopover(sales)">
 
                     </td>
                     <td>

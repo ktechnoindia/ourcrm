@@ -125,7 +125,7 @@
                         (ngModelChange)="getItems(quote)" class="table_input" type="text">
                     </td>
                     <td style="width: 100px !important;">
-                      <select class="table_select" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
+                      <select class="table_select" [(ngModel)]="quote.selectedItemId" [ngModelOptions]="{standalone: true}"
                         (change)="getItems(quote)">
                         <option value="0">Item Name</option> <!--//Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
@@ -145,12 +145,13 @@
                         type="text">
                     </td>
                     <td>
-                      <input style="width: 70px;" [ngModelOptions]="{standalone: true}" [(ngModel)]="quantity" type="number" (ngModelChange)="updateRows(quantity)">
+                      <input *ngIf="quote.itemcode !== 0" [(ngModel)]="quote.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number" (ngModelChange)="presentPopover(quote)">
 
                     </td>
-                    <div *ngIf="showTable">
+                    <!--<div *ngIf="showTable">
                       <table>
-                        <thead>
+                         <thead>
                           <tr>
                             <th>Sr.No.</th>
                             <th>Attr.-1</th>
@@ -178,7 +179,7 @@
                         </tbody>
                       </table>
                       <ion-button type="button" size="small" expand="block">Close</ion-button>
-                    </div>
+                    </div> -->
 
                     <td style="width: 90px;">
                       <select class="table_select" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">

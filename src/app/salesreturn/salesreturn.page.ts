@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SalereturnService, salereturnstore } from '../services/salereturn.service';
@@ -13,6 +13,8 @@ import { CustomerService } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
+import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
+import { salesstore } from '../services/sales.service';
 
 interface Sales {
   barcode: string;
@@ -37,6 +39,7 @@ interface Sales {
   posttax: number;
   pretax: number;
   itemid:number;
+  selectedItemId:number;
 }
 @Component({
   selector: 'app-salesreturn',
@@ -99,6 +102,7 @@ export class SalesreturnPage implements OnInit {
     pretax: 0,
     posttax: 0,
     itemid: 0,
+    selectedItemId:0
   }];
   ttotal!: number;
   companyid:number=0;
@@ -122,7 +126,7 @@ export class SalesreturnPage implements OnInit {
   taxrate$: Observable<any[]>;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService) {
+  constructor(private navCtrl:NavController,private popoverController:PopoverController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -191,6 +195,26 @@ export class SalesreturnPage implements OnInit {
       ttotal: [''],
       itemid:['']
     })
+  }
+
+  async presentPopover(salereturn: any) {
+    const popover = await this.popoverController.create({
+      component: QuantitypopoverPage,
+      cssClass:'popover-content',
+      componentProps: {
+        quantity: salereturn.quantity, // Pass the quantity to the popup component
+      },
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+
+  updateRows(salereturn:Sales) {
+    // Open the popover when quantity changes
+    if (salereturn.quantity > 0) {
+      this.presentPopover(salereturn);
+    }
   }
 
 
@@ -309,8 +333,8 @@ export class SalesreturnPage implements OnInit {
 
   getItems(sales: any) {
     const compid = 1;
-    const identifier = sales.itemcode ? 'itemname' : 'itemcode';
-    const value =  sales.itemcode;
+    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
+    const value = sales.selectedItemId || sales.itemcode;
   
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -403,7 +427,8 @@ export class SalesreturnPage implements OnInit {
       taxrate1: 0,
       pretax: 0,
       posttax: 0,
-      itemid:0
+      itemid:0,
+      selectedItemId:0
       // Add more properties as needed
     };
     this.salesData.push(newRow);
