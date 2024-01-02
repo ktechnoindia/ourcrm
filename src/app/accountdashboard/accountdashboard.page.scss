@@ -19,7 +19,7 @@ ion-content {
     letter-spacing: 0.5px;
     font-size: 14px;
     margin-right: 20px;
-    background-color: rgb(235, 231, 231);
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
     padding: 5px;
     border-radius: 20px;
   }
@@ -33,7 +33,7 @@ ion-content {
     padding: 5px 0px;
     border-radius: 5px;
     box-shadow: 1px 2px 4px 0px #51c9b9;
-    background-color: lightblue;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
     width: 100px;
   
   }
@@ -61,7 +61,7 @@ ion-content {
   .navigation a {
     float: right;
     padding: 10px;
-    background-color: lightsteelblue;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
     width: 400px;
     margin: 5px;
   }
@@ -89,7 +89,7 @@ ion-content {
   }
   
   .table-container {
-    background-color: lightgrey;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
   
   }
   
@@ -189,9 +189,10 @@ ion-content {
   .icon-container {
     width: 100%;
     padding: 5px;
+    height: 140px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background-color: lightsteelblue;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
   }
   
   .leadscard ion-card {
@@ -234,17 +235,18 @@ ion-content {
     text-align: center;
     justify-content: center;
     text-decoration: underline;
-    background-color: lightsteelblue;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
     padding: 3px;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 8px;
   }
   
   .dash ion-chip {
-    background-color: lightsteelblue;
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
     text-align: center;
     height: 40px;
     margin-top: 6px;
+    border-radius: 8px;
   }
   
   .leadsrouter {
@@ -267,15 +269,16 @@ ion-content {
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: bold;
-    color: purple;
+    color: white;
   }
   ion-item:hover {
-    background-color: rgb(224, 215, 215);
+    background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
+    border-radius: 8px;
     ion-icon{
-      color: purple;
+      color: white;
     }
     ion-label{
-      color: #000;
+      color: black;
     }
   }
   @media(max-width:575px){
@@ -286,19 +289,18 @@ ion-content {
   
   .leadscard ion-title{
     font-size: 26px;
-    color: purple;
+    color: black;
     font-weight: bolder;
   }
   .leadscard ion-icon{
     font-size: 32px;
-    color: purple;
+    color: rgb(211, 129, 142);
     font-weight: bolder;
   }
   .leadscard ion-label{
     font-size: 18px;
-    color: black;
     font-weight: bold;
-    color: purple;
+    color: #5899E2;
   }
   .leadscard ion-card{
     height: 100%;
@@ -306,16 +308,28 @@ ion-content {
   }
   .leadsrouter ion-icon{
     padding: 5px;
-    color: purple;
+    color: black;
   }
   .leadsrouter  ion-label{
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: bold;
-    color: purple;
+    color: white;
   }
   .leadsrouter ion-card{
     margin: 10px;
     width: 80%;
   }
   
+
+  ion-card {
+    /* Add styles for non-hover state */
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+  }
+  
+  ion-card:hover {
+    /* Add styles for hover state */
+    transform: scale(1.05);
+    cursor: pointer;
+     /* Increase the size on hover, adjust as needed */
+  }

@@ -41,9 +41,7 @@ ion-col {
 .table_data {
   padding: 5px 10px;
 }
-.table_data td{
-  max-height: 20px !important;
-}
+
 
 .table-data {
   background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
@@ -103,6 +101,7 @@ ion-content{
 
 tr {
   border: none;
+  cursor: pointer;
 }
 
 th {
@@ -245,6 +244,18 @@ ion-item:hover {
   .icon-container {
     margin-top: 10px;
   }
+}
+
+ion-card {
+  /* Add styles for non-hover state */
+  transition: transform 0.3s ease; /* Add smooth transition effect */
+}
+
+ion-card:hover {
+  /* Add styles for hover state */
+  transform: scale(1.05);
+  cursor: pointer;
+   /* Increase the size on hover, adjust as needed */
 }
 
 

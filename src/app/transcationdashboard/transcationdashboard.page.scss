@@ -355,3 +355,15 @@ ion-item:hover {
   margin: 10px;
   width: 80%;
 }
+ion-card {
+  /* Add styles for non-hover state */
+  transition: transform 0.3s ease;
+  cursor: pointer; /* Add smooth transition effect */
+}
+
+ion-card:hover {
+  /* Add styles for hover state */
+  transform: scale(1.05);
+  background-color: white;
+   /* Increase the size on hover, adjust as needed */
+}

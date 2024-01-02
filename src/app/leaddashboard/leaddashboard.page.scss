@@ -286,3 +286,15 @@ ion-item:hover {
   }
 }
 
+
+ion-card {
+  /* Add styles for non-hover state */
+  transition: transform 0.3s ease; /* Add smooth transition effect */
+}
+
+ion-card:hover {
+  /* Add styles for hover state */
+  transform: scale(1.05);
+  background-color: white;
+  cursor: pointer; /* Increase the size on hover, adjust as needed */
+}

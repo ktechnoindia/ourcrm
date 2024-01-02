@@ -1,6 +1,4 @@
-<ion-header>
 
-</ion-header>
 <ion-content class="container_fluid">
   <div class="dash">
     <ion-title>
@@ -21,7 +19,7 @@
             <ion-row class="leadscard">
              
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightpink;">
+                <ion-card style="text-align: center;background-color: rgb(241, 201, 207);" [routerLink]="'/paymenttransaction-report'">
                   <ion-icon name="analytics-sharp"></ion-icon><br>
                   <ion-label>
                    Total Payment Transtraction
@@ -30,7 +28,7 @@
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(233, 199, 186);">
+                <ion-card style="text-align: center;background-color: rgb(179, 225, 243);" [routerLink]="'/receipttransaction-report'">
                   <ion-icon name="cash-sharp"></ion-icon><br>
                   <ion-label>
                    Total Receipt Transtraction
@@ -58,15 +56,16 @@
                  Receipt
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
-              <ion-item [routerLink]="['/paymenttransaction-report']">
+              <!-- <ion-item [routerLink]="['/paymenttransaction-report']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                  Payment <br> Rajister
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
-              </ion-item> <ion-item [routerLink]="['/receipttransaction-report']">
+              </ion-item> -->
+                 <!-- <ion-item [routerLink]="['/receipttransaction-report']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
                  Receipt <br> Rajister
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
-              </ion-item>
+              </ion-item> -->
              
             </ion-row>
           </div>
@@ -80,7 +79,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Payment Transtraction List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
+          <ion-searchbar class="customs"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -125,7 +124,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container">
           <p>Receipt Transtraction List</p>
-          <ion-searchbar class="custom"></ion-searchbar>
+          <ion-searchbar class="customs"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
