@@ -49,13 +49,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Dummy data entries -->
-                    <tr>
-                      <td>1</td>
-                      <td>2023-01-01</td>
-                      <td>Sales</td>
-                      <td>SB001</td>
-                      <td>Cash</td>
+                    <tr *ngFor="let item of combineData$ | async; let i = index;">
+                      <td>{{ i + 1 }}</td>
+                      <ng-container *ngFor="let columnName of columnNames">
+                        <td>{{ item[columnName] }}</td>
+                      </ng-container>
+                    
+                      <td>{{ item | json }}</td>
+                      <td>{{item[1]?.attr1}}</td>
                       <td>Customer A</td>
                       <td>1000.0</td>
                       <td>950.0</td>
@@ -65,66 +66,7 @@
                       <td>31</td>
                       <td><!-- Action buttons or links --></td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>2023-01-05</td>
-                      <td>Purchase</td>
-                      <td>PB002</td>
-                      <td>Credit</td>
-                      <td>Supplier B</td>
-                      <td>1500.0</td>
-                      <td>1500.0</td>
-                      <td>0.0</td>
-                      <td>1500.0</td>
-                      <td>2023-02-10</td>
-                      <td>36</td>
-                      <td><!-- Action buttons or links --></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>2023-01-10</td>
-                      <td>Sales</td>
-                      <td>SB002</td>
-                      <td>Cheque</td>
-                      <td>Customer C</td>
-                      <td>1200.0</td>
-                      <td>1200.0</td>
-                      <td>1200.0</td>
-                      <td>0.0</td>
-                      <td>2023-02-10</td>
-                      <td>31</td>
-                      <td><!-- Action buttons or links --></td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>2023-01-15</td>
-                      <td>Purchase</td>
-                      <td>PB003</td>
-                      <td>Credit</td>
-                      <td>Supplier D</td>
-                      <td>1800.0</td>
-                      <td>1800.0</td>
-                      <td>0.0</td>
-                      <td>1800.0</td>
-                      <td>2023-02-15</td>
-                      <td>31</td>
-                      <td><!-- Action buttons or links --></td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>2023-01-20</td>
-                      <td>Sales</td>
-                      <td>SB003</td>
-                      <td>Credit</td>
-                      <td>Customer E</td>
-                      <td>2000.0</td>
-                      <td>2000.0</td>
-                      <td>1800.0</td>
-                      <td>200.0</td>
-                      <td>2023-02-20</td>
-                      <td>31</td>
-                      <td><!-- Action buttons or links --></td>
-                    </tr>
+                  <!-- </ng-container> -->
                   </tbody>
                 </table>
 

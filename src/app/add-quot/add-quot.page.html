@@ -182,12 +182,14 @@
                     </div> -->
 
                     <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
+                      <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number">
+                      <!-- <select class="table_select" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                           {{ unitnames.unitname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <td>
                       <input [(ngModel)]="quote.mrp" [ngModelOptions]="{standalone: true}" class="table_input"

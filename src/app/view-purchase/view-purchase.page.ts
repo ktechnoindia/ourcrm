@@ -50,14 +50,14 @@ export class ViewPurchasePage implements OnInit {
     'billformate',
     'billNumber',
     'billDate',
-    'custcode',
-    'custname',
+    'vendcode',
+    'supplier',
     'refrence',
     'refdate',
     'orderDate',
     'orderNumber',
     'gstin',
-    'salePerson',
+    'exicutive',
     'payment',
     'deliverydate',
     'deliveryplace',
@@ -87,24 +87,24 @@ export class ViewPurchasePage implements OnInit {
     'billformate',
     'billDate',
     'billNumber',
-    'custcode',
-    'custname',
+    'vendcode',
+    'supplier',
     'itemcode',
     'itemname',
     'quantity',
     'unitname',
     'taxrate',
     'totaltax',
-    'total',
+    'total',
   ];
   purchase$: Observable<any[]>
   searchTerm: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
   
-  constructor( private purchasereturnService:PurchasereturnService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
+  constructor( private purchaseservice:PurchaseService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
 
-    this.purchase$ = this.purchasereturnService.fetchallPurchasereturn(encService.encrypt(compid), '', '');
+    this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
     console.log(this.purchase$);
 
     this.purchase$.subscribe(data => {

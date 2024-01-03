@@ -40,23 +40,15 @@
                 <tr>
                   <th rowspan="2" style="width: 50px !important;">Sr. No.</th>
                   <th rowspan="2" style="width: 100px !important;">Voucher Number</th>
-                  <th rowspan="2" style="width: 100px !important;">Payment Date</th>
-                  <th rowspan="2" style="width: 200px !important;">Ledger Name</th>
-                  <th rowspan="2" style="width: 200px !important;">Supplier Name</th>
-                  <th colspan="4" style="background-color: antiquewhite;">Payment IN Account</th>
-                  <th colspan="5" style="background-color: antiquewhite;">Payment By Bill Number</th>
-                  <th rowspan="2" style="width: 70px !important;">Action</th>
-                </tr>
-                <tr>
-                  <th style="width: 100px !important;">Outstanding</th>
-                  <th style="width: 100px !important;">Payment Made</th>
-                  <th style="width: 100px !important;">Pending Amt.</th>
-                  <th style="width: 140px !important;">Payment By</th>
                   <th style="width: 100px !important;">Bill No.</th>
-                  <th style="width: 100px !important;">Total Amt.</th>
-                  <th style="width: 100px !important;">Receive Amt.</th>
-                  <th style="width: 100px !important;">Current Amt.</th>
-                  <th style="width: 100px !important;">Pending Amt</th>
+                  <th rowspan="2" style="width: 100px !important;">Payment Date</th>
+                  <th rowspan="2" style="width: 200px !important;">Payment Method</th>
+                  <th rowspan="2" style="width: 200px !important;">Vendor Name</th>
+                  <th style="width: 100px !important;">Total Due</th>
+                  <th style="width: 100px !important;">Payment Made</th>
+                  <th style="width: 100px !important;">Closing Balance </th>
+                 
+                  
                 </tr>
                 <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
                   <td>{{i+1}}</td>
