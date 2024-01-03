@@ -9,33 +9,26 @@ export interface rec {
   voucherNumber: string;
   paymentdate: string;
   ledger: number;
-  customername: number;
-  outstanding: string;
-  paymentmade: string;
+  outstanding: number;
+  paymentmade: number;
+  pendingamt: number;
   paymentway: string;
-  debit: string;
-  cradit: string;
-  total: string;
-  balance: string;
-
-  total_payment: string;
-  billtype: number;
-  selectdrcr: number;
-  particular: string;
-  datetype: string;
-  reference: string;
-  oriamount: string;
-  balanceamt: string;
-  sale_person: string;
-  totalamt: string;
+  total: number;
+  ledger_name: string;
+  total_payment: number;
   billno: string;
-  receiveamt: string;
-  pendingamt: string;
-  currentamt: string;
-  ledgername: string;
+  totalamt: number;
+  receiveamt: number;
+  currentamt: number;
+  billpendingamt: number;
+
+  customername: number;
+  userid: number;
+  custid: number;
   companyname: string;
-  credit: string;
-  userid:number;
+
+
+
 }
 @Injectable({
   providedIn: 'root'
@@ -54,6 +47,6 @@ export class RecepitService {
   }
   fetchUserOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
-    return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid='+ userid);
+    return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid);
   }
 }

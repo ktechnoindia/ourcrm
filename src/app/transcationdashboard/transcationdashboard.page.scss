@@ -380,3 +380,13 @@ ion-card:hover {
   background-color: white;
    /* Increase the size on hover, adjust as needed */
 }
+
+ion-select {
+  --background-color: transparent;
+  color: white;
+  border-bottom:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid white;
+  font-weight: bold;
+  outline-color: white;
+}

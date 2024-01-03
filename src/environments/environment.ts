@@ -5,6 +5,7 @@ export const environment = {
   apiactionurl: 'http://103.154.184.66:8000/actions/',
   apiacturl: 'http://103.154.184.66:8000/acts/',
   apiloginurl: 'http://103.154.184.66:8000/app1/',
+  apideleteacturl: 'http://103.154.184.66:8000/action/',
   fetchallcountries: 'getCountries', // Replace with your API's base URL
   fetchprice: 'prices', // Replace with the endpoint or route you want to use
   fetchallstate: 'getStates',
@@ -90,6 +91,9 @@ fetchitemauto:'get_items',
 quoteno:'viewinv.php',
 deletecust:'dcustomer',
 fetchUserOutstanding:'user_outstanding',
+fetchVendorOutstanding:'vendor_outstanding',
+deleteCustomer:'dcustomer',
+deleteVendor:'dvendor'
 };
 
 

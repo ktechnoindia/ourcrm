@@ -89,6 +89,7 @@ addroleassign:'roleassign',
 fetchitemauto:'get_items',
 quoteno:'viewinv.php',
 fetchUserOutstanding:'user_outstanding',
+fetchVendorOutstanding:'vendor_outstanding',
 
 };
 
