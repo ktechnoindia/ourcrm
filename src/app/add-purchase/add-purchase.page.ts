@@ -267,7 +267,6 @@ export class AddPurchasePage implements OnInit {
           payment: this.myform.value.payment,
           supplier: this.myform.value.supplier,
           gstin: this.myform.value.gstin,
-          exicutive: this.myform.value.executive,
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
@@ -312,7 +311,8 @@ export class AddPurchasePage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          executive: ''
+          executive: '',
+          exicutive: 0
         };
 
         purchases.push(purchasedata);

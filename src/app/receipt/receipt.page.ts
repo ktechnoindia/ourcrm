@@ -31,48 +31,55 @@ export class ReceiptPage implements OnInit {
   paymentdate: string = '';
   ledger: string = '';
   customername: number = 0;
-  outstanding: string = '';
-  total: string = '';
-  balance: string = '';
+  outstanding: number = 0;
+  total: number = 0;
 
   ledger_name: string = '';
-  total_payment: string = '';
-  billtype: number = 0;
-  date: string = '';
-  selectdrcr: number = 0;
-  particular: string = '';
-  datetype: string = '';
-  reference: string = '';
-  oriamount: string = '';
-  balanceamt: string = '';
-  sale_person: string = '';
-  outstandingtype: string = '';
-  paymentmadetype: string = '';
-  cradit: string = '';
-  paymentmade: string = '';
+  total_payment: number = 0;
+  paymentmade: number = 0;
   paymentway: string = '';
-  totalamt: string = '';
+  totalamt: number = 0;
   billno: string = '';
-  receiveamt: string = '';
-  pendingamt: string = '';
-  currentamt: string = '';
-userid:number=0;
+  receiveamt: number = 0;
+  pendingamt: number = 0; // Or initialize with the appropriate default value
+  billpendingamt: number = 0;
+
+  currentamt: number = 0;
+  userid: number = 0;
   myform: FormGroup;
   isOpen = false;
   companys$: Observable<any[]>;
   customer$: Observable<any>;
   ledgers$: Observable<any>;
-  debit: string = '';
-  credit: string = ''
-  companyname: number = 0;
-  ledgername: string = '';
   sales$: Observable<any[]>
   user_outstanding: any;
   outstanding_amount: any;
-    outstanding$: Observable<any[]>
+  outstanding$: Observable<any[]>
+
+  companyname: number = 0;
+  custid: number = 0;
+  totaldueamt: number = 0;
+  totalreceiveamt: number = 0;
+  totalcurrentamt: number = 0;
+  totalpendingamt: number = 0;
+
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
+    this.companys$ = this.companyService.fetchallcompany(compid, '', '');
+    console.log(this.companys$);
+
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
+    console.log(this.companys$);
+    // const userid=3;
+    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
+
+    this.outstanding$.subscribe(outstandingData => {
+      console.log(outstandingData);
+
+    });
     console.log(this.sales$);
     this.myform = this.formBuilder.group({
       voucherNumber: ['', Validators.required],
@@ -83,47 +90,28 @@ userid:number=0;
       paymentmade: [''],
       paymentway: [''],
       total: [''],
-      balance: [''],
+      ledger_name: [''],
       total_payment: [''],
-      billtype: 1,
-      selectdrcr: 1,
-      particular: [''],
-      datetype: [''],
-      reference: [''],
-      oriamount: [''],
-      balanceamt: [''],
-      sale_person: [''],
       totalamt: [''],
       billno: [''],
       receiveamt: [''],
       pendingamt: [''],
+      billpendingamt: [''],
       currentamt: [''],
-      ledgername: 1,
       companyname: 1,
-      debit: ['1'],
-      credit: ['1'],
-      userid:[0],
-      user_outstanding:[''],
-      outstanding_amount:[null]
+      userid: [0],
+      user_outstanding: [''],
+      outstanding_amount: [null],
+      totaldueamt: [''],
+      totalreceiveamt: [''],
+      totalcurrentamt: [''],
+      totalpendingamt: [''],
     })
-    this.companys$ = this.companyService.fetchallcompany(compid, '', '');
-    console.log(this.companys$);
 
-    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+  }
+  fetchUserOutstanding() {
 
-    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    console.log(this.companys$);
-    // const userid=3;
-    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
-    
-    this.outstanding$.subscribe(outstandingData => {
-      console.log(outstandingData);
-      
-    });
-  }    
-  fetchUserOutstanding(){
 
-    
   }
 
 
@@ -131,9 +119,7 @@ userid:number=0;
     this.popover.event = e;
     this.isOpen = true;
   }
-  calculatePendingAmount() {
 
-  }
   getSalesDetails(recepit: any) {
     const compid = '1';
     const identifier = recepit.companyname ? 'companyname' : '';
@@ -170,24 +156,23 @@ userid:number=0;
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      const userid=1;
+      const userid = 1;
 
       console.log('Your form data : ', this.myform.value);
       const recepitdata: rec = {
-        
-        voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledger: this.myform.value.ledger, customername: this.myform.value.customername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, balance: this.myform.value.balance, total_payment: this.myform.value.total_payment, billtype: this.myform.value.billtype, selectdrcr: this.myform.value.selectdrcr, particular: this.myform.value.particular, datetype: this.myform.value.datetype, reference: this.myform.value.reference, oriamount: this.myform.value.oriamount, balanceamt: this.myform.value.balanceamt, sale_person: this.myform.value.sale_person,
+
+        voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledger: this.myform.value.ledger, customername: this.myform.value.customername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, total_payment: this.myform.value.total_payment,
         paymentway: this.myform.value.paymentway,
-        debit: this.myform.value.debit,
-        cradit: this.myform.value.cradit,
         totalamt: this.myform.value.totalamt,
         billno: this.myform.value.billno,
         receiveamt: this.myform.value.receiveamt,
         pendingamt: this.myform.value.pendingamt,
+        billpendingamt: this.myform.value.billpendingamt,
+        ledger_name: this.myform.value.ledger_name,
         currentamt: this.myform.value.currentamt,
-        ledgername: this.myform.value.ledgername,
         companyname: this.myform.value.companyname,
-        credit: this.myform.value.credit,
         userid: this.myform.value.userid,
+        custid: this.myform.value.custid,
       };
 
       this.recepitService.createRecepit(recepitdata, '', '').subscribe(
@@ -222,17 +207,15 @@ userid:number=0;
       }
     }
   };
-  onButtonClick() {
-    // Add any additional logic you may need before closing the page
-    this.navCtrl.back(); // This will navigate back to the previous page
-  }
+
   onNew() {
     location.reload();
   }
 
   ngOnInit() {
+
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-  
+
     // Assuming outstanding_amount is a regular variable
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
@@ -245,8 +228,8 @@ userid:number=0;
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
-  }    
-onCompanyChange(event: any) {
+  }
+  onCompanyChange(event: any) {
     // Handle any additional logic when the company name is selected
   }
   goBack() {
@@ -255,7 +238,7 @@ onCompanyChange(event: any) {
   onCustomerChange() {
     this.customer$.subscribe(customers => {
       const selectedCustomer = customers.find((customer: { id: any; }) => customer.id === this.myform.value.customername);
-  
+
       if (selectedCustomer) {
         this.myform.patchValue({
           ledger: selectedCustomer.name,
@@ -263,5 +246,30 @@ onCompanyChange(event: any) {
       }
     });
   }
-  
+  calculatePendingAmount() : number{
+    this.pendingamt = this.outstanding_amount - this.paymentmade;
+    return this.pendingamt;
+  }
+
+  // Methods to calculate totals
+  calculateTotalDueAmt(): number {
+    // Convert this.totalamt to a number before returning
+    return this.totalamt;
+  }
+
+  calculateTotalReceiveAmt(): number {
+    // Convert this.receiveamt to a number before returning
+    return this.receiveamt;
+  }
+
+  calculateTotalCurrentAmt(): number {
+    // Convert this.currentamt to a number before returning
+    return this.currentamt;
+  }
+
+  calculateTotalPendingAmt(): number {
+    // Convert this.billpendingamt to a number before returning
+    return this.billpendingamt;
+  }
+
 }

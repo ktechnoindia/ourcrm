@@ -90,6 +90,7 @@ fetchitemauto:'get_items',
 quoteno:'viewinv.php',
 deletecust:'dcustomer',
 fetchUserOutstanding:'user_outstanding',
+fetchVendorOutstanding:'vendor_outstanding',
 };
 
 

@@ -81,12 +81,13 @@ export class ViewPurchasePage implements OnInit {
     'pretax',
     'posttax',
     'total',
-
+'executive',
   ];
   selectedColumns: string[] = [
     'billformate',
     'billDate',
     'billNumber',
+    'executive',
     'custcode',
     'custname',
     'itemcode',
