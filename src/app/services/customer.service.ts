@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface cust{
 
@@ -61,7 +61,8 @@ export class CustomerService {
   getCustomer(companyid:number): Observable<any> {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallcust);
   }
-  deleteCustomer(id:number): Observable<any> {
-    return this.httpclient.delete(environment.apiactionurl+environment.fetchallcust);
+  deleteCustomer(customerid: number, companyid: number): Observable<any> {
+    return this.httpclient.delete(environment.apiactionurl+environment.deleteCustomer+'/'+customerid+'/'+companyid);
   }
+  
 }

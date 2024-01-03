@@ -29,7 +29,6 @@
             <ion-row class="Executive">
               <div #content style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
 
-
                 <table style="width: 100%;">
                   <thead>
                     <tr>
@@ -43,8 +42,10 @@
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ customer[col.toLowerCase()] }}</td>
                       <td class="Action">
+
                         <ion-icon color="danger" icon-only name="trash"
-                          (click)="deleteCustomer(customer.index)"></ion-icon>
+                          (click)="deleteCustomer(customer.id,$event)"></ion-icon>
+
                         <ion-icon color="primary" icon-only name="create"></ion-icon>
                       </td>
                     </tr>

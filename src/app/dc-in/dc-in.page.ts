@@ -120,12 +120,14 @@ export class DcInPage implements OnInit {
  
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  supper: any;
 
   constructor(private navCtrl: NavController,private popoverController:PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
     const compid = '1';
+    const id=1;
+    const companyid=1
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
-    this.itemnames$ = this.itemService.getAllItems();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0];
@@ -312,7 +314,7 @@ export class DcInPage implements OnInit {
       }
     }
   }
-
+  
   getItems(dcin: any) {
     const compid = 1;
     const identifier = dcin.selectedItemId ? 'itemname' : 'itemcode'; // Update this line
@@ -351,25 +353,20 @@ export class DcInPage implements OnInit {
 
   getSuppliers(event: any) {
     const compid = '1';
-    const identifier = this.vendcode ? 'suppliertype' : 'vendcode';
-    const value = this.vendcode;
-
+    const identifier = event.supper ? 'suppliertype' : 'vendcode';
+    const value = event.supper || event.vendcode;
+  
     this.vendname1.fetchallVendor(compid, value, '').subscribe(
       (data) => {
         console.log('Data received:', data);
-
+  
         if (data && data.length > 0) {
           const itemDetails = data[0];
-
-          // Update the quote properties
-          event.vendcode = itemDetails.vendor_code;
-          event.suppliertype = itemDetails.name;
-
-
-          // Update form control values
+  
+          // Update the form control values based on the identifier
           this.myform.patchValue({
-            vendcode: itemDetails.vendcode,
-            suppliertype: itemDetails.suppliertype,
+            [identifier]: itemDetails.vendor_code,
+            suppliertype: itemDetails.name,
             // Other form controls...
           });
         } else {
@@ -381,6 +378,8 @@ export class DcInPage implements OnInit {
       }
     );
   }
+  
+  
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);

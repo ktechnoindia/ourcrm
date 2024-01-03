@@ -41,14 +41,7 @@
         </ion-col>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
           <div class="icon-container">
-            <ion-row>
-              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
-              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
-              label-placement="floating" fill="outline">
-                <ion-select-option value="paymenttransactionlist">Payment Transtraction List</ion-select-option>
-                <ion-select-option value="receipttransactionlist">Receipt Transtraction List</ion-select-option>
-              </ion-select>
-            </ion-row>
+           
             <ion-row class="headinglabel" style="text-align: center;">
               <ion-label color="dark">Accounts Page Manage :</ion-label>
             </ion-row>
@@ -65,6 +58,16 @@
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>            
             </ion-row>
+
+            <ion-row style="margin-top: 10px;padding: 8px;">
+              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
+              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
+              label-placement="floating" fill="outline">
+                <ion-select-option value="paymenttransactionlist">Payment Transtraction List</ion-select-option>
+                <ion-select-option value="receipttransactionlist">Receipt Transtraction List</ion-select-option>
+              </ion-select>
+            </ion-row>
+
           </div>
         </ion-col>
       </ion-row>

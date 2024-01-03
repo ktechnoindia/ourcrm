@@ -24,6 +24,8 @@ export class ViewcustomerPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
+  compid: string='';
+
 
   generatePdf() {
     let pdf = new jsPDF()
@@ -138,14 +140,26 @@ export class ViewcustomerPage implements OnInit {
   goBack() {
     this.router.navigate(["/add-customer"])
   }
-  deleteCustomer(id: number) {
-    this.custservice.deleteCustomer(id).subscribe({
+  deleteCustomer(customerid: number, event: any) {
+    
+    const confirmDelete = confirm('Are you sure you want to delete this customer?');
+    if (!confirmDelete) {
+      return;
+    }
+  
+    const companyId = 1;
+    this.custservice.deleteCustomer(customerid, companyId).subscribe({
       next: (res) => {
-        alert('Employee Delete!');
-        this.availableColumns
-      },
-      error: console.log
-    })
+        alert('Customer Deleted!');
+        console.log('delete',res)
+
+     },
+      error: (err) => {
+        console.error('Error deleting customer', err);
+        // Handle the error as needed
+      }
+    });
   }
+  
 
 }

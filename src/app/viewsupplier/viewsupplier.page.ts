@@ -34,7 +34,7 @@ export class ViewsupplierPage implements OnInit {
       }
     })
   }
-  printThisPage(){
+  printThisPage() {
     window.print();
   }
   // generateExcelReport() {
@@ -48,7 +48,7 @@ export class ViewsupplierPage implements OnInit {
   vendors$: Observable<any[]>
   searchTerm: string = '';
 
-  filteredSupplers$: Observable<any[]> = new Observable<any[]>(); 
+  filteredSupplers$: Observable<any[]> = new Observable<any[]>();
   availableColumns: string[] = [
     'vendor_code',
     'name',
@@ -61,18 +61,18 @@ export class ViewsupplierPage implements OnInit {
     'pincode',
     'address',
     'aadhar_no',
-   'pan_no',
+    'pan_no',
     'udhyog_aadhar',
     'account_number',
-   'ifsc_code',
+    'ifsc_code',
     'bank_name',
-   'branch_name',
+    'branch_name',
     '.card_number',
     'credit_period',
     'credit_limit',
   ];
   selectedColumns: string[] = [
-   'vendor_code',
+    'vendor_code',
     'name',
     'gstin',
     'whatsapp_number',
@@ -81,10 +81,10 @@ export class ViewsupplierPage implements OnInit {
   ];
   totalItems: number = 0;
 
-  constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private venderService:VendorService) { 
-    const compid='1';
+  constructor(private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private venderService: VendorService) {
+    const compid = '1';
 
-    this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
+    this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid), '', '');
     console.log(this.vendors$);
     this.vendors$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
@@ -105,15 +105,28 @@ export class ViewsupplierPage implements OnInit {
   onSearchTermChanged(): void {
     this.filteredSupplers$ = this.filterCustomers();
   }
- 
+
   ngOnInit() {
-    this.filteredSupplers$ = this.vendors$ .pipe(
+    this.filteredSupplers$ = this.vendors$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
   }
-goBack(){
-  this.router.navigate(["/add-vendor"])
-}
+  goBack() {
+    this.router.navigate(["/add-vendor"])
+  }
+
+  deleteSuppler(id:number,event:any){
+    const companyid=1;
+    this.venderService.deleteVendor(id,companyid).subscribe({
+       next: (res)=>{
+        alert('Vendor Deleted Successfully')
+          console.log(res);
+        },
+        error: (error)=>{
+          console.log('Error',error)
+        }
+    })
+  }
 }

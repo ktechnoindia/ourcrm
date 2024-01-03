@@ -57,21 +57,20 @@
                 </ion-col>
                 <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                   <ion-row>
-                    <ion-input #firstInvalidInput [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode"
-                      type="text" label="Code :" label-placement="floating" fill="outline"></ion-input>
+                    <ion-input [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode" type="text" label="Code:" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-
+                
                 <ion-col class="ionselect" size-lg="3" size-md="2" size-sm="6" size="6">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Supplier Name ---"  label-placement="floating" fill="outline" [(ngModel)]="suppliertype" formControlName="suppliertype" name="supplier">
-                    <!-- <option value="0"> --- Supplier Name --- </option>Default option -->
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" (ngModelChange)="getSuppliers(dcinData)"
+                    label="--- Supplier Name ---" label-placement="floating" fill="outline" [(ngModel)]="vendcode" formControlName="suppliertype" name="supplier">
                     <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                       {{ suppliername.name }}
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
-
+                
+                
                 <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                   <ion-input [(ngModel)]="referenceNumber" formControlName="referenceNumber" name="refernceNumber"
                     type="number" label="Refrence No. :" label-placement="floating" fill="outline">

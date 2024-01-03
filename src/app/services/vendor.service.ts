@@ -61,8 +61,7 @@ export interface vend{
     return this.httpclient.get(environment.apiactionurl+environment.fetchallvend+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
 
-   
-  getvendor(): Observable<any> {
-    return this.httpclient.get(environment.apibaseurl+environment.fetchallvend);
+  deleteVendor(customerid:number,companyid:number){
+    return this.httpclient.delete(environment.apiactionurl+environment.deleteVendor+ '/'+customerid + '/' + companyid)
   }
   }
