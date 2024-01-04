@@ -16,7 +16,10 @@ td {
     --highlight-color-focused: black; /* or set it to the color of your background */
 }
 
-
+.hidden {
+    display: none;
+  }
+  
 
 .Customer ion-input {
     min-height: 35px;

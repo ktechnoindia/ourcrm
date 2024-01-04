@@ -47,12 +47,61 @@ export class DcOutReportPage implements OnInit {
   dcout$: Observable<any[]>;
   searchTerm: string = '';
   filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
-
+  availableColumns: string[] = [
+    'voucherformat',
+    'voucherNumber',
+    'datetype',
+    'vendcode',
+    'suppliertype',
+    'referenceNumber',
+    'refdate',
+    'deliverydate',
+    'deliveryplace',
+    'barcode',
+    'itemcode',
+    'itemname',
+    'description',
+    'quantity',
+    'unitname',
+    'mrp',
+    'basicrate',
+    'netrate',
+    'grossrate',
+    'taxrate',
+    'IGST',
+    'CGST',
+    'SGST',
+    'discount',
+    'discountamt',
+    'totaltax',
+    'pretax',
+    'posttax',
+    'total',
+  ];
+  selectedColumns: string[] = [
+    'voucherNumber',
+    'datetype',
+    'vendcode',
+    'suppliertype',
+    'itemcode',
+    'itemname',
+    'basicrate',
+    'discountamt',
+    'totaltax',
+    'total',
+    
+  ];
+  totalItems: number = 0;
   constructor(private router:Router,private toastCtrl:ToastController,private dcoutservice:DcoutService,private encService:EncryptionService,) { 
     const compid='1';
 
     this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid),'','');
     console.log(this.dcout$);
+    this.dcout$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+
+    });
   }
 
   async onSubmit(){

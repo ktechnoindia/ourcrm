@@ -58,6 +58,7 @@ export class ViewPurchasePage implements OnInit {
     'orderNumber',
     'gstin',
     'exicutive',
+    'frombill',
     'payment',
     'deliverydate',
     'deliveryplace',
@@ -109,7 +110,6 @@ export class ViewPurchasePage implements OnInit {
 
     this.purchase$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalItems = data.length;
       this.totalItems = data.length;
         });
     this.filteredPurchase$ = this.purchase$;
