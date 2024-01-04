@@ -30,6 +30,8 @@ export class MasterdashboardPage implements OnInit {
   selectedOptions: string[] = [];
 
   constructor(private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
+    this.selectedOptions = ['customerlist', 'vendorlist'];
+
     const compid = '1';
 
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');

@@ -43,6 +43,7 @@ export class TranscationdashboardPage implements OnInit {
   selectedOptions: string[] = [];
 
   constructor(private encService: EncryptionService,private quoteservice: QuotationService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService,private dcinservice: DcinService,private dcoutservice:DcoutService,private saleService: SalesService, private purchaseService:PurchaseService,private salereturnservice:SalereturnService,private purchasereturnservice:PurchasereturnService, ) { 
+    this.selectedOptions = ['saleslist', 'purchaselist'];
     const compid = '1';
     const userid = '1';
     this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid),(userid), '', '');
