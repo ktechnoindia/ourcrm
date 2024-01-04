@@ -22,7 +22,8 @@ interface Quote {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname: string;
+  hunitname:number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -120,7 +121,7 @@ export class AddQuotPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    hunitname:0,unitname: '',
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -266,6 +267,41 @@ showTable: boolean = false ;
   openToast(arg0: string) {
     throw new Error('Method not implemented.');
   }
+
+  async ionViewWillEnter() {
+  //   const userid = await this.session.getValue('userid');
+  //   if (userid == null || userid == 'undefined' || userid == '') {
+  //     this.router.navigate(['/login']);
+  //   }
+  //  this.setlangvals();
+  this.quoteData = [{
+    barcode: '',
+    itemcode: 0,
+    itemname: 0,
+    description: '',
+    quantity: 0,
+    unitname: '',
+    hunitname:0,
+    mrp: 0,
+    basicrate: 0,
+    netrate: 0,
+    grossrate: 0,
+    taxrate: 0,
+    CGST: 0,
+    SGST: 0,
+    IGST: 0,
+    discount: 0,
+    discountamt: 0,
+    totaltax: 0,
+    total: 0,
+    taxrate1: 0,
+    pretax: 0,
+    posttax: 0,
+    itemid: 0,
+    selectedItemId:0
+  }];
+  }
+
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     // const isValid = await this.formService.validateForm(fields);
@@ -273,10 +309,11 @@ showTable: boolean = false ;
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
+      let quotedatas: quotestore[] = [];
 
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+       // element.netrate = element.basicrate + element.totaltax;
               element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -286,7 +323,6 @@ showTable: boolean = false ;
         console.log(element);
         const companyid = 1;
         const userid = 1;
-        let quotedatas: quotestore[] = [];
 
         const quotedata: quotestore = {
           billformate: this.myform.value.billformate,
@@ -301,7 +337,7 @@ showTable: boolean = false ;
           itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
-          unitname: element.unitname,
+          unitname: element.hunitname,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
@@ -336,6 +372,7 @@ showTable: boolean = false ;
         };
 
         quotedatas.push(quotedata);
+      }
         this.quote.createquote(quotedatas, '', '').subscribe(
           (response: any) => {
             console.log('POST request successful', response);
@@ -353,7 +390,7 @@ showTable: boolean = false ;
             this.formService.shoErrorLoader();
           }
         );
-      }
+    
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -385,6 +422,7 @@ showTable: boolean = false ;
           quote.itemname = itemDetails.itemDesc;
           quote.barcode = itemDetails.barcode.toString();
           quote.unitname = itemDetails.unitname;
+          quote.hunitname=itemDetails.unitid;
           quote.taxrate = grate[itemDetails.selectGst];
           quote.taxrate1 = grate[itemDetails.selectGst];
 
@@ -456,7 +494,7 @@ showTable: boolean = false ;
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
+      unitname: '',hunitname:0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,

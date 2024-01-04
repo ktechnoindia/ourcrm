@@ -183,7 +183,9 @@
 
                     <td style="width: 90px;">
                       <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number">
+                      type="text">
+                      <input [(ngModel)]="quote.hunitname" [ngModelOptions]="{standalone: true}" 
+                      type="hidden">
                       <!-- <select class="table_select" [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
