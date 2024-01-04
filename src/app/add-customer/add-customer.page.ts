@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
@@ -12,9 +12,11 @@ import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { CustomerService, cust } from '../services/customer.service';
 import { CustomertypeService } from '../services/customertype.service';
-import { ExecutiveService } from '../services/executive.service';
+import { ExecutiveService, execut } from '../services/executive.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidationService } from '../form-validation.service';
+import { roletypesservice } from '../services/roletypes.service';
+import { LegderService } from '../services/ledger.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -30,7 +32,7 @@ export class AddCustomerPage implements OnInit {
 
   selectedSalutation: string = '';
   companyName: string = '';
-  copyData:boolean=false;
+  copyData: boolean = false;
   selectTabs = 'address';
   activeSegment: string = '';
   selectedPage: string = 'page1';
@@ -38,7 +40,7 @@ export class AddCustomerPage implements OnInit {
   district: number = 0;
 
   name: string = '';
-  customercode: string='';
+  customercode: string = '';
   customer_code: string = '';
   country: number = 0;
   opening_balance: number = 0;
@@ -74,7 +76,7 @@ export class AddCustomerPage implements OnInit {
   address1: string = '';
 
   submitValue = false;
-  phoneData:boolean=false;
+  phoneData: boolean = false;
   countries$: Observable<any[]>
   states$: Observable<any[]>
   districts$: Observable<any[]>
@@ -85,24 +87,34 @@ export class AddCustomerPage implements OnInit {
   executive!: string;
 
   myform: FormGroup;
-  showShippingAddress:boolean=false;
+  executivepop: FormGroup;
+  showShippingAddress: boolean = false;
   form: any;
 
-  constructor(private navCtrl: NavController,private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
+  excode: string = '';
+  executivename: string = '';
+  emobile: string = '';
+  ledger: string = '';
+  emanager: number = 0;
+  roleid: number = 0;
+  roletypes$: Observable<any[]>
+
+  ledgers$: Observable<any>;
+  constructor(private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
 
     this.myform = this.formBuilder.group({
       selectedSalutation: [''],
       companyName: [''],
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
-      gstin: ['',[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       select_group: [''],
       discount: [''],
       opening_balance: [''],
       closing_balance: [''],
       mobile: [''],
       whatsapp_number: [''],
-      email: ['',Validators.email],
+      email: ['', Validators.email],
       country: [''],
       state: [''],
       district: [''],
@@ -127,9 +139,18 @@ export class AddCustomerPage implements OnInit {
       card_number: [''],
       opening_point: [''],
       closing_point: [''],
-      copyData:[false],
-      phoneData:[false],
-      showShippingAddress:[false]
+      copyData: [false],
+      phoneData: [false],
+      showShippingAddress: [false],
+
+    })
+    this.executivepop = this.formBuilder.group({
+      excode: [''],
+      executivename: [''],
+      emobile: [''],
+      ledger: [''],
+      emanager: [''],
+      roleid: [0],
     })
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -137,9 +158,12 @@ export class AddCustomerPage implements OnInit {
     this.districts$ = this.districtservice.getDistricts(1);
     this.custtype$ = this.custtp.getcustomertype();
     this.executive$ = this.execut.getexecutive();
+    this.roletypes$ = this.roletypes.getroletypes();
+    const compid = '1';
 
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
   }
- 
+
   openToast(arg0: string) {
     throw new Error('Method not implemented.');
   }
@@ -151,11 +175,16 @@ export class AddCustomerPage implements OnInit {
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
 
+    });
+  }
 
   ngOnInit() {
   }
- 
+
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
 
@@ -166,14 +195,14 @@ export class AddCustomerPage implements OnInit {
     this.router.navigate(['/master']);
   }
 
- 
+
   async onSubmit() {
     const fields = { name: this.name, }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      const companyid=1;
+      const companyid = 1;
       console.log('Your form data : ', this.myform.value);
-      let custdata: cust = { name: this.myform.value.name, customer_code: this.myform.value.customer_code, gstin: this.myform.value.gstin, select_group: this.myform.value.select_group, opening_balance: this.myform.value.opening_balance, closing_balance: this.myform.value.closing_balance, mobile: this.myform.value.mobile, whatsapp_number: this.myform.value.whatsapp_number, email: this.myform.value.email, country: this.myform.value.country, state: this.myform.value.state, district: this.myform.value.district, pincode: this.myform.value.pincode, address: this.myform.value.address, tdn: this.myform.value.tdn, aadhar_no: this.myform.value.aadhar_no, pan_no: this.myform.value.pan_no, udhyog_aadhar: this.myform.value.udhyog_aadhar, account_number: this.myform.value.account_number, ifsc_code: this.myform.value.ifsc_code, bank_name: this.myform.value.bank_name, branch_name: this.myform.value.branch_name, credit_period: this.myform.value.credit_period, credit_limit: this.myform.value.credit_limit, select_sales_person: this.myform.value.select_sales_person, card_number: this.myform.value.card_number, opening_point: this.myform.value.opening_point, closing_point: this.myform.value.closing_point, selectedSalutation: this.myform.value.selectedSalutation, companyName: this.myform.value.companyName, selectedOption1: this.myform.value.selectedOption1, selectedState1: this.myform.value.selectedState1, selectedDistrict1: this.myform.value.selectedDistrict1, pincode1: this.myform.value.pincode1, address1: this.myform.value.address1,discount:this.myform.value.discount,companyid:companyid };
+      let custdata: cust = { name: this.myform.value.name, customer_code: this.myform.value.customer_code, gstin: this.myform.value.gstin, select_group: this.myform.value.select_group, opening_balance: this.myform.value.opening_balance, closing_balance: this.myform.value.closing_balance, mobile: this.myform.value.mobile, whatsapp_number: this.myform.value.whatsapp_number, email: this.myform.value.email, country: this.myform.value.country, state: this.myform.value.state, district: this.myform.value.district, pincode: this.myform.value.pincode, address: this.myform.value.address, tdn: this.myform.value.tdn, aadhar_no: this.myform.value.aadhar_no, pan_no: this.myform.value.pan_no, udhyog_aadhar: this.myform.value.udhyog_aadhar, account_number: this.myform.value.account_number, ifsc_code: this.myform.value.ifsc_code, bank_name: this.myform.value.bank_name, branch_name: this.myform.value.branch_name, credit_period: this.myform.value.credit_period, credit_limit: this.myform.value.credit_limit, select_sales_person: this.myform.value.select_sales_person, card_number: this.myform.value.card_number, opening_point: this.myform.value.opening_point, closing_point: this.myform.value.closing_point, selectedSalutation: this.myform.value.selectedSalutation, companyName: this.myform.value.companyName, selectedOption1: this.myform.value.selectedOption1, selectedState1: this.myform.value.selectedState1, selectedDistrict1: this.myform.value.selectedDistrict1, pincode1: this.myform.value.pincode1, address1: this.myform.value.address1, discount: this.myform.value.discount, companyid: companyid };
 
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
@@ -212,26 +241,26 @@ export class AddCustomerPage implements OnInit {
   onNew() {
     location.reload();
   }
-   onButtonClick() {
+  onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
   copyBillingToShipping() {
-    if(this.copyData){
+    if (this.copyData) {
       this.selectedOption1 = this.country;
       this.selectedState1 = this.state;
       this.selectedDistrict1 = this.district;
       this.pincode1 = this.pincode;
       this.address1 = this.address;
-    }else{
+    } else {
 
     }
-   this.selectedOption1 = 0;
-      this.selectedState1 = 0;
-      this.selectedDistrict1 = 0;
-      this.pincode1 = '';
-      this.address1 = '';
-   
+    this.selectedOption1 = 0;
+    this.selectedState1 = 0;
+    this.selectedDistrict1 = 0;
+    this.pincode1 = '';
+    this.address1 = '';
+
   }
   onCopyboxChange() {
     if (this.copyData) {
@@ -253,10 +282,10 @@ export class AddCustomerPage implements OnInit {
     }
   }
 
-  onWhatshappCheck(){
-    if(this.phoneData){
+  onWhatshappCheck() {
+    if (this.phoneData) {
       this.whatsapp_number = this.mobile;
-    }else{
+    } else {
       this.whatsapp_number = '';
     }
   }
@@ -278,6 +307,57 @@ export class AddCustomerPage implements OnInit {
     if ($event.target.value.length >= maxLength) {
       $event.preventDefault();
       return;
+    }
+  }
+
+  async OnExecutiveSubmit() {
+    const fields = {}
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.executivepop.value);
+      const executdata: execut = {
+        roleid: this.executivepop.value.roleid,
+        excode: this.executivepop.value.excode,
+        executivename: this.executivepop.value.executivename,
+        emanager: this.executivepop.value.emanager,
+        emobile: this.executivepop.value.emobile,
+        ledger: this.executivepop.value.ledger,
+        companyid: 1,
+        ewhatsapp: '',
+        epan: '',
+        ecommision: 0,
+        eemail: ''
+      };
+      this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          this.form.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
   }
 

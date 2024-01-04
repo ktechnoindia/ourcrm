@@ -911,7 +911,8 @@ export const routes: Routes = [
   {
     path: 'generalledger',
     loadComponent: () => import('./generalledger/generalledger.page').then( m => m.GeneralledgerPage)
-  },  {
+  },
+  {
     path: 'attribute-modal',
     loadComponent: () => import('./attribute-modal/attribute-modal.page').then( m => m.AttributeModalPage)
   },
@@ -923,6 +924,7 @@ export const routes: Routes = [
     path: 'transactionsetting',
     loadComponent: () => import('./transactionsetting/transactionsetting.page').then( m => m.TransactionsettingPage)
   },
+ 
 
 
 

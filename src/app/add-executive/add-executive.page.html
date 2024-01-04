@@ -32,9 +32,10 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <ion-row>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Role---" label-placement="floating" fill="outline"  [ngModel]="roleid" name="roleid" formControlName="roleid">
-                 <!-- <ion-select-option value="0"><ion-button>add</ion-button></ion-select-option>  -->
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Role---" label-placement="floating" fill="outline" [ngModel]="roleid" name="roleid"
+                  formControlName="roleid">
+                  <!-- <ion-select-option value="0"><ion-button>add</ion-button></ion-select-option>  -->
                   <ion-select-option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid">
                     {{ roletypes.roletypename }}
                   </ion-select-option>
@@ -57,8 +58,9 @@
                 </ion-row>
               </ion-col>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Manager ---" label-placement="floating" fill="outline"  [ngModel]="emanager" formControlName="emanager" name="emanager">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Manager ---" label-placement="floating" fill="outline" [ngModel]="emanager"
+                  formControlName="emanager" name="emanager">
                   <!-- <ion-select-option value="" disabled selected> --- Manager --- </option> Default option -->
                   <ion-select-option value="1">Deepak</ion-select-option>
                   <ion-select-option value="1">Yogesh</ion-select-option>
@@ -69,10 +71,12 @@
 
               </ion-col>
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="---Select Ledger ---" label-placement="floating" fill="outline"  [ngModel]="ledger" formControlName="ledger" name="ledger">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Ledger ---" label-placement="floating" fill="outline" [ngModel]="ledger"
+                  formControlName="ledger" name="ledger">
                   <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
-                  <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}} </ion-select-option>
+                  <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
+                  </ion-select-option>
                 </ion-select>
 
               </ion-col>

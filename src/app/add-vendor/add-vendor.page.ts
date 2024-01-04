@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -12,9 +12,11 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { VendorService, vend } from '../services/vendor.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { ExecutiveService } from '../services/executive.service';
+import { ExecutiveService, execut } from '../services/executive.service';
 import { CustomertypeService } from '../services/customertype.service';
 import { FormValidationService } from '../form-validation.service';
+import { LegderService } from '../services/ledger.service';
+import { roletypesservice } from '../services/roletypes.service';
 
 @Component({
   selector: 'app-add-vendor',
@@ -81,10 +83,8 @@ export class AddVendorPage implements OnInit {
   submitted = false;
   discount: number = 0;
 
-
   custtype$: any;
   custtype!: string;
-
   country1: number = 0;
   state1: number = 0;
   district1: number = 0;
@@ -93,7 +93,17 @@ export class AddVendorPage implements OnInit {
   executive: string = '';
   form: any;
 
-  constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService) {
+  excode: string = '';
+  executivename: string = '';
+  emobile: string = '';
+  ledger: string = '';
+  emanager: number = 0;
+  roleid: number = 0;
+  roletypes$: Observable<any[]>
+  ledgers$: Observable<any>;
+  executivepop: FormGroup;
+
+  constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required]],
       vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -134,13 +144,26 @@ export class AddVendorPage implements OnInit {
       copyData: [false],
       phoneData:[false],
     });
+
+    this.executivepop = this.formBuilder.group({
+      excode: [''],
+      executivename: [''],
+      emobile: [''],
+      ledger: [''],
+      emanager: [''],
+      roleid: [0],
+    })
+
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
 
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
     this.executive$ = this.execut.getexecutive();
     this.custtype$ = this.custtp.getcustomertype();
+    this.roletypes$ = this.roletypes.getroletypes();
+    const compid = '1';
 
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
   }
   onButtonClick() {
     // Add any additional logic you may need before closing the page
@@ -272,4 +295,63 @@ export class AddVendorPage implements OnInit {
     }
     
   }
+
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
+
+    });
+  }
+
+  async OnExecutiveSubmit() {
+    const fields = {}
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.executivepop.value);
+      const executdata: execut = {
+        roleid: this.executivepop.value.roleid,
+        excode: this.executivepop.value.excode,
+        executivename: this.executivepop.value.executivename,
+        emanager: this.executivepop.value.emanager,
+        emobile: this.executivepop.value.emobile,
+        ledger: this.executivepop.value.ledger,
+        companyid: 1,
+        ewhatsapp: '',
+        epan: '',
+        ecommision: 0,
+        eemail: ''
+      };
+      this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          this.form.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
+    }
+  }
+
 }
