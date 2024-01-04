@@ -69,6 +69,8 @@ export class AddItemPage implements OnInit {
   salerate: number = 0;
   purchaserate:number=0;
   basicrate:number=0;
+  labelname:string='';
+  valuename:string='';
   hsnname$: Observable<any[]>
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
@@ -124,7 +126,9 @@ export class AddItemPage implements OnInit {
       attributes: this.formBuilder.group({}),
       searchTerm:[''],
       purchaserate:[''],
-      basicrate:['']
+      basicrate:[''],
+      labelname:[''],
+      valuename:['']
     })
 
   }
@@ -191,10 +195,10 @@ export class AddItemPage implements OnInit {
         minimum: this.myform.value.minimum,
         maximum: this.myform.value.maximum,
         reorder: this.myform.value.reorder,
-        mrp : this.myform.value.mrp,
+        mrp: this.myform.value.mrp,
         salerate: this.myform.value.salerate,
         purchaserate: this.myform.value.purchaserate,
-        basicrate:this.myform.value.basicrate,
+        basicrate: this.myform.value.basicrate,
 
         attr1: this.myform.value.attr1,
         attr2: this.myform.value.attr2,
@@ -206,8 +210,9 @@ export class AddItemPage implements OnInit {
         attr8: this.myform.value.attr8,
         attributes: this.attributes,
 
-        companyid:1
-
+        companyid: 1,
+        labelname: this.myform.value.labelname,
+        valuename: this.myform.value.valuename,
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {

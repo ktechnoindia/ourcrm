@@ -46,6 +46,8 @@ export interface item {
   companyid:number;
   purchaserate:number;
   basicrate:number;
+  labelname:string;
+  valuename:string;
 }
 
 @Injectable({
