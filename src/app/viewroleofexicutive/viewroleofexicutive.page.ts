@@ -21,9 +21,9 @@ export class ViewroleofexicutivePage implements OnInit {
 
   constructor(private router: Router, private roleexectService: RoleofexecutiveService, private encService: EncryptionService) {
 
-    const compid = '1';
+    const companyid = '1';
 
-    this.roleexectives$ = this.roleexectService.fetchroleexecutive(encService.encrypt(compid), '', '');
+    this.roleexectives$ = this.roleexectService.fetchroleexecutive(encService.encrypt(companyid), '', '');
     console.log(this.roleexectives$);
 
   }

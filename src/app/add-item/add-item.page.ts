@@ -68,6 +68,7 @@ export class AddItemPage implements OnInit {
   mrp: number = 0;
   salerate: number = 0;
   purchaserate:number=0;
+  basicrate:number=0;
   hsnname$: Observable<any[]>
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
@@ -122,7 +123,8 @@ export class AddItemPage implements OnInit {
       salerate:[''],
       attributes: this.formBuilder.group({}),
       searchTerm:[''],
-      purchaserate:['']
+      purchaserate:[''],
+      basicrate:['']
     })
 
   }
@@ -192,6 +194,7 @@ export class AddItemPage implements OnInit {
         mrp : this.myform.value.mrp,
         salerate: this.myform.value.salerate,
         purchaserate: this.myform.value.purchaserate,
+        basicrate:this.myform.value.basicrate,
 
         attr1: this.myform.value.attr1,
         attr2: this.myform.value.attr2,

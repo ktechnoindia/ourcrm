@@ -45,7 +45,7 @@ export interface item {
   selectGstservice: number;
   companyid:number;
   purchaserate:number;
-  
+  basicrate:number;
 }
 
 @Injectable({
