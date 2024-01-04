@@ -387,8 +387,6 @@ export class AddSalePage implements OnInit {
 
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
-
-
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
@@ -405,6 +403,7 @@ export class AddSalePage implements OnInit {
             gstin: itemDetails.gstin,
             // Other form controls...
           });
+        this.custcode = itemDetails.customer_code;
 
         } else {
           console.error('No data found for the selected item.');
@@ -622,6 +621,7 @@ export class AddSalePage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
+    
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;

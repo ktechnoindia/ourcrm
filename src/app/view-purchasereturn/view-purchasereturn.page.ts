@@ -45,12 +45,69 @@ export class ViewPurchasereturnPage implements OnInit {
   purchasereturn$: Observable<any[]>;
   searchTerm: string = '';
   filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>(); 
+// filteredSales: Observable<any[]>;
+availableColumns: string[] = [
+  'billformate',
+  'billNumber',
+  'billDate',
+  'vendcode',
+  'supplier',
+  'refrence',
+  'refdate',
+  'orderDate',
+  'orderNumber',
+  'gstin',
+  'exicutive',
+  'payment',
+  'deliverydate',
+  'deliveryplace',
+  'barcode',
+  'itemcode',
+  'itemname',
+  'description',
+  'quantity',
+  'unitname',
+  'mrp',
+  'basicrate',
+  'netrate',
+  'grossrate',
+  'taxrate',
+  'IGST',
+  'CGST',
+  'SGST',
+  'discount',
+  'discountamt',
+  'totaltax',
+  'pretax',
+  'posttax',
+  'total',
+
+];
+selectedColumns: string[] = [
+  'billformate',
+  'billDate',
+  'billNumber',
+  'vendcode',
+  'supplier',
+  'itemcode',
+  'itemname',
+  'quantity',
+  'unitname',
+  'taxrate',
+  'totaltax',
+    'total',
+];
+totalItems: number = 0;
 
   constructor(private router:Router,private toastCtrl:ToastController,private purchasereturnservice:PurchasereturnService,private encService:EncryptionService ) { 
     const compid='1';
 
     this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid),'','');
     console.log(this.purchasereturn$);
+    this.purchasereturn$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+        });
   }
 
   filterCustomers(): Observable<any[]> {
