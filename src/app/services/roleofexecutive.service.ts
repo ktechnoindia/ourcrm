@@ -15,7 +15,7 @@ export interface roleofexecut{
   selectedDistrict:  number;
   pin_code: string ;
   fulladdress: string;
- 
+ companyid:number
 }
 
 @Injectable({

@@ -61,7 +61,6 @@
                 <table style="width: 1500px;overflow-x:auto;overflow-y: auto;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th>Lead ID</th>
                     <th>Company Name</th>
                     <th>Lead Date</th>
                     <th>Contact Person</th>
@@ -73,16 +72,15 @@
                     <th>Pincode</th>
                     <th>Email ID</th>
                     <th>Select Product</th>
-                    <th>Lead Status</th>
+                    <!-- <th>Lead Status</th> -->
                     <th>Lead Source</th>
-                    <th>Lead Assign To</th>
+                    <!-- <th>Lead Assign To</th> -->
                     <th>Executive Name</th>
                     <th>Remark</th>
                     <th>Action</th>
                   </tr>
                   <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
                     <td>{{i+1}}</td>
-                      <td>{{leadscore.tid}}</td>
                       <td>{{leadscore.companyname}}</td>
                       <td>{{leadscore.crdate | date:'yyyy-MM-dd'}}</td>
                       <td>{{leadscore.catPerson}}</td>
@@ -94,9 +92,9 @@
                       <td>{{leadscore.pncode}}</td>
                       <td>{{leadscore.emails}}</td>
                       <td>{{leadscore.selectpd}}</td>
-                      <td>{{leadscore.leadstatus}}</td>
+                      <!-- <td>{{leadscore.leadstatus}}</td> -->
                       <td>{{leadscore.lscore}}</td>
-                      <td>{{leadscore.leadassign}}</td>
+                      <!-- <td>{{leadscore.leadassign}}</td> -->
                       <td>{{leadscore.executivename}}</td>
                       <td>{{leadscore.rmark}}</td>
                       <td>

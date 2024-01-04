@@ -42,7 +42,7 @@ export class RoleofexicutivePage implements OnInit {
   states$: Observable<any[]>
   districts$: Observable<any[]>
 
-  constructor(private navCtrl: NavController,private router: Router, private roleExecuitveService: RoleofexecutiveService, private formBuilder: FormBuilder, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
+  constructor(private navCtrl: NavController, private router: Router, private roleExecuitveService: RoleofexecutiveService, private formBuilder: FormBuilder, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService,) {
     this.form = this.formBuilder.group({
       exname: ['', [Validators.required]],
       extilte: ['', [Validators.required]],
@@ -51,7 +51,7 @@ export class RoleofexicutivePage implements OnInit {
       selectedState: [''],
       selectedDistrict: [''],
       fulladdress: [''],
-      email: ['',Validators.email],
+      email: ['', Validators.email],
       wpnumber: [''],
       pin_code: ['']
     })
@@ -70,10 +70,10 @@ export class RoleofexicutivePage implements OnInit {
   }
 
   async onSubmit() {
-    const fields = {exname:this.exname,extilte:this.extilte}
+    const fields = { exname: this.exname, extilte: this.extilte }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-
+      const companyid = 1
       console.log('Your form data : ', this.form.value);
       let roleexecutdata: roleofexecut = {
         exname: this.form.value.exname,
@@ -85,7 +85,8 @@ export class RoleofexicutivePage implements OnInit {
         fulladdress: this.form.value.fulladdress,
         email: this.form.value.email,
         wpnumber: this.form.value.email,
-        pin_code: this.form.value.pin_code
+        pin_code: this.form.value.pin_code,
+        companyid: companyid
       };
       this.roleExecuitveService.createRoleofExecutive(roleexecutdata, '', '').subscribe(
         (response: any) => {
@@ -122,15 +123,15 @@ export class RoleofexicutivePage implements OnInit {
   onNew() {
     location.reload();
   }
-   onButtonClick() {
+  onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
-    ngOnInit() {
-      // Page initialization code goes here
-    }
-    goBack() {
-      this.router.navigate(['/roleofexicutive']);
-    }
+  ngOnInit() {
+    // Page initialization code goes here
+  }
+  goBack() {
+    this.router.navigate(['/roleofexicutive']);
+  }
 
 }

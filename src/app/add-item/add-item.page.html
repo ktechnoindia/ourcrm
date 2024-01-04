@@ -133,6 +133,14 @@
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
+                    <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number" label=" Basic Rate:"
+                      label-placement="floating" fill="outline"></ion-input>
+                  </ion-row>
+
+                </ion-col>
+
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"
                       type="text" label=" Opening Balance :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
@@ -189,6 +197,24 @@
                     </ion-row>
 
                     <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
+                    <ion-row class="headinglabel">
+                      <ion-label>Fixed Attributes :</ion-label>
+                      <span style="width: 100%; height: 2px; background-image: linear-gradient(to right, #00b4db, #0083b0);
+            "></span>
+                    </ion-row>
+                    <ion-row>
+                      
+                      <ion-row>
+                      <ion-col>
+                        <ion-input [(ngModel)]="labelname" formControlName="labelname" name="labelname"
+                        type="text" label="Label Name :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-col>
+                      <ion-col>
+                      <ion-input [(ngModel)]="valuename" formControlName="valuename" name="valuename"
+                      type="text" label=" Value :" label-placement="floating" fill="outline"></ion-input>
+                      </ion-col>
+                    </ion-row>
+                    </ion-row>
                   </div>
 
                   <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">

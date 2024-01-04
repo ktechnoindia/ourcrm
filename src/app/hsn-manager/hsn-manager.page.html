@@ -60,14 +60,14 @@
                     <th>Sr.No.</th>
                     <th>HSN Code</th>
                     <th>Unit</th>
-                    <th>Description</th>
+                    <!-- <th>Description</th> -->
                     <th>Action</th>
                   </tr>
                   <tr *ngFor="let hsn of filteredHsncodes$ | async; let i = index">
                     <td>{{i+1}}</td>
                     <td>{{hsn.hsnname}}</td>
                     <td>{{hsn.unit}}</td>
-                    <td>{{hsn.desc}}</td>
+                    <!-- <td>{{hsn.desc}}</td> -->
                     <td>
                       <ion-icon class="create" name="create"></ion-icon>
                       <ion-icon class="delete" name="trash"></ion-icon>

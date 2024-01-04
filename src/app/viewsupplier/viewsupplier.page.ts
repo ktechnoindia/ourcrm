@@ -67,7 +67,7 @@ export class ViewsupplierPage implements OnInit {
     'ifsc_code',
     'bank_name',
     'branch_name',
-    '.card_number',
+    'card_number',
     'credit_period',
     'credit_limit',
   ];
