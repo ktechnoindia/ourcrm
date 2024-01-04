@@ -21,25 +21,24 @@
                     <thead>
                       <tr>
                         <th style="width: 100px !important">Sr. No.</th>
-                        <th  style="width: 100px">Company ID</th>
                         <th style="width: 100px">Service Code</th>
                         <th style="width: 100px">Service Name</th>
                         <th style="width: 100px">SAC  Code</th>
                         <th style="width: 100px">GST %</th>
                         <th style="width: 100px">Description</th>
+                        <th style="width: 100px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                   <tr *ngFor="let service of filteredServices$ | async; let i = index">
 
                         <td>{{ i + 1 }}</td>
-                        <td>{{service.compid}}</td>
                         <td>{{service.service_code}}</td>
                         <td>{{service.service_name}}</td>                       
                         <td>{{service.sac_code}}</td>
                         <td>{{service.gst}}</td>
                         <td>{{service.description}}</td>
-                      
+                      <td><ion-icon color="danger" icon-only name="trash"></ion-icon></td>
                       </tr>
                      
                     </tbody>

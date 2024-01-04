@@ -51,12 +51,14 @@ export class CreateunitPage implements OnInit {
     const fields = { unit_name: this.unit_name }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
+      const companyid='1'
       console.log('Your form data : ', this.form.value);
       let unitdata: unit = {
         unit_name: this.form.value.unit_name,
         short_name: this.form.value.short_name,
         primary_unit: this.form.value.primary_unit,
         decimal_place: this.form.value.decimal_place,
+        companyid: '1'
       };
       this.unitService.createUnit(unitdata, '', '').subscribe(
         (response: any) => {

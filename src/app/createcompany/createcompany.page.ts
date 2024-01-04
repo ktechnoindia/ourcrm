@@ -68,7 +68,7 @@ export class CreatecompanyPage implements OnInit {
   company: any;
 
   //Step: 2
-  tanumber: string = '';
+  tanno: string = '';
   pannumber: string = '';
   industry$: any;
   industry: number = 0;

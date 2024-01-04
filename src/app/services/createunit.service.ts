@@ -8,6 +8,7 @@ export interface unit{
   short_name:string;
   primary_unit:number;
   decimal_place:number;
+  companyid:string
 }
 
 

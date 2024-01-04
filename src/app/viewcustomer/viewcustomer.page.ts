@@ -56,7 +56,7 @@ export class ViewcustomerPage implements OnInit {
     'email',
     'countryid',
     'stateid',
-    'districtname',
+    'districtid',
     'pincode',
     'address',
     'aadhar_no',
@@ -66,7 +66,7 @@ export class ViewcustomerPage implements OnInit {
     'ifsc_code',
     'bank_name',
     'branch_name',
-    '.card_number',
+    'card_number',
     'credit_period',
     'credit_limit',
   ];
