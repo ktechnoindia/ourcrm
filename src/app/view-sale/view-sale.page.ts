@@ -55,7 +55,7 @@ export class ViewSalePage implements OnInit {
     'barcode',
     'itemcode',
     'itemname',
-    '.description',
+    'description',
     'quantity',
     'unitname',
     'mrp',
@@ -101,7 +101,6 @@ export class ViewSalePage implements OnInit {
 
     this.sales$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalItems = data.length;
       this.totalItems = data.length;
     });
 

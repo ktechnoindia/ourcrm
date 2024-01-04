@@ -47,7 +47,52 @@ export class DcInReportPage implements OnInit {
   dcin$: Observable<any[]>;
   searchTerm: string = '';
   filteredDcin$: Observable<any[]> = new Observable<any[]>();
-
+// filteredSales: Observable<any[]>;
+availableColumns: string[] = [
+  'voucherformat',
+  'voucherNumber',
+  'datetype',
+  'vendcode',
+  'suppliertype',
+  'referenceNumber',
+  'refdate',
+  'deliverydate',
+  'deliveryplace',
+  'barcode',
+  'itemcode',
+  'itemname',
+  'description',
+  'quantity',
+  'unitname',
+  'mrp',
+  'basicrate',
+  'netrate',
+  'grossrate',
+  'taxrate',
+  'IGST',
+  'CGST',
+  'SGST',
+  'discount',
+  'discountamt',
+  'totaltax',
+  'pretax',
+  'posttax',
+  'total',
+];
+selectedColumns: string[] = [
+  'voucherNumber',
+  'datetype',
+  'vendcode',
+  'suppliertype',
+  'itemcode',
+  'itemname',
+  'basicrate',
+  'discountamt',
+  'totaltax',
+  'total',
+  
+];
+totalItems: number = 0;
   constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
@@ -56,6 +101,8 @@ export class DcInReportPage implements OnInit {
 
     this.dcin$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+
     });
   }
 

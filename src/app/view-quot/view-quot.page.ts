@@ -22,7 +22,51 @@ export class ViewQuotPage implements OnInit {
   searchTerm: string = '';
   filteredQuatation$: Observable<any[]> = new Observable<any[]>(); 
 
-
+  availableColumns: string[] = [
+    'billformate',
+    'quoteNumber',
+    'quateDate',
+    'custcode',
+    'custname',
+    'refrence',
+    'refdate',
+    'deliverydate',
+    'deliveryplace',
+    'barcode',
+    'itemcode',
+    'itemname',
+    'description',
+    'quantity',
+    'unitname',
+    'mrp',
+    'basicrate',
+    'netrate',
+    'grossrate',
+    'taxrate',
+    'IGST',
+    'CGST',
+    'SGST',
+    'discount',
+    'discountamt',
+    'totaltax',
+    'pretax',
+    'posttax',
+    'total',
+  ];
+  selectedColumns: string[] = [
+    'quoteNumber',
+    'quateDate',
+    'custcode',
+    'custname',
+    'itemcode',
+    'itemname',
+    'basicrate',
+    'discountamt',
+    'totaltax',
+    'total',
+    
+  ];
+  totalItems: number = 0;
   constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
     const userid = '1';
@@ -31,6 +75,11 @@ export class ViewQuotPage implements OnInit {
 
     this.quote$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
+    });
+    this.quote$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+
     });
   }
 

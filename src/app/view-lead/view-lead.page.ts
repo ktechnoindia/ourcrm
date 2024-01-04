@@ -66,16 +66,53 @@ export class ViewLeadPage implements OnInit {
   printThisPage(){
     window.print();
   }
+   // filteredSales: Observable<any[]>;
+   availableColumns: string[] = [
+    'companyname',
+    'crdate',
+    'catPerson',
+    'phone',
+    'selectedCountry',
+    'selectedState',
+    'selectedDistrict',
+    'fulladdress',
+    'pncode',
+    'emails',
+    'selectpd',
+    'leadstatus',
+    'lscore',
+    'leadassign',
+    'executivename',
+    'rmark',
+  ];
+  selectedColumns: string[] = [
+    'companyname',
+    'crdate',
+    'catPerson',
+    'phone',
+    'selectedState',
+    'fulladdress',
+    'emails',
+    'selectpd',
+    'executivename',
+  ];
+  totalItems: number = 0;
+
   constructor(private encService: EncryptionService,private navCtrl:NavController,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
     this.executive$ = this.execut.getexecutive();
-
+    this.lead$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalItems = data.length;
+        });
     this.viewLeadForm = this.formBuilder.group({
       select_sales_person:[''],
       formdate:[''],
       toDate:[''],
-      searchTerm:['']
+      searchTerm:[''],
+    totalItems:[''],
+    selectedColumns:[],
     })
    }
 
@@ -126,7 +163,21 @@ export class ViewLeadPage implements OnInit {
       }
     });
   }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.lead$ = this.lead$.pipe(
+      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.formdate, this.toDate)))
+    );
+  }
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    // Parse the dates into JavaScript Date objects
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
 
+    // Check if the saleDate is within the range
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
+  }
   onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
