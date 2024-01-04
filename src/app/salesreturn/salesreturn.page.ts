@@ -349,6 +349,9 @@ export class SalesreturnPage implements OnInit {
           sales.barcode = itemDetails.barcode.toString();
           sales.unitname = itemDetails.unitname;
           sales.taxrate = itemDetails.selectGst;
+          sales.basicrate = itemDetails.basicrate;
+          sales.mrp = itemDetails.mrp;
+
   
           // Update form control values
           this.myform.patchValue({

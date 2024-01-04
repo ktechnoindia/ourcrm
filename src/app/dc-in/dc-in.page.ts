@@ -43,6 +43,7 @@ interface Dcin {
   taxrate1: number;
   itemid: number;
   selectedItemId:number;
+  totaltaxamount:number;
 }
 @Component({
   selector: 'app-dc-in',
@@ -102,7 +103,9 @@ export class DcInPage implements OnInit {
     pretax: 0,
     posttax: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId:0,
+    totaltaxamount:0,
+
   }];
 
   ttotal!: number;
@@ -139,7 +142,7 @@ export class DcInPage implements OnInit {
       voucherformat: [''],
       voucherNumber: ['', Validators.required],
       datetype: [''],
-      vendcode: ['', Validators.required],
+      vendcode: ['', Validators.required].toString(),
       suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
@@ -240,7 +243,7 @@ export class DcInPage implements OnInit {
           voucherformat: this.myform.value.voucherformat,
           voucherNumber: this.myform.value.voucherNumber,
           datetype: this.myform.value.datetype,
-          vendcode: this.myform.value.vendcode,
+          vendcode: this.myform.value.vendcode.toString(),
           suppliertype: this.myform.value.suppliertype,
           referenceNumber: this.myform.value.referenceNumber,
           refdate: this.myform.value.refdate,
@@ -333,6 +336,8 @@ export class DcInPage implements OnInit {
           dcin.barcode = itemDetails.barcode.toString();
           dcin.unitname = itemDetails.unitname;
           dcin.taxrate = itemDetails.selectGst;
+          dcin.basicrate = itemDetails.basicrate;
+          dcin.mrp = itemDetails.mrp;
   
           // Update form control values
           this.myform.patchValue({
@@ -407,7 +412,9 @@ export class DcInPage implements OnInit {
       pretax: 0,
       posttax: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId:0,
+      totaltaxamount:0,
+
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
@@ -551,10 +558,7 @@ export class DcInPage implements OnInit {
   }
 
 
-  getTotalamt(dcin: Dcin): number {
-
-    return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
-  }
+ 
   // getcgst(dcin: Dcin): number {
   //   return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
   // }
@@ -649,6 +653,9 @@ calculateIGST(taxRate: number,dcin:Dcin): number {
   // Replace the following line with your actual logic to calculate IGST
   return ((taxRate / 100 * dcin.basicrate) * dcin.quantity); 
 }
+getTotalamt(taxRate: number,dcin: Dcin): number {
 
+  return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (taxRate / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
+}
 
 }

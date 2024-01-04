@@ -151,7 +151,7 @@ export class DcOutPage implements OnInit {
       voucherformat: [''],
       voucherNumber: ['', Validators.required],
       datetype: [''],
-      vendcode: ['', Validators.required],
+      vendcode: ['', Validators.required].toString(),
       suppliertype: ['', Validators.required],
       referenceNumber: [''],
       refdate: [''],
@@ -247,7 +247,7 @@ export class DcOutPage implements OnInit {
           voucherformat: this.myform.value.voucherformat,
           voucherNumber: this.myform.value.voucherNumber,
           datetype: this.myform.value.datetype,
-          vendcode: this.myform.value.vendcode,
+          vendcode: this.myform.value.vendcode.toString(),
           suppliertype: this.myform.value.suppliertype,
           referenceNumber: this.myform.value.referenceNumber,
           refdate: this.myform.value.refdate,
@@ -374,6 +374,8 @@ export class DcOutPage implements OnInit {
           dcout.barcode = itemDetails.barcode.toString();
           dcout.unitname = itemDetails.unitname;
           dcout.taxrate = itemDetails.selectGst;
+          dcout.basicrate = itemDetails.basicrate;
+          dcout.mrp = itemDetails.mrp;
 
           // Update form control values
           this.myform.patchValue({

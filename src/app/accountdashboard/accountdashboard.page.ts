@@ -14,7 +14,10 @@ import { RouterLink } from '@angular/router';
 export class AccountdashboardPage implements OnInit {
   selectedOptions: string[] = [];
 
-  constructor() { }
+  constructor() { 
+    this.selectedOptions = ['paymenttransactionlist', 'receipttransactionlist'];
+
+  }
 
   ngOnInit() {
   }

@@ -209,14 +209,16 @@
                         type="number">
                     </td>
                     <td style="width: 50px;">
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
+                      <input [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number"  >
+                      <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <input type="hidden" [(ngModel)]="quote.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>

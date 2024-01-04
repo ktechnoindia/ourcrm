@@ -36,6 +36,8 @@ export class LeaddashboardPage implements OnInit {
   totallead: number=0;
 
   constructor(private encService: EncryptionService,private leadser:LeadService,) {
+    this.selectedOptions = ['topnewlead', 'productwiselead'];
+
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
 

@@ -360,6 +360,9 @@ export class AddSalePage implements OnInit {
           sales.barcode = itemDetails.barcode.toString();
           sales.unitname = itemDetails.unitname;
           sales.taxrate = itemDetails.selectGst;
+          sales.basicrate = itemDetails.basicrate;
+          sales.mrp = itemDetails.mrp;
+
 
           // Update form control values
           this.myform.patchValue({
@@ -392,12 +395,14 @@ export class AddSalePage implements OnInit {
           // Update the quote properties
           event.custcode = itemDetails.customer_code;
           event.custname = itemDetails.name;
+          event.gstin= itemDetails.gstin,
 
 
           // Update form control values
           this.myform.patchValue({
-            custcode: itemDetails.custcode,
+            custcode: itemDetails.customer_code,
             custname: itemDetails.custname,
+            gstin: itemDetails.gstin,
             // Other form controls...
           });
 

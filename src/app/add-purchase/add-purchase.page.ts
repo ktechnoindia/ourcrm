@@ -346,12 +346,48 @@ export class AddPurchasePage implements OnInit {
       }
     }
   };
+  getVendors(event: any) {
+    const compid = '1';
+    const identifier = this.vendcode ? 'custcode' : 'custname';
+    const value = this.vendcode;
+
+    this.vendname1.fetchallVendor(compid, '', value).subscribe(
+      (data) => {
 
 
-  getItems(sales: any) {
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          event.vendcode = itemDetails.vendor_code;
+          event.supplier = itemDetails. name;
+          event.gstin = itemDetails.gstin;
+
+
+
+          // Update form control values
+          this.myform.patchValue({
+            vendcode: itemDetails.vendor_code,
+            supplier: itemDetails.supplier,
+            gstin: itemDetails.gstin,
+
+            // Other form controls...
+          });
+
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+
+  getItems(purchase: any) {
     const compid = 1;
-    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
-    const value = sales.selectedItemId ||sales.itemcode;
+    const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
+    const value = purchase.selectedItemId ||purchase.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -360,17 +396,20 @@ export class AddPurchasePage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-          sales.itemid = itemDetails.tid;
-          sales.itemcode = itemDetails.itemCode;
-          sales.itemname = itemDetails.itemDesc.valueOf();
-          sales.barcode = itemDetails.barcode.toString();
-          sales.unitname = itemDetails.unitname;
-          sales.taxrate = itemDetails.selectGst;
+          purchase.itemid = itemDetails.tid;
+          purchase.itemcode = itemDetails.itemCode;
+          purchase.itemname = itemDetails.itemDesc.valueOf();
+          purchase.barcode = itemDetails.barcode.toString();
+          purchase.unitname = itemDetails.unitname;
+          purchase.taxrate = itemDetails.selectGst;
+          purchase.basicrate = itemDetails.basicrate;
+          purchase.mrp = itemDetails.mrp;
+          
 
           // Update form control values
           this.myform.patchValue({
-            itemcode: sales.itemcode,
-            itemname: sales.itemname,
+            itemcode: purchase.itemcode,
+            itemname: purchase.itemname,
             // Other form controls...
           });
         } else {

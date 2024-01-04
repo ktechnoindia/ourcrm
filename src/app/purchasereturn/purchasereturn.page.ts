@@ -163,7 +163,7 @@ export class PurchasereturnPage implements OnInit {
       billformate: [''],
       billNumber: ['', Validators.required],
       billDate: [''],
-      vendcode: ['', Validators.required],
+      vendcode: ['', Validators.required].toString(),
       supplier: ['', Validators.required],
       refrence: [''],
       refdate: [''],
@@ -271,7 +271,7 @@ export class PurchasereturnPage implements OnInit {
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
-          vendcode: this.myform.value.vendcode,
+          vendcode: this.myform.value.vendcode.toString(),
           orderDate: this.myform.value.orderDate,
           orderNumber: this.myform.value.orderNumber,
           ponumber: this.myform.value.ponumber,
@@ -313,7 +313,7 @@ export class PurchasereturnPage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          executive: ''
+          executive:this.myform.value.executive,
         };
 
         purchases.push(purchasedata);
@@ -349,10 +349,10 @@ export class PurchasereturnPage implements OnInit {
   };
 
 
-  getItems(sales: any) {
+  getItems(purchase: any) {
     const compid = 1;
-    const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
-    const value = sales.selectedItemId || sales.itemcode;
+    const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
+    const value = purchase.selectedItemId || purchase.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -361,17 +361,18 @@ export class PurchasereturnPage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-          sales.itemid = itemDetails.tid;
-          sales.itemcode = itemDetails.itemCode;
-          sales.itemname = itemDetails.itemDesc.valueOf();
-          sales.barcode = itemDetails.barcode.toString();
-          sales.unitname = itemDetails.unitname;
-          sales.taxrate = itemDetails.selectGst;
-
+          purchase.itemid = itemDetails.tid;
+          purchase.itemcode = itemDetails.itemCode;
+          purchase.itemname = itemDetails.itemDesc.valueOf();
+          purchase.barcode = itemDetails.barcode.toString();
+          purchase.unitname = itemDetails.unitname;
+          purchase.taxrate = itemDetails.selectGst;
+          purchase.basicrate = itemDetails.basicrate;
+          purchase.mrp = itemDetails.mrp;
           // Update form control values
           this.myform.patchValue({
-            itemcode: sales.itemcode,
-            itemname: sales.itemname,
+            itemcode: purchase.itemcode,
+            itemname: purchase.itemname,
             // Other form controls...
           });
         } else {

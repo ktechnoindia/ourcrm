@@ -87,7 +87,19 @@
         </ion-col>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
           <div class="icon-container">
-           
+            <ion-row >
+              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
+              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
+              label-placement="floating" fill="outline">
+                <ion-select-option value="purchaselist">Purchase List</ion-select-option>
+                <ion-select-option value="saleslist">Sales List</ion-select-option>
+                <ion-select-option value="quotelist">Quatations List</ion-select-option>
+                <ion-select-option value="dcinlist">DC-IN List</ion-select-option>
+                <ion-select-option value="dcoutlist">DC-OUT List</ion-select-option>
+                <ion-select-option value="purchasereturnlist">Purchase Return List</ion-select-option>
+                <ion-select-option value="salreturnslist">Sales Return List</ion-select-option>
+              </ion-select>
+            </ion-row>
             <ion-row class="headinglabel" style="text-align: center;">
               <ion-label color="dark">Manage Transtaction Pages:</ion-label>
             </ion-row>
@@ -131,19 +143,7 @@
              
             </ion-row>
 
-            <ion-row >
-              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
-              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
-              label-placement="floating" fill="outline">
-                <ion-select-option value="purchaselist">Purchase List</ion-select-option>
-                <ion-select-option value="saleslist">Sales List</ion-select-option>
-                <ion-select-option value="quotelist">Quatations List</ion-select-option>
-                <ion-select-option value="dcinlist">DC-IN List</ion-select-option>
-                <ion-select-option value="dcoutlist">DC-OUT List</ion-select-option>
-                <ion-select-option value="purchasereturnlist">Purchase Return List</ion-select-option>
-                <ion-select-option value="salreturnslist">Sales Return List</ion-select-option>
-              </ion-select>
-            </ion-row>
+           
 
           </div>
         </ion-col>
