@@ -372,7 +372,7 @@ showTable: boolean = false ;
     const compid = 1;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
     const value = quote.selectedItemId || quote.itemcode;
-
+    const grate=[3,5,12,18,28,0,0,0];
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -385,9 +385,13 @@ showTable: boolean = false ;
           quote.itemname = itemDetails.itemDesc;
           quote.barcode = itemDetails.barcode.toString();
           quote.unitname = itemDetails.unitname;
-          quote.taxrate = itemDetails.selectGst;
+          quote.taxrate = grate[itemDetails.selectGst];
+          quote.taxrate1 = grate[itemDetails.selectGst];
+
           quote.basicrate = itemDetails.basicrate;
           quote.mrp = itemDetails.mrp;
+          quote.basicrate=itemDetails.basic_rate;
+          quote.netrate=itemDetails.net_rate;
 
 
           // Update form control values
