@@ -79,7 +79,8 @@ export class DcInPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-
+  
+  
   dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
@@ -107,7 +108,7 @@ export class DcInPage implements OnInit {
     totaltaxamount:0,
 
   }];
-
+  
   ttotal!: number;
   myform: FormGroup;
   supplier$: any;
