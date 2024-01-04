@@ -409,7 +409,7 @@ showTable: boolean = false ;
     const compid = 1;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
     const value = quote.selectedItemId || quote.itemcode;
-    const grate=[3,5,12,18,28,0,0,0];
+    const grate=[0,3,5,12,18,28,0,0,0];
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
