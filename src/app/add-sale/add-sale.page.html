@@ -105,7 +105,7 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text"
+                  <ion-input [(ngModel)]="gstin" (change)="getCustomers($event)" formControlName="gstin" name="gstincode" type="text"
                     label=" GSTIN  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -192,12 +192,14 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="select-option" [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}">
+                      <input [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number">
+                      <!-- <select class="select-option" [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                           {{ unitnames.unitname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <td>
                       <input [(ngModel)]="sales.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -217,14 +219,16 @@
                         type="number">
                     </td>
                     <td style="width: 50px;">
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
+                      <input [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number"  >
+                      <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
                         (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <input type="hidden" [(ngModel)]="sales.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>

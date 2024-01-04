@@ -166,6 +166,7 @@ export class AddCustomerPage implements OnInit {
     this.router.navigate(['/master']);
   }
 
+ 
   async onSubmit() {
     const fields = { name: this.name, }
     const isValid = await this.formService.validateForm(fields);

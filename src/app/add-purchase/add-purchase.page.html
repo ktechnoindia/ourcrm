@@ -55,14 +55,14 @@
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark"  [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode" type="text"  label="Code :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input color="dark"  [(ngModel)]="vendcode" formControlName="vendcode"   (change)="getVendors($event)" name="vendcode" type="text"  label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
 
               <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" 
-                label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="supplier" formControlName="supplier" name="spler">
+                label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="vendcode" formControlName="supplier" name="spler" (change)="getVendors($event)">
                   <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
@@ -101,7 +101,7 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text"
+                  <ion-input [(ngModel)]="gstin" (change)="getVendors($event)" formControlName="gstin" name="gstincode" type="text"
                     label=" GSTIN  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
@@ -190,13 +190,15 @@
 
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="purchase.unitname" (ngModelChange)="getItems(purchase)"
+                      <input [(ngModel)]="purchase.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number">
+                      <!-- <select class="select-option" [(ngModel)]="purchase.unitname" (ngModelChange)="getItems(purchase)"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitname of unitname$ | async" [value]="unitname.unitid">
                           {{ unitname.unitname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -214,13 +216,15 @@
                       <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number">
                     </td>
                     <td>
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
+                      <input [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number"  >
+                      <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
                         [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(purchase)"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}" />
 

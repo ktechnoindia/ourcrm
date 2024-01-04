@@ -27,7 +27,7 @@ interface Quote {
   basicrate: number;
   netrate: number;
   grossrate: number;
-  taxrate: number;
+  taxrate: 0;
   CGST: number;
   SGST: number;
   IGST: number;
@@ -38,6 +38,7 @@ interface Quote {
   taxrate1: number;
   itemid: number;
   selectedItemId:number;
+
 }
 
 @Component({
@@ -276,7 +277,7 @@ showTable: boolean = false ;
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
         element.netrate = element.basicrate + element.taxrate1;
-        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+              element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
@@ -385,6 +386,9 @@ showTable: boolean = false ;
           quote.barcode = itemDetails.barcode.toString();
           quote.unitname = itemDetails.unitname;
           quote.taxrate = itemDetails.selectGst;
+          quote.basicrate = itemDetails.basicrate;
+          quote.mrp = itemDetails.mrp;
+
 
           // Update form control values
           this.myform.patchValue({

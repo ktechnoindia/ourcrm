@@ -34,7 +34,7 @@
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="--- Role---" label-placement="floating" fill="outline"  [ngModel]="roleid" name="roleid" formControlName="roleid">
-                  <!-- <ion-select-option value="0"> --- Role --- </option> Default option -->
+                 <!-- <ion-select-option value="0"><ion-button>add</ion-button></ion-select-option>  -->
                   <ion-select-option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid">
                     {{ roletypes.roletypename }}
                   </ion-select-option>

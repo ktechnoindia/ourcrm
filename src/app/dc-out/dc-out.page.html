@@ -156,12 +156,14 @@
 
                     </td>
                     <td style="width: 90px;">
-                      <select class="select-option" [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}">
+                      <input [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number">
+                      <!-- <select class="select-option" [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(dcout)">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
                           {{ unitnames.unitname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <td>
                       <input [(ngModel)]="dcout.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -181,14 +183,16 @@
                         type="number">
                     </td>
                     <td style="width: 50px;">
-                      <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,dcout)"
+                      <input [(ngModel)]="dcout.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                      type="number"  >
+                      <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,dcout)"
                         (ngModelChange)="getItems(dcout)" [(ngModel)]="dcout.taxrate"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0"> GST</option>
                         <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
                           {{ gsttype.gstname }}
                         </option>
-                      </select>
+                      </select> -->
                     </td>
                     <input type="hidden" [(ngModel)]="dcout.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
