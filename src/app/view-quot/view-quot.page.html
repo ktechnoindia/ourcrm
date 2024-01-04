@@ -11,7 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-        <form #viewQuoteForm="ngForm" (ngSubmit)="onSubmit()">
+        <form #viewQuoteForm="ngForm" >
           <ion-row>
             <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
@@ -26,7 +26,7 @@
               </ion-row>
             </ion-col>
             <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-              <ion-button type="submit" expand="block">Ok</ion-button>
+              <ion-button type="submit" expand="block" (click)="filterData()">Ok</ion-button>
             </ion-col>
           </ion-row>
 

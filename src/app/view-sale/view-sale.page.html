@@ -78,7 +78,7 @@
                     <tbody>
                       <tr *ngFor="let sales of filteredSales$ | async; let i = index">
                         <td>{{ i + 1 }}</td>
-                        <td *ngFor="let col of selectedColumns">{{ sales[col.toLowerCase()] }}</td>
+                        <td *ngFor="let col of selectedColumns">{{ sales[col] }}</td>
                         <td class="Action">
                           <ion-icon color="danger" icon-only name="trash"></ion-icon>
                           <ion-icon color="primary" icon-only name="create"></ion-icon>

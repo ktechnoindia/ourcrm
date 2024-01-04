@@ -57,17 +57,21 @@ export class ViewQuotPage implements OnInit {
   }
 
 
-  async onSubmit() {
-    const fromDateObj = new Date(this.formDate);
-    const toDateObj = new Date(this.toDate);
-  
-    // Filter quotes based on date range
-    this.quote$ = this.quote$.pipe(
-      map(quotes => quotes.filter(quote => {
-        const quoteDate = new Date(quote.quateDate);
-        return quoteDate >= fromDateObj && quoteDate <= toDateObj;
-      }))
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredQuatation$ = this.quote$.pipe(
+      map(quotes => quotes.filter(quote => this.isDateInRange(quote.billDate, this.formDate, this.toDate)))
     );
+  }
+
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    // Parse the dates into JavaScript Date objects
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+
+    // Check if the saleDate is within the range
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 
 

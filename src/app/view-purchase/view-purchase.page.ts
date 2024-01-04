@@ -64,7 +64,7 @@ export class ViewPurchasePage implements OnInit {
     'barcode',
     'itemcode',
     'itemname',
-    '.description',
+    'description',
     'quantity',
     'unitname',
     'mrp',
@@ -81,7 +81,7 @@ export class ViewPurchasePage implements OnInit {
     'pretax',
     'posttax',
     'total',
-'executive',
+
   ];
   selectedColumns: string[] = [
     'billformate',
