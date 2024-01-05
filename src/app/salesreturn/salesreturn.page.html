@@ -12,16 +12,18 @@
 
 <ion-content [fullscreen]="true">
   <div class="Customer">
-<div>
-        <ion-card-content>
+    <div>
+      <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header >
+          <ion-card-header>
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Sales Return</ion-title>
-              <div  class="custom-primary">
-                <ion-button size="small" [routerLink]="['/view-salesreturn']" id="open-loading5">View Sales Return</ion-button>
-                <ion-loading class="custom-loading" trigger="open-loading5" message="Sales Showing ..." [duration]="1000"></ion-loading>
+              <div class="custom-primary">
+                <ion-button size="small" [routerLink]="['/view-salesreturn']" id="open-loading5">View Sales
+                  Return</ion-button>
+                <ion-loading class="custom-loading" trigger="open-loading5" message="Sales Showing ..."
+                  [duration]="1000"></ion-loading>
 
               </div>
             </ion-row>
@@ -30,11 +32,12 @@
         <ion-grid>
 
 
-          <form [formGroup]="myform"  (ngSubmit)="onSubmit(myform,salesData)">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,salesData)">
             <ion-row>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Bill Formate" label-placement="floating" fill="outline"  [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Bill Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate"
+                  formControlName="billformate" name="billformate">
                   <!-- <ion-select-option value="0" >Bill Formate</ion-select-option> Default option -->
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
@@ -43,82 +46,85 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="billNumber" formControlName="billNumber" name="billno" type="number"
-                    label=" Billing No. :" label-placement="floating" fill="outline"></ion-input>                
+                  <ion-input #firstInvalidInput [(ngModel)]="billNumber" formControlName="billNumber" name="billno"
+                    type="number" label=" Billing No. :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="frombill" formControlName="frombill" name="frombill" type="number"
-                    label="From Billing No :" label-placement="floating" fill="outline"></ion-input>                
+                    label="From Billing No :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="billDate" formControlName="billDate" name="billdate" type="date" label=" Billing Date :"
-                    label-placement="floating" fill="outline"></ion-input>
-                   
+                  <ion-input [(ngModel)]="billDate" formControlName="billDate" name="billdate" type="date"
+                    label=" Billing Date :" label-placement="floating" fill="outline"></ion-input>
+
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text" label="Code :"
-                    label-placement="floating" fill="outline" (change)="getCustomers($event)"></ion-input >
+                  <ion-input color="dark" [(ngModel)]="custcode" formControlName="custcode" name="custcode" type="text"
+                    label="Code :" label-placement="floating" fill="outline"
+                    (change)="getCustomers($event)"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" (change)="getCustomers($event)"
-                label="--- Customer Name ---" label-placement="floating" fill="outline"   [(ngModel)]=" custcode" name="custname" formControlName="custname">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  (change)="getCustomers($event)" label="--- Customer Name ---" label-placement="floating"
+                  fill="outline" [(ngModel)]=" custcode" name="custname" formControlName="custname">
                   <!-- <ion-select-option value="0"> --- Customer Name --- </ion-select-option> -->
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
                 </ion-select>
-               
+
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text" label="Refrence No. :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text"
+                    label="Refrence No. :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label="Ref. Date :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date"
+                    label="Ref. Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="orderNumber" formControlName="orderNumber" name="orderno" type="text"
+                  <ion-input [(ngModel)]="orderNumber" formControlName="orderNumber" name="orderno" type="text"
                     label=" Order No.  :" label-placement="floating" fill="outline"></ion-input>
-                   
+
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date" label=" Order Date :"
-                    label-placement="floating" fill="outline"></ion-input>
-                   
+                  <ion-input [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date"
+                    label=" Order Date :" label-placement="floating" fill="outline"></ion-input>
+
                 </ion-row>
               </ion-col>
-            
-             
+
+
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
+                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
-            
+
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Sales Person ---" label-placement="floating" fill="outline"  [(ngModel)]="salePerson" formControlName="salePerson" name="sperson">
+                  label="--- Sales Person ---" label-placement="floating" fill="outline" [(ngModel)]="salePerson"
+                  formControlName="salePerson" name="sperson">
                   <!-- <ion-select-option value="0">  --- Sales Person --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -127,8 +133,9 @@
               </ion-col>
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment" formControlName="payment" name="pyt">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment"
+                  formControlName="payment" name="pyt">
                   <!-- <option value="0" disabled selected>Select Payment Mode</option> Default option -->
                   <ion-select-option value="0">Cash</ion-select-option>
                   <ion-select-option value="1">Credit</ion-select-option>
@@ -137,8 +144,8 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input  [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text" label=" Po Number  :"
-                    label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text"
+                    label=" Po Number  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
@@ -150,22 +157,22 @@
                 <table style="width:1755px;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th >BarCode</th>
+                    <th>BarCode</th>
                     <th>Item Code</th>
-                    <th >Item Name</th>
-                    <th >Description</th>
+                    <th>Item Name</th>
+                    <th>Description</th>
                     <th>Quantity</th>
                     <th>Unit</th>
                     <th>MRP</th>
                     <th>Basic Rate</th>
                     <th>Net Rate</th>
-                    <th >Gross Amount</th>
+                    <th>Gross Amount</th>
                     <th>GST</th>
                     <th>CGST</th>
                     <th>SGST</th>
                     <th>IGST</th>
                     <th>Discount By</th>
-                    <th >Discount Amount</th>
+                    <th>Discount Amount</th>
                     <th>Tax Amount</th>
                     <th>Net Amount</th>
                     <th>Action</th>
@@ -173,23 +180,24 @@
                   <tr *ngFor="let sales of salesData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="sales.barcode" (ngModelChange)="getItems(sales)" [ngModelOptions]="{standalone: true}" class="table_input" 
-                        type="text">
+                      <input [(ngModel)]="sales.barcode" (ngModelChange)="getItems(sales)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.itemcode" (ngModelChange)="getItems(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="sales.itemcode" (ngModelChange)="getItems(sales)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="select-option"  style="width: 100px;outline: none;border: none;" id="itemname"
-                        [(ngModel)]=" sales.selectedItemId" [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
+                      <select class="select-option" style="width: 100px;outline: none;border: none;" id="itemname"
+                        [(ngModel)]=" sales.selectedItemId" [ngModelOptions]="{standalone: true}"
+                        (ngModelChange)="getItems(sales)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
                           {{ itemname.itemDesc }}
                         </option>
                       </select>
                       <ion-input style="display: none;" [(ngModel)]="sales.itemid" [ngModelOptions]="{standalone: true}"
-                      type="hidden"></ion-input>
+                        type="hidden"></ion-input>
                       <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
                         type="hidden"></ion-input>
                       <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
@@ -200,15 +208,14 @@
                         class="table_input description" type="text">
                     </td>
                     <td>
-                      <input *ngIf="sales.itemcode !== 0" [(ngModel)]="sales.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number"  (ngModelChange)="presentPopover(sales)">
-
+                      <input *ngIf="sales.itemcode !== 0" [(ngModel)]="sales.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown.enter)="presentPopover(sales)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="text">
-                      <input [(ngModel)]="sales.hunitname" [ngModelOptions]="{standalone: true}" 
-                      type="hidden">
+                        type="text">
+                      <input [(ngModel)]="sales.hunitname" [ngModelOptions]="{standalone: true}" type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
@@ -235,7 +242,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number"  >
+                        type="number">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
                         (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -271,12 +278,13 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                      <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)" (keyup)="getdiscountamt(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                      <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)"
+                        (keyup)="getdiscountamt(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                      <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.total" [ngModelOptions]="{standalone: true}"
@@ -293,44 +301,49 @@
                 </table>
 
               </div>
-              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;" >
-                
+              <div style="overflow-x: auto; border: 1px solid grey; width: 100%;">
+
                 <ion-row>
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total Item :</label>
-                    <input name="totalitemno" [(ngModel)]="salesData.length"   formControlName="totalitemno" class="input_table" type="text" >
+                    <input name="totalitemno" [(ngModel)]="salesData.length" formControlName="totalitemno"
+                      class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
-                    
-                    <input name="totalquantity" [(ngModel)]="totalquantity"  [value]="getTotalQuantity()" formControlName="totalquantity"  class="input_table" type="text">
-                  
+
+                    <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
+                      formControlName="totalquantity" class="input_table" type="text">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()" formControlName="totalgrossamt" class="input_table" type="text" >
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
+                      formControlName="totalgrossamt" class="input_table" type="text">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()" formControlName="totaldiscountamt" class="input_table" type="text">
-                 
+                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                      formControlName="totaldiscountamt" class="input_table" type="text">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()" formControlName="totaltaxamount" class="input_table" type="text">
-                 
-                   </ion-col>
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                      formControlName="totaltaxamount" class="input_table" type="text">
 
-                  
-                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
+                  </ion-col>
+
+
+                  <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getTotalnetAmount()"
-                      class="input_table" type="text">
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                      [value]="getTotalnetAmount()" class="input_table" type="text">
 
                   </ion-col>
                 </ion-row>
@@ -439,27 +452,28 @@
 
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()"
-                          id="roundoff" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="text">
+                          class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="text">
+                          id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getGrandTotal()"
-                          id="totalnetamount" name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                          [value]="getGrandTotal()" id="totalnetamount" name="totalnetamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
                   </table>
@@ -472,7 +486,7 @@
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-button >Print</ion-button>
+              <ion-button>Print</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Saving..."
                 [duration]="1000"></ion-loading>
               <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
