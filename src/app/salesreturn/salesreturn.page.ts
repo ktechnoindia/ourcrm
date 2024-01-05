@@ -37,9 +37,7 @@ interface Sales {
   totaltax: number;
   total: number;
   taxrate1: number;
-  posttax: number;
-  pretax: number;
-  itemid:number;
+  itemid: number;
   selectedItemId:number;
 }
 @Component({
@@ -71,8 +69,8 @@ export class SalesreturnPage implements OnInit {
   totalnetamount: string = '';
   ponumber:string='';
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax: number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: string = '';
@@ -101,8 +99,6 @@ export class SalesreturnPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -289,8 +285,8 @@ export class SalesreturnPage implements OnInit {
         totaltaxamount: this.myform.value.totaltaxamount,
         totalnetamount: this.myform.value.totalnetamount,
         roundoff: this.myform.value.roundoff,
-        pretax: element.pretax,
-        posttax: element.posttax,
+        pretax: this.myform.value.pretax,
+        posttax: this.myform.value.posttax,
         deliverydate: this.myform.value.deliverydate,
         deliveryplace: this.myform.value.deliveryplace,
         openingbalance: this.myform.value.openingbalance,
@@ -360,8 +356,6 @@ export class SalesreturnPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId:0
     }];
@@ -469,8 +463,6 @@ export class SalesreturnPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid:0,
       selectedItemId:0
       // Add more properties as needed
@@ -540,7 +532,7 @@ export class SalesreturnPage implements OnInit {
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount = sale.quantity * sale.basicrate;
+      const grossAmount = (+this.pretax )+(sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
   
@@ -551,7 +543,7 @@ export class SalesreturnPage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+sale.pretax + sale.posttax)+(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
+      const itemTotal = (((+this.pretax )+(this.posttax)+(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
       return total + itemTotal;
     }, 0);
   
@@ -629,14 +621,16 @@ export class SalesreturnPage implements OnInit {
   getTotalamt(sale: Sales): number {
     return (sale.basicrate * sale.quantity) + (sale.quantity * (sale.taxrate1 / 100 * sale.basicrate)) - this.calculateDiscountAmount(sale);
   }
-  getcgst(sale: Sales): number {
-    return sale.taxrate1 / 2;
+  getcgst(quote: Sales): number {
+    return this.getTotalTaxAmount() / 2;
   }
-  getsgst(sale: Sales): number {
-    return sale.taxrate1 / 2;
+
+  getsgst(quote: Sales): number {
+    return this.getTotalTaxAmount() / 2;
   }
-  getigst(sale: Sales): number {
-    return sale.taxrate1;
+
+  getigst(quote: Sales): number {
+    return this.getTotalTaxAmount();
   }
   ngOnInit() {
     // Other initialization logic...
