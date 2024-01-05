@@ -156,10 +156,13 @@
                         type="text">
                     </td>
                     <td>
-                      <input *ngIf="dcout.itemcode !==0" [(ngModel)]="dcout.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (ngModelChange)="presentPopover(dcout)">
-
-                    </td>
+                      <input *ngIf="dcout.itemcode !== 0"
+                             [(ngModel)]="dcout.quantity"
+                             [ngModelOptions]="{standalone: true}"
+                             class="table_input"
+                             type="number"
+                             (keydown.enter)="presentPopover(dcout)">
+                    </td>   
                     <td style="width: 90px;">
                       <input [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                       type="text">
@@ -385,13 +388,13 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="text">
+                          class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="text">
+                          id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
 

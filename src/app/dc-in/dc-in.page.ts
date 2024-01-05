@@ -23,8 +23,6 @@ import { StateService } from '../services/state.service';
 
 
 interface Dcin {
-  posttax: number;
-  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -75,8 +73,8 @@ export class DcInPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax: number = 0;
+  posttax:  number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: string = '';
@@ -106,8 +104,6 @@ export class DcInPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId: 0,
     totaltaxamount: 0,
@@ -292,8 +288,6 @@ export class DcInPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId: 0,
       totaltaxamount: 0,
@@ -354,8 +348,8 @@ export class DcInPage implements OnInit {
           totaltax: element.totaltax,
           total: element.total,
           taxrate1: element.taxrate1,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax:this.myform.value.pretax,
+          posttax:this.myform.value.posttax,
           totalitemno: this.myform.value.totalitemno,
           totalquantity: this.myform.value.totalquantity,
           totalgrossamt: this.myform.value.totalgrossamt,
@@ -502,8 +496,6 @@ export class DcInPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId: 0,
       totaltaxamount: 0,
@@ -558,7 +550,7 @@ export class DcInPage implements OnInit {
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
-      const grossAmount = dcin.quantity * dcin.basicrate;
+      const grossAmount = (+this.pretax )+(dcin.quantity * dcin.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -570,7 +562,7 @@ export class DcInPage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.dcinData.reduce((total, dcin) => {
-      const itemTotal = (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity))
+      const itemTotal = (((+this.pretax )+(this.posttax) +(dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity))
       return total + itemTotal;
     }, 0);
 

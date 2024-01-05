@@ -20,8 +20,6 @@ import { DistrictsService } from '../services/districts.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
-  posttax: number;
-  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -95,8 +93,8 @@ export class AddSalePage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax:number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: string = '';
@@ -124,8 +122,6 @@ export class AddSalePage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -349,8 +345,8 @@ customerpop:FormGroup;
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           roundoff: this.myform.value.roundoff,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax:  this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
           debit: this.myform.value.debit,
@@ -422,8 +418,6 @@ customerpop:FormGroup;
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId:0
     }];
@@ -532,8 +526,6 @@ customerpop:FormGroup;
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId:0
     };
@@ -598,7 +590,7 @@ customerpop:FormGroup;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount = sale.quantity * sale.basicrate;
+      const grossAmount = (+this.pretax )+(sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -609,7 +601,7 @@ customerpop:FormGroup;
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+sale.pretax + sale.posttax) + (sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
+      const itemTotal = (((+this.pretax )+(this.posttax) +(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
       return total + itemTotal;
     }, 0);
 
