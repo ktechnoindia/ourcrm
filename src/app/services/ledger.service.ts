@@ -6,7 +6,7 @@ export interface ledg{
 lname:string;
     ledger_code: string;
     gstin: string;
-    lgroup_name: number;
+    lgroup_name: string;
     opening_balance: number;
     closing_balance: number;
     mobile: string;

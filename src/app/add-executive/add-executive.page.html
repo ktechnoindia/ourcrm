@@ -39,10 +39,9 @@
                   <ion-select-option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid">
                     {{ roletypes.roletypename }}
                   </ion-select-option>
-
                 </ion-select>
-
               </ion-col>
+
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="excode" formControlName="excode" name="excode" type="text"
@@ -50,13 +49,29 @@
 
                 </ion-row>
               </ion-col>
+
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="executivename" formControlName="executivename" name="executivename" type="text"
                     label=" Name :" label-placement="floating" fill="outline"></ion-input>
-
                 </ion-row>
               </ion-col>
+
+              <ion-col size="6" size-lg="5.3" size-md="6" size-sm="6">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Select Ledger ---" label-placement="floating" fill="outline" [ngModel]="ledger"
+                  formControlName="ledger" name="ledger">
+                  <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
+                  <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
+                  </ion-select-option>
+                </ion-select>
+
+              </ion-col>
+
+              <ion-col class="custom-primary" size-lg="0.7" size-md="2" size-sm="2" size="2">
+                <ion-button id="ledger"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+              </ion-col>
+
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Manager ---" label-placement="floating" fill="outline" [ngModel]="emanager"
@@ -68,17 +83,6 @@
                   <ion-select-option value="1">Nirbhay</ion-select-option>
                   <ion-select-option value="1">Ravi</ion-select-option>
                 </ion-select>
-
-              </ion-col>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="---Select Ledger ---" label-placement="floating" fill="outline" [ngModel]="ledger"
-                  formControlName="ledger" name="ledger">
-                  <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
-                  <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
-                  </ion-select-option>
-                </ion-select>
-
               </ion-col>
 
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
@@ -136,3 +140,105 @@
     </div>
   </div>
 </ion-content>
+
+
+<ion-popover  trigger="ledger" side="bottom" alignment="end">
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add Ledger</ion-label>
+        </ion-row>
+        <form [formGroup]="ledgerpop" (ngSubmit)="OnLedgerSubmit()">
+          <ion-row>
+
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="ledger_code" formControlName="ledger_code" name="ledger_code" type="text"
+                  label=" Ledger Code :" label-placement="floating" fill="outline" maxlength="5"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="6" size-lg="5" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="lname" formControlName="lname" name="lnames" type="text" label="Ledger Name :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="gstin" formControlName="gstin" formControlName="gstin" name="gstincode"
+                  type="text" label=" GSTIN :" label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="6" size-lg="2.9" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="mobile" name="mobile" formControlName="mobile" type="tel"
+                  label=" Mobile Number :" label-placement="floating" fill="outline" maxlength="10"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select class="select" [(ngModel)]="country" formControlName="country" name="selectedCountry"
+                label-placement="floating" fill="outline" (change)="onCountryChange()">
+                <option value="0"> --- Country --- </option>
+                <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
+                  {{ country.countryname }}
+                </option>
+              </select>
+            </ion-col>
+
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <select class="select" [(ngModel)]="state" formControlName="state" name="state"
+                label-placement="floating" (change)="onStateChange()">
+                <option value="0"> --- State --- </option>
+                <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                  {{ state.statename }}
+                </option>
+              </select>
+
+            </ion-col>
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+
+              <select class="select" [(ngModel)]="district" formControlName="district" name="district"
+                label-placement="floating" fill="outline" (change)="onDistrictChange()">
+                <option value="0"> --- District --- </option>
+                <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
+                  {{ district.districtname }}
+                </option>
+              </select>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row>
+
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="pincode" formControlName="pincode" type="tel" name="pincode"
+                  label=" PinCode  :" label-placement="floating" fill="outline" inputmode="numeric"
+                  maxlength="6"></ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="9" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="address" formControlName="address" name="address" type="text"
+                  label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 10px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
+
