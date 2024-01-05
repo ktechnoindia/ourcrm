@@ -21,7 +21,7 @@ interface Purchase {
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
+  hunitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -36,7 +36,7 @@ interface Purchase {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
+  selectedItemId: number;
 }
 @Component({
   selector: 'app-purchasereturn',
@@ -57,7 +57,7 @@ export class PurchasereturnPage implements OnInit {
   orderDate: string = '';
   orderNumber: string = '';
   ponumber: string = '';
-  gstin: string='';
+  gstin: string = '';
   payment: number = 0;
 
   //table data
@@ -103,9 +103,9 @@ export class PurchasereturnPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
-        mrp: 0,
+    mrp: 0,
     basicrate: 0,
     netrate: 0,
     grossrate: 0,
@@ -119,12 +119,12 @@ export class PurchasereturnPage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId: 0
   }];
   ttotal!: number;
   itemid: number = 0;
-  companyid:number=0;
-  userid:number=0;
+  companyid: number = 0;
+  userid: number = 0;
   purchase: any;
   executive$: any;
   myform: FormGroup;
@@ -139,22 +139,22 @@ export class PurchasereturnPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  executive:string='';
+  executive: string = '';
   frombill: number = 0;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private popoverController:PopoverController,private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    this.billDate = new Date().toISOString().split('T')[0]; 
-    this.refdate = new Date().toISOString().split('T')[0]; 
-    this.deliverydate = new Date().toISOString().split('T')[0]; 
-    this.orderDate = new Date().toISOString().split('T')[0]; 
+    this.billDate = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
+    this.orderDate = new Date().toISOString().split('T')[0];
 
 
     this.myform = this.formBuilder.group({
@@ -192,7 +192,7 @@ export class PurchasereturnPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
-      executive:1,
+      executive: 1,
       discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
@@ -221,7 +221,7 @@ export class PurchasereturnPage implements OnInit {
   async presentPopover(purchasereturn: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: purchasereturn.quantity, // Pass the quantity to the popup component
       },
@@ -231,7 +231,7 @@ export class PurchasereturnPage implements OnInit {
   }
 
 
-  updateRows(purchasereturn:Purchase) {
+  updateRows(purchasereturn: Purchase) {
     // Open the popover when quantity changes
     if (purchasereturn.quantity > 0) {
       this.presentPopover(purchasereturn);
@@ -301,8 +301,8 @@ export class PurchasereturnPage implements OnInit {
           totaltaxamount: this.myform.value.totaltaxamount,
           totalnetamount: this.myform.value.totalnetamount,
           roundoff: this.myform.value.roundoff,
-          pretax:  this.myform.value.pretax,
-          posttax:  this.myform.value.posttax,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           openingbalance: this.myform.value.openingbalance,
@@ -312,7 +312,7 @@ export class PurchasereturnPage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          executive:this.myform.value.executive,
+          executive: ''
         };
 
         purchases.push(purchasedata);
@@ -346,6 +346,7 @@ export class PurchasereturnPage implements OnInit {
       }
     }
   };
+
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -359,7 +360,7 @@ export class PurchasereturnPage implements OnInit {
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -374,15 +375,15 @@ export class PurchasereturnPage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0,
+      
     }];
-    }
-
+  }
   getItems(purchase: any) {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
     const value = purchase.selectedItemId || purchase.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -391,18 +392,18 @@ export class PurchasereturnPage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-             // Update the quote properties
-             purchase.itemcode = itemDetails.itemCode;
-             purchase.itemname = itemDetails.itemDesc;
-             purchase.barcode = itemDetails.barcode.toString();
-             purchase.unitname = itemDetails.unitname;
-             purchase.hunitname=itemDetails.unitid;
-             purchase.taxrate = grate[itemDetails.selectGst];
-             purchase.taxrate1 = grate[itemDetails.selectGst];
-             purchase.basicrate = itemDetails.basicrate;
-             purchase.mrp = itemDetails.mrp;
-             purchase.basicrate=itemDetails.basic_rate;
-             purchase.netrate=itemDetails.net_rate;
+          // Update the quote properties
+          purchase.itemcode = itemDetails.itemCode;
+          purchase.itemname = itemDetails.itemDesc;
+          purchase.barcode = itemDetails.barcode.toString();
+          purchase.unitname = itemDetails.unitname;
+          purchase.hunitname = itemDetails.unitid;
+          purchase.taxrate = grate[itemDetails.selectGst];
+          purchase.taxrate1 = grate[itemDetails.selectGst];
+          purchase.basicrate = itemDetails.basicrate;
+          purchase.mrp = itemDetails.mrp;
+          purchase.basicrate = itemDetails.basic_rate;
+          purchase.netrate = itemDetails.net_rate;
           // Update form control values
           this.myform.patchValue({
             itemcode: purchase.itemcode,
@@ -463,8 +464,8 @@ export class PurchasereturnPage implements OnInit {
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
-            mrp: 0,
+      hunitname: 0,
+      mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,
@@ -477,9 +478,8 @@ export class PurchasereturnPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-     
-      itemid:0,
-      selectedItemId:0
+      itemid: 0,
+      selectedItemId: 0
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -542,7 +542,7 @@ export class PurchasereturnPage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.purchaseData.reduce((total, purchase) => {
-      const itemTotal = ((this.pretax + this.posttax + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
+      const itemTotal = (((+this.pretax + this.posttax) + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
       return total + itemTotal;
     }, 0);
 

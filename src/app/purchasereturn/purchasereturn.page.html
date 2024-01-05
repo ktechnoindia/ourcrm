@@ -174,7 +174,7 @@
                         type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="purchase.itemcode"
+                      <select class="select-option" [(ngModel)]="purchase.selectedItemId"
                         [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(purchase)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
