@@ -18,8 +18,7 @@ import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
 
 interface Quote {
-  posttax: number;
-  pretax: number;
+  
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -98,8 +97,8 @@ export class AddQuotPage implements OnInit {
   userid: number = 0;
   roundoff: string = '';
 
-  pretax: string = '';
-  posttax: string = '';
+  pretax:number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: string = '';
@@ -139,8 +138,6 @@ export class AddQuotPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -289,6 +286,7 @@ customerpop:FormGroup;
     });
     return await popover.present();
   }
+  
 
 
   updateRows(quote:Quote) {
@@ -345,8 +343,6 @@ customerpop:FormGroup;
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -409,8 +405,8 @@ customerpop:FormGroup;
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           roundoff: this.myform.value.roundoff,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
           debit: this.myform.value.debit,
@@ -556,8 +552,6 @@ customerpop:FormGroup;
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
       selectedItemId:0
@@ -653,7 +647,7 @@ customerpop:FormGroup;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.quoteData.reduce((total, quote) => {
-      const grossAmount = quote.quantity * quote.basicrate;
+      const grossAmount =(+this.pretax )+(quote.quantity * quote.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -666,7 +660,7 @@ customerpop:FormGroup;
   }
   getGrandTotal(): number {
     const grandTotal = this.quoteData.reduce((total, quote) => {
-      const itemTotal = (((quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ((quote.discount / 100) * quote.basicrate * quote.quantity));
+      const itemTotal = (((+this.pretax )+(this.posttax) +(quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ((quote.discount / 100) * quote.basicrate * quote.quantity));
       return total + itemTotal;
     }, 0);
 
@@ -750,15 +744,15 @@ customerpop:FormGroup;
     return (quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) - this.calculateDiscountAmount(quote);
   }
   getcgst(quote: Quote): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
+    return this.getTotalamt(quote) / 2;
   }
 
   getsgst(quote: Quote): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
+    return this.getTotalamt(quote) / 2;
   }
 
   getigst(quote: Quote): number {
-    return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
+    return this.getTotalamt(quote);
   }
   ngOnInit() {
     this.getquoteNo();

@@ -59,13 +59,13 @@
 
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="custcode" (ngModelChange)="getCustomers($event)" formControlName="custcode"
+                  <ion-input [(ngModel)]="custcode" formControlName="custcode"
                     name="custcode" type="text" label="Code :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col class="ionselect" size-lg="3.5" size-md="2" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]="custname"
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]="custcode"
                   name="custname" formControlName="custname">
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
@@ -149,42 +149,13 @@
                         type="text">
                     </td>
                     <td>
-                      <input *ngIf="quote.itemcode !== 0" [(ngModel)]="quote.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number" (ngModelChange)="presentPopover(quote)">
-
-                    </td>
-                    <!--<div *ngIf="showTable">
-                      <table>
-                         <thead>
-                          <tr>
-                            <th>Sr.No.</th>
-                            <th>Attr.-1</th>
-                            <th>Attr.-2</th>
-                            <th>Attr.-3</th>
-                            <th>Attr.-4</th>
-                            <th>Attr.-5</th>
-                            <th>Attr.-6</th>
-                            <th>Attr.-7</th>
-                            <th>Attr.-8</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let row of rows; let i = index; trackBy: trackByFn">
-                            <td>{{ i + 1 }}</td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr1" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr2" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr3" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr4" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr5" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr6" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr7" class="table_input" type="number"></td>
-                            <td><input style="width: 70px;" [(ngModel)]="row.attr8" class="table_input" type="number"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <ion-button type="button" size="small" expand="block">Close</ion-button>
-                    </div> -->
-
+                      <input *ngIf="quote.itemcode !== 0"
+                             [(ngModel)]="quote.quantity"
+                             [ngModelOptions]="{standalone: true}"
+                             class="table_input"
+                             type="number"
+                             (keydown.enter)="presentPopover(quote)">
+                    </td>                   
                     <td style="width: 90px;">
                       <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                       type="text">
@@ -335,9 +306,9 @@
                         </tr>
                         <tr>
                           <th style="width: 100px !important;">Delivery Place</th>
-                          <td>
-                            <ion-input type="text" [(ngModel)]="deliveryplace" formControlName="deliveryplace"
-                              name="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
+                          <td >
+                            <ion-input  type="text" [(ngModel)]="deliveryplace" formControlName="deliveryplace"
+                              name="deliveryplace" placeholder="Enter Delivery Place" ></ion-input>
                           </td>
                         </tr>
                       </table>
@@ -412,13 +383,13 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="text">
+                          class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="text">
+                          id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
 
