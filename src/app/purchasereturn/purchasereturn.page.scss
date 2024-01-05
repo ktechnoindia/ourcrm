@@ -107,3 +107,103 @@ table td {
  
  }
  
+
+ ion-menu-button {
+  justify-content: left;
+}
+
+.Customer ion-input {
+  min-height: 35px;
+  font-family: 'Times New Roman', Times, serif;
+  outline-style: initial;
+}
+
+// /* Style the container of the input */
+// ion-input[fill="outline"] {
+//     --border-color: #1a4174;
+//     /* Outline border color */
+//     --border-width: 1px;
+//     /* Outline border width */
+//     --border-radius: 4px;
+//     /* Outline border radius */
+//     --placeholder-color: #1a4174;
+//     /* Placeholder text color */
+//     box-shadow: 0 0 2px 2px #fffbfb;
+//     /* Add a box shadow when focused */
+//     --color: #1a4174;
+
+// }{
+
+
+/* Style the input itself */
+ion-input[fill="outline"] input {
+  border: none;
+  /* Remove the default input border */
+  border-radius: 4px;
+  /* Match the container's border radius */
+  padding: 10px;
+  /* Add some padding for better spacing */
+  font-size: 16px;
+  /* Adjust the font size as needed */
+}
+
+ion-input[fill="outline"] input:focus {
+  border-color: #1a4174;
+  /* Change the border color when focused */
+  // box-shadow: 0 0 5px #09d8bc; /* Add a box shadow when focused */
+  color: #1a4174;
+  /* Change the input text color when focused */
+}
+
+/* Change floating label color */
+/* Change floating label color */
+
+
+.Customer ion-select {
+  min-height: 35px;
+  // color: goldenrod;
+  // font-weight: 400;
+  // outline-color: goldenrod;
+  outline-width: 1px;
+  outline-style: initial;
+}
+
+
+
+ng-template ion-button {
+  color: goldenrod;
+}
+
+.Customer ion-input:focus {
+  --border-color: #1a4174;
+}
+
+ion-input[type=number]::part(input) {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Customer ion-card {
+  width: 90%;
+  margin-left: 5%;
+}
+
+@media(max-width:940px) {
+  .Customer ion-card {
+      width: 100%;
+      margin-left: 0%;
+  }
+}
+
+@media(max-width:540px) {
+  .Customer ion-input {
+      min-height: 25px;
+      font-size: 10px;
+      outline-width: 0;
+      outline-style: none;
+  }
+}
+
+ion-popover{
+  --height:260px
+}

@@ -9,12 +9,15 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { AdditemService } from '../services/additem.service';
 import { ExecutiveService } from '../services/executive.service';
-import { CustomerService } from '../services/customer.service';
+import { CustomerService, cust } from '../services/customer.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { salesstore } from '../services/sales.service';
+import { CountryService } from '../services/country.service';
+import { DistrictsService } from '../services/districts.service';
+import { StateService } from '../services/state.service';
 
 interface Sales {
   barcode: string;
@@ -124,7 +127,21 @@ export class SalesreturnPage implements OnInit {
   taxrate$: Observable<any[]>;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl:NavController,private popoverController:PopoverController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService) {
+  name: string = '';
+customercode: string = '';
+customer_code: string = '';
+mobile: string = '';
+address: string = '';
+country: number = 0;
+state:number=0;
+district:number=0;
+pincode: string = '';
+countries$: Observable<any[]>
+states$: Observable<any[]>
+districts$: Observable<any[]>
+customerpop:FormGroup;
+
+  constructor(private navCtrl:NavController,private popoverController:PopoverController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -192,7 +209,39 @@ export class SalesreturnPage implements OnInit {
       ponumber:[''],
       ttotal: [''],
       itemid:['']
+    });
+    this.customerpop = this.formBuilder.group({
+      
+      customer_code: ['', Validators.required],
+      name: ['', Validators.required],
+      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      mobile: [''],
+      country: [''],
+      state: [''],
+      district: [''],
+      pincode: [''],
+      address: [''],
     })
+
+    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+    this.countries$ = this.countryService.getCountries();
+    this.districts$ = this.districtservice.getDistricts(1);
+
+  }
+
+  onCountryChange() {
+    console.log('selected value' + this.country);
+    this.states$ = this.stateservice.getStates(1);
+  }
+  onStateChange() {
+    console.log('selected value' + this.state);
+    this.districts$ = this.districtservice.getDistricts(this.state);
+  }
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
+
+    });
   }
 
   async presentPopover(salereturn: any) {
@@ -719,6 +768,87 @@ export class SalesreturnPage implements OnInit {
       sale.taxrate1 = 0;
 
       console.error('Selected text does not represent a valid number.');
+    }
+  }
+
+
+  async onCustSubmit() {
+    const fields = { name: this.name, }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      const companyid = 1;
+      console.log('Your form data : ', this.customerpop.value);
+      let custdata: cust = {
+        name: this.customerpop.value.name,
+        customer_code: this.customerpop.value.customer_code,
+        gstin: this.customerpop.value.gstin,
+        companyid: companyid,
+        selectedSalutation: '',
+        companyName: '',
+        state: this.customerpop.value.state,
+        district:this.customerpop.value.district,
+        country:this.customerpop.value.country,
+        opening_balance: 0,
+        closing_balance: 0,
+        mobile: this.customerpop.value.mobile,
+        whatsapp_number: '',
+        address: this.customerpop.value.address,
+        email: '',
+        select_sales_person: '',
+        pincode: '',
+        tdn: '',
+        aadhar_no: '',
+        pan_no: '',
+        udhyog_aadhar: '',
+        account_number: '',
+        ifsc_code: '',
+        bank_name: '',
+        branch_name: '',
+        credit_period: 0,
+        credit_limit: 0,
+        card_number: '',
+        opening_point: 0,
+        closing_point: 0,
+        select_group: 0,
+        discount: 0,
+        selectedOption1: 0,
+        selectedState1: 0,
+        selectedDistrict1: 0,
+        pincode1: '',
+        address1: ''
+      };
+  
+      this.myService.createCustomer(custdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+  
+          this.formService.showSaveLoader()
+          // location.reload()
+          this.myform.reset();
+  
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
   }
 }
