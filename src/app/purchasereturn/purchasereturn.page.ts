@@ -20,7 +20,8 @@ interface Purchase {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname: string;
+  hunitname:number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -34,8 +35,6 @@ interface Purchase {
   totaltax: number;
   total: number;
   taxrate1: number;
-  posttax: number;
-  pretax: number;
   itemid: number;
   selectedItemId:number;
 }
@@ -89,10 +88,10 @@ export class PurchasereturnPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+  pretax: number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -104,8 +103,9 @@ export class PurchasereturnPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
-    mrp: 0,
+    hunitname:0,
+    unitname: '',
+        mrp: 0,
     basicrate: 0,
     netrate: 0,
     grossrate: 0,
@@ -118,8 +118,6 @@ export class PurchasereturnPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -243,13 +241,14 @@ export class PurchasereturnPage implements OnInit {
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
+    let quotedatas: purchasestore[] = [];
 
 
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+        //element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -282,7 +281,7 @@ export class PurchasereturnPage implements OnInit {
           itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
-          unitname: element.unitname,
+          unitname: element.hunitname,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
@@ -302,8 +301,8 @@ export class PurchasereturnPage implements OnInit {
           totaltaxamount: this.myform.value.totaltaxamount,
           totalnetamount: this.myform.value.totalnetamount,
           roundoff: this.myform.value.roundoff,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax:  this.myform.value.pretax,
+          posttax:  this.myform.value.posttax,
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           openingbalance: this.myform.value.openingbalance,
@@ -347,12 +346,43 @@ export class PurchasereturnPage implements OnInit {
       }
     }
   };
-
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.purchaseData = [{
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname:0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      itemid: 0,
+      selectedItemId:0
+    }];
+    }
 
   getItems(purchase: any) {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
     const value = purchase.selectedItemId || purchase.itemcode;
+    const grate=[0,3,5,12,18,28,0,0,0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -361,14 +391,18 @@ export class PurchasereturnPage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-          purchase.itemid = itemDetails.tid;
-          purchase.itemcode = itemDetails.itemCode;
-          purchase.itemname = itemDetails.itemDesc.valueOf();
-          purchase.barcode = itemDetails.barcode.toString();
-          purchase.unitname = itemDetails.unitname;
-          purchase.taxrate = itemDetails.selectGst;
-          purchase.basicrate = itemDetails.basicrate;
-          purchase.mrp = itemDetails.mrp;
+             // Update the quote properties
+             purchase.itemcode = itemDetails.itemCode;
+             purchase.itemname = itemDetails.itemDesc;
+             purchase.barcode = itemDetails.barcode.toString();
+             purchase.unitname = itemDetails.unitname;
+             purchase.hunitname=itemDetails.unitid;
+             purchase.taxrate = grate[itemDetails.selectGst];
+             purchase.taxrate1 = grate[itemDetails.selectGst];
+             purchase.basicrate = itemDetails.basicrate;
+             purchase.mrp = itemDetails.mrp;
+             purchase.basicrate=itemDetails.basic_rate;
+             purchase.netrate=itemDetails.net_rate;
           // Update form control values
           this.myform.patchValue({
             itemcode: purchase.itemcode,
@@ -428,8 +462,9 @@ export class PurchasereturnPage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
-      mrp: 0,
+      unitname: '',
+      hunitname:0,
+            mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,
@@ -442,8 +477,7 @@ export class PurchasereturnPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
+     
       itemid:0,
       selectedItemId:0
       // Add more properties as needed
@@ -508,7 +542,7 @@ export class PurchasereturnPage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.purchaseData.reduce((total, purchase) => {
-      const itemTotal = (((+purchase.pretax + purchase.posttax) + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
+      const itemTotal = ((this.pretax + this.posttax + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
       return total + itemTotal;
     }, 0);
 

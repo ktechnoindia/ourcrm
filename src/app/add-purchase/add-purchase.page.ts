@@ -20,7 +20,8 @@ interface Purchase {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
+  unitname: string;
+  hunitname:number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -92,8 +93,8 @@ export class AddPurchasePage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+  pretax: string = '';
+  posttax: string = '';
   deliverydate: string = '';
   deliveryplace: string = 'Jaipur';
   openingbalance: string = '';
@@ -107,7 +108,8 @@ export class AddPurchasePage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    hunitname:0,
+    unitname: '',
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -164,7 +166,7 @@ export class AddPurchasePage implements OnInit {
       billformate: [''],
       billNumber: ['', Validators.required],
       billDate: [''],
-      vendcode: ['', Validators.required],
+      vendcode: ['', Validators.required].toString(),
       supplier: ['', Validators.required],
       refrence: [''],
       refdate: [''],
@@ -243,13 +245,14 @@ export class AddPurchasePage implements OnInit {
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
+    let quotedatas: purchasestore[] = [];
 
 
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+       // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -270,7 +273,7 @@ export class AddPurchasePage implements OnInit {
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
-          vendcode: this.myform.value.vendcode,
+          vendcode: this.myform.value.vendcode.toString(),
           orderDate: this.myform.value.orderDate,
           orderNumber: this.myform.value.orderNumber,
           ponumber: this.myform.value.ponumber,
@@ -280,7 +283,7 @@ export class AddPurchasePage implements OnInit {
           itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
-          unitname: element.unitname,
+          unitname: element.hunitname,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
@@ -346,6 +349,40 @@ export class AddPurchasePage implements OnInit {
       }
     }
   };
+
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.purchaseData = [{
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname:0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid: 0,
+      selectedItemId:0
+    }];
+    }
   getVendors(event: any) {
     const compid = '1';
     const identifier = this.vendcode ? 'custcode' : 'custname';
@@ -388,6 +425,7 @@ export class AddPurchasePage implements OnInit {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
     const value = purchase.selectedItemId ||purchase.itemcode;
+    const grate=[0,3,5,12,18,28,0,0,0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -396,15 +434,17 @@ export class AddPurchasePage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-          purchase.itemid = itemDetails.tid;
           purchase.itemcode = itemDetails.itemCode;
-          purchase.itemname = itemDetails.itemDesc.valueOf();
+          purchase.itemname = itemDetails.itemDesc;
           purchase.barcode = itemDetails.barcode.toString();
           purchase.unitname = itemDetails.unitname;
-          purchase.taxrate = itemDetails.selectGst;
+          purchase.hunitname=itemDetails.unitid;
+          purchase.taxrate = grate[itemDetails.selectGst];
+          purchase.taxrate1 = grate[itemDetails.selectGst];
           purchase.basicrate = itemDetails.basicrate;
           purchase.mrp = itemDetails.mrp;
-          
+          purchase.basicrate=itemDetails.basic_rate;
+          purchase.netrate=itemDetails.net_rate;
 
           // Update form control values
           this.myform.patchValue({
@@ -435,7 +475,7 @@ export class AddPurchasePage implements OnInit {
           const itemDetails = data[0];
 
           // Update the quote properties
-          event.vendcode = itemDetails.vendor_code.toString();
+          event.vendcode = itemDetails.vendor_code;
           event.suppliertype = itemDetails.name;
 
 
@@ -465,8 +505,9 @@ export class AddPurchasePage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
-      mrp: 0,
+      unitname: '',
+      hunitname:0,
+            mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,

@@ -23,8 +23,9 @@ interface Dcout {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
-  mrp: number;
+  unitname: string;
+  hunitname:number;
+    mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -85,10 +86,10 @@ export class DcOutPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+  pretax: string = '';
+  posttax: string = '';
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -100,7 +101,8 @@ export class DcOutPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    hunitname:0,
+    unitname: '',
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -227,11 +229,11 @@ export class DcOutPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcoutData));
-
+      let quotedatas: dcoutstore[] = [];
       for (const element of dcoutData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+       // element.netrate = element.basicrate + element.taxrate1;
         element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
@@ -257,7 +259,7 @@ export class DcOutPage implements OnInit {
           itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
-          unitname: element.unitname,
+          unitname: element.hunitname,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
@@ -323,7 +325,40 @@ export class DcOutPage implements OnInit {
       }
     }
   }
-
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.dcoutData = [{
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname:0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid: 0,
+      selectedItemId:0
+    }];
+    }
+  
   addDcout() {
     console.log('addrowwww' + this.dcoutData.length);
     // You can initialize the new row data here
@@ -333,7 +368,8 @@ export class DcOutPage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
+      unitname: '',
+      hunitname:0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -360,7 +396,7 @@ export class DcOutPage implements OnInit {
     const compid = 1;
     const identifier = dcout.selectedItemId ? 'itemname' : 'itemcode';
     const value = dcout.selectedItemId ||dcout.itemcode;
-
+    const grate=[0,3,5,12,18,28,0,0,0];
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -373,9 +409,13 @@ export class DcOutPage implements OnInit {
           dcout.itemname = itemDetails.itemDesc;
           dcout.barcode = itemDetails.barcode.toString();
           dcout.unitname = itemDetails.unitname;
-          dcout.taxrate = itemDetails.selectGst;
+          dcout.hunitname=itemDetails.unitid;
+          dcout.taxrate = grate[itemDetails.selectGst];
+          dcout.taxrate1 = grate[itemDetails.selectGst];
           dcout.basicrate = itemDetails.basicrate;
           dcout.mrp = itemDetails.mrp;
+          dcout.basicrate=itemDetails.basic_rate;
+          dcout.netrate=itemDetails.net_rate;
 
           // Update form control values
           this.myform.patchValue({
