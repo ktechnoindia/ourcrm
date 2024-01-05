@@ -37,7 +37,7 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
 
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--- HSN ---" label-placement="floating" fill="outline" [(ngModel)]="hsnname"
@@ -46,22 +46,12 @@
                     <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
                       {{ hsnname.hsnname }}
                     </ion-select-option>
-
                   </ion-select>
                 </ion-col>
 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="---Stock Type---" label-placement="floating" fill="outline" [(ngModel)]="stocktypename"
-                    formControlName="stocktypename" name="stocktypename">
-                    <ion-select-option value=""> --- Stock Type --- </ion-select-option> Default option with value 0
-                    <ion-select-option *ngFor="let stocktypename of stocktypename$ | async"
-                      [value]="stocktypename.stocktypeid">
-                      {{ stocktypename.stocktypename }}
-                    </ion-select-option>
-                  </ion-select>
+                <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
+                  <ion-button id="left-start"><ion-icon name="person-add-outline"></ion-icon></ion-button>
                 </ion-col>
-
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -77,6 +67,17 @@
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- GST Type ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
+                    formControlName="selectGst" name="selectGst">
+                    <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                      {{ gsttype.gstname }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-col>
+
+                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
                     formControlName="unitname" name="unitname">
                     <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
@@ -86,7 +87,11 @@
                   </ion-select>
                 </ion-col>
 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
+                  <ion-button id="unit"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+                </ion-col>
+
+                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--- Item Group ---" label-placement="floating" fill="outline" [(ngModel)]="selectItemGroup"
                     formControlName="selectItemGroup" name="selectItemGroup">
@@ -97,34 +102,27 @@
                   </ion-select>
                 </ion-col>
 
+                <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
+                  <ion-button id="group"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+                </ion-col>
+
               </ion-row>
               <ion-row style="margin-top: 4px;">
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="--- GST Type ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
-                    formControlName="selectGst" name="selectGst">
-                    <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
-                      {{ gsttype.gstname }}
-                    </ion-select-option>
-                  </ion-select>
-
-                </ion-col>
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
                       label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
 
                 </ion-col>
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
                       label="Sale Rate :" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
                 </ion-col>
-                <ion-col size="6" size-lg="2" size-md="6" size-sm="6">
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
                       type="number" label="Purchase Rate :" label-placement="floating" fill="outline"></ion-input>
@@ -136,7 +134,18 @@
                     <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number"
                       label=" Basic Rate:" label-placement="floating" fill="outline"></ion-input>
                   </ion-row>
+                </ion-col>
 
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="---Stock Type---" label-placement="floating" fill="outline" [(ngModel)]="stocktypename"
+                    formControlName="stocktypename" name="stocktypename">
+                    <ion-select-option value=""> --- Stock Type --- </ion-select-option> Default option with value 0
+                    <ion-select-option *ngFor="let stocktypename of stocktypename$ | async"
+                      [value]="stocktypename.stocktypeid">
+                      {{ stocktypename.stocktypename }}
+                    </ion-select-option>
+                  </ion-select>
                 </ion-col>
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
@@ -382,3 +391,120 @@
     </div>
   </ion-content>
 </ion-content>
+
+<ion-popover trigger="left-start" side="bottom" alignment="end">
+
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add HSN</ion-label>
+        </ion-row>
+        <form [formGroup]="hsnpop" (ngSubmit)="OnHsnSubmit()">
+          <ion-row>
+
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="hsncode" formControlName="hsncode" name="hsncode" type="text" label="HSN Code :"
+                  label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="unit" formControlName="unit" name="unit" type="text" label="Unit :"
+                  label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 23px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
+
+
+<ion-popover  trigger="unit" side="bottom" alignment="end">
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add Unit</ion-label>
+        </ion-row>
+        <form [formGroup]="unitpop" (ngSubmit)="OnUnitSubmit()">
+          <ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row>
+                <ion-input [(ngModel)]="unit_name" formControlName="unit_name" name="unit_name" type="text"
+                  label="Unit Name :" label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row>
+                <ion-input [(ngModel)]="short_name" formControlName="short_name" name="short_name" type="text"
+                  label="Symbol/ Short Name :" label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 23px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
+
+<ion-popover  trigger="group" side="bottom" alignment="end">
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add Unit</ion-label>
+        </ion-row>
+        <form [formGroup]="groupop" (ngSubmit)="OnGroupSubmit()">
+          <ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row>
+                <ion-input #firstInvalidInput [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+              label="---Parent Group---" label-placement="floating" fill="outline"   [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
+                <!-- <option value="0">  --- Parent Group --- </option> Default option with value 0  -->
+               
+                <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                  {{ itemgroup.itemgroupname }}
+                </ion-select-option>
+              </ion-select>
+             
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 23px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
+
+
