@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Observable, from } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
@@ -13,9 +13,17 @@ import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { LeadsourceService } from '../services/leadsource.service';
 import { FormValidationService } from '../form-validation.service';
-import { ExecutiveService } from '../services/executive.service';
-import { AdditemService } from '../services/additem.service';
+import { ExecutiveService, execut } from '../services/executive.service';
+import { AdditemService, item } from '../services/additem.service';
 import { NavController } from '@ionic/angular';
+import { roletypesservice } from '../services/roletypes.service';
+import { LegderService } from '../services/ledger.service';
+import { GsttypeService } from '../services/gsttype.service';
+import { UnitnameService } from '../services/unitname.service';
+import { HsnService } from '../services/hsn.service';
+import { CreateunitService } from '../services/createunit.service';
+import { AddattributeService } from '../services/addattribute.service';
+import { AddgroupService } from '../services/addgroup.service';
 interface lead {
   catPerson: string;
   companyname: string
@@ -56,7 +64,7 @@ export class AddLeadPage {
   fulladdress: string = '';
   lscore: number = 0;
   selectpd: number = 0;
-  executivename: number = 0;
+  executname: number = 0;
   selectedCountry: number = 0;
   selectedState: number = 0;
   selectedDistrict: number = 0;
@@ -76,8 +84,30 @@ export class AddLeadPage {
   lead$: any
   itemnames$: Observable<any>;
 
+  excode: string = '';
+  executivename: string = '';
+  emobile: string = '';
+  ledger: string = '';
+  emanager: number = 0;
+  roleid: number = 0;
+  executivepop: FormGroup;
+  roletypes$: Observable<any[]>
+  ledgers$: Observable<any>;
 
-  constructor(private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService,
+  itemCode: string = '';
+  itemDesc: string = '';
+  hsnname: string = '';
+  unitname: string = '';
+  selectItemGroup: number = 0;
+  selectGst: number = 0;
+
+  hsnname$: Observable<any[]>;
+  unitname$: any;
+  selectGst$: any;
+  itemgroups$: Observable<any[]>
+  itempop:FormGroup;
+
+  constructor(private popoverController: PopoverController,private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService, private addExecutiveService: ExecutiveService, private roletypes: roletypesservice,private ledgerService: LegderService, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService,  private hsnService: HsnService, private unitService: CreateunitService, private groupService: AddgroupService,
   ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -86,6 +116,12 @@ export class AddLeadPage {
     this.leadsourcetype$ = this.leadSourceService.getleadsourcetype();
     this.executive$ = this.execut.getexecutive();
     this.itemnames$ = this.itemService.getAllItems();
+
+    this.selectGst$ = this.gstsrvs.getgsttype();
+    this.unitname$ = this.unittype.getunits();
+    this.hsnname$ = this.hsnService.getHSNNames(1);
+    this.itemgroups$ = this.groupService.getAllGroups(1);
+
     this.leaddate = new Date().toISOString().split('T')[0];
 
     this.form = this.formBuilder.group({
@@ -106,6 +142,28 @@ export class AddLeadPage {
       leadassign: [''],
       leaddate: ['']
     });
+
+    this.executivepop = this.formBuilder.group({
+      excode: [''],
+      executivename: [''],
+      emobile: [''],
+      ledger: [''],
+      emanager: [''],
+      roleid: [0],
+    });
+    this.itempop =  this.formBuilder.group({
+      itemCode: ['', [Validators.required]],
+      itemDesc: ['', [Validators.required]],
+      hsnname: [''].toString(),
+      unitname: [''].toString(),
+      selectGst: [''],
+      selectItemGroup:['']
+    })
+
+    this.roletypes$ = this.roletypes.getroletypes();
+    const compid = '1';
+
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
   }
   onCountryChange() {
@@ -184,6 +242,136 @@ export class AddLeadPage {
   }
   goBack() {
     this.router.navigate(['/leaddashboard']);
+  }
+
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
+    });
+  }
+
+  async OnExecutiveSubmit() {
+    const fields = {}
+    if (await this.formService.validateForm(fields)) {
+      console.log('Your form data : ', this.executivepop.value);
+      const executdata: execut = {
+        roleid: this.executivepop.value.roleid,
+        excode: this.executivepop.value.excode,
+        executivename: this.executivepop.value.executivename,
+        emanager: this.executivepop.value.emanager,
+        emobile: this.executivepop.value.emobile,
+        ledger: this.executivepop.value.ledger,
+        companyid: 1,
+        ewhatsapp: '',
+        epan: '',
+        ecommision: 0,
+        eemail: ''
+      };
+      this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          this.form.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.form.controls).forEach(controlName => {
+        const control = this.form.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    
+    }
+  }
+
+  async OnItemSubmit() {
+    const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      this.submitted = true;
+      console.log('Your form data : ', this.itempop.value);
+
+      let itemdata: item = {
+        itemDesc: this.itempop.value.itemDesc,
+        itemCode: this.itempop.value.itemCode,
+        hsnname: this.itempop.value.hsnname.toString(),
+        companyid: 1,
+        attributes: '',
+        selectHSN: 0,
+        selectItem: 0,
+        selectStock: 0,
+        selectPrimaryUnit: 0,
+        selectunitname: 0,
+        itemtype: '',
+        stocktype: '',
+        stocktypename: '',
+        itemtypename: '',
+        unitname: this.itempop.value.unitname.toString(),
+        selectItemGroup:  this.itempop.value.selectItemGroup,
+        selectGst:  this.itempop.value.selectGst,
+        openingbalance: '',
+        closingbalance: '',
+        selectedAttribute: '',
+        files: '',
+        barcode: 0,
+        minimum: 0,
+        maximum: 0,
+        reorder: '',
+        mrp: 0,
+        salerate: 0,
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+        selectGstservice: 0,
+        purchaserate: 0,
+        basicrate: 0,
+        labelname: '',
+        valuename: ''
+      };
+      this.itemService.createItem(itemdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          this.formService.showSuccessAlert();
+          this.itempop.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          this.formService.showFailedAlert();
+        }
+      );
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.itempop.controls).forEach(controlName => {
+        const control = this.itempop.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+     
+    }
+
   }
 
 

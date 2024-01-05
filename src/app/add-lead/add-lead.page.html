@@ -131,7 +131,7 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
+              <ion-col size-lg="3.3" size-md="6" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="--- Executive Name --- " label-placement="floating" fill="outline"  [(ngModel)]=" executivename" name="executive_name"
                   formControlName="executivename">
@@ -142,6 +142,23 @@
                 </ion-select>
               </ion-col>
 
+              <ion-col class="custom-primary" size-lg="0.7" size-md="2" size-sm="2" size="2">
+                <ion-button id="left-start"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+              </ion-col>
+
+              <ion-col class="custom-primary" size-lg="0.7" size-md="2" size-sm="2" size="2">
+                <ion-button id="item"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+              </ion-col>
+
+              <ion-col size-lg="3.3" size-md="6" size-sm="6" size="6">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Product Name ---" label-placement="floating" fill="outline"  [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">                 
+                  <!-- <ion-select-option value="0">  --- Product Name --- </ion-select-option>Default option -->
+                  <ion-select-option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
+                    {{ itemname.itemDesc }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-col>
 
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -152,17 +169,6 @@
                     {{ leadassigns.executivename }}
                   </ion-select-option>
                 </ion-select>
-              </ion-col>
-
-              <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Product Name ---" label-placement="floating" fill="outline"  [(ngModel)]="selectpd" formControlName="selectpd" name="selectproduct">                 
-                  <!-- <ion-select-option value="0">  --- Product Name --- </ion-select-option>Default option -->
-                  <ion-select-option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
-                    {{ itemname.itemDesc }}
-                  </ion-select-option>
-                </ion-select>
-
               </ion-col>
 
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
@@ -191,3 +197,175 @@
     </div>
   </div>
 </ion-content>
+
+<ion-popover class="execut" trigger="left-start" side="left" alignment="center">
+
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add Executive</ion-label>
+        </ion-row>
+        <form [formGroup]="executivepop" (ngSubmit)="OnExecutiveSubmit()">
+          <ion-row>
+
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Role---" label-placement="floating" fill="outline" [ngModel]="roleid" name="roleid"
+                formControlName="roleid">
+                <!-- <ion-select-option value="0"><ion-button>add</ion-button></ion-select-option>  -->
+                <ion-select-option *ngFor="let roletypes of roletypes$ | async" [value]="roletypes.roletypeid">
+                  {{ roletypes.roletypename }}
+                </ion-select-option>
+
+              </ion-select>
+
+            </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [ngModel]="excode" formControlName="excode" name="excode" type="text"
+                  label=" Executive Code :" label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [ngModel]="executivename" formControlName="executivename" name="executivename" type="text"
+                  label=" Name :" label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="---Select Ledger ---" label-placement="floating" fill="outline" [ngModel]="ledger"
+                formControlName="ledger" name="ledger">
+                <!-- <ion-select-option value="" disabled selected> --- ledger --- </ion-select-option> Default option -->
+                <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
+                </ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Manager ---" label-placement="floating" fill="outline" [ngModel]="emanager"
+                formControlName="emanager" name="emanager">
+                <!-- <ion-select-option value="" disabled selected> --- Manager --- </option> Default option -->
+                <ion-select-option value="1">Deepak</ion-select-option>
+                <ion-select-option value="1">Yogesh</ion-select-option>
+                <ion-select-option value="1">Abhishek</ion-select-option>
+                <ion-select-option value="1">Nirbhay</ion-select-option>
+                <ion-select-option value="1">Ravi</ion-select-option>
+              </ion-select>
+
+            </ion-col>
+
+            <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [ngModel]="emobile" maxlength="10" formControlName="emobile" name="emobile" type="tel"
+                  label="Mobile No. :" label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 23px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
+
+
+<ion-popover class="items" trigger="item" side="end" alignment="center">
+
+  <ng-template style="margin-right: 200px;">
+    <div style="margin: 10px;">
+      <ion-content class="ion-padding Customer ">
+        <ion-row style="justify-content: center;margin-bottom: 10px;">
+          <ion-label class="executive">Add Item</ion-label>
+        </ion-row>
+        <form [formGroup]="itempop" (ngSubmit)="OnItemSubmit()">
+          <ion-row>
+
+            <ion-col size="12" size-lg="3" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input #firstInvalidInput [(ngModel)]="itemCode" formControlName="itemCode" name="itemCode"
+                  type="text" label=" Item code :" label-placement="floating" fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+              <ion-row>
+                <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="itemDesc" type="text"
+                  label=" Item Description :" label-placement="floating" fill="outline">
+                </ion-input>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- HSN ---" label-placement="floating" fill="outline" [(ngModel)]="hsnname"
+                formControlName="hsnname" name="hsnname">
+                <!-- <ion-select-option value="">  --- HSN --- </ion-select-option> Default option with value 0 -->
+                <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
+                  {{ hsnname.hsnname }}
+                </ion-select-option>
+              </ion-select>
+            </ion-col>
+
+            <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- GST Type ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
+                formControlName="selectGst" name="selectGst">
+                <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
+                <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                  {{ gsttype.gstname }}
+                </ion-select-option>
+              </ion-select>
+            </ion-col>
+
+            <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
+                formControlName="unitname" name="unitname">
+                <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
+                <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                  {{ unitnames.unitname }}
+                </ion-select-option>
+              </ion-select>
+            </ion-col>
+
+            <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Item Group ---" label-placement="floating" fill="outline" [(ngModel)]="selectItemGroup"
+                formControlName="selectItemGroup" name="selectItemGroup">
+                <!-- <ion-select-option value="0">  --- Item Group --- </ion-select-option> Default option with value 0 -->
+                <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
+                  {{ itemgroup.itemgroupname }}
+                </ion-select-option>
+              </ion-select>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row style="float: right;margin-top: 23px;">
+            <ion-button type="submit">Save</ion-button>
+            <ion-button (click)="closePopover()">Close</ion-button>
+          </ion-row>
+        </form>
+      </ion-content>
+    </div>
+  </ng-template>
+
+</ion-popover>
