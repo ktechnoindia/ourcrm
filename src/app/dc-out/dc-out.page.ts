@@ -13,8 +13,11 @@ import { EncryptionService } from '../services/encryption.service';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
 import { FormValidationService } from '../form-validation.service';
-import { CustomerService } from '../services/customer.service';
+import { CustomerService, cust } from '../services/customer.service';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
+import { CountryService } from '../services/country.service';
+import { StateService } from '../services/state.service';
+import { DistrictsService } from '../services/districts.service';
 interface Dcout {
   posttax: number;
   pretax: number;
@@ -24,8 +27,8 @@ interface Dcout {
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
-    mrp: number;
+  hunitname: number;
+  mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -39,7 +42,7 @@ interface Dcout {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:0
+  selectedItemId: 0
 }
 @Component({
   selector: 'app-dc-out',
@@ -101,7 +104,7 @@ export class DcOutPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
     mrp: 0,
     basicrate: 0,
@@ -119,7 +122,7 @@ export class DcOutPage implements OnInit {
     posttax: 0,
     itemid: 0,// Calculate grossrate after other properties
     grossrate: 0,
-    selectedItemId:0
+    selectedItemId: 0
   }];
   companyid: number = 0;
   userid: number = 0;
@@ -137,9 +140,24 @@ export class DcOutPage implements OnInit {
   taxrate$: Observable<any[]>;
   customer$: any;
 
+  name: string = '';
+  customercode: string = '';
+  customer_code: string = '';
+  mobile: string = '';
+  address: string = '';
+  gstin: string = '';
+  country: number = 0;
+  state: number = 0;
+  district: number = 0;
+  pincode: string = '';
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
+  customerpop: FormGroup;
+
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor( private navCtrl:NavController,private popoverController:PopoverController,private custname1: CustomerService,private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService) {
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -159,52 +177,69 @@ export class DcOutPage implements OnInit {
       refdate: [''],
       ponumber: [''],
 
-     //table
-        barcode: [''],
-        itemcode: 0,
-        itemname: [''],
-        description: [''],
-        quantity: 0,
-        unitname: 0,
-        mrp: 0,
-        basicrate:0,
-        netrate: 0,
-        grossrate: 0,
-        taxrate: 0,
-        IGST: 0,
-        CGST: 0,
-        SGST: 0,
-        discount: 0,
-        discountamt: 0,
-        totaltax: 0,
-        total: 0,
-        discountType: ['amount'], // 'amount' or 'percentage'
-        totalitemno: [''],
-        totalquantity: [''],
-        totalgrossamt: [''],
-        totaldiscountamt: [''],
-        totaltaxamount: [''],
-        totalnetamount: [''],
-        deliverydate: [''],
-        deliveryplace: [''],
+      //table
+      barcode: [''],
+      itemcode: 0,
+      itemname: [''],
+      description: [''],
+      quantity: 0,
+      unitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      discountType: ['amount'], // 'amount' or 'percentage'
+      totalitemno: [''],
+      totalquantity: [''],
+      totalgrossamt: [''],
+      totaldiscountamt: [''],
+      totaltaxamount: [''],
+      totalnetamount: [''],
+      deliverydate: [''],
+      deliveryplace: [''],
 
-        roundoff: [''],
-        pretax: [''],
-        posttax: [''],
-        openingbalance: [''],
-        closingbalance: [''],
-        debit: [''],
-        credit: [''],
+      roundoff: [''],
+      pretax: [''],
+      posttax: [''],
+      openingbalance: [''],
+      closingbalance: [''],
+      debit: [''],
+      credit: [''],
 
-        ttotal: [''],
-        itemid:['']
+      ttotal: [''],
+      itemid: ['']
+    });
+
+    this.customerpop = this.formBuilder.group({
+      
+      customer_code: ['', Validators.required],
+      name: ['', Validators.required],
+      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      mobile: [''],
+      country: [''],
+      state: [''],
+      district: [''],
+      pincode: [''],
+      address: [''],
     })
+
+    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+    this.countries$ = this.countryService.getCountries();
+    this.districts$ = this.districtservice.getDistricts(1);
   }
 
   async presentPopover(dcin: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: dcin.quantity, // Pass the quantity to the popup component
       },
@@ -214,7 +249,7 @@ export class DcOutPage implements OnInit {
   }
 
 
-  updateRows(dcout:Dcout) {
+  updateRows(dcout: Dcout) {
     // Open the popover when quantity changes
     if (dcout.quantity > 0) {
       this.presentPopover(dcout);
@@ -233,10 +268,10 @@ export class DcOutPage implements OnInit {
       for (const element of dcoutData) {
 
         element.grossrate = element.basicrate * element.quantity;
-       // element.netrate = element.basicrate + element.taxrate1;
-        element.CGST= ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
-        element.SGST = ((element.taxrate1 / 100 * element.basicrate)*element.quantity)/2;
-        element.IGST = (element.taxrate1 / 100 * element.basicrate)*element.quantity;
+        // element.netrate = element.basicrate + element.taxrate1;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
 
@@ -338,7 +373,7 @@ export class DcOutPage implements OnInit {
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -355,10 +390,10 @@ export class DcOutPage implements OnInit {
       pretax: 0,
       posttax: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0
     }];
-    }
-  
+  }
+
   addDcout() {
     console.log('addrowwww' + this.dcoutData.length);
     // You can initialize the new row data here
@@ -369,7 +404,7 @@ export class DcOutPage implements OnInit {
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -386,7 +421,7 @@ export class DcOutPage implements OnInit {
       posttax: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
-      selectedItemId:0
+      selectedItemId: 0
       // Add more properties as needed
     };
     this.dcoutData.push(newRow);
@@ -395,8 +430,8 @@ export class DcOutPage implements OnInit {
   getItems(dcout: any) {
     const compid = 1;
     const identifier = dcout.selectedItemId ? 'itemname' : 'itemcode';
-    const value = dcout.selectedItemId ||dcout.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const value = dcout.selectedItemId || dcout.itemcode;
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -409,13 +444,13 @@ export class DcOutPage implements OnInit {
           dcout.itemname = itemDetails.itemDesc;
           dcout.barcode = itemDetails.barcode.toString();
           dcout.unitname = itemDetails.unitname;
-          dcout.hunitname=itemDetails.unitid;
+          dcout.hunitname = itemDetails.unitid;
           dcout.taxrate = grate[itemDetails.selectGst];
           dcout.taxrate1 = grate[itemDetails.selectGst];
           dcout.basicrate = itemDetails.basicrate;
           dcout.mrp = itemDetails.mrp;
-          dcout.basicrate=itemDetails.basic_rate;
-          dcout.netrate=itemDetails.net_rate;
+          dcout.basicrate = itemDetails.basic_rate;
+          dcout.netrate = itemDetails.net_rate;
 
           // Update form control values
           this.myform.patchValue({
@@ -518,11 +553,11 @@ export class DcOutPage implements OnInit {
     return totalGrossAmount;
   }
   getTotalnetAmount(): number {
-    return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
+    return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcoutData.reduce((total, dcout) => {
-      const itemTotal = (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity));
+      const itemTotal = (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity));
       return total + itemTotal;
     }, 0);
 
@@ -536,7 +571,7 @@ export class DcOutPage implements OnInit {
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ( (dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0);
+    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0);
 
     // Use the toFixed method to round off the total to the desired number of decimal places
     const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
@@ -601,13 +636,13 @@ export class DcOutPage implements OnInit {
     return (dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) - this.calculateDiscountAmount(dcout);
   }
   getcgst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity)/2;
+    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity) / 2;
   }
   getsgst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity)/2;
+    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity) / 2;
   }
   getigst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate)*dcout.quantity);
+    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity);
   }
   ngOnInit() {
     // Other initialization logic...
@@ -702,6 +737,102 @@ export class DcOutPage implements OnInit {
       dcout.taxrate1 = 0;
 
       console.error('Selected text does not represent a valid number.');
+    }
+  }
+
+  onCountryChange() {
+    console.log('selected value' + this.country);
+    this.states$ = this.stateservice.getStates(1);
+  }
+  onStateChange() {
+    console.log('selected value' + this.state);
+    this.districts$ = this.districtservice.getDistricts(this.state);
+  }
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
+
+    });
+  }
+
+
+  async onCustSubmit() {
+    const fields = { name: this.name, }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      const companyid = 1;
+      console.log('Your form data : ', this.customerpop.value);
+      let custdata: cust = {
+        name: this.customerpop.value.name,
+        customer_code: this.customerpop.value.customer_code,
+        gstin: this.customerpop.value.gstin,
+        companyid: companyid,
+        selectedSalutation: '',
+        companyName: '',
+        state: this.customerpop.value.state,
+        district: this.customerpop.value.district,
+        country: this.customerpop.value.country,
+        opening_balance: 0,
+        closing_balance: 0,
+        mobile: this.customerpop.value.mobile,
+        whatsapp_number: '',
+        address: this.customerpop.value.address,
+        email: '',
+        select_sales_person: '',
+        pincode: '',
+        tdn: '',
+        aadhar_no: '',
+        pan_no: '',
+        udhyog_aadhar: '',
+        account_number: '',
+        ifsc_code: '',
+        bank_name: '',
+        branch_name: '',
+        credit_period: 0,
+        credit_limit: 0,
+        card_number: '',
+        opening_point: 0,
+        closing_point: 0,
+        select_group: 0,
+        discount: 0,
+        selectedOption1: 0,
+        selectedState1: 0,
+        selectedDistrict1: 0,
+        pincode1: '',
+        address1: ''
+      };
+
+      this.myService.createCustomer(custdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          // location.reload()
+          this.myform.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
   }
 }
