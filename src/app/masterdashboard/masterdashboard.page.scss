@@ -149,7 +149,7 @@ input[type="date"] {
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
 }
 
 .leadscard ion-card {
@@ -192,15 +192,17 @@ input[type="date"] {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
-  padding: 3px;
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
+  accent-color: #f39c12; /* Yellow/Gold */
+  
+    padding: 3px;
   margin: 5px;
   border-radius: 10px;
   color: black;
 }
 
 .dash ion-chip {
-  background: linear-gradient(to right, #5899E2, #93bff1,#5899E2,#a8c3e2);
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
 
   text-align: center;
   height: 40px;
@@ -230,7 +232,7 @@ input[type="date"] {
   color: white;
 }
 ion-item:hover {
-  background: linear-gradient(to right, #93bff1, #5899E2,#93bff1,#5899E2);
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
   border-radius: 8px;
   ion-icon{
     transition: 0.5s all linear;
