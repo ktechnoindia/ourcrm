@@ -150,7 +150,9 @@
                       </td>
                       <td style="width: 90px;">
                         <input [(ngModel)]="dcin.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="text">
+                        <input [(ngModel)]="dcin.hunitname" [ngModelOptions]="{standalone: true}" 
+                        type="hidden">
                         <!-- <select class="table_select" [(ngModel)]="dcin.unitname"  [ngModelOptions]="{standalone: true}">
                           <option value="0" >Unit Name</option>
                           <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
@@ -187,13 +189,13 @@
                       <input type="hidden" [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                       <td>
-                        <input [value]="calculateCGST(dcin.taxrate,dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="getsgst(dcin)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
-                        <input [value]="calculateSGST(dcin.taxrate,dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="getcgst(dcin)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
-                        <input [value]="calculateIGST(dcin.taxrate,dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="getigst(dcin)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
                         <select class="table_select" formControlName="discountType">
@@ -214,7 +216,7 @@
                         <input [value]="getTotaltax(dcin)"  [readonly]="true"  class="table_input" type="number">
                       </td>
                       <td>
-                        <input [value]="getTotalamt(dcin.taxrate,dcin)"  [readonly]="true"  class="table_input" type="number">
+                        <input [value]="getTotalamt(dcin)"  [readonly]="true"  class="table_input" type="number">
 
                       </td>
 

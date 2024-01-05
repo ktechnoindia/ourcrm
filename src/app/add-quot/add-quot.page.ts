@@ -94,10 +94,11 @@ export class AddQuotPage implements OnInit {
   companyid: number = 0;
   userid: number = 0;
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+
+  pretax: string = '';
+  posttax: string = '';
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -425,7 +426,6 @@ showTable: boolean = false ;
           quote.hunitname=itemDetails.unitid;
           quote.taxrate = grate[itemDetails.selectGst];
           quote.taxrate1 = grate[itemDetails.selectGst];
-
           quote.basicrate = itemDetails.basicrate;
           quote.mrp = itemDetails.mrp;
           quote.basicrate=itemDetails.basic_rate;

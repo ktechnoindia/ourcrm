@@ -22,8 +22,9 @@ interface Sales {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
-  mrp: number;
+  unitname: string;
+  hunitname:number;
+    mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -70,10 +71,10 @@ export class SalesreturnPage implements OnInit {
   totalnetamount: string = '';
   ponumber:string='';
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+  pretax: string = '';
+  posttax: string = '';
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -85,8 +86,9 @@ export class SalesreturnPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
-    mrp: 0,
+    hunitname:0,
+    unitname: '',
+        mrp: 0,
     basicrate: 0,
     netrate: 0,
     grossrate: 0,
@@ -224,14 +226,15 @@ export class SalesreturnPage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       
-      console.log('Your form data : ', this.myform.value);
+      // console.log('Your form data : ', this.myform.value);
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salereturnData));
+      let quotedatas: salesstore[] = [];
 
 
       for (const element of salereturnData) {
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+       // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -266,7 +269,7 @@ export class SalesreturnPage implements OnInit {
         itemname: element.itemname,
         description: element.description,
         quantity: element.quantity,
-        unitname: element.unitname,
+        unitname: element.hunitname,
         mrp: element.mrp,
         basicrate: element.basicrate,
         netrate: element.netrate,
@@ -330,12 +333,45 @@ export class SalesreturnPage implements OnInit {
       }
     }
   }
-
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.salesData = [{
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname:0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid: 0,
+      selectedItemId:0
+    }];
+    }
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
     const value = sales.selectedItemId || sales.itemcode;
-  
+    const grate=[0,3,5,12,18,28,0,0,0];
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -343,14 +379,18 @@ export class SalesreturnPage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
   
-          sales.itemid = itemDetails.tid;
+          // Update the quote properties
           sales.itemcode = itemDetails.itemCode;
           sales.itemname = itemDetails.itemDesc;
           sales.barcode = itemDetails.barcode.toString();
           sales.unitname = itemDetails.unitname;
-          sales.taxrate = itemDetails.selectGst;
+          sales.hunitname=itemDetails.unitid;
+          sales.taxrate = grate[itemDetails.selectGst];
+          sales.taxrate1 = grate[itemDetails.selectGst];
           sales.basicrate = itemDetails.basicrate;
           sales.mrp = itemDetails.mrp;
+          sales.basicrate=itemDetails.basic_rate;
+          sales.netrate=itemDetails.net_rate;
 
   
           // Update form control values
@@ -414,8 +454,9 @@ export class SalesreturnPage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
-      mrp: 0,
+      unitname: '',
+      hunitname:0,
+            mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,

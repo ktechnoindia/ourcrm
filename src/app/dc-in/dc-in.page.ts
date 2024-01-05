@@ -27,8 +27,9 @@ interface Dcin {
   itemname: number,
   description: string;
   quantity: number;
-  unitname: number;
-  mrp: number;
+  unitname: string;
+  hunitname:number;
+    mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -71,23 +72,24 @@ export class DcInPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '0';
-  posttax: string = '0';
+  pretax: string = '';
+  posttax: string = '';
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
   
-  
-  dcinData: Dcin[] = [{
+ 
+    dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    unitname: 0,
+    hunitname:0,
+    unitname: '',
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -108,6 +110,7 @@ export class DcInPage implements OnInit {
     totaltaxamount:0,
 
   }];
+
   
   ttotal!: number;
   myform: FormGroup;
@@ -214,7 +217,42 @@ export class DcInPage implements OnInit {
     }
   }
   
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.dcinData = [{
+      barcode: '',
+    itemcode: 0,
+    itemname: 0,
+    description: '',
+    quantity: 0,
+    hunitname:0,
+    unitname: '',
+    mrp: 0,
+    basicrate: 0,
+    netrate: 0,
+    grossrate: 0,
+    taxrate: 0,
+    CGST: 0,
+    SGST: 0,
+    IGST: 0,
+    discount: 0,
+    discountamt: 0,
+    totaltax: 0,
+    total: 0,
+    taxrate1: 0,
+    pretax: 0,
+    posttax: 0,
+    itemid: 0,
+    selectedItemId:0,
+    totaltaxamount:0,
 
+    }];
+    }
+  
 
   async onSubmit(form: FormGroup, dcinData: Dcin[]) {
 
@@ -223,11 +261,12 @@ export class DcInPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
+      let quotedatas: dcinstore[] = [];
 
       for (const element of dcinData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        element.netrate = element.basicrate + element.taxrate1;
+       // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -253,7 +292,7 @@ export class DcInPage implements OnInit {
           itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
-          unitname: element.unitname,
+          unitname: element.hunitname,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
@@ -323,7 +362,8 @@ export class DcInPage implements OnInit {
     const compid = 1;
     const identifier = dcin.selectedItemId ? 'itemname' : 'itemcode'; // Update this line
     const value = dcin.selectedItemId || dcin.itemcode; // Update this line
-  
+    const grate=[0,3,5,12,18,28,0,0,0];
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -336,9 +376,12 @@ export class DcInPage implements OnInit {
           dcin.itemname = itemDetails.itemDesc;
           dcin.barcode = itemDetails.barcode.toString();
           dcin.unitname = itemDetails.unitname;
-          dcin.taxrate = itemDetails.selectGst;
-          dcin.basicrate = itemDetails.basicrate;
+          dcin.hunitname=itemDetails.unitid;
+          dcin.taxrate = grate[itemDetails.selectGst];
+          dcin.taxrate1 = grate[itemDetails.selectGst];
           dcin.mrp = itemDetails.mrp;
+          dcin.basicrate=itemDetails.basic_rate;
+          dcin.netrate=itemDetails.net_rate;
   
           // Update form control values
           this.myform.patchValue({
@@ -396,7 +439,8 @@ export class DcInPage implements OnInit {
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: 0,
+      unitname: '',
+      hunitname:0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -560,15 +604,18 @@ export class DcInPage implements OnInit {
 
 
  
-  // getcgst(dcin: Dcin): number {
-  //   return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
-  // }
-  // getsgst(dcin: Dcin): number {
-  //   return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
-  // }
-  // getigst(dcin: Dcin): number {
-  //   return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
-  // }
+  getcgst(dcin: Dcin): number {
+    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+  }
+  getsgst(dcin: Dcin): number {
+    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+  }
+  getigst(dcin: Dcin): number {
+    return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
+  }
+  getTotalamt(dcin: Dcin): number {
+    return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
+  }
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
@@ -618,7 +665,6 @@ export class DcInPage implements OnInit {
     if (!isNaN(numericValue)) {
       console.log('Numeric value:', numericValue);
       dcin.taxrate1 = numericValue;
-      this.calculateCGST(numericValue,dcin)
       // Use numericValue as needed
     } else {
       dcin.taxrate1 = 0;
@@ -627,36 +673,6 @@ export class DcInPage implements OnInit {
     }
   }
 
-  // Add a function to calculate igst, cgst, and sgst based on the selected taxrate
-calculateGST(dcin: Dcin) {
-  // Implement your logic here to calculate igst, cgst, and sgst based on the selected taxrate
-  // You can access the selected taxrate using dcin.taxrate
-  const selectedTaxRate = dcin.taxrate;
 
-  // Update igst, cgst, and sgst values based on the selectedTaxRate
-  dcin.CGST = this.calculateCGST(selectedTaxRate,dcin);
-  dcin.SGST = this.calculateSGST(selectedTaxRate,dcin);
-  dcin.IGST = this.calculateIGST(selectedTaxRate,dcin);
-}
-
-// Implement your own logic for calculating cgst, sgst, and igst
-calculateCGST(taxRate: number,dcin:Dcin): number {
-  // Replace the following line with your actual logic to calculate CGST
-  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity) / 2; 
-}
-
-calculateSGST(taxRate: number,dcin:Dcin): number {
-  // Replace the following line with your actual logic to calculate SGST
-  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity) / 2; 
-}
-
-calculateIGST(taxRate: number,dcin:Dcin): number {
-  // Replace the following line with your actual logic to calculate IGST
-  return ((taxRate / 100 * dcin.basicrate) * dcin.quantity); 
-}
-getTotalamt(taxRate: number,dcin: Dcin): number {
-
-  return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (taxRate / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
-}
 
 }

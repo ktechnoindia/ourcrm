@@ -191,7 +191,9 @@
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number">
+                      type="text">
+                      <input [(ngModel)]="purchase.hunitname" [ngModelOptions]="{standalone: true}" 
+                      type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="purchase.unitname" (ngModelChange)="getItems(purchase)"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>

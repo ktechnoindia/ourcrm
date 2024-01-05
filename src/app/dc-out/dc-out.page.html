@@ -157,7 +157,9 @@
                     </td>
                     <td style="width: 90px;">
                       <input [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number">
+                      type="text">
+                      <input [(ngModel)]="dcout.hunitname" [ngModelOptions]="{standalone: true}" 
+                      type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(dcout)">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
