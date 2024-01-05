@@ -11,12 +11,15 @@ import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { NgForm } from '@angular/forms';
 import { AdditemService } from '../services/additem.service';
-import { VendorService } from '../services/vendor.service';
+import { VendorService, vend } from '../services/vendor.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable } from 'rxjs';
 import { NavController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
+import { DistrictsService } from '../services/districts.service';
+import { CountryService } from '../services/country.service';
+import { StateService } from '../services/state.service';
 
 
 interface Dcin {
@@ -28,8 +31,8 @@ interface Dcin {
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
-    mrp: number;
+  hunitname: number;
+  mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -43,8 +46,8 @@ interface Dcin {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
-  totaltaxamount:number;
+  selectedItemId: number;
+  totaltaxamount: number;
 }
 @Component({
   selector: 'app-dc-in',
@@ -80,15 +83,15 @@ export class DcInPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-  
- 
-    dcinData: Dcin[] = [{
+
+
+  dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
     mrp: 0,
     basicrate: 0,
@@ -106,12 +109,12 @@ export class DcInPage implements OnInit {
     pretax: 0,
     posttax: 0,
     itemid: 0,
-    selectedItemId:0,
-    totaltaxamount:0,
+    selectedItemId: 0,
+    totaltaxamount: 0,
 
   }];
 
-  
+
   ttotal!: number;
   myform: FormGroup;
   supplier$: any;
@@ -124,15 +127,29 @@ export class DcInPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
- 
+
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  supper: any;
 
-  constructor(private navCtrl: NavController,private popoverController:PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService) {
+  name: string = '';
+  vendor_code: string = '';
+  gstin: string = '';
+  mobile:string='';
+  country: number = 0;
+  state: number = 0;
+  district: number = 0;
+  pincode: string = '';
+  address: string = '';
+
+  countries$: Observable<any[]>
+  states$: Observable<any[]>;
+  districts$: Observable<any[]>
+  vendorpop: FormGroup;
+
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
-    const id=1;
-    const companyid=1
+    const id = 1;
+    const companyid = 1
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
@@ -191,16 +208,47 @@ export class DcInPage implements OnInit {
 
       ttotal: [''],
       itemid: ['']
-
-
     })
 
+    this.vendorpop = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
+      gstin: [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)],
+      mobile: ['', [Validators.maxLength(10)]],
+      country: [''],
+      state: [''],
+      district: [''],
+      pincode: [''],
+      address: [''],
+    });
+
+    this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
+
+    this.countries$ = this.countryservice.getCountries();
+    this.districts$ = this.districtservice.getDistricts(1);
+
+  }
+
+  onCountryChange() {
+    console.log('selected value' + this.country);
+    this.states$ = this.stateservice.getStates(1);
+  }
+  onStateChange() {
+    console.log('selected value' + this.state);
+    this.districts$ = this.districtservice.getDistricts(this.state);
+  }
+
+  closePopover() {
+    // Close the popover and pass data back to the parent component
+    this.popoverController.dismiss({
+
+    });
   }
 
   async presentPopover(dcin: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: dcin.quantity, // Pass the quantity to the popup component
       },
@@ -210,13 +258,13 @@ export class DcInPage implements OnInit {
   }
 
 
-  updateRows(dcin:Dcin) {
+  updateRows(dcin: Dcin) {
     // Open the popover when quantity changes
     if (dcin.quantity > 0) {
       this.presentPopover(dcin);
     }
   }
-  
+
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -225,34 +273,34 @@ export class DcInPage implements OnInit {
     //  this.setlangvals();
     this.dcinData = [{
       barcode: '',
-    itemcode: 0,
-    itemname: 0,
-    description: '',
-    quantity: 0,
-    hunitname:0,
-    unitname: '',
-    mrp: 0,
-    basicrate: 0,
-    netrate: 0,
-    grossrate: 0,
-    taxrate: 0,
-    CGST: 0,
-    SGST: 0,
-    IGST: 0,
-    discount: 0,
-    discountamt: 0,
-    totaltax: 0,
-    total: 0,
-    taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
-    itemid: 0,
-    selectedItemId:0,
-    totaltaxamount:0,
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      hunitname: 0,
+      unitname: '',
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      pretax: 0,
+      posttax: 0,
+      itemid: 0,
+      selectedItemId: 0,
+      totaltaxamount: 0,
 
     }];
-    }
-  
+  }
+
 
   async onSubmit(form: FormGroup, dcinData: Dcin[]) {
 
@@ -266,7 +314,7 @@ export class DcInPage implements OnInit {
       for (const element of dcinData) {
 
         element.grossrate = element.basicrate * element.quantity;
-       // element.netrate = element.basicrate + element.taxrate1;
+        // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -357,32 +405,32 @@ export class DcInPage implements OnInit {
       }
     }
   }
-  
+
   getItems(dcin: any) {
     const compid = 1;
     const identifier = dcin.selectedItemId ? 'itemname' : 'itemcode'; // Update this line
     const value = dcin.selectedItemId || dcin.itemcode; // Update this line
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
-  
+
         if (data && data.length > 0) {
           const itemDetails = data[0];
-  
+
           // Update the quote properties
           dcin.itemcode = itemDetails.itemCode;
           dcin.itemname = itemDetails.itemDesc;
           dcin.barcode = itemDetails.barcode.toString();
           dcin.unitname = itemDetails.unitname;
-          dcin.hunitname=itemDetails.unitid;
+          dcin.hunitname = itemDetails.unitid;
           dcin.taxrate = grate[itemDetails.selectGst];
           dcin.taxrate1 = grate[itemDetails.selectGst];
           dcin.mrp = itemDetails.mrp;
-          dcin.basicrate=itemDetails.basic_rate;
-          dcin.netrate=itemDetails.net_rate;
-  
+          dcin.basicrate = itemDetails.basic_rate;
+          dcin.netrate = itemDetails.net_rate;
+
           // Update form control values
           this.myform.patchValue({
             itemcode: dcin.itemcode,
@@ -398,20 +446,20 @@ export class DcInPage implements OnInit {
       }
     );
   }
-  
+
 
   getSuppliers(event: any) {
     const compid = '1';
     const identifier = event.supper ? 'suppliertype' : 'vendcode';
     const value = event.supper || event.vendcode;
-  
+
     this.vendname1.fetchallVendor(compid, value, '').subscribe(
       (data) => {
         console.log('Data received:', data);
-  
+
         if (data && data.length > 0) {
           const itemDetails = data[0];
-  
+
           // Update the form control values based on the identifier
           this.myform.patchValue({
             [identifier]: itemDetails.vendor_code,
@@ -427,8 +475,8 @@ export class DcInPage implements OnInit {
       }
     );
   }
-  
-  
+
+
 
   addDcin() {
     console.log('addrowwww' + this.dcinData.length);
@@ -440,7 +488,7 @@ export class DcInPage implements OnInit {
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -457,8 +505,8 @@ export class DcInPage implements OnInit {
       pretax: 0,
       posttax: 0,
       itemid: 0,
-      selectedItemId:0,
-      totaltaxamount:0,
+      selectedItemId: 0,
+      totaltaxamount: 0,
 
       // Add more properties as needed
     };
@@ -603,7 +651,7 @@ export class DcInPage implements OnInit {
   }
 
 
- 
+
   getcgst(dcin: Dcin): number {
     return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
   }
@@ -670,6 +718,85 @@ export class DcInPage implements OnInit {
       dcin.taxrate1 = 0;
 
       console.error('Selected text does not represent a valid number.');
+    }
+  }
+
+  async onVendorSubmit() {
+    const fields = { name: this.name, vendor_code: this.vendor_code, }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+
+      console.log('Your form data : ', this.myform.value);
+      const venddata: vend = {
+        name: this.vendorpop.value.name,
+        customer_code: this.vendorpop.value.vendor_code,
+        gstin: this.vendorpop.value.gstin,
+        mobile: this.vendorpop.value.mobile,
+        country: this.vendorpop.value.country,
+        state: this.vendorpop.value.state,
+        district: this.vendorpop.value.district,
+        pincode: this.vendorpop.value.pincode,
+        address: this.vendorpop.value.address,
+        select_group: 0,
+        opening_balance: 0,
+        closing_balance: 0,
+        whatsapp_number: '',
+        email: '',
+        tdn: '',
+        aadhar_no: '',
+        pan_no: '',
+        udhyog_aadhar: '',
+        account_number: '',
+        ifsc_code: '',
+        bank_name: '',
+        branch_name: '',
+        credit_period: 0,
+        credit_limit: 0,
+        select_sales_person: '',
+        card_number: '',
+        opening_point: 0,
+        closing_point: 0,
+        selectedSalutation: '',
+        companyName: '',
+        country1: 0,
+        state1: 0,
+        district1: 0,
+        pincode1: '',
+        address1: '',
+        discount: 0
+      };
+
+      this.vendService.createVendor(venddata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader()
+          this.myform.reset();
+
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
   }
 

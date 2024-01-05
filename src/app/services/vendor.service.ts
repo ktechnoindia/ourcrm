@@ -32,7 +32,7 @@ export interface vend{
       branch_name: string;
       credit_period: number;
       credit_limit: number;
-      select_sales_person: number;
+      select_sales_person: string;
       card_number: string;
       opening_point: number;
       closing_point: number;

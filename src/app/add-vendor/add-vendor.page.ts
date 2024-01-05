@@ -88,7 +88,7 @@ export class AddVendorPage implements OnInit {
   country1: number = 0;
   state1: number = 0;
   district1: number = 0;
-  select_sales_person: number = 0;
+  select_sales_person: string = '';
   executive$: any;
   executive: string = '';
   form: any;
