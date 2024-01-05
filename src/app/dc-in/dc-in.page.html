@@ -154,11 +154,13 @@
 
                     </td>
                     <td>
-                      <input *ngIf="dcin.itemcode !== 0" [(ngModel)]="dcin.quantity"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
-                        (ngModelChange)="presentPopover(dcin)">
-
-                    </td>
+                      <input *ngIf="dcin.itemcode !== 0"
+                             [(ngModel)]="dcin.quantity"
+                             [ngModelOptions]="{standalone: true}"
+                             class="table_input"
+                             type="number"
+                             (keydown.enter)="presentPopover(dcin)">
+                    </td>   
                     <td style="width: 90px;">
                       <input [(ngModel)]="dcin.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">

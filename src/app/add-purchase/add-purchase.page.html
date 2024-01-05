@@ -189,10 +189,13 @@
                         class="table_input  description" type="text">
                     </td>
                     <td>
-                      <input *ngIf="purchase.itemcode !== 0" [(ngModel)]="purchase.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (ngModelChange)="presentPopover(purchase)">
-
-                    </td>
+                      <input *ngIf="purchase.itemcode !== 0"
+                             [(ngModel)]="purchase.quantity"
+                             [ngModelOptions]="{standalone: true}"
+                             class="table_input"
+                             type="number"
+                             (keydown.enter)="presentPopover(purchase)">
+                    </td>   
                     <td>
                       <input [(ngModel)]="purchase.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                       type="text">
@@ -433,13 +436,13 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="text">
+                          class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="text">
+                          id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
 

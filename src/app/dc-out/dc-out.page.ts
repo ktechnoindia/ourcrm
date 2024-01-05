@@ -19,8 +19,6 @@ import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 interface Dcout {
-  posttax: number;
-  pretax: number;
   barcode: string;
   itemcode: number;
   itemname: number,
@@ -89,8 +87,8 @@ export class DcOutPage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax: number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: string = '';
@@ -118,8 +116,6 @@ export class DcOutPage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,// Calculate grossrate after other properties
     grossrate: 0,
     selectedItemId: 0
@@ -316,8 +312,8 @@ export class DcOutPage implements OnInit {
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           roundoff: this.myform.value.roundoff,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
           debit: this.myform.value.debit,
@@ -387,8 +383,6 @@ export class DcOutPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId: 0
     }];
@@ -417,8 +411,6 @@ export class DcOutPage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
       selectedItemId: 0
@@ -546,7 +538,7 @@ export class DcOutPage implements OnInit {
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
-      const grossAmount = dcout.quantity * dcout.basicrate;
+      const grossAmount = (+this.pretax )+(dcout.quantity * dcout.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -557,7 +549,7 @@ export class DcOutPage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.dcoutData.reduce((total, dcout) => {
-      const itemTotal = (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity));
+      const itemTotal = (((+this.pretax )+(this.posttax) +(dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity));
       return total + itemTotal;
     }, 0);
 

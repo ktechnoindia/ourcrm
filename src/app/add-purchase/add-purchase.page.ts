@@ -38,8 +38,6 @@ interface Purchase {
   totaltax: number;
   total: number;
   taxrate1: number;
-  posttax: number;
-  pretax: number;
   itemid: number;
   selectedItemId:number;
 }
@@ -96,10 +94,10 @@ export class AddPurchasePage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax: string = '';
-  posttax: string = '';
+  pretax:  number = 0;
+  posttax:  number = 0;
   deliverydate: string = '';
-  deliveryplace: string = 'Jaipur';
+  deliveryplace: string = '';
   openingbalance: string = '';
   closingbalance: string = '';
   debit: string = '';
@@ -126,8 +124,6 @@ export class AddPurchasePage implements OnInit {
     totaltax: 0,
     total: 0,
     taxrate1: 0,
-    pretax: 0,
-    posttax: 0,
     itemid: 0,
     selectedItemId:0
   }];
@@ -355,8 +351,8 @@ export class AddPurchasePage implements OnInit {
           totaltaxamount: this.myform.value.totaltaxamount,
           totalnetamount: this.myform.value.totalnetamount,
           roundoff: this.myform.value.roundoff,
-          pretax: element.pretax,
-          posttax: element.posttax,
+          pretax:this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           openingbalance: this.myform.value.openingbalance,
@@ -429,8 +425,6 @@ export class AddPurchasePage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid: 0,
       selectedItemId:0
     }];
@@ -572,8 +566,6 @@ export class AddPurchasePage implements OnInit {
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      pretax: 0,
-      posttax: 0,
       itemid:0,
       selectedItemId:0
       // Add more properties as needed
@@ -627,7 +619,7 @@ export class AddPurchasePage implements OnInit {
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.purchaseData.reduce((total, purchase) => {
-      const grossAmount = purchase.quantity * purchase.basicrate;
+      const grossAmount = (+this.pretax )+(purchase.quantity * purchase.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -638,7 +630,7 @@ export class AddPurchasePage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.purchaseData.reduce((total, purchase) => {
-      const itemTotal = (((+purchase.pretax + purchase.posttax) + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
+      const itemTotal = (((+this.pretax )+(this.posttax) + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
       return total + itemTotal;
     }, 0);
 
