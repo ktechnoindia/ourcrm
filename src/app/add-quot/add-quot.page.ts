@@ -364,7 +364,7 @@ customerpop:FormGroup;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
-        element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate)
+        element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
 
         console.log(element);
         const companyid = 1;
@@ -577,7 +577,7 @@ customerpop:FormGroup;
 
     // Example calculation for total quantity and gross amount
     this.totalQuantity = this.quoteData.reduce((total, quote) => total + quote.quantity, 0);
-    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + (quote.grossrate * quote.quantity), 0);
+    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + ((quote.grossrate * quote.quantity)-quote.discountamt), 0);
 
     // Add similar calculations for other totals
   }
@@ -656,21 +656,49 @@ customerpop:FormGroup;
 
 
   getTotalnetAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) + quote.totaltax) - ((quote.discount / 100) * quote.basicrate * quote.quantity)), 0)
-  }
-  getGrandTotal(): number {
-    const grandTotal = this.quoteData.reduce((total, quote) => {
-      const itemTotal = (((+this.pretax )+(this.posttax) +(quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ((quote.discount / 100) * quote.basicrate * quote.quantity));
-      return total + itemTotal;
-    }, 0);
+    return this.quoteData.reduce((total, quote) => {
+        const subtotal = quote.quantity * quote.basicrate;
+        const discount = this.calculateDiscountAmount(quote);
+        const taxAmount = quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
 
-    return grandTotal;
-  }
+        const rowTotal = (subtotal - discount);
+        return total + rowTotal;
+    }, 0);
+}
+getGrandTotal(): number {
+  const grandTotal = this.quoteData.reduce((total, quote) => {
+      // Step 1
+      const totalgross = quote.basicrate * quote.quantity + this.pretax;
+
+      // Step 2
+      const grosswithpretax = totalgross + this.pretax;
+
+      // Step 3
+      
+      const netgross = grosswithpretax- this.totalDiscountAmt;
+
+      // Step 4
+      const taxableamt = (netgross) + this.totalTaxAmt;
+
+      // Step 5
+      const gtotal = taxableamt + this.posttax;
+
+      // Step 6
+      return total + gtotal;
+  }, 0);
+
+  return grandTotal;
+}
 
 
   getTotalTaxAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity, 0);
-  }
+    return this.quoteData.reduce((total, quote) => {
+        const subtotal = quote.quantity * quote.basicrate - quote.discountamt;
+        const taxAmount = subtotal * (quote.taxrate1 / 100);
+        return total + taxAmount ;
+    }, 0);
+}
+
 
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
@@ -690,7 +718,7 @@ customerpop:FormGroup;
     return quote.basicrate + (quote.taxrate1 / 100 * quote.basicrate);
   }
   getTotaltax(quote: Quote): number {
-    return quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
+    return quote.taxrate1 / 100 *((quote.quantity * quote.basicrate)-quote.discountamt);
     //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getgrossrate(quote: Quote): number {
@@ -741,18 +769,23 @@ customerpop:FormGroup;
     return discountAmt;
   }
   getTotalamt(quote: Quote): number {
-    return (quote.basicrate * quote.quantity) + (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate)) - this.calculateDiscountAmount(quote);
-  }
+    const subtotal = quote.quantity * quote.basicrate;
+    const discount = this.calculateDiscountAmount(quote);
+    const taxAmount = (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate));
+
+    const totalAmount = subtotal - discount ;
+    return totalAmount;
+}
   getcgst(quote: Quote): number {
-    return this.getTotalamt(quote) / 2;
+    return this.getTotaltax(quote) / 2;
   }
 
   getsgst(quote: Quote): number {
-    return this.getTotalamt(quote) / 2;
+    return this.getTotaltax(quote) / 2;
   }
 
   getigst(quote: Quote): number {
-    return this.getTotalamt(quote);
+    return this.getTotaltax(quote);
   }
   ngOnInit() {
     this.getquoteNo();
