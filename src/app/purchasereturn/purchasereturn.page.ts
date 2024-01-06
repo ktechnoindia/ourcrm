@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { ExecutiveService } from '../services/executive.service';
@@ -149,7 +149,7 @@ export class PurchasereturnPage implements OnInit {
 
   name: string = '';
   vendor_code: string = '';
-  mobile:string='';
+  mobile: string = '';
   country: number = 0;
   state: number = 0;
   district: number = 0;
@@ -160,6 +160,10 @@ export class PurchasereturnPage implements OnInit {
   states$: Observable<any[]>;
   districts$: Observable<any[]>
   vendorpop: FormGroup;
+
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+  isOpen = false;
 
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
@@ -247,11 +251,22 @@ export class PurchasereturnPage implements OnInit {
     });
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
+
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
+
 
   onCountryChange() {
     console.log('selected value' + this.country);
@@ -426,7 +441,7 @@ export class PurchasereturnPage implements OnInit {
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      
+
     }];
   }
   getItems(purchase: any) {

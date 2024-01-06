@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -160,8 +160,14 @@ export class AddCustomerPage implements OnInit {
     this.executive$ = this.execut.getexecutive();
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
-
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
 
   openToast(arg0: string) {

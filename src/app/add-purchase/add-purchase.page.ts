@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { PurchaseService, purchasestore } from '../services/purchase.service';
@@ -163,6 +163,11 @@ export class AddPurchasePage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+
+isOpen = false;
+
   constructor(private navCtrl: NavController,private popoverController:PopoverController ,private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -248,12 +253,21 @@ export class AddPurchasePage implements OnInit {
     });
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
-  }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
 
+  }
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
   onCountryChange() {
     console.log('selected value' + this.country);
     this.states$ = this.stateservice.getStates(1);

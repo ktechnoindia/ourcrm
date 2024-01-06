@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
@@ -103,6 +103,11 @@ export class AddVendorPage implements OnInit {
   ledgers$: Observable<any>;
   executivepop: FormGroup;
 
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+
+isOpen = false;
+
   constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
     this.myform = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -162,9 +167,22 @@ export class AddVendorPage implements OnInit {
     this.custtype$ = this.custtp.getcustomertype();
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
-
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
+
+  
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
+
   onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page

@@ -73,7 +73,7 @@
               </ion-col>
 
               <ion-col class="custom-primary" size-lg="0.4" size-md="2" size-sm="2" size="2">
-                <ion-button id="customer"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+                <ion-button (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
               </ion-col>
 
 
@@ -482,7 +482,7 @@
   </div>
 </ion-content>
 
-<ion-popover trigger="customer" side="bottom" alignment="end">
+<ion-popover trigger="customer"  #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" side="bottom" alignment="end">
   <ng-template>
     <ion-content  class="ion-padding Customer ">
       <form [formGroup]="customerpop" (ngSubmit)="onCustSubmit()">
