@@ -29,44 +29,42 @@ export class PaymentPage implements OnInit {
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   voucherNumber: string = '';
   paymentdate: string = '';
-  ledger: string = '';
-  suppliername: number = 0;
-  outstanding: number = 0;
-  total:number = 0;
-vendor_outstanding:any;
-  ledger_name: string = '';
-  total_payment: number = 0;
-  paymentmade: number = 0;
-  paymentway:string = '';
-  totalamt:number = 0;
-  billno: string = '';
-  receiveamt: number = 0;
-  pendingamt: number = 0;
-  currentamt :number = 0;
+  ledger: number = 0;
   companyname: number = 0;
-  billpendingamt: number = 0;
 
-  myform: FormGroup;
-  isOpen = false;
-  companys$: Observable<any[]>;
-  supplier$: Observable<any>;
-  ledgers$: Observable<any>;
-  user_outstanding: any;
-  outstanding_amount: any;
-  outstanding$: Observable<any[]>
-  purchase$: Observable<any[]>
-  userid: number = 0;
-  vendorid :number = 0;
+  outstanding: number = 0;
+  paymentmade: number = 0;
+  pendingamt: number = 0;
+  paymentway: string = '';
+  total: number = 0;
+  total_payment: number = 0;
+  billno: string = '';
+  totalamt: number = 0;
+  receiveamt: number = 0;
+  currentamt: number = 0;
+
   totaldueamt: number = 0;
   totalreceiveamt: number = 0;
   totalcurrentamt: number = 0;
   totalpendingamt: number = 0;
+  cpyname:string=''
+  myform: FormGroup;
+  isOpen = false;
+  supplier$: Observable<any>;
+  ledgers$: Observable<any>;
+
+  outstanding_amount: any;
+  outstanding$: Observable<any[]>
+  purchase$: Observable<any[]>
+  userid: number = 0;
+  vendorid: number = 0;
+
+
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
     const compid = '1';
-    this.companys$ = this.companyService.fetchallcompany(compid, '', '');
 
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    console.log(this.companys$);
+    console.log(this.supplier$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
@@ -83,35 +81,24 @@ vendor_outstanding:any;
       voucherNumber: ['', Validators.required],
       paymentdate: [''],
       ledger: [''],
-      suppliername: [''],
       outstanding: [''],
       paymentmade: [''],
       paymentway: [''],
       total: [''],
-      balance: [''],
       total_payment: [''],
       totalamt: [''],
       billno: [''],
       receiveamt: [''],
       pendingamt: [''],
       currentamt: [''],
-      ledgername: 1,
-      companyname: 1,
+      ledgername: [''],
+      companyname: [''],
       userid: [0],
-      vendor_outstanding:[''],
-      outstanding_amount:[null]
+      outstanding_amount: [null],
+      cpyname:['']
     })
 
-
   }
-  fetchVendorOutstanding() {
-
-
-  }
-
-
-
-
 
 
   async onSubmit() {
@@ -122,18 +109,25 @@ vendor_outstanding:any;
 
       console.log('Your form data : ', this.myform.value);
       const paymentdata: pay = {
-        voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledger: this.myform.value.ledger, suppliername: this.myform.value.suppliername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, total_payment: this.myform.value.total_payment,
+        voucherNumber: this.myform.value.voucherNumber,
+        paymentdate: this.myform.value.paymentdate,
+        ledger: this.myform.value.ledger,
+        outstanding: this.myform.value.outstanding,
+        paymentmade: this.myform.value.paymentmade,
+        total: this.myform.value.total,
+        total_payment: this.myform.value.total_payment,
         paymentway: this.myform.value.paymentway,
         totalamt: this.myform.value.totalamt,
         billno: this.myform.value.billno,
         receiveamt: this.myform.value.receiveamt,
         pendingamt: this.myform.value.pendingamt,
         currentamt: this.myform.value.currentamt,
-        ledgername: this.myform.value.ledgername,
         companyname: this.myform.value.companyname,
+        totaldueamt: this.myform.value.totaldueamt,
+        totalreceiveamt: this.myform.value.totalreceiveamt,
+        totalcurrentamt: this.myform.value.totalcurrentamt,
+        totalpendingamt: this.myform.value.totalpendingamt,
         userid: this.myform.value.userid,
-        ledger_name: this.myform.value.ledger_name,
-        billpendingamt:this.myform.value.billpendingamt,
         vendorid: this.myform.value.vendorid,
       };
 
@@ -168,11 +162,11 @@ vendor_outstanding:any;
         this.firstInvalidInput.setFocus();
       }
     }
-  }  
+  }
   onSupplierChange() {
     // Update the 'ledger' field with the selected supplier's name
     this.myform.patchValue({
-      ledger: this.suppliername,
+      ledger: this.companyname,
     });
   }
   onButtonClick() {
@@ -193,7 +187,7 @@ vendor_outstanding:any;
       switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
       console.log('Received outstanding data:', outstandingArray);
-    
+
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
         this.outstanding_amount = firstItem.outstanding_amount;
@@ -212,7 +206,7 @@ vendor_outstanding:any;
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
-  calculatePendingAmount() : number{
+  calculatePendingAmount(): number {
     this.pendingamt = this.outstanding_amount - this.paymentmade;
     return this.pendingamt;
   }
@@ -235,7 +229,7 @@ vendor_outstanding:any;
 
   calculateTotalPendingAmt(): number {
     // Convert this.billpendingamt to a number before returning
-    return this.billpendingamt;
+    return this.pendingamt;
   }
 
 }

@@ -6,25 +6,25 @@ import { environment } from 'src/environments/environment';
 
 
 export interface pay {
-  voucherNumber: string;
-  paymentdate: string;
-  ledger: number;
-  outstanding: number;
-  paymentmade: number;
-  pendingamt: number;
-  paymentway: string;
-  total: number;
-  ledger_name: string;
-  total_payment: number;
-  billno: string;
-  totalamt: number;
-  receiveamt: number;
-  currentamt: number;
-  billpendingamt: number;
-  ledgername: string;
-suppliername:string;
-  companyname: string;
- userid: number;
+  voucherNumber: string ;
+  paymentdate: string ;
+  ledger: number ;
+  outstanding: number ;
+  paymentmade: number ;
+  pendingamt: number ;
+  paymentway:string ;
+  total:number ;
+  total_payment: number ;
+  billno: string ;
+  totalamt:number ;
+  receiveamt: number ;
+  currentamt :number ;
+  companyname: number ;
+  totaldueamt: number ;
+  totalreceiveamt: number ;
+  totalcurrentamt: number ;
+  totalpendingamt: number ;
+  userid: number;
   vendorid: number;
 }
 

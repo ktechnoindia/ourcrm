@@ -64,8 +64,9 @@
                                 {{ suppliername.name }}
                               </option>
                             </select>
-
+                            
                           </td>
+                          
                           <!-- Assuming the input field for outstanding_amount is in the first row -->
                           <td *ngIf="outstanding_amount !== null">
                             <ion-input class="table_input" name="outstanding" [value]="outstanding_amount"
@@ -101,18 +102,16 @@
                       </td>
                     </tr>
                   </table>
-
-
                 </ion-card>
-
               </ion-col>
+
               <ion-col size="12" size-lg="6" size-md="6" size-sm="4">
                 <ion-card>
 
                   <ion-row>
                     <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
-                      <ion-input name="ledger" [(ngModel)]="ledger" formControlName="ledger" type="text"
-                        label="Ledger Name:" label-placement="floating" fill="outline"></ion-input>
+                      <ion-input name="companyname" [(ngModel)]="companyname" formControlName="companyname" type="text"
+                        label="Ledger Name:" label-placement="floating" fill="outline" ></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                       <ion-input [(ngModel)]="total_payment" formControlName="total_payment" name="total_payment"
@@ -135,7 +134,7 @@
                         <tr>
                           <td>1</td>
                           <td>
-                            <ion-input type="number" name="billno " [(ngModel)]="billno"
+                            <ion-input type="text" name="billno " [(ngModel)]="billno"
                               formControlName="billno"></ion-input>
                           </td>
                           <td>
@@ -152,7 +151,7 @@
                               formControlName="currentamt"></ion-input>
                           </td>
                           <td>
-                            <ion-input type="number" name="billpendingamt" [(ngModel)]="pendingamt"
+                            <ion-input type="number" name="pendingamt" [(ngModel)]="pendingamt"
                               formControlName="pendingamt"></ion-input>
                           </td>
 

@@ -6,29 +6,27 @@ import { environment } from 'src/environments/environment';
 
 
 export interface rec {
-  voucherNumber: string;
-  paymentdate: string;
-  ledger: number;
-  outstanding: number;
-  paymentmade: number;
-  pendingamt: number;
-  paymentway: string;
-  total: number;
-  ledger_name: string;
-  total_payment: number;
-  billno: string;
-  totalamt: number;
-  receiveamt: number;
-  currentamt: number;
-  billpendingamt: number;
-
-  customername: number;
-  userid: number;
-  custid: number;
-  companyname: string;
-
-
-
+  voucherNumber: string ;
+  paymentdate: string ;
+  ledger: number ;
+  companyname: number ;
+  outstanding: number ;
+  paymentmade: number ;
+  pendingamt: number ; 
+  paymentway: string ;
+  total: number ;
+  total_payment: number ;
+  billno: string ;
+  totalamt: number ;
+  receiveamt: number ;
+  currentamt: number ;
+  billpendingamt: number ;
+  totaldueamt:number;
+  totalreceiveamt: number ;
+  totalcurrentamt: number ;
+  totalpendingamt: number ;
+  userid: number ;
+  custid: number ;
 }
 @Injectable({
   providedIn: 'root'

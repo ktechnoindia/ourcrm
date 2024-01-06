@@ -18,14 +18,14 @@ import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
 interface Quote {
-  
+
   barcode: string;
   itemcode: number;
   itemname: number,
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
+  hunitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -40,7 +40,7 @@ interface Quote {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
+  selectedItemId: number;
 
 }
 
@@ -97,7 +97,7 @@ export class AddQuotPage implements OnInit {
   userid: number = 0;
   roundoff: string = '';
 
-  pretax:number = 0;
+  pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
@@ -106,14 +106,14 @@ export class AddQuotPage implements OnInit {
   debit: string = '';
   credit: string = '';
 
-  attr1:string='';
-  attr2:string='';
-  attr3:string='';
-  attr4:string='';
-  attr5:string='';
-  attr6:string='';
-  attr7:string='';
-  attr8:string='';
+  attr1: string = '';
+  attr2: string = '';
+  attr3: string = '';
+  attr4: string = '';
+  attr5: string = '';
+  attr6: string = '';
+  attr7: string = '';
+  attr8: string = '';
 
   // deliveryplace: string = "Jaipur";
 
@@ -124,7 +124,7 @@ export class AddQuotPage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,unitname: '',
+    hunitname: 0, unitname: '',
     mrp: 0,
     basicrate: 0,
     netrate: 0,
@@ -139,7 +139,7 @@ export class AddQuotPage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId: 0
   }];
   ttotal!: number;
   myform: FormGroup;
@@ -155,35 +155,35 @@ export class AddQuotPage implements OnInit {
   taxrate$: Observable<any[]>;
   customer$: any;
   session: any;
-//quote: Quote ;
-rows = [
-  { attr1: null, attr2: null,attr3: null,attr4: null,attr5: null,attr6: null,attr7: null,  attr8: null },
-  // Add more rows as needed
-];
-showTable: boolean = false ;
+  //quote: Quote ;
+  rows = [
+    { attr1: null, attr2: null, attr3: null, attr4: null, attr5: null, attr6: null, attr7: null, attr8: null },
+    // Add more rows as needed
+  ];
+  showTable: boolean = false;
 
-name: string = '';
-customercode: string = '';
-customer_code: string = '';
-mobile: string = '';
-address: string = '';
-gstin: string = '';
-country: number = 0;
-state:number=0;
-district:number=0;
-pincode: string = '';
-countries$: Observable<any[]>
-states$: Observable<any[]>
-districts$: Observable<any[]>
-customerpop:FormGroup;
+  name: string = '';
+  customercode: string = '';
+  customer_code: string = '';
+  mobile: string = '';
+  address: string = '';
+  gstin: string = '';
+  country: number = 0;
+  state: number = 0;
+  district: number = 0;
+  pincode: string = '';
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
+  customerpop: FormGroup;
 
 
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
 
-isOpen = false;
+  isOpen = false;
 
-  constructor(private cdr: ChangeDetectorRef,private popoverController:PopoverController,private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
+  constructor(private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.gstsrvs.getgsttype().subscribe((types) => {
@@ -248,7 +248,7 @@ isOpen = false;
     });
 
     this.customerpop = this.formBuilder.group({
-      
+
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
@@ -295,7 +295,7 @@ isOpen = false;
   async presentPopover(quote: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: quote.quantity, // Pass the quantity to the popup component
       },
@@ -303,10 +303,10 @@ isOpen = false;
     });
     return await popover.present();
   }
-  
 
 
-  updateRows(quote:Quote) {
+
+  updateRows(quote: Quote) {
     // Open the popover when quantity changes
     if (quote.quantity > 0) {
       this.presentPopover(quote);
@@ -334,35 +334,35 @@ isOpen = false;
   }
 
   async ionViewWillEnter() {
-  //   const userid = await this.session.getValue('userid');
-  //   if (userid == null || userid == 'undefined' || userid == '') {
-  //     this.router.navigate(['/login']);
-  //   }
-  //  this.setlangvals();
-  this.quoteData = [{
-    barcode: '',
-    itemcode: 0,
-    itemname: 0,
-    description: '',
-    quantity: 0,
-    unitname: '',
-    hunitname:0,
-    mrp: 0,
-    basicrate: 0,
-    netrate: 0,
-    grossrate: 0,
-    taxrate: 0,
-    CGST: 0,
-    SGST: 0,
-    IGST: 0,
-    discount: 0,
-    discountamt: 0,
-    totaltax: 0,
-    total: 0,
-    taxrate1: 0,
-    itemid: 0,
-    selectedItemId:0
-  }];
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.quoteData = [{
+      barcode: '',
+      itemcode: 0,
+      itemname: 0,
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      itemid: 0,
+      selectedItemId: 0
+    }];
   }
 
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
@@ -376,8 +376,8 @@ isOpen = false;
 
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
-       // element.netrate = element.basicrate + element.totaltax;
-              element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        // element.netrate = element.basicrate + element.totaltax;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
@@ -436,24 +436,24 @@ isOpen = false;
 
         quotedatas.push(quotedata);
       }
-        this.quote.createquote(quotedatas, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.myform.reset();
-          },
-          (error: any) => {
-            console.error('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
-    
+      this.quote.createquote(quotedatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.myform.reset();
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -472,7 +472,7 @@ isOpen = false;
     const compid = 1;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
     const value = quote.selectedItemId || quote.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -485,13 +485,13 @@ isOpen = false;
           quote.itemname = itemDetails.itemDesc;
           quote.barcode = itemDetails.barcode.toString();
           quote.unitname = itemDetails.unitname;
-          quote.hunitname=itemDetails.unitid;
+          quote.hunitname = itemDetails.unitid;
           quote.taxrate = grate[itemDetails.selectGst];
           quote.taxrate1 = grate[itemDetails.selectGst];
           quote.basicrate = itemDetails.basicrate;
           quote.mrp = itemDetails.mrp;
-          quote.basicrate=itemDetails.basic_rate;
-          quote.netrate=itemDetails.net_rate;
+          quote.basicrate = itemDetails.basic_rate;
+          quote.netrate = itemDetails.net_rate;
 
 
           // Update form control values
@@ -517,7 +517,7 @@ isOpen = false;
 
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
-       
+
 
         if (data && data.length > 0) {
           const itemDetails = data[0];
@@ -533,7 +533,7 @@ isOpen = false;
             custname: itemDetails.itemname,
             // Other form controls...
           });
-          
+
         } else {
           console.error('No data found for the selected item.');
         }
@@ -556,7 +556,7 @@ isOpen = false;
       itemname: 0,
       description: '',
       quantity: 0,
-      unitname: '',hunitname:0,
+      unitname: '', hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -571,7 +571,7 @@ isOpen = false;
       taxrate1: 0,
       itemid: 0,// Calculate grossrate after other properties
       grossrate: 0,
-      selectedItemId:0
+      selectedItemId: 0
     };
 
 
@@ -594,7 +594,7 @@ isOpen = false;
 
     // Example calculation for total quantity and gross amount
     this.totalQuantity = this.quoteData.reduce((total, quote) => total + quote.quantity, 0);
-    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + ((quote.grossrate * quote.quantity)-quote.discountamt), 0);
+    this.totalGrossAmt = this.quoteData.reduce((total, quote) => total + ((quote.grossrate * quote.quantity) - quote.discountamt), 0);
 
     // Add similar calculations for other totals
   }
@@ -617,7 +617,7 @@ isOpen = false;
   onNew() {
     location.reload();
   }
-// calculateTotalSum() {
+  // calculateTotalSum() {
   //   let sum = 0;
   //   for (const row of this.quoteData) {
   //     sum += this.quote.total;
@@ -664,7 +664,7 @@ isOpen = false;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.quoteData.reduce((total, quote) => {
-      const grossAmount =(quote.quantity * quote.basicrate);
+      const grossAmount = (quote.quantity * quote.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -674,65 +674,65 @@ isOpen = false;
 
   getTotalnetAmount(): number {
     return this.quoteData.reduce((total, quote) => {
-        const subtotal = quote.quantity * quote.basicrate;
-        const discount = this.calculateDiscountAmount(quote);
-        const taxAmount = quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
+      const subtotal = quote.quantity * quote.basicrate;
+      const discount = this.calculateDiscountAmount(quote);
+      const taxAmount = quote.quantity * (quote.taxrate1 / 100 * quote.basicrate);
 
-        const rowTotal = (subtotal - discount);
-        return total + rowTotal;
+      const rowTotal = (subtotal - discount);
+      return total + rowTotal;
     }, 0);
-}
+  }
 
-getTaxableAmount(): number {
-  const taxableAmount = this.quoteData.reduce((total, quote) => {
-    // Assuming getgrossrate is a function that calculates gross rate based on quote
-    const grossRate = this.getgrossrate(quote);
+  getTaxableAmount(): number {
+    const taxableAmount = this.quoteData.reduce((total, quote) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(quote);
 
-    // Assuming pretax, discount, and taxamt are properties of your quote object
- 
-    const discount = quote.discountamt || 0;
-    const taxamt = quote.totaltax || 0;
+      // Assuming pretax, discount, and taxamt are properties of your quote object
 
-    // Calculate the taxable amount for the current quote
-    const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.quoteData.length)) + taxamt;
+      const discount = quote.discountamt || 0;
+      const taxamt = quote.totaltax || 0;
 
-    // Add the taxable amount of the current quote to the total
-    total += quoteTaxableAmount;
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.quoteData.length)) + taxamt;
 
-    return total;
-  }, 0);
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
 
-  return taxableAmount;
-}
+      return total;
+    }, 0);
+
+    return taxableAmount;
+  }
 
 
-getGrandTotal(): number {
-  const grandTotal = this.quoteData.reduce((total, quote) => {
-      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+  getGrandTotal(): number {
+    const grandTotal = this.quoteData.reduce((total, quote) => {
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
       return gtotal;
-  }, 0);
+    }, 0);
 
-  return grandTotal;
-}
+    return grandTotal;
+  }
 
-getTotaltax(quote: Quote): number {
-  return ((((quote.quantity * quote.basicrate)+((this.pretax)/this.quoteData.length)-quote.discountamt)*quote.taxrate1 / 100));
-  //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
-}
+  getTotaltax(quote: Quote): number {
+    return ((((quote.quantity * quote.basicrate) + ((this.pretax) / this.quoteData.length) - quote.discountamt) * quote.taxrate1 / 100));
+    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+  }
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => {
-        const subtotal = ((quote.quantity * quote.basicrate)+((this.pretax)/this.quoteData.length))- quote.discountamt;
-        const taxAmount = subtotal * (quote.taxrate1 / 100) ;
-        return total + taxAmount ;
+      const subtotal = ((quote.quantity * quote.basicrate) + ((this.pretax) / this.quoteData.length)) - quote.discountamt;
+      const taxAmount = subtotal * (quote.taxrate1 / 100);
+      return total + taxAmount;
     }, 0);
-}
+  }
 
 
   getTotalDiscountAmount(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
   getRoundoff(): number {
-    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
     return roundedTotalAmount;
   }
 
@@ -740,7 +740,7 @@ getTotaltax(quote: Quote): number {
   getnetrate(quote: Quote): number {
     return quote.basicrate + (quote.taxrate1 / 100 * quote.basicrate);
   }
- 
+
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
@@ -792,18 +792,18 @@ getTotaltax(quote: Quote): number {
     let totalAmount = 0;
 
     quote.forEach(quote => {
-        const pretaxPerItem = ((this.pretax  / this.quoteData.length)); // Divide pretax equally among items
+      const pretaxPerItem = ((this.pretax / this.quoteData.length)); // Divide pretax equally among items
 
-        const subtotal = (quote.quantity * quote.basicrate) + pretaxPerItem;
-        const discount = ((quote.discount / 100) * quote.basicrate * quote.quantity);
-        const taxAmount = ((((quote.quantity * quote.basicrate) + pretaxPerItem) - quote.discountamt) * quote.taxrate1 / 100);
+      const subtotal = (quote.quantity * quote.basicrate) + pretaxPerItem;
+      const discount = ((quote.discount / 100) * quote.basicrate * quote.quantity);
+      const taxAmount = ((((quote.quantity * quote.basicrate) + pretaxPerItem) - quote.discountamt) * quote.taxrate1 / 100);
 
-        const itemTotalAmount = subtotal + taxAmount - discount;
-        totalAmount += itemTotalAmount;
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
     });
 
     return totalAmount;
-}
+  }
 
   getcgst(quote: Quote): number {
     return this.getTotaltax(quote) / 2;
@@ -942,114 +942,114 @@ getTotaltax(quote: Quote): number {
     throw new Error('Method not implemented.');
   }
   // Function to update rows based on quantity
-// updateRows(quantity: number): void {
-//   // Clear existing rows
-//   console.log('Updating rows with quantity:', quantity);
+  // updateRows(quantity: number): void {
+  //   // Clear existing rows
+  //   console.log('Updating rows with quantity:', quantity);
 
-//   this.rows = [];
-//   // Generate new rows based on the quantity
-//   for (let i = 0; i < quantity; i++) {
-//     this.rows.push({
-//       attr1: null,
-//       attr2: null,
-//       // ... other attributes
-//       attr8: null,
-//       attr3: null,
-//       attr4: null,
-//       attr5: null,
-//       attr6: null,
-//       attr7: null
-//     });
-//     this.cdr.detectChanges();
+  //   this.rows = [];
+  //   // Generate new rows based on the quantity
+  //   for (let i = 0; i < quantity; i++) {
+  //     this.rows.push({
+  //       attr1: null,
+  //       attr2: null,
+  //       // ... other attributes
+  //       attr8: null,
+  //       attr3: null,
+  //       attr4: null,
+  //       attr5: null,
+  //       attr6: null,
+  //       attr7: null
+  //     });
+  //     this.cdr.detectChanges();
 
-//   }
+  //   }
 
-//   console.log('Updated rows:', this.rows);
+  //   console.log('Updated rows:', this.rows);
 
-// }
-// trackByFn(index: number, item: any): any {
-//   return index;
-// }
+  // }
+  // trackByFn(index: number, item: any): any {
+  //   return index;
+  // }
 
-async onCustSubmit() {
-  const fields = { name: this.name, }
-  const isValid = await this.formService.validateForm(fields);
-  if (await this.formService.validateForm(fields)) {
-    const companyid = 1;
-    console.log('Your form data : ', this.customerpop.value);
-    let custdata: cust = {
-      name: this.customerpop.value.name,
-      customer_code: this.customerpop.value.customer_code,
-      gstin: this.customerpop.value.gstin,
-      companyid: companyid,
-      selectedSalutation: '',
-      companyName: '',
-      state: this.customerpop.value.state,
-      district:this.customerpop.value.district,
-      country:this.customerpop.value.country,
-      opening_balance: 0,
-      closing_balance: 0,
-      mobile: this.customerpop.value.mobile,
-      whatsapp_number: '',
-      address: this.customerpop.value.address,
-      email: '',
-      select_sales_person: '',
-      pincode: '',
-      tdn: '',
-      aadhar_no: '',
-      pan_no: '',
-      udhyog_aadhar: '',
-      account_number: '',
-      ifsc_code: '',
-      bank_name: '',
-      branch_name: '',
-      credit_period: 0,
-      credit_limit: 0,
-      card_number: '',
-      opening_point: 0,
-      closing_point: 0,
-      select_group: 0,
-      discount: 0,
-      selectedOption1: 0,
-      selectedState1: 0,
-      selectedDistrict1: 0,
-      pincode1: '',
-      address1: ''
-    };
+  async onCustSubmit() {
+    const fields = { name: this.name, }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
+      const companyid = 1;
+      console.log('Your form data : ', this.customerpop.value);
+      let custdata: cust = {
+        name: this.customerpop.value.name,
+        customer_code: this.customerpop.value.customer_code,
+        gstin: this.customerpop.value.gstin,
+        companyid: companyid,
+        selectedSalutation: '',
+        companyName: '',
+        state: this.customerpop.value.state,
+        district: this.customerpop.value.district,
+        country: this.customerpop.value.country,
+        opening_balance: 0,
+        closing_balance: 0,
+        mobile: this.customerpop.value.mobile,
+        whatsapp_number: '',
+        address: this.customerpop.value.address,
+        email: '',
+        select_sales_person: '',
+        pincode: '',
+        tdn: '',
+        aadhar_no: '',
+        pan_no: '',
+        udhyog_aadhar: '',
+        account_number: '',
+        ifsc_code: '',
+        bank_name: '',
+        branch_name: '',
+        credit_period: 0,
+        credit_limit: 0,
+        card_number: '',
+        opening_point: 0,
+        closing_point: 0,
+        select_group: 0,
+        discount: 0,
+        selectedOption1: 0,
+        selectedState1: 0,
+        selectedDistrict1: 0,
+        pincode1: '',
+        address1: ''
+      };
 
-    this.myService.createCustomer(custdata, '', '').subscribe(
-      (response: any) => {
-        console.log('POST request successful', response);
-        setTimeout(() => {
-          this.formService.showSuccessAlert();
-        }, 1000);
+      this.myService.createCustomer(custdata, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
 
-        this.formService.showSaveLoader()
-        // location.reload()
-        this.myform.reset();
+          this.formService.showSaveLoader()
+          // location.reload()
+          this.myform.reset();
 
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        setTimeout(() => {
-          this.formService.showFailedAlert();
-        }, 1000);
-        this.formService.shoErrorLoader();
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
-  } else {
-    //If the form is not valid, display error messages
-    Object.keys(this.myform.controls).forEach(controlName => {
-      const control = this.myform.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
-    if (this.firstInvalidInput) {
-      this.firstInvalidInput.setFocus();
     }
   }
-}
 
 
 }

@@ -27,52 +27,45 @@ export class ReceiptPage implements OnInit {
   @ViewChild('popover') popover: any
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
   voucherNumber: string = '';
   paymentdate: string = '';
-  ledger: string = '';
-  customername: number = 0;
-  outstanding: number = 0;
-  total: number = 0;
-
-  ledger_name: string = '';
-  total_payment: number = 0;
-  paymentmade: number = 0;
-  paymentway: string = '';
-  totalamt: number = 0;
-  billno: string = '';
-  receiveamt: number = 0;
-  pendingamt: number = 0; // Or initialize with the appropriate default value
-  billpendingamt: number = 0;
-
-  currentamt: number = 0;
-  userid: number = 0;
-  myform: FormGroup;
-  isOpen = false;
-  companys$: Observable<any[]>;
-  customer$: Observable<any>;
-  ledgers$: Observable<any>;
-  sales$: Observable<any[]>
-  user_outstanding: any;
-  outstanding_amount: any;
-  outstanding$: Observable<any[]>
-
+  ledger: number = 0;
   companyname: number = 0;
-  custid: number = 0;
+  outstanding: number = 0;
+  paymentmade: number = 0;
+  pendingamt: number = 0;
+  paymentway: string = '';
+  total: number = 0;
+  total_payment: number = 0;
+  billno: string = '';
+  totalamt: number = 0;
+  receiveamt: number = 0;
+  currentamt: number = 0;
+  billpendingamt: number = 0;
   totaldueamt: number = 0;
   totalreceiveamt: number = 0;
   totalcurrentamt: number = 0;
   totalpendingamt: number = 0;
+  userid: number = 0;
+  custid: number = 0;
+
+  myform: FormGroup;
+  isOpen = false;
+  customer$: Observable<any>;
+  ledgers$: Observable<any>;
+  sales$: Observable<any[]>
+  outstanding_amount: any;
+  outstanding$: Observable<any[]>
 
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-    this.companys$ = this.companyService.fetchallcompany(compid, '', '');
-    console.log(this.companys$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    console.log(this.companys$);
+    console.log(this.customer$);
     // const userid=3;
     this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
 
@@ -85,12 +78,10 @@ export class ReceiptPage implements OnInit {
       voucherNumber: ['', Validators.required],
       paymentdate: [''],
       ledger: [''],
-      customername: [''],
       outstanding: [''],
       paymentmade: [''],
       paymentway: [''],
       total: [''],
-      ledger_name: [''],
       total_payment: [''],
       totalamt: [''],
       billno: [''],
@@ -98,9 +89,8 @@ export class ReceiptPage implements OnInit {
       pendingamt: [''],
       billpendingamt: [''],
       currentamt: [''],
-      companyname: 1,
+      companyname: [''],
       userid: [0],
-      user_outstanding: [''],
       outstanding_amount: [null],
       totaldueamt: [''],
       totalreceiveamt: [''],
@@ -109,11 +99,6 @@ export class ReceiptPage implements OnInit {
     })
 
   }
-  fetchUserOutstanding() {
-
-
-  }
-
 
   presentPopover(e: Event) {
     this.popover.event = e;
@@ -160,17 +145,25 @@ export class ReceiptPage implements OnInit {
 
       console.log('Your form data : ', this.myform.value);
       const recepitdata: rec = {
-
-        voucherNumber: this.myform.value.voucherNumber, paymentdate: this.myform.value.paymentdate, ledger: this.myform.value.ledger, customername: this.myform.value.customername, outstanding: this.myform.value.outstanding, paymentmade: this.myform.value.paymentmade, total: this.myform.value.total, total_payment: this.myform.value.total_payment,
+        voucherNumber: this.myform.value.voucherNumber,
+        paymentdate: this.myform.value.paymentdate,
+        ledger: this.myform.value.ledger,
+        outstanding: this.myform.value.outstanding,
+        paymentmade: this.myform.value.paymentmade,
+        total: this.myform.value.total,
+        total_payment: this.myform.value.total_payment,
         paymentway: this.myform.value.paymentway,
         totalamt: this.myform.value.totalamt,
         billno: this.myform.value.billno,
         receiveamt: this.myform.value.receiveamt,
         pendingamt: this.myform.value.pendingamt,
         billpendingamt: this.myform.value.billpendingamt,
-        ledger_name: this.myform.value.ledger_name,
         currentamt: this.myform.value.currentamt,
         companyname: this.myform.value.companyname,
+        totaldueamt: this.myform.value.totaldueamt,
+        totalreceiveamt: this.myform.value.totalreceiveamt,
+        totalcurrentamt: this.myform.value.totalcurrentamt,
+        totalpendingamt: this.myform.value.totalpendingamt,
         userid: this.myform.value.userid,
         custid: this.myform.value.custid,
       };
@@ -246,7 +239,7 @@ export class ReceiptPage implements OnInit {
       }
     });
   }
-  calculatePendingAmount() : number{
+  calculatePendingAmount(): number {
     this.pendingamt = this.outstanding_amount - this.paymentmade;
     return this.pendingamt;
   }
