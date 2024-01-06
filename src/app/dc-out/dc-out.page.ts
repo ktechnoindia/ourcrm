@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DcoutService, dcoutstore } from '../services/dcout.service';
 import { NgForm } from '@angular/forms';
@@ -152,8 +152,10 @@ export class DcOutPage implements OnInit {
   customerpop: FormGroup;
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
+  
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  isOpen = false;
+  isOpen:boolean= false;
+  
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
@@ -232,6 +234,13 @@ export class DcOutPage implements OnInit {
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
 
   async presentPopover(dcin: any) {

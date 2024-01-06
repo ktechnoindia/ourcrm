@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SalesService, salesstore } from '../services/sales.service';
 import { UnitnameService } from '../services/unitname.service';
@@ -26,7 +26,7 @@ interface Sales {
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
+  hunitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -41,7 +41,7 @@ interface Sales {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
+  selectedItemId: number;
 }
 @Component({
   selector: 'app-add-sale',
@@ -60,7 +60,7 @@ export class AddSalePage implements OnInit {
   refdate: string = '';
   orderDate: string = '';
   orderNumber: string = '';
-   ponumber: string = '';
+  ponumber: string = '';
   gstin: string = '';
   salePerson: number = 0;
   payment: number = 0;
@@ -93,7 +93,7 @@ export class AddSalePage implements OnInit {
   totalnetamount: string = '';
 
   roundoff: string = '';
-  pretax:number = 0;
+  pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
@@ -107,9 +107,9 @@ export class AddSalePage implements OnInit {
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
-        mrp: 0,
+    mrp: 0,
     basicrate: 0,
     netrate: 0,
     grossrate: 0,
@@ -123,7 +123,7 @@ export class AddSalePage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId: 0
   }];
   ttotal: number = 0;
   myform: FormGroup;
@@ -142,28 +142,28 @@ export class AddSalePage implements OnInit {
   taxrate$: Observable<any[]>;
 
   name: string = '';
-customercode: string = '';
-customer_code: string = '';
-mobile: string = '';
-address: string = '';
+  customercode: string = '';
+  customer_code: string = '';
+  mobile: string = '';
+  address: string = '';
 
-country: number = 0;
-state:number=0;
-district:number=0;
-pincode: string = '';
-countries$: Observable<any[]>
-states$: Observable<any[]>
-districts$: Observable<any[]>
-customerpop:FormGroup;
+  country: number = 0;
+  state: number = 0;
+  district: number = 0;
+  pincode: string = '';
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
+  customerpop: FormGroup;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
 
-isOpen = false;
+  isOpen = false;
 
-  constructor(private navCtrl: NavController,private popoverController:PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService) {
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -186,7 +186,7 @@ isOpen = false;
       orderDate: [''],
       orderNumber: [''],
       // ponumber: [''],
-      gstin:[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)],
+      gstin: [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)],
       salePerson: [''],
       payment: [''],
 
@@ -228,11 +228,11 @@ isOpen = false;
 
       ttotal: [''],
       itemid: [''],
-      ponumber:['1'],
+      ponumber: ['1'],
     });
 
     this.customerpop = this.formBuilder.group({
-      
+
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
@@ -247,6 +247,13 @@ isOpen = false;
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
 
   };
 
@@ -273,7 +280,7 @@ isOpen = false;
   async presentPopover(dcin: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: dcin.quantity, // Pass the quantity to the popup component
       },
@@ -283,13 +290,13 @@ isOpen = false;
   }
 
 
-  updateRows(sales:Sales) {
+  updateRows(sales: Sales) {
     // Open the popover when quantity changes
     if (sales.quantity > 0) {
       this.presentPopover(sales);
     }
   }
-  
+
 
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
@@ -355,7 +362,7 @@ isOpen = false;
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
           roundoff: this.myform.value.roundoff,
-          pretax:  this.myform.value.pretax,
+          pretax: this.myform.value.pretax,
           posttax: this.myform.value.posttax,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
@@ -414,7 +421,7 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -429,15 +436,15 @@ isOpen = false;
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0
     }];
-    }
-  
+  }
+
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
-    const value = sales.selectedItemId ||sales.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const value = sales.selectedItemId || sales.itemcode;
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -450,13 +457,13 @@ isOpen = false;
           sales.itemname = itemDetails.itemDesc;
           sales.barcode = itemDetails.barcode.toString();
           sales.unitname = itemDetails.unitname;
-          sales.hunitname=itemDetails.unitid;
+          sales.hunitname = itemDetails.unitid;
           sales.taxrate = grate[itemDetails.selectGst];
           sales.taxrate1 = grate[itemDetails.selectGst];
           sales.basicrate = itemDetails.basicrate;
           sales.mrp = itemDetails.mrp;
-          sales.basicrate=itemDetails.basic_rate;
-          sales.netrate=itemDetails.net_rate;
+          sales.basicrate = itemDetails.basic_rate;
+          sales.netrate = itemDetails.net_rate;
 
 
           // Update form control values
@@ -488,17 +495,17 @@ isOpen = false;
           // Update the quote properties
           event.custcode = itemDetails.customer_code;
           event.custname = itemDetails.name;
-          event.gstin= itemDetails.gstin,
+          event.gstin = itemDetails.gstin,
 
 
-          // Update form control values
-          this.myform.patchValue({
-            custcode: itemDetails.customer_code,
-            custname: itemDetails.custname,
-            gstin: itemDetails.gstin,
-            // Other form controls...
-          });
-        this.custcode = itemDetails.customer_code;
+            // Update form control values
+            this.myform.patchValue({
+              custcode: itemDetails.customer_code,
+              custname: itemDetails.custname,
+              gstin: itemDetails.gstin,
+              // Other form controls...
+            });
+          this.custcode = itemDetails.customer_code;
 
         } else {
           console.error('No data found for the selected item.');
@@ -522,7 +529,7 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -537,7 +544,7 @@ isOpen = false;
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0
     };
     this.salesData.push(newRow);
   }
@@ -600,7 +607,7 @@ isOpen = false;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount = (+this.pretax )+(sale.quantity * sale.basicrate);
+      const grossAmount = (+this.pretax) + (sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -611,7 +618,7 @@ isOpen = false;
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+this.pretax )+(this.posttax) +(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
+      const itemTotal = (((+this.pretax) + (this.posttax) + (sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
       return total + itemTotal;
     }, 0);
 
@@ -715,7 +722,7 @@ isOpen = false;
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
-    
+
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;
@@ -810,8 +817,8 @@ isOpen = false;
         selectedSalutation: '',
         companyName: '',
         state: this.customerpop.value.state,
-        district:this.customerpop.value.district,
-        country:this.customerpop.value.country,
+        district: this.customerpop.value.district,
+        country: this.customerpop.value.country,
         opening_balance: 0,
         closing_balance: 0,
         mobile: this.customerpop.value.mobile,
@@ -841,18 +848,18 @@ isOpen = false;
         pincode1: '',
         address1: ''
       };
-  
+
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-  
+
           this.formService.showSaveLoader()
           // location.reload()
           this.myform.reset();
-  
+
         },
         (error: any) => {
           console.error('POST request failed', error);

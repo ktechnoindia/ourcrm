@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController, PopoverController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
@@ -163,6 +163,13 @@ export class LedgerPage implements OnInit {
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
 
   closePopover() {

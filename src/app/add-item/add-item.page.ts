@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
@@ -154,15 +154,20 @@ export class AddItemPage implements OnInit {
     this.unitpop = this.formBuilder.group({
       unit_name: ['', [Validators.required]],
       short_name: [''],
-    })
+    });
 
     this.groupop = this.formBuilder.group({
-    
       itemgroupname:['',Validators.required],
       parentgroup:[''],
       searchTerm:['']
+  });
 
-  })
+  this.router.events.subscribe((event) => {
+    if (event instanceof NavigationStart) {
+      // Dismiss the popover before navigating
+      this.closePopover();
+    }
+  });
 
   }
 

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { IonPopover, IonicModule, PopoverController, ToastController } from '@ionic/angular';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { Observable, from } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -107,6 +107,10 @@ export class AddLeadPage {
   itemgroups$: Observable<any[]>
   itempop:FormGroup;
 
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+  isOpen = false;
+
   constructor(private popoverController: PopoverController,private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService, private addExecutiveService: ExecutiveService, private roletypes: roletypesservice,private ledgerService: LegderService, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService,  private hsnService: HsnService, private unitService: CreateunitService, private groupService: AddgroupService,
   ) {
 
@@ -162,9 +166,20 @@ export class AddLeadPage {
 
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
-
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
+
+  }
+
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
   }
   onCountryChange() {
     console.log('selected value' + this.selectedCountry);

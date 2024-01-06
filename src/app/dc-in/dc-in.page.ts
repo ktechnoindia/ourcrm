@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DcinService, dcinstore } from '../services/dcin.service';
 import { RouterLink } from '@angular/router';
@@ -223,10 +223,15 @@ isOpen = false;
     });
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
-
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   };
 
   presentPopovers(e: Event) {

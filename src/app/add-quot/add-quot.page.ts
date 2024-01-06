@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { QuotationService, quotestore } from '../services/quotation.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
@@ -264,6 +264,12 @@ isOpen = false;
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
 
   presentPopovers(e: Event) {

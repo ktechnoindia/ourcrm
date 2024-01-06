@@ -431,7 +431,7 @@
   </div>
 </ion-content>
 
-<ion-popover trigger="customer"#popover [isOpen]="isOpen" (didDismiss)="isOpen = false"  side="bottom" alignment="end">
+<ion-popover trigger="customer" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false"  side="bottom" alignment="end">
   <ng-template>
     <ion-content  class="ion-padding Customer ">
       <form [formGroup]="customerpop" (ngSubmit)="onCustSubmit()">

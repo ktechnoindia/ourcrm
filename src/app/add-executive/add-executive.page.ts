@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -103,6 +103,13 @@ export class AddExecutivePage implements OnInit {
     const compid = '1';
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
     console.log(this.ledgers$);
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
 
   onCountryChange() {

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
@@ -162,8 +162,14 @@ export class AddVendorPage implements OnInit {
     this.custtype$ = this.custtp.getcustomertype();
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
-
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
   }
   onButtonClick() {
     // Add any additional logic you may need before closing the page
