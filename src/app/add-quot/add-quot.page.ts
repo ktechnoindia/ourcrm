@@ -200,7 +200,7 @@ isOpen = false;
       billformate: [''],
       quoteNumber: ['', Validators.required],
       quateDate: [''],
-      custcode: ['', Validators.required],
+      custcode: ['', Validators.required].toString(),
       custname: ['', Validators.required],
       refrence: [''],
       refdate: [''],
@@ -391,7 +391,7 @@ isOpen = false;
           billformate: this.myform.value.billformate,
           quoteNumber: this.myform.value.quoteNumber,
           quateDate: this.myform.value.quateDate,
-          custcode: this.myform.value.custcode,
+          custcode: this.myform.value.custcode.toString(),
           custname: this.myform.value.custname,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
@@ -664,7 +664,7 @@ isOpen = false;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.quoteData.reduce((total, quote) => {
-      const grossAmount =(+this.pretax )+(quote.quantity * quote.basicrate);
+      const grossAmount =(quote.quantity * quote.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -682,36 +682,47 @@ isOpen = false;
         return total + rowTotal;
     }, 0);
 }
+
+getTaxableAmount(): number {
+  const taxableAmount = this.quoteData.reduce((total, quote) => {
+    // Assuming getgrossrate is a function that calculates gross rate based on quote
+    const grossRate = this.getgrossrate(quote);
+
+    // Assuming pretax, discount, and taxamt are properties of your quote object
+ 
+    const discount = quote.discountamt || 0;
+    const taxamt = quote.totaltax || 0;
+
+    // Calculate the taxable amount for the current quote
+    const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.quoteData.length)) + taxamt;
+
+    // Add the taxable amount of the current quote to the total
+    total += quoteTaxableAmount;
+
+    return total;
+  }, 0);
+
+  return taxableAmount;
+}
+
+
 getGrandTotal(): number {
   const grandTotal = this.quoteData.reduce((total, quote) => {
-      // Step 1
-      const totalgross = quote.basicrate * quote.quantity + this.pretax;
-
-      // Step 2
-      const grosswithpretax = totalgross + this.pretax;
-
-      // Step 3
-      
-      const netgross = grosswithpretax- this.totalDiscountAmt;
-
-      // Step 4
-      const taxableamt = (netgross) + this.totalTaxAmt;
-
-      // Step 5
-      const gtotal = taxableamt + this.posttax;
-
-      // Step 6
-      return total + gtotal;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      return gtotal;
   }, 0);
 
   return grandTotal;
 }
 
-
+getTotaltax(quote: Quote): number {
+  return ((((quote.quantity * quote.basicrate)+((this.pretax)/this.quoteData.length)-quote.discountamt)*quote.taxrate1 / 100));
+  //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+}
   getTotalTaxAmount(): number {
     return this.quoteData.reduce((total, quote) => {
-        const subtotal = quote.quantity * quote.basicrate - quote.discountamt;
-        const taxAmount = subtotal * (quote.taxrate1 / 100);
+        const subtotal = ((quote.quantity * quote.basicrate)+((this.pretax)/this.quoteData.length))- quote.discountamt;
+        const taxAmount = subtotal * (quote.taxrate1 / 100) ;
         return total + taxAmount ;
     }, 0);
 }
@@ -721,12 +732,7 @@ getGrandTotal(): number {
     return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
   }
   getRoundoff(): number {
-    // Calculate the total amount without rounding
-    const totalAmount = this.quoteData.reduce((total, quote) => total + (((quote.basicrate * quote.quantity) + ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity)) - ((quote.discount / 100) * quote.basicrate * quote.quantity)), 0);
-
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
     return roundedTotalAmount;
   }
 
@@ -734,10 +740,7 @@ getGrandTotal(): number {
   getnetrate(quote: Quote): number {
     return quote.basicrate + (quote.taxrate1 / 100 * quote.basicrate);
   }
-  getTotaltax(quote: Quote): number {
-    return quote.taxrate1 / 100 *((quote.quantity * quote.basicrate)-quote.discountamt);
-    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
-  }
+ 
   getgrossrate(quote: Quote): number {
     return quote.quantity * quote.basicrate;
   }
@@ -785,14 +788,23 @@ getGrandTotal(): number {
     // return discount amount for display
     return discountAmt;
   }
-  getTotalamt(quote: Quote): number {
-    const subtotal = quote.quantity * quote.basicrate;
-    const discount = this.calculateDiscountAmount(quote);
-    const taxAmount = (quote.quantity * (quote.taxrate1 / 100 * quote.basicrate));
+  getTotalamt(quote: Quote[]): number {
+    let totalAmount = 0;
 
-    const totalAmount = subtotal - discount ;
+    quote.forEach(quote => {
+        const pretaxPerItem = ((this.pretax  / this.quoteData.length)); // Divide pretax equally among items
+
+        const subtotal = (quote.quantity * quote.basicrate) + pretaxPerItem;
+        const discount = ((quote.discount / 100) * quote.basicrate * quote.quantity);
+        const taxAmount = ((((quote.quantity * quote.basicrate) + pretaxPerItem) - quote.discountamt) * quote.taxrate1 / 100);
+
+        const itemTotalAmount = subtotal + taxAmount - discount;
+        totalAmount += itemTotalAmount;
+    });
+
     return totalAmount;
 }
+
   getcgst(quote: Quote): number {
     return this.getTotaltax(quote) / 2;
   }
