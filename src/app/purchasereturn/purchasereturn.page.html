@@ -195,7 +195,7 @@
                     </td>
                     <td>
                       <input *ngIf="purchase.itemcode !== 0" [(ngModel)]="purchase.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (ngModelChange)="presentPopover(purchase)">
+                        type="number" (keydown.enter)="presentPopover(purchase)">
 
                     </td>
                     <td>
@@ -266,7 +266,7 @@
                       <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getTotalamt(purchase)" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotalamt([purchase])" class="table_input" type="text">
 
                     </td>
 
@@ -318,8 +318,8 @@
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getTotalnetAmount()"
+                    <label class="label_table" for="">Taxable Amount :</label>
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getTaxableAmount()"
                       class="input_table" type="text">
 
                   </ion-col>

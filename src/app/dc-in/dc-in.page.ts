@@ -545,9 +545,8 @@ isOpen = false;
     // Add similar calculations for other totals
   }
 
-  getTotaltax(quote: Dcin): number {
-    return quote.quantity * (quote.taxrate / 100 * quote.basicrate);
-    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
+  getTotaltax(dcin: Dcin): number {
+    return ((((dcin.quantity * dcin.basicrate)+((this.pretax)/this.dcinData.length)-dcin.discountamt)*dcin.taxrate1 / 100));    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getAllRows() {
     console.log('Number of Rows:', this.dcinData.length);
@@ -564,7 +563,7 @@ isOpen = false;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
-      const grossAmount = (+this.pretax )+(dcin.quantity * dcin.basicrate);
+      const grossAmount = (dcin.quantity * dcin.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -574,26 +573,49 @@ isOpen = false;
   getTotalnetAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) + dcin.totaltax) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0)
   }
+  getTaxableAmount(): number {
+    const taxableAmount = this.dcinData.reduce((total, dcin) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(dcin);
+  
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+   
+      const discount = dcin.discountamt || 0;
+      const taxamt = dcin.totaltax || 0;
+  
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.dcinData.length)) + taxamt;
+  
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+  
+      return total;
+    }, 0);
+  
+    return taxableAmount;
+  }
   getGrandTotal(): number {
     const grandTotal = this.dcinData.reduce((total, dcin) => {
-      const itemTotal = (((+this.pretax )+(this.posttax) +(dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity))
-      return total + itemTotal;
+        const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+        return gtotal;
     }, 0);
-
+  
     return grandTotal;
   }
+  
   getTotalTaxAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity, 0);
-  }
+    return this.dcinData.reduce((total, dcin) => {
+      const subtotal = ((dcin.quantity * dcin.basicrate)+((this.pretax)/this.dcinData.length))- dcin.discountamt;
+      const taxAmount = subtotal * (dcin.taxrate1 / 100) ;
+      return total + taxAmount ;
+  }, 0);
+}    
   getTotalDiscountAmount(): number {
     return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity, 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcinData.reduce((total, dcin) => total + (((dcin.basicrate * dcin.quantity) + ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity)) - ((dcin.discount / 100) * dcin.basicrate * dcin.quantity)), 0);
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
     return roundedTotalAmount;
   }
   //table formaula
@@ -659,17 +681,32 @@ isOpen = false;
 
 
   getcgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+    return this.getTotaltax(dcin) / 2;
   }
+
   getsgst(dcin: Dcin): number {
-    return ((dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity) / 2;
+    return this.getTotaltax(dcin) / 2;
   }
+
   getigst(dcin: Dcin): number {
-    return (dcin.taxrate1 / 100 * dcin.basicrate) * dcin.quantity;
+    return this.getTotaltax(dcin);
   }
-  getTotalamt(dcin: Dcin): number {
-    return (dcin.basicrate * dcin.quantity) + (dcin.quantity * (dcin.taxrate1 / 100 * dcin.basicrate)) - this.calculateDiscountAmount(dcin);
-  }
+  getTotalamt(dcin: Dcin[]): number {
+    let totalAmount = 0;
+
+    dcin.forEach(dcin => {
+        const pretaxPerItem = ((this.pretax  / this.dcinData.length)); // Divide pretax equally among items
+
+        const subtotal = (dcin.quantity * dcin.basicrate) + pretaxPerItem;
+        const discount = ((dcin.discount / 100) * dcin.basicrate * dcin.quantity);
+        const taxAmount = ((((dcin.quantity * dcin.basicrate) + pretaxPerItem) - dcin.discountamt) * dcin.taxrate1 / 100);
+
+        const itemTotalAmount = subtotal + taxAmount - discount;
+        totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
+}
   ngOnInit() {
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());

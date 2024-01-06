@@ -264,7 +264,7 @@
                       <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getTotalamt(purchase)" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotalamt([purchase])" class="table_input" type="text">
 
                     </td>
 
@@ -316,8 +316,8 @@
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getTotalnetAmount()"
+                    <label class="label_table" for="">Taxable Amount :</label>
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getTaxableAmount()"
                       class="input_table" type="text">
 
                   </ion-col>
@@ -427,12 +427,7 @@
                       </td>
                     </tr>
 
-                    <tr>
-                      <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()" 
-                          id="roundoff" class="row_input" type="text">
-                      </td>
-                    </tr>
+                  
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
@@ -445,7 +440,12 @@
                           id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
-
+                    <tr>
+                      <th colspan="2">Round Off : </th>
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()" 
+                          id="roundoff" class="row_input" type="text">
+                      </td>
+                    </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
                       <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getGrandTotal()"
