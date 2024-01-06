@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SalereturnService, salereturnstore } from '../services/salereturn.service';
@@ -141,6 +141,11 @@ states$: Observable<any[]>
 districts$: Observable<any[]>
 customerpop:FormGroup;
 
+@ViewChild('popover', { static: false })
+popover!: IonPopover;
+
+isOpen = false;
+
   constructor(private navCtrl:NavController,private popoverController:PopoverController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -228,7 +233,10 @@ customerpop:FormGroup;
     this.districts$ = this.districtservice.getDistricts(1);
 
   }
-
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
   onCountryChange() {
     console.log('selected value' + this.country);
     this.states$ = this.stateservice.getStates(1);

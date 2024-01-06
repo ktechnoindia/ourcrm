@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { UnitnameService } from '../services/unitname.service';
 import { GsttypeService } from '../services/gsttype.service';
@@ -161,6 +161,12 @@ export class PurchasereturnPage implements OnInit {
   districts$: Observable<any[]>
   vendorpop: FormGroup;
 
+  
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+
+isOpen = false;
+
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
@@ -252,6 +258,12 @@ export class PurchasereturnPage implements OnInit {
     this.districts$ = this.districtservice.getDistricts(1);
 
   }
+
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
+
 
   onCountryChange() {
     console.log('selected value' + this.country);

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
+import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DcoutService, dcoutstore } from '../services/dcout.service';
@@ -150,8 +150,10 @@ export class DcOutPage implements OnInit {
   states$: Observable<any[]>
   districts$: Observable<any[]>
   customerpop: FormGroup;
-
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  isOpen = false;
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
@@ -243,7 +245,10 @@ export class DcOutPage implements OnInit {
     });
     return await popover.present();
   }
-
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
 
   updateRows(dcout: Dcout) {
     // Open the popover when quantity changes

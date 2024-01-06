@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonPopover, IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DcinService, dcinstore } from '../services/dcin.service';
@@ -126,6 +126,10 @@ export class DcInPage implements OnInit {
 
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+
+isOpen = false;
 
   name: string = '';
   vendor_code: string = '';
@@ -223,6 +227,11 @@ export class DcInPage implements OnInit {
     this.countries$ = this.countryservice.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
+  };
+
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
   }
 
   onCountryChange() {

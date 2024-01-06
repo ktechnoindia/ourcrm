@@ -16,7 +16,7 @@ import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { DistrictsService } from '../services/districts.service';
 import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
-
+import { IonPopover } from '@ionic/angular';
 interface Quote {
   
   barcode: string;
@@ -177,6 +177,12 @@ states$: Observable<any[]>
 districts$: Observable<any[]>
 customerpop:FormGroup;
 
+
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
+
+isOpen = false;
+
   constructor(private cdr: ChangeDetectorRef,private popoverController:PopoverController,private  navCtrl:NavController,private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -258,6 +264,11 @@ customerpop:FormGroup;
     this.countries$ = this.countryService.getCountries();
     this.districts$ = this.districtservice.getDistricts(1);
 
+  }
+
+  presentPopovers(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
   }
 
   onCountryChange() {
