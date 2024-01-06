@@ -33,6 +33,7 @@ export class CreatecompanyPage implements OnInit {
   step2: boolean = false;
   step3: boolean = false;
   copyData: boolean = false;
+  phoneData: boolean = false;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   form: FormGroup;
@@ -165,7 +166,8 @@ export class CreatecompanyPage implements OnInit {
       ifsc: ['', [Validators.pattern(/^[A-Za-z]{4}\d{7}$/)]],
       branchname: [''],
       upiid: ['', [Validators.pattern(/^[\w\d._-]+@[\w\d.-]+\.[\w]{2,}$/)]],
-      copyData:[false]
+      copyData:[false],
+      phoneData:[false]
     })
 
   }
@@ -204,6 +206,14 @@ export class CreatecompanyPage implements OnInit {
   }
   toggleStep3() {
     this.step3 = !this.step3;
+  }
+
+  onWhatshappCheck() {
+    if (this.phoneData) {
+      this.wpnumber = this.phone;
+    } else {
+      this.wpnumber = '';
+    }
   }
 
   async onSubmit() {

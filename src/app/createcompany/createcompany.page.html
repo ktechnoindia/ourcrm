@@ -78,7 +78,7 @@
               <ion-col size="6" size-lg="4" size-md="4" size-sm="12">
                 <ion-row>
                   <ion-input [(ngModel)]="pinCode" formControlName="pinCode" name="pcode" type="text"
-                    label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
+                    label=" PinCode  :" label-placement="floating" fill="outline" maxlength="6"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -92,15 +92,22 @@
             </ion-row>
 
             <ion-row>
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-col size="6" size-lg="5.7" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="phone" formControlName="phone" maxlength="10" name="mobileno" type="tel"
                     label=" Mobile Number :" label-placement="floating" fill="outline"></ion-input>
-                   
                 </ion-row>
               </ion-col>
 
-              <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
+              <ion-col style="display: flex;justify-content: center;align-items: center;" size="6" size-lg="0.5"
+              size-md="6" size-sm="2">
+              <ion-row>
+                <ion-checkbox [(ngModel)]="phoneData" formControlName="phoneData"
+                  (ionChange)="onWhatshappCheck()"></ion-checkbox>
+              </ion-row>
+            </ion-col>
+
+              <ion-col size="6" size-lg="5.8" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="wpnumber" formControlName="wpnumber" maxlength="10" name="whatshappnumber" type="tel"
                     label=" Whatsapp Number :" label-placement="floating" fill="outline"></ion-input>
@@ -165,7 +172,7 @@
 
               <ion-col size="6" size-lg="4" size-md="6" size-sm="12">
                 <ion-row>
-                  <ion-input [(ngModel)]="pinCode1" formControlName="pinCode1" maxlength="10" name="pcode1" type="text"
+                  <ion-input [(ngModel)]="pinCode1" formControlName="pinCode1" maxlength="6" name="pcode1" type="text"
                     label=" PinCode  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
