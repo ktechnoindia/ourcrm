@@ -600,14 +600,34 @@ export class AddSalePage implements OnInit {
   //     }
   //   })
   // }
-
+  getTaxableAmount(): number {
+    const taxableAmount = this.salesData.reduce((total, sales) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(sales);
+  
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+   
+      const discount = sales.discountamt || 0;
+      const taxamt = sales.totaltax || 0;
+  
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.salesData.length)) + taxamt;
+  
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+  
+      return total;
+    }, 0);
+  
+    return taxableAmount;
+  }
   getTotalQuantity(): number {
     return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
   }
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount = (+this.pretax) + (sale.quantity * sale.basicrate);
+      const grossAmount =(sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
 
@@ -618,24 +638,25 @@ export class AddSalePage implements OnInit {
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+this.pretax) + (this.posttax) + (sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
-      return total + itemTotal;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      return gtotal;
     }, 0);
 
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (sale.taxrate1 / 100 * sale.basicrate) * sale.quantity, 0);
-  }
+    return this.salesData.reduce((total, sale) => {
+      const subtotal = ((sale.quantity * sale.basicrate)+((this.pretax)/this.salesData.length))- sale.discountamt;
+      const taxAmount = subtotal * (sale.taxrate1 / 100) ;
+      return total + taxAmount ;
+  }, 0);  
+ }
   getTotalDiscountAmount(): number {
     return this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount), 0);
-
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
 
     return roundedTotalAmount;
   }
@@ -644,7 +665,7 @@ export class AddSalePage implements OnInit {
     return sale.basicrate + sale.totaltax;
   }
   getTotaltax(sale: Sales): number {
-    return sale.quantity * (sale.taxrate1 / 100 * sale.basicrate);
+    return ((((sale.quantity * sale.basicrate)+((this.pretax)/this.salesData.length)-sale.discountamt)*sale.taxrate1 / 100));
   }
   getgrossrate(sale: Sales): number {
     return sale.quantity * sale.basicrate;
@@ -693,20 +714,33 @@ export class AddSalePage implements OnInit {
 
     return 0;
   }
-  getTotalamt(sale: Sales): number {
-    return (sale.basicrate * sale.quantity) + (sale.quantity * (sale.taxrate1 / 100 * sale.basicrate)) - this.calculateDiscountAmount(sale);
-  }
-  getcgst(quote: Sales): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
-  }
+  getTotalamt(sale: Sales[]): number {
+    let totalAmount = 0;
 
-  getsgst(quote: Sales): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
-  }
+    sale.forEach(sale => {
+        const pretaxPerItem = ((this.pretax  / this.salesData.length)); // Divide pretax equally among items
 
-  getigst(quote: Sales): number {
-    return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
-  }
+        const subtotal = (sale.quantity * sale.basicrate) + pretaxPerItem;
+        const discount = ((sale.discount / 100) * sale.basicrate * sale.quantity);
+        const taxAmount = ((((sale.quantity * sale.basicrate) + pretaxPerItem) - sale.discountamt) * sale.taxrate1 / 100);
+
+        const itemTotalAmount = subtotal + taxAmount - discount;
+        totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
+}
+getcgst(sale: Sales): number {
+  return this.getTotaltax(sale) / 2;
+}
+
+getsgst(sale: Sales): number {
+  return this.getTotaltax(sale) / 2;
+}
+
+getigst(sale: Sales): number {
+  return this.getTotaltax(sale);
+}
   ngOnInit() {
     // Other initialization logic...
 

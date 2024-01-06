@@ -26,8 +26,8 @@ interface Sales {
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
-    mrp: number;
+  hunitname: number;
+  mrp: number;
   basicrate: number;
   netrate: number;
   grossrate: number;
@@ -41,7 +41,7 @@ interface Sales {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
+  selectedItemId: number;
 }
 @Component({
   selector: 'app-salesreturn',
@@ -70,7 +70,7 @@ export class SalesreturnPage implements OnInit {
   totaldiscountamt: string = '';
   totaltaxamount: string = '';
   totalnetamount: string = '';
-  ponumber:string='';
+  ponumber: string = '';
   roundoff: string = '';
   pretax: number = 0;
   posttax: number = 0;
@@ -80,16 +80,16 @@ export class SalesreturnPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-  itemid:number=0;
+  itemid: number = 0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
     itemname: 0,
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
-        mrp: 0,
+    mrp: 0,
     basicrate: 0,
     netrate: 0,
     grossrate: 0,
@@ -103,11 +103,11 @@ export class SalesreturnPage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId: 0
   }];
   ttotal!: number;
-  companyid:number=0;
-  userid:number=0;
+  companyid: number = 0;
+  userid: number = 0;
   // ponumber:string='';
   refrence: string = '';
   refdate: string = '';
@@ -128,35 +128,35 @@ export class SalesreturnPage implements OnInit {
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
   name: string = '';
-customercode: string = '';
-customer_code: string = '';
-mobile: string = '';
-address: string = '';
-country: number = 0;
-state:number=0;
-district:number=0;
-pincode: string = '';
-countries$: Observable<any[]>
-states$: Observable<any[]>
-districts$: Observable<any[]>
-customerpop:FormGroup;
+  customercode: string = '';
+  customer_code: string = '';
+  mobile: string = '';
+  address: string = '';
+  country: number = 0;
+  state: number = 0;
+  district: number = 0;
+  pincode: string = '';
+  countries$: Observable<any[]>
+  states$: Observable<any[]>
+  districts$: Observable<any[]>
+  customerpop: FormGroup;
 
-@ViewChild('popover', { static: false })
-popover!: IonPopover;
+  @ViewChild('popover', { static: false })
+  popover!: IonPopover;
 
-isOpen = false;
+  isOpen = false;
 
-  constructor(private navCtrl:NavController,private popoverController:PopoverController,private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
-    this.billDate = new Date().toISOString().split('T')[0]; 
-    this.refdate = new Date().toISOString().split('T')[0]; 
-    this.deliverydate = new Date().toISOString().split('T')[0]; 
-    this.orderDate = new Date().toISOString().split('T')[0]; 
+    this.billDate = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
+    this.deliverydate = new Date().toISOString().split('T')[0];
+    this.orderDate = new Date().toISOString().split('T')[0];
 
     this.myform = this.formBuilder.group({
       billformate: [''],
@@ -169,7 +169,7 @@ isOpen = false;
       orderDate: [''],
       orderNumber: [''],
       // ponumber: [''],
-      gstin: ['',[Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
+      gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       salePerson: [''],
       payment: [''],
       frombill: [''],
@@ -211,12 +211,12 @@ isOpen = false;
       closingbalance: [''],
       debit: [''],
       credit: [''],
-      ponumber:[''],
+      ponumber: [''],
       ttotal: [''],
-      itemid:['']
+      itemid: ['']
     });
     this.customerpop = this.formBuilder.group({
-      
+
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
@@ -261,7 +261,7 @@ isOpen = false;
   async presentPopover(salereturn: any) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
-      cssClass:'popover-content',
+      cssClass: 'popover-content',
       componentProps: {
         quantity: salereturn.quantity, // Pass the quantity to the popup component
       },
@@ -271,7 +271,7 @@ isOpen = false;
   }
 
 
-  updateRows(salereturn:Sales) {
+  updateRows(salereturn: Sales) {
     // Open the popover when quantity changes
     if (salereturn.quantity > 0) {
       this.presentPopover(salereturn);
@@ -284,7 +284,7 @@ isOpen = false;
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      
+
       // console.log('Your form data : ', this.myform.value);
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salereturnData));
@@ -293,7 +293,7 @@ isOpen = false;
 
       for (const element of salereturnData) {
         element.grossrate = element.basicrate * element.quantity;
-       // element.netrate = element.basicrate + element.taxrate1;
+        // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -306,79 +306,79 @@ isOpen = false;
         let salereturn: salereturnstore[] = [];
 
 
-      let salereturndata: salereturnstore = {
-        billformate: this.myform.value.billformate,
-        billNumber: this.myform.value.billNumber,
-        billDate: this.myform.value.billDate,
-        payment: this.myform.value.payment,
-        orderDate: this.myform.value.orderDate,
-        orderNumber: this.myform.value.orderNumber,
-        gstin: this.myform.value.gstin,
-        salePerson: this.myform.value.salePerson,
-        custcode: this.myform.value.custcode,
-        custname: this.myform.value.custname,
-        // unitname$:this.myform.value.unitname$,
-        // ponumber:this.myform.value.ponumber,
-        refdate: this.myform.value.refdate,
-        refrence: this.myform.value.refrence,
-        frombill: this.myform.value.frombill,
+        let salereturndata: salereturnstore = {
+          billformate: this.myform.value.billformate,
+          billNumber: this.myform.value.billNumber,
+          billDate: this.myform.value.billDate,
+          payment: this.myform.value.payment,
+          orderDate: this.myform.value.orderDate,
+          orderNumber: this.myform.value.orderNumber,
+          gstin: this.myform.value.gstin,
+          salePerson: this.myform.value.salePerson,
+          custcode: this.myform.value.custcode,
+          custname: this.myform.value.custname,
+          // unitname$:this.myform.value.unitname$,
+          // ponumber:this.myform.value.ponumber,
+          refdate: this.myform.value.refdate,
+          refrence: this.myform.value.refrence,
+          frombill: this.myform.value.frombill,
 
-        barcode: element.barcode,
-        itemcode: element.itemcode,
-        itemname: element.itemname,
-        description: element.description,
-        quantity: element.quantity,
-        unitname: element.hunitname,
-        mrp: element.mrp,
-        basicrate: element.basicrate,
-        netrate: element.netrate,
-        grossrate: element.grossrate, // Add grossrate
-        taxrate: element.taxrate,
-        IGST: element.IGST,
-        CGST: element.CGST,
-        SGST: element.SGST,
-        discount: element.discount,
-        discountamt: element.discountamt,
-        totaltax: element.totaltax,
-        total: element.total,
-        totalitemno: this.myform.value.totalitemno,
-        totalquantity: this.myform.value.totalquantity,
-        totalgrossamt: this.myform.value.totalgrossamt,
-        totaldiscountamt: this.myform.value.totaldiscountamt,
-        totaltaxamount: this.myform.value.totaltaxamount,
-        totalnetamount: this.myform.value.totalnetamount,
-        roundoff: this.myform.value.roundoff,
-        pretax: this.myform.value.pretax,
-        posttax: this.myform.value.posttax,
-        deliverydate: this.myform.value.deliverydate,
-        deliveryplace: this.myform.value.deliveryplace,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        debit: this.myform.value.debit,
-        credit: this.myform.value.credit,
-        companyid: companyid,
-        userid: userid,
-        ponumber: this.myform.value.ponumber,
-      };
+          barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          unitname: element.hunitname,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          grossrate: element.grossrate, // Add grossrate
+          taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
+          discount: element.discount,
+          discountamt: element.discountamt,
+          totaltax: element.totaltax,
+          total: element.total,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          totalnetamount: this.myform.value.totalnetamount,
+          roundoff: this.myform.value.roundoff,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          openingbalance: this.myform.value.openingbalance,
+          closingbalance: this.myform.value.closingbalance,
+          debit: this.myform.value.debit,
+          credit: this.myform.value.credit,
+          companyid: companyid,
+          userid: userid,
+          ponumber: this.myform.value.ponumber,
+        };
 
-      salereturn.push(salereturndata);
-      this.salereturnService.createSaleReturn(salereturn, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
-          this.formService.showSaveLoader();
-          this.myform.reset();
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
-          this.formService.shoErrorLoader();
-        }
-      );
+        salereturn.push(salereturndata);
+        this.salereturnService.createSaleReturn(salereturn, '', '').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            setTimeout(() => {
+              this.formService.showSuccessAlert();
+            }, 1000);
+            this.formService.showSaveLoader();
+            this.myform.reset();
+          },
+          (error: any) => {
+            console.error('POST request failed', error);
+            setTimeout(() => {
+              this.formService.showFailedAlert();
+            }, 1000);
+            this.formService.shoErrorLoader();
+          }
+        );
       }
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -405,7 +405,7 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -420,36 +420,36 @@ isOpen = false;
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0
     }];
-    }
+  }
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
     const value = sales.selectedItemId || sales.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
-  
+
         if (data && data.length > 0) {
           const itemDetails = data[0];
-  
+
           // Update the quote properties
           sales.itemcode = itemDetails.itemCode;
           sales.itemname = itemDetails.itemDesc;
           sales.barcode = itemDetails.barcode.toString();
           sales.unitname = itemDetails.unitname;
-          sales.hunitname=itemDetails.unitid;
+          sales.hunitname = itemDetails.unitid;
           sales.taxrate = grate[itemDetails.selectGst];
           sales.taxrate1 = grate[itemDetails.selectGst];
           sales.basicrate = itemDetails.basicrate;
           sales.mrp = itemDetails.mrp;
-          sales.basicrate=itemDetails.basic_rate;
-          sales.netrate=itemDetails.net_rate;
+          sales.basicrate = itemDetails.basic_rate;
+          sales.netrate = itemDetails.net_rate;
 
-  
+
           // Update form control values
           this.myform.patchValue({
             itemcode: sales.itemcode,
@@ -470,26 +470,26 @@ isOpen = false;
     const compid = '1';
     const identifier = this.custcode ? 'custcode' : 'custname';
     const value = this.custcode;
-  
+
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
-       
-  
+
+
         if (data && data.length > 0) {
           const itemDetails = data[0];
-  
+
           // Update the quote properties
           event.custcode = itemDetails.customer_code;
           event.custname = itemDetails.name;
-  
-  
+
+
           // Update form control values
           this.myform.patchValue({
             custcode: itemDetails.custcode,
             custname: itemDetails.custname,
             // Other form controls...
           });
-          
+
         } else {
           console.error('No data found for the selected item.');
         }
@@ -499,8 +499,8 @@ isOpen = false;
       }
     );
   }
-  
-  
+
+
 
   addSales() {
     console.log('addrowwww' + this.salesData.length);
@@ -512,8 +512,8 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
-            mrp: 0,
+      hunitname: 0,
+      mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,
@@ -526,8 +526,8 @@ isOpen = false;
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      itemid:0,
-      selectedItemId:0
+      itemid: 0,
+      selectedItemId: 0
       // Add more properties as needed
     };
     this.salesData.push(newRow);
@@ -538,7 +538,7 @@ isOpen = false;
     this.navCtrl.back(); // This will navigate back to the previous page
   }
 
-  onNew(){
+  onNew() {
     location.reload();
   }
 
@@ -592,13 +592,33 @@ isOpen = false;
   getTotalQuantity(): number {
     return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
   }
+  getTaxableAmount(): number {
+    const taxableAmount = this.salesData.reduce((total, sales) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(sales);
 
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+
+      const discount = sales.discountamt || 0;
+      const taxamt = sales.totaltax || 0;
+
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.salesData.length)) + taxamt;
+
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+
+      return total;
+    }, 0);
+
+    return taxableAmount;
+  }
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount = (+this.pretax )+(sale.quantity * sale.basicrate);
+      const grossAmount = (sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
-  
+
     return totalGrossAmount;
   }
   getTotalnetAmount(): number {
@@ -606,25 +626,26 @@ isOpen = false;
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const itemTotal = (((+this.pretax )+(this.posttax)+(sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount);
-      return total + itemTotal;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
+      return gtotal;
     }, 0);
-  
+
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (sale.taxrate1 / 100 * sale.basicrate) * sale.quantity, 0);
+    return this.salesData.reduce((total, sale) => {
+      const subtotal = ((sale.quantity * sale.basicrate) + ((this.pretax) / this.salesData.length)) - sale.discountamt;
+      const taxAmount = subtotal * (sale.taxrate1 / 100);
+      return total + taxAmount;
+    }, 0);
   }
   getTotalDiscountAmount(): number {
     return this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount ), 0);
-  
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-  
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
+
     return roundedTotalAmount;
   }
   //table formaula
@@ -632,7 +653,7 @@ isOpen = false;
     return sale.basicrate + sale.totaltax;
   }
   getTotaltax(sale: Sales): number {
-    return sale.quantity * (sale.taxrate1 / 100 * sale.basicrate);
+    return ((((sale.quantity * sale.basicrate) + ((this.pretax) / this.salesData.length) - sale.discountamt) * sale.taxrate1 / 100));
   }
   getgrossrate(sale: Sales): number {
     return sale.quantity * sale.basicrate;
@@ -681,19 +702,30 @@ isOpen = false;
 
     return 0;
   }
-  getTotalamt(sale: Sales): number {
-    return (sale.basicrate * sale.quantity) + (sale.quantity * (sale.taxrate1 / 100 * sale.basicrate)) - this.calculateDiscountAmount(sale);
+  getTotalamt(sale: Sales[]): number {
+    let totalAmount = 0;
+    sale.forEach(sale => {
+      const pretaxPerItem = ((this.pretax / this.salesData.length)); // Divide pretax equally among items
+      const subtotal = (sale.quantity * sale.basicrate) + pretaxPerItem;
+      const discount = ((sale.discount / 100) * sale.basicrate * sale.quantity);
+      const taxAmount = ((((sale.quantity * sale.basicrate) + pretaxPerItem) - sale.discountamt) * sale.taxrate1 / 100);
+
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
   }
-  getcgst(quote: Sales): number {
-    return this.getTotalTaxAmount() / 2;
+  getcgst(sale: Sales): number {
+    return this.getTotaltax(sale) / 2;
   }
 
-  getsgst(quote: Sales): number {
-    return this.getTotalTaxAmount() / 2;
+  getsgst(sale: Sales): number {
+    return this.getTotaltax(sale) / 2;
   }
 
-  getigst(quote: Sales): number {
-    return this.getTotalTaxAmount();
+  getigst(sale: Sales): number {
+    return this.getTotaltax(sale);
   }
   ngOnInit() {
     // Other initialization logic...
@@ -800,8 +832,8 @@ isOpen = false;
         selectedSalutation: '',
         companyName: '',
         state: this.customerpop.value.state,
-        district:this.customerpop.value.district,
-        country:this.customerpop.value.country,
+        district: this.customerpop.value.district,
+        country: this.customerpop.value.country,
         opening_balance: 0,
         closing_balance: 0,
         mobile: this.customerpop.value.mobile,
@@ -831,18 +863,18 @@ isOpen = false;
         pincode1: '',
         address1: ''
       };
-  
+
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-  
+
           this.formService.showSaveLoader()
           // location.reload()
           this.myform.reset();
-  
+
         },
         (error: any) => {
           console.error('POST request failed', error);

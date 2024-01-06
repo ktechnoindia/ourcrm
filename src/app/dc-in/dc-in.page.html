@@ -215,20 +215,22 @@
                         <option value="percentage">Percentage</option>
                       </select>
                     </td>
-                    <td *ngIf="myform.get('discountType')?.value === 'percentage'">
-                      <input [(ngModel)]="dcin.discount" [ngModelOptions]="{standalone: true}"
-                        (ionBlur)="getdiscountp(dcin)" [value]="getdiscountp(dcin)" class="table_input" type="number">
-                    </td>
-                    <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                      <input [(ngModel)]="dcin.discountamt" [value]="dcin.discountamt"
+                    <td>
+                      <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
+                        style="width: 90px;" [(ngModel)]="dcin.discount" (ionBlur)="getdiscountp(dcin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                      <ng-template #amountField>
+                        <input style="width: 100px;" [(ngModel)]="dcin.discountamt" (keyup)="getdiscountamt(dcin)"
+                          [value]="getdiscountamt(dcin)" [ngModelOptions]="{standalone: true}" class="table_input"
+                          type="number">
+                      </ng-template>
                     </td>
 
                     <td>
                       <input [value]="getTotaltax(dcin)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [value]="getTotalamt(dcin)" [readonly]="true" class="table_input" type="number">
+                      <input [value]="getTotalamt([dcin])" [readonly]="true" class="table_input" type="number">
 
                     </td>
 
@@ -280,9 +282,9 @@
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table" for="">Total :</label>
+                    <label class="label_table" for="">Taxable Amount :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                      [value]="getTotalnetAmount()" class="input_table" type="number">
+                      [value]="getTaxableAmount()" class="input_table" type="number">
 
                   </ion-col>
                 </ion-row>
@@ -390,12 +392,7 @@
                       </td>
                     </tr>
 
-                    <tr>
-                      <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
-                      </td>
-                    </tr>
+                   
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
@@ -408,7 +405,12 @@
                           id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
-
+                    <tr>
+                      <th colspan="2">Round Off : </th>
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
+                      </td>
+                    </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
                       <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"

@@ -552,36 +552,57 @@ export class DcOutPage implements OnInit {
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
-      const grossAmount = (+this.pretax )+(dcout.quantity * dcout.basicrate);
+      const grossAmount =(dcout.quantity * dcout.basicrate);
       return total + grossAmount;
     }, 0);
 
     return totalGrossAmount;
+  }
+  getTaxableAmount(): number {
+    const taxableAmount = this.dcoutData.reduce((total, dcout) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(dcout);
+  
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+   
+      const discount = dcout.discountamt || 0;
+      const taxamt = dcout.totaltax || 0;
+  
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.dcoutData.length)) + taxamt;
+  
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+  
+      return total;
+    }, 0);
+  
+    return taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcoutData.reduce((total, dcout) => {
-      const itemTotal = (((+this.pretax )+(this.posttax) +(dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity));
-      return total + itemTotal;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      return gtotal;
+
     }, 0);
 
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.dcoutData.reduce((total, dcout) => total + (dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity, 0);
-  }
+    return this.dcoutData.reduce((total, dcout) => {
+      const subtotal = ((dcout.quantity * dcout.basicrate)+((this.pretax)/this.dcoutData.length))- dcout.discountamt;
+      const taxAmount = subtotal * (dcout.taxrate1 / 100) ;
+      return total + taxAmount ;
+  }, 0);  }
   getTotalDiscountAmount(): number {
     return this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const totalAmount = this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity)) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0);
-
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
-
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
     return roundedTotalAmount;
   }
   //table formaula
@@ -589,7 +610,8 @@ export class DcOutPage implements OnInit {
     return quote.basicrate + quote.totaltax;
   }
   getTotaltax(dcout: Dcout): number {
-    return dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate);
+    return ((((dcout.quantity * dcout.basicrate)+((this.pretax)/this.dcoutData.length)-dcout.discountamt)*dcout.taxrate1 / 100));
+    //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getdiscountp(dcout: Dcout) {
     const discountPercentage = dcout.discount || 0; // assuming discount is a property in your dcin object
@@ -638,17 +660,32 @@ export class DcOutPage implements OnInit {
 
     return 0;
   }
-  getTotalamt(dcout: Dcout): number {
-    return (dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) - this.calculateDiscountAmount(dcout);
-  }
+  getTotalamt(dcout: Dcout[]): number {
+    let totalAmount = 0;
+
+    dcout.forEach(dcout => {
+        const pretaxPerItem = ((this.pretax  / this.dcoutData.length)); // Divide pretax equally among items
+
+        const subtotal = (dcout.quantity * dcout.basicrate) + pretaxPerItem;
+        const discount = ((dcout.discount / 100) * dcout.basicrate * dcout.quantity);
+        const taxAmount = ((((dcout.quantity * dcout.basicrate) + pretaxPerItem) - dcout.discountamt) * dcout.taxrate1 / 100);
+
+        const itemTotalAmount = subtotal + taxAmount - discount;
+        totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
+}
   getcgst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity) / 2;
+    return this.getTotaltax(dcout) / 2;
   }
+
   getsgst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity) / 2;
+    return this.getTotaltax(dcout) / 2;
   }
+
   getigst(dcout: Dcout): number {
-    return ((dcout.taxrate1 / 100 * dcout.basicrate) * dcout.quantity);
+    return this.getTotaltax(dcout);
   }
   ngOnInit() {
     // Other initialization logic...

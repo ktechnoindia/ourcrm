@@ -633,35 +633,55 @@ isOpen = false;
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.purchaseData.reduce((total, purchase) => {
-      const grossAmount = (+this.pretax )+(purchase.quantity * purchase.basicrate);
+      const grossAmount = purchase.quantity * purchase.basicrate;
       return total + grossAmount;
     }, 0);
 
     return totalGrossAmount;
+  }
+  getTaxableAmount(): number {
+    const taxableAmount = this.purchaseData.reduce((total, purchase) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(purchase);
+  
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+   
+      const discount = purchase.discountamt || 0;
+      const taxamt = purchase.totaltax || 0;
+  
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.purchaseData.length)) + taxamt;
+  
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+  
+      return total;
+    }, 0);
+  
+    return taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.purchaseData.reduce((total, purchase) => {
-      const itemTotal = (((+this.pretax )+(this.posttax) + (purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount);
-      return total + itemTotal;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      return gtotal;
     }, 0);
 
     return grandTotal;
   }
   getTotalTaxAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.taxrate1 / 100 * purchase.basicrate) * purchase.quantity, 0);
-  }
+    return this.purchaseData.reduce((total, purchase) => {
+      const subtotal = ((purchase.quantity * purchase.basicrate)+((this.pretax)/this.purchaseData.length))- purchase.discountamt;
+      const taxAmount = subtotal * (purchase.taxrate1 / 100) ;
+      return total + taxAmount ;
+  }, 0);  }
   getTotalDiscountAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
   }
   getRoundoff(): number {
-    // Calculate the total amount without rounding
-    const totalAmount = this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount), 0);
-
-    // Use the toFixed method to round off the total to the desired number of decimal places
-    const roundedTotalAmount = +totalAmount.toFixed(2); // Change 2 to the desired number of decimal places
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
 
     return roundedTotalAmount;
   }
@@ -670,7 +690,7 @@ isOpen = false;
     return purchase.basicrate + purchase.totaltax;
   }
   getTotaltax(purchase: Purchase): number {
-    return purchase.quantity * (purchase.taxrate1 / 100 * purchase.basicrate);
+    return ((((purchase.quantity * purchase.basicrate)+((this.pretax)/this.purchaseData.length)-purchase.discountamt)*purchase.taxrate1 / 100));
   }
   getgrossrate(purchase: Purchase): number {
     return purchase.quantity * purchase.basicrate;
@@ -719,20 +739,33 @@ isOpen = false;
     // return discount amount for display
     return discountAmt;
   }
-  getTotalamt(purchase: Purchase): number {
-    return (purchase.basicrate * purchase.quantity) + (purchase.quantity * (purchase.taxrate1 / 100 * purchase.basicrate)) - this.calculateDiscountAmount(purchase);
-  }
-  getcgst(quote: Purchase): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
-  }
+  getTotalamt(purchase: Purchase[]): number {
+    let totalAmount = 0;
 
-  getsgst(quote: Purchase): number {
-    return ((quote.taxrate1 / 100 * quote.basicrate) * quote.quantity) / 2;
-  }
+    purchase.forEach(purchase => {
+        const pretaxPerItem = ((this.pretax  / this.purchaseData.length)); // Divide pretax equally among items
 
-  getigst(quote: Purchase): number {
-    return (quote.taxrate1 / 100 * quote.basicrate) * quote.quantity;
-  }
+        const subtotal = (purchase.quantity * purchase.basicrate) + pretaxPerItem;
+        const discount = ((purchase.discount / 100) * purchase.basicrate * purchase.quantity);
+        const taxAmount = ((((purchase.quantity * purchase.basicrate) + pretaxPerItem) - purchase.discountamt) * purchase.taxrate1 / 100);
+
+        const itemTotalAmount = subtotal + taxAmount - discount;
+        totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
+}
+getcgst(purchase: Purchase): number {
+  return this.getTotaltax(purchase) / 2;
+}
+
+getsgst(purchase: Purchase): number {
+  return this.getTotaltax(purchase) / 2;
+}
+
+getigst(purchase: Purchase): number {
+  return this.getTotaltax(purchase);
+}
   ngOnInit() {
     // Other initialization logic...
 
