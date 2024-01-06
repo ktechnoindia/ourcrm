@@ -230,7 +230,7 @@
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" name="total" [readonly]="true" [value]="getTotalamt(quote)"
+                      <input style="width: 90px;" name="total" [readonly]="true" [value]="getTotalamt([quote])"
                         class="table_input" type="text">
                     </td>
 
@@ -262,28 +262,28 @@
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
-                      [ngModelOptions]="{standalone: true}" class="input_table" type="text">
+                    <input name="totalgrossamt"  [readonly]="true" [value]="getTotalGrossAmount()"
+                       class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
-                      formControlName="totaldiscountamt" class="input_table" type="text">
+                    <input name="totaldiscountamt"   [readonly]="true" [value]="getTotalDiscountAmount()"
+                      class="input_table" type="text">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
-                      formControlName="totaltaxamount" class="input_table" type="text">
+                    <input name="totaltaxamount"  [readonly]="true" [value]="getTotalTaxAmount()"
+                       class="input_table" type="text">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
-                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                      [value]="getTotalnetAmount()" class="input_table" type="text">
+                    <input name="totalnetamount"  [readonly]="true" 
+                      [value]="getTaxableAmount()" class="input_table" type="text">
 
                   </ion-col>
                 </ion-row>
@@ -375,12 +375,7 @@
                       </td>
                     </tr>
 
-                    <tr>
-                      <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
-                      </td>
-                    </tr>
+                   
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
@@ -393,10 +388,15 @@
                           id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
-
+                    <tr>
+                      <th colspan="2">Round Off : </th>
+                      <td colspan="2"> <input  [readonly]="true" name="roundoff"
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
+                      </td>
+                    </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                      <td colspan="2"> <input  [readonly]="true"
                           [value]="getGrandTotal()" id="totalnetamount" name="totalnetamount" class="row_input"
                           type="text">
                       </td>

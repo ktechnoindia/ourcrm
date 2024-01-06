@@ -30,17 +30,18 @@ export interface quotestore {
   discountamt: number;
   totaltax: number;
   total: number;
-
   totalitemno: string;
+
+  //Not post emepty post
   totalquantity: string;
   totalgrossamt: string;
   totaldiscountamt: string;
   totaltaxamount: string;
   totalnetamount: string;
+  roundoff: string;
+
   deliverydate: string;
   deliveryplace: string;
-
-  roundoff: string;
   pretax: number;
   posttax: number;
   openingbalance: string;
