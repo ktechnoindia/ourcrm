@@ -92,6 +92,28 @@ export class ViewexicutivePage implements OnInit {
     );
   }
 
+
+  deleteExecutive(customerid: number, event: any) {
+    
+    const confirmDelete = confirm('Are you sure you want to delete this customer?');
+    if (!confirmDelete) {
+      return;
+    }
+  
+    const companyid = 1;
+    this.executService.deleteexecutive(customerid,companyid).subscribe({
+      next: (res) => {
+        alert('Customer Deleted!');
+        console.log('delete',res)
+
+     },
+      error: (err) => {
+        console.error('Error deleting customer', err);
+        // Handle the error as needed
+      }
+    });
+  }
+  
   ///edit customer start  
 
 

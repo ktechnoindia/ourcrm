@@ -93,6 +93,27 @@ export class ViewledgerPage implements OnInit {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
         });
+  };
+
+  deleteLedger(customerid: number, event: any) {
+    
+    const confirmDelete = confirm('Are you sure you want to delete this customer?');
+    if (!confirmDelete) {
+      return;
+    }
+  
+    const companyid = 1;
+    this.ledgerService.deleteledger(customerid,companyid).subscribe({
+      next: (res) => {
+        alert('Customer Deleted!');
+        console.log('delete',res)
+
+     },
+      error: (err) => {
+        console.error('Error deleting customer', err);
+        // Handle the error as needed
+      }
+    });
   }
 
   filterCustomers(): Observable<any[]> {

@@ -20,7 +20,7 @@ export class ViewitemPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
-
+  compid:string='';
   generatePdf() {
     let pdf = new jsPDF()
 
@@ -104,6 +104,27 @@ export class ViewitemPage implements OnInit {
         )
       )
     );
+  }
+
+  deleteItem(customerid: number, event: any) {
+    
+    const confirmDelete = confirm('Are you sure you want to delete this item?');
+    if (!confirmDelete) {
+      return;
+    }
+  
+    const companyid = 1;
+    this.additem.deleteItems(customerid,companyid).subscribe({
+      next: (res) => {
+        alert('Item Deleted!');
+        console.log('delete',res)
+
+     },
+      error: (err) => {
+        console.error('Error deleting item', err);
+        // Handle the error as needed
+      }
+    });
   }
 
   onSearchTermChanged(): void {

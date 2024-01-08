@@ -147,8 +147,8 @@ export class ViewcustomerPage implements OnInit {
       return;
     }
   
-    const companyId = 1;
-    this.custservice.deleteCustomer(customerid, companyId).subscribe({
+    const companyid = 1;
+    this.custservice.deleteCustomer(customerid,companyid).subscribe({
       next: (res) => {
         alert('Customer Deleted!');
         console.log('delete',res)

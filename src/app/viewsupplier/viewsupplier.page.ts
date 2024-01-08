@@ -118,11 +118,17 @@ export class ViewsupplierPage implements OnInit {
   }
 
   deleteSuppler(id:number,event:any){
+
+    const confirmDelete = confirm('Are you sure you want to delete this Vendor?');
+    if (!confirmDelete) {
+      return;
+    }
     const companyid=1;
     this.venderService.deleteVendor(id,companyid).subscribe({
        next: (res)=>{
-        alert('Vendor Deleted Successfully')
+       
           console.log(res);
+          alert('Vendor Deleted Successfully')
         },
         error: (error)=>{
           console.log('Error',error)

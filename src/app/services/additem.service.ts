@@ -73,4 +73,8 @@ export class AdditemService {
     return this.httpclient.get(environment.apiactionurl + environment.fetchitemauto + '/' + companyid + '/' + itemid);
   }
 
+  deleteItems(customerid: number, companyid: number): Observable<any> {
+    return this.httpclient.post(`${environment.apiactionurl}${environment.deleteItem}/${customerid}/${companyid}`,{});
+  }
+
 }

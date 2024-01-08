@@ -62,6 +62,6 @@ export interface vend{
   }
 
   deleteVendor(customerid:number,companyid:number){
-    return this.httpclient.delete(environment.apiactionurl+environment.deleteVendor+ '/'+customerid + '/' + companyid)
+    return this.httpclient.post(`${environment.apiactionurl}${environment.deleteVendor}/${customerid}/${companyid}`,{});
   }
   }

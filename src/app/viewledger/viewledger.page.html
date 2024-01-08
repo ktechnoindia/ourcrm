@@ -67,7 +67,7 @@
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ ledger[col] }}</td>
                       <td class="Action">
-                        <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                        <ion-icon color="danger" (click)="deleteLedger(ledger.id,$event)" icon-only  name="trash"></ion-icon>
                         <ion-icon color="primary" icon-only name="create"></ion-icon>
                       </td>
                     </tr>

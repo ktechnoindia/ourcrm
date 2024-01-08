@@ -31,7 +31,6 @@ export class PaymentPage implements OnInit {
   paymentdate: string = '';
   ledger: number = 0;
   companyname: number = 0;
-
   outstanding: number = 0;
   paymentmade: number = 0;
   pendingamt: number = 0;
@@ -47,7 +46,6 @@ export class PaymentPage implements OnInit {
   totalreceiveamt: number = 0;
   totalcurrentamt: number = 0;
   totalpendingamt: number = 0;
-  cpyname:string=''
   myform: FormGroup;
   isOpen = false;
   supplier$: Observable<any>;
@@ -95,7 +93,7 @@ export class PaymentPage implements OnInit {
       companyname: [''],
       userid: [0],
       outstanding_amount: [null],
-      cpyname:['']
+
     })
 
   }

@@ -36,5 +36,10 @@ export class ExecutiveService {
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apibaseurl+environment.fetchexecutive,{headers:{'key':key,'user':user}})
   }
+ 
+  deleteexecutive(customerid: number, companyid: number): Observable<any> {
+    return this.httpclient.post(`${environment.apiactionurl}${environment.deleteExecutive}/${customerid}/${companyid}`,{});
+  }
+  
 }
 

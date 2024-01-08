@@ -93,7 +93,10 @@ deletecust:'dcustomer',
 fetchUserOutstanding:'user_outstanding',
 fetchVendorOutstanding:'vendor_outstanding',
 deleteCustomer:'dcustomer',
-deleteVendor:'dvendor'
+deleteVendor:'dvendor',
+deleteItem:'ditem',
+deleteExecutive:'dexecutive',
+deleteLedger:'dlegder'
 };
 
 

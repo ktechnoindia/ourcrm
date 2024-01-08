@@ -62,7 +62,7 @@ export class CustomerService {
     return this.httpclient.get(environment.apiactionurl+environment.fetchallcust);
   }
   deleteCustomer(customerid: number, companyid: number): Observable<any> {
-    return this.httpclient.delete(environment.apiactionurl+environment.deleteCustomer+'/'+customerid+'/'+companyid);
+    return this.httpclient.post(`${environment.apiactionurl}${environment.deleteCustomer}/${customerid}/${companyid}`,{});
   }
   
 }
