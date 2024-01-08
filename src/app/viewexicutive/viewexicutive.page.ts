@@ -95,7 +95,7 @@ export class ViewexicutivePage implements OnInit {
 
   deleteExecutive(customerid: number, event: any) {
     
-    const confirmDelete = confirm('Are you sure you want to delete this customer?');
+    const confirmDelete = confirm('Are you sure you want to delete this executive?');
     if (!confirmDelete) {
       return;
     }
@@ -103,12 +103,12 @@ export class ViewexicutivePage implements OnInit {
     const companyid = 1;
     this.executService.deleteexecutive(customerid,companyid).subscribe({
       next: (res) => {
-        alert('Customer Deleted!');
+        alert('Executive Deleted!');
         console.log('delete',res)
 
      },
       error: (err) => {
-        console.error('Error deleting customer', err);
+        console.error('Error deleting executive', err);
         // Handle the error as needed
       }
     });

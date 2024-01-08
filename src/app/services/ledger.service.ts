@@ -62,6 +62,6 @@ export class LegderService {
   }
 
   deleteledger(customerid: number, companyid: number): Observable<any> {
-    return this.httpclient.post(`${environment.apiactionurl}${environment.deleteLedger}/${customerid}/${companyid}`,{});
+    return this.httpclient.post(environment.apiactionurl+environment.deleteLedger + '/' +customerid + '/' +companyid,{});
   }
 }

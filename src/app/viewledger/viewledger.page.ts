@@ -97,7 +97,7 @@ export class ViewledgerPage implements OnInit {
 
   deleteLedger(customerid: number, event: any) {
     
-    const confirmDelete = confirm('Are you sure you want to delete this customer?');
+    const confirmDelete = confirm('Are you sure you want to delete this ledger?');
     if (!confirmDelete) {
       return;
     }
@@ -105,12 +105,12 @@ export class ViewledgerPage implements OnInit {
     const companyid = 1;
     this.ledgerService.deleteledger(customerid,companyid).subscribe({
       next: (res) => {
-        alert('Customer Deleted!');
+        alert('Legder Deleted!');
         console.log('delete',res)
 
      },
       error: (err) => {
-        console.error('Error deleting customer', err);
+        console.error('Error deleting ledger', err);
         // Handle the error as needed
       }
     });

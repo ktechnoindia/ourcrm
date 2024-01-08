@@ -39,7 +39,8 @@
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                         label="Select Payment Transfer Method" label-placement="floating" fill="outline" [ngModel]="ledger"
                         formControlName="ledger" name="ledger">
-                        <ion-select-option *ngFor="let ledger of ledgers$ | async; let i = index">{{ledger.lname}}
+                        <ion-select-option *ngFor="let ledgers of ledgers$ | async; let i = index" [value]="ledgers.id">
+                          {{ledgers.lname}}
                         </ion-select-option>
                       </ion-select>
                     </ion-col>

@@ -77,8 +77,8 @@ export class ReceiptPage implements OnInit {
     this.myform = this.formBuilder.group({
       voucherNumber: ['', Validators.required],
       paymentdate: [''],
-      ledger: [''],
-      outstanding: [''],
+      ledger: [0],
+      outstanding: [0],
       paymentmade: [''],
       paymentway: [''],
       total: [''],
@@ -91,6 +91,7 @@ export class ReceiptPage implements OnInit {
       currentamt: [''],
       companyname: [''],
       userid: [0],
+      custid:[0],
       outstanding_amount: [null],
       totaldueamt: [''],
       totalreceiveamt: [''],
