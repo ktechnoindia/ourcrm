@@ -38,24 +38,27 @@
             <div class="scroll-container">
               <table style="width: 1330px;overflow-x:auto;border: 1px solid grey; ">
                 <tr>
-                  <th rowspan="2" style="width: 50px !important;">Sr. No.</th>
-                  <th rowspan="2" style="width: 100px !important;">Voucher Number</th>
-                  <th style="width: 100px !important;">Bill No.</th>
-                  <th rowspan="2" style="width: 100px !important;">Payment Date</th>
-                  <th rowspan="2" style="width: 200px !important;">Payment Method</th>
-                  <th rowspan="2" style="width: 200px !important;">Vendor Name</th>
-                  <th style="width: 100px !important;">Total Due</th>
+                  <th  style="width: 50px !important;">Sr. No.</th>
+                  <th  style="width: 100px !important;">Voucher Number</th>
+                  <th  style="width: 100px !important;">Payment Date</th>
+                  <th  style="width: 100px !important;">Vendor Name</th>
+                  <th>Outstanding Amount</th>
                   <th style="width: 100px !important;">Payment Made</th>
-                  <th style="width: 100px !important;">Closing Balance </th>
+                  <th  style="width: 200px !important;">Payment Method</th>
+                  <th style="width: 100px !important;">Bill No.</th>
+                  <th style="width: 100px !important;">Total Due</th>
+                  <th style="width: 100px !important;">Received Amt. </th>
+                  <th>Current Amount</th>
+                  <th>Pending Amt</th>
+                  <th>Action</th>
                  
                   
                 </tr>
-                <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
+                <tr *ngFor="let payment of payment$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{payment.voucherNumber}}</td>
                   <td>{{payment.paymentdate}}</td>
-                  <td>{{payment.ledger}}</td>
-                  <td>{{payment.suppliername}}</td>
+                  <td>{{payment.companyname}}</td>
                   <td>{{payment.outstanding}}</td>
                   <td>{{payment.paymentmade}}</td>
                   <td>{{payment.paymentway}}</td>

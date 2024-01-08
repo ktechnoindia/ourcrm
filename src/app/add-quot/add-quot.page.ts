@@ -88,23 +88,23 @@ export class AddQuotPage implements OnInit {
   total: string = '';*/
 
   totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalquantity: number = 0;
+  totalgrossamt: number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount: number = 0;
+  totalnetamount: number = 0;
   companyid: number = 0;
   userid: number = 0;
-  roundoff: string = '';
+  roundoff: number = 0;
 
   pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
-  openingbalance: string = '';
-  closingbalance: string = '';
-  debit: string = '';
-  credit: string = '';
+  openingbalance: number = 0;
+  closingbalance: number = 0;
+  debit: number = 0;
+  credit: number = 0;
 
   attr1: string = '';
   attr2: string = '';
@@ -226,7 +226,7 @@ export class AddQuotPage implements OnInit {
       total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
       totalitemno: [''],
-      totalquantity: [''],
+      totalquantity: [0],
       totalgrossamt: [''],
       totaldiscountamt: [''],
       totaltaxamount: [''],
@@ -382,7 +382,7 @@ export class AddQuotPage implements OnInit {
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
-
+        this.totalquantity= element.total + +element.quantity;
         console.log(element);
         const companyid = 1;
         const userid = 1;

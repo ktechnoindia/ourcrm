@@ -255,35 +255,35 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
 
-                    <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
-                      formControlName="totalquantity" class="input_table" type="text">
+                    <input name="totalquantity" [readonly]="true" [value]="getTotalQuantity()"
+                      class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
                     <input name="totalgrossamt"  [readonly]="true" [value]="getTotalGrossAmount()"
-                       class="input_table" type="text">
+                       class="input_table" type="number">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
                     <input name="totaldiscountamt"   [readonly]="true" [value]="getTotalDiscountAmount()"
-                      class="input_table" type="text">
+                      class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
                     <input name="totaltaxamount"  [readonly]="true" [value]="getTotalTaxAmount()"
-                       class="input_table" type="text">
+                       class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
                     <input name="totalnetamount"  [readonly]="true" 
-                      [value]="getTaxableAmount()" class="input_table" type="text">
+                      [value]="getTaxableAmount()" class="input_table" type="number">
 
                   </ion-col>
                 </ion-row>
@@ -326,24 +326,24 @@
                       <tr>
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
-                          <ion-input type="text" [(ngModel)]="openingbalance" formControlName="openingbalance"
+                          <ion-input type="number" [(ngModel)]="openingbalance" formControlName="openingbalance"
                             name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
-                          <ion-input type="text" [(ngModel)]="debit" formControlName="debit" name="debit"
+                          <ion-input type="number" [(ngModel)]="debit" formControlName="debit" name="debit"
                             placeholder="Enter  Dedit Amount"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
-                          <ion-input type="text" [(ngModel)]="closingbalance" formControlName="closingbalance"
+                          <ion-input type="number" [(ngModel)]="closingbalance" formControlName="closingbalance"
                             name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
-                          <ion-input type="text" [(ngModel)]="credit" formControlName="credit" name="credit"
+                          <ion-input type="number" [(ngModel)]="credit" formControlName="credit" name="credit"
                             placeholder="Enter Credit Amount"></ion-input>
                         </td>
                       </tr>
@@ -391,7 +391,7 @@
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input  [readonly]="true" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="text">
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
