@@ -37,32 +37,26 @@
             <div class="scroll-container">
               <table style="width: 1330px;overflow-x:auto;border: 1px solid grey; ">
                 <tr>
-                  <th rowspan="2" style="width: 50px !important;">Sr. No.</th>
-                  <th rowspan="2" style="width: 100px !important;">Voucher Number</th>
-                  <th rowspan="2" style="width: 100px !important;">Payment Date</th>
-                  <th rowspan="2" style="width: 200px !important;">Ledger Name</th>
-                  <th rowspan="2" style="width: 200px !important;">Customer Name</th>
-                  <th colspan="4" style="background-color: antiquewhite;">Payment IN Account</th>
-                  <th colspan="5" style="background-color: antiquewhite;">Payment By Bill Number</th>
-                  <th rowspan="2" style="width: 70px !important;">Action</th>
-                </tr>
-                <tr>
+                  <th  style="width: 50px !important;">Sr. No.</th>
+                  <th  style="width: 100px !important;">Voucher Number</th>
+                  <th  style="width: 100px !important;">Payment Date</th>
+                  <th style="width: 100px !important;">Customer Name</th>
                   <th style="width: 100px !important;">Outstanding</th>
                   <th style="width: 100px !important;">Payment Made</th>
                   <th style="width: 100px !important;">Pending Amt.</th>
-                  <th style="width: 140px !important;">Payment By</th>
+                  <th style="width: 100px !important;">Payment By</th>
                   <th style="width: 100px !important;">Bill No.</th>
                   <th style="width: 100px !important;">Total Amt.</th>
                   <th style="width: 100px !important;">Receive Amt.</th>
                   <th style="width: 100px !important;">Current Amt.</th>
                   <th style="width: 100px !important;">Pending Amt</th>
+                  <th>Action</th>
                 </tr>
                 <tr *ngFor="let recepit of filteredRecepits$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{recepit.voucherNumber}}</td>
                   <td>{{recepit.paymentdate}}</td>
                   <td>{{recepit.ledger}}</td>
-                  <td>{{recepit.suppliername}}</td>
                   <td>{{recepit.outstanding}}</td>
                   <td>{{recepit.paymentmade}}</td>
                   <td>{{recepit.paymentway}}</td>
