@@ -40,6 +40,7 @@ lname:string;
     pincode1: string;
     address1: string;
     companyid:number;
+    userid:number;
     discount:number;
   }
 

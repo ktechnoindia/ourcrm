@@ -48,7 +48,7 @@ export class ViewledgerPage implements OnInit {
   availableColumns: string[] = [
     'ledger_code',
     'lname',
-    'companyid',
+
     'companyName',
     'lgroup_name',
     'gstin',
@@ -85,9 +85,9 @@ export class ViewledgerPage implements OnInit {
   totalItems: number = 0;
 
   constructor(private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
-    const compid='1';
+    const companyid='1';
 
-    this.ledgers$ = this.ledgerService.fetchAllLedger(compid,'','');
+    this.ledgers$ = this.ledgerService.fetchAllLedger(companyid,'','');
     console.log(this.ledgers$);
     this.ledgers$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched

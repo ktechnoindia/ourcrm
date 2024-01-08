@@ -234,7 +234,8 @@ export class AddExecutivePage implements OnInit {
         pincode1: '',
         address1: '',
         companyid: 0,
-        discount: 0
+        discount: 0,
+        userid:0
       };
       this.ledgerService.createLdeger(ledgerdata, '', '').subscribe(
         (response: any) => {
