@@ -123,6 +123,7 @@
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
+                          <th style="width: 60px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
                           <th>Bill No.</th>
                           <th>Total Amt. Due</th>
@@ -132,27 +133,28 @@
 
                         </tr>
                         <tr>
+                          <td><ion-checkbox [(ngModel)]="isCheckboxSelected" (ngModelChange)="checkboxChanged()"></ion-checkbox></td>
                           <td>1</td>
                           <td>
                             <ion-input type="text" name="billno " [(ngModel)]="billno"
-                              formControlName="billno"></ion-input>
+                              formControlName="billno" [disabled]="!isCheckboxSelected"></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="totalamt" [(ngModel)]="totalamt"
-                              formControlName="totalamt"></ion-input>
+                              formControlName="totalamt" [disabled]="!isCheckboxSelected"></ion-input>
                           </td>
 
                           <td>
                             <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="receiveamt"
-                              formControlName="receiveamt"></ion-input>
+                              formControlName="receiveamt" [disabled]="!isCheckboxSelected"></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="currentamt" [(ngModel)]="currentamt"
-                              formControlName="currentamt"></ion-input>
+                              formControlName="currentamt" [disabled]="!isCheckboxSelected"></ion-input>
                           </td>
                           <td>
                             <ion-input type="number" name="pendingamt" [(ngModel)]="pendingamt"
-                              formControlName="pendingamt"></ion-input>
+                              formControlName="pendingamt" [disabled]="!isCheckboxSelected"></ion-input>
                           </td>
 
                         </tr>

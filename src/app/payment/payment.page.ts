@@ -56,7 +56,7 @@ export class PaymentPage implements OnInit {
   purchase$: Observable<any[]>
   userid: number = 0;
   vendorid: number = 0;
-
+  isCheckboxSelected: boolean = false;
 
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
     const compid = '1';
@@ -93,7 +93,7 @@ export class PaymentPage implements OnInit {
       companyname: [''],
       userid: [0],
       vendorid:[0],
-      // outstanding_amount: [null],
+      outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
       totalcurrentamt: [0],
@@ -101,7 +101,19 @@ export class PaymentPage implements OnInit {
     })
 
   }
-
+  checkboxChanged() {
+    // Handle checkbox change event
+    // You can add additional logic here if needed
+    if (!this.isCheckboxSelected) {
+      // Checkbox is unchecked, clear the input values
+      this.billno = '';
+      this.totalamt = 0; // or any default value you prefer
+      this.receiveamt = 0; // or any default value you prefer
+      this.currentamt = 0; // or any default value you prefer
+      this.pendingamt = 0; // or any default value you prefer
+    }
+  }
+  
 
   async onSubmit() {
     const fields = { voucherNumber: this.voucherNumber }
