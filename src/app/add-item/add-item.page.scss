@@ -1,4 +1,3 @@
-
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -15,32 +14,49 @@
     text-align: left
 }
 
-.images img{
+.images img {
     height: 200px;
     width: 200px;
 }
-.Customer ion-card{
+
+.Customer ion-card {
     width: 70%;
     margin-left: 15%;
 }
-@media(max-width:940px){
-    .Customer ion-card{
+
+@media(max-width:940px) {
+    .Customer ion-card {
         width: 100%;
         margin-left: 0%;
     }
 }
 
-@media(max-width:540px){
+@media(max-width:540px) {
     .Customer ion-input {
         min-height: 25px;
-       font-size: 10px;
+        font-size: 10px;
         outline-width: 2px;
         outline-style: initial;
     }
 }
 
 
-ion-popover{
-    --width:700px;
-    --height:205px;
+ion-popover {
+    --width: 700px;
+    --height: 205px;
+}
+
+.hsns {
+    --offset-y: 70px;
+    --offset-x: -90px;
+}
+
+.units {
+    --offset-y: 50px;
+    --offset-x: 100px;
+}
+
+.groups {
+    --offset-y: 50px;
+    --offset-x: -90px;
 }

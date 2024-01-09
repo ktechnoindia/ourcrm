@@ -218,5 +218,7 @@ ion-input[type=number]::part(input) {
 }
 
 ion-popover{
-  --height:260px
+  --height:260px;
+  --offset-y:60px;
+  --offset-x:-50px;
 }

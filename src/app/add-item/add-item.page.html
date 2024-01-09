@@ -392,7 +392,7 @@
   </ion-content>
 </ion-content>
 
-<ion-popover trigger="hsn" side="bottom" alignment="end">
+<ion-popover class="hsns" trigger="hsn" side="bottom" alignment="end">
 
   <ng-template style="margin-right: 200px;">
     <div style="margin: 10px;">
@@ -431,7 +431,7 @@
 </ion-popover>
 
 
-<ion-popover  trigger="unit" side="bottom" alignment="end">
+<ion-popover class="units" trigger="unit" side="bottom" alignment="end">
   <ng-template style="margin-right: 200px;">
     <div style="margin: 10px;">
       <ion-content class="ion-padding Customer ">
@@ -466,12 +466,12 @@
 
 </ion-popover>
 
-<ion-popover  trigger="group" side="bottom" alignment="end">
+<ion-popover class="groups" trigger="group" side="bottom" alignment="end">
   <ng-template style="margin-right: 200px;">
     <div style="margin: 10px;">
       <ion-content class="ion-padding Customer ">
         <ion-row style="justify-content: center;margin-bottom: 10px;">
-          <ion-label class="executive">Add Unit</ion-label>
+          <ion-label class="executive">Add Group</ion-label>
         </ion-row>
         <form [formGroup]="groupop" (ngSubmit)="OnGroupSubmit()">
           <ion-row>

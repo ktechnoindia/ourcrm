@@ -37,3 +37,8 @@ ng-template ion-button{
         
     }
 }
+
+ion-popover{
+    --offset-y:-20px;
+    --offset-x:-80px;
+}

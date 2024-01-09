@@ -41,3 +41,7 @@ input[type=number]::-webkit-outer-spin-button {
        font-size: 10px;
     }
 }
+ion-popover{
+    --offset-y:-20px;
+    --offset-x:-80px;
+}
