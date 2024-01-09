@@ -65,14 +65,14 @@ export class DcInPage implements OnInit {
   refdate: string = '';
   ponumber: string = '';
 
-  totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalitemno:number = 0;
+  totalquantity: number = 0;
+  totalgrossamt: number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount: number = 0;
+  totalnetamount: number = 0;
 
-  roundoff: string = '';
+  roundoff: number = 0;
   pretax: number = 0;
   posttax:  number = 0;
   deliverydate: string = '';
@@ -198,7 +198,7 @@ isOpen = false;
       deliverydate: [''],
       deliveryplace: [''],
 
-      roundoff: [''],
+      roundoff: [0],
       pretax: [''],
       posttax: [''],
       openingbalance: [''],
@@ -557,14 +557,14 @@ isOpen = false;
     }
   }
   getTotalQuantity(): number {
-    return this.dcinData.reduce((total, dcin) => total + +dcin.quantity, 0);
-
+    this.totalquantity =this.dcinData.reduce((total, dcin) => total + +dcin.quantity, 0);
+return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcinData.reduce((total, dcin) => {
       const grossAmount = (dcin.quantity * dcin.basicrate);
-      return total + grossAmount;
+      return this.totalgrossamt= total + grossAmount;
     }, 0);
 
     return totalGrossAmount;
@@ -589,7 +589,7 @@ isOpen = false;
       // Add the taxable amount of the current quote to the total
       total += quoteTaxableAmount;
   
-      return total;
+      return this.totalnetamount= total;
     }, 0);
   
     return taxableAmount;
@@ -607,16 +607,17 @@ isOpen = false;
     return this.dcinData.reduce((total, dcin) => {
       const subtotal = ((dcin.quantity * dcin.basicrate)+((this.pretax)/this.dcinData.length))- dcin.discountamt;
       const taxAmount = subtotal * (dcin.taxrate1 / 100) ;
-      return total + taxAmount ;
+      return this.totaltaxamount= total + taxAmount ;
   }, 0);
 }    
   getTotalDiscountAmount(): number {
-    return this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity, 0);
+    this.totaldiscountamt= this.dcinData.reduce((total, dcin) => total + (dcin.discount / 100) * dcin.basicrate * dcin.quantity, 0);
+    return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
-    return roundedTotalAmount;
+    return this.roundoff= roundedTotalAmount;
   }
   //table formaula
   getnetrate(dcin: Dcin): number {

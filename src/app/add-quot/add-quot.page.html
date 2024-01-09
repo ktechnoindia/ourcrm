@@ -255,34 +255,34 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
 
-                    <input name="totalquantity" [readonly]="true" [value]="getTotalQuantity()"
+                    <input name="totalquantity" [(ngModel)]="totalquantity" formControlName="totalquantity" [readonly]="true" [value]="getTotalQuantity()"
                       class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
-                    <input name="totalgrossamt"  [readonly]="true" [value]="getTotalGrossAmount()"
+                    <input name="totalgrossamt"  [(ngModel)]="totalgrossamt" formControlName="totalgrossamt" [readonly]="true" [value]="getTotalGrossAmount()"
                        class="input_table" type="number">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt"   [readonly]="true" [value]="getTotalDiscountAmount()"
+                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt"   [readonly]="true" [value]="getTotalDiscountAmount()"
                       class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount"  [readonly]="true" [value]="getTotalTaxAmount()"
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" formControlName="totaltaxamount" [readonly]="true" [value]="getTotalTaxAmount()"
                        class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
-                    <input name="totalnetamount"  [readonly]="true" 
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount" [readonly]="true" 
                       [value]="getTaxableAmount()" class="input_table" type="number">
 
                   </ion-col>
@@ -391,7 +391,7 @@
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input  [readonly]="true" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
+                        [(ngModel)]="roundoff" [value]="getRoundoff()" formControlName="roundoff" id="roundoff" class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>

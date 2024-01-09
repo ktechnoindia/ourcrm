@@ -659,7 +659,8 @@ export class AddQuotPage implements OnInit {
   //   }
   // }
   getTotalQuantity(): number {
-    return this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
+    this.totalquantity = this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
+    return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -668,7 +669,7 @@ export class AddQuotPage implements OnInit {
       return total + grossAmount;
     }, 0);
 
-    return totalGrossAmount;
+    return this.totalgrossamt= totalGrossAmount;
   }
 
 
@@ -702,7 +703,7 @@ export class AddQuotPage implements OnInit {
       return total;
     }, 0);
 
-    return taxableAmount;
+    return this.totalnetamount= taxableAmount;
   }
 
 
@@ -723,17 +724,21 @@ export class AddQuotPage implements OnInit {
     return this.quoteData.reduce((total, quote) => {
       const subtotal = ((quote.quantity * quote.basicrate) + ((this.pretax) / this.quoteData.length)) - quote.discountamt;
       const taxAmount = subtotal * (quote.taxrate1 / 100);
-      return total + taxAmount;
+      return this.totaltaxamount= total + taxAmount;
     }, 0);
   }
 
 
   getTotalDiscountAmount(): number {
-    return this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
+    this.totaldiscountamt= this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
+    return this.totaldiscountamt;
+
+    
   }
+  
   getRoundoff(): number {
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
-    return roundedTotalAmount;
+    return this.roundoff = roundedTotalAmount;
   }
 
   //table formaula

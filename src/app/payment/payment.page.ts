@@ -93,7 +93,7 @@ export class PaymentPage implements OnInit {
       companyname: [''],
       userid: [0],
       vendorid:[0],
-      outstanding_amount: [null],
+      // outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
       totalcurrentamt: [0],
@@ -192,7 +192,7 @@ export class PaymentPage implements OnInit {
 
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
-        this.outstanding_amount = firstItem.outstanding_amount;
+        this.outstanding = firstItem.outstanding_amount;
         console.log('outstanding_amount (after fetch):', this.outstanding_amount);
       } else {
         console.error('Invalid outstanding response:', outstandingArray);
@@ -209,7 +209,7 @@ export class PaymentPage implements OnInit {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
   calculatePendingAmount(): number {
-    this.pendingamt = this.outstanding_amount - this.paymentmade;
+    this.pendingamt = this.outstanding - this.paymentmade;
     return this.pendingamt;
   }
 
