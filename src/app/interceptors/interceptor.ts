@@ -15,7 +15,7 @@ constructor(private session:SessionService,private router:Router){}
    
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
    let skipauth:boolean =false;
-    if (request.url.includes('dealers.php')||request.url.includes('en.php')||request.url.includes('sup.php')|| request.url.includes('views.php') || request.url.includes('login.php')) {
+    if (request.url.includes('login')||request.url.includes('en.php')||request.url.includes('appin')) {
       // Bypass interception for localhost
       skipauth=true;
      // return next.handle(request);
@@ -28,14 +28,14 @@ constructor(private session:SessionService,private router:Router){}
     const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
   //  const useridString = userid as string;
 // console.log(useridString.length+'  <<<<');
-    //  if(skipauth ||(userid!=null || userid!=''|| useridString.length<2) ){//&& tkeys==keys){
+      if(skipauth || token){//&& tkeys==keys){
 
     //  //    this.router.navigate(['/dashboard']);
-    //    }else{
+        }else{
         console.log('uel>>>>>>>>>>>>>> '+request.url); 
 
-        // this.router.navigate(['/login']);
-      //  }
+         this.router.navigate(['/login']);
+        }
     //Authentication by setting header with token value
     if (token) {
       request = request.clone({
