@@ -118,8 +118,8 @@
                       [value]="calculateTotalCurrentAmt()"  type="number" label="Total Payment:" label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
                   </ion-row>
-
-                  <ion-row style="margin-top: 10px;" *ngIf="paymentway === 'BillWise'">
+                  
+                  <ion-row style="margin-top: 10px;" *ngIf="paymentway === 'BillWise'" >
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
@@ -159,27 +159,27 @@
                       </table>
                     </div>
                     <div>
-                      <table style="overflow-x:auto;border: 1px solid grey;min-width: 350px !important; ">
+                      <table class="payment_table">
                         <tr>
-                          <td>
-                            <label for="" style="margin-left: 5px;">Total Due Amt:</label>
+                          <td >
+                            <label for="">Total Due Amt:</label>
                             <input type="number" name="totaldueamt" [(ngModel)]="totaldueamt"
-                              [value]="calculateTotalDueAmt()" formControlName="totaldueamt" style="border: none;outline: none;text-align: center;">
+                              [value]="calculateTotalDueAmt()" formControlName="totaldueamt" >
                           </td>
                           <td>
-                            <label for="" style="margin-left: 5px;">Total Receive Amt:</label>
+                            <label for="" >Total Receive Amt:</label>
                             <input type="number" name="totalreceiveamt" [(ngModel)]="totalreceiveamt"
-                            [value]="calculateTotalReceiveAmt()" formControlName="totalreceiveamt" style="border: none;outline: none;text-align: center;">
+                            [value]="calculateTotalReceiveAmt()" formControlName="totalreceiveamt" >
                           </td>
                           <td>
-                            <label for="" style="margin-left: 5px;">Total Current Amt:</label>
+                            <label for="" >Total Current Amt:</label>
                             <input type="number" name="totalcurrentamt" [(ngModel)]="totalcurrentamt"
-                            [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt" style="border: none;outline: none;text-align: center;">
+                            [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt" >
                           </td>
                           <td>
-                            <label for="" style="margin-left: 5px;">Total Pending Amt:</label>
+                            <label for="" >Total Pending Amt:</label>
                             <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt"
-                            [value]="calculateTotalPendingAmt()"  formControlName="totalpendingamt" style="border: none;outline: none;text-align: center;">
+                            [value]="calculateTotalPendingAmt()"  formControlName="totalpendingamt">
                           </td>
                         </tr>
                       </table>
