@@ -83,14 +83,14 @@ export class PurchasereturnPage implements OnInit {
    totaltax: number = 0;
    total: string = '';
    */
-  totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalitemno:number = 0;
+  totalquantity: number = 0;
+  totalgrossamt: number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount:number = 0;
+  totalnetamount:number = 0;
 
-  roundoff: string = '';
+  roundoff:number = 0;
   pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
@@ -99,7 +99,7 @@ export class PurchasereturnPage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-  executivename: number = 0;
+  executive: number = 0;
   purchaseData: Purchase[] = [{
     barcode: '',
     itemcode: 0,
@@ -142,7 +142,7 @@ export class PurchasereturnPage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  executive: string = '';
+
   frombill: number = 0;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
@@ -214,7 +214,7 @@ export class PurchasereturnPage implements OnInit {
       discountamt: 0,
       totaltax: 0,
       total: 0,
-      executive: 1,
+      executive: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
 
       totalitemno: [''],
@@ -331,7 +331,7 @@ export class PurchasereturnPage implements OnInit {
           payment: this.myform.value.payment,
           supplier: this.myform.value.supplier,
           gstin: this.myform.value.gstin,
-          exicutive: this.myform.value.executive,
+          executive: this.myform.value.executive,
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
@@ -377,7 +377,7 @@ export class PurchasereturnPage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          executive: ''
+          exicutive: 0
         };
 
         purchases.push(purchasedata);
@@ -591,7 +591,8 @@ export class PurchasereturnPage implements OnInit {
   }
 
   getTotalQuantity(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+    this.totalquantity= this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+    return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -600,7 +601,7 @@ export class PurchasereturnPage implements OnInit {
       return total + grossAmount;
     }, 0);
 
-    return totalGrossAmount;
+    return this.totalgrossamt= totalGrossAmount;
   }
   getTaxableAmount(): number {
     const taxableAmount = this.purchaseData.reduce((total, purchase) => {
@@ -621,7 +622,7 @@ export class PurchasereturnPage implements OnInit {
       return total;
     }, 0);
 
-    return taxableAmount;
+    return this.totalnetamount= taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount), 0)
@@ -638,17 +639,18 @@ export class PurchasereturnPage implements OnInit {
     return this.purchaseData.reduce((total, purchase) => {
       const subtotal = ((purchase.quantity * purchase.basicrate) + ((this.pretax) / this.purchaseData.length)) - purchase.discountamt;
       const taxAmount = subtotal * (purchase.taxrate1 / 100);
-      return total + taxAmount;
+      return this.totaltaxamount= total + taxAmount;
     }, 0);
   }
   getTotalDiscountAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
+    this.totaldiscountamt= this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
+    return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
 
-    return roundedTotalAmount;
+    return this.roundoff= roundedTotalAmount;
   }
   //table formaula
   getnetrate(purchase: Purchase): number {

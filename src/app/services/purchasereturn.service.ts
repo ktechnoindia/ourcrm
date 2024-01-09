@@ -60,7 +60,7 @@ export interface purchasereturnstore {
   companyid:number;
   itemid:number;
   userid:number;
-  executive:string;
+  executive:number;
 frombill:number;
 }
 
