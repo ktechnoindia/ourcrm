@@ -85,14 +85,14 @@ export class AddSalePage implements OnInit {
   total: string = '';
   */
 
-  totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalitemno: number = 0;
+  totalquantity: number = 0;
+  totalgrossamt: number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount: number = 0;
+  totalnetamount: number = 0;
 
-  roundoff: string = '';
+  roundoff: number = 0;
   pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
@@ -619,10 +619,11 @@ export class AddSalePage implements OnInit {
       return total;
     }, 0);
   
-    return taxableAmount;
+    return this.totalnetamount= taxableAmount;
   }
   getTotalQuantity(): number {
-    return this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
+    this.totalquantity= this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
+    return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -631,7 +632,7 @@ export class AddSalePage implements OnInit {
       return total + grossAmount;
     }, 0);
 
-    return totalGrossAmount;
+    return this.totalgrossamt= totalGrossAmount;
   }
   getTotalnetAmount(): number {
     return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount), 0)
@@ -648,17 +649,18 @@ export class AddSalePage implements OnInit {
     return this.salesData.reduce((total, sale) => {
       const subtotal = ((sale.quantity * sale.basicrate)+((this.pretax)/this.salesData.length))- sale.discountamt;
       const taxAmount = subtotal * (sale.taxrate1 / 100) ;
-      return total + taxAmount ;
+      return this.totaltaxamount= total + taxAmount ;
   }, 0);  
  }
   getTotalDiscountAmount(): number {
-    return this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
+    this.totaldiscountamt= this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
+    return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
 
-    return roundedTotalAmount;
+    return  this.roundoff= roundedTotalAmount;
   }
   //table formaula
   getnetrate(sale: Sales): number {

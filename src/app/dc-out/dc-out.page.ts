@@ -79,14 +79,14 @@ export class DcOutPage implements OnInit {
    totaltax: string = '';
    total: string = '';*/
 
-  totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalitemno: number = 0;
+  totalquantity:number = 0;
+  totalgrossamt: number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount: number = 0;
+  totalnetamount: number = 0;
 
-  roundoff: string = '';
+  roundoff:number = 0;
   pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
@@ -547,7 +547,8 @@ export class DcOutPage implements OnInit {
   }
 
   getTotalQuantity(): number {
-    return this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
+    this.totalquantity= this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
+    return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -556,7 +557,7 @@ export class DcOutPage implements OnInit {
       return total + grossAmount;
     }, 0);
 
-    return totalGrossAmount;
+    return this.totalgrossamt= totalGrossAmount;
   }
   getTaxableAmount(): number {
     const taxableAmount = this.dcoutData.reduce((total, dcout) => {
@@ -577,7 +578,7 @@ export class DcOutPage implements OnInit {
       return total;
     }, 0);
   
-    return taxableAmount;
+    return this.totalnetamount= taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
@@ -595,15 +596,16 @@ export class DcOutPage implements OnInit {
     return this.dcoutData.reduce((total, dcout) => {
       const subtotal = ((dcout.quantity * dcout.basicrate)+((this.pretax)/this.dcoutData.length))- dcout.discountamt;
       const taxAmount = subtotal * (dcout.taxrate1 / 100) ;
-      return total + taxAmount ;
+      return this.totaltaxamount= total + taxAmount ;
   }, 0);  }
   getTotalDiscountAmount(): number {
-    return this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
+    this.totaldiscountamt= this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
+    return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
-    return roundedTotalAmount;
+    return this.roundoff= roundedTotalAmount;
   }
   //table formaula
   getnetrate(quote: Dcout): number {

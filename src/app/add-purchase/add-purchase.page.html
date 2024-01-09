@@ -91,14 +91,22 @@
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="orderNumber" formControlName="orderNumber" name="orderno" type="text"
-                    label="PO Number  :" label-placement="floating" fill="outline"></ion-input>
+                    label="Order Number  :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date"
-                    label="PO Date :" label-placement="floating" fill="outline"></ion-input>
+                    label="Order Date :" label-placement="floating" fill="outline"></ion-input>
+
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text"
+                    label="PO Number  :" label-placement="floating" fill="outline"></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -121,8 +129,8 @@
               </ion-col>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label=" --- Executive Name ---" label-placement="floating" fill="outline" [(ngModel)]=" executivename" name="executive_name"
-                  formControlName="executivename">
+                label=" --- Executive Name ---" label-placement="floating" fill="outline" [(ngModel)]=" executive" name="executive"
+                  formControlName="executive">
                   <!-- <ion-select-option value="0"> --- Executive Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -258,7 +266,7 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)" (keyup)="getdiscountamt(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                     </td>
                     <td>
                       <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number">
@@ -290,35 +298,35 @@
                     <label class="label_table" for="">Quantity : </label>
 
                     <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
-                      formControlName="totalquantity" class="input_table" type="text">
+                      formControlName="totalquantity" class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
                     <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
-                      formControlName="totalgrossamt" class="input_table" type="text">
+                      formControlName="totalgrossamt" class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
                     <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
-                      formControlName="totaldiscountamt" class="input_table" type="text">
+                      formControlName="totaldiscountamt" class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
                     <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
-                      formControlName="totaltaxamount" class="input_table" type="text">
+                      formControlName="totaltaxamount" class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"[value]="getTaxableAmount()"
-                      class="input_table" type="text">
+                      class="input_table" type="number">
 
                   </ion-col>
                 </ion-row>
@@ -415,7 +423,7 @@
                       <th colspan="2">Discount Amount :</th>
                       <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
                           id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
-                          class="row_input" type="text">
+                          class="row_input" type="number">
                       </td>
                     </tr>
 
@@ -443,7 +451,7 @@
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()" 
-                          id="roundoff" class="row_input" type="text">
+                          id="roundoff" class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>

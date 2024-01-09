@@ -86,14 +86,14 @@ export class AddPurchasePage implements OnInit {
    totaltax: number = 0;
    total: string = '';
    */
-  totalitemno: string = '';
-  totalquantity: string = '';
-  totalgrossamt: string = '';
-  totaldiscountamt: string = '';
-  totaltaxamount: string = '';
-  totalnetamount: string = '';
+  totalitemno:  number = 0;
+  totalquantity:  number = 0;
+  totalgrossamt:  number = 0;
+  totaldiscountamt: number = 0;
+  totaltaxamount: number = 0;
+  totalnetamount:  number = 0;
 
-  roundoff: string = '';
+  roundoff:  number = 0;
   pretax:  number = 0;
   posttax:  number = 0;
   deliverydate: string = '';
@@ -102,7 +102,7 @@ export class AddPurchasePage implements OnInit {
   closingbalance: string = '';
   debit: string = '';
   credit: string = '';
-  executivename: number = 0;
+  executive: number = 0;
   purchaseData: Purchase[] = [{
     barcode: '',
     itemcode: 0,
@@ -145,7 +145,7 @@ export class AddPurchasePage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
-  executive:string='';
+ 
 
   name: string = '';
   vendor_code: string = '';
@@ -193,7 +193,7 @@ isOpen = false;
       ponumber: [''],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       payment: [''],
-      executivename: [''],
+      executive: [''],
 
       //table
       barcode: [''],
@@ -376,7 +376,7 @@ isOpen = false;
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          executive: '',
+          executive: this.myform.value.executive,
           exicutive: 0
         };
 
@@ -628,7 +628,8 @@ isOpen = false;
   }
 
   getTotalQuantity(): number {
-    return this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+    this.totalquantity= this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+    return  this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -637,7 +638,7 @@ isOpen = false;
       return total + grossAmount;
     }, 0);
 
-    return totalGrossAmount;
+    return this.totalgrossamt= totalGrossAmount;
   }
   getTaxableAmount(): number {
     const taxableAmount = this.purchaseData.reduce((total, purchase) => {
@@ -658,7 +659,7 @@ isOpen = false;
       return total;
     }, 0);
   
-    return taxableAmount;
+    return this.totalnetamount= taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount), 0)
@@ -675,15 +676,16 @@ isOpen = false;
     return this.purchaseData.reduce((total, purchase) => {
       const subtotal = ((purchase.quantity * purchase.basicrate)+((this.pretax)/this.purchaseData.length))- purchase.discountamt;
       const taxAmount = subtotal * (purchase.taxrate1 / 100) ;
-      return total + taxAmount ;
+      return this.totaltaxamount= total + taxAmount ;
   }, 0);  }
   getTotalDiscountAmount(): number {
-    return this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
+    this.totaldiscountamt= this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
+    return this.totaldiscountamt;
   }
   getRoundoff(): number {
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
 
-    return roundedTotalAmount;
+    return this.roundoff= roundedTotalAmount;
   }
   //table formaula
   getnetrate(purchase: Purchase): number {
