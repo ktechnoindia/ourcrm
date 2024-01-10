@@ -22,7 +22,7 @@ export interface purchasestore {
   //table
   barcode: string;
   itemcode: number;
-  itemname: number;
+  itemname: string;
   description: string;
   quantity: number;
   unitname: number;
@@ -51,10 +51,10 @@ export interface purchasestore {
   roundoff: string;
   pretax: number;
   posttax: number;
-  openingbalance: string;
-  closingbalance: string;
-  debit: string;
-  credit: string;
+  openingbalance: number;
+  closingbalance: number;
+  debit: number;
+  credit: number;
   companyid:number;
   itemid:number;
   userid:number;

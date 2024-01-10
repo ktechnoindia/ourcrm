@@ -25,7 +25,7 @@ import { StateService } from '../services/state.service';
 interface Dcin {
   barcode: string;
   itemcode: number;
-  itemname: number,
+  itemname: string,
   description: string;
   quantity: number;
   unitname: string;
@@ -72,22 +72,22 @@ export class DcInPage implements OnInit {
   totaldiscountamt: number = 0;
   totaltaxamount: number = 0;
   totalnetamount: number = 0;
-
+discount:number=0;
   roundoff: number = 0;
   pretax: number = 0;
   posttax:  number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
-  openingbalance: string = '';
-  closingbalance: string = '';
-  debit: string = '';
-  credit: string = '';
+  openingbalance: number = 0;
+  closingbalance: number = 0;
+  debit:  number = 0;
+  credit: number = 0;
 
 
   dcinData: Dcin[] = [{
     barcode: '',
     itemcode: 0,
-    itemname: 0,
+    itemname: '',
     description: '',
     quantity: 0,
     hunitname: 0,
@@ -186,8 +186,8 @@ isOpen = false;
       IGST: 0,
       CGST: 0,
       SGST: 0,
-      discount: 0,
-      discountamt: 0,
+      discount: [0],
+      discountamt: [0],
       totaltax: 0,
       total: 0,
       discountType: ['amount'], // 'amount' or 'percentage'
@@ -286,7 +286,7 @@ isOpen = false;
     this.dcinData = [{
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       hunitname: 0,
@@ -497,7 +497,7 @@ isOpen = false;
     const newRow: Dcin = {
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',
@@ -642,13 +642,13 @@ return this.totalquantity;
     // update discount percentage
     dcin.discount = discount;
     // return discount amount for display
-    return discountamt;
+    return discount;
   }
   // getdiscountp(dcin: Dcin) {
   //   dcin.discountamt = dcin.total * (dcin.discount / 100);
   //   dcin.total = dcin.total - dcin.total * (dcin.discount / 100)
   // }
-  getdiscountp(dcin: any): number {
+  getdiscountp(dcin: Dcin): number {
     const discountPercentage = dcin.discount || 0; // assuming discount is a property in your dcin object
     const basicrate = dcin.basicrate || 0; // handle null/undefined values
     const quantity = dcin.quantity || 0; // handle null/undefined values
