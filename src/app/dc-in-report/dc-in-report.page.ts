@@ -78,6 +78,7 @@ availableColumns: string[] = [
   'pretax',
   'posttax',
   'total',
+  'totalnetamount',
 ];
 selectedColumns: string[] = [
   'voucherNumber',
@@ -89,7 +90,7 @@ selectedColumns: string[] = [
   'basicrate',
   'discountamt',
   'totaltax',
-  'total',
+  'totalnetamount',
   
 ];
 totalItems: number = 0;

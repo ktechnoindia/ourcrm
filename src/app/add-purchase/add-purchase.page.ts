@@ -386,7 +386,7 @@ isOpen = false;
         purchases.push(purchasedata);
         this.purchaseService.createpurchase(purchases, '', '').subscribe(
           (response: any) => {
-            console.log('POST request successful', response);
+            console.log('Purchase Post successful', response);
             setTimeout(() => {
               this.formService.showSuccessAlert();
             }, 1000);
@@ -394,7 +394,7 @@ isOpen = false;
             this.form.reset();
           },
           (error: any) => {
-            console.log('POST request failed', error);
+            console.log('Purchase Post failed', error);
             setTimeout(() => {
               this.formService.showFailedAlert();
             }, 1000);

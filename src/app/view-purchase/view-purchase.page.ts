@@ -97,6 +97,7 @@ export class ViewPurchasePage implements OnInit {
     'taxrate',
     'totaltax',
     'total',
+
   ];
   purchase$: Observable<any[]>
   searchTerm: string = '';
