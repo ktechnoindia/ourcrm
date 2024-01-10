@@ -57,6 +57,7 @@ export class ReceiptPage implements OnInit {
   sales$: Observable<any[]>
   outstanding_amount: any;
   outstanding$: Observable<any[]>
+  isCheckboxSelected: boolean=false;
 
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
@@ -81,7 +82,7 @@ export class ReceiptPage implements OnInit {
       outstanding: [0],
       paymentmade: [''],
       paymentway: [''],
-      total: [''],
+      total: [0],
       total_payment: [''],
       totalamt: [''],
       billno: [''],
@@ -97,8 +98,22 @@ export class ReceiptPage implements OnInit {
       totalreceiveamt: [''],
       totalcurrentamt: [''],
       totalpendingamt: [''],
+      isCheckboxSelected:[false]
     })
 
+  };
+
+  checkboxChanged() {
+    // Handle checkbox change event
+    // You can add additional logic here if needed
+    if (!this.isCheckboxSelected) {
+      // Checkbox is unchecked, clear the input values
+      this.billno = '';
+      this.totalamt = 0; // or any default value you prefer
+      this.receiveamt = 0; // or any default value you prefer
+      this.currentamt = 0; // or any default value you prefer
+      this.pendingamt = 0; // or any default value you prefer
+    }
   }
 
   presentPopover(e: Event) {

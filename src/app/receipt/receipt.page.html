@@ -47,7 +47,7 @@
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;">
-                    <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
+                    <div style="overflow-x:auto;height: 325px;border: 1px solid grey;">
                       <table style="width: 650px;overflow-x:auto;border: 1px solid grey; ">
                         <tr>
                           <th>Ledger Name</th>
@@ -93,7 +93,7 @@
                       </table>
                     </div>
                   </ion-row>
-                  <table>
+                  <!-- <table>
                     <tr>
                       <td style="float: right;">
                         <label for="" style="margin-left: 5px;">Total :</label>
@@ -101,7 +101,7 @@
                         [value]="calculateTotalCurrentAmt()"  style="border: none;outline: none;text-align: center;">
                       </td>
                     </tr>
-                  </table>
+                  </table> -->
                 </ion-card>
 
               </ion-col>
@@ -122,6 +122,7 @@
                     <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
                       <table style="overflow-x:auto;border: 1px solid grey; ">
                         <tr>
+                          <th style="width: 70px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
                           <th>Bill No.</th>
                           <th>Total Amt. Due</th>
@@ -130,28 +131,29 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <tr>
-                          <td>1</td>
+                        <tr *ngFor="let sales of sales$ | async; let i = index">
+                          <td><ion-checkbox [(ngModel)]="sales.isCheckboxSelected" formControlName="isCheckboxSelected" (ionChange)="checkboxChanged()"></ion-checkbox></td>
+                          <td>{{ i + 1 }}</td>
                           <td>
-                            <ion-input type="text" name="billno " [(ngModel)]="billno"
-                              formControlName="billno"></ion-input>
+                            <ion-input type="text" name="billno" [readonly]="true" [value]="sales.billNumber" [disabled]="sales.isCheckboxSelected">
+                           
+                            </ion-input>
                           </td>
                           <td>
-                            <ion-input class="date" type="number" name="totalamt" [(ngModel)]="totalamt"
-                              formControlName="totalamt"></ion-input>
+                            <ion-input class="date" type="number" name="totalamt" [value]="sales.total" [disabled]="sales.isCheckboxSelected"></ion-input>
                           </td>
 
                           <td>
                             <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="receiveamt"
-                              formControlName="receiveamt"></ion-input>
+                              formControlName="receiveamt" [disabled]="sales.isCheckboxSelected"></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="currentamt" [(ngModel)]="currentamt"
-                              formControlName="currentamt"></ion-input>
+                              formControlName="currentamt" [disabled]="sales.isCheckboxSelected"></ion-input>
                           </td>
                           <td>
                             <ion-input type="number" name="billpendingamt" [(ngModel)]="billpendingamt"
-                              formControlName="billpendingamt"></ion-input>
+                              formControlName="billpendingamt" [disabled]="sales.isCheckboxSelected"></ion-input>
                           </td>
 
                         </tr>

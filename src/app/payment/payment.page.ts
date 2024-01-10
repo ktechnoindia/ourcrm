@@ -66,12 +66,9 @@ export class PaymentPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-    // const userid = 1;
     this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
-
     this.outstanding$.subscribe(outstandingData => {
       console.log(outstandingData);
-
     });
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
@@ -98,6 +95,7 @@ export class PaymentPage implements OnInit {
       totalreceiveamt: [0],
       totalcurrentamt: [0],
       totalpendingamt: [0],
+      isCheckboxSelected:[false]
     })
 
   }
