@@ -177,11 +177,11 @@ export class AddQuotPage implements OnInit {
   districts$: Observable<any[]>
   customerpop: FormGroup;
 
-
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
 
   isOpen = false;
+  showIconDiv: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
@@ -270,6 +270,10 @@ export class AddQuotPage implements OnInit {
         this.closePopover();
       }
     });
+  }
+
+  toggleIconDiv() {
+    this.showIconDiv = !this.showIconDiv;
   }
 
   presentPopovers(e: Event) {
