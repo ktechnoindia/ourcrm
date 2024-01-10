@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -46,7 +46,8 @@ interface Purchase {
   templateUrl: './purchasereturn.page.html',
   styleUrls: ['./purchasereturn.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PurchasereturnPage implements OnInit {
   form: any;
@@ -164,6 +165,7 @@ export class PurchasereturnPage implements OnInit {
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
   isOpen = false;
+  vend: any;
 
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
@@ -487,8 +489,8 @@ export class PurchasereturnPage implements OnInit {
 
   getSuppliers(event: any) {
     const compid = '1';
-    const identifier = this.vendcode ? 'suppliertype' : 'vendcode';
-    const value = this.vendcode;
+    const identifier = this.vend ? 'suppliertype' : 'vendcode';
+    const value = this.vend;
 
     this.vendname1.fetchallVendor(compid, value, '').subscribe(
       (data) => {

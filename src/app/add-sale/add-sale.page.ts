@@ -22,7 +22,7 @@ import { DistrictsService } from '../services/districts.service';
 interface Sales {
   barcode: string;
   itemcode: number;
-  itemname: number,
+  itemname: string,
   description: string;
   quantity: number;
   unitname: string;
@@ -98,14 +98,14 @@ export class AddSalePage implements OnInit {
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
-  openingbalance: string = '';
-  closingbalance: string = '';
-  debit: string = '';
-  credit: string = '';
+  openingbalance:number = 0;
+  closingbalance:number = 0;
+  debit:number = 0;
+  credit:number = 0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
-    itemname: 0,
+    itemname: '',
     description: '',
     quantity: 0,
     hunitname: 0,
@@ -419,7 +419,7 @@ export class AddSalePage implements OnInit {
     this.salesData = [{
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',
@@ -526,7 +526,7 @@ export class AddSalePage implements OnInit {
     const newRow: Sales = {
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',

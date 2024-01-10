@@ -17,7 +17,7 @@ export interface dcinstore {
   pretax: number;
   barcode: string;
   itemcode: number;
-  itemname: number,
+  itemname: string,
   description: string;
   quantity: number;
   unitname: number;
@@ -46,10 +46,10 @@ export interface dcinstore {
 
   roundoff: string;
 
-  openingbalance: string;
-  closingbalance: string;
-  debit: string;
-  credit: string;
+  openingbalance: number;
+  closingbalance: number;
+  debit: number;
+  credit: number;
 companyid:number;
 userid:number;
 }

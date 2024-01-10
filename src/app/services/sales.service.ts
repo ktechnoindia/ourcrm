@@ -20,7 +20,7 @@ export interface salesstore {
   //table
   barcode: string;
   itemcode: number;
-  itemname: number;
+  itemname: string;
   description: string;
   quantity: number;
   unitname: number;
@@ -49,10 +49,10 @@ export interface salesstore {
   roundoff: string;
   pretax: number;
   posttax: number;
-  openingbalance: string;
-  closingbalance: string;
-  debit: string;
-  credit: string;
+  openingbalance: number;
+  closingbalance: number;
+  debit: number;
+  credit: number;
 
   ttotal: number;
   companyid:number;

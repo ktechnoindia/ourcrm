@@ -13,7 +13,7 @@ export interface dcoutstore {
   ponumber:string;
   barcode: string;
   itemcode: number;
-  itemname: number;
+  itemname: string;
   description: string;
   quantity: number;
   unitname: number;
@@ -42,10 +42,10 @@ export interface dcoutstore {
   roundoff: string;
   pretax: number;
   posttax: number;
-  openingbalance: string;
-  closingbalance: string;
-  debit: string;
-  credit: string;
+  openingbalance: number;
+  closingbalance: number;
+  debit: number;
+  credit: number;
 
   companyid:number;
   userid:number;

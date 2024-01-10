@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -22,7 +22,7 @@ import { StateService } from '../services/state.service';
 interface Sales {
   barcode: string;
   itemcode: number;
-  itemname: number,
+  itemname: string,
   description: string;
   quantity: number;
   unitname: string;
@@ -48,7 +48,8 @@ interface Sales {
   templateUrl: './salesreturn.page.html',
   styleUrls: ['./salesreturn.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SalesreturnPage implements OnInit {
   billNumber: number = 0;
@@ -76,15 +77,15 @@ export class SalesreturnPage implements OnInit {
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
-  openingbalance: string = '';
-  closingbalance: string = '';
-  debit: string = '';
-  credit: string = '';
+  openingbalance: number = 0;
+  closingbalance: number = 0;
+  debit: number = 0;
+  credit:number = 0;
   itemid: number = 0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
-    itemname: 0,
+    itemname: '',
     description: '',
     quantity: 0,
     hunitname: 0,
@@ -145,6 +146,7 @@ export class SalesreturnPage implements OnInit {
   popover!: IonPopover;
 
   isOpen = false;
+  cust: any;
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
@@ -401,7 +403,7 @@ export class SalesreturnPage implements OnInit {
     this.salesData = [{
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',
@@ -468,8 +470,8 @@ export class SalesreturnPage implements OnInit {
 
   getCustomers(event: any) {
     const compid = '1';
-    const identifier = this.custcode ? 'custcode' : 'custname';
-    const value = this.custcode;
+    const identifier = this.cust ? 'custcode' : 'custname';
+    const value = this.cust;
 
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
@@ -508,7 +510,7 @@ export class SalesreturnPage implements OnInit {
     const newRow: Sales = {
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',
