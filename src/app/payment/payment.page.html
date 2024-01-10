@@ -126,6 +126,7 @@
                           <th style="width: 60px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
                           <th>Bill No.</th>
+                          <th>Bill Date</th>
                           <th>Total Amt. Due</th>
                           <th>Receive Amt.</th>
                           <th>Current Amt.</th>
@@ -137,6 +138,10 @@
                           <td>{{ i + 1 }}</td>
                           <td>
                             <ion-input type="text" name="billno " [value]="purchase.billNumber" [disabled]="purchase.isCheckboxSelected">
+                            </ion-input>
+                          </td>
+                          <td>
+                            <ion-input type="text" name="billdate " [value]="purchase.billDate" [disabled]="purchase.isCheckboxSelected">
                             </ion-input>
                           </td>
                           <td>
