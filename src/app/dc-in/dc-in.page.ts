@@ -199,7 +199,7 @@ isOpen = false;
       deliverydate: [''],
       deliveryplace: [''],
 
-      roundoff: [0],
+      roundoff: [''],
       pretax: [''],
       posttax: [''],
       openingbalance: [''],
@@ -824,7 +824,9 @@ return this.totalquantity;
           }, 1000);
 
           this.formService.showSaveLoader()
-          this.myform.reset();
+          //this.myform.reset();
+          //this.onNew()
+          
 
         },
         (error: any) => {

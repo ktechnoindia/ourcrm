@@ -448,6 +448,7 @@ export class AddQuotPage implements OnInit {
           }, 1000);
           this.formService.showSaveLoader();
           this.myform.reset();
+          //location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -472,6 +473,7 @@ export class AddQuotPage implements OnInit {
     }
 
   }
+  
   getItems(quote: any) {
     const compid = 1;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
