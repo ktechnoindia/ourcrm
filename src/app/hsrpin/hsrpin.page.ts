@@ -81,6 +81,8 @@ export class HsrpinPage implements OnInit {
   supplier$: Observable<any[]>;
   executive$: Observable<any>;
   selectGst$: Observable<any>;
+  navCtrl: any;
+  cdr: any;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService,private executiveService:ExecutiveService,private GstService:GsttypeService) {
     const compid = '1';
@@ -134,7 +136,15 @@ export class HsrpinPage implements OnInit {
   onSubmit() {
 
   }
+  onButtonClick() {
+    // Add any additional logic you may need before closing the page
+    this.navCtrl.back(); // This will navigate back to the previous page
+    this.cdr.detectChanges();
 
+  }
+  onNew() {
+    location.reload();
+  }
   ngOnInit() {
   }
   goBack() {

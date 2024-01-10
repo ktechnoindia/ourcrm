@@ -63,6 +63,8 @@ export class HsrpoutPage implements OnInit {
   executive$: Observable<any[]>;
   customers$: Observable<any>;
   selectGst$: Observable<any>;
+  navCtrl: any;
+  cdr: any;
   constructor(private router : Router,private formBuilder: FormBuilder,private GstService:GsttypeService,private custService:CustomerService,private encService: EncryptionService,private executiveService:ExecutiveService) { 
     const compid='1';
     this.customers$ = this.custService.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -113,6 +115,15 @@ export class HsrpoutPage implements OnInit {
   }
 onSubmit(){
 
+}
+onButtonClick() {
+  // Add any additional logic you may need before closing the page
+  this.navCtrl.back(); // This will navigate back to the previous page
+  this.cdr.detectChanges();
+
+}
+onNew() {
+  location.reload();
 }
   ngOnInit() {
   }

@@ -147,6 +147,7 @@ isOpen = false;
   vendorpop: FormGroup;
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
+   // this.cdr.detectChanges();
     const compid = '1';
     const id = 1;
     const companyid = 1
@@ -314,6 +315,7 @@ isOpen = false;
 
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
+   
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
@@ -381,6 +383,7 @@ isOpen = false;
           userid: userid,
           ponumber: this.myform.value.ponumber,
         }
+        
         decindatas.push(dcindata);
 
         this.dcinService.createdcin(decindatas, '', '').subscribe(
@@ -399,6 +402,7 @@ isOpen = false;
             }, 1000);
             this.formService.shoErrorLoader();
           }
+          
         );
       }
     } else {
@@ -739,6 +743,8 @@ return this.totalquantity;
   onButtonClick() {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
+    this.cdr.detectChanges();
+
   }
   goBack() {
     this.router.navigate(["/transcationdashboard"])
