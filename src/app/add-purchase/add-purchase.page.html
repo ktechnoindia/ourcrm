@@ -63,7 +63,7 @@
 
               <ion-col size-lg="2.5" size-md="2.5" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" 
-                label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="vendcode" formControlName="supplier" name="spler" (change)="getVendors($event)">
+                label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="vendcode" formControlName="supplier" name="supplier" (change)="getVendors($event)">
                   <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}

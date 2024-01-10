@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -48,7 +48,8 @@ interface Sales {
   templateUrl: './add-sale.page.html',
   styleUrls: ['./add-sale.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddSalePage implements OnInit {
   billformate: number = 0;
@@ -162,6 +163,7 @@ export class AddSalePage implements OnInit {
   popover!: IonPopover;
 
   isOpen = false;
+  cust: any;
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = '1';
@@ -484,8 +486,8 @@ export class AddSalePage implements OnInit {
 
   getCustomers(event: any) {
     const compid = '1';
-    const identifier = this.custcode ? 'custcode' : 'custname';
-    const value = this.custcode;
+    const identifier = this.cust ? 'custcode' : 'custname';
+    const value = this.cust;
 
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
@@ -496,7 +498,6 @@ export class AddSalePage implements OnInit {
           event.custcode = itemDetails.customer_code;
           event.custname = itemDetails.name;
           event.gstin = itemDetails.gstin,
-
 
             // Update form control values
             this.myform.patchValue({

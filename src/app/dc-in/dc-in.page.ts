@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, ToastController } from '@ionic/angular';
@@ -52,7 +52,8 @@ interface Dcin {
   templateUrl: './dc-in.page.html',
   styleUrls: ['./dc-in.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DcInPage implements OnInit {
 
@@ -470,7 +471,7 @@ isOpen = false;
 
           // Update the form control values based on the identifier
           this.myform.patchValue({
-            [identifier]: itemDetails.vendor_code,
+            vendcode: itemDetails.vendor_code,
             suppliertype: itemDetails.name,
             // Other form controls...
           });

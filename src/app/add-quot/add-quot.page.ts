@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
@@ -50,7 +50,8 @@ interface Quote {
   styleUrls: ['./add-quot.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
-    ReactiveFormsModule]
+    ReactiveFormsModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddQuotPage implements OnInit {
   gstTypes: any[] = [];

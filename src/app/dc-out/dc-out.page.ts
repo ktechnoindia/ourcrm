@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -47,7 +47,8 @@ interface Dcout {
   templateUrl: './dc-out.page.html',
   styleUrls: ['./dc-out.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DcOutPage implements OnInit {
   voucherformat: number = 0;
@@ -155,6 +156,7 @@ export class DcOutPage implements OnInit {
   
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   isOpen:boolean= false;
+  vend: any;
   
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
@@ -476,10 +478,10 @@ export class DcOutPage implements OnInit {
 
   getCustomers(event: any) {
     const compid = '1';
-    const identifier = this.vendcode ? 'custname' : 'vendcode';
-    const value = this.vendcode;
+    const identifier = this.vend ? 'suppliertype' : 'vendcode';
+    const value = this.vend;
 
-    this.custname1.fetchallCustomer(compid, value, '').subscribe(
+    this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
         console.log('Data received:', data);
 
@@ -487,16 +489,17 @@ export class DcOutPage implements OnInit {
           const itemDetails = data[0];
 
           // Update the quote properties
-          event.custcode = itemDetails.customer_code;
-          event.custname = itemDetails.name;
+          event.vendcode = itemDetails.customer_code;
+          event.suppliertype = itemDetails.name;
 
 
           // Update form control values
           this.myform.patchValue({
-            custcode: itemDetails.vendcode,
-            custname: itemDetails.custcode,
+            vendcode: itemDetails.customer_code,
+            suppliertype: itemDetails.suppliertype,
             // Other form controls...
           });
+          this.vendcode = itemDetails.customer_code;
         } else {
           console.error('No data found for the selected item.');
         }

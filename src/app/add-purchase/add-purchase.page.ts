@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -46,7 +46,8 @@ interface Purchase {
   templateUrl: './add-purchase.page.html',
   styleUrls: ['./add-purchase.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 
@@ -167,6 +168,8 @@ export class AddPurchasePage implements OnInit {
   popover!: IonPopover;
 
 isOpen = false;
+  vend: any;
+
 
   constructor(private navCtrl: NavController,private popoverController:PopoverController ,private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
@@ -445,8 +448,8 @@ isOpen = false;
     }
   getVendors(event: any) {
     const compid = '1';
-    const identifier = this.vendcode ? 'custcode' : 'custname';
-    const value = this.vendcode;
+    const identifier = this.vend ? 'custcode' : 'custname';
+    const value = this.vend;
 
     this.vendname1.fetchallVendor(compid, '', value).subscribe(
       (data) => {
@@ -524,8 +527,8 @@ isOpen = false;
 
   getSuppliers(event: any) {
     const compid = '1';
-    const identifier = this.vendcode ? 'suppliertype' : 'vendcode';
-    const value = this.vendcode;
+    const identifier = this.vend ? 'suppliertype' : 'vendcode';
+    const value = this.vend;
 
     this.vendname1.fetchallVendor(compid, value, '').subscribe(
       (data) => {
