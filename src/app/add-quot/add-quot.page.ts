@@ -17,6 +17,7 @@ import { DistrictsService } from '../services/districts.service';
 import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
+import { SessionService } from '../services/session.service';
 interface Quote {
 
   barcode: string;
@@ -185,6 +186,8 @@ export class AddQuotPage implements OnInit {
   showIconDiv: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
+   
+   
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.gstsrvs.getgsttype().subscribe((types) => {
@@ -624,47 +627,7 @@ export class AddQuotPage implements OnInit {
   onNew() {
     location.reload();
   }
-  // calculateTotalSum() {
-  //   let sum = 0;
-  //   for (const row of this.quoteData) {
-  //     sum += this.quote.total;
-  //   }
-  //   this.ttotal = sum;
-  // }
-  // async onSubmit() {
-  //   if (this.quoteNumber === null) {
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Number is required",
-  //       duration: 3000,
-  //       color: 'danger',
-
-  //     });
-  //     toast.present();
-  //   }else if(this.quateDate===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Date is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   }else if(this.quoteGroup===''){
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Quatation Group is required",
-  //       duration: 3000,
-  //       color: 'danger'
-  //     });
-  //     toast.present();
-  //   
-  //   }else{
-  //     const toast = await this.toastCtrl.create({
-  //       message: "Successfully !",
-  //       duration: 3000,
-  //       color: 'success',
-  //       position:'top'
-  //     });
-  //     toast.present();
-  //   }
-  // }
+ 
   getTotalQuantity(): number {
     this.totalquantity = this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
     return this.totalquantity;
@@ -829,6 +792,15 @@ export class AddQuotPage implements OnInit {
     return this.getTotaltax(quote);
   }
   ngOnInit() {
+   
+    if (this.session && this.session.getValue) {
+      // Your existing code that uses this.session.getValue
+      const userid = this.session.getValue('userid');
+      // Other initialization logic
+    } else {
+      console.error('Session is not initialized or does not have getValue method.');
+      // Handle the case where the session is not initialized
+    }
     this.getquoteNo();
     this.generateRows();
 
@@ -984,6 +956,7 @@ export class AddQuotPage implements OnInit {
   // }
 
   async onCustSubmit() {
+    
     const fields = { name: this.name, }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
