@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
@@ -14,7 +14,8 @@ import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from '
   templateUrl: './addattribute.page.html',
   styleUrls: ['./addattribute.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddattributePage implements OnInit {
 

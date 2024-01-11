@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -11,7 +11,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdditemService, item } from '../services/additem.service';
 import { AddgroupService, group } from '../services/addgroup.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ChangeDetectionStrategy } from '@angular/compiler';
 import { StocktypeService } from '../services/stocktype.service';
 import { ItemtypeService } from '../services/itemtype.service';
 import { FormValidationService } from '../form-validation.service';
@@ -26,7 +25,7 @@ import { CreateunitService, unit } from '../services/createunit.service';
   styleUrls: ['./add-item.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterLink, RouterModule,],
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddItemPage implements OnInit {
 

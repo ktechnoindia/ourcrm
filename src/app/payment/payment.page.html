@@ -58,7 +58,7 @@
                         <tr>
                           <td>
                             <select class="select-option" name="companyname" [(ngModel)]="companyname"
-                              formControlName="companyname" (change)="onCompanyChange($event)">
+                              formControlName="companyname" (change)="onCompanyNameChange($event)">
                               <option value="0">Select Ledger Name</option>
                               <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                                 {{ suppliername.name }}

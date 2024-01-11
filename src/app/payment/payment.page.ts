@@ -5,14 +5,14 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { PaymentService, pay, } from '../services/payment.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { CreatecompanyService } from '../services/createcompany.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { CustomerService } from '../services/customer.service';
 import { VendorService } from '../services/vendor.service';
 import { LegderService } from '../services/ledger.service';
-import { PurchaseService } from '../services/purchase.service';
+import { PurchaseService,purchasestore } from '../services/purchase.service';
 
 @Component({
   selector: 'app-payment',
@@ -57,10 +57,10 @@ export class PaymentPage implements OnInit {
   userid: number = 0;
   vendorid: number = 0;
   isCheckboxSelected: boolean = false;
-
+  filteredPurchases$: Observable<any[]>;
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
     const compid = '1';
-
+this.filteredPurchases$=
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     console.log(this.supplier$);
 
@@ -110,6 +110,17 @@ export class PaymentPage implements OnInit {
       this.currentamt = 0; // or any default value you prefer
       this.pendingamt = 0; // or any default value you prefer
     }
+  }
+  onCompanyNameChange(event: any) {
+    const selectedCompanyName = event.target.value;
+  
+    // Use pipe, map, and filter operators
+    this.purchase$ = this.purchase$.pipe(
+      map((purchases: any[]) => purchases.filter((purchase) => purchase.companyname === selectedCompanyName))
+    );
+  
+    // Update other calculations or values as needed
+    // ...
   }
   
 

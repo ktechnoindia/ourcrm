@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
@@ -21,7 +21,7 @@ import { AdditemService } from '../services/additem.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   providers: [DatePipe],
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReceiptPage implements OnInit {
   @ViewChild('popover') popover: any

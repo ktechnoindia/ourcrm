@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
@@ -25,6 +25,7 @@ import { FormValidationService } from '../form-validation.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterLink, RouterModule, ReactiveFormsModule],
   providers: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
 export class CreatecompanyPage implements OnInit {
