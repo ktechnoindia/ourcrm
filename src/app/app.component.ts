@@ -59,6 +59,9 @@ import { CustomStorageModule } from './interceptors/custom-storage.module';
 import { SharedService } from './shared.service';
 import {  NavigationEnd } from '@angular/router'
 import { AmcService } from './services/amc.service';
+// Import Chart.js
+import 'chart.js';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

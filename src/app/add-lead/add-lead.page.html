@@ -146,9 +146,7 @@
                 <ion-button id="left-start" (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
               </ion-col>
 
-              <ion-col class="custom-primary" size-lg="0.7" size-md="2" size-sm="2" size="2">
-                <ion-button id="item"><ion-icon name="person-add-outline"></ion-icon></ion-button>
-              </ion-col>
+            
 
               <ion-col size-lg="3.3" size-md="6" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -159,7 +157,9 @@
                   </ion-select-option>
                 </ion-select>
               </ion-col>
-
+              <ion-col class="custom-primary" size-lg="0.7" size-md="2" size-sm="2" size="2">
+                <ion-button style="margin-top: -7px;" id="item"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+              </ion-col>
               <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
                 <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="--- Lead Assign To --- " label-placement="floating" fill="outline"  [(ngModel)]=" leadassign" name="leadassign"

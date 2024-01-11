@@ -19,7 +19,7 @@ ion-header {
   letter-spacing: 0.5px;
   font-size: 14px;
   margin-right: 20px;
-  background: linear-gradient(to right, #5899E2, #93bff1, #5899E2, #a8c3e2);
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
   padding: 5px;
   border-radius: 20px;
 }
@@ -154,7 +154,15 @@ input[type="date"] {
 }
 
 .icon-container {
-  height: 300px;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
+}
+.icon-container1 {
+  height: 100%;
   width: 100%;
   padding: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -300,4 +308,19 @@ ion-select {
 
   font-weight: bold;
   outline-color: rgb(0, 0, 0);
+}
+
+.graph {
+  background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
+  padding: 10px; /* Add padding for spacing */
+  margin: 5px;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.chart-canvas {
+  background-color: #d1fffd; /* Set canvas background color */
+  border: 1px solid #ccc; /* Add a border for better visibility */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
 }

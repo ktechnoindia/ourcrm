@@ -16,6 +16,9 @@ import { SalesService } from '../services/sales.service';
 import { PurchaseService } from '../services/purchase.service';
 import { SalereturnService } from '../services/salereturn.service';
 import { PurchasereturnService } from '../services/purchasereturn.service';
+import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Colors } from 'chart.js';
 
 @Component({
   selector: 'app-transcationdashboard',
@@ -25,7 +28,24 @@ import { PurchasereturnService } from '../services/purchasereturn.service';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class TranscationdashboardPage implements OnInit {
-  
+  ngAfterViewInit() {
+    const totalquotationCanvas: any = document.getElementById('totalquotationBarChart');
+    const totalsalesCanvas: any = document.getElementById('totalsaleBarChart');
+    const totalpurchaseCanvas: any = document.getElementById('totalpurchaseBarChart');
+    // const executiveCanvas: any = document.getElementById('executiveBarChart');
+
+    if (totalquotationCanvas) {
+      this.createBarChart(totalquotationCanvas, 'Total Quotation', [this.totalQuote]);
+    }
+
+    if (totalsalesCanvas) {
+      this.createBarChart(totalsalesCanvas, 'Total Sales', [this.totalsales]);
+    }
+
+    if (totalpurchaseCanvas) {
+      this.createBarChart(totalpurchaseCanvas, 'Total Purchase', [this.totalpurchase]);
+    }
+  }
   quote$:  Observable<any[]>;
   dcin$: Observable<any[]>;
   dcout$: Observable<any>;
@@ -105,9 +125,85 @@ export class TranscationdashboardPage implements OnInit {
 
     
 
+} createBarChart(canvas: any, label: string, data: number[]) {
+  const ctx = canvas.getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [label],
+      datasets: [{
+        label: label,
+        data: data,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor:  'rgb(255, 99, 132)',
+        borderWidth: 1,
+      }],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+        x: {
+          beginAtZero: true,
+        },
+      },
+      plugins: {
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: 'red',
+          font: {
+            weight: 'bold',
+          },
+          formatter: (value: any, context: any) => {
+            return value;
+          },
+        },
+      },
+    },
+  });
 }
-  ngOnInit() {
+
+
+
+
+ngOnInit() {
+  const compid = '1';
+
+  // Fetch data for all entities
+  this.quote$ = this.quoteservice.fetchallQuote(this.encService.encrypt(compid), '', '','');
+  this.sales$ = this.saleService.fetchallSales(this.encService.encrypt(compid), '', '');  
+  this.purchase$ = this.purchaseService.fetchallPurchase(this.encService.encrypt(compid), '', '');
+
+
+  // Subscribe to the observables and update the counts
+  this.quote$.subscribe(data => {
+    this.totalQuote = data.length;
+    this.updateChartData('totalquotationBarChart', 'Total Quotation', [this.totalQuote]);
+  });
+  this.sales$.subscribe(data => {
+    this.totalsales = data.length;
+    this.updateChartData('totalsaleBarChart', 'Total Sales', [this.totalsales]);
+  });
+  this.purchase$.subscribe(data => {
+    this.totalpurchase = data.length;
+    this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
+  });
+
+}
+
+updateChartData(chartId: string, label: string, data: number[]) {
+  const chart = Chart.getChart(chartId);
+  if (chart) {
+    chart.data.labels = [label];
+    chart.data.datasets[0].data = data;
+    chart.update();
   }
- 
 }
+}
+
+
+
+
 

@@ -1,4 +1,3 @@
-
 <ion-content class="container_fluid">
   <div class="dash">
     <ion-title>
@@ -21,15 +20,16 @@
 
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" [routerLink]="'/view-quot'">
-                  <ion-icon name="person-outline" ></ion-icon><br>
-                  <ion-label >
+                  <ion-icon name="person-outline"></ion-icon><br>
+                  <ion-label>
                     Quatations
                   </ion-label>
                   <ion-title>{{totalQuote}}</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);" [routerLink]="'/dc-in-report'">
+                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);"
+                  [routerLink]="'/dc-in-report'">
                   <ion-icon name="list-outline"></ion-icon><br>
                   <ion-label>
                     DC-IN
@@ -50,7 +50,7 @@
                 <ion-card style="text-align: center;background-color: lightpink;" [routerLink]="'/view-sale'">
                   <ion-icon name="shield-checkmark-outline"></ion-icon><br>
                   <ion-label>
-                    Sales 
+                    Sales
                   </ion-label>
                   <ion-title>{{totalsales}}</ion-title>
                 </ion-card>
@@ -59,7 +59,7 @@
                 <ion-card style="text-align: center;background-color: lightsalmon;" [routerLink]="'/view-purchase'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
-                    Purchase 
+                    Purchase
                   </ion-label>
                   <ion-title>{{totalpurchase}}</ion-title>
                 </ion-card>
@@ -68,7 +68,7 @@
                 <ion-card style="text-align: center;background-color: lemonchiffon;" [routerLink]="'/view-salesreturn'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
-                    Sales Return 
+                    Sales Return
                   </ion-label>
                   <ion-title>{{totalsalesreturn}}</ion-title>
                 </ion-card>
@@ -77,7 +77,7 @@
                 <ion-card style="text-align: center;background-color: lightblue;" [routerLink]="'/view-purchasereturn'">
                   <ion-icon name="shield-half-outline"></ion-icon><br>
                   <ion-label>
-                    Purchase Return 
+                    Purchase Return
                   </ion-label>
                   <ion-title>{{totalpurchasereturn}}</ion-title>
                 </ion-card>
@@ -87,10 +87,10 @@
         </ion-col>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
           <div class="icon-container">
-            <ion-row >
-              <ion-select  [ngModelOptions]="{standalone: true}"  [(ngModel)]="selectedOptions" multiple class="always-flip"
-              toggleIcon="caret-down-sharp" color="dark" interface="popover" label="Select Master Table"
-              label-placement="floating" fill="outline">
+            <ion-row>
+              <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOptions" multiple
+                class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Master Table" label-placement="floating" fill="outline">
                 <ion-select-option value="purchaselist">Purchase List</ion-select-option>
                 <ion-select-option value="saleslist">Sales List</ion-select-option>
                 <ion-select-option value="quotelist">Quatations List</ion-select-option>
@@ -116,7 +116,7 @@
               </ion-item>
               <ion-item [routerLink]="['/dc-out']">
                 <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
-                 DC-OUT
+                  DC-OUT
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
               <ion-item [routerLink]="['/add-sale']">
@@ -140,25 +140,63 @@
                   Purchase Return
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
-             
+
             </ion-row>
 
-           
+
 
           </div>
+
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+  <div class="graph">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+          <ion-label>
+            Total Quatation
+          </ion-label>
+          <!-- <ion-title>{{totalQuote }}</ion-title> -->
+          <canvas id="totalquotationBarChart" class="chart-canvas"></canvas>
 
+        </ion-col>
+        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+          <ion-label>
+            Total Sales
+          </ion-label>
+          <!-- <ion-title>{{totalsales }}</ion-title> -->
+          <canvas id="totalsaleBarChart" class="chart-canvas"></canvas>
+
+        </ion-col>
+        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+          <ion-label>
+            Total Purchase
+          </ion-label>
+          <!-- <ion-title>{{totalpurchase}}</ion-title> -->
+          <canvas id="totalpurchaseBarChart" class="chart-canvas"></canvas>
+
+        </ion-col>
+        <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+          <ion-label>
+            Total Executive
+          </ion-label>
+          <ion-title>{{totalExecitve}}</ion-title>
+          <canvas id="executiveBarChart" class="chart-canvas"></canvas>
+
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </div>
   <ion-grid>
     <ion-row class="lead_details">
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container"*ngIf="selectedOptions.includes('purchaselist')">
+        <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
           <p>Purchase List</p>
           <ion-searchbar class="customs"></ion-searchbar>
-          <div class="scroll-container" >
+          <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
@@ -168,7 +206,7 @@
                 <th style="width: 70px !important;"> Order Date</th>
                 <th style="width: 70px !important;"> Order No.</th>
                 <th style="width: 70px !important;">Exicutive Name</th>
-               
+
               </tr>
               <tr *ngFor="let purchase of purchase$ | async; let i = index">
                 <td>{{i+1}}</td>
@@ -185,7 +223,7 @@
         </div>
       </ion-col>
 
-     
+
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
           <p>Sales List</p>
@@ -215,7 +253,7 @@
           </div>
         </div>
       </ion-col>
-     
+
     </ion-row>
     <ion-row class="lead_details">
 
@@ -242,7 +280,7 @@
         </div>
       </ion-col>
 
-     
+
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('dcinlist')">
           <p>DC-IN List</p>
@@ -255,7 +293,7 @@
                 <th style="width: 70px !important;">Voucher Date</th>
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
-               
+
               </tr>
               <tr *ngFor="let dcin of dcin$ | async; let i = index">
                 <td>{{i+1}}</td>
@@ -263,7 +301,7 @@
                 <td>{{dcin.datetype}}</td>
                 <td>{{dcin.vendcode}}</td>
                 <td>{{dcin.suppliertype}}</td>
-               
+
               </tr>
             </table>
           </div>
@@ -284,7 +322,7 @@
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
               </tr>
-              <tr  *ngFor="let dcout of dcout$ | async; let i = index">
+              <tr *ngFor="let dcout of dcout$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{dcout.voucherformat}}</td>
                 <td>{{dcout.voucherNumber}}</td>
@@ -328,7 +366,7 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container"*ngIf="selectedOptions.includes('purchasereturnlist')">
+        <div class="table-container" *ngIf="selectedOptions.includes('purchasereturnlist')">
           <p>Purchase Return List</p>
           <ion-searchbar class="customs"></ion-searchbar>
           <div class="scroll-container">
@@ -341,7 +379,7 @@
                 <th style="width: 70px !important;"> Order Date</th>
                 <th style="width: 70px !important;"> Order No.</th>
                 <th style="width: 70px !important;">Exicutive Name</th>
-               
+
               </tr>
               <tr *ngFor="let purchasereturn of purchasereturn$ | async; let i = index">
                 <td>{{i+1}}</td>

@@ -6,7 +6,9 @@ import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
 import { Observable } from 'rxjs';
-
+import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Colors } from 'chart.js';
 
 
 @Component({
@@ -18,20 +20,30 @@ import { Observable } from 'rxjs';
  
 })
 export class LeaddashboardPage implements OnInit {
+  ngAfterViewInit() {
+    const totalleadCanvas: any = document.getElementById('totalleadBarChart');
+    const activeleadCanvas: any = document.getElementById('activeleadBarChart');
+    const orderclosedCanvas: any = document.getElementById('orderclosedBarChart');
+    // const executiveCanvas: any = document.getElementById('executiveBarChart');
 
+    if (totalleadCanvas) {
+      this.createBarChart(totalleadCanvas, 'Total Lead', [this.totallead]);
+    }
+
+    if (activeleadCanvas) {
+      this.createBarChart(activeleadCanvas, 'Active Lead', [this.totallead]);
+    }
+
+    if (orderclosedCanvas) {
+      this.createBarChart(orderclosedCanvas, 'Order Closed', [this.totallead]);
+    }
+  }
   menuType = 'push';
   public number: number = 1000;
   selectedOptions: string[] = [];
 
 
-  dataTable = [
-    ['City', '2010 Population', '2000 Population'],
-    ['New York City, NY', 8175000, 8008000],
-    ['Los Angeles, CA', 3792000, 3694000],
-    ['Chicago, IL', 2695000, 2896000],
-    ['Houston, TX', 2099000, 1953000],
-    ['Philadelphia, PA', 1526000, 1517000]
-  ]
+  
   lead$: Observable<any[]>;
   totallead: number=0;
 
@@ -46,13 +58,83 @@ export class LeaddashboardPage implements OnInit {
       this.totallead=data.length // Log the data to the console to verify if it's being fetched
     });
   }
+  createBarChart(canvas: any, label: string, data: number[]) {
+    const ctx = canvas.getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [label],
+        datasets: [{
+          label: label,
+          data: data,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor:  'rgb(255, 99, 132)',
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+          x: {
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            color: 'red',
+            font: {
+              weight: 'bold',
+            },
+            formatter: (value: any, context: any) => {
+              return value;
+            },
+          },
+        },
+      },
+    });
+  }
+  
+  
+  
+  
+  ngOnInit() {
+    const compid = '1';
 
-ngOnInit() {
+    // Fetch data for all entities
+    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');  
+    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+ 
 
+    // Subscribe to the observables and update the counts
+    this.lead$.subscribe(data => {
+      this.totallead = data.length;
+      this.updateChartData('totalleadBarChart', 'Total Lead', [this.totallead]);
+    });
+    this.lead$.subscribe(data => {
+      this.totallead = data.length;
+      this.updateChartData('activeleadBarChart', 'Active Lead', [this.totallead]);
+    });
+    this.lead$.subscribe(data => {
+      this.totallead = data.length;
+      this.updateChartData('orderclosedBarChart', 'Order Closed', [this.totallead]);
+    });
+  
+  }
+
+  updateChartData(chartId: string, label: string, data: number[]) {
+    const chart = Chart.getChart(chartId);
+    if (chart) {
+      chart.data.labels = [label];
+      chart.data.datasets[0].data = data;
+      chart.update();
+    }
+  }
 }
-
-}
-
 
 
 
