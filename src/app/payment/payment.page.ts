@@ -57,10 +57,10 @@ export class PaymentPage implements OnInit {
   userid: number = 0;
   vendorid: number = 0;
   isCheckboxSelected: boolean = false;
-  filteredPurchases$: Observable<any[]>;
+
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
     const compid = '1';
-this.filteredPurchases$=
+
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     console.log(this.supplier$);
 
@@ -77,15 +77,15 @@ this.filteredPurchases$=
       paymentdate: [''],
       ledger: [0],
       outstanding: [0],
-      paymentmade: [''],
+      paymentmade: [0],
       paymentway: [''],
-      total: [''],
-      total_payment: [''],
-      totalamt: [''],
+      total: [0],
+      total_payment: [0],
+      totalamt: [0],
       billno: [''],
-      receiveamt: [''],
-      pendingamt: [''],
-      currentamt: [''],
+      receiveamt: [0],
+      pendingamt: [0],
+      currentamt: [0],
       ledgername: [''],
       companyname: [''],
       userid: [0],
@@ -111,17 +111,7 @@ this.filteredPurchases$=
       this.pendingamt = 0; // or any default value you prefer
     }
   }
-  onCompanyNameChange(event: any) {
-    const selectedCompanyName = event.target.value;
-  
-    // Use pipe, map, and filter operators
-    this.purchase$ = this.purchase$.pipe(
-      map((purchases: any[]) => purchases.filter((purchase) => purchase.companyname === selectedCompanyName))
-    );
-  
-    // Update other calculations or values as needed
-    // ...
-  }
+
   
 
   async onSubmit() {
