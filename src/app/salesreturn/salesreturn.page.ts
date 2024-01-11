@@ -371,7 +371,8 @@ export class SalesreturnPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            this.myform.reset();
+            // this.myform.reset();
+            location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);

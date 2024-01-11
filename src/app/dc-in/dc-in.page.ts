@@ -394,7 +394,8 @@ isOpen = false;
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            this.myform.reset();
+            // this.myform.reset();
+            location.reload();
           },
           (error: any) => {
             console.log('POST request failed', error);

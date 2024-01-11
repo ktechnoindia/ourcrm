@@ -371,9 +371,7 @@ export class AddSalePage implements OnInit {
           debit: this.myform.value.debit,
           credit: this.myform.value.credit,
           ponumber: this.myform.value.ponumber,
-
           ttotal: 0,
-
           companyid: companyid,
           userid: userid,
         };
@@ -387,7 +385,8 @@ export class AddSalePage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            this.myform.reset();
+            // this.myform.reset();
+            location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);

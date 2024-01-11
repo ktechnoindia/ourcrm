@@ -390,7 +390,8 @@ export class PurchasereturnPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            this.form.reset();
+            // this.form.reset();
+            location.reload()
           },
           (error: any) => {
             console.log('POST request failed', error);

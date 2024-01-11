@@ -391,7 +391,8 @@ isOpen = false;
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            this.form.reset();
+            // this.form.reset();
+            location.reload()
           },
           (error: any) => {
             console.log('Purchase Post failed', error);
