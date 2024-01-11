@@ -96,7 +96,8 @@ deleteCustomer:'dcustomer',
 deleteVendor:'dvendor',
 deleteItem:'ditem',
 deleteExecutive:'dexecutive',
-deleteLedger:'dlegder'
+deleteLedger:'dlegder',
+recepitbill:'get_sales_byid'
 };
 
 

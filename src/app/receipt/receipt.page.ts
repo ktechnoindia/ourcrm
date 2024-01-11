@@ -49,7 +49,8 @@ export class ReceiptPage implements OnInit {
   totalpendingamt: number = 0;
   userid: number = 0;
   custid: number = 0;
-
+custcode:number=0;
+companyid:number=0;
   myform: FormGroup;
   isOpen = false;
   customer$: Observable<any>;
@@ -58,6 +59,7 @@ export class ReceiptPage implements OnInit {
   outstanding_amount: any;
   outstanding$: Observable<any[]>
   isCheckboxSelected: boolean=false;
+  recepitBill$: Observable<any>;
 
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
@@ -72,9 +74,14 @@ export class ReceiptPage implements OnInit {
 
     this.outstanding$.subscribe(outstandingData => {
       console.log(outstandingData);
-
     });
     console.log(this.sales$);
+
+    this.recepitBill$ = this.receiptservice.getSalesById(this.custcode,this.companyid);
+
+    this.recepitBill$.subscribe(recepitbill =>{
+      console.log('redeeeee',recepitbill);
+    })
     this.myform = this.formBuilder.group({
       voucherNumber: ['', Validators.required],
       paymentdate: [''],

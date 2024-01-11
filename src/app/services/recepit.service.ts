@@ -32,7 +32,7 @@ export interface rec {
   providedIn: 'root'
 })
 export class RecepitService {
-
+  private apiUrl = 'http://103.154.184.66:8000/actions/get_sales_byid?custcode=1&companyid=1';
   constructor(private httpclient: HttpClient) { }
 
   createRecepit(recepit: rec, key: string, user: string) {
@@ -46,5 +46,10 @@ export class RecepitService {
   fetchUserOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
     return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid);
+  }
+
+  getSalesById(custCode: number, companyId: number): Observable<any> {
+    const url = `${this.apiUrl}/get_sales_byid?custcode=${custCode}&companyid=${companyId}`;
+    return this.httpclient.get(url);
   }
 }
