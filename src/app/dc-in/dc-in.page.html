@@ -23,7 +23,10 @@
                 <ion-button size="small" [routerLink]="['/dc-in-report']" id="open-loading5">View DC-IN</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="DC-IN Showing ..."
                   [duration]="1000"></ion-loading>
+                  <img  id="menu" style="margin-left: 10px;" width="20px" height="20px" src="../../assets/more.png" alt="more">
+
               </div>
+
             </ion-row>
           </ion-card-header>
         </div>
@@ -103,7 +106,7 @@
 
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table style="width:1755px;overflow-x:auto;">
+                <table style="width:1305px;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>
@@ -136,7 +139,7 @@
                       <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number" (ngModelChange)="getItems(dcin)"/>
                     </td>
-                    <td style="width: 90px;">
+                    <td >
                       <select class="table_select" [(ngModel)]="dcin.selectedItemId"
                         [ngModelOptions]="{standalone: true}" name="itemname" (ngModelChange)="getItems(dcin)">
                         <option value="0">Item Name</option><!-- Default option -->
@@ -161,7 +164,7 @@
                              type="number"
                              (keydown.enter)="presentPopover(dcin)"/>
                     </td>   
-                    <td style="width: 90px;">
+                    <td >
                       <input [(ngModel)]="dcin.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text"/>
                       <input [(ngModel)]="dcin.hunitname" [ngModelOptions]="{standalone: true}" type="hidden"/>
@@ -188,7 +191,7 @@
                       <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) "
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"/>
                     </td>
-                    <td style="width: 90px;">
+                    <td >
                       <input [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number"/>
                       <!-- <select class="table_select"  #taxrate (change)="onSelectChange(taxrate, dcin)" [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}">
@@ -532,6 +535,16 @@
         </ion-row>
 
       </form>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover class="menu" trigger="menu"  side="bottom" alignment="end">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-icon name="document"></ion-icon>
+      <ion-icon name="print-outline"></ion-icon>
+      <ion-icon (click)="onNew()" name="person-add-outline"></ion-icon>
     </ion-content>
   </ng-template>
 </ion-popover>

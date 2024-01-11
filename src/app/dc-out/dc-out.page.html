@@ -23,7 +23,8 @@
                 <ion-button size="small" [routerLink]="['/dc-out-report']" id="open-loading5">View DC-OUT</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading5" message="DC-OUT Showing ..."
                   [duration]="1000"></ion-loading>
-
+                <img id="menu" style="margin-left: 10px;" width="20px" height="20px" src="../../assets/more.png"
+                  alt="more">
               </div>
             </ion-row>
           </ion-card-header>
@@ -34,7 +35,8 @@
             <ion-row>
               <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Voucher Formate" label-placement="floating" fill="outline" [(ngModel)]="voucherformat" name="voucherformat" formControlName="voucherformat">
+                  label="Voucher Formate" label-placement="floating" fill="outline" [(ngModel)]="voucherformat"
+                  name="voucherformat" formControlName="voucherformat">
                   <!-- <option value="0" disabled selected>Voucher Formate</option> Default option -->
                   <ion-select-option value="0">1</ion-select-option>
                   <ion-select-option value="1">2</ion-select-option>
@@ -58,14 +60,15 @@
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="vendcode" formControlName="vendcode" name="vendcode" type="text"
-                    label="Code :" label-placement="floating" fill="outline" (ngModelChange)="getCustomers($event)"></ion-input>
+                    label="Code :" label-placement="floating" fill="outline"
+                    (ngModelChange)="getCustomers($event)"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col class="ionselect" size-lg="3.6" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" vendcode"
-                  name="suppliertype" formControlName="suppliertype" (ngModelChange)="getCustomers($event)" >
+                  name="suppliertype" formControlName="suppliertype" (ngModelChange)="getCustomers($event)">
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
@@ -73,7 +76,8 @@
               </ion-col>
 
               <ion-col class="custom-primary" size-lg="0.4" size-md="2" size-sm="2" size="2">
-                <ion-button  (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+                <ion-button (click)="presentPopovers($event)"><ion-icon
+                    name="person-add-outline"></ion-icon></ion-button>
               </ion-col>
 
 
@@ -102,7 +106,7 @@
 
             <ion-row style="margin-top: 10px;">
               <div class="scroll-container">
-                <table style="width:1755px;overflow-x:auto;">
+                <table style="width:1305px;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>
@@ -132,12 +136,12 @@
                         (ngModelChange)="getItems(dcout)" type="text">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="dcout.itemcode" [ngModelOptions]="{standalone: true}"
+                      <input [(ngModel)]="dcout.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(dcout)" class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="select-option" [(ngModel)]="dcout.selectedItemId" [ngModelOptions]="{standalone: true}"
-                        (ngModelChange)="getItems(dcout)">
+                      <select class="select-option" [(ngModel)]="dcout.selectedItemId"
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(dcout)">
                         <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
@@ -156,18 +160,14 @@
                         type="text">
                     </td>
                     <td>
-                      <input *ngIf="dcout.itemcode !== 0"
-                             [(ngModel)]="dcout.quantity"
-                             [ngModelOptions]="{standalone: true}"
-                             class="table_input"
-                             type="number"
-                             (keydown.enter)="presentPopover(dcout)">
-                    </td>   
-                    <td style="width: 90px;">
+                      <input *ngIf="dcout.itemcode !== 0" [(ngModel)]="dcout.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown.enter)="presentPopover(dcout)">
+                    </td>
+                    <td>
                       <input [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="text">
-                      <input [(ngModel)]="dcout.hunitname" [ngModelOptions]="{standalone: true}" 
-                      type="hidden">
+                        type="text">
+                      <input [(ngModel)]="dcout.hunitname" [ngModelOptions]="{standalone: true}" type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="dcout.unitname" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(dcout)">Unit Name</option>
                         <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
@@ -180,21 +180,20 @@
                         type="number">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="dcout.basicrate" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="number">
+                      <input [(ngModel)]="dcout.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
 
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="dcout.netrate" [value]="getnetrate(dcout)"
+                      <input [(ngModel)]="dcout.netrate" [value]="getnetrate(dcout)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [value]="getgrossrate(dcout)" [readonly]="true" class="table_input"
-                        type="number">
+                      <input [value]="getgrossrate(dcout)" [readonly]="true" class="table_input" type="number">
                     </td>
-                    <td style="width: 50px;">
+                    <td>
                       <input [(ngModel)]="dcout.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number"  >
+                        type="number">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,dcout)"
                         (ngModelChange)="getItems(dcout)" [(ngModel)]="dcout.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -206,15 +205,15 @@
                     </td>
                     <input type="hidden" [(ngModel)]="dcout.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
-                      <input [value]="getsgst(dcout)"  [readonly]="true" class="table_input" type="number">
+                      <input [value]="getsgst(dcout)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [value]="getcgst(dcout)"  [readonly]="true"  class="table_input" type="number">
+                      <input [value]="getcgst(dcout)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input [value]="getigst(dcout)"  type="number" class="table_input">
+                      <input [value]="getigst(dcout)" type="number" class="table_input">
                     </td>
-                    <td style="width: 90px;">
+                    <td>
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>
                         <option value="percentage">Percentage</option>
@@ -222,20 +221,20 @@
                     </td>
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
-                        style="width: 90px;" [(ngModel)]="dcout.discount" (ionBlur)="getdiscountp(dcout)"
+                        [(ngModel)]="dcout.discount" (ionBlur)="getdiscountp(dcout)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       <ng-template #amountField>
-                        <input style="width: 100px;" [(ngModel)]="dcout.discountamt" (keyup)="getdiscountamt(dcout)"
+                        <input [(ngModel)]="dcout.discountamt" (keyup)="getdiscountamt(dcout)"
                           [value]="getdiscountamt(dcout)" [ngModelOptions]="{standalone: true}" class="table_input"
                           type="number">
                       </ng-template>
                     </td>
 
                     <td>
-                      <input style="width: 90px;" [readonly]="true" [value]="getTotaltax(dcout)" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotaltax(dcout)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [readonly]="true" [value]="getTotalamt([dcout])" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotalamt([dcout])" class="table_input" type="text">
 
                     </td>
 
@@ -379,7 +378,7 @@
                       </td>
                     </tr>
 
-                   
+
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
@@ -416,7 +415,7 @@
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-button >Print</ion-button>
+              <ion-button>Print</ion-button>
               <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
@@ -431,96 +430,105 @@
   </div>
 </ion-content>
 
-<ion-popover trigger="customer" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false"  side="bottom" alignment="end">
+<ion-popover trigger="customer" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" side="bottom" alignment="end">
   <ng-template>
-    <ion-content  class="ion-padding Customer ">
+    <ion-content class="ion-padding Customer ">
       <form [formGroup]="customerpop" (ngSubmit)="onCustSubmit()">
         <ion-row style="justify-content: center;margin-bottom: 10px;">
           <ion-label class="executive">Add Customer</ion-label>
         </ion-row>
-      <ion-row>
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code"
-              type="text" label=" Customer Code :" label-placement="floating" fill="outline"
-              maxlength="5"></ion-input>
-          </ion-row>
-        </ion-col>
+        <ion-row>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code" type="text"
+                label=" Customer Code :" label-placement="floating" fill="outline" maxlength="5"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input #firstInvalidInput [(ngModel)]="name" formControlName="name" name="name" type="text"
-              label="Customer Name :" label-placement="floating" fill="outline" color="dark"
-              class="sign_input"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input #firstInvalidInput [(ngModel)]="name" formControlName="name" name="name" type="text"
+                label="Customer Name :" label-placement="floating" fill="outline" color="dark"
+                class="sign_input"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstin" type="text" label=" GSTIN :"
-              label-placement="floating" fill="outline" maxlength="15"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstin" type="text" label=" GSTIN :"
+                label-placement="floating" fill="outline" maxlength="15"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="mobile" formControlName="mobile" name="mobile" type="text"
-              label=" Mobile Number:" label-placement="floating" fill="outline" maxlength="10"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="mobile" formControlName="mobile" name="mobile" type="text" label=" Mobile Number:"
+                label-placement="floating" fill="outline" maxlength="10"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="12">
-          <select class="select" [(ngModel)]="country" formControlName="country" name="country"
-            label-placement="floating" fill="outline" (change)="onCountryChange()">
-            <option value="0"> --- Country --- </option>
-            <option *ngFor="let country of countries$ | async" [value]="country.countryid">
-              {{ country.countryname }}
-            </option>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="12">
+            <select class="select" [(ngModel)]="country" formControlName="country" name="country"
+              label-placement="floating" fill="outline" (change)="onCountryChange()">
+              <option value="0"> --- Country --- </option>
+              <option *ngFor="let country of countries$ | async" [value]="country.countryid">
+                {{ country.countryname }}
+              </option>
 
-          </select>
-        </ion-col>
+            </select>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <select class="select" [(ngModel)]="state" formControlName="state" name="state"
-            label-placement="floating" fill="outline" (change)="onStateChange()">
-            <option value="0"> --- State --- </option>
-            <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
-              {{ state.statename }}
-            </option>
-          </select>
-        </ion-col>
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <select class="select" [(ngModel)]="district" formControlName="district" name="district"
-            label-placement="floating" fill="outline">
-            <option value="0"> --- District --- </option>
-            <option *ngFor="let district of districts$ | async" [value]="district.districtid">
-              {{ district.districtname }}
-            </option>
-          </select>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <select class="select" [(ngModel)]="state" formControlName="state" name="state" label-placement="floating"
+              fill="outline" (change)="onStateChange()">
+              <option value="0"> --- State --- </option>
+              <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                {{ state.statename }}
+              </option>
+            </select>
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <select class="select" [(ngModel)]="district" formControlName="district" name="district"
+              label-placement="floating" fill="outline">
+              <option value="0"> --- District --- </option>
+              <option *ngFor="let district of districts$ | async" [value]="district.districtid">
+                {{ district.districtname }}
+              </option>
+            </select>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="pincode" formControlName="pincode" type="tel" name="pincode"
-              label=" PinCode  :" label-placement="floating" fill="outline" maxlength="6"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="pincode" formControlName="pincode" type="tel" name="pincode" label=" PinCode  :"
+                label-placement="floating" fill="outline" maxlength="6"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="12" size-lg="9" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="address" formControlName="address" name="address" type="text"
-              label="Full Address :" label-placement="floating" fill="outline"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="12" size-lg="9" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="address" formControlName="address" name="address" type="text"
+                label="Full Address :" label-placement="floating" fill="outline"></ion-input>
+            </ion-row>
+          </ion-col>
 
-      </ion-row>
+        </ion-row>
 
-      <ion-row style="float: right;margin-top: 10px;">
-        <ion-button type="submit">Save</ion-button>
-        <ion-button (click)="closePopover()">Close</ion-button>
-      </ion-row>
+        <ion-row style="float: right;margin-top: 10px;">
+          <ion-button type="submit">Save</ion-button>
+          <ion-button (click)="closePopover()">Close</ion-button>
+        </ion-row>
 
-    </form>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-popover class="menu" trigger="menu" side="bottom" alignment="end">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-icon name="document"></ion-icon>
+      <ion-icon name="print-outline"></ion-icon>
+      <ion-icon (click)="onNew()" name="person-add-outline"></ion-icon>
     </ion-content>
   </ng-template>
 </ion-popover>
