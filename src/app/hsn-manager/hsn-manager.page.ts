@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
@@ -14,7 +14,8 @@ import { FormValidationService } from '../form-validation.service';
   templateUrl: './hsn-manager.page.html',
   styleUrls: ['./hsn-manager.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HsnManagerPage implements OnInit {
   hsncode: string='';

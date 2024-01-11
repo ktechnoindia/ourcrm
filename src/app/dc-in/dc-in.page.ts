@@ -472,7 +472,8 @@ isOpen = false;
 
         if (data && data.length > 0) {
           const itemDetails = data[0];
-
+          event.vendcode = itemDetails.vendor_code;
+          event.suppliertype = itemDetails.name;
           // Update the form control values based on the identifier
           this.myform.patchValue({
             vendcode: itemDetails.vendor_code,

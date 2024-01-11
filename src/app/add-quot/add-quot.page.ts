@@ -322,7 +322,7 @@ export class AddQuotPage implements OnInit {
   }
 
   async getquoteNo() {
-    const user = await this.session.getValue('userid');
+    const user = await this.session?.getValue('userid');
     const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
     this.quote.fetchallQuoteno(0, keys, user).subscribe((response: any) => {
       if (response.status) {
@@ -539,8 +539,8 @@ export class AddQuotPage implements OnInit {
 
           // Update form control values
           this.myform.patchValue({
-            custcode: itemDetails.itemcode,
-            custname: itemDetails.itemname,
+            custcode: itemDetails.custcode,
+            custname: itemDetails.custname,
             // Other form controls...
           });
 

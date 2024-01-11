@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
@@ -19,7 +19,8 @@ import { FormValidationService } from '../form-validation.service';
   styleUrls: ['./roleofexicutive.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
-    ReactiveFormsModule]
+    ReactiveFormsModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoleofexicutivePage implements OnInit {
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
