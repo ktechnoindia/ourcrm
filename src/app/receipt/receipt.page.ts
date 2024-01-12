@@ -59,12 +59,13 @@ companyid:number=0;
   outstanding_amount: any;
   outstanding$: Observable<any[]>
   isCheckboxSelected: boolean=false;
-  recepitBill$: Observable<any>;
-
+  // recepitBill$: Observable<any>;
+  selectedCustomerId: number = 0;
+  receiptBill$: Observable<any>;
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-
+    this.receiptBill$=
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -77,11 +78,11 @@ companyid:number=0;
     });
     console.log(this.sales$);
 
-    this.recepitBill$ = this.receiptservice.getSalesById(this.custcode,this.companyid);
+    // this.recepitBill$ = this.receiptservice.getSalesById(id,1);
 
-    this.recepitBill$.subscribe(recepitbill =>{
-      console.log('redeeeee',recepitbill);
-    })
+    // this.recepitBill$.subscribe(recepitbill =>{
+    //   console.log('redeeeee',recepitbill);
+    // })
     this.myform = this.formBuilder.group({
       voucherNumber: ['', Validators.required],
       paymentdate: [''],
@@ -109,6 +110,17 @@ companyid:number=0;
     })
 
   };
+
+  fetchBillsForCustomer() {
+    // Check if a customer is selected
+    if (this.selectedCustomerId !== 0) {
+      // Call your service method with the selected customer ID
+      this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
+      this.receiptBill$.subscribe(bill =>{
+        console.log('data length',bill.length)
+      })
+    }
+  }
 
   checkboxChanged() {
     // Handle checkbox change event
@@ -266,6 +278,10 @@ companyid:number=0;
     this.pendingamt = this.outstanding_amount - this.paymentmade;
     return this.pendingamt;
   }
+  calculatePendingBillAmount(sales: any): number {
+    // Assuming sales object has properties like total, receiveamt, and currentamt
+    return sales.total - sales.receiveamt - sales.currentamt;
+  }
 
   // Methods to calculate totals
   calculateTotalDueAmt(): number {
@@ -280,7 +296,7 @@ companyid:number=0;
 
   calculateTotalCurrentAmt(): number {
     // Convert this.currentamt to a number before returning
-    return this.currentamt;
+    return (this.currentamt);
   }
 
   calculateTotalPendingAmt(): number {
