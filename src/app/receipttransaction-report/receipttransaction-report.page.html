@@ -49,7 +49,7 @@
                   <th style="width: 100px !important;">Total Amt.</th>
                   <th style="width: 100px !important;">Receive Amt.</th>
                   <th style="width: 100px !important;">Current Amt.</th>
-                  <th style="width: 100px !important;">Pending Amt</th>
+                  <th style="width: 100px !important;">Bill Pending Amt</th>
                   <th>Action</th>
                 </tr>
                 <tr *ngFor="let recepit of filteredRecepits$ | async; let i = index">
@@ -59,13 +59,13 @@
                   <td>{{recepit.ledger}}</td>
                   <td>{{recepit.outstanding}}</td>
                   <td>{{recepit.paymentmade}}</td>
+                  <td>{{recepit.pendingamt}}</td>
                   <td>{{recepit.paymentway}}</td>
                   <td>{{recepit.billno}}</td>
                   <td>{{recepit.totalamt}}</td>
                   <td>{{recepit.receiveamt}}</td>
                   <td>{{recepit.currentamt}}</td>
-                  <td>{{recepit.pendingamt}}</td>
-                  <td>
+                  <td>{{recepit.billpendingamt}}</td>
                   
               
                   <td class="Action">

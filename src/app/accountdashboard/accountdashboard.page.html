@@ -8,8 +8,19 @@
       <ion-avatar>
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
-      <ion-label class="gamil">Ktechnocrm&#64;gmail.com</ion-label>
+      <ion-label class="gamil">{{username}}</ion-label>
     </ion-chip>
+    <div class="custom-primary" style="justify-content: right;text-align: right;">
+      <ion-buttons slot="end">
+        <ion-button (click)="openNotificationsPage()">
+          <ion-icon color="light" size="large" name="notifications-circle-outline"></ion-icon>
+          <ion-badge color=danger *ngIf="notificationCount > 0">{{ notificationCount }}</ion-badge>
+        </ion-button>
+      </ion-buttons>
+      <ion-button expand="block" (click)="logout()">
+        <ion-icon color="light" size="medium" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </div>
   </div>
   <div class="lead_nav">
     <ion-grid>
@@ -24,7 +35,7 @@
                   <ion-label>
                    Total Payment Transtraction
                   </ion-label>
-                  <ion-title>10</ion-title>
+                  <ion-title>{{totalpayment}}</ion-title>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="4" size-md="3" size-sm="3">
@@ -33,7 +44,7 @@
                   <ion-label>
                    Total Receipt Transtraction
                   </ion-label>
-                  <ion-title>11</ion-title>
+                  <ion-title>{{totalreceipt}}</ion-title>
                 </ion-card>
               </ion-col>
             </ion-row>
@@ -73,6 +84,28 @@
       </ion-row>
     </ion-grid>
   </div>
+  <div class="graph">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+          <ion-label>
+            Payment Transaction
+          </ion-label>
+          <!-- <ion-title>{{totalCustomer }}</ion-title> -->
+          <canvas id="paymentBarChart" class="chart-canvas"></canvas>
+
+        </ion-col>
+        <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+          <ion-label>
+            Receipt Transaction
+          </ion-label>
+          <!-- <ion-title>{{totalSupplier }}</ion-title> -->
+          <canvas id="receiptBarChart" class="chart-canvas"></canvas>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <ion-grid>
     <ion-row class="lead_details">
 
@@ -91,30 +124,16 @@
                 <th style="width: 70px !important;">Credit Amount</th>
                
               </tr>
-              <tr>
-                <td>1</td>
-                <td>V-001</td>
-                <td>2023-11-20</td>
-                <td>John Doe</td>
-                <td>500.00</td>
-                <td></td>
+              <tr *ngFor="let payment of payment$ | async; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{payment.voucherNumber}}</td>
+                <td>{{payment.paymentdate}}</td>
+                <td>{{payment.companyname}}</td>
+                <td>{{payment.paymentmade}}</td>
+
+                <td>{{payment.pendingamt}}</td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>V-002</td>
-                <td>2023-11-21</td>
-                <td>Jane Smith</td>
-                <td></td>
-                <td>300.00</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>V-003</td>
-                <td>2023-11-22</td>
-                <td>Bob Johnson</td>
-                <td>200.00</td>
-                <td></td>
-              </tr>
+             
             </table>
           </div>
         </div>
@@ -136,30 +155,17 @@
                 <th style="width: 70px !important;">Credit Amount</th>
                
               </tr>
-              <tr>
-                <td>1</td>
-                <td>V-001</td>
-                <td>2023-11-20</td>
-                <td>John Doe</td>
-                <td>500.00</td>
-                <td></td>
+              <tr *ngFor="let recepit of  recepits$ | async; let i = index">
+
+                <td>{{i+1}}</td>
+                  <td>{{recepit.voucherNumber}}</td>
+                  <td>{{recepit.paymentdate}}</td>
+                  <td>{{recepit.ledger}}</td>
+                  <td>{{recepit.outstanding}}</td>
+                  <td>{{recepit.currentamt}}</td>
+                  <td>{{recepit.billpendingamt}}</td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>V-002</td>
-                <td>2023-11-21</td>
-                <td>Jane Smith</td>
-                <td></td>
-                <td>300.00</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>V-003</td>
-                <td>2023-11-22</td>
-                <td>Bob Johnson</td>
-                <td>200.00</td>
-                <td></td>
-              </tr>
+            
             </table>
           </div>
         </div>

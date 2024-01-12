@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { CustomerService } from '../services/customer.service';
@@ -12,6 +12,7 @@ import { AdditemService } from '../services/additem.service';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Colors } from 'chart.js';
+import { SessionService } from '../services/session.service';
 
 Chart.register(Colors);
 
@@ -34,7 +35,14 @@ export class MasterdashboardPage implements OnInit {
   totalExecitve:number=0;
   sharedService: any;
   selectedOptions: string[] = [];
-
+ 
+  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  notificationCount: number = 5; // Replace this with the actual notification count
+  openNotificationsPage() {
+    // Implement your logic to open the notifications page or handle notifications
+    // You may want to reset the notification count after viewing the notifications
+    this.notificationCount = 0;
+  }
   
 
   ngAfterViewInit() {
@@ -61,7 +69,7 @@ export class MasterdashboardPage implements OnInit {
     
   }
  
-  constructor(private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
+  constructor(private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     this.selectedOptions = ['customerlist', 'vendorlist'];
 
     const compid = '1';
@@ -139,10 +147,12 @@ export class MasterdashboardPage implements OnInit {
     });
   }
   
+ 
   
   
-  
-  ngOnInit() {
+  async ngOnInit() {
+    //this.username=await this.session.getValue('companyname');
+
     const compid = '1';
 
     // Fetch data for all entities
@@ -180,5 +190,12 @@ export class MasterdashboardPage implements OnInit {
       chart.data.datasets[0].data = data;
       chart.update();
     }
+  }
+  logout() {
+    // Clear authentication tokens or perform other logout logic
+   // this.authService.logout();
+
+    // Navigate to the login page (assuming your login page has a route named 'login')
+    this.navCtrl.navigateRoot('/login');
   }
 }

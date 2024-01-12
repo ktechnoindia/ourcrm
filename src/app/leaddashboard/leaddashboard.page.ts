@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Colors } from 'chart.js';
+import { SessionService } from '../services/session.service';
 
 
 @Component({
@@ -16,8 +17,8 @@ import { Colors } from 'chart.js';
   templateUrl: './leaddashboard.page.html',
   styleUrls: ['./leaddashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterLink,],
- 
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink,],
+
 })
 export class LeaddashboardPage implements OnInit {
   ngAfterViewInit() {
@@ -43,19 +44,25 @@ export class LeaddashboardPage implements OnInit {
   selectedOptions: string[] = [];
 
 
-  
-  lead$: Observable<any[]>;
-  totallead: number=0;
 
-  constructor(private encService: EncryptionService,private leadser:LeadService,) {
+  lead$: Observable<any[]>;
+  totallead: number = 0;
+  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  notificationCount: number = 5; // Replace this with the actual notification count
+  openNotificationsPage() {
+    // Implement your logic to open the notifications page or handle notifications
+    // You may want to reset the notification count after viewing the notifications
+    this.notificationCount = 0;
+  }
+  constructor(private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private leadser: LeadService,) {
     this.selectedOptions = ['topnewlead', 'productwiselead'];
 
     const compid = '1';
-    this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
+    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
     this.lead$.subscribe(data => {
       console.log(data);
-      this.totallead=data.length // Log the data to the console to verify if it's being fetched
+      this.totallead = data.length // Log the data to the console to verify if it's being fetched
     });
   }
   createBarChart(canvas: any, label: string, data: number[]) {
@@ -68,7 +75,7 @@ export class LeaddashboardPage implements OnInit {
           label: label,
           data: data,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor:  'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
           borderWidth: 1,
         }],
       },
@@ -97,18 +104,18 @@ export class LeaddashboardPage implements OnInit {
       },
     });
   }
-  
-  
-  
-  
+
+
+
+
   ngOnInit() {
     const compid = '1';
 
     // Fetch data for all entities
     this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
-    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');  
     this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
- 
+    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+
 
     // Subscribe to the observables and update the counts
     this.lead$.subscribe(data => {
@@ -123,7 +130,7 @@ export class LeaddashboardPage implements OnInit {
       this.totallead = data.length;
       this.updateChartData('orderclosedBarChart', 'Order Closed', [this.totallead]);
     });
-  
+
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {
@@ -133,6 +140,13 @@ export class LeaddashboardPage implements OnInit {
       chart.data.datasets[0].data = data;
       chart.update();
     }
+  }
+  logout() {
+    // Clear authentication tokens or perform other logout logic
+    // this.authService.logout();
+
+    // Navigate to the login page (assuming your login page has a route named 'login')
+    this.navCtrl.navigateRoot('/login');
   }
 }
 
