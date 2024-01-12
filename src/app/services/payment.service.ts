@@ -16,6 +16,7 @@ export interface pay {
   total:number ;
   total_payment: number ;
   billno: string ;
+  billdate:string;
   totalamt:number ;
   receiveamt: number ;
   currentamt :number ;
@@ -37,10 +38,10 @@ export class PaymentService {
   filter(arg0: (payment: any) => boolean): any {
     throw new Error('Method not implemented.');
   }
-
+  private apiUrl = 'http://103.154.184.66:8000/actions';
   constructor(private httpclient: HttpClient) { }
 
-  createPayment(payment: pay, key: string, user: string) {
+  createPayment(payment: pay[], key: string, user: string) {
     return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': key, 'user': user } })
   }
 
@@ -51,5 +52,10 @@ export class PaymentService {
   fetchVendorOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
     return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid);
+  }
+
+  getPurchaseById(custCode: number, companyId: number): Observable<any> {
+    const url = `${this.apiUrl}/get_purchase_byid?custcode=${custCode}&companyid=${companyId}`;
+    return this.httpclient.get(url);
   }
 }

@@ -17,6 +17,7 @@ export interface rec {
   total: number ;
   total_payment: number ;
   billno: string ;
+  billdate:string;
   totalamt: number ;
   receiveamt: number ;
   currentamt: number ;
@@ -35,7 +36,7 @@ export class RecepitService {
   private apiUrl = 'http://103.154.184.66:8000/actions';
   constructor(private httpclient: HttpClient) { }
 
-  createRecepit(recepit: rec, key: string, user: string) {
+  createRecepit(recepit: rec[], key: string, user: string) {
     return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': key, 'user': user } })
   }
 

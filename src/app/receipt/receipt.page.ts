@@ -14,6 +14,18 @@ import { CustomerService } from '../services/customer.service';
 import { LegderService } from '../services/ledger.service';
 import { SalesService } from '../services/sales.service';
 import { AdditemService } from '../services/additem.service';
+
+interface Recepit {
+  billno:string,
+  billdate:string,
+  totalamt:number,
+  receiveamt:number,
+  currentamt:number,
+  billpendingamt:number,
+}
+
+
+
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.page.html',
@@ -39,6 +51,7 @@ export class ReceiptPage implements OnInit {
   total: number = 0;
   total_payment: number = 0;
   billno: string = '';
+  billdate:string='';
   totalamt: number = 0;
   receiveamt: number = 0;
   currentamt: number = 0;
@@ -58,10 +71,19 @@ companyid:number=0;
   sales$: Observable<any[]>
   outstanding_amount: any;
   outstanding$: Observable<any[]>
-  isCheckboxSelected: boolean=false;
+  isCheckboxChecked = false;
   // recepitBill$: Observable<any>;
   selectedCustomerId: number = 0;
   receiptBill$: Observable<any>;
+
+  receiptData: Recepit[]=[{
+    billno:'',
+    billdate:'',
+    totalamt:0,
+    receiveamt:0,
+    currentamt:0,
+    billpendingamt:0,
+}]
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
@@ -94,6 +116,7 @@ companyid:number=0;
       total_payment: [0],
       totalamt: [0],
       billno: [''],
+      billdate:[''],
       receiveamt: [0],
       pendingamt: [0],
       billpendingamt: [0],
@@ -106,10 +129,12 @@ companyid:number=0;
       totalreceiveamt: [0],
       totalcurrentamt: [0],
       totalpendingamt: [0],
-      isCheckboxSelected:[false]
+      isCheckboxSelected:[false],
+      
     })
 
   };
+  
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
@@ -122,18 +147,6 @@ companyid:number=0;
     }
   }
 
-  checkboxChanged() {
-    // Handle checkbox change event
-    // You can add additional logic here if needed
-    if (!this.isCheckboxSelected) {
-      // Checkbox is unchecked, clear the input values
-      this.billno = '';
-      this.totalamt = 0; // or any default value you prefer
-      this.receiveamt = 0; // or any default value you prefer
-      this.currentamt = 0; // or any default value you prefer
-      this.pendingamt = 0; // or any default value you prefer
-    }
-  }
 
   presentPopover(e: Event) {
     this.popover.event = e;
@@ -172,13 +185,34 @@ companyid:number=0;
     );
   }
 
-  async onSubmit() {
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.receiptData = [{
+      billno:'',
+      billdate:'',
+      totalamt:0,
+      receiveamt:0,
+      currentamt:0,
+      billpendingamt:0,
+    }];
+  }
+
+  async onSubmit(myform: FormGroup, receiptData: Recepit[]) {
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      const userid = 1;
+
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(receiptData));
+
+      let receiptdatas: rec[] = [];
 
       console.log('Your form data : ', this.myform.value);
+      for (const element of receiptData) {
+        
       const recepitdata: rec = {
         voucherNumber: this.myform.value.voucherNumber,
         paymentdate: this.myform.value.paymentdate,
@@ -188,12 +222,13 @@ companyid:number=0;
         total: this.myform.value.total,
         total_payment: this.myform.value.total_payment,
         paymentway: this.myform.value.paymentway,
-        totalamt: this.myform.value.totalamt,
-        billno: this.myform.value.billno,
-        receiveamt: this.myform.value.receiveamt,
+        totalamt: element.totalamt,
+        billno: element.billno,
+        billdate:element.billdate,
+        receiveamt: element.receiveamt,
         pendingamt: this.myform.value.pendingamt,
-        billpendingamt: this.myform.value.billpendingamt,
-        currentamt: this.myform.value.currentamt,
+        billpendingamt: element.billpendingamt,
+        currentamt: element.currentamt,
         companyname: this.myform.value.companyname,
         totaldueamt: this.myform.value.totaldueamt,
         totalreceiveamt: this.myform.value.totalreceiveamt,
@@ -202,8 +237,10 @@ companyid:number=0;
         userid: this.myform.value.userid,
         custid: this.myform.value.custid,
       };
+      receiptdatas.push(recepitdata);
+    }
 
-      this.recepitService.createRecepit(recepitdata, '', '').subscribe(
+      this.recepitService.createRecepit(receiptdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -221,7 +258,7 @@ companyid:number=0;
           this.formService.shoErrorLoader();
         }
       );
-
+      
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -256,7 +293,10 @@ companyid:number=0;
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
+
+  
   }
+  
   onCompanyChange(event: any) {
     // Handle any additional logic when the company name is selected
   }

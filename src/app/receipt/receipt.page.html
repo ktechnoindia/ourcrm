@@ -19,7 +19,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,receiptData)">
             <ion-row>
 
               <ion-col size="12" size-lg="6" size-md="6" size-sm="8">
@@ -109,7 +109,7 @@
                 <ion-card>
                   <ion-row style="margin-bottom: 4px;">
                     <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
-                      <ion-input [value]="companyname" name="companyname"  [(ngModel)]="companyname" formControlName="companyname" type="text"
+                      <ion-input [value]="selectedCustomerId" name="companyname"  [(ngModel)]="companyname" formControlName="companyname" type="text"
                         label="Ledger Name:" label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
@@ -125,6 +125,7 @@
                           <th style="width: 70px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
                           <th>Bill No.</th>
+                          <th>Bill Date</th>
                           <th>Total Amt. Due</th>
                           <th>Receive Amt.</th>
                           <th>Current Amt.</th>
@@ -132,12 +133,14 @@
 
                         </tr>
                         <tr *ngFor="let sales of receiptBill$ | async; let i = index">
-                          <td><ion-checkbox [(ngModel)]="sales.isCheckboxSelected" formControlName="isCheckboxSelected"></ion-checkbox></td>
+                          <td><ion-checkbox></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
                             <ion-input type="text" name="billno" [readonly]="true" [value]="sales.billNumber">
-                           
                             </ion-input>
+                          </td>
+                          <td>
+                            <ion-input  type="text" name="billdate" [value]="sales.billDate"></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="totalamt" [value]="sales.total"></ion-input>

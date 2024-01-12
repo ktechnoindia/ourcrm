@@ -12,8 +12,17 @@ import { FormValidationService } from '../form-validation.service';
 import { CustomerService } from '../services/customer.service';
 import { VendorService } from '../services/vendor.service';
 import { LegderService } from '../services/ledger.service';
-import { PurchaseService,purchasestore } from '../services/purchase.service';
+import { PurchaseService, purchasestore } from '../services/purchase.service';
+interface Payment {
 
+  billno: string,
+  billdate: string,
+  totalamt: number,
+  receiveamt: number,
+  currentamt: number,
+  pendingamt: number,
+
+}
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -56,11 +65,22 @@ export class PaymentPage implements OnInit {
   purchase$: Observable<any[]>
   userid: number = 0;
   vendorid: number = 0;
-  isCheckboxSelected: boolean = false;
+  isCheckboxChecked = false;
+  paymentData: Payment[] = [{
+    billno: '',
+    billdate: '',
+    totalamt: 0,
+    receiveamt: 0,
+    currentamt: 0,
+    pendingamt: 0,
+  }]
 
+  selectedCustomerId: number = 0;
+  paymentBill$: Observable<any>;
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
+    
     const compid = '1';
-
+    this.paymentBill$=
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     console.log(this.supplier$);
 
@@ -89,62 +109,84 @@ export class PaymentPage implements OnInit {
       ledgername: [''],
       companyname: [''],
       userid: [0],
-      vendorid:[0],
+      vendorid: [0],
       outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
       totalcurrentamt: [0],
       totalpendingamt: [0],
-      isCheckboxSelected:[false]
+      isCheckboxChecked: [false]
     })
 
   }
-  checkboxChanged() {
-    // Handle checkbox change event
-    // You can add additional logic here if needed
-    if (!this.isCheckboxSelected) {
-      // Checkbox is unchecked, clear the input values
-      this.billno = '';
-      this.totalamt = 0; // or any default value you prefer
-      this.receiveamt = 0; // or any default value you prefer
-      this.currentamt = 0; // or any default value you prefer
-      this.pendingamt = 0; // or any default value you prefer
+
+  fetchBillsForCustomer() {
+    // Check if a customer is selected
+    if (this.selectedCustomerId !== 0) {
+      // Call your service method with the selected customer ID
+      this.paymentBill$ = this.payService.getPurchaseById(this.selectedCustomerId, 1);
+      this.paymentBill$.subscribe(bill => {
+        console.log('data length', bill.length)
+      })
     }
-  }
+  };
 
   
 
-  async onSubmit() {
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.paymentData = [{
+      billno: '',
+      billdate: '',
+      totalamt: 0,
+      receiveamt: 0,
+      currentamt: 0,
+      pendingamt: 0,
+    }];
+  }
+
+  async onSubmit(myform: FormGroup, paymentData: Payment[]) {
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      const userid = 1;
 
-      console.log('Your form data : ', this.myform.value);
-      const paymentdata: pay = {
-        voucherNumber: this.myform.value.voucherNumber,
-        paymentdate: this.myform.value.paymentdate,
-        ledger: this.myform.value.ledger,
-        outstanding: this.myform.value.outstanding,
-        paymentmade: this.myform.value.paymentmade,
-        total: this.myform.value.total,
-        total_payment: this.myform.value.total_payment,
-        paymentway: this.myform.value.paymentway,
-        totalamt: this.myform.value.totalamt,
-        billno: this.myform.value.billno,
-        receiveamt: this.myform.value.receiveamt,
-        pendingamt: this.myform.value.pendingamt,
-        currentamt: this.myform.value.currentamt,
-        companyname: this.myform.value.companyname,
-        totaldueamt: this.myform.value.totaldueamt,
-        totalreceiveamt: this.myform.value.totalreceiveamt,
-        totalcurrentamt: this.myform.value.totalcurrentamt,
-        totalpendingamt: this.myform.value.totalpendingamt,
-        userid: this.myform.value.userid,
-        vendorid: this.myform.value.vendorid,
-      };
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(paymentData));
 
-      this.payService.createPayment(paymentdata, '', '').subscribe(
+      let paymentdatas: pay[] = [];
+
+      for (const element of paymentData) {
+
+        console.log('Your form data : ', this.myform.value);
+        const paymentdata: pay = {
+          voucherNumber: this.myform.value.voucherNumber,
+          paymentdate: this.myform.value.paymentdate,
+          ledger: this.myform.value.ledger,
+          outstanding: this.myform.value.outstanding,
+          paymentmade: this.myform.value.paymentmade,
+          total: this.myform.value.total,
+          total_payment: this.myform.value.total_payment,
+          paymentway: this.myform.value.paymentway,
+          totalamt: element.totalamt,
+          billno: element.billno,
+          billdate: element.billdate,
+          receiveamt: element.receiveamt,
+          pendingamt: element.pendingamt,
+          currentamt: element.currentamt,
+          companyname: this.myform.value.companyname,
+          totaldueamt: this.myform.value.totaldueamt,
+          totalreceiveamt: this.myform.value.totalreceiveamt,
+          totalcurrentamt: this.myform.value.totalcurrentamt,
+          totalpendingamt: this.myform.value.totalpendingamt,
+          userid: this.myform.value.userid,
+          vendorid: this.myform.value.vendorid,
+        };
+        paymentdatas.push(paymentdata);
+      }
+      this.payService.createPayment(paymentdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
