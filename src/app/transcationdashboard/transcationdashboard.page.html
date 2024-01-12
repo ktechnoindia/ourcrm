@@ -7,8 +7,19 @@
       <ion-avatar>
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
-      <ion-label class="gamil">Ktechnocrm&#64;gmail.com</ion-label>
+      <ion-label class="gamil">{{username}}</ion-label>
     </ion-chip>
+    <div class="custom-primary" style="justify-content: right;text-align: right;">
+      <ion-buttons slot="end">
+        <ion-button (click)="openNotificationsPage()">
+          <ion-icon color="light" size="large" name="notifications-circle-outline"></ion-icon>
+          <ion-badge color=danger *ngIf="notificationCount > 0">{{ notificationCount }}</ion-badge>
+        </ion-button>
+      </ion-buttons>
+      <ion-button expand="block" (click)="logout()">
+        <ion-icon color="light" size="medium" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 
   <div class="lead_nav">
