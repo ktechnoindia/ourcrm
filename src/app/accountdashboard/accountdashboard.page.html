@@ -112,7 +112,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('paymenttransactionlist')">
           <p>Payment Transtraction List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs"  [(ngModel)]="searchPayment" (ionInput)="onSearchTermPayment()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -124,7 +124,7 @@
                 <th style="width: 70px !important;">Credit Amount</th>
                
               </tr>
-              <tr *ngFor="let payment of payment$ | async; let i = index">
+              <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{payment.voucherNumber}}</td>
                 <td>{{payment.paymentdate}}</td>
@@ -143,7 +143,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('receipttransactionlist')">
           <p>Receipt Transtraction List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs " [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -155,7 +155,7 @@
                 <th style="width: 70px !important;">Credit Amount</th>
                
               </tr>
-              <tr *ngFor="let recepit of  recepits$ | async; let i = index">
+              <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
 
                 <td>{{i+1}}</td>
                   <td>{{recepit.voucherNumber}}</td>

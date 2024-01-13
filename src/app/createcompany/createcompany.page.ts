@@ -143,10 +143,10 @@ export class CreatecompanyPage implements OnInit {
       pinCode1: [''],
 
       //step:2
-      industry: [''],
-      businesstype: [''],
-      segmenttype: [''],
-      companytype: [''],
+      industry: [0],
+      businesstype: [0],
+      segmenttype: [0],
+      companytype: [0],
       pannumber: ['',[Validators.pattern(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/)]],
       tanumber: ['', [Validators.pattern(/^([a-zA-Z]){4}([0-9]){5}([a-zA-Z]){1}?$/)]],
 

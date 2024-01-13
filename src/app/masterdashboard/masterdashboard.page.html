@@ -166,7 +166,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
           <p>Customer List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -179,7 +179,7 @@
                 <!-- <th >Email</th> -->
 
               </tr>
-              <tr *ngFor="let customer of customers$ | async; let i = index">
+              <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
 
                 <td>{{ i + 1 }}</td>
                 <td>{{customer.customer_code}}</td>
@@ -197,7 +197,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
           <p>Supplier List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermSupplier()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -207,7 +207,7 @@
                 <th>Mobile No.</th>
                 <th>Email</th>
               </tr>
-              <tr *ngFor="let vendoer of vendors$ | async; let i = index">
+              <tr *ngFor="let vendoer of filteredSupplers$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{vendoer.name}}</td>
                 <td>{{vendoer.vendor_code}}</td>

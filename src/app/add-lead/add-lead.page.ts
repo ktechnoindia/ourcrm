@@ -85,7 +85,7 @@ export class AddLeadPage {
   itemnames$: Observable<any>;
 
   excode: string = '';
-  executivename: string = '';
+  executivename: number = 0;
   emobile: string = '';
   ledger: string = '';
   emanager: number = 0;
@@ -137,7 +137,7 @@ export class AddLeadPage {
       selectedDistrict: [''],
       fulladdress: [''],
       lscore: [''],
-      executivename: [''],
+      executivename: [0],
       pncode: [''],
       emails: ['', [Validators.email]],
       rmark: [''],
@@ -149,7 +149,7 @@ export class AddLeadPage {
 
     this.executivepop = this.formBuilder.group({
       excode: [''],
-      executivename: [''],
+      executivename: [0],
       emobile: [''],
       ledger: [''],
       emanager: [''],
