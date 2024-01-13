@@ -6,7 +6,7 @@
   </ion-button>
   <div class="ion-padding dropdown_div">
     <div class="dropdown">
-      <button class="dropdown-title">
+      <button class="dropdown-title" [routerLink]="['/companydashboard']">
         <img src="assets/Companylogo.png" alt="">
         <p>Company</p>
       </button>
@@ -180,7 +180,7 @@
 <ion-header class="desktop_menu" *ngIf="isMobileMenuOpen">
   <div class="ion-padding ">
     <div class="dropdown">
-      <button class="dropdown-title">
+      <button class="dropdown-title" [routerLink]="['/companydashboard']">
         <!-- <img src="assets/desk.svg" alt=""> -->
         <p>Company</p>
       </button>
