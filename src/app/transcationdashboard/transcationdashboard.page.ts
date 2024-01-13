@@ -62,7 +62,7 @@ export class TranscationdashboardPage implements OnInit {
   totalsalesreturn: number = 0;
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  username: string = 'K-Techno Soft. Pvt.';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
