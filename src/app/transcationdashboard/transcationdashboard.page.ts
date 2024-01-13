@@ -62,8 +62,9 @@ export class TranscationdashboardPage implements OnInit {
   totalsalesreturn: number = 0;
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
-  username: string = 'K-Techno Soft. Pvt.';
-  searchTerm: string = '';
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
+    searchTerm: string = '';
   filteredQuatation$: Observable<any[]> = new Observable<any[]>(); 
   searchTerms: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
@@ -286,6 +287,8 @@ export class TranscationdashboardPage implements OnInit {
   }
 
   ngOnInit() {
+     //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 
     // Fetch data for all entities
