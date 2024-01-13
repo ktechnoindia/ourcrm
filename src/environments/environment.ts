@@ -98,7 +98,7 @@ deleteItem:'ditem',
 deleteExecutive:'dexecutive',
 deleteLedger:'dlegder',
 recepitbill:'get_sales_byid',
-paymentbill:'get_purchase_byid'
+paymentbill:'get_payment_byid'
 };
 
 

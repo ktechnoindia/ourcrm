@@ -75,7 +75,7 @@ export class PaymentPage implements OnInit {
     pendingamt: 0,
   }]
 
-  selectedCustomerId: number = 0;
+  selectedvendorId: number = 0;
   paymentBill$: Observable<any>;
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,) {
     
@@ -122,9 +122,10 @@ export class PaymentPage implements OnInit {
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
-    if (this.selectedCustomerId !== 0) {
+    const companyid=1;
+    if (this.selectedvendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill$ = this.payService.getPurchaseById(this.selectedCustomerId, 1);
+      this.paymentBill$ = this.payService.getPurchaseById(companyid,this.selectedvendorId);
       this.paymentBill$.subscribe(bill => {
         console.log('data length', bill.length)
       })
@@ -251,6 +252,7 @@ export class PaymentPage implements OnInit {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
+
   }
   presentToast(arg0: string) {
     throw new Error('Method not implemented.');

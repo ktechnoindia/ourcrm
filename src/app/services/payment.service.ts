@@ -38,7 +38,8 @@ export class PaymentService {
   filter(arg0: (payment: any) => boolean): any {
     throw new Error('Method not implemented.');
   }
-  private apiUrl = 'http://103.154.184.66:8000/actions';
+  private apiUrl = 'http://103.154.184.66:8000/acts';
+
   constructor(private httpclient: HttpClient) { }
 
   createPayment(payment: pay[], key: string, user: string) {
@@ -54,8 +55,10 @@ export class PaymentService {
     return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid);
   }
 
-  getPurchaseById(custCode: number, companyId: number): Observable<any> {
-    const url = `${this.apiUrl}/get_purchase_byid?custcode=${custCode}&companyid=${companyId}`;
+  getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
+    const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
     return this.httpclient.get(url);
   }
 }
+
+// get_payment_byid?companyid=1&vendorid=1

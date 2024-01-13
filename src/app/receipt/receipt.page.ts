@@ -287,8 +287,8 @@ companyid:number=0;
     ).subscribe((outstandingArray: any[]) => {
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
-        this.outstanding_amount = firstItem.outstanding_amount;
-        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
+        this.outstanding = firstItem.outstanding_amount;
+        console.log('outstanding_amount (after fetch):', this.outstanding);
       } else {
         console.error('Invalid outstanding response:', outstandingArray);
       }
@@ -315,33 +315,33 @@ companyid:number=0;
     });
   }
   calculatePendingAmount(): number {
-    this.pendingamt = this.outstanding_amount - this.paymentmade;
+    this.pendingamt = this.outstanding - this.paymentmade;
     return this.pendingamt;
   }
-  calculatePendingBillAmount(sales: any): number {
-    // Assuming sales object has properties like total, receiveamt, and currentamt
-    return sales.total - sales.receiveamt - sales.currentamt;
-  }
+  // calculatePendingBillAmount(): number {
+  //   // Assuming sales object has properties like total, receiveamt, and currentamt
+  //   return this.billpendingamt= this.total - this.receiveamt - this.currentamt;
+  // }
 
   // Methods to calculate totals
-  calculateTotalDueAmt(): number {
-    // Convert this.totalamt to a number before returning
-    return this.totalamt;
-  }
+  // calculateTotalDueAmt(): number {
+  //   // Convert this.totalamt to a number before returning
+  //   return this.totalamt;
+  // }
 
-  calculateTotalReceiveAmt(): number {
-    // Convert this.receiveamt to a number before returning
-    return this.receiveamt;
-  }
+  // calculateTotalReceiveAmt(): number {
+  //   // Convert this.receiveamt to a number before returning
+  //   return this.receiveamt;
+  // }
 
-  calculateTotalCurrentAmt(): number {
-    // Convert this.currentamt to a number before returning
-    return (this.currentamt);
-  }
+  // calculateTotalCurrentAmt(): number {
+  //   // Convert this.currentamt to a number before returning
+  //   return (this.currentamt);
+  // }
 
-  calculateTotalPendingAmt(): number {
-    // Convert this.billpendingamt to a number before returning
-    return this.billpendingamt;
-  }
+  // calculateTotalPendingAmt(): number {
+  //   // Convert this.billpendingamt to a number before returning
+  //   return this.billpendingamt;
+  // }
 
 }
