@@ -48,7 +48,8 @@ export class LeaddashboardPage implements OnInit {
 
   lead$: Observable<any[]>;
   totallead: number = 0;
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -122,6 +123,8 @@ export class LeaddashboardPage implements OnInit {
   }
 
   ngOnInit() {
+      //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 
     // Fetch data for all entities

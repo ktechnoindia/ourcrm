@@ -22,8 +22,9 @@ Chart.register(Colors);
 })
 export class AccountdashboardPage implements OnInit {
   selectedOptions: string[] = [];
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
-  notificationCount: number = 5; // Replace this with the actual notification count
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
+    notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
     // You may want to reset the notification count after viewing the notifications
@@ -130,14 +131,15 @@ export class AccountdashboardPage implements OnInit {
   onSearchTermPayment(): void {
     this.filteredPayments$ = this.filterPayement();
   }
-  
+
 
   onSearchTermChanged(): void {
     this.filteredRecepits$ = this.filterRecepit();
   }
 
   async ngOnInit() {
-    //this.username=await this.session.getValue('companyname');
+    //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 
     //Fetch data for all entities

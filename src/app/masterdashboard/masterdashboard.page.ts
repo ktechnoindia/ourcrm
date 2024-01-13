@@ -40,7 +40,8 @@ export class MasterdashboardPage implements OnInit {
   filteredCustomers$: Observable<any[]> = new Observable<any[]>();
   filteredSupplers$: Observable<any[]> = new Observable<any[]>();
 
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -181,7 +182,8 @@ export class MasterdashboardPage implements OnInit {
   
   
   async ngOnInit() {
-    //this.username=await this.session.getValue('companyname');
+    //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
 
     const compid = '1';
 

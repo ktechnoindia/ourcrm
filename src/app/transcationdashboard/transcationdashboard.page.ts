@@ -62,7 +62,9 @@ export class TranscationdashboardPage implements OnInit {
   totalsalesreturn: number = 0;
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
-  searchTerm: string = '';
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
+    searchTerm: string = '';
   filteredQuatation$: Observable<any[]> = new Observable<any[]>(); 
   searchTerms: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
@@ -76,7 +78,6 @@ export class TranscationdashboardPage implements OnInit {
   filteredSalereturns$: Observable<any[]> = new Observable<any[]>(); 
   searchDcout: string = '';
   filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -286,6 +287,8 @@ export class TranscationdashboardPage implements OnInit {
   }
 
   ngOnInit() {
+     //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 
     // Fetch data for all entities

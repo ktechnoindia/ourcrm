@@ -1,7 +1,7 @@
 <ion-content class="container_fluid">
   <div class="dash">
     <ion-chip>
-      <ion-label class="gamil"> Company Name</ion-label>
+      <ion-label>{{companyname}}</ion-label>
     </ion-chip>
     <ion-title>
       Master Dashboard
@@ -36,44 +36,69 @@
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" class="hovers"
                   [routerLink]="'/viewcustomer'">
-                  <ion-icon name="list-outline"></ion-icon><br>
-                  <ion-label>
-                    Active Customer
-                  </ion-label>
-                  <ion-title>{{totalCustomer }}</ion-title>
-
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/evaluation.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalCustomer }}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Active Customer
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color:rgb(199, 250, 199);" class="hovers"
                   [routerLink]="'/viewsupplier'">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
-                  <ion-label>
-                    Active Supplier
-                  </ion-label>
-                  <ion-title>{{totalSupplier }}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/supplier.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalSupplier }}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Active Supplier
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color: rgb(255, 164, 164);" class="hovers"
                   [routerLink]="'/viewitem'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Total Items
-                  </ion-label>
-                  <ion-title>{{totalItems}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/list-items.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalItems}}</ion-title>
+                      <ion-label>
+                        Total Items
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
-                <ion-card style="text-align: center;background-color: rgb(228, 228, 163);" class="hovers"
+                <ion-card style="text-align: center;background-color: rgb(231, 181, 254);" class="hovers"
                   [routerLink]="'/viewexicutive'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Total Executive
-                  </ion-label>
-                  <ion-title>{{totalExecitve}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/skills.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalExecitve}}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Total Executive
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
 

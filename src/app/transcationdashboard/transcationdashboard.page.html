@@ -1,7 +1,7 @@
 <ion-content class="container_fluid">
   <div class="dash">
     <ion-chip>
-      <ion-label class="gamil"> Company Name</ion-label>
+      <ion-label>{{companyname}}</ion-label>
     </ion-chip>
     <ion-title>
       Transtraction Dashboard
@@ -33,67 +33,111 @@
             <ion-row class="leadscard">
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" [routerLink]="'/view-quot'">
-                  <ion-icon name="person-outline"></ion-icon><br>
-                  <ion-label>
-                    Quatations
-                  </ion-label>
-                  <ion-title>{{totalQuote}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/paper.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalQuote}}</ion-title>
+                      <ion-label>
+                        Quatations
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);"
+                <ion-card style="text-align: center;background-color: rgb(255, 146, 186);"
                   [routerLink]="'/dc-in-report'">
-                  <ion-icon name="list-outline"></ion-icon><br>
-                  <ion-label>
-                    DC-IN
-                  </ion-label>
-                  <ion-title>{{totaldcin}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <ion-icon color="dark" name="list-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totaldcin}}</ion-title>
+                      <ion-label>
+                        DC-IN
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightgray;" [routerLink]="'/dc-out-report'">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
-                  <ion-label>
-                    DC-OUT </ion-label>
-                  <ion-title>{{totaldcout}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(248, 187, 255);"
+                  [routerLink]="'/dc-out-report'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <ion-icon color="dark" name="newspaper-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totaldcout}}</ion-title>
+                      <ion-label>
+                        DC-OUT</ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightpink;" [routerLink]="'/view-sale'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales
-                  </ion-label>
-                  <ion-title>{{totalsales}}</ion-title>
-
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/shopping-online.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalsales}}</ion-title>
+                      <ion-label>
+                        Sales
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightsalmon;" [routerLink]="'/view-purchase'">
-                  <ion-icon name="cart-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase
-                  </ion-label>
-                  <ion-title>{{totalpurchase}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/checklist.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalpurchase}}</ion-title>
+                      <ion-label>
+                        Purchase
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lemonchiffon;" [routerLink]="'/view-salesreturn'">
-                  <ion-icon name="shield-half-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales Return
-                  </ion-label>
-                  <ion-title>{{totalsalesreturn}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(189, 245, 251);"
+                  [routerLink]="'/view-salesreturn'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/sales.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalsalesreturn}}</ion-title>
+                      <ion-label>
+                        Sales Return
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightblue;" [routerLink]="'/view-purchasereturn'">
-                  <ion-icon name="cart-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase Return
-                  </ion-label>
-                  <ion-title>{{totalpurchasereturn}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(182, 253, 229);"
+                  [routerLink]="'/view-purchasereturn'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/return.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalpurchasereturn}}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Purchase Return
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
             </ion-row>
