@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
+import { EncryptionService } from '../services/encryption.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-companydashboard',
   templateUrl: './companydashboard.page.html',
   styleUrls: ['./companydashboard.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class CompanydashboardPage implements OnInit {
   username: string = 'Abhishek Pareek';
@@ -20,7 +22,7 @@ export class CompanydashboardPage implements OnInit {
     // You may want to reset the notification count after viewing the notifications
     this.notificationCount = 0;
   }
-  constructor(private navCtrl: NavController,private session:SessionService,) { }
+  constructor(private encService: EncryptionService,private navCtrl: NavController,private session:SessionService,) { }
 
   ngOnInit() {
      //this.username=await this.session.getValue('username');

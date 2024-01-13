@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService, rec } from '../services/recepit.service';
@@ -18,7 +18,7 @@ import { AdditemService } from '../services/additem.service';
 interface Recepit {
   billno:string,
   billdate:string,
-  totalamt:number,
+  total:number,
   receiveamt:number,
   currentamt:number,
   billpendingamt:number,
@@ -75,11 +75,11 @@ companyid:number=0;
   // recepitBill$: Observable<any>;
   selectedCustomerId: number = 0;
   receiptBill$: Observable<any>;
-
+  dataLength:number=0;
   receiptData: Recepit[]=[{
     billno:'',
     billdate:'',
-    totalamt:0,
+    total:0,
     receiveamt:0,
     currentamt:0,
     billpendingamt:0,
@@ -87,7 +87,9 @@ companyid:number=0;
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-    this.receiptBill$=
+
+    //this.receiptBill$= ;
+
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -100,8 +102,12 @@ companyid:number=0;
     });
     console.log(this.sales$);
 
-    // this.recepitBill$ = this.receiptservice.getSalesById(id,1);
-
+     this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId,1);
+     this.receiptBill$.subscribe(data => {
+      // Get the length of the array
+      this.dataLength = data.length;
+      console.log('Length of the array:', this.dataLength);
+    });
     // this.recepitBill$.subscribe(recepitbill =>{
     //   console.log('redeeeee',recepitbill);
     // })
@@ -130,7 +136,8 @@ companyid:number=0;
       totalcurrentamt: [0],
       totalpendingamt: [0],
       isCheckboxSelected:[false],
-      
+      yourCheckboxFormControl: this.yourCheckboxFormControl, // Add this line
+
     })
 
   };
@@ -194,7 +201,7 @@ companyid:number=0;
     this.receiptData = [{
       billno:'',
       billdate:'',
-      totalamt:0,
+      total:0,
       receiveamt:0,
       currentamt:0,
       billpendingamt:0,
@@ -219,12 +226,12 @@ companyid:number=0;
         ledger: this.myform.value.ledger,
         outstanding: this.myform.value.outstanding,
         paymentmade: this.myform.value.paymentmade,
-        total: this.myform.value.total,
+        //total: this.myform.value.total,
         total_payment: this.myform.value.total_payment,
         paymentway: this.myform.value.paymentway,
-        totalamt: element.totalamt,
+        total: element.total,
         billno: element.billno,
-        billdate:element.billdate,
+        billdate: element.billdate,
         receiveamt: element.receiveamt,
         pendingamt: this.myform.value.pendingamt,
         billpendingamt: element.billpendingamt,
@@ -236,6 +243,7 @@ companyid:number=0;
         totalpendingamt: this.myform.value.totalpendingamt,
         userid: this.myform.value.userid,
         custid: this.myform.value.custid,
+        totalamt: 0
       };
       receiptdatas.push(recepitdata);
     }
@@ -318,30 +326,32 @@ companyid:number=0;
     this.pendingamt = this.outstanding - this.paymentmade;
     return this.pendingamt;
   }
-  // calculatePendingBillAmount(): number {
-  //   // Assuming sales object has properties like total, receiveamt, and currentamt
-  //   return this.billpendingamt= this.total - this.receiveamt - this.currentamt;
-  // }
+  calculatePendingBillAmount(receipt: Recepit): number {
+    // Assuming sales object has properties like total, receiveamt, and currentamt
+    const pendingAmount = receipt.total - receipt.receiveamt - receipt.currentamt;
+    return pendingAmount >= 0 ? pendingAmount : 0;
+  }
+  
 
-  // Methods to calculate totals
-  // calculateTotalDueAmt(): number {
-  //   // Convert this.totalamt to a number before returning
-  //   return this.totalamt;
-  // }
+  calculateTotalDueAmt(): number {
+    return +this.totalamt * this.dataLength;
+  }
+  
+  calculateTotalReceiveAmt(): number {
+    return +this.receiveamt* this.dataLength;
+  }
+  
+  calculateTotalCurrentAmt(): number {
+    return +this.currentamt* this.dataLength;
+  }
+  
+  calculateTotalPendingAmt(): number {
+    this.totalpendingamt = (this.billpendingamt) * (this.dataLength);
+    return this.totalpendingamt;
+  }
 
-  // calculateTotalReceiveAmt(): number {
-  //   // Convert this.receiveamt to a number before returning
-  //   return this.receiveamt;
-  // }
 
-  // calculateTotalCurrentAmt(): number {
-  //   // Convert this.currentamt to a number before returning
-  //   return (this.currentamt);
-  // }
+  yourCheckboxFormControl = new FormControl(false); // Replace "false" with the initial value as needed
 
-  // calculateTotalPendingAmt(): number {
-  //   // Convert this.billpendingamt to a number before returning
-  //   return this.billpendingamt;
-  // }
 
 }
