@@ -32,7 +32,7 @@
           </ion-row>
 
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"></ion-searchbar>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermPayment()"></ion-searchbar>
           </ion-row>
           <ion-row>
             <div class="scroll-container">
@@ -54,7 +54,7 @@
                  
                   
                 </tr>
-                <tr *ngFor="let payment of payment$ | async; let i = index">
+                <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{payment.voucherNumber}}</td>
                   <td>{{payment.paymentdate}}</td>

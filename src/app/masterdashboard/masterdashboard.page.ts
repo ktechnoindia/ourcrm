@@ -5,7 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { CustomerService } from '../services/customer.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { VendorService } from '../services/vendor.service';
 import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
@@ -35,7 +35,11 @@ export class MasterdashboardPage implements OnInit {
   totalExecitve:number=0;
   sharedService: any;
   selectedOptions: string[] = [];
- 
+  searchTerm: string = '';
+  searchTerms:string='';
+  filteredCustomers$: Observable<any[]> = new Observable<any[]>();
+  filteredSupplers$: Observable<any[]> = new Observable<any[]>();
+
   username: string = 'K-Techno Soft. Pvt. Ltd.';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
@@ -147,7 +151,33 @@ export class MasterdashboardPage implements OnInit {
     });
   }
   
- 
+  filterCustomers(): Observable<any[]> {
+    return this.customers$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  };
+
+  filterSuppliers(): Observable<any[]> {
+    return this.vendors$.pipe(
+      map(vendors =>
+        vendors.filter(vendor =>
+          Object.values(vendor).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermChanged(): void {
+    this.filteredCustomers$ = this.filterCustomers();
+  
+  }
+  onSearchTermSupplier(){
+    this.filteredSupplers$ = this.filterSuppliers();
+  }
   
   
   async ngOnInit() {
@@ -181,6 +211,18 @@ export class MasterdashboardPage implements OnInit {
       this.totalItems = data.length;
       this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
     });
+
+    this.filteredCustomers$ = this.customers$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+
+    this.filteredSupplers$ = this.vendors$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterSuppliers())
+    );
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {

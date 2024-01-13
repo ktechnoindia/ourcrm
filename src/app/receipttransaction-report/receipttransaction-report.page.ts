@@ -26,7 +26,7 @@ export class ReceipttransactionReportPage implements OnInit {
     this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid),'','');
     console.log(this.recepits$);
   }
-  filterCustomers(): Observable<any[]> {
+  filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(
       map(recepits =>
         recepits.filter(recepit =>
@@ -37,14 +37,14 @@ export class ReceipttransactionReportPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredRecepits$ = this.filterCustomers();
+    this.filteredRecepits$ = this.filterRecepit();
   }
  
   ngOnInit() {
     this.filteredRecepits$ = this.recepits$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterRecepit())
     );
   }
 

@@ -10,7 +10,7 @@ import { Colors } from 'chart.js';
 import { PaymentService } from '../services/payment.service';
 import { EncryptionService } from '../services/encryption.service';
 import { RecepitService } from '../services/recepit.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 Chart.register(Colors);
 
 @Component({
@@ -46,7 +46,11 @@ export class AccountdashboardPage implements OnInit {
   totalpayment: number = 0;
   recepits$: Observable<any[]>;
   totalreceipt: number = 0;
-  filteredRecepits$: Observable<any[]> = new Observable<any[]>(); 
+
+  searchTerm: string = '';
+  filteredRecepits$: Observable<any[]> = new Observable<any[]>();
+  searchPayment: string = '';
+  filteredPayments$: Observable<any[]> = new Observable<any[]>();
   constructor(private recepitService: RecepitService, private paymentservice: PaymentService, private navCtrl: NavController, private session: SessionService, private encService: EncryptionService) {
     this.selectedOptions = ['paymenttransactionlist', 'receipttransactionlist'];
     const compid = '1';
@@ -101,7 +105,37 @@ export class AccountdashboardPage implements OnInit {
         },
       },
     });
+  };
+
+  filterRecepit(): Observable<any[]> {
+    return this.recepits$.pipe(
+      map(recepits =>
+        recepits.filter(recepit =>
+          Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
+
+  filterPayement(): Observable<any[]> {
+    return this.payment$.pipe(
+      map(payments =>
+        payments.filter(payemt =>
+          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermPayment(): void {
+    this.filteredPayments$ = this.filterPayement();
+  }
+  
+
+  onSearchTermChanged(): void {
+    this.filteredRecepits$ = this.filterRecepit();
+  }
+
   async ngOnInit() {
     //this.username=await this.session.getValue('companyname');
     const compid = '1';
@@ -122,7 +156,16 @@ export class AccountdashboardPage implements OnInit {
       this.updateChartData('receiptBarChart', 'Receipt Transaction', [this.totalreceipt]);
     });
 
-
+    this.filteredRecepits$ = this.recepits$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterRecepit())
+    );
+    this.filteredPayments$ = this.payment$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterPayement())
+    );
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {

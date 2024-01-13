@@ -8,7 +8,7 @@ import { CustomerService } from '../services/customer.service';
 import { VendorService } from '../services/vendor.service';
 import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { QuotationService } from '../services/quotation.service';
 import { DcinService } from '../services/dcin.service';
 import { DcoutService } from '../services/dcout.service';
@@ -63,6 +63,20 @@ export class TranscationdashboardPage implements OnInit {
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
   username: string = 'K-Techno Soft. Pvt.';
+  searchTerm: string = '';
+  filteredQuatation$: Observable<any[]> = new Observable<any[]>(); 
+  searchTerms: string = '';
+  filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
+  searchSale: string = '';
+  filteredSales$: Observable<any[]> = new Observable<any[]>();
+  searchDcin: string = '';
+  filteredDcin$: Observable<any[]> = new Observable<any[]>();
+  searchPurchasereturn: string = '';
+  filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>(); 
+  searchSalereturn: string = '';
+  filteredSalereturns$: Observable<any[]> = new Observable<any[]>(); 
+  searchDcout: string = '';
+  filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -173,7 +187,103 @@ export class TranscationdashboardPage implements OnInit {
   }
 
 
+  filterQuatation(): Observable<any[]> {
+    return this.quote$.pipe(
+      map(quotes =>
+        quotes.filter(quote =>
+          Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
+  filterPurchase(): Observable<any[]> {
+    return this.purchase$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  filterSales(): Observable<any[]> {
+    return this.sales$.pipe(
+      map(sales =>
+        sales.filter(sale =>
+          Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchSale.toLowerCase()))
+        )
+      )
+    );
+  };
+
+  filterDcin(): Observable<any[]> {
+    return this.dcin$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchDcin.toLowerCase()))
+        )
+      )
+    );
+  };
+
+  filterPurchasereturn(): Observable<any[]> {
+    return this.purchasereturn$.pipe(
+      map(purchasereturns =>
+        purchasereturns.filter(purchasereturn =>
+          Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchPurchasereturn.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  filterSalereturn(): Observable<any[]> {
+    return this.salreturn$.pipe(
+      map(salereturns =>
+        salereturns.filter(salereturn =>
+          Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchSalereturn.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  filterDcout(): Observable<any[]> {
+    return this.dcout$.pipe(
+      map(dcouts =>
+        dcouts.filter((dcout:any) =>
+          Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchDcout.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermDcout(): void {
+    this.filteredDcout$ = this.filterDcout();
+  }
+
+  onSearchTermSalereturn(): void {
+    this.filteredSalereturns$ = this.filterSalereturn();
+  }
+
+  onSearchTermPurchasereturn(): void {
+    this.filteredPurchasereturns$ = this.filterPurchasereturn();
+  }
+
+  onSearchTermDcin(): void {
+    this.filteredDcin$ = this.filterDcin();
+  }
+
+  onSearchTermSale(): void {
+    this.filteredSales$ = this.filterSales();
+  }
+
+  onSearchTermQuote(): void {
+    this.filteredQuatation$ = this.filterQuatation();
+  }
+
+  onSearchTermPurchase(): void {
+    this.filteredPurchase$ = this.filterPurchase();
+  }
 
   ngOnInit() {
     const compid = '1';
@@ -198,6 +308,46 @@ export class TranscationdashboardPage implements OnInit {
       this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
     });
 
+    this.filteredQuatation$ = this.quote$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterQuatation())
+    );
+
+    this.filteredPurchase$ = this.purchase$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterPurchase())
+    );
+
+    this.filteredSales$ = this.sales$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterSales())
+    );
+
+    this.filteredDcin$ = this.dcin$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterDcin())
+    );
+
+    this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterPurchasereturn())
+    );
+    this.filteredSalereturns$ = this.salreturn$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterSalereturn())
+    );
+
+    this.filteredDcout$ = this.dcout$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterDcout())
+    );
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {

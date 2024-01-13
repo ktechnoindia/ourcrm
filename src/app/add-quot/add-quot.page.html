@@ -221,10 +221,10 @@
                     </td>
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
-                        style="width: 90px;" [(ngModel)]="quote.discount" (ionBlur)="getdiscountp(quote)"
+                         [(ngModel)]="quote.discount" (ionBlur)="getdiscountp(quote)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number">
                       <ng-template #amountField>
-                        <input style="width: 100px;" [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
+                        <input  [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
                           [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
                           type="number">
                       </ng-template>

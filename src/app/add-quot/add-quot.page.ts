@@ -22,7 +22,7 @@ interface Quote {
 
   barcode: string;
   itemcode: number;
-  itemname: number,
+  itemname: string,
   description: string;
   quantity: number;
   unitname: string;
@@ -88,7 +88,7 @@ export class AddQuotPage implements OnInit {
   discountamt: string = '';
   totaltax: string = '';
   total: string = '';*/
-
+  discount: number = 0;
   totalitemno: string = '';
   totalquantity: number = 0;
   totalgrossamt: number = 0;
@@ -123,7 +123,7 @@ export class AddQuotPage implements OnInit {
   quoteData: Quote[] = [{
     barcode: '',
     itemcode: 0,
-    itemname: 0,
+    itemname: '',
     description: '',
     quantity: 0,
     hunitname: 0, unitname: '',
@@ -224,7 +224,7 @@ export class AddQuotPage implements OnInit {
       IGST: 0,
       CGST: 0,
       SGST: 0,
-      discount: 0,
+      discount: [0],
       discountamt: 0,
       totaltax: 0,
       total: 0,
@@ -350,7 +350,7 @@ export class AddQuotPage implements OnInit {
     this.quoteData = [{
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '',
@@ -563,7 +563,7 @@ export class AddQuotPage implements OnInit {
     let newRow: Quote = {
       barcode: '',
       itemcode: 0,
-      itemname: 0,
+      itemname: '',
       description: '',
       quantity: 0,
       unitname: '', hunitname: 0,

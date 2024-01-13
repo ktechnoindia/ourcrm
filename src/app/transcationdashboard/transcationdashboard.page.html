@@ -198,13 +198,8 @@
                   Purchase Return
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
-
             </ion-row>
-
-
-
           </div>
-
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -253,7 +248,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
           <p>Purchase List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermPurchase()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -266,7 +261,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchase of purchase$ | async; let i = index">
+              <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchase.billDate}}</td>
                 <td>{{purchase.vendcode}}</td>
@@ -285,7 +280,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
           <p>Sales List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchSale" (ionInput)="onSearchTermSale()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -297,7 +292,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let sales of sales$ | async; let i = index">
+              <tr *ngFor="let sales of filteredSales$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{sales.billDate}}</td>
                 <td>{{sales.custcode}}</td>
@@ -318,7 +313,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('quotelist')">
           <p>Quatations List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermQuote()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -327,7 +322,7 @@
                 <th style="width: 70px !important;">Quote Date</th>
                 <th style="width: 70px !important;">Customer Name</th>
               </tr>
-              <tr *ngFor="let quote of quote$ | async; let i = index">
+              <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{quote.quoteNumber}}</td>
                 <td>{{quote.quateDate}}</td>
@@ -342,7 +337,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('dcinlist')">
           <p>DC-IN List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchDcin" (ionInput)="onSearchTermDcin()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -353,7 +348,7 @@
                 <th style="width: 70px !important;">Supplier Name</th>
 
               </tr>
-              <tr *ngFor="let dcin of dcin$ | async; let i = index">
+              <tr *ngFor="let dcin of filteredDcin$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{dcin.voucherNumber}}</td>
                 <td>{{dcin.datetype}}</td>
@@ -367,9 +362,9 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('dc-out')">
+        <div class="table-container" *ngIf="selectedOptions.includes('dcoutlist')">
           <p>DC-OUT List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchDcout" (ionInput)="onSearchTermDcout()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -380,7 +375,7 @@
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
               </tr>
-              <tr *ngFor="let dcout of dcout$ | async; let i = index">
+              <tr *ngFor="let dcout of filteredDcout$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{dcout.voucherformat}}</td>
                 <td>{{dcout.voucherNumber}}</td>
@@ -396,7 +391,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('salreturnslist')">
           <p>Sales Return List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchSalereturn" (ionInput)="onSearchTermSalereturn()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -408,7 +403,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let salreturns of salreturn$ | async; let i = index">
+              <tr *ngFor="let salreturns of filteredSalereturns$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{salreturns.billDate}}</td>
                 <td>{{salreturns.custcode}}</td>
@@ -426,7 +421,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('purchasereturnlist')">
           <p>Purchase Return List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs " [(ngModel)]="searchPurchasereturn" (ionInput)="onSearchTermPurchasereturn()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -439,7 +434,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchasereturn of purchasereturn$ | async; let i = index">
+              <tr *ngFor="let purchasereturn of  filteredPurchasereturns$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchasereturn.billDate}}</td>
                 <td>{{purchasereturn.vendcode}}</td>
