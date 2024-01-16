@@ -76,6 +76,11 @@ export class AddItemPage implements OnInit {
   stocktypename$: Observable<any[]>
   itemtypename$: Observable<any[]>
   itemgroups$: Observable<any[]>
+  framenumber: string = '';
+  enginenumber: string = '';
+  partnumber: string = '';
+  color: string = '';
+
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   selectedAttribute: string = '';
@@ -142,7 +147,11 @@ export class AddItemPage implements OnInit {
       purchaserate: [''],
       basicrate: [''],
       labelname: [''],
-      valuename: ['']
+      valuename: [''],
+      framenumber: [''],
+      enginenumber: [''],
+      partnumber:[''],
+      color:[''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -250,6 +259,10 @@ export class AddItemPage implements OnInit {
         companyid: 1,
         labelname: this.myform.value.labelname,
         valuename: this.myform.value.valuename,
+        framenumber:  this.myform.value.framenumber,
+        enginenumber: this.myform.value.enginenumber,
+        partnumber:  this.myform.value.partnumber,
+        color:  this.myform.value.color,
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {

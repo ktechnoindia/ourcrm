@@ -48,6 +48,10 @@ export interface item {
   basicrate:number;
   labelname:string;
   valuename:string;
+  framenumber: string ;
+  enginenumber: string ;
+  partnumber: string ;
+  color: string ;
 }
 
 @Injectable({

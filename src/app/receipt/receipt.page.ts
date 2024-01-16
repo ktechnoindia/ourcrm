@@ -211,6 +211,7 @@ companyid:number=0;
   async onSubmit(myform: FormGroup, receiptData: Recepit[]) {
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
+    
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(receiptData));

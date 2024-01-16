@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NavParams, PopoverController } from '@ionic/angular';
+import { AdditemService } from '../services/additem.service';
 @Component({
   selector: 'app-quantitypopover',
   templateUrl: './quantitypopover.page.html',
@@ -20,7 +21,7 @@ export class QuantitypopoverPage implements OnInit {
   @Input() quantity: number=0;
   rows: any[] = [];
   rowData: any[] = [];
-  constructor(private navParams: NavParams, private popoverController: PopoverController) {}
+  constructor(private itemService: AdditemService,private navParams: NavParams, private popoverController: PopoverController) {}
  
 
   closePopover() {
@@ -30,16 +31,22 @@ export class QuantitypopoverPage implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.rows = Array.from({ length: this.quantity }, (_, index) => index + 1);
-    // Initialize rowData based on your data structure
-    this.rowData = Array.from({ length: this.quantity }, () => ({
-      attr1: '',
-      attr2: '',
-      attr3: '',
-      attr4: '',
-      attr5: '',
-      // Add more properties as needed
-    }));
-  }  
+  ngOnInit() {
+    // Call your data service to get data from the backend
+    this.itemService.getAllItems().subscribe((data: any[]) => {
+      this.rows = data;
+      // Initialize rowData based on your data structure
+      this.rowData = data.map(() => ({
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+      }));
+    });
+  }
+
 }

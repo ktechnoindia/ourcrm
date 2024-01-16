@@ -156,12 +156,28 @@
 
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
                     <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance"
                       type="text" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
-                  </ion-row>
                 </ion-col>
 
+              </ion-row>
+              <ion-row> 
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-input [(ngModel)]="framenumber" formControlName="framenumber" name="framenumber"
+                    type="text" label="Frame Number :" label-placement="floating" fill="outline"></ion-input>
+              </ion-col>
+              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                <ion-input [(ngModel)]="enginenumber" formControlName="enginenumber" name="enginenumber"
+                  type="text" label="Engine Number :" label-placement="floating" fill="outline"></ion-input>
+            </ion-col>
+            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+              <ion-input [(ngModel)]="partnumber" formControlName="partnumber" name="partnumber"
+                type="text" label="Part Number :" label-placement="floating" fill="outline"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-input [(ngModel)]="color" formControlName="color" name="color"
+              type="text" label="Color:" label-placement="floating" fill="outline"></ion-input>
+        </ion-col>
               </ion-row>
 
               <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">

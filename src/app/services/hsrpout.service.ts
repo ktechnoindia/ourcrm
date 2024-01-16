@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 export interface hsrpout{
@@ -43,6 +45,8 @@ export interface hsrpout{
   pretax: number;
   posttax: number;
   totalnetamount: number;
+  mrp:string;
+  netrate:string;
 }
 
 @Injectable({
@@ -50,5 +54,8 @@ export interface hsrpout{
 })
 export class HsrpoutService {
 
-  constructor() { }
+  constructor(private httpclient: HttpClient) { }
+  createhsrpout(hsrpout: hsrpout[], key: string, user: string) {
+    return this.httpclient.post(environment.apiactionurl + environment.addhsrpout, hsrpout, { headers: { 'key': key, 'user': user } });
+  }
 }

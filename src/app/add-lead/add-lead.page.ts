@@ -337,8 +337,8 @@ export class AddLeadPage {
         stocktypename: '',
         itemtypename: '',
         unitname: this.itempop.value.unitname.toString(),
-        selectItemGroup:  this.itempop.value.selectItemGroup,
-        selectGst:  this.itempop.value.selectGst,
+        selectItemGroup: this.itempop.value.selectItemGroup,
+        selectGst: this.itempop.value.selectGst,
         openingbalance: '',
         closingbalance: '',
         selectedAttribute: '',
@@ -361,7 +361,11 @@ export class AddLeadPage {
         purchaserate: 0,
         basicrate: 0,
         labelname: '',
-        valuename: ''
+        valuename: '',
+        framenumber: '',
+        enginenumber: '',
+        partnumber: '',
+        color: ''
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {

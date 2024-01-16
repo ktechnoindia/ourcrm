@@ -11,7 +11,7 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit()" >
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,hsrpindata)" >
 
             <ion-row>
               <ion-col class="ionselect" size-lg="2.5" size-md="2.5" size-sm="6" size="6">
@@ -73,29 +73,49 @@
                 <table style="width:1355px;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th>Part No.</th>
-                    <th>Item Name</th>
+                   
+                    <!-- <th>Part No.</th>
                     <th>Frame No.</th>
                     <th>Engine No.</th>
                     <th>Vehicle No</th>
                     <th>Veh. Reg. No.</th>
                     <th>Veh. Reg. Date</th>
                     <th>HSRP Front</th>
-                    <th>HSRP Rear</th>
+                    <th>HSRP Rear</th> -->
+                    <th>Item Name</th>
+                    <th>Quantity</th>
                     <th>Description</th>
                     <th>HSN/SAC Code</th>
-                    <th>Quantity</th>
+                    <th>MRP</th>
                     <th>Basic Rate</th>
+                    <th>Net Rate</th>
                     <th>GST</th>
                     <th>Tax Amount</th>
                     <th>TCS value</th>
                     <th>Action</th>
                   </tr>
-                  <tr>
-                    <td>
-                      <input class="table_input" type="text">
-                    </td>
+                  <tr  *ngFor="let hsrpin of hsrpindata; let i = index">
+                    <td>{{i+1}}</td>
                     <td style="width: 90px;">
+                      <select class="table_select" [(ngModel)]="hsrpin.itemname"
+                      [ngModelOptions]="{standalone: true}" (change)="getItems(hsrpin)">
+                      <option value="0">Item Name</option> <!--//Default option -->
+                      <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
+                        {{ item.itemDesc }}
+                      </option>
+                    </select>
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpin.quantity" formControlName="quantity" name="quantity"  type="text" (keydown.enter)="presentPopover(hsrpin)">
+                    </td>
+                    <td *ngIf="selectedItemAttributes && selectedItemAttributes.length > 0" colspan="8">
+                      <!-- Display attributes for the selected item -->
+                      <div *ngFor="let attribute of selectedItemAttributes">
+                        {{ attribute }}
+                      </div>
+                    </td>
+                    
+                    <!-- <td style="width: 90px;">
                       <select class="table_select" [(ngModel)]="part" formControlName="part" name="part">
                         <option value="0">Part No.</option>
                         <option value="">part 1</option>
@@ -105,17 +125,7 @@
                         <option value="">part 5</option>
                       </select>
                     </td>
-                    <td style="width: 90px;">
-                      <select class="table_select"  [(ngModel)]="itemname" formControlName="itemname" name="itemname">
-
-                        <option value="0">Item No.</option>
-                        <option value="">Item 1</option>
-                        <option value="">Item 2</option>
-                        <option value="">Item 3</option>
-                        <option value="">Item 4</option>
-                        <option value="">Item 5</option>
-                      </select>
-                    </td>
+                   
                     <td style="width: 90px;">
                       <select class="table_select"  [(ngModel)]="frame" formControlName="frame" name="frame">
                         <option value="0">Frame No.</option>
@@ -144,21 +154,26 @@
                     </td>
                     <td>
                       <input class="table_input" [(ngModel)]="hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"  type="text">
+                    </td> -->
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpin.description" formControlName="description" name="description"  type="text">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="description" formControlName="description" name="description"  type="text">
+                      <input class="table_input"  [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code" name="hsn_code"  type="text">
                     </td>
                     <td>
-                      <input class="table_input"  [(ngModel)]="hsn_code" formControlName="hsn_code" name="hsn_code"  type="text">
-                    </td>
-                    <td>
-                      <input class="table_input" [(ngModel)]="quantity" formControlName="quantity" name="quantity"  type="text">
+                      <input [(ngModel)]="hsrpin.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
                     </td>
                     <td style="width: 90px;">
-                      <input class="table_input"[(ngModel)]="basic_rate" formControlName="basic_rate" name="basic_rate" type="text">
+                      <input class="table_input"[(ngModel)]="hsrpin.basic_rate" formControlName="basic_rate" name="basic_rate" type="text">
+                    </td>
+                    <td>
+                      <input style="width: 70px;" [(ngModel)]="hsrpin.netrate" 
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>  
-                      <select class="table_select"  [(ngModel)]="gst_type" formControlName="gst_type" name="gst_type" >
+                      <select class="table_select"  [(ngModel)]="hsrpin.gst_type" formControlName="gst_type" name="gst_type" >
                         <option value="0">GST</option>
                         <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
                         {{gsttype.gstname}}
@@ -166,15 +181,16 @@
                       </select>
                     </td>
                     <td>
-                      <input class="table_input"[(ngModel)]="tax_amt" formControlName="tax_amt" name="tax_amt" type="text">
+                      <input class="table_input"[(ngModel)]="hsrpin.tax_amt" formControlName="tax_amt" name="tax_amt" type="text">
                     </td>
                     <td>
-                      <input class="table_input"[(ngModel)]="tcs_value" formControlName="tcs_value" name="tcs_value" type="text">
+                      <input class="table_input"[(ngModel)]="hsrpin.tcs_value" formControlName="tcs_value" name="tcs_value" type="text">
                     </td>
                     <td>
-                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
-                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
-                    </td>
+                      <!-- <ion-icon icon-only clear color="primary" name="add" (click)="addQuote()"></ion-icon>
+                      <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
+                        (click)="removeQuote(i,quote)"></ion-icon> -->
+                                          </td>
                   </tr>
                  
 
