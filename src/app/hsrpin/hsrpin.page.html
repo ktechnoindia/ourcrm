@@ -108,12 +108,7 @@
                     <td>
                       <input class="table_input" [(ngModel)]="hsrpin.quantity" formControlName="quantity" name="quantity"  type="text" (keydown.enter)="presentPopover(hsrpin)">
                     </td>
-                    <td *ngIf="selectedItemAttributes && selectedItemAttributes.length > 0" colspan="8">
-                      <!-- Display attributes for the selected item -->
-                      <div *ngFor="let attribute of selectedItemAttributes">
-                        {{ attribute }}
-                      </div>
-                    </td>
+                    
                     
                     <!-- <td style="width: 90px;">
                       <select class="table_select" [(ngModel)]="part" formControlName="part" name="part">

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -17,25 +17,25 @@ import jsPDF from 'jspdf';
   imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class ViewSalePage implements OnInit {
-  @ViewChild('content',{static:false})el!:ElementRef
+  @ViewChild('content', { static: false }) el!: ElementRef
 
   fromDate: string = '';
   toDate: string = '';
   sales$: Observable<any[]>
-  generatePdf(){
+  generatePdf() {
     let pdf = new jsPDF()
-  
-    pdf.html(this.el.nativeElement,{
-      callback : (pdf)=>{
+
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
         //save this pdf document
         pdf.save("sample Pdf")
       }
     })
   }
-  printThisPage(){
+  printThisPage() {
     window.print();
   }
-  
+
   // filteredSales: Observable<any[]>;
   availableColumns: string[] = [
     'billformate',
@@ -88,6 +88,45 @@ export class ViewSalePage implements OnInit {
     'totaltax',
     'total',
   ];
+  columnHeaders: { [key: string]: string } = {
+    'billformate': 'Bill Format',
+    'billNumber': 'Bill Number',
+    'billDate': 'Bill Date',
+    'custcode': 'Customer Code',
+    'custname': 'Customer Name',
+    'refrence': 'Reference',
+    'refdate': 'Reference Date',
+    'orderDate': 'Order Date',
+    'orderNumber': 'Order Number',
+    'gstin': 'GSTIN',
+    'salePerson': 'Sales Person',
+    'payment': 'Payment',
+    'deliverydate': 'Delivery Date',
+    'deliveryplace': 'Delivery Place',
+    'barcode': 'Barcode',
+    'itemcode': 'Item Code',
+    'itemname': 'Item Name',
+    'description': 'Description',
+    'quantity': 'Quantity',
+    'unitname': 'Unit Name',
+    'mrp': 'MRP',
+    'basicrate': 'Basic Rate',
+    'netrate': 'Net Rate',
+    'grossrate': 'Gross Rate',
+    'taxrate': 'Tax Rate',
+    'IGST': 'IGST',
+    'CGST': 'CGST',
+    'SGST': 'SGST',
+    'discount': 'Discount',
+    'discountamt': 'Discount Amount',
+    'totaltax': 'Total Tax',
+    'pretax': 'Pre-tax',
+    'posttax': 'Post-tax',
+    'total': 'Total',
+  };
+
+  manualHeaders: string[] = [];
+
   totalItems: number = 0;
   total: number = 0;
   searchTerm: string = '';
@@ -106,9 +145,18 @@ export class ViewSalePage implements OnInit {
 
     // Initialize the filteredSales with the original sales data
     this.filteredSales$ = this.sales$;
-
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterCustomers(): Observable<any[]> {
     return this.sales$.pipe(
       map(sales =>

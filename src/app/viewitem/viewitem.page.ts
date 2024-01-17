@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -47,6 +47,34 @@ export class ViewitemPage implements OnInit {
   items$: Observable<any[]>;
   searchTerm: string = '';
   filteredItems$: Observable<any[]> = new Observable<any[]>();
+  columnHeaders: { [key: string]: string } = {
+    'itemCode': 'Item Code',
+    'itemDesc': 'Item Description',
+    'hsnname': 'HSN Name',
+    'stocktypename': 'Stock Type',
+  'itemtypename': 'Item Type',
+  'unitname': 'Unit Name',
+  'selectItemGroup': 'Item Group',
+  'selectGst': 'Select GST',
+  'mrp': 'MRP',
+  'basicrate': 'Basic Rate',
+  'openingbalance': 'Opening Balance',
+  'closingbalance': 'Closing Balance',
+  'attr1': 'Attribute 1',
+  'attr2': 'Attribute 2',
+  'attr3': 'Attribute 3',
+  'attr4': 'Attribute 4',
+  'attr5': 'Attribute 5',
+  'attr6': 'Attribute 6',
+  'attr7': 'Attribute 7',
+  'attr8': 'Attribute 8',
+  'files': 'Files',
+  'barcode': 'Barcode',
+  'minimum': 'Minimum',
+  'maximum': 'Maximum',
+  'reorder': 'Reorder',
+    // Add more columns as needed
+  };
   availableColumns: string[] = [
     'itemCode',
     'itemDesc',
@@ -81,6 +109,7 @@ export class ViewitemPage implements OnInit {
     'selectGst',
     'mrp',
   ];
+  manualHeaders: string[] = [];
   totalItems: number = 0;
 
   constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
@@ -94,8 +123,18 @@ export class ViewitemPage implements OnInit {
       this.totalItems = data.length;
 
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterCustomers(): Observable<any[]> {
     return this.items$.pipe(
       map(items =>

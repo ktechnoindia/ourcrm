@@ -16,6 +16,7 @@ import { AdditemService } from '../services/additem.service';
 import { FormValidationService } from '../form-validation.service';
 
 interface Hsrp {
+  selectedItemAttributes: unknown[];
   part: number;
   frame: number;
   engine_no: number;
@@ -34,6 +35,7 @@ interface Hsrp {
   tax_amt: number;
   tcs_value: number;
   itemname:number;
+  selectedItem: any; // New property to store the selected item
 
 }
 
@@ -48,8 +50,10 @@ interface Hsrp {
 export class HsrpinPage implements OnInit {
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
-  selectedItemAttributes: any[] = [];
-
+  selectedItemAttributes = [
+    { attributes: ['attr1', 'attr2', 'attr3','attr3','attr5','attr5','attr6','attr7','attr8'] },
+    // Add more objects as needed
+  ];
   myform: FormGroup;
 
   billformate: number = 0
@@ -116,6 +120,9 @@ export class HsrpinPage implements OnInit {
     tax_amt: 0,
     tcs_value: 0,
     itemname:0,
+    selectedItem: 0,// New property to store the selected item
+    selectedItemAttributes:[''],
+
   }];
   rows = [
     { part: null, frame: null, engine_no: null, vehicle_no: null, vehicle_reg_no: null, vehicle_reg_date: null, hsrp_front: null, hsrp_rear: null, description: null, hsn_code: null, quantity: null, basic_rate: null, gst_type: null, tax_amt: null, tcs_value: null, itemname: null },
@@ -124,7 +131,9 @@ export class HsrpinPage implements OnInit {
   ttotal!: number;
   itemnames$: Observable<any[]>;
   firstInvalidInput: any;
+ isQuantityEntered = false;
  
+
   constructor( private hsrpinservice :HsrpinService,private formService: FormValidationService,private itemService: AdditemService,private popoverController: PopoverController,private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService,private executiveService:ExecutiveService,private GstService:GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
@@ -176,11 +185,11 @@ export class HsrpinPage implements OnInit {
        ttotal: [''],
     })
   }
-  
-  onItemSelect(hsrpin: any) {
-    this.itemnames$.subscribe(items => {
-      const selectedItem = items.find(item => item.tid === hsrpin.itemname);
+  onItemSelect(hsrpin: Hsrp) {
+    this.itemnames$.subscribe((items) => {
+      const selectedItem = items.find((item) => item.tid === hsrpin.itemname);
       if (selectedItem) {
+        hsrpin.selectedItem = selectedItem; // Store the selected item
         hsrpin.selectedItemAttributes = Object.values(selectedItem.attributes);
       }
     });
@@ -353,6 +362,8 @@ export class HsrpinPage implements OnInit {
     location.reload();
   }
   ngOnInit() {
+    console.log('selectedItemAttributes', this.selectedItemAttributes);
+
   }
   goBack() {
     this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page
@@ -362,12 +373,13 @@ export class HsrpinPage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-  async presentPopover(quote: any) {
+  async presentPopover(hsrpin: Hsrp) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
       cssClass: 'popover-content',
       componentProps: {
-        quantity: quote.quantity, // Pass the quantity to the popup component
+        quantity: hsrpin.quantity,
+        selectedItem: hsrpin.selectedItem,
       },
       translucent: true,
     });
@@ -376,7 +388,8 @@ export class HsrpinPage implements OnInit {
 
 
 
-  updateRows(hsrpin: hsrpin) {
+
+  updateRows(hsrpin: Hsrp) {
     // Open the popover when quantity changes
     if (hsrpin.quantity > 0) {
       this.presentPopover(hsrpin);

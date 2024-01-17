@@ -19,7 +19,7 @@
               <ion-col  size-lg="4" size-md="4" size-sm="6" size="12">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns" name="selectedColumns" multiple="true">
-                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ col }}</ion-select-option>
+                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
                 </ion-select>
               </ion-col>
               
@@ -32,7 +32,7 @@
                   <thead>
                     <tr>
                       <th>Sr. No.</th>
-                      <th *ngFor="let col of selectedColumns">{{ col }}</th>
+                      <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
                       <th>Action</th>
                     </tr>
                   </thead>

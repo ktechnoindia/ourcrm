@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -49,6 +49,29 @@ export class ViewsupplierPage implements OnInit {
   searchTerm: string = '';
 
   filteredSupplers$: Observable<any[]> = new Observable<any[]>();
+  columnHeaders: { [key: string]: string } = {
+    'vendor_code': 'Vendor Code',
+    'name': 'Name',
+    'gstin': 'GSTIN',
+    'whatsapp_number': 'WhatsApp Number',
+    'email': 'Email',
+    'countryid': 'Country ID',
+    'stateid': 'State ID',
+    'districtid': 'District ID',
+    'pincode': 'Pincode',
+    'address': 'Address',
+    'aadhar_no': 'Aadhar Number',
+    'pan_no': 'PAN Number',
+    'udhyog_aadhar': 'Udhyog Aadhar',
+    'account_number': 'Account Number',
+    'ifsc_code': 'IFSC Code',
+    'bank_name': 'Bank Name',
+    'branch_name': 'Branch Name',
+    'card_number': 'Card Number',
+    'credit_period': 'Credit Period',
+    'credit_limit': 'Credit Limit',
+  };
+  
   availableColumns: string[] = [
     'vendor_code',
     'name',
@@ -80,6 +103,7 @@ export class ViewsupplierPage implements OnInit {
     'countryid',
   ];
   totalItems: number = 0;
+  manualHeaders: string[] = [];
 
   constructor(private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private venderService: VendorService) {
     const compid = '1';
@@ -90,8 +114,18 @@ export class ViewsupplierPage implements OnInit {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterCustomers(): Observable<any[]> {
     return this.vendors$.pipe(
       map(vendors =>
