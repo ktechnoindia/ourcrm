@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NavParams, PopoverController } from '@ionic/angular';
 import { AdditemService } from '../services/additem.service';
+interface RowData {
+  [key: string]: string;
+}
 @Component({
   selector: 'app-quantitypopover',
   templateUrl: './quantitypopover.page.html',
@@ -20,8 +23,14 @@ export class QuantitypopoverPage implements OnInit {
 
   @Input() quantity: number=0;
   rows: any[] = [];
-  rowData: any[] = [];
-  constructor(private itemService: AdditemService,private navParams: NavParams, private popoverController: PopoverController) {}
+  rowData: RowData[] = [];
+  selectedItemAttributes: any[] = [];
+  tid: any;
+
+  constructor(private itemService: AdditemService,private navParams: NavParams, private popoverController: PopoverController) {
+    this.tid = 'someItemId'; // Replace 'someItemId' with the actual item ID
+
+  }
  
 
   closePopover() {
@@ -31,22 +40,19 @@ export class QuantitypopoverPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // Call your data service to get data from the backend
-    this.itemService.getAllItems().subscribe((data: any[]) => {
-      this.rows = data;
-      // Initialize rowData based on your data structure
-      this.rowData = data.map(() => ({
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7: '',
-        attr8: '',
-      }));
+  ngOnInit(): void {
+    const compid=1;
+    this.itemService.getAllItemsattr(this.tid).subscribe((attributes: string[]) => {
+      this.selectedItemAttributes = attributes;
+    
+      // Initialize rowData based on the retrieved attributes
+      this.rowData = Array.from({ length: this.quantity }, () => {
+        const row: RowData = {};
+        this.selectedItemAttributes.forEach((attr: string) => {
+          row[attr] = '';
+        });
+        return row;
+      });
     });
   }
-
 }
