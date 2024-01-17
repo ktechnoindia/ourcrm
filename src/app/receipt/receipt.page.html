@@ -37,8 +37,8 @@
                     </ion-col>
                     <ion-col size-lg="5.5" size-md="12" size-sm="12" size="12" style="margin-bottom: 4px;">
                       <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                        label="Select Payment Transfer Method" label-placement="floating" fill="outline" [ngModel]="ledger"
-                        formControlName="ledger" name="ledger">
+                        label="Select Payment Transfer Method" label-placement="floating" fill="outline"
+                        [ngModel]="ledger" formControlName="ledger" name="ledger">
                         <ion-select-option *ngFor="let ledgers of ledgers$ | async; let i = index" [value]="ledgers.id">
                           {{ledgers.lname}}
                         </ion-select-option>
@@ -68,18 +68,18 @@
                           </td>
                           <!-- Assuming the input field for outstanding_amount is in the first row -->
                           <td *ngIf="outstanding_amount !== null">
-                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" 
+                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
                               formControlName="outstanding" type="number"></ion-input>
                           </td>
 
                           <td>
                             <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"
-                               formControlName="paymentmade" type="number"></ion-input>
+                              formControlName="paymentmade" type="number"></ion-input>
                           </td>
                           <td>
-                            
+
                             <ion-input class="table_input" name="pendingamt" [(ngModel)]="pendingamt"
-                            [value]="calculatePendingAmount()"   formControlName="pendingamt" type="number"></ion-input>
+                              [value]="calculatePendingAmount()" formControlName="pendingamt" type="number"></ion-input>
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
@@ -109,12 +109,14 @@
                 <ion-card>
                   <ion-row style="margin-bottom: 4px;">
                     <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
-                      <ion-input [value]="selectedCustomerId" name="companyname"  [(ngModel)]="companyname" formControlName="companyname" type="text"
-                        label="Ledger Name:" label-placement="floating" fill="outline"></ion-input>
+                      <ion-input [value]="selectedCustomerId" name="companyname" [(ngModel)]="companyname"
+                        formControlName="companyname" type="text" label="Ledger Name:" label-placement="floating"
+                        fill="outline"></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
-                      <ion-input [(ngModel)]="total_payment" formControlName="total_payment" name="total_payment" [value]="calculateTotalCurrentAmt()"
-                       type="number" label="Total Payment:" label-placement="floating" fill="outline"></ion-input>
+                      <ion-input [(ngModel)]="total_payment" formControlName="total_payment" name="total_payment"
+                        [value]="calculateTotalCurrentAmt()" type="number" label="Total Payment:"
+                        label-placement="floating" fill="outline"></ion-input>
                     </ion-col>
                   </ion-row>
 
@@ -133,31 +135,32 @@
 
                         </tr>
                         <tr *ngFor="let receipt of receiptBill$ | async; let i = index">
-                          <td><ion-checkbox [formControl]="yourCheckboxFormControl"></ion-checkbox></td>
+                          <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
-                            <ion-input type="text" [value]="receipt.billNumber" name="billno" [readonly]="true"  
-                            >
-                            </ion-input>
+                            <input type="text" name="billno" [(ngModel)]="receipt.billno"
+                            [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <ion-input  type="text" name="billdate" [value]="receipt.billDate"></ion-input>
+                            <input type="text" name="billdate"  [(ngModel)]="receipt.billdate"
+                            [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <ion-input class="date" type="number" name="total" [value]="receipt.total" ></ion-input>
+                            <input class="date" type="number" name="totalamt" [(ngModel)]="receipt.totalamt"
+                            [ngModelOptions]="{standalone: true}">
                           </td>
 
                           <td>
-                            <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="receipt.receiveamt"
-                              formControlName="receiveamt" ></ion-input>
+                            <input class="date" type="number" name="receiveamt" [(ngModel)]="receipt.receiveamt"
+                              [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <ion-input class="date" type="number" name="currentamt" [(ngModel)]="receipt.currentamt"
-                              formControlName="currentamt" ></ion-input>
+                            <input class="date" type="number" name="currentamt" [(ngModel)]="receipt.currentamt"
+                              [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <ion-input type="number" name="billpendingamt" [(ngModel)]="receipt.billpendingamt"
-                              formControlName="billpendingamt" [value]="calculatePendingBillAmount(receipt)" ></ion-input>
+                            <input type="number" name="billpendingamt" [(ngModel)]="receipt.billpendingamt"
+                              [ngModelOptions]="{standalone: true}" [value]="calculatePendingBillAmount(receipt)">
                           </td>
 
                         </tr>
@@ -167,24 +170,24 @@
                       <table class="payment_table">
                         <tr>
                           <td>
-                            <label for="" >Total Due Amt:</label>
-                            <input type="number" name="totaldueamt" [(ngModel)]="totaldueamt" [value]="calculateTotalDueAmt()"
-                             formControlName="totaldueamt" >
+                            <label for="">Total Due Amt:</label>
+                            <input type="number" name="totaldueamt" [(ngModel)]="totaldueamt"
+                              [value]="calculateTotalDueAmt()" formControlName="totaldueamt">
                           </td>
                           <td>
-                            <label for="" >Total Receive Amt:</label>
-                            <input type="number" name="totalreceiveamt" [(ngModel)]="totalreceiveamt" [value]="calculateTotalReceiveAmt()"
-                             formControlName="totalreceiveamt" >
+                            <label for="">Total Receive Amt:</label>
+                            <input type="number" name="totalreceiveamt" [(ngModel)]="totalreceiveamt"
+                              [value]="calculateTotalReceiveAmt()" formControlName="totalreceiveamt">
                           </td>
                           <td>
-                            <label for="" >Total Current Amt:</label>
-                            <input type="number" name="totalcurrentamt" [(ngModel)]="totalcurrentamt" [value]="calculateTotalCurrentAmt()"
-                             formControlName="totalcurrentamt" >
+                            <label for="">Total Current Amt:</label>
+                            <input type="number" name="totalcurrentamt" [(ngModel)]="totalcurrentamt"
+                              [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt">
                           </td>
                           <td>
-                            <label for="" >Total Pending Amt:</label>
-                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt" [value]="calculateTotalPendingAmt()"
-                              formControlName="totalpendingamt" >
+                            <label for="">Total Pending Amt:</label>
+                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt"
+                              [value]="calculateTotalPendingAmt()" formControlName="totalpendingamt">
                           </td>
                         </tr>
                       </table>
