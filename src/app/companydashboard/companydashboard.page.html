@@ -1,0 +1,573 @@
+<ion-content class="container_fluid">
+    <div class="dash">
+        <ion-chip>
+            <ion-label>{{companyname}}</ion-label>
+        </ion-chip>
+        <ion-title>
+            Company Dashboard
+        </ion-title>
+        <ion-chip>
+            <ion-avatar>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-label class="gamil">{{username}}</ion-label>
+        </ion-chip>
+        <div class="custom-primary" style="justify-content: right;text-align: right;">
+            <ion-buttons slot="end">
+                <ion-button (click)="openNotificationsPage()">
+                    <ion-icon color="light" size="large" name="notifications-circle-outline"></ion-icon>
+                    <ion-badge color=danger *ngIf="notificationCount > 0">{{ notificationCount }}</ion-badge>
+                </ion-button>
+            </ion-buttons>
+            <ion-button expand="block" (click)="logout()">
+                <ion-icon color="light" size="medium" name="log-out-outline"></ion-icon>
+            </ion-button>
+        </div>
+
+    </div>
+    <div class="lead_nav">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12" size-md="8" size-sm="9" size-lg="9">
+                    <div class="icon-container1">
+                        <ion-row class="leadscard">
+
+                            <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                                <ion-card style="text-align: center;background-color: rgb(255, 244, 244);"
+                                    class="hovers" [routerLink]="'/viewcustomer'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/evaluation.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalCustomer}}</ion-title>
+                                            <ion-label style="margin-left: -15px;">
+                                                Active Customer
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                                <ion-card style="text-align: center;background-color:rgb(199, 250, 199);" class="hovers"
+                                    [routerLink]="'/viewsupplier'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/supplier.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalSupplier}}</ion-title>
+                                            <ion-label style="margin-left: -15px;">
+                                                Active Supplier
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                                <ion-card style="text-align: center;background-color: rgb(231, 181, 254);"
+                                    class="hovers" [routerLink]="'/viewexicutive'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/skills.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalExecitve}}</ion-title>
+                                            <ion-label style="margin-left: -15px;">
+                                                Total Executive
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
+                                <ion-card style="text-align: center;background-color: rgb(255, 164, 164);"
+                                    class="hovers" [routerLink]="'/viewitem'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/list-items.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalItems}}</ion-title>
+                                            <ion-label>
+                                                Total Items
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center;background-color: rgb(255, 165, 226);"
+                                    [routerLink]="'/view-sale'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/shopping-online.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalsales}}</ion-title>
+                                            <ion-label>
+                                                Total Sales
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center;background-color: rgb(255, 132, 181);"
+                                    [routerLink]="'/view-purchase'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/checklist.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <!-- <ion-title>{{totalpurchase}}</ion-title> -->
+                                            <ion-title>{{totalpurchase}}</ion-title>
+
+                                            <ion-label>
+                                                Total Purchase
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center; background-color: rgb(181, 212, 255);"
+                                    [routerLink]="['/view-lead']">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/employee.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>121</ion-title>
+                                            <ion-label>
+                                                Active Leads
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center; background-color:rgb(143, 221, 217)">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/completed-task.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>100</ion-title>
+                                            <ion-label>
+                                                Order Closed
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center;background-color: rgb(255, 212, 137);"
+                                    [routerLink]="'/paymenttransaction-report'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/invoice.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalpayment}}</ion-title>
+                                            <ion-label>
+                                                Total Payment Transtraction
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+
+                                </ion-card>
+                            </ion-col>
+                            <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                                <ion-card style="text-align: center;background-color: rgb(179, 225, 243);"
+                                    [routerLink]="'/receipttransaction-report'">
+                                    <ion-row class="row">
+                                        <ion-col size="4">
+                                            <img src="assets/receipt.png" alt="">
+                                        </ion-col>
+                                        <ion-col size="8">
+                                            <ion-title>{{totalreceipt}}</ion-title>
+                                            <ion-label>
+                                                Total Receipt Transtraction
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <!-- <div class="graph">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+                                    <ion-label>
+                                        Active Customer
+                                    </ion-label>
+                                    <canvas id="customerBarChart" class="chart-canvas"></canvas>
+
+                                </ion-col>
+                                <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+                                    <ion-label>
+                                        Active Supplier
+                                    </ion-label>
+                                    <canvas id="supplierBarChart" class="chart-canvas"></canvas>
+
+                                </ion-col>
+                                <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+                                    <ion-label>
+                                        Total Items
+                                    </ion-label>
+                                    <canvas id="itemBarChart" class="chart-canvas"></canvas>
+
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div> -->
+                </ion-col>
+                <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
+                    <div class="icon-container">
+                        <ion-row>
+                            <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOptions" multiple
+                                class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                                label="Select Master Table" label-placement="floating" fill="outline">
+                                <ion-select-option value="customerlist">Customer List</ion-select-option>
+                                <ion-select-option value="vendorlist">Vendor List</ion-select-option>
+                                <ion-select-option value="executivelist">Executive List</ion-select-option>
+                                <ion-select-option value="itemlist">Item List</ion-select-option>
+                                <ion-select-option value="purchaselist">Purchase List</ion-select-option>
+                                <ion-select-option value="saleslist">Sales List</ion-select-option>
+                                <ion-select-option value="leadlist">Lead List</ion-select-option>
+                                <ion-select-option value="paymentlist">Payment Transtaction List</ion-select-option>
+                                <ion-select-option value="receiptlist">Receipt Transaction List</ion-select-option>
+                            </ion-select>
+                        </ion-row>
+                        <ion-row class="headinglabel" style="text-align: center;">
+                            <ion-label color="dark">Manage Transtaction Pages:</ion-label>
+                        </ion-row>
+                        <ion-row class="leadsrouter">
+                            <ion-item [routerLink]="['/add-customer']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Customer
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/add-vendor']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Vendor
+                                </ion-label> <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/add-executive']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Executive
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/add-item']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Item
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/add-sale']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Sales
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/add-purchase']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Purchase
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+
+                            <ion-item [routerLink]="['/add-lead']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Leads
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/payment']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Payment
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                            <ion-item [routerLink]="['/receipt']">
+                                <ion-icon name="checkmark-circle"></ion-icon> <ion-label color="success">
+                                    Add Receipt
+                                </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
+                            </ion-item>
+                        </ion-row>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-grid>
+        <ion-row class="lead_details">
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
+                    <p>Customer List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchTerm"
+                        (ionInput)="onSearchTermChanged()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Code</th>
+                                <th>Customer Name</th>
+                                <th>City</th>
+                                <th>Executive</th>
+                                <th>Mobile No.</th>
+                                <!-- <th >Email</th> -->
+
+                            </tr>
+                            <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
+
+                                <td>{{ i + 1 }}</td>
+                                <td>{{customer.customer_code}}</td>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.districtid}}</td>
+                                <td>{{customer.select_sales_person}}</td>
+                                <td>{{customer.mobile}}</td>
+                                <!-- <td>{{customer.email}}</td> -->
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
+                    <p>Supplier List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchTerms"
+                        (ionInput)="onSearchTermSupplier()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Code</th>
+                                <th>Mobile No.</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr *ngFor="let vendoer of filteredSupplers$ | async; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{vendoer.name}}</td>
+                                <td>{{vendoer.vendor_code}}</td>
+                                <td>{{vendoer.mobile}}</td>
+                                <td>{{vendoer.email}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="">
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
+                    <p>Executive List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchExecutive"
+                        (ionInput)="onSearchTermExecutive()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Executive Role</th>
+                                <th>Executive Code</th>
+                                <th>Executive Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr *ngFor="let execute of filteredExecutive$ | async; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{execute.roleid}}</td>
+                                <td>{{execute.excode}}</td>
+                                <td>{{execute.executivename}}</td>
+                                <td>{{execute.emobile}}</td>
+                                <td>{{execute.eemail}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
+                    <p>Item List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchItem"
+                        (ionInput)="onSearchTermItem()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Item Code</th>
+                                <th>Item Description</th>
+                                <th>Item Type</th>
+                                <th>Item Group</th>
+                            </tr>
+                            <tr *ngFor="let item of filteredItem$ | async; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{item.itemCode}}</td>
+                                <td>{{item.itemDesc}}</td>
+                                <td>{{item.itemtypename}}</td>
+                                <td>{{item.selectItemGroup}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
+                    <p>Purchase List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchPurchase"
+                        (ionInput)="onSearchTermPurchase()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+                            <tr>
+                                <th style="width: 50px !important;">Sr.No.</th>
+                                <th style="width: 70px !important;">Billing Date</th>
+                                <th style="width: 70px !important;">Supplier Code</th>
+                                <th style="width: 70px !important;">Supplier Name</th>
+                                <th style="width: 70px !important;"> Order Date</th>
+                                <th style="width: 70px !important;"> Order No.</th>
+                                <th style="width: 70px !important;">Exicutive Name</th>
+
+                            </tr>
+                            <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{purchase.billDate}}</td>
+                                <td>{{purchase.vendcode}}</td>
+                                <td>{{purchase.supplier}}</td>
+                                <td>{{purchase.orderDate}}</td>
+                                <td>{{purchase.orderNumber}}</td>
+                                <td>{{purchase.executive}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+
+
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
+                    <p>Sales List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchSale"
+                        (ionInput)="onSearchTermSale()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+                            <tr>
+                                <th style="width: 50px !important;">Sr.No.</th>
+                                <th style="width: 70px !important;">Billing Date</th>
+                                <th style="width: 70px !important;">Customer Code</th>
+                                <th style="width: 70px !important;">Customer Name</th>
+                                <th style="width: 70px !important;">Order No.</th>
+                                <th style="width: 70px !important;">Order Date</th>
+                                <th style="width: 300px !important;">Sales Person Name</th>
+                            </tr>
+                            <tr *ngFor="let sales of filteredSales$ | async; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{sales.billDate}}</td>
+                                <td>{{sales.custcode}}</td>
+                                <td>{{sales.custname}}</td>
+                                <td>{{sales.orderDate}}</td>
+                                <td>{{sales.orderNumber}}</td>
+                                <td>{{sales.salePerson}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('leadlist')">
+                    <p>Total Leads </p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchlead"
+                        (ionInput)="onSearchLeadTerm()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                            <tr>
+                                <th>Sr.No.</th>
+                                <th>Company Name</th>
+                                <th>Mobile No.</th>
+                                <th>Lead Source</th>
+                                <th>Executive Name</th>
+                            </tr>
+                            <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{leadscore.companyname}}</td>
+                                <td>{{leadscore.phone}}</td>
+                                <td>{{leadscore.lscore}}</td>
+                                <td>{{leadscore.executivename}}</td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('paymentlist')">
+                    <p>Payment Transtraction List</p>
+                    <ion-searchbar class="customs" [(ngModel)]="searchPayment"
+                        (ionInput)="onSearchTermPayment()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+                            <tr>
+                                <th style="width: 50px !important;">Sr.No.</th>
+                                <th style="width: 70px !important;">Voucher No</th>
+                                <th style="width: 70px !important;">Payment Transtraction Date</th>
+                                <th style="width: 70px !important;">Ledger Name</th>
+                                <th style="width: 70px !important;">Debit Amount</th>
+                                <th style="width: 70px !important;">Credit Amount</th>
+
+                            </tr>
+                            <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{payment.voucherNumber}}</td>
+                                <td>{{payment.paymentdate}}</td>
+                                <td>{{payment.companyname}}</td>
+                                <td>{{payment.paymentmade}}</td>
+
+                                <td>{{payment.pendingamt}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+
+
+            <ion-col class="table_data" size="12" size-lg="6">
+                <div class="table-container" *ngIf="selectedOptions.includes('receiptlist')">
+                    <p>Receipt Transtraction List</p>
+                    <ion-searchbar class="customs " [(ngModel)]="searchReceipt"
+                        (ionInput)="onSearchTermReceipt()"></ion-searchbar>
+                    <div class="scroll-container">
+                        <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+                            <tr>
+                                <th style="width: 50px !important;">Sr.No.</th>
+                                <th style="width: 70px !important;">Voucher No</th>
+                                <th style="width: 70px !important;">Receipt Transtraction Date</th>
+                                <th style="width: 70px !important;">Ledger Name</th>
+                                <th style="width: 70px !important;">Debit Amount</th>
+                                <th style="width: 70px !important;">Credit Amount</th>
+
+                            </tr>
+                            <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
+
+                                <td>{{i+1}}</td>
+                                <td>{{recepit.voucherNumber}}</td>
+                                <td>{{recepit.paymentdate}}</td>
+                                <td>{{recepit.ledger}}</td>
+                                <td>{{recepit.outstanding}}</td>
+                                <td>{{recepit.currentamt}}</td>
+                                <td>{{recepit.billpendingamt}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+
+    </ion-grid>
+
+</ion-content>

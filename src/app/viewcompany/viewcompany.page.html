@@ -11,12 +11,94 @@
           </ion-card-header>
 
           <ion-grid>
-             
+            <ion-row>
+
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+                <ion-button expand="block" (click)="filterData()">Ok</ion-button>
+              </ion-col>
+              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                  name="selectedColumns" multiple="true">
+                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]  }}</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                <ion-select (ionChange)="filterData()" class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                  <ion-select-option value="Standard">Standard</ion-select-option>
+                  <ion-select-option value="PartyWise">PartyWise</ion-select-option>
+                  <ion-select-option value="ItemWise">ItemWise</ion-select-option>
+                  <ion-select-option value="Detailed">Detailed</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+
               <ion-row>
                 <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-row>
+              <ion-row class="Executive">
+                <div #content style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+                  <table style="width: 100%;">
+                    <tbody>
+                    <thead>
+                      <!-- <tr>
+                        <th style="background-color: azure; width: 500px !important;" colspan="4">Company</th>
+                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 1</th>
+                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 2</th>
+                        <th style="background-color: azure;width: 800px !important;" colspan="8">Registration</th>
+                        <th style="background-color: azure;width: 800px !important;" colspan="9">Modules</th>
+                        <th style="background-color: azure;width: 500px !important;" colspan="5">Bank Details</th>
+                        <th style="background-color: azure;width: 100px !important;" rowspan="2">Action</th>
+                      </tr> -->
+                      <tr>
+                        <th>Sr. No.</th>
+                        <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
+                        <th>Action</th>
+                      </tr>
+                      <tr *ngFor="let company of  filteredCompany$ | async; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td *ngFor="let col of selectedColumns">{{ company[col] }}</td>
+                        <td class="Action">
+                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                          <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        </td>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td [attr.colspan]="selectedColumns.length + 1">
+                          <p style="text-align: left; justify-content: left; margin-left: 20px; font-weight: bold;">Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-              <ion-row>
+              </ion-row>
+              <ion-row class="custom-primary" style="justify-content: right;">
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                  color="secondry"></ion-icon>Print</ion-button>
+                <ion-button size="small" (click)="generatePdf()" ><ion-icon name="document" slot="end" size="small"
+                    color="secondry"></ion-icon>Export To PDF</ion-button>
+                    <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                      color="secondry"></ion-icon>Preview</ion-button>
+                  <ion-button size="small"><ion-icon name="grid"slot="end" size="small"
+                    color="secondry"></ion-icon>Export Excel</ion-button>
+              </ion-row>
+              <!-- <ion-row>
                 <div class="scroll-container">
                   <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
                     <thead>
@@ -124,14 +206,14 @@
                         <td>{{company.branchname}}</td>
                         <td>{{company.upiid}}</td>
                         <td class="Action">
-                          <!-- <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> -->
+                          <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> 
                             <ion-icon color="primary" icon-only clear (click)="editcompany(company)" name="create"></ion-icon>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </ion-row>
+              </ion-row> -->
           </ion-grid>
         </div>
       </ion-card-content>

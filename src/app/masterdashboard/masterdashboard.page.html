@@ -250,7 +250,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
           <p>Executive List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerms1" (ionInput)="onSearchTermExecutive()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -261,7 +261,7 @@
                 <th>Phone Number</th>
                 <th>Email</th>
               </tr>
-              <tr *ngFor="let execute of executives$ | async; let i = index">
+              <tr *ngFor="let execute of filteredExecutive$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{execute.roleid}}</td>
                 <td>{{execute.excode}}</td>
@@ -276,7 +276,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
           <p>Item List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerms2" (ionInput)="onSearchTermItem()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -286,7 +286,7 @@
                 <th>Item Type</th>
                 <th>Item Group</th>
               </tr>
-              <tr *ngFor="let item of items$ | async; let i = index">
+              <tr *ngFor="let item of filteredItem$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{item.itemCode}}</td>
                 <td>{{item.itemDesc}}</td>
