@@ -284,7 +284,7 @@ export class CompanydashboardPage implements OnInit {
     return this.lead$.pipe(
       map(leads =>
         leads.filter(lead =>
-          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchlead.toLowerCase()))
         )
       )
     );
