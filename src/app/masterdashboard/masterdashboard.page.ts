@@ -129,13 +129,13 @@ export class MasterdashboardPage implements OnInit {
     this.filteredExecutive$ = this.executives$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterExecutive())
     );
 
     this.filteredItem$ = this.items$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterSuppliers())
+      switchMap(() => this.filterItem())
     );
   }
   createBarChart(canvas: any, label: string, data: number[]) {
