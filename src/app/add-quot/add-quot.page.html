@@ -105,7 +105,7 @@
             <ion-row style="margin-top: 7px; ">
               <div class="scroll-container">
 
-                <table style="width:1400  px;overflow-x:auto;">
+                <table style="width:100%;overflow-x:auto;overflow-y: auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>
@@ -135,10 +135,10 @@
                         (ngModelChange)="getItems(quote)" type="text">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
+                      <input  [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(quote)" class="table_input" type="text">
                     </td>
-                    <td style="width: 100px !important;">
+                    <td >
                       <select class="table_select" [(ngModel)]="quote.selectedItemId"
                         [ngModelOptions]="{standalone: true}" (change)="getItems(quote)">
                         <option value="0">Item Name</option> <!--//Default option -->
@@ -163,7 +163,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
                         (keydown.enter)="presentPopover(quote)">
                     </td>
-                    <td style="width: 90px;">
+                    <td >
                       <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                       <input [(ngModel)]="quote.hunitname" [ngModelOptions]="{standalone: true}" type="hidden">
@@ -179,19 +179,19 @@
                         type="number">
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}"
+                      <input [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}"
                         class="table_input" type="number">
 
                     </td>
                     <td>
-                      <input style="width: 70px;" [(ngModel)]="quote.netrate" [value]="getnetrate(quote)"
+                      <input [(ngModel)]="quote.netrate" [value]="getnetrate(quote)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" [value]="getgrossrate(quote)" [readonly]="true" class="table_input"
+                      <input [value]="getgrossrate(quote)" [readonly]="true" class="table_input"
                         type="number">
                     </td>
-                    <td style="width: 50px;">
+                    <td >
                       <input [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
@@ -213,7 +213,7 @@
                     <td>
                       <input [value]="getigst(quote)" type="number" class="table_input">
                     </td>
-                    <td style="width: 90px;">
+                    <td>
                       <select class="table_select" formControlName="discountType">
                         <option value="amount">Amount</option>
                         <option value="percentage">Percentage</option>
@@ -231,11 +231,11 @@
                     </td>
 
                     <td>
-                      <input style="width: 90px;" name="totaltax" [readonly]="true" [value]="getTotaltax(quote)"
+                      <input name="totaltax" [readonly]="true" [value]="getTotaltax(quote)"
                         class="table_input" type="text">
                     </td>
                     <td>
-                      <input style="width: 90px;" name="total" [readonly]="true" [value]="getTotalamt([quote])"
+                      <input name="total" [readonly]="true" [value]="getTotalamt([quote])"
                         class="table_input" type="text">
                     </td>
 
@@ -411,8 +411,7 @@
               </ion-col>
             </ion-row>
 
-            <ion-row class="custom-primary" style="justify-content: right;">
-              <div style="margin-right: 50px;margin-top: 5px;">
+            <ion-row class="custom-primary" style="justify-content: right;margin-top: 10px;">
                 <ion-button id="open-loading" (click)="onNew()">New</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                   [duration]="1000"></ion-loading>
@@ -420,9 +419,7 @@
                 <!-- <ion-button>Print</ion-button> -->
                 <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
-                  [duration]="1000"></ion-loading>
-              </div>
-                    
+                  [duration]="1000"></ion-loading>  
             </ion-row>
           </form>
         </ion-grid>

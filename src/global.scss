@@ -17,7 +17,20 @@ ion-content {
     --ion-background-color: #ffffff;
     color: #0083b0;
 }
-
+.ponumber{
+    display: none;
+    visibility: none;
+}
+.total{
+    border: 1px solid grey;
+    padding: 0px 15px;
+    font-weight: bold;
+}
+.short{
+   display: flex;
+    align-items: center;
+   justify-content: center;
+}
 .popover-content {
     --width: 800px !important;
     /* Set your desired width */

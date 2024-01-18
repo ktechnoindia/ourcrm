@@ -73,7 +73,7 @@ ion-content {
 
 .scroll-container table {
   border: solid 1px lightblue !important;
-  min-width: 570px !important;
+  width: 100%;
   min-height: 270px !important;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -81,7 +81,7 @@ ion-content {
 }
 
 .scroll-container {
-  width: 580px;
+  width: 100%;
   /* Set the width of the container */
   height: 290px;
   /* Set the height of the container */
@@ -308,12 +308,15 @@ ion-select {
 }
 
 .graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
   padding: 10px;
   /* Add padding for spacing */
   margin: 5px;
   border-radius: 10px;
-  height: 35%;
+  // height: 35%;
 }
 
 .chart-canvas {

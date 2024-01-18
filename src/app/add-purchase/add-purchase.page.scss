@@ -13,7 +13,7 @@
 
 .scroll-container td {
 background-color: #fff;
-border: .1px solid grey;
+border: 1px solid grey;
 max-height: 20px;
 }
 
@@ -31,13 +31,10 @@ max-height: 20px;
 }
 .scroll-container {
 overflow-x: auto;
-width: 100%;
-max-width: 100%;
-border: 1px solid;
+border: 1px solid grey;
 width: 100%;
 height: 270px;
 overflow-x: auto;
-width: 1555px;
 }
 .Customer ion-select {
 margin-top: -10px;

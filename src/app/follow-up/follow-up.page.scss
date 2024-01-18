@@ -60,9 +60,10 @@ ng-template ion-button {
     border: solid 1px grey;
     border-radius: 4px;
     max-height: 30px;
-    margin: 2px;
+    margin: 10px;
     padding: 2px;
     font-size: 16px;
+
 }
 
 .compname {
@@ -73,6 +74,11 @@ ng-template ion-button {
 }
 
 .compname ion-label {
+    font-size: 16px;
+    color: #0083b0;
+}
+
+.compname p {
     font-size: 16px;
     color: #0083b0;
 }

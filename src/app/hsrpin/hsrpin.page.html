@@ -14,31 +14,31 @@
           <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,hsrpindata)" >
 
             <ion-row>
-              <ion-col class="ionselect" size-lg="2.5" size-md="2.5" size-sm="6" size="6">
+              <ion-col class="ionselect" size-lg="1.5" size-md="2.5" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="HSRP Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                 </ion-select>
               </ion-col>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number" label=" HSRP No.  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="1.3" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="hsrpdate" formControlName="hsrpdate" name="hsrpdate" type="date" label="Date   :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="dark"  [(ngModel)]="suppliercode" formControlName="suppliercode" name="suppliercode" type="text" label="Code :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col class="ionselect" size-lg="3.5" size-md="3.5" size-sm="6" size="6">
+              <ion-col class="ionselect" size-lg="2" size-md="3.5" size-sm="6" size="6">
 
                 <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Supplier Name---"  label-placement="floating" fill="outline" [(ngModel)]="spler" formControlName="spler" name="spler">
                   <ion-select-option *ngFor="let supplier of supplier$ | async" [value]="supplier.id">
@@ -47,19 +47,19 @@
                 </ion-select>
 
               </ion-col>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="dark"  [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text" label="Refrence No.:" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="1.2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="dark"  [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label="Ref. Date :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col class="ionselect" size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-col class="ionselect" size-lg="2" size-md="3" size-sm="6" size="6">
                 <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Executive Name---"  label-placement="floating" fill="outline" [(ngModel)]="executive_name" formControlName="executive_name" name="executive_name">
                   <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -70,7 +70,7 @@
             <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
 
-                <table style="width:1355px;">
+                <table style="width:100%;overflow-x: auto;">
                   <tr>
                     <th>Sr.No.</th>
                    

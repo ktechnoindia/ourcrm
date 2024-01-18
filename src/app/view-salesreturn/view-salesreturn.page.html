@@ -64,7 +64,7 @@
               <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
             </ion-row>
             <ion-row class="Executive">
-              <div #content style="overflow-x:auto; width: 100% ;height: 350px;border: 1px solid grey;;">
+              <div #content class="scroll-container">
                 <table style="width: 100%;">
                   <thead>
                     <tr>
@@ -82,15 +82,15 @@
                         <ion-icon color="primary" icon-only name="create"></ion-icon>
                       </td>
                     </tr>
-                    <tr>
-                      <td [attr.colspan]="selectedColumns.length + 1">
-                        <p style="text-align: left; justify-content: left; margin-left: 20px; font-weight: bold;">Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
-                      </td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
-
+              
+                <div [attr.colspan]="selectedColumns.length + 1" class="total">
+                  <p >Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+                </div>
+           
             </ion-row>
               <!-- <ion-row>
                 <div class="scroll-container" style="overflow-x:auto; width: 100%;">

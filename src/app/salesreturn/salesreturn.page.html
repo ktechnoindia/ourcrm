@@ -88,6 +88,13 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
+                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+                <ion-row>
                   <ion-input color="dark" [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text"
                     label="Refrence No. :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
@@ -108,20 +115,15 @@
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="orderDate" formControlName="orderDate" name="orDate" type="date"
                     label=" Order Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
-                <ion-row>
-                  <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstincode" type="text" label=" GSTIN  :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
+              
+              <ion-col size-lg="3" size-md="2" size-sm="6" size="6">
 
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Sales Person ---" label-placement="floating" fill="outline" [(ngModel)]="salePerson"
@@ -133,7 +135,7 @@
                 </ion-select>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment"
                   formControlName="payment" name="pyt">
@@ -143,7 +145,7 @@
                 </ion-select>
               </ion-col>
 
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <ion-col class="ponumber" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="ponumber" formControlName="ponumber" name="ponumber" type="text"
                     label=" Po Number  :" label-placement="floating" fill="outline"></ion-input>
@@ -155,7 +157,7 @@
             <ion-row style="margin-top: 7px;">
               <div class="scroll-container">
 
-                <table style="width:1305px;overflow-x: auto;">
+                <table style="width:100%;overflow-x: auto;">
                   <tr>
                     <th>Sr.No.</th>
                     <th>BarCode</th>

@@ -131,7 +131,7 @@
           <p>Payment Transtraction List</p>
           <ion-searchbar class="customs"  [(ngModel)]="searchPayment" (ionInput)="onSearchTermPayment()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Voucher No</th>
@@ -147,22 +147,19 @@
                 <td>{{payment.paymentdate}}</td>
                 <td>{{payment.companyname}}</td>
                 <td>{{payment.paymentmade}}</td>
-
                 <td>{{payment.pendingamt}}</td>
               </tr>
-
             </table>
           </div>
         </div>
       </ion-col>
-
 
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('receipttransactionlist')">
           <p>Receipt Transtraction List</p>
           <ion-searchbar class="customs " [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Voucher No</th>
@@ -170,7 +167,6 @@
                 <th style="width: 70px !important;">Ledger Name</th>
                 <th style="width: 70px !important;">Debit Amount</th>
                 <th style="width: 70px !important;">Credit Amount</th>
-
               </tr>
               <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
 
@@ -182,7 +178,6 @@
                 <td>{{recepit.currentamt}}</td>
                 <td>{{recepit.billpendingamt}}</td>
               </tr>
-
             </table>
           </div>
         </div>

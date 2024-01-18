@@ -308,12 +308,15 @@ ion-select {
 }
 
 .graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
   padding: 10px;
   /* Add padding for spacing */
   margin: 5px;
   border-radius: 10px;
-  height: 60%;
+  // height: 60%;
 }
 
 .chart-canvas {

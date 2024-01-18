@@ -47,8 +47,8 @@
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;">
-                    <div style="overflow-x:auto;height: 325px;border: 1px solid grey;">
-                      <table style="width: 630px;overflow-x:auto;border: 1px solid grey; ">
+                    <div class="scroll-container">
+                      <table style="width: 100%;overflow-x:auto; ">
                         <tr>
                           <th>Ledger Name</th>
                           <th>OutStanding</th>
@@ -121,8 +121,8 @@
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;" *ngIf="paymentway === 'BillWise'">
-                    <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
-                      <table style="overflow-x:auto;border: 1px solid grey; ">
+                    <div class="scroll-container">
+                      <table style="width: 100%; overflow-x:auto; ">
                         <tr>
                           <th style="width: 70px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
@@ -166,7 +166,7 @@
                         </tr>
                       </table>
                     </div>
-                    <div>
+                    <div style="width: 100%;">
                       <table class="payment_table">
                         <tr>
                           <td>
