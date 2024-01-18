@@ -290,7 +290,7 @@ export class CompanydashboardPage implements OnInit {
     );
   }
   onSearchLeadTerm(): void {
-    this.filteredLeads$ = this.filterCustomers();
+    this.filteredLeads$ = this.filterLead();
   }
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(
