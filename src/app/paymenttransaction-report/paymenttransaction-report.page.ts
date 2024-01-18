@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { PaymentService } from '../services/payment.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-paymenttransaction-report',
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class PaymenttransactionReportPage implements OnInit {
-  payment$: any;
+  payment$: Observable<any[]>;
   filteredPayments$: Observable<any[]> = new Observable<any[]>();
   searchTerm: string = '';
 
@@ -25,8 +25,27 @@ export class PaymenttransactionReportPage implements OnInit {
     console.log(this.payment$);
 
   }
+
+  filterPayement(): Observable<any[]> {
+    return this.payment$.pipe(
+      map(payments =>
+        payments.filter(payemt =>
+          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermPayment(): void {
+    this.filteredPayments$ = this.filterPayement();
+  }
   
   ngOnInit() {
+    this.filteredPayments$ = this.payment$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterPayement())
+    );
   }
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page

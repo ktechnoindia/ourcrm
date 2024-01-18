@@ -5,7 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { CustomerService } from '../services/customer.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { VendorService } from '../services/vendor.service';
 import { ExecutiveService } from '../services/executive.service';
 import { AdditemService } from '../services/additem.service';
@@ -35,8 +35,13 @@ export class MasterdashboardPage implements OnInit {
   totalExecitve:number=0;
   sharedService: any;
   selectedOptions: string[] = [];
- 
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  searchTerm: string = '';
+  searchTerms:string='';
+  filteredCustomers$: Observable<any[]> = new Observable<any[]>();
+  filteredSupplers$: Observable<any[]> = new Observable<any[]>();
+
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -68,7 +73,11 @@ export class MasterdashboardPage implements OnInit {
     }
     
   }
- 
+  filteredExecutive$: Observable<any[]> = new Observable<any[]>();
+  filteredItem$: Observable<any[]> = new Observable<any[]>();
+  searchTerms1:string='';
+  searchTerms2:string='';
+
   constructor(private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     this.selectedOptions = ['customerlist', 'vendorlist'];
 
@@ -106,6 +115,28 @@ export class MasterdashboardPage implements OnInit {
     this.items$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
     });
+    this.filteredCustomers$ = this.customers$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+
+    this.filteredSupplers$ = this.vendors$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterSuppliers())
+    );
+    this.filteredExecutive$ = this.executives$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterExecutive())
+    );
+
+    this.filteredItem$ = this.items$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterItem())
+    );
   }
   createBarChart(canvas: any, label: string, data: number[]) {
     const ctx = canvas.getContext('2d');
@@ -147,11 +178,63 @@ export class MasterdashboardPage implements OnInit {
     });
   }
   
- 
+  filterCustomers(): Observable<any[]> {
+    return this.customers$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  };
+
+  filterSuppliers(): Observable<any[]> {
+    return this.vendors$.pipe(
+      map(vendors =>
+        vendors.filter(vendor =>
+          Object.values(vendor).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
+        )
+      )
+    );
+  }
+
+  onSearchTermChanged(): void {
+    this.filteredCustomers$ = this.filterCustomers();
   
+  }
+  onSearchTermSupplier(){
+    this.filteredSupplers$ = this.filterSuppliers();
+  }
+  filterExecutive(): Observable<any[]> {
+    return this.executives$.pipe(
+      map(executives =>
+        executives.filter(execute =>
+          Object.values(execute).some(value => String(value).toLowerCase().includes(this.searchTerms1.toLowerCase()))
+        )
+      )
+    );
+  };
+
+  filterItem(): Observable<any[]> {
+    return this.items$.pipe(
+      map(items =>
+        items.filter(item =>
+          Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerms2.toLowerCase()))
+        )
+      )
+    );
+  }
+  onSearchTermExecutive(): void {
+    this.filteredExecutive$ = this.filterExecutive();
+  
+  }
+  onSearchTermItem(){
+    this.filteredItem$ = this.filterItem();
+  }
   
   async ngOnInit() {
-    //this.username=await this.session.getValue('companyname');
+    //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
 
     const compid = '1';
 
@@ -181,6 +264,8 @@ export class MasterdashboardPage implements OnInit {
       this.totalItems = data.length;
       this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
     });
+
+    
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {

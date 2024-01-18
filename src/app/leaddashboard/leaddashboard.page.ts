@@ -5,7 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Colors } from 'chart.js';
@@ -43,11 +43,13 @@ export class LeaddashboardPage implements OnInit {
   public number: number = 1000;
   selectedOptions: string[] = [];
 
-
+  searchTerm: string = '';
+  filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
 
   lead$: Observable<any[]>;
   totallead: number = 0;
-  username: string = 'K-Techno Soft. Pvt. Ltd.';
+  username: string = 'Abhishek Pareek';
+  companyname:string='Neelkanth Technologies';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -106,9 +108,23 @@ export class LeaddashboardPage implements OnInit {
   }
 
 
+  filterCustomers(): Observable<any[]> {
+    return this.lead$.pipe(
+      map(leads =>
+        leads.filter(lead =>
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
+  onSearchTermChanged(): void {
+    this.filteredLeads$ = this.filterCustomers();
+  }
 
   ngOnInit() {
+      //this.username=await this.session.getValue('username');
+    //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 
     // Fetch data for all entities
@@ -130,6 +146,12 @@ export class LeaddashboardPage implements OnInit {
       this.totallead = data.length;
       this.updateChartData('orderclosedBarChart', 'Order Closed', [this.totallead]);
     });
+
+    this.filteredLeads$ = this.lead$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
 
   }
 

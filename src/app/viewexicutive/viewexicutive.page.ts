@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -23,6 +23,20 @@ export class ViewexicutivePage implements OnInit {
   executives$: Observable<any[]>
   searchTerm: string = '';
   filteredExecutives$: Observable<any[]> = new Observable<any[]>(); 
+  columnHeaders: { [key: string]: string } = {
+    'companyid': 'Company ID',
+    'roleid': 'Role ID',
+    'excode': 'Executive Code',
+    'executivename': 'Executive Name',
+    'emanager': 'Manager',
+    'emobile': 'Mobile',
+    'eemail': 'Email',
+    'ewhatsapp': 'WhatsApp',
+    'epan': 'PAN',
+    'ecommision': 'Commission',
+    'ledger': 'Ledger',
+  };
+  
   availableColumns: string[] = [
     'companyid',
     'roleid',
@@ -45,6 +59,8 @@ export class ViewexicutivePage implements OnInit {
     'emobile',
     'eemail',
   ];
+  manualHeaders: string[] = [];
+
   generatePdf() {
     let pdf = new jsPDF()
 
@@ -68,8 +84,18 @@ export class ViewexicutivePage implements OnInit {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterCustomers(): Observable<any[]> {
     return this.executives$.pipe(
       map(executives =>

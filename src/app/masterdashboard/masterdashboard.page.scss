@@ -73,28 +73,41 @@ ion-content {
 
 .scroll-container table {
   border: solid 1px lightblue !important;
-  min-width: 570px !important;
-  min-height: 270px !important;
+  width: 100%;
+ // min-height: 270px !important;
   overflow-x: hidden;
   overflow-y: hidden;
   padding: 10px;
 }
 
+.table-container {
+  width: 100%;
+  max-height: 400px; /* Set a maximum height to the container */
+  overflow: hidden; /* Hide the overflow for the container */
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
 .scroll-container {
-  width: 580px;
-  /* Set the width of the container */
-  height: 290px;
-  /* Set the height of the container */
-  overflow-x: scroll;
-  /* Enable horizontal scrollbar when content overflows */
-  overflow-y: scroll;
+  width: 100%;
+  border-radius: 10px;
+  height: calc(100% - 40px); /* Calculate the height, excluding heading and search bar */
+  overflow: auto; /* Add a scrollbar when content overflows */
   // background-color: white;
 }
 
+.scroll-container table {
+  border: solid 1px lightblue !important;
+  width: 100%;
+  /* Remove min-height to allow the table to grow vertically */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 10px;
+}
+
 .table-container p {
-  // background-color: lightblue;
   font-size: 20px;
-  // border-bottom: 1px solid white;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -102,42 +115,23 @@ ion-content {
 
 /* Style the table inside the container */
 .table-container table {
-  width: 500px;
+  width: 100%;
   padding: 10px;
   border: none;
-  // border: 1px solid grey;
-  height: 200px;
+  height: auto; /* Allow the table to adjust its height based on content */
 }
 
 tr {
-  border: none;
   cursor: pointer;
 }
 
-th {
+th, td {
   border: none;
-  width: 300px;
-  // border-top: 1px solid rgb(199, 191, 191);
-  // border-bottom: 1px solid rgb(199, 191, 191);
-  // background-color: lightgray;
-  padding: 0px 12px;
+  padding: 2px 4px; /* Adjust padding for better spacing */
   font-size: 14px;
 }
 
-td {
-  border: none;
-  width: 300px;
-  // border-bottom: 1px solid rgb(199, 191, 191);
-  // color: grey;
-  padding: 0px 12px;
-  font-size: 13px;
-}
-
-a {
-  text-decoration: none;
-  color: grey;
-}
-
+/* Add a hover effect for better visibility */
 tr:hover {
   background-color: rgb(224, 215, 215);
   border-radius: 10px;
@@ -161,6 +155,7 @@ input[type="date"] {
   border-radius: 10px;
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
 }
+
 .icon-container1 {
   height: 100%;
   width: 100%;
@@ -170,29 +165,25 @@ input[type="date"] {
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
 }
 
-.leadscard ion-card {
-  // height: 90%;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
 
-.leadscard ion-title {
-  font-size: 26px;
-  color: black;
-  font-weight: bolder;
-}
 
-.leadscard ion-icon {
-  font-size: 28px;
-  color: rgb(69, 69, 69);
-  font-weight: bolder;
-}
+// .leadscard ion-title {
+//   font-size: 26px;
+//   color: black;
+//   font-weight: bolder;
+// }
 
-.leadscard ion-label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #737373;
-}
+// .leadscard ion-icon {
+//   font-size: 28px;
+//   color: rgb(69, 69, 69);
+//   font-weight: bolder;
+// }
+
+// .leadscard ion-label {
+//   font-size: 18px;
+//   font-weight: bold;
+//   color: #737373;
+// }
 
 .hovers:hover {
   background-color: white;
@@ -311,16 +302,73 @@ ion-select {
 }
 
 .graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
-  padding: 10px; /* Add padding for spacing */
+  padding: 10px;
+  /* Add padding for spacing */
   margin: 5px;
   border-radius: 10px;
-  height: 100%;
+  // height: 60%;
 }
 
 .chart-canvas {
-  background-color: #d1fffd; /* Set canvas background color */
-  border: 1px solid #ccc; /* Add a border for better visibility */
-  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
+  background-color: #d1fffd;
+  /* Set canvas background color */
+  border: 1px solid #ccc;
+  /* Add a border for better visibility */
+  border-radius: 5px;
+  /* Optional: Add border-radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Optional: Add box shadow for a subtle effect */
+} 
+.leadscard ion-card {
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.row ion-icon {
+  background-color: #ffeaac;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+  justify-content: left;
+  text-align: left;
+
+}
+.row img {
+  background-color: #ffeaac;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 5px;
+  height: 60px;
+  width: 100px;
+  justify-content: left;
+  text-align: left;
+
+}
+
+.row ion-title {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 28px;
+color: #000;
+}
+
+.row ion-label {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  //margin-left: 10px;
+  font-weight: 900;
+  font-size: 16px;
+  color:#2b2b2b;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

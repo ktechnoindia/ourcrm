@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -93,6 +93,41 @@ selectedColumns: string[] = [
   'totalnetamount',
   
 ];
+columnHeaders: { [key: string]: string } = {
+  'voucherformat': 'Voucher Format',
+  'voucherNumber': 'Voucher Number',
+  'datetype': 'Date Type',
+  'vendcode': 'Vendor Code',
+  'suppliertype': 'Supplier Type',
+  'referenceNumber': 'Reference Number',
+  'refdate': 'Reference Date',
+  'deliverydate': 'Delivery Date',
+  'deliveryplace': 'Delivery Place',
+  'barcode': 'Barcode',
+  'itemcode': 'Item Code',
+  'itemname': 'Item Name',
+  'description': 'Description',
+  'quantity': 'Quantity',
+  'unitname': 'Unit Name',
+  'mrp': 'MRP',
+  'basicrate': 'Basic Rate',
+  'netrate': 'Net Rate',
+  'grossrate': 'Gross Rate',
+  'taxrate': 'Tax Rate',
+  'IGST': 'IGST',
+  'CGST': 'CGST',
+  'SGST': 'SGST',
+  'discount': 'Discount',
+  'discountamt': 'Discount Amount',
+  'totaltax': 'Total Tax',
+  'pretax': 'Pre-tax',
+  'posttax': 'Post-tax',
+  'total': 'Total',
+  'totalnetamount': 'Total Net Amount',
+};
+
+manualHeaders: string[] = [];
+
 totalItems: number = 0;
   constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
@@ -105,8 +140,18 @@ totalItems: number = 0;
       this.totalItems = data.length;
 
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterData() {
     if (this.formDate && this.toDate) {
       // Assuming your date format is 'yyyy-MM-dd'

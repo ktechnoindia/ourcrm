@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export interface hsrpin{
   billformate: number;
@@ -42,6 +44,9 @@ export interface hsrpin{
   pretax: number;
   posttax: number;
   totalnetamount: number;
+  mrp:string;
+  netrate:string;
+  ttotal: number;
 }
 
 @Injectable({
@@ -49,5 +54,8 @@ export interface hsrpin{
 })
 export class HsrpinService {
 
-  constructor() { }
+  constructor(private httpclient: HttpClient) { }
+  createhsrpin(hsrpin: hsrpin[], key: string, user: string) {
+    return this.httpclient.post(environment.apiactionurl + environment.addhsrpin, hsrpin, { headers: { 'key': key, 'user': user } });
+  }
 }

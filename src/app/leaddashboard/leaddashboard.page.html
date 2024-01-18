@@ -1,6 +1,8 @@
 <ion-content class="container_fluid">
   <div class="dash">
-    
+    <ion-chip>
+      <ion-label>{{companyname}}</ion-label>
+    </ion-chip>
     <ion-title>
       Lead Dashboard
     </ion-title>
@@ -36,39 +38,63 @@
                       <ion-row class="leadscard">
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center;background-color: rgb(255, 244, 244);">
-                            <ion-icon name="list-outline"></ion-icon><br>
-                            <ion-label>
-                              Total Leads
-                            </ion-label>
-                            <ion-title>{{totallead}}</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/sales-funnel.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>{{totallead}}</ion-title>
+                                <ion-label>
+                                  Total Leads
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: rgb(199, 250, 199);"
                             [routerLink]="['/view-lead']">
-                            <ion-icon name="trophy-outline"></ion-icon><br>
-                            <ion-label>
-                              Active Leads
-                            </ion-label>
-                            <ion-title>121</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/employee.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>121</ion-title>
+                                <ion-label>
+                                  Active Leads
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: lightcyan">
-                            <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                            <ion-label>
-                              Hot Leads
-                            </ion-label>
-                            <ion-title>99</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/verified-user.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>99</ion-title>
+                                <ion-label>
+                                  Hot Leads
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: lightgray">
-                            <ion-icon name="shield-half-outline"></ion-icon><br>
-                            <ion-label>
-                              Warm Leads
-                            </ion-label>
-                            <ion-title>29</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/follow.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>29</ion-title>
+                                <ion-label>
+                                  Warm Leads
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                       </ion-row>
@@ -76,39 +102,63 @@
                       <ion-row class="leadscard">
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: lightpink">
-                            <ion-icon name="thumbs-down-outline"></ion-icon><br>
-                            <ion-label>
-                              Cold Leads
-                            </ion-label>
-                            <ion-title>9</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/avatar.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>9</ion-title>
+                                <ion-label>
+                                  Cold Leads
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                          <ion-card style="text-align: center;background-color: lightgoldenrodyellow"
+                          <ion-card style="text-align: center;background-color: rgb(255, 178, 251)"
                             [routerLink]="['/follow-up']">
-                            <ion-icon name="analytics-outline"></ion-icon><br>
-                            <ion-label>
-                              Pending Follow-ups
-                            </ion-label>
-                            <ion-title>10</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/pending.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>10</ion-title>
+                                <ion-label>
+                                  Pending Follow-ups
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: lightsalmon">
-                            <ion-icon name="notifications-off-outline"></ion-icon><br>
-                            <ion-label>
-                              Not Intrested
-                            </ion-label>
-                            <ion-title>10</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/do-not-entry.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>10</ion-title>
+                                <ion-label>
+                                  Not Intrested
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                         <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color:rgb(143, 221, 217)">
-                            <ion-icon name="close-circle-outline"></ion-icon><br>
-                            <ion-label>
-                              Order Closed
-                            </ion-label>
-                            <ion-title>100</ion-title>
+                            <ion-row class="row">
+                              <ion-col size="4">
+                                <img src="assets/completed-task.png" alt="">
+                              </ion-col>
+                              <ion-col size="8">
+                                <ion-title>100</ion-title>
+                                <ion-label>
+                                  Order Closed
+                                </ion-label>
+                              </ion-col>
+                            </ion-row>
                           </ion-card>
                         </ion-col>
                       </ion-row>
@@ -153,9 +203,6 @@
                           </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
                         </ion-item>
                       </ion-row>
-
-
-
                     </div>
                   </ion-col>
                 </ion-row>
@@ -163,13 +210,13 @@
             </div>
             <div class="graph">
               <ion-grid>
-                <ion-row>
-                  <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+                <ion-row >
+                  <ion-col  class="chart-canvas" size-lg="4" size-sm="4" size-md="6" size="12">
                     <ion-label>
                       Total Lead
                     </ion-label>
                     <!-- <ion-title>{{totalCustomer }}</ion-title> -->
-                    <canvas id="totalleadBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="totalleadBarChart"></canvas>
 
                   </ion-col>
                   <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
@@ -177,7 +224,7 @@
                       Active Lead
                     </ion-label>
                     <!-- <ion-title>{{totalSupplier }}</ion-title> -->
-                    <canvas id="activeleadBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="activeleadBarChart" class="chart-canvas"></canvas>
 
                   </ion-col>
                   <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
@@ -185,7 +232,7 @@
                       Order Closed
                     </ion-label>
                     <!-- <ion-title>{{totalItems}}</ion-title> -->
-                    <canvas id="orderclosedBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="orderclosedBarChart" class="chart-canvas"></canvas>
 
                   </ion-col>
                   <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
@@ -204,9 +251,9 @@
                 <ion-col class="table_data" size="12" size-lg="6">
                   <div class="table-container" *ngIf="selectedOptions.includes('topnewlead')">
                     <p>Top New Lead </p>
-                    <ion-searchbar class="customs"></ion-searchbar>
+                    <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                     <div class="scroll-container">
-                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                      <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th>Sr.No.</th>
                           <th>Company Name</th>
@@ -214,7 +261,7 @@
                           <th>Lead Source</th>
                           <th>Executive Name</th>
                         </tr>
-                        <tr *ngFor="let leadscore of lead$ | async; let i = index">
+                        <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
                           <td>{{i+1}}</td>
                           <td>{{leadscore.companyname}}</td>
                           <td>{{leadscore.phone}}</td>
@@ -231,7 +278,7 @@
                     <p>Product Wise Lead</p>
                     <ion-searchbar class="customs"></ion-searchbar>
                     <div class="scroll-container">
-                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                      <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th><input type="checkbox" name=""></th>
                           <th>Lead Name</th>

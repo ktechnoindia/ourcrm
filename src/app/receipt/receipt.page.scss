@@ -1,96 +1,106 @@
-
 .Customer ion-input {
   min-height: 33px;
- outline-width: 2px;
- outline-style: initial;
+  outline-width: 2px;
+  outline-style: initial;
 }
 
 .Customer select {
- width: 100%;
- text-align: left;
+  width: 100%;
+  text-align: left;
 }
 
- table th {
-color: black;
-  }
+table th {
+  color: black;
+}
 
 .scroll-container td {
-background-color: #fff;
-border: .1px solid grey;
-max-height: 20px;
+  background-color: #fff;
+  border: .1px solid grey;
+  max-height: 20px;
 }
 
-.date{
+.date {
   color: #1a4174;
 }
+
 .output td {
- border: 1px solid grey;
- margin: 5px;
- // height: 30px;
+  border: 1px solid grey;
+  margin: 5px;
+  // height: 30px;
 }
 
 .output th {
- text-align: right;
- border: none;
- // background-color: #fff;
- padding-left: 10px;
+  text-align: right;
+  border: none;
+  // background-color: #fff;
+  padding-left: 10px;
 }
+
 .scroll-container {
-overflow-x: auto;
-width: 100%;
-max-width: 100%;
-border: 1px solid;
-width: 100%;
-height: 270px;
-overflow-x: auto;
-width: 1555px;
+  overflow-x: auto;
+  border: 1px solid grey;
+  width: 100%;
+  height: 300px;
+  overflow-x: auto;
 }
+
 .Customer ion-select {
-margin-top: -10px;
-margin-bottom: -10px;
---max-width: 50px !important;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  --max-width: 50px !important;
 }
+
 .delivery-label {
-font-size: 1.5em;
-font-weight: bold;
-margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
+
 .outstanding {
-border: solid .1px grey;
-border-radius: 10px;
-table td {
- background-color: #fff;
+  border: solid .1px grey;
+  border-radius: 10px;
+
+  table td {
+    background-color: #fff;
+  }
 }
-}
+
 @media(max-width:540px) {
- .Customer ion-input {
-   min-height: 25px;
-  font-size: 10px;
- }
+  .Customer ion-input {
+    min-height: 25px;
+    font-size: 10px;
+  }
 
 }
-.select-option{
+
+.select-option {
   border: none;
   outline: none;
   width: 100px !important;
   background: none;
   max-height: 20px !important;
 }
-.btn{
-  --box-shadow:none;
+
+.btn {
+  --box-shadow: none;
   font-size: 10px;
   color: #1a4174;
   font-family: 'Times New Roman', Times, serif;
   outline: none;
   border: none;
 }
+
 ion-popover {
-  --min-width: 650px; /* Set the desired minimum width */
-  --min-height: 200px; /* Set the desired minimum height */
+  --min-width: 650px;
+  /* Set the desired minimum width */
+  --min-height: 200px;
+  /* Set the desired minimum height */
 }
-.table_input{
+
+.table_input {
   width: 100%;
 }
+
 // ion-card{
 //   height: 450px;
 //   padding: 10px;
@@ -110,15 +120,20 @@ ion-popover {
   font-family: 'Times New Roman', Times, serif;
 }
 
-ion-card{
-  height: 450px;
+ion-card {
+  height: 100%;
   padding: 10px;
 }
 
-.payment_table label{
-  width: 100px;
+.payment_table {
+  width: 100%;
 }
-.payment_table input{
+
+.payment_table label {
+  // width: 100px;
+}
+
+.payment_table input {
   border: none;
   outline: none;
   width: 58px;
@@ -126,3 +141,9 @@ ion-card{
 
 }
 
+input {
+  border: none;
+  outline: none;
+  text-align: center;
+  width: 85px;
+}

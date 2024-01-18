@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService, rec } from '../services/recepit.service';
@@ -16,12 +16,12 @@ import { SalesService } from '../services/sales.service';
 import { AdditemService } from '../services/additem.service';
 
 interface Recepit {
-  billno:string,
-  billdate:string,
-  totalamt:number,
-  receiveamt:number,
-  currentamt:number,
-  billpendingamt:number,
+  billno: string,
+  billdate: string,
+  totalamt: number,
+  receiveamt: number,
+  currentamt: number,
+  billpendingamt: number,
 }
 
 
@@ -51,7 +51,7 @@ export class ReceiptPage implements OnInit {
   total: number = 0;
   total_payment: number = 0;
   billno: string = '';
-  billdate:string='';
+  billdate: string = '';
   totalamt: number = 0;
   receiveamt: number = 0;
   currentamt: number = 0;
@@ -62,8 +62,8 @@ export class ReceiptPage implements OnInit {
   totalpendingamt: number = 0;
   userid: number = 0;
   custid: number = 0;
-custcode:number=0;
-companyid:number=0;
+  custcode: number = 0;
+  companyid: number = 0;
   myform: FormGroup;
   isOpen = false;
   customer$: Observable<any>;
@@ -75,19 +75,21 @@ companyid:number=0;
   // recepitBill$: Observable<any>;
   selectedCustomerId: number = 0;
   receiptBill$: Observable<any>;
-
-  receiptData: Recepit[]=[{
-    billno:'',
-    billdate:'',
-    totalamt:0,
-    receiveamt:0,
-    currentamt:0,
-    billpendingamt:0,
-}]
+  dataLength: number = 0;
+  receiptData: Recepit[] = [{
+    billno: '',
+    billdate: '',
+    totalamt: 0,
+    receiveamt: 0,
+    currentamt: 0,
+    billpendingamt: 0,
+  }]
   constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-    this.receiptBill$=
+
+    //this.receiptBill$= ;
+
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -100,8 +102,12 @@ companyid:number=0;
     });
     console.log(this.sales$);
 
-    // this.recepitBill$ = this.receiptservice.getSalesById(id,1);
-
+    this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
+    this.receiptBill$.subscribe(data => {
+      // Get the length of the array
+      this.dataLength = data.length;
+      console.log('Length of the array:', this.dataLength);
+    });
     // this.recepitBill$.subscribe(recepitbill =>{
     //   console.log('redeeeee',recepitbill);
     // })
@@ -116,34 +122,47 @@ companyid:number=0;
       total_payment: [0],
       totalamt: [0],
       billno: [''],
-      billdate:[''],
+      billdate: [''],
       receiveamt: [0],
       pendingamt: [0],
       billpendingamt: [0],
-      currentamt:[0],
+      currentamt: [0],
       companyname: [''],
       userid: [0],
-      custid:[0],
+      custid: [0],
       outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
       totalcurrentamt: [0],
       totalpendingamt: [0],
-      isCheckboxSelected:[false],
-      
+      isCheckboxSelected: [false],
+
     })
 
   };
-  
+
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
     if (this.selectedCustomerId !== 0) {
       // Call your service method with the selected customer ID
       this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
-      this.receiptBill$.subscribe(bill =>{
-        console.log('data length',bill.length)
-      })
+      this.receiptBill$.subscribe((bill) => {
+        console.log('data length', bill.length)
+        if (bill && bill.length > 0) {
+          const bills = bill[0];
+          console.log('bills data', bill[0])
+          this.billno = bills.billno;
+          this.billdate = bills.billdate;
+          this.totalamt = bills.totalamt;
+
+          this.myform.patchValue({
+            billno: bills.billNumber,
+            billdate: bills.billDate,
+            totalamt: bills.total,
+          });
+        }
+      });
     }
   }
 
@@ -192,18 +211,19 @@ companyid:number=0;
     //   }
     //  this.setlangvals();
     this.receiptData = [{
-      billno:'',
-      billdate:'',
-      totalamt:0,
-      receiveamt:0,
-      currentamt:0,
-      billpendingamt:0,
+      billno: '',
+      billdate: '',
+      totalamt: 0,
+      receiveamt: 0,
+      currentamt: 0,
+      billpendingamt: 0,
     }];
   }
 
   async onSubmit(myform: FormGroup, receiptData: Recepit[]) {
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
+
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(receiptData));
@@ -212,33 +232,36 @@ companyid:number=0;
 
       console.log('Your form data : ', this.myform.value);
       for (const element of receiptData) {
-        
-      const recepitdata: rec = {
-        voucherNumber: this.myform.value.voucherNumber,
-        paymentdate: this.myform.value.paymentdate,
-        ledger: this.myform.value.ledger,
-        outstanding: this.myform.value.outstanding,
-        paymentmade: this.myform.value.paymentmade,
-        total: this.myform.value.total,
-        total_payment: this.myform.value.total_payment,
-        paymentway: this.myform.value.paymentway,
-        totalamt: element.totalamt,
-        billno: element.billno,
-        billdate:element.billdate,
-        receiveamt: element.receiveamt,
-        pendingamt: this.myform.value.pendingamt,
-        billpendingamt: element.billpendingamt,
-        currentamt: element.currentamt,
-        companyname: this.myform.value.companyname,
-        totaldueamt: this.myform.value.totaldueamt,
-        totalreceiveamt: this.myform.value.totalreceiveamt,
-        totalcurrentamt: this.myform.value.totalcurrentamt,
-        totalpendingamt: this.myform.value.totalpendingamt,
-        userid: this.myform.value.userid,
-        custid: this.myform.value.custid,
-      };
-      receiptdatas.push(recepitdata);
-    }
+
+        element.billpendingamt = element.totalamt - element.receiveamt - element.currentamt;
+
+        const recepitdata: rec = {
+          voucherNumber: this.myform.value.voucherNumber,
+          paymentdate: this.myform.value.paymentdate,
+          ledger: this.myform.value.ledger,
+          outstanding: this.myform.value.outstanding,
+          paymentmade: this.myform.value.paymentmade,
+          //total: this.myform.value.total,
+          total_payment: this.myform.value.total_payment,
+          paymentway: this.myform.value.paymentway,
+          totalamt: element.totalamt,
+          billno: element.billno,
+          billdate: element.billdate,
+          receiveamt: element.receiveamt,
+          pendingamt: this.myform.value.pendingamt,
+          billpendingamt: element.billpendingamt,
+          currentamt: element.currentamt,
+          companyname: this.myform.value.companyname,
+          totaldueamt: this.myform.value.totaldueamt,
+          totalreceiveamt: this.myform.value.totalreceiveamt,
+          totalcurrentamt: this.myform.value.totalcurrentamt,
+          totalpendingamt: this.myform.value.totalpendingamt,
+          userid: this.myform.value.userid,
+          custid: this.myform.value.custid,
+          total: 0
+        };
+        receiptdatas.push(recepitdata);
+      }
 
       this.recepitService.createRecepit(receiptdatas, '', '').subscribe(
         (response: any) => {
@@ -258,7 +281,7 @@ companyid:number=0;
           this.formService.shoErrorLoader();
         }
       );
-      
+
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -287,16 +310,16 @@ companyid:number=0;
     ).subscribe((outstandingArray: any[]) => {
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
-        this.outstanding_amount = firstItem.outstanding_amount;
-        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
+        this.outstanding = firstItem.outstanding_amount;
+        console.log('outstanding_amount (after fetch):', this.outstanding);
       } else {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
 
-  
+
   }
-  
+
   onCompanyChange(event: any) {
     // Handle any additional logic when the company name is selected
   }
@@ -315,33 +338,31 @@ companyid:number=0;
     });
   }
   calculatePendingAmount(): number {
-    this.pendingamt = this.outstanding_amount - this.paymentmade;
+    this.pendingamt = this.outstanding - this.paymentmade;
     return this.pendingamt;
   }
-  calculatePendingBillAmount(sales: any): number {
+  calculatePendingBillAmount(receipt: Recepit): number {
     // Assuming sales object has properties like total, receiveamt, and currentamt
-    return sales.total - sales.receiveamt - sales.currentamt;
+    this.billpendingamt = receipt.totalamt - receipt.receiveamt - receipt.currentamt;
+    return this.billpendingamt
   }
 
-  // Methods to calculate totals
+
   calculateTotalDueAmt(): number {
-    // Convert this.totalamt to a number before returning
-    return this.totalamt;
+    return +this.totalamt * this.dataLength;
   }
 
   calculateTotalReceiveAmt(): number {
-    // Convert this.receiveamt to a number before returning
-    return this.receiveamt;
+    return +this.receiveamt * this.dataLength;
   }
 
   calculateTotalCurrentAmt(): number {
-    // Convert this.currentamt to a number before returning
-    return (this.currentamt);
+    return +this.currentamt * this.dataLength;
   }
 
   calculateTotalPendingAmt(): number {
-    // Convert this.billpendingamt to a number before returning
-    return this.billpendingamt;
+    return this.billpendingamt * this.dataLength;
+
   }
 
 }

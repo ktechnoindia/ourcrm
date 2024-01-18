@@ -1,5 +1,8 @@
 <ion-content class="container_fluid">
   <div class="dash">
+    <ion-chip>
+      <ion-label>{{companyname}}</ion-label>
+    </ion-chip>
     <ion-title>
       Transtraction Dashboard
     </ion-title>
@@ -27,74 +30,156 @@
       <ion-row>
         <ion-col size="12" size-lg="9" size-md="8" size-sm="9">
           <div class="icon-container">
-            <ion-row class="leadscard" style="margin-top: 40px;">
-
+            <ion-row class="leadscard">
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" [routerLink]="'/view-quot'">
-                  <ion-icon name="person-outline"></ion-icon><br>
-                  <ion-label>
-                    Quatations
-                  </ion-label>
-                  <ion-title>{{totalQuote}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/paper.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalQuote}}</ion-title>
+                      <ion-label>
+                        Quatations
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: rgb(199, 250, 199);"
+                <ion-card style="text-align: center;background-color: rgb(255, 146, 186);"
                   [routerLink]="'/dc-in-report'">
-                  <ion-icon name="list-outline"></ion-icon><br>
-                  <ion-label>
-                    DC-IN
-                  </ion-label>
-                  <ion-title>{{totaldcin}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <ion-icon color="dark" name="list-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totaldcin}}</ion-title>
+                      <ion-label>
+                        DC-IN
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightgray;" [routerLink]="'/dc-out-report'">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
-                  <ion-label>
-                    DC-OUT </ion-label>
-                  <ion-title>{{totaldcout}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(248, 187, 255);"
+                  [routerLink]="'/dc-out-report'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <ion-icon color="dark" name="newspaper-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totaldcout}}</ion-title>
+                      <ion-label>
+                        DC-OUT</ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightpink;" [routerLink]="'/view-sale'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales
-                  </ion-label>
-                  <ion-title>{{totalsales}}</ion-title>
-
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/shopping-online.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalsales}}</ion-title>
+                      <ion-label>
+                        Sales
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                 <ion-card style="text-align: center;background-color: lightsalmon;" [routerLink]="'/view-purchase'">
-                  <ion-icon name="cart-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase
-                  </ion-label>
-                  <ion-title>{{totalpurchase}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/checklist.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalpurchase}}</ion-title>
+                      <ion-label>
+                        Purchase
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lemonchiffon;" [routerLink]="'/view-salesreturn'">
-                  <ion-icon name="shield-half-outline"></ion-icon><br>
-                  <ion-label>
-                    Sales Return
-                  </ion-label>
-                  <ion-title>{{totalsalesreturn}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(189, 245, 251);"
+                  [routerLink]="'/view-salesreturn'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/sales.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalsalesreturn}}</ion-title>
+                      <ion-label>
+                        Sales Return
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
-                <ion-card style="text-align: center;background-color: lightblue;" [routerLink]="'/view-purchasereturn'">
-                  <ion-icon name="cart-outline"></ion-icon><br>
-                  <ion-label>
-                    Purchase Return
-                  </ion-label>
-                  <ion-title>{{totalpurchasereturn}}</ion-title>
+                <ion-card style="text-align: center;background-color: rgb(182, 253, 229);"
+                  [routerLink]="'/view-purchasereturn'">
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/return.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalpurchasereturn}}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Purchase Return
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
             </ion-row>
+          </div>
+
+          <div class="graph">
+            <ion-grid>
+              <ion-row>
+                <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+                  <ion-label>
+                    Total Quatation
+                  </ion-label>
+                  <!-- <ion-title>{{totalQuote }}</ion-title> -->
+                  <canvas id="totalquotationBarChart" class="chart-canvas"></canvas>
+        
+                </ion-col>
+                <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+                  <ion-label>
+                    Total Sales
+                  </ion-label>
+                  <!-- <ion-title>{{totalsales }}</ion-title> -->
+                  <canvas id="totalsaleBarChart" class="chart-canvas"></canvas>
+        
+                </ion-col>
+                <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+                  <ion-label>
+                    Total Purchase
+                  </ion-label>
+                  <!-- <ion-title>{{totalpurchase}}</ion-title> -->
+                  <canvas id="totalpurchaseBarChart" class="chart-canvas"></canvas>
+        
+                </ion-col>
+                <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
+                  <ion-label>
+                    Total Executive
+                  </ion-label>
+                  <ion-title>{{totalExecitve}}</ion-title>
+                  <canvas id="executiveBarChart" class="chart-canvas"></canvas>
+        
+                </ion-col> -->
+              </ion-row>
+            </ion-grid>
           </div>
         </ion-col>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="3">
@@ -152,64 +237,22 @@
                   Purchase Return
                 </ion-label><ion-icon name="arrow-forward-outline"></ion-icon>
               </ion-item>
-
             </ion-row>
-
-
-
           </div>
-
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  <div class="graph">
-    <ion-grid>
-      <ion-row>
-        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
-          <ion-label>
-            Total Quatation
-          </ion-label>
-          <!-- <ion-title>{{totalQuote }}</ion-title> -->
-          <canvas id="totalquotationBarChart" class="chart-canvas"></canvas>
-
-        </ion-col>
-        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
-          <ion-label>
-            Total Sales
-          </ion-label>
-          <!-- <ion-title>{{totalsales }}</ion-title> -->
-          <canvas id="totalsaleBarChart" class="chart-canvas"></canvas>
-
-        </ion-col>
-        <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
-          <ion-label>
-            Total Purchase
-          </ion-label>
-          <!-- <ion-title>{{totalpurchase}}</ion-title> -->
-          <canvas id="totalpurchaseBarChart" class="chart-canvas"></canvas>
-
-        </ion-col>
-        <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
-          <ion-label>
-            Total Executive
-          </ion-label>
-          <ion-title>{{totalExecitve}}</ion-title>
-          <canvas id="executiveBarChart" class="chart-canvas"></canvas>
-
-        </ion-col> -->
-      </ion-row>
-    </ion-grid>
-  </div>
+ 
   <ion-grid>
     <ion-row class="lead_details">
 
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
           <p>Purchase List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermPurchase()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Billing Date</th>
@@ -220,7 +263,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchase of purchase$ | async; let i = index">
+              <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchase.billDate}}</td>
                 <td>{{purchase.vendcode}}</td>
@@ -239,9 +282,9 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
           <p>Sales List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchSale" (ionInput)="onSearchTermSale()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Billing Date</th>
@@ -251,7 +294,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let sales of sales$ | async; let i = index">
+              <tr *ngFor="let sales of filteredSales$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{sales.billDate}}</td>
                 <td>{{sales.custcode}}</td>
@@ -272,16 +315,16 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('quotelist')">
           <p>Quatations List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermQuote()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+            <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Quote No.</th>
                 <th style="width: 70px !important;">Quote Date</th>
                 <th style="width: 70px !important;">Customer Name</th>
               </tr>
-              <tr *ngFor="let quote of quote$ | async; let i = index">
+              <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{quote.quoteNumber}}</td>
                 <td>{{quote.quateDate}}</td>
@@ -292,13 +335,12 @@
         </div>
       </ion-col>
 
-
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('dcinlist')">
           <p>DC-IN List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchDcin" (ionInput)="onSearchTermDcin()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+            <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Voucher No.</th>
@@ -307,7 +349,7 @@
                 <th style="width: 70px !important;">Supplier Name</th>
 
               </tr>
-              <tr *ngFor="let dcin of dcin$ | async; let i = index">
+              <tr *ngFor="let dcin of filteredDcin$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{dcin.voucherNumber}}</td>
                 <td>{{dcin.datetype}}</td>
@@ -321,11 +363,11 @@
       </ion-col>
 
       <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('dc-out')">
+        <div class="table-container" *ngIf="selectedOptions.includes('dcoutlist')">
           <p>DC-OUT List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchDcout" (ionInput)="onSearchTermDcout()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+            <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Voucher Formate</th>
@@ -334,7 +376,7 @@
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
               </tr>
-              <tr *ngFor="let dcout of dcout$ | async; let i = index">
+              <tr *ngFor="let dcout of filteredDcout$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{dcout.voucherformat}}</td>
                 <td>{{dcout.voucherNumber}}</td>
@@ -350,9 +392,9 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('salreturnslist')">
           <p>Sales Return List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchSalereturn" (ionInput)="onSearchTermSalereturn()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Billing Date</th>
@@ -362,7 +404,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let salreturns of salreturn$ | async; let i = index">
+              <tr *ngFor="let salreturns of filteredSalereturns$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{salreturns.billDate}}</td>
                 <td>{{salreturns.custcode}}</td>
@@ -380,9 +422,9 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('purchasereturnlist')">
           <p>Purchase Return List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs " [(ngModel)]="searchPurchasereturn" (ionInput)="onSearchTermPurchasereturn()"></ion-searchbar>
           <div class="scroll-container">
-            <table style="width: 1000px;overflow-x: auto;overflow-y: auto;">
+            <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
                 <th style="width: 50px !important;">Sr.No.</th>
                 <th style="width: 70px !important;">Billing Date</th>
@@ -393,7 +435,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchasereturn of purchasereturn$ | async; let i = index">
+              <tr *ngFor="let purchasereturn of  filteredPurchasereturns$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchasereturn.billDate}}</td>
                 <td>{{purchasereturn.vendcode}}</td>
@@ -407,11 +449,6 @@
           </div>
         </div>
       </ion-col>
-
-
     </ion-row>
-
-
   </ion-grid>
-
 </ion-content>

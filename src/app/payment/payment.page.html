@@ -45,8 +45,8 @@
                   </ion-row>
 
                   <ion-row style="margin-top: 10px;">
-                    <div style="overflow-x:auto;height: 325px;border: 1px solid grey;">
-                      <table style="width: 100%;overflow-x:auto;border: 1px solid grey; ">
+                    <div class="scroll-container">
+                      <table style="width: 100%;overflow-x:auto; ">
                         <tr>
                           <th>Ledger Name</th>
                           <th>OutStanding</th>
@@ -57,8 +57,8 @@
                         </tr>
                         <tr>
                           <td>
-                            <select class="select-option" name="companyname" [(ngModel)]="selectedCustomerId"
-                              formControlName="companyname">
+                            <select class="select-option" name="companyname" [(ngModel)]="selectedvendorId"
+                              formControlName="companyname" (change)="fetchBillsForCustomer()">
                               <option value="0">Select Ledger Name</option>
                               <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                                 {{ suppliername.name }}
@@ -110,7 +110,7 @@
 
                   <ion-row>
                     <ion-col size-lg="8" size-md="12" size-sm="12" size="12">
-                      <ion-input name="companyname" [(ngModel)]="selectedCustomerId" formControlName="companyname" type="text"
+                      <ion-input [value]="selectedvendorId" name="companyname" [(ngModel)]="companyname" formControlName="companyname" type="text"
                         label="Ledger Name:" label-placement="floating" fill="outline" ></ion-input>
                     </ion-col>
                     <ion-col size-lg="4" size-md="6" size-sm="6" size="6">
@@ -120,8 +120,8 @@
                   </ion-row>
                   
                   <ion-row style="margin-top: 10px;" *ngIf="paymentway === 'BillWise'" >
-                    <div style="overflow-x:auto;height: 300px;border: 1px solid grey;">
-                      <table style="overflow-x:auto;border: 1px solid grey; ">
+                    <div class="scroll-container">
+                      <table style="width: 100%; overflow-x:auto; ">
                         <tr>
                           <th style="width: 60px;">Select Bill</th>
                           <th style="width: 40px;">Sr. No.</th>
@@ -133,7 +133,7 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <tr *ngFor="let purchase of purchase$ | async; let i = index">
+                        <tr *ngFor="let purchase of paymentBill$ | async; let i = index">
                           <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
@@ -164,7 +164,7 @@
                         </tr>
                       </table>
                     </div>
-                    <div>
+                    <div style="width: 100%;">
                       <table class="payment_table">
                         <tr>
                           <td >

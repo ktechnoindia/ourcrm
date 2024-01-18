@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -66,6 +66,40 @@ export class ViewQuotPage implements OnInit {
     'total',
     
   ];
+  columnHeaders: { [key: string]: string } = {
+    'billformate': 'Bill Format',
+    'quoteNumber': 'Quote Number',
+    'quateDate': 'Quote Date',
+    'custcode': 'Customer Code',
+    'custname': 'Customer Name',
+    'refrence': 'Reference',
+    'refdate': 'Reference Date',
+    'deliverydate': 'Delivery Date',
+    'deliveryplace': 'Delivery Place',
+    'barcode': 'Barcode',
+    'itemcode': 'Item Code',
+    'itemname': 'Item Name',
+    'description': 'Description',
+    'quantity': 'Quantity',
+    'unitname': 'Unit Name',
+    'mrp': 'MRP',
+    'basicrate': 'Basic Rate',
+    'netrate': 'Net Rate',
+    'grossrate': 'Gross Rate',
+    'taxrate': 'Tax Rate',
+    'IGST': 'IGST',
+    'CGST': 'CGST',
+    'SGST': 'SGST',
+    'discount': 'Discount',
+    'discountamt': 'Discount Amount',
+    'totaltax': 'Total Tax',
+    'pretax': 'Pre-tax',
+    'posttax': 'Post-tax',
+    'total': 'Total',
+  };
+  
+  manualHeaders: string[] = [];
+
   totalItems: number = 0;
   constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
@@ -81,8 +115,18 @@ export class ViewQuotPage implements OnInit {
       this.totalItems = data.length;
 
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   filterCustomers(): Observable<any[]> {
     return this.quote$.pipe(
       map(quotes =>

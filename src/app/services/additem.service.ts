@@ -15,7 +15,7 @@ export interface item {
   selectStock: number;
   selectPrimaryUnit: number;
   selectunitname: number;
-  
+
   itemtype: string;
   stocktype: string;
   stocktypename: string;
@@ -43,17 +43,22 @@ export interface item {
   attr8: string;
 
   selectGstservice: number;
-  companyid:number;
-  purchaserate:number;
-  basicrate:number;
-  labelname:string;
-  valuename:string;
+  companyid: number;
+  purchaserate: number;
+  basicrate: number;
+  labelname: string;
+  valuename: string;
+  framenumber: string;
+  enginenumber: string;
+  partnumber: string;
+  color: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdditemService {
+ 
 
 
 
@@ -74,7 +79,15 @@ export class AdditemService {
   }
 
   deleteItems(customerid: number, companyid: number): Observable<any> {
-    return this.httpclient.post(environment.apiactionurl + environment.deleteItem + '/' +customerid + '/' +companyid,{});
+    return this.httpclient.post(environment.apiactionurl + environment.deleteItem + '/' + customerid + '/' + companyid, {});
   }
+  // In itemService.ts
+  getAllItemsattr(tid: string): Observable<any> {
+    // ... implementation using tid
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallItem);
 
+  }
+  getItemAttributes(itemname: any) {
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallItem);
+  }
 }

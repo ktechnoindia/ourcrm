@@ -1,32 +1,34 @@
 <ion-content>
-  <div style="padding: 10px;">
-    <table style="width: 100%;">
+  <h1  style="text-align: center;">Attribute Table</h1>
+  <div style="padding: 10px;width: 800px;text-align: center;scroll-behavior: auto;overflow: hidden; overflow-x: auto;">
+    <table style="width: 600px;text-align: center;scroll-behavior: auto;overflow: hidden; overflow-x: auto;">
+      
       <tr>
         <th>Item No.</th>
-        <th>Attr1</th>
-        <th>Attr2</th>
-        <th>Attr3</th>
-        <th>Attr4</th>
-        <th>Attr5</th>
-        <th>Attr6</th>
-        <th>Attr7</th>
-        <th>Attr8</th>
+        <!-- Display attribute names dynamically -->
+        <!-- <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr1 + ' ' + attr.attr2 + ' '+ ' ' + attr.attr3+ ' ' + attr.attr4 }}</th> -->
+        <th *ngFor="let attr of selectedItemAttributes">{{attr.attr2}}</th>
+        <!-- <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr2}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr3}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr4}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr5}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr6}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr7}}</th>
+        <th *ngFor="let attr of selectedItemAttributes">{{ attr.attr8}}</th> -->
+
+
       </tr>
-      <tbody >
-      <tr *ngFor="let row of rows; let i = index">
-        <td style="width: 100px;">{{ i + 1 }}</td> <!-- Serial Number -->
-        <td><input type="text" [(ngModel)]="rowData[i].attr1" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr2" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr3" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr4" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr5" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr6" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr7" class="pop_input"></td>
-        <td><input type="text" [(ngModel)]="rowData[i].attr8" class="pop_input"></td>
-      </tr>
-    </tbody>
+      <tbody>
+        <tr *ngFor="let row of rowData; let i = index">
+          <td style="width: 100px;">{{ i + 1 }}</td> <!-- Serial Number -->
+          <!-- Display attribute values dynamically -->
+          <td *ngFor="let attr of selectedItemAttributes">
+            <input type="text" [(ngModel)]="row[attr]" class="pop_input">
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <ion-button style="float: right;bottom: 0;" size="small" (click)="closePopover()">Close</ion-button>
   </div>
+  <ion-button style="justify-content: right;" size="small" (click)="closePopover()">Close</ion-button>
 
 </ion-content>

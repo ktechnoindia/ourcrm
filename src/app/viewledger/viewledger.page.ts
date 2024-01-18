@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -48,7 +48,6 @@ export class ViewledgerPage implements OnInit {
   availableColumns: string[] = [
     'ledger_code',
     'lname',
-
     'companyName',
     'lgroup_name',
     'gstin',
@@ -82,6 +81,35 @@ export class ViewledgerPage implements OnInit {
     'state',
     'address',
   ];
+  manualHeaders: string[] = [];
+  columnHeaders: { [key: string]: string } = {
+    'ledger_code': 'Ledger Code',
+    'lname': 'Ledger Name',
+    'companyName': 'Company Name',
+    'lgroup_name': 'Ledger Group Name',
+    'gstin': 'GSTIN',
+    'opening_balance': 'Opening Balance',
+    'closing_balance': 'Closing Balance',
+    'mobile': 'Mobile',
+    'whatsapp_number': 'WhatsApp Number',
+    'email': 'Email',
+    'country': 'Country',
+    'state': 'State',
+    'address': 'Address',
+    'pincode': 'Pincode',
+    'tdn': 'TDN',
+    'aadhar_no': 'Aadhar Number',
+    'pan_no': 'PAN Number',
+    'udhyog_aadhar': 'Udhyog Aadhar',
+    'account_number': 'Account Number',
+    'ifsc_code': 'IFSC Code',
+    'bank_name': 'Bank Name',
+    'branch_name': 'Branch Name',
+    'card_number': 'Card Number',
+    'credit_period': 'Credit Period',
+    'credit_limit': 'Credit Limit',
+  };
+  
   totalItems: number = 0;
 
   constructor(private router:Router,private ledgerService:LegderService , private encService:EncryptionService) { 
@@ -93,8 +121,18 @@ export class ViewledgerPage implements OnInit {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
         });
-  };
-
+        this.updateManualHeaders();
+      }
+      ngOnChanges(changes: SimpleChanges): void {
+        if ('selectedColumns' in changes) {
+          this.updateManualHeaders();
+        }
+      }
+    
+      updateManualHeaders() {
+        // Use the mapping to get the headers for the selected columns
+        this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+      }
   deleteLedger(customerid: number, event: any) {
     
     const confirmDelete = confirm('Are you sure you want to delete this ledger?');

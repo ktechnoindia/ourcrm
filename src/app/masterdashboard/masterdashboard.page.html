@@ -1,6 +1,8 @@
 <ion-content class="container_fluid">
   <div class="dash">
-
+    <ion-chip>
+      <ion-label>{{companyname}}</ion-label>
+    </ion-chip>
     <ion-title>
       Master Dashboard
     </ion-title>
@@ -27,51 +29,76 @@
   <div class="lead_nav">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-md="8" size-sm="9" size-lg="9">
-          <div class="icon-container1">
-            <ion-row class="leadscard">
+        <ion-col size="12" size-md="8" size-sm="9" size-lg="9" style="padding: 5px;">
+          <div class="icon-container1" >
+            <ion-row class="leadscard" >
 
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color: rgb(255, 244, 244);" class="hovers"
                   [routerLink]="'/viewcustomer'">
-                  <ion-icon name="list-outline"></ion-icon><br>
-                  <ion-label>
-                    Active Customer
-                  </ion-label>
-                  <ion-title>{{totalCustomer }}</ion-title>
-
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/evaluation.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalCustomer }}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Active Customer
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color:rgb(199, 250, 199);" class="hovers"
                   [routerLink]="'/viewsupplier'">
-                  <ion-icon name="trophy-outline"></ion-icon><br>
-                  <ion-label>
-                    Active Supplier
-                  </ion-label>
-                  <ion-title>{{totalSupplier }}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/supplier.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalSupplier }}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Active Supplier
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
                 <ion-card style="text-align: center;background-color: rgb(255, 164, 164);" class="hovers"
                   [routerLink]="'/viewitem'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Total Items
-                  </ion-label>
-                  <ion-title>{{totalItems}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/list-items.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalItems}}</ion-title>
+                      <ion-label>
+                        Total Items
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+
                 </ion-card>
               </ion-col>
 
               <ion-col size="6" size-lg="3" size-md="4" size-sm="4">
-                <ion-card style="text-align: center;background-color: rgb(228, 228, 163);" class="hovers"
+                <ion-card style="text-align: center;background-color: rgb(231, 181, 254);" class="hovers"
                   [routerLink]="'/viewexicutive'">
-                  <ion-icon name="shield-checkmark-outline"></ion-icon><br>
-                  <ion-label>
-                    Total Executive
-                  </ion-label>
-                  <ion-title>{{totalExecitve}}</ion-title>
+                  <ion-row class="row">
+                    <ion-col size="4">
+                      <img src="assets/skills.png" alt="">
+                    </ion-col>
+                    <ion-col size="8">
+                      <ion-title>{{totalExecitve}}</ion-title>
+                      <ion-label style="margin-left: -15px;">
+                        Total Executive
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
                 </ion-card>
               </ion-col>
 
@@ -166,7 +193,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
           <p>Customer List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -179,7 +206,7 @@
                 <!-- <th >Email</th> -->
 
               </tr>
-              <tr *ngFor="let customer of customers$ | async; let i = index">
+              <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
 
                 <td>{{ i + 1 }}</td>
                 <td>{{customer.customer_code}}</td>
@@ -197,7 +224,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
           <p>Supplier List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermSupplier()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -207,7 +234,7 @@
                 <th>Mobile No.</th>
                 <th>Email</th>
               </tr>
-              <tr *ngFor="let vendoer of vendors$ | async; let i = index">
+              <tr *ngFor="let vendoer of filteredSupplers$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{vendoer.name}}</td>
                 <td>{{vendoer.vendor_code}}</td>
@@ -223,7 +250,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
           <p>Executive List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerms1" (ionInput)="onSearchTermExecutive()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -234,7 +261,7 @@
                 <th>Phone Number</th>
                 <th>Email</th>
               </tr>
-              <tr *ngFor="let execute of executives$ | async; let i = index">
+              <tr *ngFor="let execute of filteredExecutive$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{execute.roleid}}</td>
                 <td>{{execute.excode}}</td>
@@ -249,7 +276,7 @@
       <ion-col class="table_data" size="12" size-lg="6">
         <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
           <p>Item List</p>
-          <ion-searchbar class="customs"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerms2" (ionInput)="onSearchTermItem()"></ion-searchbar>
           <div class="scroll-container">
             <table>
               <tr>
@@ -259,7 +286,7 @@
                 <th>Item Type</th>
                 <th>Item Group</th>
               </tr>
-              <tr *ngFor="let item of items$ | async; let i = index">
+              <tr *ngFor="let item of filteredItem$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{item.itemCode}}</td>
                 <td>{{item.itemDesc}}</td>

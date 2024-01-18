@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
@@ -91,6 +91,40 @@ export class DcOutReportPage implements OnInit {
     'total',
     
   ];
+  columnHeaders: { [key: string]: string } = {
+    'voucherformat': 'Voucher Format',
+    'voucherNumber': 'Voucher Number',
+    'datetype': 'Date Type',
+    'vendcode': 'Vendor Code',
+    'suppliertype': 'Supplier Type',
+    'referenceNumber': 'Reference Number',
+    'refdate': 'Reference Date',
+    'deliverydate': 'Delivery Date',
+    'deliveryplace': 'Delivery Place',
+    'barcode': 'Barcode',
+    'itemcode': 'Item Code',
+    'itemname': 'Item Name',
+    'description': 'Description',
+    'quantity': 'Quantity',
+    'unitname': 'Unit Name',
+    'mrp': 'MRP',
+    'basicrate': 'Basic Rate',
+    'netrate': 'Net Rate',
+    'grossrate': 'Gross Rate',
+    'taxrate': 'Tax Rate',
+    'IGST': 'IGST',
+    'CGST': 'CGST',
+    'SGST': 'SGST',
+    'discount': 'Discount',
+    'discountamt': 'Discount Amount',
+    'totaltax': 'Total Tax',
+    'pretax': 'Pre-tax',
+    'posttax': 'Post-tax',
+    'total': 'Total',
+  };
+  
+  manualHeaders: string[] = [];
+
   totalItems: number = 0;
   constructor(private router:Router,private toastCtrl:ToastController,private dcoutservice:DcoutService,private encService:EncryptionService,) { 
     const compid='1';
@@ -102,8 +136,18 @@ export class DcOutReportPage implements OnInit {
       this.totalItems = data.length;
 
     });
+    this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
   }
 
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
   async onSubmit(){
     const fromDateObj = new Date(this.formDate);
   const toDateObj = new Date(this.toDate);

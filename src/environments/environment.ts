@@ -40,6 +40,8 @@ export const environment = {
   addsales: 'insert_sales',
   addpurchase: 'insert_purchase',
   addquote: 'insert_quotation',
+  addhsrpout: 'insert_hsrpout',
+  addhsrpin: 'insert_hsrpin',
   addupquote: 'saveupquote',
   addcompany: 'saveCompany',
   addroleofexecutive: 'insert_insert_executive_roles',
@@ -98,7 +100,7 @@ deleteItem:'ditem',
 deleteExecutive:'dexecutive',
 deleteLedger:'dlegder',
 recepitbill:'get_sales_byid',
-paymentbill:'get_purchase_byid'
+paymentbill:'get_payment_byid'
 };
 
 

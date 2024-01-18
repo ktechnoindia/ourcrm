@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -96,6 +96,26 @@ export class ViewLeadPage implements OnInit {
     'selectpd',
     'executivename',
   ];
+  columnHeaders: { [key: string]: string } = {
+    'companyname': 'Company Name',
+    'crdate': 'Creation Date',
+    'catPerson': 'Contact Person',
+    'phone': 'Phone',
+    'selectedCountry': 'Selected Country',
+    'selectedState': 'Selected State',
+    'selectedDistrict': 'Selected District',
+    'fulladdress': 'Full Address',
+    'pncode': 'Pincode',
+    'emails': 'Email',
+    'selectpd': 'Selected Product',
+    'leadstatus': 'Lead Status',
+    'lscore': 'Lead Score',
+    'leadassign': 'Lead Assign',
+    'executivename': 'Executive Name',
+    'rmark': 'Remarks',
+  };
+  
+  manualHeaders: string[] = [];
   totalItems: number = 0;
 
   constructor(private encService: EncryptionService,private navCtrl:NavController,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
@@ -114,7 +134,18 @@ export class ViewLeadPage implements OnInit {
     totalItems:[''],
     selectedColumns:[],
     })
-   }
+     this.updateManualHeaders();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedColumns' in changes) {
+      this.updateManualHeaders();
+    }
+  }
+
+  updateManualHeaders() {
+    // Use the mapping to get the headers for the selected columns
+    this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
+  }
 
    deleteRow(index: number): void {
     this.lead$.subscribe(data => {
