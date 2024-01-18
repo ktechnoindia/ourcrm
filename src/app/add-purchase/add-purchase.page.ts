@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -267,6 +267,8 @@ isOpen = false;
     });
 
   }
+
+  
   presentPopovers(e: Event) {
     this.popover.event = e;
     this.isOpen = true;

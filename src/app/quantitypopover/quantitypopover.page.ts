@@ -58,7 +58,7 @@ export class QuantitypopoverPage implements OnInit {
     }));
   }
 
-  onSubmit(myform:FormGroup) {
+  onQuantitySubmit(myform:FormGroup) {
     // Create an array to store all attribute values
     const formDataArray = [];
  
@@ -92,6 +92,7 @@ export class QuantitypopoverPage implements OnInit {
     // You can add logic to send the data to the server or perform other actions
   
     // this.closePopover();
+    
   }
   
   
