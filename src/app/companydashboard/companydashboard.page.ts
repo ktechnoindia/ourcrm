@@ -160,13 +160,13 @@ export class CompanydashboardPage implements OnInit {
     this.filteredExecutive$ = this.executives$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterExecutive())
     );
 
     this.filteredItem$ = this.items$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterSuppliers())
+      switchMap(() => this.filterItem())
     );
     this.filteredPurchase$ = this.purchase$.pipe(
       debounceTime(300),
@@ -182,7 +182,7 @@ export class CompanydashboardPage implements OnInit {
     this.filteredLeads$ = this.lead$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterLead())
     );
     this.filteredRecepits$ = this.recepits$.pipe(
       debounceTime(300),

@@ -3,7 +3,7 @@ table{
 }
 td {
     text-align: center;
-    border-right: 1px solid grey;
+    // border-right: 1px solid grey;
 }
 
 
@@ -64,28 +64,10 @@ table select {
     }
 }
 
-.output td {
-    border: 1px solid grey;
-    margin: 5px;
-    height: 30px;
-}
-
-.output th {
-    text-align: right;
-    border: none;
-    background-color: #fff;
-    padding-left: 10px;
-}
 .scroll-container {
     overflow-x: auto;
     width: 100%;
     border: 1px solid grey;
-    height:430px;
+    height:350px;
     overflow-x:auto
-}
-table tr td select{
-    border: solid 1px lightgray;
-    color: darkgray;
-    font-weight: 400;
-    
 }
