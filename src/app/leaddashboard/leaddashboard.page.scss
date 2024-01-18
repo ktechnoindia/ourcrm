@@ -73,7 +73,7 @@ ion-content {
 
 .scroll-container table {
   border: solid 1px lightblue !important;
-  min-width: 570px !important;
+  width: 100%;
   min-height: 270px !important;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -81,7 +81,7 @@ ion-content {
 }
 
 .scroll-container {
-  width: 580px;
+  width: 100%;
   /* Set the width of the container */
   height: 290px;
   /* Set the height of the container */
@@ -308,24 +308,28 @@ ion-select {
 }
 
 .graph {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(0deg, rgba(95, 184, 215, 1) 0%, rgba(95, 184, 215, 0.7) 50%, rgba(95, 184, 215, 0.4) 100%);
   padding: 10px;
   /* Add padding for spacing */
-  margin: 5px;
+  margin: 10px;
   border-radius: 10px;
-  height: 25%;
+  // height: 25%;
 }
 
-.chart-canvas {
+canvas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #d1fffd;
-  /* Set canvas background color */
   border: 1px solid #ccc;
-  /* Add a border for better visibility */
   border-radius: 5px;
-  /* Optional: Add border-radius for rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Optional: Add box shadow for a subtle effect */
 } 
+
+
 .leadscard ion-card {
   text-align: center;
   justify-content: center;

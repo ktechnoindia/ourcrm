@@ -73,7 +73,7 @@ ion-content {
 
 .scroll-container table {
   border: solid 1px lightblue !important;
-  min-width: 570px !important;
+  width: 100%;
   min-height: 270px !important;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -81,7 +81,7 @@ ion-content {
 }
 
 .scroll-container {
-  width: 580px;
+  width: 100%;
   /* Set the width of the container */
   height: 290px;
   /* Set the height of the container */
@@ -102,7 +102,7 @@ ion-content {
 
 /* Style the table inside the container */
 .table-container table {
-  width: 500px;
+  width: 100%;
   padding: 10px;
   border: none;
   // border: 1px solid grey;

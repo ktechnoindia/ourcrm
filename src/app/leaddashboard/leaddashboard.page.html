@@ -210,13 +210,13 @@
             </div>
             <div class="graph">
               <ion-grid>
-                <ion-row>
-                  <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
+                <ion-row >
+                  <ion-col  class="chart-canvas" size-lg="4" size-sm="4" size-md="6" size="12">
                     <ion-label>
                       Total Lead
                     </ion-label>
                     <!-- <ion-title>{{totalCustomer }}</ion-title> -->
-                    <canvas id="totalleadBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="totalleadBarChart"></canvas>
 
                   </ion-col>
                   <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
@@ -224,7 +224,7 @@
                       Active Lead
                     </ion-label>
                     <!-- <ion-title>{{totalSupplier }}</ion-title> -->
-                    <canvas id="activeleadBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="activeleadBarChart" class="chart-canvas"></canvas>
 
                   </ion-col>
                   <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
@@ -232,7 +232,7 @@
                       Order Closed
                     </ion-label>
                     <!-- <ion-title>{{totalItems}}</ion-title> -->
-                    <canvas id="orderclosedBarChart" class="chart-canvas"></canvas>
+                    <canvas height="120px" id="orderclosedBarChart" class="chart-canvas"></canvas>
 
                   </ion-col>
                   <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
@@ -253,7 +253,7 @@
                     <p>Top New Lead </p>
                     <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                     <div class="scroll-container">
-                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                      <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th>Sr.No.</th>
                           <th>Company Name</th>
@@ -278,7 +278,7 @@
                     <p>Product Wise Lead</p>
                     <ion-searchbar class="customs"></ion-searchbar>
                     <div class="scroll-container">
-                      <table style="width: 800px;overflow-x: auto;overflow-y: auto;">
+                      <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
                         <tr>
                           <th><input type="checkbox" name=""></th>
                           <th>Lead Name</th>
