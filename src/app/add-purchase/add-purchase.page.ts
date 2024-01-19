@@ -198,14 +198,14 @@ export class AddPurchasePage implements OnInit {
     attr7: string;
     attr8: string
   }[] = [];
-  attr1: string = '';
-  attr2: string = '';
-  attr3: string = '';
-  attr4: string = '';
-  attr5: string = '';
-  attr6: string = '';
-  attr7: string = '';
-  attr8: string = '';
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
 
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
@@ -351,7 +351,7 @@ export class AddPurchasePage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
 
     let purchases: purchasestore[] = [];
-// console.log('data of ',purchases)
+console.log('data of ',purchases)
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
@@ -419,14 +419,14 @@ export class AddPurchasePage implements OnInit {
           userid: userid,
           executive: this.myform.value.executive,
           exicutive: 0,
-          attr1: element.attr1,
-          attr2: element.attr2,
-          attr3: element.attr3,
-          attr4: element.attr4,
-          attr5: element.attr5,
-          attr6: element.attr6,
-          attr7: element.attr7,
-          attr8: element.attr8,
+          attr1: this.myform.value.attr1,
+          attr2: this.myform.value.attr2,
+          attr3: this.myform.value.attr3,
+          attr4: this.myform.value.attr4,
+          attr5: this.myform.value.attr5,
+          attr6: this.myform.value.attr6,
+          attr7: this.myform.value.attr7,
+          attr8: this.myform.value.attr8,
         };
 
         purchases.push(purchasedata);
