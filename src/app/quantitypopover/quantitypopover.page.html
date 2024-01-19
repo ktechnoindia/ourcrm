@@ -1,35 +1,6 @@
 <ion-content>
   <h1 style="text-align: center;">Attribute Table</h1>
   <form [formGroup]="myform" (ngSubmit)="onQuantitySubmit(myform)">
-    <div style="padding: 10px;">
-      <table style="width: 100%;">
-        <tr>
-          <th>Item No.</th>
-          <th>Attr1</th>
-          <th>Attr2</th>
-          <th>Attr3</th>
-          <th>Attr4</th>
-          <th>Attr5</th>
-          <th>Attr6</th>
-          <th>Attr7</th>
-          <th>Attr8</th>
-        </tr>
-        <tr *ngFor="let row of rows; let i = index">
-          <td style="width: 100px;">{{ i + 1 }}</td> <!-- Item Number -->
-          <td><input type="text" formControlName="attr1" name="attr1" [(ngModel)]="rowData[i].attr1" class="pop_input"></td>
-          <td><input type="text" formControlName="attr2" name="attr2" [(ngModel)]="rowData[i].attr2" class="pop_input"></td>
-          <td><input type="text" formControlName="attr3" name="attr3" [(ngModel)]="rowData[i].attr3" class="pop_input"></td>
-          <td><input type="text"  formControlName="attr4" name="attr4" [(ngModel)]="rowData[i].attr4" class="pop_input"></td>
-          <td><input type="text"  formControlName="attr5" name="attr5" [(ngModel)]="rowData[i].attr5" class="pop_input"></td>
-          <td><input type="text" formControlName="attr6" name="attr6" [(ngModel)]="rowData[i].attr6" class="pop_input"></td>
-          <td><input type="text" formControlName="attr7" name="attr7" [(ngModel)]="rowData[i].attr7" class="pop_input"></td>
-          <td><input type="text" formControlName="attr8" name="attr8" [(ngModel)]="rowData[i].attr8" class="pop_input"></td>
-        </tr>
-      </table>
-      <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
-        <ion-button style="float: right; bottom: 0;" size="small" (click)="closePopover()">Close</ion-button>
-        <ion-button style="justify-content: right;" size="small" type="submit">Submit</ion-button>
-      </ion-row>
-    </div>
+    
   </form>
 </ion-content>

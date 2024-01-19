@@ -202,3 +202,15 @@ ion-popover{
   --offset-y:80px;
   --offset-x:-80px;
 }
+
+.quantity{
+  --height:300px;
+  // --width:500px
+  --offset-y:50px;
+  --offset-x:-50px;
+}
+.quantity input{
+  border: none;
+  outline: none;
+  width: 80px;
+}
