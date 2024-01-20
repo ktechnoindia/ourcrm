@@ -69,7 +69,7 @@ export interface purchasestore {
     attr7: string;
     attr8: string;
     companyid:number;
-    itemcode:string;
+    itemcode:number;
   }[];
 }
 @Injectable({
@@ -84,5 +84,9 @@ export class PurchaseService {
   fetchallPurchase(companyid: string, key: string, user: string): Observable<any> {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallpurchase + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
+  }
+
+  fetchPurchaseById(itemcode:number,companyid:number): Observable<any> {
+    return this.httpclient.get(environment.apiactionurl + environment.fetchpurchasebyid + '?itemcode=123&companyid=1')
   }
 }

@@ -101,7 +101,8 @@ deleteExecutive:'dexecutive',
 deleteLedger:'dlegder',
 recepitbill:'get_sales_byid',
 paymentbill:'get_payment_byid',
-addquantity:'quantity'
+addquantity:'quantity',
+fetchpurchasebyid:'get_purchase_byid'
 };
 
 

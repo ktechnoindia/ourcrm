@@ -50,7 +50,7 @@ interface Purchase {
     attr7: string;
     attr8: string
     companyid:number,
-    itemcode:string,
+    itemcode:number,
   }[]
 }
 @Component({
@@ -149,7 +149,7 @@ export class AddPurchasePage implements OnInit {
       attr7: '',
       attr8: '',
       companyid:0,
-      itemcode:''
+      itemcode:0
     }] 
   }];
   ttotal!: number;
@@ -336,7 +336,7 @@ export class AddPurchasePage implements OnInit {
   }
   openQuantityPopover(purchase: Purchase) {
     this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:'' }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
     this.isQuantityPopoverOpen = true;
   }
 
@@ -506,7 +506,7 @@ console.log('data of ',purchases)
         attr7: '',
         attr8: '',
         companyid:0,
-        itemcode:''
+        itemcode:0
       }] 
     }];
   }
@@ -851,7 +851,7 @@ console.log('data of ',purchases)
       attr7: '',
       attr8: '',
       companyid:0,
-      itemcode:''
+      itemcode:0
       // Add more properties as needed
     }));
     // Subscribe to value changes of basicrate, taxrate, and discount
