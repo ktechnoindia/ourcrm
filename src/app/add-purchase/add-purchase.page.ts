@@ -49,6 +49,8 @@ interface Purchase {
     attr6: string;
     attr7: string;
     attr8: string
+    companyid:number,
+    itemcode:string,
   }[]
 }
 @Component({
@@ -146,6 +148,8 @@ export class AddPurchasePage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
+      companyid:0,
+      itemcode:''
     }] 
   }];
   ttotal!: number;
@@ -332,7 +336,7 @@ export class AddPurchasePage implements OnInit {
   }
   openQuantityPopover(purchase: Purchase) {
     this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '' }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:'' }));
     this.isQuantityPopoverOpen = true;
   }
 
@@ -370,8 +374,9 @@ console.log('data of ',purchases)
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-        }));
-
+          companyid:attr.companyid,
+          itemcode:attr.itemcode,
+        }))
 
         let purchasedata: purchasestore = {
           billNumber: this.myform.value.billNumber,
@@ -500,6 +505,8 @@ console.log('data of ',purchases)
         attr6: '',
         attr7: '',
         attr8: '',
+        companyid:0,
+        itemcode:''
       }] 
     }];
   }
@@ -642,16 +649,8 @@ console.log('data of ',purchases)
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      quantityPopoverData: [{
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7: '',
-        attr8: '',
-      }] 
+      quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
+
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -851,7 +850,8 @@ console.log('data of ',purchases)
       attr6: '',
       attr7: '',
       attr8: '',
-
+      companyid:0,
+      itemcode:''
       // Add more properties as needed
     }));
     // Subscribe to value changes of basicrate, taxrate, and discount

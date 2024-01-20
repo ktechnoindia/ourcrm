@@ -68,6 +68,8 @@ export interface purchasestore {
     attr6: string;
     attr7: string;
     attr8: string;
+    companyid:number;
+    itemcode:string;
   }[];
 }
 @Injectable({

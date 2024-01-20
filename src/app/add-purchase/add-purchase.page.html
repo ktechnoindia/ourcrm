@@ -490,7 +490,7 @@
                         <th>Attr7</th>
                         <th>Attr8</th>
                       </tr>
-                      <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData;; let i = index">
+                      <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData; let i = index">
                         <td>{{i+1}}</td>
                         <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
                         <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
