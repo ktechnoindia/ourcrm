@@ -20,6 +20,7 @@ import { StateService } from '../services/state.service';
 interface Purchase {
   barcode: string;
   itemcode: number;
+
   itemname: string,
   description: string;
   quantity: number;
@@ -51,7 +52,16 @@ interface Purchase {
     attr8: string
     companyid:number,
     itemcode:number,
-  }[]
+  }[],
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
+
 }
 @Component({
   selector: 'app-add-purchase',
@@ -150,7 +160,15 @@ export class AddPurchasePage implements OnInit {
       attr8: '',
       companyid:0,
       itemcode:0
-    }] 
+    }] ,
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
   }];
   ttotal!: number;
   itemid: number = 0;
@@ -285,6 +303,14 @@ export class AddPurchasePage implements OnInit {
       attr6: [''],
       attr7: [''],
       attr8: [''],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
     });
 
 
@@ -507,7 +533,15 @@ console.log('data of ',purchases)
         attr8: '',
         companyid:0,
         itemcode:0
-      }] 
+      }] ,
+      attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
     }];
   }
   getVendors(event: any) {
@@ -572,7 +606,15 @@ console.log('data of ',purchases)
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
-
+          purchase.attribute1= itemDetails.attr1,
+          purchase.attribute2= itemDetails.attr2,
+          purchase.attribute3= itemDetails.attr3,
+          purchase.attribute4= itemDetails.attr4,
+          purchase.attribute5= itemDetails.attr5,
+          purchase.attribute6= itemDetails.attr6,
+          purchase.attribute7= itemDetails.attr7,
+          purchase.attribute8= itemDetails.attr8,
+         
           // Update form control values
           this.myform.patchValue({
             itemcode: purchase.itemcode,
@@ -650,7 +692,14 @@ console.log('data of ',purchases)
       itemid: 0,
       selectedItemId: 0,
       quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
-
+      attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);

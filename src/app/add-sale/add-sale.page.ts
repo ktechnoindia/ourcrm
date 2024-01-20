@@ -42,6 +42,18 @@ interface Sales {
   taxrate1: number;
   itemid: number;
   selectedItemId: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid:number,
+    itemcode:number,
+  }[]
 }
 @Component({
   selector: 'app-add-sale',
@@ -124,7 +136,19 @@ export class AddSalePage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId: 0
+    selectedItemId: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7:'',
+      attr8:'',
+      companyid:0,
+      itemcode:0,
+    }]
   }];
   ttotal: number = 0;
   myform: FormGroup;
@@ -141,7 +165,7 @@ export class AddSalePage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-
+itemcode:number=0;
   name: string = '';
   customercode: string = '';
   customer_code: string = '';
@@ -164,7 +188,17 @@ export class AddSalePage implements OnInit {
 
   isOpen = false;
   cust: any;
+  purchasebyid$ :Observable<any[]>
+  isQuantityPopoverOpen: boolean=false;
 
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -176,6 +210,12 @@ export class AddSalePage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
+
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
 
     this.myform = this.formBuilder.group({
       billformate: [''],
@@ -231,6 +271,15 @@ export class AddSalePage implements OnInit {
       ttotal: [''],
       itemid: [''],
       ponumber: ['1'],
+
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
     });
 
     this.customerpop = this.formBuilder.group({
@@ -279,26 +328,15 @@ export class AddSalePage implements OnInit {
     });
   }
 
-  async presentPopover(dcin: any) {
-    const popover = await this.popoverController.create({
-      component: QuantitypopoverPage,
-      cssClass: 'popover-content',
-      componentProps: {
-        quantity: dcin.quantity, // Pass the quantity to the popup component
-      },
-      translucent: true,
-    });
-    return await popover.present();
+  openQuantityPopover(sale: Sales) {
+    this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+    this.isQuantityPopoverOpen = true;
   }
 
-
-  updateRows(sales: Sales) {
-    // Open the popover when quantity changes
-    if (sales.quantity > 0) {
-      this.presentPopover(sales);
-    }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
   }
-
 
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
@@ -437,7 +475,19 @@ export class AddSalePage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7:'',
+        attr8:'',
+        companyid:0,
+        itemcode:0,
+      }]
     }];
   }
 
@@ -544,7 +594,19 @@ export class AddSalePage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7:'',
+        attr8:'',
+        companyid:0,
+        itemcode:0,
+      }]
     };
     this.salesData.push(newRow);
   }
