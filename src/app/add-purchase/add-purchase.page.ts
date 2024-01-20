@@ -40,14 +40,16 @@ interface Purchase {
   taxrate1: number;
   itemid: number;
   selectedItemId: number;
-  attr1: string;
-  attr2: string;
-  attr3: string;
-  attr4: string;
-  attr5: string;
-  attr6: string;
-  attr7: string;
-  attr8: string;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+  }[]
 }
 @Component({
   selector: 'app-add-purchase',
@@ -135,14 +137,16 @@ export class AddPurchasePage implements OnInit {
     taxrate1: 0,
     itemid: 0,
     selectedItemId: 0,
-    attr1: '',
-    attr2: '',
-    attr3: '',
-    attr4: '',
-    attr5: '',
-    attr6: '',
-    attr7: '',
-    attr8: '',
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+    }] 
   }];
   ttotal!: number;
   itemid: number = 0;
@@ -188,16 +192,7 @@ export class AddPurchasePage implements OnInit {
   rows: any[] = [];
   @Input() quantity: number = 0;
   isQuantityPopoverOpen = false;
-  quantityPopoverData: {
-    attr1: string;
-    attr2: string;
-    attr3: string;
-    attr4: string;
-    attr5: string;
-    attr6: string;
-    attr7: string;
-    attr8: string
-  }[] = [];
+  
   attr1: string='';
   attr2:string='';
   attr3: string='';
@@ -336,7 +331,7 @@ export class AddPurchasePage implements OnInit {
     });
   }
   openQuantityPopover(purchase: Purchase) {
-    this.quantityPopoverData = new Array(purchase.quantity).fill({})
+    this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '' }));
     this.isQuantityPopoverOpen = true;
   }
@@ -366,6 +361,18 @@ console.log('data of ',purchases)
         const companyid = 1;
         const userid = 1;
       
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+        }));
+
+
         let purchasedata: purchasestore = {
           billNumber: this.myform.value.billNumber,
           billDate: this.myform.value.billDate,
@@ -419,14 +426,7 @@ console.log('data of ',purchases)
           userid: userid,
           executive: this.myform.value.executive,
           exicutive: 0,
-          attr1: this.myform.value.attr1,
-          attr2: this.myform.value.attr2,
-          attr3: this.myform.value.attr3,
-          attr4: this.myform.value.attr4,
-          attr5: this.myform.value.attr5,
-          attr6: this.myform.value.attr6,
-          attr7: this.myform.value.attr7,
-          attr8: this.myform.value.attr8,
+          quantityPopoverData: attributesArray,
         };
 
         purchases.push(purchasedata);
@@ -491,14 +491,16 @@ console.log('data of ',purchases)
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      attr1: '',
-      attr2: '',
-      attr3: '',
-      attr4: '',
-      attr5: '',
-      attr6: '',
-      attr7: '',
-      attr8: '',
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+      }] 
     }];
   }
   getVendors(event: any) {
@@ -640,14 +642,16 @@ console.log('data of ',purchases)
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      attr1: '',
-      attr2: '',
-      attr3: '',
-      attr4: '',
-      attr5: '',
-      attr6: '',
-      attr7: '',
-      attr8: '',
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+      }] 
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -838,7 +842,7 @@ console.log('data of ',purchases)
   ngOnInit() {
 
     this.rows = Array.from({ length: this.quantity }, (_, index) => index + 1);
-    this.quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+    this.purchaseData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',
       attr3: '',

@@ -143,7 +143,6 @@ export class ViewPurchasePage implements OnInit {
     'pretax': 'Pre-tax',
     'posttax': 'Post-tax',
     'total': 'Total',
-
     'attr1':'Attr1',
     'attr2':'Attr2',
     'attr3':'Attr3',

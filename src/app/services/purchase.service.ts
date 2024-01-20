@@ -59,14 +59,16 @@ export interface purchasestore {
   itemid:number;
   userid:number;
   executive:string;
-  attr1:string;
-  attr2:string;
-  attr3:string;
-  attr4:string;
-  attr5:string;
-  attr6:string;
-  attr7:string;
-  attr8:string;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+  }[];
 }
 @Injectable({
   providedIn: 'root'
