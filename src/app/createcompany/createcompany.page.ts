@@ -17,6 +17,7 @@ import { CgsttypeService } from '../services/cgsttype.service';
 import { BusinesstypeService } from '../services/businesstype.service';
 import { SegmentService } from '../services/segment.service';
 import { FormValidationService } from '../form-validation.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-createcompany',
@@ -103,7 +104,7 @@ export class CreatecompanyPage implements OnInit {
   bankForm: string = '';
 
   constructor(private navCtrl: NavController,private createcompany: CreatecompanyService, private formService: FormValidationService, private router: Router, private formBuilder: FormBuilder, private datePipe: DatePipe, private country: CountryService, private state: StateService, private districts: DistrictsService
-    , private industry1: IndustrytypeService, private cmptype: CgsttypeService, private bustype: BusinesstypeService, private segment1: SegmentService) {
+    , private industry1: IndustrytypeService, private cmptype: CgsttypeService, private bustype: BusinesstypeService, private segment1: SegmentService,private session:SessionService) {
     // this.rdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')?.toString();
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.country.getCountries();
@@ -219,6 +220,7 @@ export class CreatecompanyPage implements OnInit {
 
   async onSubmit() {
     const fields = { cpyname: this.cpyname }
+    const userid: number = this.session.getValue('userid')?.valueOf() as number;
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.form.value);
@@ -226,7 +228,7 @@ export class CreatecompanyPage implements OnInit {
         cpyname: this.form.value.cpyname, gstin: this.form.value.gstin, selectedCountry: this.form.value.selectedCountry, selectedState: this.form.value.selectedState, selectedDistrict: this.form.value.selectedDistrict, pinCode: this.form.value.pinCode, address: this.form.value.address, phone: this.form.value.phone, wpnumber: this.form.value.wpnumber, email: this.form.value.email, logo: this.form.value.logo, rdate: this.form.value.rdate, website: this.form.value.website, website1: this.form.value.website1, selectedCountry1: this.form.value.selectedCountry1, selectedState1: this.form.value.selectedState1, selectedDistrict1: this.form.value.selectedDistrict1, pinCode1: this.form.value.pinCode1, address1: this.form.value.address1, phone1: this.form.value.phone1, wpnumber1: this.form.value.wpnumber1, email1: this.form.value.email1,
         industry: this.form.value.industry, businesstype: this.form.value.businesstype, segmenttype: this.form.value.segmenttype, companytype: this.form.value.companytype, pannumber: this.form.value.pannumber, tanno: this.form.value.tanno,
         sales: this.form.value.sales, purchase: this.form.value.purchase, quotation: this.form.value.quotation, challan: this.form.value.challan, lms: this.form.value.lms, amc: this.form.value.amc, alloftheabove: this.form.value.alloftheabove, language: this.form.value.language, currency: this.form.value.currency,
-        bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,
+        bname: this.form.value.bname, accno: this.form.value.accno, ifsc: this.form.value.ifsc, branchname: this.form.value.branchname, upiid: this.form.value.upiid,userid
       };
 
       this.createcompany.createCompany(companydata, '', '').subscribe(

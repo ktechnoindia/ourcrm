@@ -15,7 +15,7 @@ constructor(private session:SessionService,private router:Router){}
    
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
    let skipauth:boolean =false;
-    if (request.url.includes('login')||request.url.includes('en.php')||request.url.includes('appin')) {
+    if (request.url.includes('login')||request.url.includes('signup')||request.url.includes('getCountries')||request.url.includes('getDistricts')) {
       // Bypass interception for localhost
       skipauth=true;
      // return next.handle(request);

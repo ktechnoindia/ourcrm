@@ -154,7 +154,7 @@ export class ViewcompanyPage implements OnInit {
   totalItems: number = 0;
 
   constructor(private alertController: AlertController, public session: SessionService, private companyService: CreatecompanyService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
-    const compid = '1';
+    const compid =  this.session.getValue('userid')?.valueOf() as number;
     this.companys$ = this.companyService.fetchallcompany(compid, '', '');
     console.log(this.companys$);
     this.updateManualHeaders();
