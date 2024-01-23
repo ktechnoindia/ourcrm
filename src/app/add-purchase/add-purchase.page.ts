@@ -50,17 +50,17 @@ interface Purchase {
     attr6: string;
     attr7: string;
     attr8: string
-    companyid: number,
-    itemcode: number,
+    companyid:number,
+    itemcode:number,
   }[],
-  attribute1: string,
-  attribute2: string,
-  attribute3: string,
-  attribute4: string,
-  attribute5: string,
-  attribute6: string,
-  attribute7: string,
-  attribute8: string,
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
 
 }
 @Component({
@@ -158,9 +158,9 @@ export class AddPurchasePage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid: 0,
-      itemcode: 0
-    }],
+      companyid:0,
+      itemcode:0
+    }] ,
     attribute1: '',
     attribute2: '',
     attribute3: '',
@@ -214,15 +214,15 @@ export class AddPurchasePage implements OnInit {
   rows: any[] = [];
   @Input() quantity: number = 0;
   isQuantityPopoverOpen = false;
-
-  attr1: string = '';
-  attr2: string = '';
-  attr3: string = '';
-  attr4: string = '';
-  attr5: string = '';
-  attr6: string = '';
-  attr7: string = '';
-  attr8: string = '';
+  
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
 
 
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
@@ -303,14 +303,14 @@ export class AddPurchasePage implements OnInit {
       attr6: [''],
       attr7: [''],
       attr8: [''],
-      attribute1: [''],
-      attribute2: [''],
-      attribute3: [''],
-      attribute4: [''],
-      attribute5: [''],
-      attribute6: [''],
-      attribute7: [''],
-      attribute8: [''],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
     });
 
 
@@ -362,7 +362,7 @@ export class AddPurchasePage implements OnInit {
   }
   openQuantityPopover(purchase: Purchase) {
     this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
     this.isQuantityPopoverOpen = true;
   }
 
@@ -376,7 +376,7 @@ export class AddPurchasePage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
 
     let purchases: purchasestore[] = [];
-    console.log('data of ', purchases)
+console.log('data of ',purchases)
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
@@ -390,7 +390,7 @@ export class AddPurchasePage implements OnInit {
         console.log('Your form data : ', this.myform.value);
         const companyid = 1;
         const userid = 1;
-
+      
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -400,8 +400,8 @@ export class AddPurchasePage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid: attr.companyid,
-          itemcode: attr.itemcode,
+          companyid:attr.companyid,
+          itemcode:attr.itemcode,
         }))
 
         let purchasedata: purchasestore = {
@@ -531,17 +531,17 @@ export class AddPurchasePage implements OnInit {
         attr6: '',
         attr7: '',
         attr8: '',
-        companyid: 0,
-        itemcode: 0
-      }],
+        companyid:0,
+        itemcode:0
+      }] ,
       attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
     }];
   }
   getVendors(event: any) {
@@ -606,21 +606,21 @@ export class AddPurchasePage implements OnInit {
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
-          purchase.attribute1 = itemDetails.attr1,
-            purchase.attribute2 = itemDetails.attr2,
-            purchase.attribute3 = itemDetails.attr3,
-            purchase.attribute4 = itemDetails.attr4,
-            purchase.attribute5 = itemDetails.attr5,
-            purchase.attribute6 = itemDetails.attr6,
-            purchase.attribute7 = itemDetails.attr7,
-            purchase.attribute8 = itemDetails.attr8,
-
-            // Update form control values
-            this.myform.patchValue({
-              itemcode: purchase.itemcode,
-              itemname: purchase.itemname,
-              // Other form controls...
-            });
+          purchase.attribute1= itemDetails.attr1,
+          purchase.attribute2= itemDetails.attr2,
+          purchase.attribute3= itemDetails.attr3,
+          purchase.attribute4= itemDetails.attr4,
+          purchase.attribute5= itemDetails.attr5,
+          purchase.attribute6= itemDetails.attr6,
+          purchase.attribute7= itemDetails.attr7,
+          purchase.attribute8= itemDetails.attr8,
+         
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: purchase.itemcode,
+            itemname: purchase.itemname,
+            // Other form controls...
+          });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -693,13 +693,13 @@ export class AddPurchasePage implements OnInit {
       selectedItemId: 0,
       quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
       attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -899,8 +899,8 @@ export class AddPurchasePage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid: 0,
-      itemcode: 0
+      companyid:0,
+      itemcode:0
       // Add more properties as needed
     }));
     // Subscribe to value changes of basicrate, taxrate, and discount

@@ -1,9 +1,9 @@
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    <div>
+    <div class="invoice-to-hide">
       <ion-card-content>
         <div class="dekstop-menu">
-          <ion-card-header>
+          <ion-card-header >
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">View Item</ion-title>
@@ -12,7 +12,7 @@
 
           <ion-grid>
 
-            <ion-row>
+            <ion-row class="header">
               <ion-col  size-lg="8" size-md="8" size-sm="6" size="12">
                 <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
               </ion-col>

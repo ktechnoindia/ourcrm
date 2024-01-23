@@ -87,6 +87,6 @@ export class PurchaseService {
   }
 
   fetchPurchaseById(itemcode:number,companyid:number): Observable<any> {
-    return this.httpclient.get(environment.apiactionurl + environment.fetchpurchasebyid + '?itemcode=123&companyid=1')
-  }
+    const apiUrl = `http://103.154.184.66:8000/actions/get_purchase_byid?itemcode=${itemcode}&companyid=${companyid}`;
+    return this.httpclient.get(apiUrl);  }
 }
