@@ -53,6 +53,18 @@ export interface quotestore {
   companyid:number;
   userid:number;
   itemid:number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+    companyid:number;
+    itemcode:number;
+  }[];
 }
 @Injectable({
   providedIn: 'root'
