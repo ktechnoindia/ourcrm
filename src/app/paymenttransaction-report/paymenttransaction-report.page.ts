@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { PaymentService } from '../services/payment.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-paymenttransaction-report',
@@ -18,7 +19,20 @@ export class PaymenttransactionReportPage implements OnInit {
   payment$: Observable<any[]>;
   filteredPayments$: Observable<any[]> = new Observable<any[]>();
   searchTerm: string = '';
+  el: any;
+  generatePdf() {
+    let pdf = new jsPDF()
 
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
   constructor(private payment: PaymentService, private router: Router, private encService: EncryptionService) {
     const compid = '1';
     this.payment$ = this.payment.fetchAllPayment(encService.encrypt(compid), '', '');
