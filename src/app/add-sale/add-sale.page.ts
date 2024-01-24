@@ -87,7 +87,7 @@ export class AddSalePage implements OnInit {
   payment: number = 0;
   //table data
   /*barcode: string = '';
-  itemcode: string = '';
+
   itemname: number = 0;
   description: string = '';
   quantity: string = '';

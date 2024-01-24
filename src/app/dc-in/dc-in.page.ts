@@ -189,12 +189,19 @@ isOpen = false;
   states$: Observable<any[]>;
   districts$: Observable<any[]>
   vendorpop: FormGroup;
-  purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
   quantity: number=0;
   printThisPage() {
     window.print();
   }
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
    // this.cdr.detectChanges();
     const compid = '1';
@@ -208,11 +215,7 @@ isOpen = false;
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
 
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-        });
+  
     this.myform = this.formBuilder.group({
       voucherformat: [''],
       voucherNumber: ['', Validators.required],
@@ -270,6 +273,14 @@ isOpen = false;
       attribute6:[''],
       attribute7:[''],
       attribute8:[''],
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
     })
 
     this.vendorpop = this.formBuilder.group({
@@ -493,8 +504,8 @@ isOpen = false;
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.myform.reset();
-            location.reload();
+            this.myform.reset();
+            //location.reload();
           },
           (error: any) => {
             console.log('POST request failed', error);

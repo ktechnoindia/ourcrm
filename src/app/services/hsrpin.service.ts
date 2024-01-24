@@ -25,9 +25,9 @@ export interface hsrpin{
   description: string;
   hsn_code: string;
   quantity: number;
-  basic_rate: number;
-  gst_type: number;
-  tax_amt: number;
+  basicrate: number;
+  totaltax: number;
+taxrate: number;
   tcs_value: number;
   totalitemno: number;
   totalquantity: number;
@@ -47,6 +47,18 @@ export interface hsrpin{
   mrp:string;
   netrate:string;
   ttotal: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+    companyid:number;
+    itemcode:number;
+  }[];
 }
 
 @Injectable({

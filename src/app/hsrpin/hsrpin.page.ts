@@ -14,8 +14,9 @@ import { HsrpinService, hsrpin } from '../services/hsrpin.service';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { AdditemService } from '../services/additem.service';
 import { FormValidationService } from '../form-validation.service';
+import { SalesService } from '../services/sales.service';
 
-interface Hsrp {
+interface Hsrpin {
   selectedItemAttributes: unknown[];
   part: number;
   frame: number;
@@ -25,17 +26,39 @@ interface Hsrp {
   vehicle_reg_date: number;
   hsrp_front: number;
   hsrp_rear: number;
-  mrp:string;
-  netrate:string;
+  mrp: string;
+  netrate: string;
   description: string;
   hsn_code: string;
   quantity: number;
-  basic_rate: number;
-  gst_type: number;
-  tax_amt: number;
+  basicrate: number;
+  totaltax: number;
+  taxrate: number;
   tcs_value: number;
-  itemname:number;
+  itemname: number;
+  itemcode: number,
+
   selectedItem: any; // New property to store the selected item
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid: number,
+    itemcode: number,
+  }[],
+  attribute1: string,
+  attribute2: string,
+  attribute3: string,
+  attribute4: string,
+  attribute5: string,
+  attribute6: string,
+  attribute7: string,
+  attribute8: string,
 
 }
 
@@ -51,10 +74,11 @@ export class HsrpinPage implements OnInit {
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
   selectedItemAttributes = [
-    { attributes: ['attr1', 'attr2', 'attr3','attr3','attr5','attr5','attr6','attr7','attr8'] },
+    { attributes: ['attr1', 'attr2', 'attr3', 'attr3', 'attr5', 'attr5', 'attr6', 'attr7', 'attr8'] },
     // Add more objects as needed
   ];
   myform: FormGroup;
+  itemcode: number = 0;
 
   billformate: number = 0
   billno: string = '';
@@ -66,7 +90,7 @@ export class HsrpinPage implements OnInit {
   executive_name: number = 0;
   part: number = 0;
   frame: number = 0;
-  itemname:number=0;
+  itemname: number = 0;
   engine_no: number = 0;
   vehicle_no: number = 0;
   vehicle_reg_no: number = 0;
@@ -76,9 +100,9 @@ export class HsrpinPage implements OnInit {
   description: string = '';
   hsn_code: string = '';
   quantity: number = 0;
-  basic_rate: number = 0;
-  gst_type: number = 0;
-  tax_amt: number = 0;
+  basicrate: number = 0;
+  totaltax: number = 0;
+  taxrate: number = 0;
   tcs_value: number = 0;
   totalitemno: number = 0;
   totalquantity: number = 0;
@@ -101,47 +125,72 @@ export class HsrpinPage implements OnInit {
   navCtrl: any;
   cdr: any;
   isOpen = false;
-  hsrpindata: Hsrp[] = [{
+  hsrpindata: Hsrpin[] = [{
     part: 0,
     frame: 0,
     engine_no: 0,
     vehicle_no: 0,
     vehicle_reg_no: 0,
-    vehicle_reg_date:0,
-    hsrp_front:0,
+    vehicle_reg_date: 0,
+    hsrp_front: 0,
     hsrp_rear: 0,
     description: '',
     hsn_code: '',
-    mrp:'',
-    netrate:'',
-    quantity:0,
-    basic_rate:0,
-    gst_type:0,
-    tax_amt: 0,
+    mrp: '',
+    netrate: '',
+    quantity: 0,
+    basicrate: 0,
+    totaltax: 0,
+    taxrate: 0,
     tcs_value: 0,
-    itemname:0,
+    itemname: 0,
+    itemcode: 0,
     selectedItem: 0,// New property to store the selected item
-    selectedItemAttributes:[''],
-
+    selectedItemAttributes: [''],
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0,
+    }],
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
   }];
   rows = [
-    { part: null, frame: null, engine_no: null, vehicle_no: null, vehicle_reg_no: null, vehicle_reg_date: null, hsrp_front: null, hsrp_rear: null, description: null, hsn_code: null, quantity: null, basic_rate: null, gst_type: null, tax_amt: null, tcs_value: null, itemname: null },
+    { part: null, frame: null, engine_no: null, vehicle_no: null, vehicle_reg_no: null, vehicle_reg_date: null, hsrp_front: null, hsrp_rear: null, description: null, hsn_code: null, quantity: null, basicrate: null, totaltax: null, taxrate: null, tcs_value: null, itemname: null },
     // Add more rows as needed
   ];
   ttotal!: number;
   itemnames$: Observable<any[]>;
   firstInvalidInput: any;
- isQuantityEntered = false;
- 
+  isQuantityEntered = false;
 
-  constructor( private hsrpinservice :HsrpinService,private formService: FormValidationService,private itemService: AdditemService,private popoverController: PopoverController,private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService,private executiveService:ExecutiveService,private GstService:GsttypeService) {
+  purchasebyid$: Observable<any[]>
+  isQuantityPopoverOpen: boolean = false;
+  constructor(private saleService: SalesService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
     this.executive$ = this.executiveService.getexecutive();
     this.selectGst$ = this.GstService.getgsttype();
     this.itemnames$ = this.itemService.getAllItems();
-    
 
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+    });
     this.myform = formBuilder.group({
       billformate: [''],
       billno: [''],
@@ -153,7 +202,7 @@ export class HsrpinPage implements OnInit {
       executive_name: [''],
       part: [''],
       frame: [''],
-      itemname:[''],
+      itemname: [''],
       engine_no: [''],
       vehicle_no: [''],
       vehicle_reg_no: [''],
@@ -163,9 +212,9 @@ export class HsrpinPage implements OnInit {
       description: [''],
       hsn_code: [''],
       quantity: [''],
-      basic_rate: [''],
-      gst_type: [''],
-      tax_amt: [''],
+      basicrate: [''],
+      totaltax: [''],
+      taxrate: [''],
       tcs_value: [''],
       totalitemno: [''],
       totalquantity: [''],
@@ -182,10 +231,71 @@ export class HsrpinPage implements OnInit {
       posttax: [''],
       pretax: [''],
       totalnetamount: [''],
-       ttotal: [''],
+      ttotal: [''],
+      attribute1: [''],
+      attribute2: [''],
+      attribute3: [''],
+      attribute4: [''],
+      attribute5: [''],
+      attribute6: [''],
+      attribute7: [''],
+      attribute8: [''],
+      itemcode: 0,
+
     })
   }
-  onItemSelect(hsrpin: Hsrp) {
+  async ionViewWillEnter() {
+    //   const userid = await this.session.getValue('userid');
+    //   if (userid == null || userid == 'undefined' || userid == '') {
+    //     this.router.navigate(['/login']);
+    //   }
+    //  this.setlangvals();
+    this.hsrpindata = [{
+      part: 0,
+      frame: 0,
+      engine_no: 0,
+      vehicle_no: 0,
+      vehicle_reg_no: 0,
+      vehicle_reg_date: 0,
+      hsrp_front: 0,
+      hsrp_rear: 0,
+      description: '',
+      hsn_code: '',
+      mrp: '',
+      netrate: '',
+      quantity: 0,
+      basicrate: 0,
+      totaltax: 0,
+      taxrate: 0,
+      tcs_value: 0,
+      itemname: 0,
+      itemcode: 0,
+      selectedItem: 0,// New property to store the selected item
+      selectedItemAttributes: [''],
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+        companyid: 0,
+        itemcode: 0,
+      }],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
+    }];
+  }
+
+  onItemSelect(hsrpin: Hsrpin) {
     this.itemnames$.subscribe((items) => {
       const selectedItem = items.find((item) => item.tid === hsrpin.itemname);
       if (selectedItem) {
@@ -194,8 +304,71 @@ export class HsrpinPage implements OnInit {
       }
     });
   }
-  async onSubmit(form: FormGroup, hsrpindata: Hsrp[]) {
-    const fields = {itemname: this.itemname, quantity: this.quantity, description: this.description }
+
+  openQuantityPopover(hsrpin: Hsrpin) {
+    this.hsrpindata[0].quantityPopoverData = new Array(hsrpin.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+    this.isQuantityPopoverOpen = true;
+  }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
+  }
+
+  addHsrp() {
+    console.log('addquotewww' + this.hsrpindata.length);
+    // You can initialize the new row data here
+    let newRow: hsrpin = {
+      part: 0,
+      frame: 0,
+      engine_no: 0,
+      vehicle_no: 0,
+      vehicle_reg_no: 0,
+      vehicle_reg_date: 0,
+      hsrp_front: 0,
+      hsrp_rear: 0,
+      description: '',
+      hsn_code: '',
+      mrp: '',
+      netrate: '',
+      quantity: 0,
+      totaltax: 0,
+      taxrate: 0,
+      tcs_value: 0,
+      billformate: 0,
+      billno: '',
+      hsrpdate: '',
+      suppliercode: '',
+      spler: 0,
+      refrence: '',
+      refdate: '',
+      executive_name: 0,
+      totalitemno: 0,
+      totalquantity: 0,
+      totalgrossamt: 0,
+      deliverydate: '',
+      deliveryplace: '',
+      openingbalance: 0,
+      debit: 0,
+      closingbalance: 0,
+      credit: 0,
+      totaldiscountamt: 0,
+      totaltaxamount: 0,
+      roundoff: 0,
+      pretax: 0,
+      posttax: 0,
+      totalnetamount: 0,
+      ttotal: 0,
+      quantityPopoverData: this.hsrpindata[0].quantityPopoverData.map(attr => ({ ...attr })),
+      basicrate: 0,
+    };
+
+
+    this.hsrpindata.push();
+    // Reset newRow back to an empty object to prepare for the next iteration
+
+  }
+  async onSubmit(form: FormGroup, hsrpindata: Hsrpin[]) {
+    const fields = { itemname: this.itemname, quantity: this.quantity, description: this.description }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -215,49 +388,63 @@ export class HsrpinPage implements OnInit {
         console.log(element);
         const companyid = 1;
         const userid = 1;
-
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid: attr.companyid,
+          itemcode: attr.itemcode,
+        }))
         const hsrpindata: hsrpin = {
-          billformate:  this.myform.value.billformate,
+          // itemcode: element.itemcode,
+          // itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          taxrate: element.taxrate,
+          totaltax: element.totaltax,
+          hsn_code: element.hsn_code,
+          tcs_value: element.tcs_value,
+          billformate: this.myform.value.billformate,
           billno: this.myform.value.billno,
           hsrpdate: this.myform.value.hsrpdate,
           suppliercode: this.myform.value.suppliercode,
-          spler:  this.myform.value.spler,
-          refrence:  this.myform.value.refrence,
-          refdate:  this.myform.value.refdate,
-          executive_name:  this.myform.value.executive_name,
-          part:  this.myform.value.part,
-          frame:  this.myform.value.frame,
-          engine_no:  this.myform.value.engine_no,
-          vehicle_no:  this.myform.value.vehicle_no,
-          vehicle_reg_no:  this.myform.value.vehicle_reg_date,
-          vehicle_reg_date:  this.myform.value.vehicle_reg_date,
-          hsrp_front:  this.myform.value.hsrp_front,
-          hsrp_rear:  this.myform.value.hsrp_rear,
-          description:  this.myform.value.description,
-          hsn_code:  this.myform.value.hsn_code,
-          quantity:  this.myform.value.quantity,
-          basic_rate:  this.myform.value.basic_rate,
-          gst_type:  this.myform.value.gst_type,
-          tax_amt:  this.myform.value.tax_amt,
-          tcs_value:  this.myform.value.tcs_value,
-          totalitemno:  this.myform.value.totalitemno,
-          totalquantity:  this.myform.value.totalquantity,
-          totalgrossamt:  this.myform.value.totalgrossamt,
-          deliverydate:  this.myform.value.deliverydate,
-          deliveryplace:  this.myform.value.deliveryplace,
-          openingbalance:  this.myform.value.opening_balance,
-          debit:  this.myform.value.debit,
-          closingbalance:  this.myform.value.closingbalance,
-          credit:  this.myform.value.credit,
-          totaldiscountamt:  this.myform.value.totaldiscountamt,
-          totaltaxamount:  this.myform.value.totaltaxamount,
-          roundoff:  this.myform.value.roundoff,
-          pretax:  this.myform.value.pretax,
-          posttax:  this.myform.value.posttax,
-          totalnetamount:  this.myform.value.totalnetamount,
-          mrp:  this.myform.value.mrp,
-          netrate:  this.myform.value.netrate,
+          spler: this.myform.value.spler,
+          refrence: this.myform.value.refrence,
+          refdate: this.myform.value.refdate,
+          executive_name: this.myform.value.executive_name,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          openingbalance: this.myform.value.opening_balance,
+          debit: this.myform.value.debit,
+          closingbalance: this.myform.value.closingbalance,
+          credit: this.myform.value.credit,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          roundoff: this.myform.value.roundoff,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
+          totalnetamount: this.myform.value.totalnetamount,
           ttotal: 0,
+          quantityPopoverData: attributesArray,
+          part: 0,
+          frame: 0,
+          engine_no: 0,
+          vehicle_no: 0,
+          vehicle_reg_no: 0,
+          vehicle_reg_date: 0,
+          hsrp_front: 0,
+          hsrp_rear: 0
         };
 
         hsrpindatas.push(hsrpindata);
@@ -295,59 +482,6 @@ export class HsrpinPage implements OnInit {
     }
 
   }
-  addHsrp() {
-
-    console.log('addquotewww' + this.hsrpindata.length);
-    // You can initialize the new row data here
-    let newRow: hsrpin = {
-      part: 0,
-      frame: 0,
-      engine_no: 0,
-      vehicle_no: 0,
-      vehicle_reg_no: 0,
-      vehicle_reg_date: 0,
-      hsrp_front: 0,
-      hsrp_rear: 0,
-      description: '',
-      hsn_code: '',
-      mrp: '',
-      netrate: '',
-      quantity: 0,
-      basic_rate: 0,
-      gst_type: 0,
-      tax_amt: 0,
-      tcs_value: 0,
-      billformate: 0,
-      billno: '',
-      hsrpdate: '',
-      suppliercode: '',
-      spler: 0,
-      refrence: '',
-      refdate: '',
-      executive_name: 0,
-      totalitemno: 0,
-      totalquantity: 0,
-      totalgrossamt: 0,
-      deliverydate: '',
-      deliveryplace: '',
-      openingbalance: 0,
-      debit: 0,
-      closingbalance: 0,
-      credit: 0,
-      totaldiscountamt: 0,
-      totaltaxamount: 0,
-      roundoff: 0,
-      pretax: 0,
-      posttax: 0,
-      totalnetamount: 0,
-      ttotal: 0
-    };
-
-
-    this.hsrpindata.push();
-    // Reset newRow back to an empty object to prepare for the next iteration
-
-  }
   removeHsrpin(index: number, hsrpin: hsrpin) {
     this.ttotal = this.ttotal - hsrpin.ttotal;
     this.hsrpindata.splice(index, 1);
@@ -362,8 +496,22 @@ export class HsrpinPage implements OnInit {
     location.reload();
   }
   ngOnInit() {
-    console.log('selectedItemAttributes', this.selectedItemAttributes);
+    this.quantity = 1; // Set an initial value for quantity
 
+    console.log('selectedItemAttributes', this.selectedItemAttributes);
+    this.hsrpindata[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0
+      // Add more properties as needed
+    }));
   }
   goBack() {
     this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page
@@ -373,7 +521,7 @@ export class HsrpinPage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-  async presentPopover(hsrpin: Hsrp) {
+  async presentPopover(hsrpin: Hsrpin) {
     const popover = await this.popoverController.create({
       component: QuantitypopoverPage,
       cssClass: 'popover-content',
@@ -389,7 +537,7 @@ export class HsrpinPage implements OnInit {
 
 
 
-  updateRows(hsrpin: Hsrp) {
+  updateRows(hsrpin: Hsrpin) {
     // Open the popover when quantity changes
     if (hsrpin.quantity > 0) {
       this.presentPopover(hsrpin);
@@ -402,7 +550,7 @@ export class HsrpinPage implements OnInit {
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
     this.itemnames$.subscribe(items => {
       const selectedItem = items.find(item => item.tid === hsrpin.itemname);
-  
+
       if (selectedItem) {
         this.selectedItemAttributes = selectedItem.attributes;
       } else {
@@ -426,16 +574,23 @@ export class HsrpinPage implements OnInit {
           hsrpin.taxrate1 = grate[itemDetails.selectGst];
           hsrpin.basicrate = itemDetails.basicrate;
           hsrpin.mrp = itemDetails.mrp;
-          hsrpin.basicrate = itemDetails.basic_rate;
+          hsrpin.basicrate = itemDetails.basicrate;
           hsrpin.netrate = itemDetails.net_rate;
+          hsrpin.attribute1 = itemDetails.attr1,
+            hsrpin.attribute2 = itemDetails.attr2,
+            hsrpin.attribute3 = itemDetails.attr3,
+            hsrpin.attribute4 = itemDetails.attr4,
+            hsrpin.attribute5 = itemDetails.attr5,
+            hsrpin.attribute6 = itemDetails.attr6,
+            hsrpin.attribute7 = itemDetails.attr7,
+            hsrpin.attribute8 = itemDetails.attr8,
 
-
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: hsrpin.itemcode,
-            itemname: hsrpin.itemname,
-            // Other form controls...
-          });
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: hsrpin.itemcode,
+              itemname: hsrpin.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }

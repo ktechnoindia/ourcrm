@@ -454,7 +454,7 @@
                         <th><input type="text" formControlName="attribute7" [(ngModel)]="dcin.attribute7" class="pop_input"></th>
                         <th><input type="text" formControlName="attribute8" [(ngModel)]="dcin.attribute8" class="pop_input"></th>
                       </tr>
-                      <tr *ngFor="let row of purchasebyid$ | async; let i = index">
+                      <tr *ngFor="let row of dcinData[0]?.quantityPopoverData; let i = index">
                         <td>{{i+1}}</td>
                         <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
                         <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
