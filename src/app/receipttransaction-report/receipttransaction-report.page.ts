@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { RecepitService } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-receipttransaction-report',
@@ -18,7 +19,20 @@ export class ReceipttransactionReportPage implements OnInit {
   recepits$:  Observable<any[]>;
   searchTerm: string = '';
   filteredRecepits$: Observable<any[]> = new Observable<any[]>(); 
+  el: any;
+  generatePdf() {
+    let pdf = new jsPDF()
 
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage(){
+    window.print();
+  }
   constructor(private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
 
     const compid='1';
