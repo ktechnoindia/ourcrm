@@ -200,7 +200,8 @@
                     </td>
                     <td>
                       <input *ngIf="purchase.itemcode !== 0" [(ngModel)]="purchase.quantity" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (keydown.enter)="presentPopover(purchase)">
+                        type="number"
+                        (keydown.enter)="openQuantityPopover(purchase)">
 
                     </td>
                     <td>
@@ -468,12 +469,49 @@
             <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
               [duration]="1000"></ion-loading>
             <ion-button type="submit">Save</ion-button>
-            <ion-button >Print</ion-button>
             <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
             <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
               [duration]="1000"></ion-loading>
+              <ion-button  (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                color="secondry"></ion-icon>Print</ion-button>
+                <ion-button (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                  color="secondry"></ion-icon>Preview</ion-button>
           </ion-row>
-
+          <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
+            <ng-template>
+              <ion-content>
+                <div style="padding: 10px;">
+                  <table style="width: 100%;">
+                    <tr class="attributes" *ngFor="let purchase of purchaseData; let i = index">
+                      <th>Sr. No.</th>
+                      <th><input type="text" formControlName="attribute1" [(ngModel)]="purchase.attribute1" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute2" [(ngModel)]="purchase.attribute2" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute3" [(ngModel)]="purchase.attribute3" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute4" [(ngModel)]="purchase.attribute4" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute5" [(ngModel)]="purchase.attribute5" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute6" [(ngModel)]="purchase.attribute6" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute7" [(ngModel)]="purchase.attribute7" class="pop_input"></th>
+                      <th><input type="text" formControlName="attribute8" [(ngModel)]="purchase.attribute8" class="pop_input"></th>
+                    </tr>
+                    <tr *ngFor="let row of purchasebyid$ | async; let i = index">
+                      <td>{{i+1}}</td>
+                      <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
+                      <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
+                    </tr>
+                  </table>
+                  <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
+                    <ion-button style="float: right; bottom: 0;"  (click)="closeQuantityPopover()">Ok</ion-button>
+                  </ion-row>
+                </div>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
         </form>
       </ion-grid>
     </ion-card-content>

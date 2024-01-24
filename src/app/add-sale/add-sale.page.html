@@ -473,29 +473,31 @@
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-button>Print</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Saving..."
                 [duration]="1000"></ion-loading>
               <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
-
+                <ion-button  (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                  color="secondry"></ion-icon>Print</ion-button>
+                  <ion-button (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                    color="secondry"></ion-icon>Preview</ion-button>
             </ion-row>
             <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
               <ng-template>
                 <ion-content>
                   <div style="padding: 10px;">
                     <table style="width: 100%;">
-                      <tr>
+                      <tr class="attributes" *ngFor="let sales of salesData; let i = index">
                         <th>Sr. No.</th>
-                        <th>Attr1</th>
-                        <th>Attr2</th>
-                        <th>Attr3</th>
-                        <th>Attr4</th>
-                        <th>Attr5</th>
-                        <th>Attr6</th>
-                        <th>Attr7</th>
-                        <th>Attr8</th>
+                        <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute2" [(ngModel)]="sales.attribute2" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute3" [(ngModel)]="sales.attribute3" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute4" [(ngModel)]="sales.attribute4" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute5" [(ngModel)]="sales.attribute5" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute6" [(ngModel)]="sales.attribute6" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute7" [(ngModel)]="sales.attribute7" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute8" [(ngModel)]="sales.attribute8" class="pop_input"></th>
                       </tr>
                       <tr *ngFor="let row of purchasebyid$ | async; let i = index">
                         <td>{{i+1}}</td>

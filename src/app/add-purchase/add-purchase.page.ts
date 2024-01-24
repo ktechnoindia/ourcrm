@@ -224,7 +224,9 @@ export class AddPurchasePage implements OnInit {
   attr7:string='';
   attr8:string='';
 
-
+  printThisPage() {
+    window.print();
+  }
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

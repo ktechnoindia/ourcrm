@@ -62,6 +62,18 @@ export interface purchasereturnstore {
   userid:number;
   executive:number;
 frombill:number;
+quantityPopoverData: {
+  attr1: string;
+  attr2: string;
+  attr3: string;
+  attr4: string;
+  attr5: string;
+  attr6: string;
+  attr7: string;
+  attr8: string;
+  companyid:number;
+  itemcode:number;
+}[];
 }
 
 @Injectable({

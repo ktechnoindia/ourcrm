@@ -56,3 +56,10 @@ td{
     height: 400px;
     overflow-x: auto;
   }
+  @media print {
+    .dekstop-menu ion-title{
+        display:block ;
+        font-size: 22px;
+        font-weight: bold;
+    }
+  }
