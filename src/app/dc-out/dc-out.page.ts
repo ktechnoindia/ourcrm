@@ -203,7 +203,9 @@ export class DcOutPage implements OnInit {
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
   quantity: number=0;
-
+  printThisPage() {
+    window.print();
+  }
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

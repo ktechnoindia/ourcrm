@@ -192,6 +192,9 @@ isOpen = false;
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
   quantity: number=0;
+  printThisPage() {
+    window.print();
+  }
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
    // this.cdr.detectChanges();
     const compid = '1';

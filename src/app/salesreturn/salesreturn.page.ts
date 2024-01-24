@@ -195,6 +195,9 @@ export class SalesreturnPage implements OnInit {
 
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
+  printThisPage() {
+    window.print();
+  }
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

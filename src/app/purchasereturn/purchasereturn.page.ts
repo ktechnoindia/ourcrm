@@ -215,6 +215,9 @@ export class PurchasereturnPage implements OnInit {
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
 
+  printThisPage() {
+    window.print();
+  }
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

@@ -227,7 +227,9 @@ itemcode:number=0;
   showIconDiv: boolean = false;
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
-
+  printThisPage() {
+    window.print();
+  }
   constructor( private saleService: SalesService,private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
    
    
