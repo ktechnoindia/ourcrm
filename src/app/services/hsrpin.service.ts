@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-export interface hsrpin{
+export interface hsrpinstore{
   billformate: number;
   billno: string;
   hsrpdate: string;
@@ -13,7 +13,7 @@ export interface hsrpin{
   executive_name: number;
 
   //table
-
+barcode:string;
   part: number;
   frame: number;
   engine_no: number;
@@ -45,8 +45,20 @@ taxrate: number;
   posttax: number;
   totalnetamount: number;
   mrp:string;
-  netrate:string;
+  netrate:number;
   ttotal: number;
+  itemcode:number;
+  itemname:string;
+  grossrate:number;
+  CGST:number;
+  SGST: number;
+  IGST:number;
+  discount:number;
+  discountamt:number;
+  total:number;
+  taxrate1:number;
+  itemid: number;
+  selectedItemId:number;
   quantityPopoverData: {
     attr1: string;
     attr2: string;
@@ -67,7 +79,7 @@ taxrate: number;
 export class HsrpinService {
 
   constructor(private httpclient: HttpClient) { }
-  createhsrpin(hsrpin: hsrpin[], key: string, user: string) {
+  createhsrpin(hsrpin: hsrpinstore[], key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addhsrpin, hsrpin, { headers: { 'key': key, 'user': user } });
   }
 }

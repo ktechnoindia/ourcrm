@@ -62,6 +62,7 @@ interface Sales {
   attribute6: string,
   attribute7: string,
   attribute8: string,
+
 }
 @Component({
   selector: 'app-add-sale',
@@ -216,6 +217,7 @@ export class AddSalePage implements OnInit {
   attr7: string = '';
   attr8: string = '';
   quantity: number = 0;
+
   printThisPage() {
     window.print();
   }
@@ -376,7 +378,7 @@ export class AddSalePage implements OnInit {
 
       for (const element of salesData) {
         element.grossrate = element.basicrate * element.quantity;
-        //element.netrate = element.basicrate + element.taxrate1;
+        element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;

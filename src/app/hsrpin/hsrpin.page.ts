@@ -10,7 +10,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { ExecutiveService } from '../services/executive.service';
 import { GsttypeService } from '../services/gsttype.service';
 import { dcinstore } from '../services/dcin.service';
-import { HsrpinService, hsrpin } from '../services/hsrpin.service';
+import { HsrpinService, hsrpinstore } from '../services/hsrpin.service';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { AdditemService } from '../services/additem.service';
 import { FormValidationService } from '../form-validation.service';
@@ -18,6 +18,7 @@ import { SalesService } from '../services/sales.service';
 
 interface Hsrpin {
   selectedItemAttributes: unknown[];
+  barcode: string;
   part: number;
   frame: number;
   engine_no: number;
@@ -27,7 +28,7 @@ interface Hsrpin {
   hsrp_front: number;
   hsrp_rear: number;
   mrp: string;
-  netrate: string;
+  netrate: number;
   description: string;
   hsn_code: string;
   quantity: number;
@@ -35,10 +36,19 @@ interface Hsrpin {
   totaltax: number;
   taxrate: number;
   tcs_value: number;
-  itemname: number;
+  itemname: string;
   itemcode: number,
+  taxrate1: number;
+  discountamt: 0,
+  discount: number;
+  selectedItemId: number;
+  itemid: number;
+  CGST: number;
+  SGST: number;
+  IGST: number;
+  total: number;
+  grossrate: number;
 
-  selectedItem: any; // New property to store the selected item
   quantityPopoverData: {
     attr1: string;
     attr2: string;
@@ -126,6 +136,15 @@ export class HsrpinPage implements OnInit {
   cdr: any;
   isOpen = false;
   hsrpindata: Hsrpin[] = [{
+    barcode: '',
+    itemcode: 0,
+    itemid: 0,
+    CGST: 0,
+    SGST: 0,
+    IGST: 0,
+    total: 0,
+    grossrate: 0,
+
     part: 0,
     frame: 0,
     engine_no: 0,
@@ -137,15 +156,18 @@ export class HsrpinPage implements OnInit {
     description: '',
     hsn_code: '',
     mrp: '',
-    netrate: '',
+    netrate: 0,
     quantity: 0,
     basicrate: 0,
     totaltax: 0,
     taxrate: 0,
     tcs_value: 0,
-    itemname: 0,
-    itemcode: 0,
-    selectedItem: 0,// New property to store the selected item
+    itemname: '',
+    selectedItemId: 0,
+    taxrate1: 0,
+    discountamt: 0,
+    discount: 0,
+
     selectedItemAttributes: [''],
     quantityPopoverData: [{
       attr1: '',
@@ -168,6 +190,9 @@ export class HsrpinPage implements OnInit {
     attribute7: '',
     attribute8: '',
   }];
+  companyid: number = 0;
+  userid: number = 0;
+
   rows = [
     { part: null, frame: null, engine_no: null, vehicle_no: null, vehicle_reg_no: null, vehicle_reg_date: null, hsrp_front: null, hsrp_rear: null, description: null, hsn_code: null, quantity: null, basicrate: null, totaltax: null, taxrate: null, tcs_value: null, itemname: null },
     // Add more rows as needed
@@ -176,21 +201,26 @@ export class HsrpinPage implements OnInit {
   itemnames$: Observable<any[]>;
   firstInvalidInput: any;
   isQuantityEntered = false;
+  vend: any;
 
   purchasebyid$: Observable<any[]>
   isQuantityPopoverOpen: boolean = false;
+  itemid: number = 0;
+
   constructor(private saleService: SalesService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
     this.executive$ = this.executiveService.getexecutive();
     this.selectGst$ = this.GstService.getgsttype();
     this.itemnames$ = this.itemService.getAllItems();
-
+    this.hsrpdate = new Date().toISOString().split('T')[0];
+    this.refdate = new Date().toISOString().split('T')[0];
     this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
       console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
       // this.totalItems = data.length;
     });
+
     this.myform = formBuilder.group({
       billformate: [''],
       billno: [''],
@@ -241,6 +271,9 @@ export class HsrpinPage implements OnInit {
       attribute7: [''],
       attribute8: [''],
       itemcode: 0,
+      IGST: 0,
+      CGST: 0,
+      SGST: 0,
 
     })
   }
@@ -262,15 +295,25 @@ export class HsrpinPage implements OnInit {
       description: '',
       hsn_code: '',
       mrp: '',
-      netrate: '',
+      netrate: 0,
       quantity: 0,
       basicrate: 0,
       totaltax: 0,
       taxrate: 0,
       tcs_value: 0,
-      itemname: 0,
+      itemname: '',
       itemcode: 0,
-      selectedItem: 0,// New property to store the selected item
+      selectedItemId: 0,
+      taxrate1: 0,
+      discountamt: 0,
+      discount: 0,
+      barcode: '',
+      itemid: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      total: 0,
+      grossrate: 0,
       selectedItemAttributes: [''],
       quantityPopoverData: [{
         attr1: '',
@@ -299,12 +342,52 @@ export class HsrpinPage implements OnInit {
     this.itemnames$.subscribe((items) => {
       const selectedItem = items.find((item) => item.tid === hsrpin.itemname);
       if (selectedItem) {
-        hsrpin.selectedItem = selectedItem; // Store the selected item
+        hsrpin.selectedItemId = selectedItem; // Store the selected item
         hsrpin.selectedItemAttributes = Object.values(selectedItem.attributes);
       }
     });
   }
+  getVendors(event: any) {
+    const compid = '1';
+    const identifier = this.vend ? 'custcode' : 'custname';
+    const value = this.vend;
 
+    this.vendorService.fetchallVendor(compid, '', value).subscribe(
+      (data) => {
+
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          event.vendcode = itemDetails.vendor_code;
+          event.supplier = itemDetails.name;
+          event.gstin = itemDetails.gstin;
+
+
+
+          // Update form control values
+          this.myform.patchValue({
+            vendcode: itemDetails.vendor_code,
+            supplier: itemDetails.supplier,
+            gstin: itemDetails.gstin,
+
+            // Other form controls...
+          });
+
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+  removehsrpin(index: number, hsrpin: Hsrpin) {
+    this.ttotal = this.ttotal - this.saleService.total;
+    this.hsrpindata.splice(index, 1);
+  }
   openQuantityPopover(hsrpin: Hsrpin) {
     this.hsrpindata[0].quantityPopoverData = new Array(hsrpin.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
@@ -314,25 +397,35 @@ export class HsrpinPage implements OnInit {
     this.isQuantityPopoverOpen = false;
   }
 
-  addHsrp() {
+  addHsrpin() {
     console.log('addquotewww' + this.hsrpindata.length);
     // You can initialize the new row data here
-    let newRow: hsrpin = {
-      part: 0,
-      frame: 0,
-      engine_no: 0,
-      vehicle_no: 0,
-      vehicle_reg_no: 0,
-      vehicle_reg_date: 0,
-      hsrp_front: 0,
-      hsrp_rear: 0,
+    let newRow: hsrpinstore = {
+      barcode: '',
+      itemcode: 0,
+      itemname: '',
       description: '',
-      hsn_code: '',
-      mrp: '',
-      netrate: '',
       quantity: 0,
-      totaltax: 0,
+      mrp: '',
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
       taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      itemid: 0,
+      selectedItemId: 0,
+      part: 0,
+      vehicle_no: 0,
+      hsrp_front: 0,
+      hsrp_rear: 0,    
+      hsn_code: '',    
       tcs_value: 0,
       billformate: 0,
       billno: '',
@@ -359,7 +452,10 @@ export class HsrpinPage implements OnInit {
       totalnetamount: 0,
       ttotal: 0,
       quantityPopoverData: this.hsrpindata[0].quantityPopoverData.map(attr => ({ ...attr })),
-      basicrate: 0,
+      frame: 0,
+      engine_no: 0,
+      vehicle_reg_no: 0,
+      vehicle_reg_date: 0
     };
 
 
@@ -369,25 +465,26 @@ export class HsrpinPage implements OnInit {
   }
   async onSubmit(form: FormGroup, hsrpindata: Hsrpin[]) {
     const fields = { itemname: this.itemname, quantity: this.quantity, description: this.description }
-    const isValid = await this.formService.validateForm(fields);
+    // const isValid = await this.formService.validateForm(fields);
+    console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(hsrpindata));
+
     if (await this.formService.validateForm(fields)) {
-
-      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(hsrpindata));
-
-      let hsrpindatas: hsrpin[] = [];
+      let hsrpindatas: hsrpinstore[] = [];
 
       for (const element of hsrpindata) {
-        // element.grossrate = element.basicrate * element.quantity;
-        // // element.netrate = element.basicrate + element.totaltax;
-        // element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-        // element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-        // element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
-        // element.total = element.totaltax + element.grossrate;
-        // element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
-        // this.totalquantity= element.total + +element.quantity;
+        element.grossrate = element.basicrate * element.quantity;
+        element.netrate = element.basicrate + element.totaltax;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate));
+        this.totalquantity = element.total + +element.quantity;
+
         console.log(element);
         const companyid = 1;
         const userid = 1;
+
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -400,18 +497,27 @@ export class HsrpinPage implements OnInit {
           companyid: attr.companyid,
           itemcode: attr.itemcode,
         }))
-        const hsrpindata: hsrpin = {
-          // itemcode: element.itemcode,
-          // itemname: element.itemname,
+        let hsrpindata: hsrpinstore = {
+          barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
           description: element.description,
           quantity: element.quantity,
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
+          grossrate: element.grossrate, // Add grossrate
           taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
           totaltax: element.totaltax,
+          total: element.total,
           hsn_code: element.hsn_code,
           tcs_value: element.tcs_value,
+          vehicle_no: element.vehicle_no,
+          hsrp_front: element.hsrp_front,
+          hsrp_rear: element.hsrp_rear,
           billformate: this.myform.value.billformate,
           billno: this.myform.value.billno,
           hsrpdate: this.myform.value.hsrpdate,
@@ -440,11 +546,13 @@ export class HsrpinPage implements OnInit {
           part: 0,
           frame: 0,
           engine_no: 0,
-          vehicle_no: 0,
           vehicle_reg_no: 0,
           vehicle_reg_date: 0,
-          hsrp_front: 0,
-          hsrp_rear: 0
+          discount: 0,
+          discountamt: 0,
+          taxrate1: 0,
+          itemid: 0,
+          selectedItemId: 0
         };
 
         hsrpindatas.push(hsrpindata);
@@ -482,7 +590,7 @@ export class HsrpinPage implements OnInit {
     }
 
   }
-  removeHsrpin(index: number, hsrpin: hsrpin) {
+  removeHsrpin(index: number, hsrpin: hsrpinstore) {
     this.ttotal = this.ttotal - hsrpin.ttotal;
     this.hsrpindata.splice(index, 1);
   }
@@ -512,6 +620,70 @@ export class HsrpinPage implements OnInit {
       itemcode: 0
       // Add more properties as needed
     }));
+    // Other initialization logic...
+
+    // Subscribe to value changes of basicrate, taxrate, and discount
+    this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+    this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
+
+    this.myform.get('discount')?.valueChanges.subscribe(() => {
+      this.calculateDiscount();
+      this.calculateNetRate();
+    });
+    this.myform.get('discountamt')?.valueChanges.subscribe(() => {
+      this.calculateDiscountPercentage();
+    });
+
+  }
+  calculateDiscount() {
+    const discountType = this.myform.get('discountType')?.value;
+    const discount = +this.myform.get('discount')?.value || 0;
+    const basicrate = +this.myform.get('basicrate')?.value || 0;
+    const quantity = +this.myform.get('quantity')?.value || 0;
+
+    if (discountType === 'amount') {
+      // Calculate discount amount based on user-entered amount
+      const discountAmt = discount;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    } else if (discountType === 'percentage') {
+      // Calculate discount amount based on user-entered percentage
+      const discountAmt = (discount / 100) * basicrate * quantity;
+      this.myform.get('discountAmt')?.setValue(discountAmt, { emitEvent: false });
+    }
+  }
+  calculateDiscountAmt() {
+    // Calculate discountamt based on discount percentage
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    const discountamt = (discount / 100) * basicrate * quantity;
+
+    // Update the discountamt in the form
+    this.myform.get('discount')?.setValue(discountamt, { emitEvent: false }); // Avoid triggering an infinite loop
+  }
+  calculateDiscountPercentage() {
+    // Calculate discount percentage based on discountamt
+    const discountamt = this.myform.get('discountamt')?.value ?? 0;
+    const basicrate = this.myform.get('basicrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    const discountPercentage = (discountamt / (basicrate * quantity)) * 100;
+  }
+  calculateNetRate() {
+    // Add your logic to calculate netrate based on basicrate, taxrate, and discount
+    const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
+    const taxrate = this.myform.get('taxrate')?.value ?? 0;
+    const discount = this.myform.get('discount')?.value ?? 0;
+    const grossrate = this.myform.get('grossrate')?.value ?? 0;
+    const quantity = this.myform.get('quantity')?.value ?? 0;
+
+    // Perform the calculation and update the netrate in the form
+    const gstAmount = (discount / 100) * basicrate * quantity;
+    const netrate = basicrate + taxrate;
+    this.myform.get('netrate')?.setValue(netrate);
+
   }
   goBack() {
     this.router.navigate(['/transcationdashboard']); // Navigate back to the previous page
@@ -527,7 +699,7 @@ export class HsrpinPage implements OnInit {
       cssClass: 'popover-content',
       componentProps: {
         quantity: hsrpin.quantity,
-        selectedItem: hsrpin.selectedItem,
+        selectedItem: hsrpin.selectedItemId,
       },
       translucent: true,
     });
@@ -536,7 +708,102 @@ export class HsrpinPage implements OnInit {
 
 
 
+  getTotaltax(hsrpin: Hsrpin): number {
+    return ((((hsrpin.quantity * hsrpin.basicrate) + ((this.pretax) / this.hsrpindata.length) - hsrpin.discountamt) * hsrpin.taxrate1 / 100));
+  }
+  getTotalamt(hsrpin: Hsrpin[]): number {
+    let totalAmount = 0;
 
+    hsrpin.forEach(hsrpin => {
+      const pretaxPerItem = ((this.pretax / this.hsrpindata.length)); // Divide pretax equally among items
+
+      const subtotal = (hsrpin.quantity * hsrpin.basicrate) + pretaxPerItem;
+      const discount = ((hsrpin.discount / 100) * hsrpin.basicrate * hsrpin.quantity);
+      const taxAmount = ((((hsrpin.quantity * hsrpin.basicrate) + pretaxPerItem) - hsrpin.discountamt) * hsrpin.taxrate1 / 100);
+
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
+    });
+
+    return totalAmount;
+  }
+  getnetrate(hsrpin: Hsrpin): number {
+    return hsrpin.basicrate + hsrpin.totaltax;
+  }
+  getgrossrate(hsrpin: Hsrpin): number {
+    return hsrpin.quantity * hsrpin.basicrate;
+  }
+  getTotalQuantity(): number {
+    this.totalquantity = this.hsrpindata.reduce((total, hsrpin) => total + +hsrpin.quantity, 0);
+    return this.totalquantity;
+  }
+
+  getTotalGrossAmount(): number {
+    const totalGrossAmount = this.hsrpindata.reduce((total, hsrpin) => {
+      const grossAmount = (hsrpin.quantity * hsrpin.basicrate);
+      return total + grossAmount;
+    }, 0);
+
+    return this.totalgrossamt = totalGrossAmount;
+  }
+  getTotalDiscountAmount(): number {
+    this.totaldiscountamt = this.hsrpindata.reduce((total, hsrpin) => total + (hsrpin.discount / 100) * hsrpin.basicrate * hsrpin.quantity, 0);
+    return this.totaldiscountamt;
+  }
+  getTotalTaxAmount(): number {
+    return this.hsrpindata.reduce((total, hsrpin) => {
+      const subtotal = ((hsrpin.quantity * hsrpin.basicrate) + ((this.pretax) / this.hsrpindata.length)) - hsrpin.discountamt;
+      const taxAmount = subtotal * (hsrpin.taxrate1 / 100);
+      return this.totaltaxamount = total + taxAmount;
+    }, 0);
+  }
+  getTaxableAmount(): number {
+    const taxableAmount = this.hsrpindata.reduce((total, hsrpin) => {
+      // Assuming getgrossrate is a function that calculates gross rate based on quote
+      const grossRate = this.getgrossrate(hsrpin);
+
+      // Assuming pretax, discount, and taxamt are properties of your quote object
+
+      const discount = hsrpin.discountamt || 0;
+      const taxamt = hsrpin.totaltax || 0;
+
+      // Calculate the taxable amount for the current quote
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.hsrpindata.length)) + taxamt;
+
+      // Add the taxable amount of the current quote to the total
+      total += quoteTaxableAmount;
+
+      return total;
+    }, 0);
+
+    return this.totalnetamount = taxableAmount;
+  }
+
+  getRoundoff(): number {
+    // Calculate the total amount without rounding
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
+
+    return this.roundoff = roundedTotalAmount;
+  }
+  getGrandTotal(): number {
+    const grandTotal = this.hsrpindata.reduce((total, hsrpin) => {
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
+      return gtotal;
+    }, 0);
+
+    return grandTotal;
+  }
+  getcgst(hsrpin: Hsrpin): number {
+    return this.getTotaltax(hsrpin) / 2;
+  }
+
+  getsgst(hsrpin: Hsrpin): number {
+    return this.getTotaltax(hsrpin) / 2;
+  }
+
+  getigst(hsrpin: Hsrpin): number {
+    return this.getTotaltax(hsrpin);
+  }
   updateRows(hsrpin: Hsrpin) {
     // Open the popover when quantity changes
     if (hsrpin.quantity > 0) {
@@ -572,10 +839,9 @@ export class HsrpinPage implements OnInit {
           hsrpin.hunitname = itemDetails.unitid;
           hsrpin.taxrate = grate[itemDetails.selectGst];
           hsrpin.taxrate1 = grate[itemDetails.selectGst];
-          hsrpin.basicrate = itemDetails.basicrate;
           hsrpin.mrp = itemDetails.mrp;
           hsrpin.basicrate = itemDetails.basicrate;
-          hsrpin.netrate = itemDetails.net_rate;
+          hsrpin.netrate = itemDetails.netrate;
           hsrpin.attribute1 = itemDetails.attr1,
             hsrpin.attribute2 = itemDetails.attr2,
             hsrpin.attribute3 = itemDetails.attr3,

@@ -11,54 +11,63 @@
           </ion-card-header>
         </div>
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,hsrpoutdata)" >
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,hsrpoutdata)">
 
             <ion-row>
               <ion-col class="ionselect" size-lg="1.5" size-md="2.5" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="HSRP Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="HSRP Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate"
+                  formControlName="billformate" name="billformate">
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
                 </ion-select>
               </ion-col>
               <ion-col size-lg="1.5" size-md="1.5" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number" label=" HSRP No.  :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number"
+                    label=" HSRP No.  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.3" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="hsrpdate" formControlName="hsrpdate" name="hsrpdate" type="date" label="Date   :" label-placement="floating"
-                    fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="hsrpdate" formControlName="hsrpdate" name="hsrpdate" type="date"
+                    label="Date   :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark"  [(ngModel)]="suppliercode" formControlName="suppliercode" name="suppliercode" type="text" label="Code :" label-placement="floating"
+                  <ion-input #firstInvalidInput (change)="getCustomers($event)" [(ngModel)]="custcode"
+                    formControlName="custcode" name="custcode" type="text" label="Code :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col class="ionselect" size-lg="2" size-md="3.5" size-sm="6" size="6">
-                <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Customer Name---"  label-placement="floating" fill="outline" [(ngModel)]="executive_name" formControlName="executive_name" name="executive_name">
-                  <ion-select-option *ngFor="let customer of customers$ | async" [value]="customer.id">
-                    {{ customer.name }}
+                <ion-select #firstInvalidInput class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                  interface="popover" label="--- Customer Name --- " label-placement="floating" fill="outline"
+                  [(ngModel)]=" custcode" name="custname" formControlName="custname" (change)="getCustomers($event)">
+                  <!-- <option value="0"> --- Customer Name --- </option> -->
+                  <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.id">
+                    {{ customername.name }}
                   </ion-select-option>
                 </ion-select>
               </ion-col>
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark"  [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text" label="Refrence No.:" label-placement="floating"
-                    fill="outline"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text"
+                    label="Refrence No.:" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.2" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark"  [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date" label="Ref. Date :" label-placement="floating"
-                    fill="outline"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date"
+                    label="Ref. Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col class="ionselect" size-lg="2" size-md="3" size-sm="6" size="6">
-                <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" label="---Executive Name---"  label-placement="floating" fill="outline" [(ngModel)]="executive_name" formControlName="executive_name" name="executive_name">
+                <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="---Executive Name---" label-placement="floating" fill="outline" [(ngModel)]="executive_name"
+                  formControlName="executive_name" name="executive_name">
                   <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
                   </ion-select-option>
@@ -71,108 +80,134 @@
                 <table style="width:100%;">
                   <tr>
                     <th>Sr.No.</th>
+
                     <!-- <th>Part No.</th>
                     <th>Frame No.</th>
                     <th>Engine No.</th>
-                    <th>Vehicle No</th>
                     <th>Veh. Reg. No.</th>
-                    <th>Veh. Reg. Date</th>
-                    <th>HSRP Front</th>
-                    <th>HSRP Rear</th> -->
+                    <th>Veh. Reg. Date</th>-->
+                    <th>BarCode</th>
+                    <th>Item Code</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
                     <th>Description</th>
+                    <th>Vehicle No</th>
+                    <th>HSRP Front</th>
+                    <th>HSRP Rear</th>
+
                     <th>HSN/SAC Code</th>
+                    <th>MRP</th>
                     <th>Basic Rate</th>
+                    <th>Net Rate</th>
+                    <th>Gross Amount</th>
                     <th>GST</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>IGST</th>
                     <th>Tax Amount</th>
                     <th>TCS value</th>
+                    <th>Net Amount</th>
+
                     <th>Action</th>
                   </tr>
                   <tr>
-                    <tr  *ngFor="let hsrpout of hsrpoutdata; let i = index">
-                      <td>{{i+1}}</td>
-                      <td style="width: 90px;">
-                        <select class="table_select" [(ngModel)]="hsrpout.itemname"
-                        [ngModelOptions]="{standalone: true}" (change)="getItems(hsrpout)">
-                        <option value="0">Item Name</option> <!--//Default option -->
+                  <tr *ngFor="let hsrpout of hsrpoutdata; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>
+                      <input [(ngModel)]="hsrpout.barcode" (ngModelChange)="getItems(hsrpout)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="hsrpout.itemcode" (ngModelChange)="getItems(hsrpout)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                    </td>
+                    <td style="width: 90px;">
+                      <select class="select-option" [(ngModel)]="hsrpout.selectedItemId"
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(hsrpout)">
+                        <option value="0">Item Name</option><!-- Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
                         </option>
                       </select>
-                      </td>
-                      <td>
-                        <input class="table_input" [(ngModel)]="hsrpout.quantity" formControlName="quantity" name="quantity"  type="text" (keydown.enter)="presentPopover(hsrpout)">
-                      </td>
-                    <!-- <td style="width: 90px;">
-                      <select class="table_select"  [(ngModel)]="itemname" formControlName="itemname" name="itemname">
-                     
-                        <option value="0">Item No.</option>
-                        <option value="">Item 1</option>
-                        <option value="">Item 2</option>
-                        <option value="">Item 3</option>
-                        <option value="">Item 4</option>
-                        <option value="">Item 5</option>
-                      </select>
+                      <!-- Use a hidden input for sending itemcode -->
+                      <ion-input style="display: none;" [(ngModel)]="hsrpout.itemid"
+                        [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
                     </td>
-                    <td style="width: 90px;">
-                      <select class="table_select" [(ngModel)]="frame" formControlName="frame" name="frame">
-                        <option value="0">Frame No.</option>
-                        <option value="">frame 1</option>
-                        <option value="">frame 2</option>
-                        <option value="">frame 3</option>
-                        <option value="">frame 4</option>
-                        <option value="">frame 5</option>
-                      </select>
+                    <td>
+                      <input class="table_input" [(ngModel)]="vehicle_no" formControlName="vehicle_no" name="vehicle_no"
+                        type="text">
                     </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrp_front" formControlName="hsrp_front" name="hsrp_front"
+                        type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"
+                        type="text">
+                    </td>
+                    <td>
+                      <input *ngIf="hsrpout.itemcode !== 0" [(ngModel)]="hsrpout.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown.enter)="openQuantityPopover(hsrpout)">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpout.description" formControlName="description"
+                        name="description" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpout.hsn_code" formControlName="hsn_code"
+                        name="hsn_code" type="text">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="hsrpout.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="hsrpout.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
 
-                    <td>
-                      <input class="table_input"  [(ngModel)]="engine_no" formControlName="engine_no" name="engine_no" type="text">
                     </td>
                     <td>
-                      <input class="table_input"  [(ngModel)]="vehicle_no" formControlName="vehicle_no" name="vehicle_no" type="text">
+                      <input [(ngModel)]="hsrpout.netrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="text">
                     </td>
                     <td>
-                      <input class="table_input"  [(ngModel)]="vehicle_reg_no" formControlName="vehicle_reg_no" name="vehicle_reg_no"  type="text">
+                      <input [value]="getgrossrate(hsrpout)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="vehicle_reg_date" formControlName="vehicle_reg_date" name="vehicle_reg_date"  type="text">
+                      <input [(ngModel)]="hsrpout.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
+                    </td>
+                    <input type="hidden" [(ngModel)]="hsrpout.taxrate1" [ngModelOptions]="{standalone: true}" />
+                    <td>
+                      <input [value]="getsgst(hsrpout)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input class="table_input"  [(ngModel)]="hsrp_front" formControlName="hsrp_front" name="hsrp_front"  type="text">
+                      <input [value]="getcgst(hsrpout)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"  type="text">
-                    </td> -->
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpout.description" formControlName="description" name="description"  type="text">
+                      <input [value]="getigst(hsrpout)" type="number" class="table_input">
                     </td>
                     <td>
-                      <input class="table_input"  [(ngModel)]="hsrpout.hsn_code" formControlName="hsn_code" name="hsn_code"  type="text">
+
+                      <input [readonly]="true" [value]="getTotaltax(hsrpout)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="hsrpout.quantity" formControlName="quantity" name="quantity"  type="text">
-                    </td>
-                    <td style="width: 90px;">
-                      <input class="table_input"[(ngModel)]="hsrpout.basic_rate" formControlName="basic_rate" name="basic_rate" type="text">
-                    </td>
-                    <td>  
-                      <select class="table_select"  [(ngModel)]="hsrpout.gst_type" formControlName="gst_type" name="gst_type" >
-                        <option value="0">GST</option>
-                        <option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
-                        {{gsttype.gstname}}
-                        </option>
-                      </select>
+                      <input class="table_input" [(ngModel)]="hsrpout.tcs_value" formControlName="tcs_value"
+                        name="tcs_value" type="text">
                     </td>
                     <td>
-                      <input class="table_input"[(ngModel)]="hsrpout.tax_amt" formControlName="tax_amt" name="tax_amt" type="text">
+                      <input [readonly]="true" [value]="getTotalamt([hsrpout])" class="table_input" type="text">
+
                     </td>
                     <td>
-                      <input class="table_input"[(ngModel)]="hsrpout.tcs_value" formControlName="tcs_value" name="tcs_value" type="text">
-                    </td>
-                    <td>
-                      <ion-icon icon-only clear color="primary" name="add"></ion-icon>
-                      <ion-icon icon-only clear color="danger" name="trash"></ion-icon>
+                      <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpout()"></ion-icon>
+                      <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
+                        (click)="removehsrpout(i,hsrpout)"></ion-icon>
                     </td>
                   </tr>
 
@@ -183,33 +218,43 @@
                 <ion-row>
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total Item :</label>
-                    <input name="totalitemno" [(ngModel)]="totalitemno" formControlName="totalitemno" class="input_table" type="text">
+                    <input name="totalitemno" [(ngModel)]="hsrpoutdata.length" formControlName="totalitemno"
+                      class="input_table" type="text">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
-                    <input name="totalquantity"[(ngModel)]="totalquantity" formControlName="totalquantity" class="input_table" type="text">
+
+                    <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
+                      formControlName="totalquantity" class="input_table" type="number">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table"  for="">Gross Amount :</label>
-                    <input name="totalgrossamt"[(ngModel)]="totalgrossamt" formControlName="totalgrossamt" class="input_table" type="text">
+                    <label class="label_table" for="">Gross Amount :</label>
+                    <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
+                      formControlName="totalgrossamt" class="input_table" type="number">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
-                    <input name="totaldiscountamt"[(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt" class="input_table" type="text">
+                    <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                      formControlName="totaldiscountamt" class="input_table" type="number">
+
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
-                    <input name="totaltaxamount"[(ngModel)]="totaltaxamount" formControlName="totaltaxamount" class="input_table" type="text">
+                    <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                      formControlName="totaltaxamount" class="input_table" type="number">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
-                    <label class="label_table" for="">Total :</label>
-                    <input name="totalnetamount"[(ngModel)]="totalnetamount" formControlName="totalnetamount" name="totalnetamount" class="input_table" type="text">
+                    <label class="label_table" for="">Taxable Amount :</label>
+                    <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                      [value]="getTaxableAmount()" class="input_table" type="number">
 
                   </ion-col>
                 </ion-row>
@@ -228,13 +273,15 @@
                         <tr>
                           <th style="width: 100px !important;">Delivery Date</th>
                           <td>
-                            <ion-input type="date" name="deliverydate"[(ngModel)]="deliverydate" formControlName="deliverydate" placeholder="Enter Delivery Date"></ion-input>
+                            <ion-input type="date" name="deliverydate" [(ngModel)]="deliverydate"
+                              formControlName="deliverydate" placeholder="Enter Delivery Date"></ion-input>
                           </td>
                         </tr>
                         <tr>
                           <th style="width: 100px !important;">Delivery Place</th>
                           <td>
-                            <ion-input type="text" name="deliveryplace" [(ngModel)]="deliveryplace" formControlName="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
+                            <ion-input type="text" name="deliveryplace" [(ngModel)]="deliveryplace"
+                              formControlName="deliveryplace" placeholder="Enter Delivery Place"></ion-input>
                           </td>
                         </tr>
                       </table>
@@ -251,21 +298,25 @@
                       <tr>
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
-                          <ion-input type="text" name="openingbalance" [(ngModel)]="openingbalance" formControlName="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                          <ion-input type="text" name="openingbalance" [(ngModel)]="openingbalance"
+                            formControlName="openingbalance" placeholder="Enter Opening Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
-                          <ion-input type="text" name="debit"[(ngModel)]="debit" formControlName="debit" placeholder="Enter  Dedit Amount"></ion-input>
+                          <ion-input type="text" name="debit" [(ngModel)]="debit" formControlName="debit"
+                            placeholder="Enter  Dedit Amount"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
-                          <ion-input type="text" name="closingbalance" [(ngModel)]="closingbalance" formControlName="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                          <ion-input type="text" name="closingbalance" [(ngModel)]="closingbalance"
+                            formControlName="closingbalance" placeholder="Enter Closing Balance"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
-                          <ion-input type="text" name="credit" [(ngModel)]="credit" formControlName="credit" placeholder="Enter Credit Amount"></ion-input>
+                          <ion-input type="text" name="credit" [(ngModel)]="credit" formControlName="credit"
+                            placeholder="Enter Credit Amount"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -295,39 +346,46 @@
               <ion-col class="row" size-lg="3" size-md="12" size-sm="12" size="12">
                 <div class="output" style="border: none;margin-left: 30px;">
                   <table>
-
                     <tr>
                       <th colspan="2">Discount Amount :</th>
-                      <td colspan="2"> <input id="totaldiscountamt" [(ngModel)]="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt" class="row_input"
-                          type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
+                          id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
+                          class="row_input" type="text">
                       </td>
                     </tr>
 
                     <tr>
                       <th colspan="2">Tax Amount : </th>
-                      <td colspan="2"> <input id="totaltaxamount" [(ngModel)]="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
+                          id="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
 
-                    <tr>
-                      <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input name="roundoff"  [(ngModel)]="roundoff" formControlName="roundoff"  id="roundoff" class="row_input" type="text">
-                      </td>
-                    </tr>
+
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
-                      <td colspan="2"> <input name="pretax"  [(ngModel)]="pretax" formControlName="pretax"  id="pretax" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
+                          class="row_input" type="number">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
-                      <td colspan="2"> <input name="posttax"  [(ngModel)]="posttax" formControlName="posttax"  id="posttax" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
+                          id="posttax" class="row_input" type="number">
                       </td>
                     </tr>
-
+                    <tr>
+                      <th colspan="2">Round Off : </th>
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
+                      </td>
+                    </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input id="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"  name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                          [value]="getGrandTotal()" id="totalnetamount" name="totalnetamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
                   </table>
