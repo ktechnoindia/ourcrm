@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { DcinService } from '../services/dcin.service';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
@@ -20,9 +20,7 @@ import jsPDF from 'jspdf';
 export class DcInReportPage implements OnInit {
 
   @ViewChild('content', { static: false }) el!: ElementRef
-  formDate: string = '';
-  toDate: string = '';
-
+ 
   generatePdf() {
     let pdf = new jsPDF()
 
@@ -33,7 +31,7 @@ export class DcInReportPage implements OnInit {
       }
     })
   }
-  printThisPage(){
+  printThisPage() {
     window.print();
   }
   // generateExcelReport() {
@@ -44,91 +42,96 @@ export class DcInReportPage implements OnInit {
 
   //   this.excelService.generateExcel(data, fileName);
   // }
+ 
+  // filteredSales: Observable<any[]>;
+  availableColumns: string[] = [
+    'voucherformat',
+    'voucherNumber',
+    'datetype',
+    'vendcode',
+    'suppliertype',
+    'referenceNumber',
+    'refdate',
+    'deliverydate',
+    'deliveryplace',
+    'barcode',
+    'itemcode',
+    'itemname',
+    'description',
+    'quantity',
+    'unitname',
+    'mrp',
+    'basicrate',
+    'netrate',
+    'grossrate',
+    'taxrate',
+    'IGST',
+    'CGST',
+    'SGST',
+    'discount',
+    'discountamt',
+    'totaltax',
+    'pretax',
+    'posttax',
+    'total',
+    'totalnetamount',
+  ];
+  selectedColumns: string[] = [
+    'voucherNumber',
+    'datetype',
+    'vendcode',
+    'suppliertype',
+    'itemcode',
+    'itemname',
+    'basicrate',
+    'discountamt',
+    'totaltax',
+    'totalnetamount',
+
+  ];
+  columnHeaders: { [key: string]: string } = {
+    'voucherformat': 'Voucher Format',
+    'voucherNumber': 'Voucher Number',
+    'datetype': 'Date Type',
+    'vendcode': 'Vendor Code',
+    'suppliertype': 'Supplier Type',
+    'referenceNumber': 'Reference Number',
+    'refdate': 'Reference Date',
+    'deliverydate': 'Delivery Date',
+    'deliveryplace': 'Delivery Place',
+    'barcode': 'Barcode',
+    'itemcode': 'Item Code',
+    'itemname': 'Item Name',
+    'description': 'Description',
+    'quantity': 'Quantity',
+    'unitname': 'Unit Name',
+    'mrp': 'MRP',
+    'basicrate': 'Basic Rate',
+    'netrate': 'Net Rate',
+    'grossrate': 'Gross Rate',
+    'taxrate': 'Tax Rate',
+    'IGST': 'IGST',
+    'CGST': 'CGST',
+    'SGST': 'SGST',
+    'discount': 'Discount',
+    'discountamt': 'Discount Amount',
+    'totaltax': 'Total Tax',
+    'pretax': 'Pre-tax',
+    'posttax': 'Post-tax',
+    'total': 'Total',
+    'totalnetamount': 'Total Net Amount',
+  };
+
+  manualHeaders: string[] = [];
+
+  totalItems: number = 0;
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
+  fromDate: string = '';
+  toDate: string = '';
   dcin$: Observable<any[]>;
   searchTerm: string = '';
   filteredDcin$: Observable<any[]> = new Observable<any[]>();
-// filteredSales: Observable<any[]>;
-availableColumns: string[] = [
-  'voucherformat',
-  'voucherNumber',
-  'datetype',
-  'vendcode',
-  'suppliertype',
-  'referenceNumber',
-  'refdate',
-  'deliverydate',
-  'deliveryplace',
-  'barcode',
-  'itemcode',
-  'itemname',
-  'description',
-  'quantity',
-  'unitname',
-  'mrp',
-  'basicrate',
-  'netrate',
-  'grossrate',
-  'taxrate',
-  'IGST',
-  'CGST',
-  'SGST',
-  'discount',
-  'discountamt',
-  'totaltax',
-  'pretax',
-  'posttax',
-  'total',
-  'totalnetamount',
-];
-selectedColumns: string[] = [
-  'voucherNumber',
-  'datetype',
-  'vendcode',
-  'suppliertype',
-  'itemcode',
-  'itemname',
-  'basicrate',
-  'discountamt',
-  'totaltax',
-  'totalnetamount',
-  
-];
-columnHeaders: { [key: string]: string } = {
-  'voucherformat': 'Voucher Format',
-  'voucherNumber': 'Voucher Number',
-  'datetype': 'Date Type',
-  'vendcode': 'Vendor Code',
-  'suppliertype': 'Supplier Type',
-  'referenceNumber': 'Reference Number',
-  'refdate': 'Reference Date',
-  'deliverydate': 'Delivery Date',
-  'deliveryplace': 'Delivery Place',
-  'barcode': 'Barcode',
-  'itemcode': 'Item Code',
-  'itemname': 'Item Name',
-  'description': 'Description',
-  'quantity': 'Quantity',
-  'unitname': 'Unit Name',
-  'mrp': 'MRP',
-  'basicrate': 'Basic Rate',
-  'netrate': 'Net Rate',
-  'grossrate': 'Gross Rate',
-  'taxrate': 'Tax Rate',
-  'IGST': 'IGST',
-  'CGST': 'CGST',
-  'SGST': 'SGST',
-  'discount': 'Discount',
-  'discountamt': 'Discount Amount',
-  'totaltax': 'Total Tax',
-  'pretax': 'Pre-tax',
-  'posttax': 'Post-tax',
-  'total': 'Total',
-  'totalnetamount': 'Total Net Amount',
-};
-
-manualHeaders: string[] = [];
-
-totalItems: number = 0;
   constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
@@ -140,9 +143,11 @@ totalItems: number = 0;
       this.totalItems = data.length;
 
     });
+    this.filteredDcin$ = this.dcin$;
     this.updateManualHeaders();
-    this.formDate = new Date().toISOString().split('T')[0];
+    this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -154,24 +159,7 @@ totalItems: number = 0;
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterData() {
-    if (this.formDate && this.toDate) {
-      // Assuming your date format is 'yyyy-MM-dd'
-      const fromDate = new Date(this.formDate);
-      const toDate = new Date(this.toDate);
-
-      // Filter the data based on date range
-      this.dcin$ = this.dcin$.pipe(
-        map(data => data.filter(dcin => {
-          const voucherDate = new Date(dcin.datetype); // Assuming datetype is the date property
-          return voucherDate >= fromDate && voucherDate <= toDate;
-        }))
-      );
-    } else {
-      // If no date range is provided, show all data
-      this.dcin$ = this.dcin$;
-    }
-  }
+ 
 
   filterCustomers(): Observable<any[]> {
     return this.dcin$.pipe(
@@ -193,8 +181,59 @@ totalItems: number = 0;
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.filteredBillingData$ = this.dcin$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(dcin => {
+          // Modify this logic based on your data structure
+          const dcinDate = new Date(dcin.dcinDate); // Assuming 'quateDate' is the field representing the date
+
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return dcinDate.toDateString() === today.toDateString();
+          }
+
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const dcinMonth = dcinDate.getMonth();
+            return dcinMonth === currentMonth;
+          }
+
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const dcinQuarter = Math.floor(dcinDate.getMonth() / 3);
+            return dcinQuarter === currentQuarter;
+          }
+
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const dcinYear = dcinDate.getFullYear();
+            return dcinYear === currentYear;
+          }
+
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
+    );
+  }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredDcin$ = this.dcin$.pipe(
+      map(dcin => dcin.filter(dcin => this.isDateInRange(dcin.datetype, this.fromDate, this.toDate)))
+    );
   }
 
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    const dcinDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+    return dcinDate >= fromDateObj && dcinDate <= toDateObj;
+  }
   goBack() {
     this.router.navigate(["/dc-in"])
   }

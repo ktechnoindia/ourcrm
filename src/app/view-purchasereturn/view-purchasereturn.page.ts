@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { PurchasereturnService } from '../services/purchasereturn.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
 // import { ExcelService } from '../services/excel.service';
 @Component({
@@ -137,7 +137,8 @@ export class ViewPurchasereturnPage implements OnInit {
   manualHeaders: string[] = [];
 
   totalItems: number = 0;
-
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
   constructor(private router: Router, private toastCtrl: ToastController, private purchasereturnservice: PurchasereturnService, private encService: EncryptionService) {
     const compid = '1';
 
@@ -181,8 +182,62 @@ export class ViewPurchasereturnPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.filteredBillingData$ = this.purchasereturn$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(purchase => {
+          // Modify this logic based on your data structure
+          const purchaseDate = new Date(purchase.purchaseDate); // Assuming 'quateDate' is the field representing the date
+    
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return purchaseDate.toDateString() === today.toDateString();
+          }
+    
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const purchaseMonth = purchaseDate.getMonth();
+            return purchaseMonth === currentMonth;
+          }
+    
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const purchaseQuarter = Math.floor(purchaseDate.getMonth() / 3);
+            return purchaseQuarter === currentQuarter;
+          }
+    
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const purchaseYear = purchaseDate.getFullYear();
+            return purchaseYear === currentYear;
+          }
+    
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
+    );
+  }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
+      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.formDate, this.toDate)))
+    );
   }
 
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    // Parse the dates into JavaScript Date objects
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+
+    // Check if the saleDate is within the range
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
+  }
   goBack() {
     this.router.navigate(["/purchasereturn"])
   }

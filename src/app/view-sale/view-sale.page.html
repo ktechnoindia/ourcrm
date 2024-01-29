@@ -43,19 +43,20 @@
                   <ion-button expand="block" (click)="filterData()">Ok</ion-button>
                 </ion-col>
                 <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-                  <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                  <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp"
+                    color="dark" interface="popover" label="Select Time Period" label-placement="floating"
+                    fill="outline" name="selectedColumns" multiple="true">
                     <ion-select-option value="today">Today</ion-select-option>
                     <ion-select-option value="monthly">Monthly</ion-select-option>
                     <ion-select-option value="quartly">Quartly</ion-select-option>
-                    <ion-select-option value="anually">Anually</ion-select-option>
-    
+                    <ion-select-option value="annually">Annually</ion-select-option>
                   </ion-select>
                 </ion-col>
-               
+
                 <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-                  <ion-select (ionChange)="filterData()" class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                  <ion-select (ionChange)="filterData()" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                    interface="popover" label="Select Report Type" label-placement="floating" fill="outline"
+                    name="selectedColumns" multiple="true">
                     <ion-select-option value="Standard">Standard</ion-select-option>
                     <ion-select-option value="PartyWise">PartyWise</ion-select-option>
                     <ion-select-option value="ItemWise">ItemWise</ion-select-option>
@@ -66,7 +67,8 @@
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
                     name="selectedColumns" multiple="true">
-                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]  }}</ion-select-option>
+                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]
+                      }}</ion-select-option>
                   </ion-select>
                 </ion-col>
               </ion-row>
@@ -94,24 +96,24 @@
                           <ion-icon color="primary" icon-only name="create"></ion-icon>
                         </td>
                       </tr>
-                      
+
                     </tbody>
                   </table>
                 </div>
-              
-                  <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                    <p >Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
-                  </div>
-              
+
+                <div [attr.colspan]="selectedColumns.length + 1" class="total">
+                  <p>Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+                </div>
+
               </ion-row>
               <ion-row class="custom-primary" style="justify-content: right;">
                 <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
-                  color="secondry"></ion-icon>Print</ion-button>
-                <ion-button size="small" (click)="generatePdf()" ><ion-icon name="document" slot="end" size="small"
+                    color="secondry"></ion-icon>Print</ion-button>
+                <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
                     color="secondry"></ion-icon>Export To PDF</ion-button>
-                    <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
-                      color="secondry"></ion-icon>Preview</ion-button>
-                  <ion-button size="small"><ion-icon name="grid"slot="end" size="small"
+                <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                    color="secondry"></ion-icon>Preview</ion-button>
+                <ion-button size="small"><ion-icon name="grid" slot="end" size="small"
                     color="secondry"></ion-icon>Export Excel</ion-button>
               </ion-row>
               <!-- <ion-row>

@@ -26,7 +26,7 @@
           <ion-row>
             <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -36,22 +36,22 @@
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
+
             <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
               <ion-button expand="block" (click)="filterData()">Ok</ion-button>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
-                multiple="true">
+              <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                          interface="popover" label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
+                          multiple="true">
                 <ion-select-option value="today">Today</ion-select-option>
                 <ion-select-option value="monthly">Monthly</ion-select-option>
                 <ion-select-option value="quartly">Quartly</ion-select-option>
-                <ion-select-option value="anually">Anually</ion-select-option>
-
+                <ion-select-option value="annually">Annually</ion-select-option>
               </ion-select>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+              <ion-select class="always-flip" (ionChange)="filterData()" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns"
                 multiple="true">
                 <ion-select-option value="Standard">Standard</ion-select-option>

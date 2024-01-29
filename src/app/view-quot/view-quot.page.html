@@ -30,13 +30,13 @@
             </ion-col>
            
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+              <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                          interface="popover" label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
+                          multiple="true">
                 <ion-select-option value="today">Today</ion-select-option>
                 <ion-select-option value="monthly">Monthly</ion-select-option>
                 <ion-select-option value="quartly">Quartly</ion-select-option>
-                <ion-select-option value="anually">Anually</ion-select-option>
-
+                <ion-select-option value="annually">Annually</ion-select-option>
               </ion-select>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">

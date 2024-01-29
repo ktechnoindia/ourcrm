@@ -5,7 +5,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { PurchasereturnService } from '../services/purchasereturn.service';
 // import { ExcelService } from '../services/excel.service';
@@ -158,7 +158,8 @@ export class ViewPurchasePage implements OnInit {
   purchase$: Observable<any[]>
   searchTerm: string = '';
   filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
-  
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
   constructor( private purchaseservice:PurchaseService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
     const compid = '1';
 
@@ -204,6 +205,45 @@ export class ViewPurchasePage implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
+    );
+    this.filteredBillingData$ = this.purchase$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(purchase => {
+          // Modify this logic based on your data structure
+          const purchaseDate = new Date(purchase.purchaseDate); // Assuming 'quateDate' is the field representing the date
+    
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return purchaseDate.toDateString() === today.toDateString();
+          }
+    
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const purchaseMonth = purchaseDate.getMonth();
+            return purchaseMonth === currentMonth;
+          }
+    
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const purchaseQuarter = Math.floor(purchaseDate.getMonth() / 3);
+            return purchaseQuarter === currentQuarter;
+          }
+    
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const purchaseYear = purchaseDate.getFullYear();
+            return purchaseYear === currentYear;
+          }
+    
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
     );
   }
 

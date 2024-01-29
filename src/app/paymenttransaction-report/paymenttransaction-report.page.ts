@@ -20,7 +20,6 @@ export class PaymenttransactionReportPage implements OnInit {
   filteredPayments$: Observable<any[]> = new Observable<any[]>();
   searchTerm: string = '';
   el: any;
-  isDateInRange: any;
   generatePdf() {
     let pdf = new jsPDF()
 
@@ -34,14 +33,15 @@ export class PaymenttransactionReportPage implements OnInit {
   printThisPage(){
     window.print();
   }
-  formDate: string = '';
+  fromDate: string = '';
   toDate: string = '';
   constructor(private payment: PaymentService, private router: Router, private encService: EncryptionService) {
     const compid = '1';
     this.payment$ = this.payment.fetchAllPayment(encService.encrypt(compid), '', '');
     console.log(this.payment$);
-    this.formDate = new Date().toISOString().split('T')[0];
+    this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
+    this.filteredPayments$=this.payment$;
   }
 
   filterPayement(): Observable<any[]> {
@@ -56,9 +56,16 @@ export class PaymenttransactionReportPage implements OnInit {
   filterData() {
     // Update the filteredSales observable based on the date range
     this.filteredPayments$ = this.payment$.pipe(
-      map(quotes => quotes.filter(quote => this.isDateInRange(quote.billDate, this.formDate, this.toDate)))
+      map(quotes => quotes.filter(quote => this.isDateInRange(quote.paymentdate, this.fromDate, this.toDate)))
     );
   }
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
+  }
+
   onSearchTermPayment(): void {
     this.filteredPayments$ = this.filterPayement();
   }
