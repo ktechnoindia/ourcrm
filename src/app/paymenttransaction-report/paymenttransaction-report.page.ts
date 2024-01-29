@@ -13,7 +13,7 @@ import jsPDF from 'jspdf';
   templateUrl: './paymenttransaction-report.page.html',
   styleUrls: ['./paymenttransaction-report.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule,ReactiveFormsModule]
 })
 export class PaymenttransactionReportPage implements OnInit {
   payment$: Observable<any[]>;
@@ -33,11 +33,15 @@ export class PaymenttransactionReportPage implements OnInit {
   printThisPage(){
     window.print();
   }
+  fromDate: string = '';
+  toDate: string = '';
   constructor(private payment: PaymentService, private router: Router, private encService: EncryptionService) {
     const compid = '1';
     this.payment$ = this.payment.fetchAllPayment(encService.encrypt(compid), '', '');
     console.log(this.payment$);
-
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
+    this.filteredPayments$=this.payment$;
   }
 
   filterPayement(): Observable<any[]> {
@@ -48,6 +52,18 @@ export class PaymenttransactionReportPage implements OnInit {
         )
       )
     );
+  }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredPayments$ = this.payment$.pipe(
+      map(quotes => quotes.filter(quote => this.isDateInRange(quote.paymentdate, this.fromDate, this.toDate)))
+    );
+  }
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 
   onSearchTermPayment(): void {

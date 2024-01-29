@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { QuotationService } from '../services/quotation.service';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 
 @Component({
@@ -99,6 +99,8 @@ export class ViewQuotPage implements OnInit {
   };
   
   manualHeaders: string[] = [];
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
 
   totalItems: number = 0;
   constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
@@ -116,6 +118,9 @@ export class ViewQuotPage implements OnInit {
 
     });
     this.updateManualHeaders();
+    this.formDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -147,6 +152,46 @@ export class ViewQuotPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.filteredBillingData$ = this.quote$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(quote => {
+          // Modify this logic based on your data structure
+          const quoteDate = new Date(quote.quateDate); // Assuming 'quateDate' is the field representing the date
+    
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return quoteDate.toDateString() === today.toDateString();
+          }
+    
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const quoteMonth = quoteDate.getMonth();
+            return quoteMonth === currentMonth;
+          }
+    
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const quoteQuarter = Math.floor(quoteDate.getMonth() / 3);
+            return quoteQuarter === currentQuarter;
+          }
+    
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const quoteYear = quoteDate.getFullYear();
+            return quoteYear === currentYear;
+          }
+    
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
+    );
+    
   }
 
 
@@ -182,4 +227,11 @@ export class ViewQuotPage implements OnInit {
       });
     });
   }
+  // In your component.ts file
+
+// Assuming your billing data is stored in a variable named 'filteredQuatation$'
+// You may need to adjust this based on your actual variable name.
+
+
+
 }

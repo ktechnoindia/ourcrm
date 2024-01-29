@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule,ToastController } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { DcoutService } from '../services/dcout.service';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
 // import { ExcelService } from '../services/excel.service';
@@ -20,8 +20,7 @@ import jsPDF from 'jspdf';
 })
 export class DcOutReportPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
-  formDate: string = '';
-  toDate: string = '';
+ 
 
   generatePdf() {
     let pdf = new jsPDF()
@@ -44,9 +43,7 @@ export class DcOutReportPage implements OnInit {
 
   //   this.excelService.generateExcel(data, fileName);
   // }
-  dcout$: Observable<any[]>;
-  searchTerm: string = '';
-  filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
+ 
   availableColumns: string[] = [
     'voucherformat',
     'voucherNumber',
@@ -126,6 +123,13 @@ export class DcOutReportPage implements OnInit {
   manualHeaders: string[] = [];
 
   totalItems: number = 0;
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
+  dcout$: Observable<any[]>;
+  searchTerm: string = '';
+  filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
+  fromDate: string = '';
+  toDate: string = '';
   constructor(private router:Router,private toastCtrl:ToastController,private dcoutservice:DcoutService,private encService:EncryptionService,) { 
     const compid='1';
 
@@ -137,6 +141,8 @@ export class DcOutReportPage implements OnInit {
 
     });
     this.updateManualHeaders();
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -149,7 +155,7 @@ export class DcOutReportPage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
   async onSubmit(){
-    const fromDateObj = new Date(this.formDate);
+    const fromDateObj = new Date(this.fromDate);
   const toDateObj = new Date(this.toDate);
 
   // Filter DC-OUT data based on date range
@@ -181,8 +187,59 @@ export class DcOutReportPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.filteredBillingData$ = this.dcout$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(dcout => {
+          // Modify this logic based on your data structure
+          const dcoutDate = new Date(dcout.dcoutDate); // Assuming 'quateDate' is the field representing the date
+    
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return dcoutDate.toDateString() === today.toDateString();
+          }
+    
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const dcoutMonth = dcoutDate.getMonth();
+            return dcoutMonth === currentMonth;
+          }
+    
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const dcoutQuarter = Math.floor(dcoutDate.getMonth() / 3);
+            return dcoutQuarter === currentQuarter;
+          }
+    
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const dcoutYear = dcoutDate.getFullYear();
+            return dcoutYear === currentYear;
+          }
+    
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
+    );
+  }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredDcout$ = this.dcout$.pipe(
+      map(dcout => dcout.filter(dcout => this.isDateInRange(dcout.datetype, this.fromDate, this.toDate)))
+    );
   }
 
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    const dcinDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+    return dcinDate >= fromDateObj && dcinDate <= toDateObj;
+  }
   goBack(){
     this.router.navigate(["/dc-out"])
   }

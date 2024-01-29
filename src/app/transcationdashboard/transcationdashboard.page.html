@@ -152,7 +152,7 @@
                   </ion-label>
                   <!-- <ion-title>{{totalQuote }}</ion-title> -->
                   <canvas id="totalquotationBarChart" class="chart-canvas"></canvas>
-        
+
                 </ion-col>
                 <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
                   <ion-label>
@@ -160,7 +160,7 @@
                   </ion-label>
                   <!-- <ion-title>{{totalsales }}</ion-title> -->
                   <canvas id="totalsaleBarChart" class="chart-canvas"></canvas>
-        
+
                 </ion-col>
                 <ion-col size-lg="4" size-sm="4" size-md="6" size="12">
                   <ion-label>
@@ -168,7 +168,7 @@
                   </ion-label>
                   <!-- <ion-title>{{totalpurchase}}</ion-title> -->
                   <canvas id="totalpurchaseBarChart" class="chart-canvas"></canvas>
-        
+
                 </ion-col>
                 <!-- <ion-col size-lg="3" size-sm="3" size-md="6" size="12">
                   <ion-label>
@@ -243,14 +243,14 @@
       </ion-row>
     </ion-grid>
   </div>
- 
+
   <ion-grid>
     <ion-row class="lead_details">
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('purchaselist')">
+        <div class="table-container">
           <p>Purchase List</p>
-          <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermPurchase()"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchTerms" (ionInput)="onSearchTermPurchase()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -279,8 +279,8 @@
       </ion-col>
 
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('saleslist')">
+        <div class="table-container">
           <p>Sales List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchSale" (ionInput)="onSearchTermSale()"></ion-searchbar>
           <div class="scroll-container">
@@ -308,12 +308,9 @@
           </div>
         </div>
       </ion-col>
-
-    </ion-row>
-    <ion-row class="lead_details">
-
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('quotelist')">
+      
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('quotelist')">
+        <div class="table-container">
           <p>Quatations List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermQuote()"></ion-searchbar>
           <div class="scroll-container">
@@ -335,8 +332,8 @@
         </div>
       </ion-col>
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('dcinlist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('dcinlist')">
+        <div class="table-container">
           <p>DC-IN List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchDcin" (ionInput)="onSearchTermDcin()"></ion-searchbar>
           <div class="scroll-container">
@@ -362,8 +359,8 @@
         </div>
       </ion-col>
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('dcoutlist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('dcoutlist')">
+        <div class="table-container">
           <p>DC-OUT List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchDcout" (ionInput)="onSearchTermDcout()"></ion-searchbar>
           <div class="scroll-container">
@@ -389,10 +386,11 @@
         </div>
       </ion-col>
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('salreturnslist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('salreturnslist')">
+        <div class="table-container">
           <p>Sales Return List</p>
-          <ion-searchbar class="customs" [(ngModel)]="searchSalereturn" (ionInput)="onSearchTermSalereturn()"></ion-searchbar>
+          <ion-searchbar class="customs" [(ngModel)]="searchSalereturn"
+            (ionInput)="onSearchTermSalereturn()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>
@@ -419,10 +417,11 @@
         </div>
       </ion-col>
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('purchasereturnlist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('purchasereturnlist')">
+        <div class="table-container">
           <p>Purchase Return List</p>
-          <ion-searchbar class="customs " [(ngModel)]="searchPurchasereturn" (ionInput)="onSearchTermPurchasereturn()"></ion-searchbar>
+          <ion-searchbar class="customs " [(ngModel)]="searchPurchasereturn"
+            (ionInput)="onSearchTermPurchasereturn()"></ion-searchbar>
           <div class="scroll-container">
             <table style="width:  100%;overflow-x: auto;overflow-y: auto;">
               <tr>

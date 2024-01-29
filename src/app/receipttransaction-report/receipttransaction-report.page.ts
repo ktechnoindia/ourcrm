@@ -33,12 +33,17 @@ export class ReceipttransactionReportPage implements OnInit {
   printThisPage(){
     window.print();
   }
+  fromDate: string = '';
+  toDate: string = '';
   constructor(private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
 
     const compid='1';
 
     this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid),'','');
     console.log(this.recepits$);
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
+    this.filteredRecepits$=this.recepits$;
   }
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(
@@ -48,6 +53,18 @@ export class ReceipttransactionReportPage implements OnInit {
         )
       )
     );
+  }
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredRecepits$ = this.recepits$.pipe(
+      map(quotes => quotes.filter(quote => this.isDateInRange(quote.paymentdate, this.fromDate, this.toDate)))
+    );
+  }
+  private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
+    const saleDate = new Date(date);
+    const fromDateObj = new Date(fromDate);
+    const toDateObj = new Date(toDate);
+    return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 
   onSearchTermChanged(): void {

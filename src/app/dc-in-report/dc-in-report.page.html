@@ -23,10 +23,10 @@
           </ion-card-header>
         </div>
         <ion-grid>
-           <ion-row>
+          <ion-row>
             <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -36,19 +36,24 @@
                   label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
+
             <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-              <ion-button  expand="block" (click)="filterData()">Ok</ion-button>
+              <ion-button expand="block" (click)="filterData()">Ok</ion-button>
             </ion-col>
-            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                name="selectedColumns" multiple="true">
-                <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{  columnHeaders[col] }}</ion-select-option>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+              <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                          interface="popover" label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
+                          multiple="true">
+                <ion-select-option value="today">Today</ion-select-option>
+                <ion-select-option value="monthly">Monthly</ion-select-option>
+                <ion-select-option value="quartly">Quartly</ion-select-option>
+                <ion-select-option value="annually">Annually</ion-select-option>
               </ion-select>
             </ion-col>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+              <ion-select class="always-flip" (ionChange)="filterData()" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns"
+                multiple="true">
                 <ion-select-option value="Standard">Standard</ion-select-option>
                 <ion-select-option value="PartyWise">PartyWise</ion-select-option>
                 <ion-select-option value="ItemWise">ItemWise</ion-select-option>
@@ -56,10 +61,19 @@
 
               </ion-select>
             </ion-col>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                name="selectedColumns" multiple="true">
+                <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]
+                  }}</ion-select-option>
+              </ion-select>
+            </ion-col>
           </ion-row>
 
-          <ion-row  >
-            <ion-searchbar  class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+              (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row class="Executive">
             <div #content class="scroll-container">
@@ -80,15 +94,15 @@
                       <ion-icon color="primary" icon-only name="create"></ion-icon>
                     </td>
                   </tr>
-                  
+
                 </tbody>
               </table>
             </div>
-           
-              <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                <p >Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
-              </div>
-           
+
+            <div [attr.colspan]="selectedColumns.length + 1" class="total">
+              <p>Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+            </div>
+
           </ion-row>
           <!-- <ion-row style="margin-top: 10px;">
             <div class="scroll-container">

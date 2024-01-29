@@ -25,7 +25,9 @@
         <ion-grid>
 
           <form [formGroup]="viewLeadForm">
+            <!-- ... Your existing form controls ... -->
 
+            
             <ion-row class="header">
               <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
                 <select class="select" [(ngModel)]=" select_sales_person" formControlName="select_sales_person"
@@ -37,20 +39,6 @@
 
                 </select>
               </ion-col>
-              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="formdate" formControlName="formdate" name="formdate" type="date"
-                    label="From Date :" label-placement="floating" fill="outline" id="endDate"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
-                <ion-row>
-                  <ion-input color="dark" [(ngModel)]="toDate" formControlName="toDate" name="toDate" type="date"
-                    label="To Date :" label-placement="floating" fill="outline" id="endDate"></ion-input>
-                </ion-row>
-              </ion-col>
-
               <ion-col size-lg="2" size-md="4" size-sm="6" size="12">
                 <ion-select formControlName="selectedColumns" class="always-flip" toggleIcon="caret-down-sharp"
                   color="dark" interface="popover" label="Select Coloumns" label-placement="floating" fill="outline"
@@ -69,10 +57,28 @@
                   <ion-select-option value="Detailed">Detailed</ion-select-option>
                 </ion-select>
               </ion-col>
-              <ion-col size-lg="2" size-md="3" size-sm="3" size="6" class="custom-primary">
-                <ion-button style="float: right;margin-right: 20px;" (click)="filterData()">Ok</ion-button>
-                <ion-button style="float: right;" expand="" [routerLink]="['/leadedit']">Edit Lead</ion-button>
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
+                <ion-row>
+                  <ion-input color="dark" [(ngModel)]="fromDate" formControlName="fromDate" name="fromDate" type="date"
+                    label="From Date :" label-placement="floating" fill="outline" id="endDate"></ion-input>
+                </ion-row>
               </ion-col>
+
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
+                <ion-row>
+                  <ion-input color="dark" [(ngModel)]="toDate" formControlName="toDate" name="toDate" type="date"
+                    label="To Date :" label-placement="floating" fill="outline" id="endDate"></ion-input>
+                </ion-row>
+              </ion-col>
+
+              
+              <ion-col size-lg="2" size-md="3" size-sm="3" size="6" class="custom-primary">
+                <!-- <ion-button style="float: right;margin-right: 20px;" (click)="filterData()">Ok</ion-button> -->
+                <ion-button style="float: right;" expand="" [routerLink]="['/leadedit']">Edit Lead</ion-button>
+                <ion-button style="float: right;margin-right: 20px;" (click)="filterData()" expand="full">Filter Data</ion-button>
+
+              </ion-col>
+              
             </ion-row>
             <ion-row class="header">
               <ion-searchbar class="custom " formControlName="searchTerm" showCancelButton="focus"
@@ -92,7 +98,15 @@
                   <tbody>
                     <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td *ngFor="let col of selectedColumns">{{ leadscore[col] }}</td>
+                      <td *ngFor="let col of selectedColumns">
+                        <ng-container *ngIf="col !== 'crdate'; else dateColumn">
+                          {{ leadscore[col] }}
+                        </ng-container>
+                        <ng-template #dateColumn>
+                          {{ leadscore[col] | date: 'yyyy-MM-dd' }}
+                        </ng-template>
+                      </td>
+                      
                       <td class="Action">
                         <ion-icon color="danger" icon-only name="trash"></ion-icon>
                         <ion-icon color="primary" icon-only name="create"></ion-icon>

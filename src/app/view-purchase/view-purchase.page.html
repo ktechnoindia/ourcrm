@@ -42,14 +42,18 @@
                 <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
                   <ion-button expand="block" (click)="filterData()">Ok</ion-button>
                 </ion-col>
-                <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                    name="selectedColumns" multiple="true">
-                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                  <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp"
+                    color="dark" interface="popover" label="Select Time Period" label-placement="floating"
+                    fill="outline" name="selectedColumns" multiple="true">
+                    <ion-select-option value="today">Today</ion-select-option>
+                    <ion-select-option value="monthly">Monthly</ion-select-option>
+                    <ion-select-option value="quartly">Quartly</ion-select-option>
+                    <ion-select-option value="annually">Annually</ion-select-option>
                   </ion-select>
                 </ion-col>
-                <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                
+                <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
                     <ion-select-option value="Standard">Standard</ion-select-option>
@@ -57,6 +61,13 @@
                     <ion-select-option value="ItemWise">ItemWise</ion-select-option>
                     <ion-select-option value="Detailed">Detailed</ion-select-option>
 
+                  </ion-select>
+                </ion-col>
+                <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                    name="selectedColumns" multiple="true">
+                    <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
                   </ion-select>
                 </ion-col>
               </ion-row>
