@@ -126,8 +126,8 @@
   <ion-grid>
     <ion-row class="lead_details">
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('paymenttransactionlist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('paymenttransactionlist')">
+        <div class="table-container" >
           <p>Payment Transtraction List</p>
           <ion-searchbar class="customs"  [(ngModel)]="searchPayment" (ionInput)="onSearchTermPayment()"></ion-searchbar>
           <div class="scroll-container">
@@ -154,8 +154,8 @@
         </div>
       </ion-col>
 
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('receipttransactionlist')">
+      <ion-col class="table_data" size="12" size-lg="6"  *ngIf="selectedOptions.includes('receipttransactionlist')">
+        <div class="table-container">
           <p>Receipt Transtraction List</p>
           <ion-searchbar class="customs " [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
@@ -167,6 +167,8 @@
                 <th style="width: 70px !important;">Ledger Name</th>
                 <th style="width: 70px !important;">Debit Amount</th>
                 <th style="width: 70px !important;">Credit Amount</th>
+                <th style="width: 70px !important;">Pending Amount</th>
+
               </tr>
               <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
 

@@ -248,8 +248,8 @@
             </div>
             <ion-grid>
               <ion-row class="lead_details">
-                <ion-col class="table_data" size="12" size-lg="6">
-                  <div class="table-container" *ngIf="selectedOptions.includes('topnewlead')">
+                <ion-col class="table_data" size="12" size-lg="6"  *ngIf="selectedOptions.includes('topnewlead')">
+                  <div class="table-container">
                     <p>Top New Lead </p>
                     <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                     <div class="scroll-container">
@@ -273,8 +273,8 @@
                     </div>
                   </div>
                 </ion-col>
-                <ion-col class="table_data" size="12" size-lg="6">
-                  <div class="table-container" *ngIf="selectedOptions.includes('productwiselead')">
+                <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('productwiselead')">
+                  <div class="table-container" >
                     <p>Product Wise Lead</p>
                     <ion-searchbar class="customs"></ion-searchbar>
                     <div class="scroll-container">

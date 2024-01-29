@@ -189,12 +189,9 @@ export class ViewSalePage implements OnInit {
   }
 
   private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
-    // Parse the dates into JavaScript Date objects
     const saleDate = new Date(date);
     const fromDateObj = new Date(fromDate);
     const toDateObj = new Date(toDate);
-
-    // Check if the saleDate is within the range
     return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 

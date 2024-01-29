@@ -301,8 +301,8 @@
     </div>
     <ion-grid>
         <ion-row class="lead_details">
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
+            <ion-col class="table_data" size="12" size-lg="6"  *ngIf="selectedOptions.includes('customerlist')">
+                <div class="table-container">
                     <p>Customer List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchTerm"
                         (ionInput)="onSearchTermChanged()"></ion-searchbar>
@@ -333,8 +333,8 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('vendorlist')">
+                <div class="table-container" >
                     <p>Supplier List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchTerms"
                         (ionInput)="onSearchTermSupplier()"></ion-searchbar>
@@ -358,10 +358,9 @@
                     </div>
                 </div>
             </ion-col>
-        </ion-row>
-        <ion-row class="">
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
+       
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('executivelist')">
+                <div class="table-container">
                     <p>Executive List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchExecutive"
                         (ionInput)="onSearchTermExecutive()"></ion-searchbar>
@@ -387,8 +386,8 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('itemlist')">
+                <div class="table-container" >
                     <p>Item List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchItem"
                         (ionInput)="onSearchTermItem()"></ion-searchbar>
@@ -413,8 +412,8 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('purchaselist')">
+            <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('purchaselist')">
+                <div class="table-container" >
                     <p>Purchase List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchPurchase"
                         (ionInput)="onSearchTermPurchase()"></ion-searchbar>
@@ -446,8 +445,8 @@
             </ion-col>
 
 
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('saleslist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('saleslist')">
+                <div class="table-container" >
                     <p>Sales List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchSale"
                         (ionInput)="onSearchTermSale()"></ion-searchbar>
@@ -476,8 +475,8 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('leadlist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('leadlist')">
+                <div class="table-container" >
                     <p>Total Leads </p>
                     <ion-searchbar class="customs" [(ngModel)]="searchlead"
                         (ionInput)="onSearchLeadTerm()"></ion-searchbar>
@@ -502,8 +501,8 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('paymentlist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('paymentlist')">
+                <div class="table-container" >
                     <p>Payment Transtraction List</p>
                     <ion-searchbar class="customs" [(ngModel)]="searchPayment"
                         (ionInput)="onSearchTermPayment()"></ion-searchbar>
@@ -524,7 +523,6 @@
                                 <td>{{payment.paymentdate}}</td>
                                 <td>{{payment.companyname}}</td>
                                 <td>{{payment.paymentmade}}</td>
-
                                 <td>{{payment.pendingamt}}</td>
                             </tr>
 
@@ -534,8 +532,8 @@
             </ion-col>
 
 
-            <ion-col class="table_data" size="12" size-lg="6">
-                <div class="table-container" *ngIf="selectedOptions.includes('receiptlist')">
+            <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('receiptlist')">
+                <div class="table-container" >
                     <p>Receipt Transtraction List</p>
                     <ion-searchbar class="customs " [(ngModel)]="searchReceipt"
                         (ionInput)="onSearchTermReceipt()"></ion-searchbar>
@@ -548,6 +546,7 @@
                                 <th style="width: 70px !important;">Ledger Name</th>
                                 <th style="width: 70px !important;">Debit Amount</th>
                                 <th style="width: 70px !important;">Credit Amount</th>
+                                <th style="width: 70px !important;">Pending Amount</th>
 
                             </tr>
                             <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
