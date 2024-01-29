@@ -88,6 +88,6 @@ export class SalesService {
   }
   fetchallPurchaseById(itemcode:number,companyid:number): Observable<any> {
     console.log('companyyy '+companyid);
-    return this.httpclient.get(environment.apiactionurl + environment.fetchpurchasebyid+ '?itemcode=123&companyid=1')  }
+    return this.httpclient.get(environment.apiactionurl + environment.fetchpurchasebyid+ '?itemcode='+itemcode+'&companyid='+companyid)  }
 
 }

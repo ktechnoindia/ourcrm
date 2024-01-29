@@ -402,8 +402,8 @@ console.log('data of ',purchases)
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:attr.companyid,
-          itemcode:attr.itemcode,
+          companyid:companyid,
+          itemcode:element.itemcode,
         }))
 
         let purchasedata: purchasestore = {
