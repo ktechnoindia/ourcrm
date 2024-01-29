@@ -141,6 +141,8 @@ totalItems: number = 0;
 
     });
     this.updateManualHeaders();
+    this.formDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {

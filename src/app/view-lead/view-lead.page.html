@@ -25,7 +25,9 @@
         <ion-grid>
 
           <form [formGroup]="viewLeadForm">
+            <!-- ... Your existing form controls ... -->
 
+            
             <ion-row class="header">
               <ion-col size-lg="2" size-md="3" size-sm="3" size="6">
                 <select class="select" [(ngModel)]=" select_sales_person" formControlName="select_sales_person"
@@ -73,6 +75,12 @@
                 <ion-button style="float: right;margin-right: 20px;" (click)="filterData()">Ok</ion-button>
                 <ion-button style="float: right;" expand="" [routerLink]="['/leadedit']">Edit Lead</ion-button>
               </ion-col>
+              <ion-row class="header">
+                <!-- Add a button to trigger the filterData function -->
+                <ion-col size="12">
+                  <ion-button (click)="filterData()" expand="full">Filter Data</ion-button>
+                </ion-col>
+              </ion-row>
             </ion-row>
             <ion-row class="header">
               <ion-searchbar class="custom " formControlName="searchTerm" showCancelButton="focus"

@@ -146,6 +146,8 @@ export class ViewSalePage implements OnInit {
     // Initialize the filteredSales with the original sales data
     this.filteredSales$ = this.sales$;
     this.updateManualHeaders();
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {

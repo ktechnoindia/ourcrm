@@ -152,6 +152,8 @@ export class ViewSalesreturnPage implements OnInit {
       this.totalItems = data.length;
     });
     this.updateManualHeaders();
+    this.formDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {

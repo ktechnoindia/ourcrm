@@ -20,6 +20,7 @@ export class ReceipttransactionReportPage implements OnInit {
   searchTerm: string = '';
   filteredRecepits$: Observable<any[]> = new Observable<any[]>(); 
   el: any;
+  isDateInRange: any;
   generatePdf() {
     let pdf = new jsPDF()
 
@@ -33,12 +34,16 @@ export class ReceipttransactionReportPage implements OnInit {
   printThisPage(){
     window.print();
   }
+  formDate: string = '';
+  toDate: string = '';
   constructor(private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
 
     const compid='1';
 
     this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid),'','');
     console.log(this.recepits$);
+    this.formDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(
@@ -49,7 +54,12 @@ export class ReceipttransactionReportPage implements OnInit {
       )
     );
   }
-
+  filterData() {
+    // Update the filteredSales observable based on the date range
+    this.filteredRecepits$ = this.recepits$.pipe(
+      map(quotes => quotes.filter(quote => this.isDateInRange(quote.billDate, this.formDate, this.toDate)))
+    );
+  }
   onSearchTermChanged(): void {
     this.filteredRecepits$ = this.filterRecepit();
   }
