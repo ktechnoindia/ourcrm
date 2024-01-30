@@ -491,14 +491,14 @@
                       </tr>
                       <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData; let i = index">
                         <td>{{i+1}}</td>
-                        <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" name="attr1" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" name="attr2" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" name="attr3" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" name="attr4" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" name="attr5" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" name="attr6" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" name="attr7" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" name="attr8" class="pop_input"></td>
                       </tr>
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">

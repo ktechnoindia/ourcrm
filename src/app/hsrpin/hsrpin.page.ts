@@ -215,11 +215,9 @@ export class HsrpinPage implements OnInit {
     this.itemnames$ = this.itemService.getAllItems();
     this.hsrpdate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
+    this.purchasebyid$=new Observable;
+
+   
 
     this.myform = formBuilder.group({
       billformate: [''],
@@ -347,6 +345,7 @@ export class HsrpinPage implements OnInit {
       }
     });
   }
+
   getVendors(event: any) {
     const compid = '1';
     const identifier = this.vend ? 'custcode' : 'custname';
@@ -389,8 +388,13 @@ export class HsrpinPage implements OnInit {
     this.hsrpindata.splice(index, 1);
   }
   openQuantityPopover(hsrpin: Hsrpin) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
     this.hsrpindata[0].quantityPopoverData = new Array(hsrpin.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
     this.isQuantityPopoverOpen = true;
   }
   closeQuantityPopover() {
@@ -494,8 +498,8 @@ export class HsrpinPage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid: attr.companyid,
-          itemcode: attr.itemcode,
+          companyid: companyid,
+          itemcode: element.itemcode,
         }))
         let hsrpindata: hsrpinstore = {
           barcode: element.barcode,
@@ -693,18 +697,18 @@ export class HsrpinPage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-  async presentPopover(hsrpin: Hsrpin) {
-    const popover = await this.popoverController.create({
-      component: QuantitypopoverPage,
-      cssClass: 'popover-content',
-      componentProps: {
-        quantity: hsrpin.quantity,
-        selectedItem: hsrpin.selectedItemId,
-      },
-      translucent: true,
-    });
-    return await popover.present();
-  }
+  // async presentPopover(hsrpin: Hsrpin) {
+  //   const popover = await this.popoverController.create({
+  //     component: QuantitypopoverPage,
+  //     cssClass: 'popover-content',
+  //     componentProps: {
+  //       quantity: hsrpin.quantity,
+  //       selectedItem: hsrpin.selectedItemId,
+  //     },
+  //     translucent: true,
+  //   });
+  //   return await popover.present();
+  // }
 
 
 
@@ -804,12 +808,12 @@ export class HsrpinPage implements OnInit {
   getigst(hsrpin: Hsrpin): number {
     return this.getTotaltax(hsrpin);
   }
-  updateRows(hsrpin: Hsrpin) {
-    // Open the popover when quantity changes
-    if (hsrpin.quantity > 0) {
-      this.presentPopover(hsrpin);
-    }
-  }
+  // updateRows(hsrpin: Hsrpin) {
+  //   // Open the popover when quantity changes
+  //   if (hsrpin.quantity > 0) {
+  //     this.presentPopover(hsrpin);
+  //   }
+  // }
   getItems(hsrpin: any) {
     const compid = 1;
     const identifier = hsrpin.selectedItemId ? 'itemname' : 'itemcode';

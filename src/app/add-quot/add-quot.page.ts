@@ -91,7 +91,6 @@ itemcode:number=0;
 
   //table data
   /*barcode: string = '';
-  itemcode: string = '';
   itemname: number = 0;
   description: string = '';
   quantity: string = '';
@@ -227,9 +226,11 @@ itemcode:number=0;
   showIconDiv: boolean = false;
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
+  purchaseData: any;
   printThisPage() {
     window.print();
   }
+  selectedRows: Set<number> = new Set<number>();
   constructor( private saleService: SalesService,private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
    this.purchasebyid$=new Observable;
    
@@ -347,18 +348,23 @@ itemcode:number=0;
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
   openQuantityPopover(quote: Quote) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(quote.itemcode,1);
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(quote.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-        });
-    this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+      console.log('purchase data', data);
+      // Assuming that the purchase data is an array of objects
+      this.purchaseData = data;
+    });
+  
     this.isQuantityPopoverOpen = true;
   }
+  
   closeQuantityPopover() {
-    this.isQuantityPopoverOpen = false;
+    const selectedAttributes = this.quoteData.filter((_, index) => this.selectedRows.has(index));
+    console.log(selectedAttributes);
+    // Perform the logic to post only selectedAttributes.
+    // ...
   }
+  
 
   closePopover() {
     // Close the popover and pass data back to the parent component

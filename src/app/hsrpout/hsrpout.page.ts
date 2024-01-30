@@ -199,12 +199,12 @@ export class HsrpoutPage implements OnInit {
   isQuantityEntered = false;
   vend: any;
 
-  purchasebyid$: Observable<any[]>
   isQuantityPopoverOpen: boolean = false;
   itemid: number = 0;
   customers$: Observable<any[]>
   cust: any;
 
+  purchasebyid$ :Observable<any[]>
 
   constructor(private saleService: SalesService,private hsrpoutservice : HsrpoutService,private formService: FormValidationService,private itemService: AdditemService,private popoverController: PopoverController,private router : Router,private formBuilder: FormBuilder,private GstService:GsttypeService,private custService:CustomerService,private encService: EncryptionService,private executiveService:ExecutiveService) { 
     const compid='1';
@@ -215,11 +215,9 @@ export class HsrpoutPage implements OnInit {
     this.itemnames$ = this.itemService.getAllItems();
     this.hsrpdate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
+    this.purchasebyid$=new Observable;
+
+   
     this.myform = formBuilder.group({
       billformate: [''],
       billno: [''],
@@ -386,8 +384,13 @@ export class HsrpoutPage implements OnInit {
   }
 
   openQuantityPopover(hsrpout: Hsrpout) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
     this.hsrpoutdata[0].quantityPopoverData = new Array(hsrpout.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
     this.isQuantityPopoverOpen = true;
   }
   closeQuantityPopover() {
@@ -684,18 +687,18 @@ onNew() {
     this.popover.event = e;
     this.isOpen = true;
   }
-  async presentPopover(hsrpout: Hsrpout) {
-    const popover = await this.popoverController.create({
-      component: QuantitypopoverPage,
-      cssClass: 'popover-content',
-      componentProps: {
-        quantity: hsrpout.quantity,
-        selectedItem: hsrpout.selectedItemId,
-      },
-      translucent: true,
-    });
-    return await popover.present();
-  }
+  // async presentPopover(hsrpout: Hsrpout) {
+  //   const popover = await this.popoverController.create({
+  //     component: QuantitypopoverPage,
+  //     cssClass: 'popover-content',
+  //     componentProps: {
+  //       quantity: hsrpout.quantity,
+  //       selectedItem: hsrpout.selectedItemId,
+  //     },
+  //     translucent: true,
+  //   });
+  //   return await popover.present();
+  // }
 
 
 

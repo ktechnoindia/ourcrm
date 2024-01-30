@@ -215,11 +215,8 @@ export class DcOutPage implements OnInit {
     this.datetype = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-        });
+    this.purchasebyid$=new Observable;
+
     this.myform = this.formBuilder.group({
       voucherformat: [''],
       voucherNumber: ['', Validators.required],
@@ -317,6 +314,11 @@ export class DcOutPage implements OnInit {
     return await popover.present();
   }
   openQuantityPopover(dcout: Dcout) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
     this.dcoutData[0].quantityPopoverData = new Array(dcout.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
     this.isQuantityPopoverOpen = true;
@@ -368,8 +370,8 @@ export class DcOutPage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:attr.companyid,
-          itemcode:attr.itemcode,
+          companyid:companyid,
+          itemcode:element.itemcode,
         }))
         let dcoutdata: dcoutstore = {
           voucherformat: this.myform.value.voucherformat,

@@ -232,12 +232,9 @@ export class AddSalePage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
+    this.purchasebyid$=new Observable;
 
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
+   
 
     this.myform = this.formBuilder.group({
       billformate: [''],
@@ -359,6 +356,11 @@ export class AddSalePage implements OnInit {
   }
 
   openQuantityPopover(sale: Sales) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+    });
     this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
@@ -398,7 +400,7 @@ export class AddSalePage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid: attr.companyid,
+          companyid:attr.companyid,
           itemcode: attr.itemcode,
         }))
         let saledata: salesstore = {

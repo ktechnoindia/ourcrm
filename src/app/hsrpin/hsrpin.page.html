@@ -417,6 +417,7 @@
                     <table style="width: 100%;">
                       <tr class="attributes" *ngFor="let hsrpin of hsrpindata; let i = index">
                         <th>Sr. No.</th>
+                        <th>Select Item Attributes</th>
                         <th><input type="text" formControlName="attribute1" [(ngModel)]="hsrpin.attribute1"
                             class="pop_input"></th>
                         <th><input type="text" formControlName="attribute2" [(ngModel)]="hsrpin.attribute2"
@@ -436,6 +437,7 @@
                       </tr>
                       <tr *ngFor="let row of purchasebyid$ | async; let i = index">
                         <td>{{i+1}}</td>
+                        <td><ion-checkbox></ion-checkbox></td>
                         <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
                         <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
                         <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
