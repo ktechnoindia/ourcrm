@@ -71,6 +71,8 @@ taxrate: number;
     companyid:number;
     itemcode:number;
   }[];
+  engineframenumber:string;
+
 }
 
 @Injectable({
@@ -82,4 +84,5 @@ export class HsrpinService {
   createhsrpin(hsrpin: hsrpinstore[], key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addhsrpin, hsrpin, { headers: { 'key': key, 'user': user } });
   }
+  
 }

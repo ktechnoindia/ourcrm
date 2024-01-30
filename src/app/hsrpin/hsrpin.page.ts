@@ -465,7 +465,8 @@ export class HsrpinPage implements OnInit {
       frame: 0,
       engine_no: 0,
       vehicle_reg_no: 0,
-      vehicle_reg_date: 0
+      vehicle_reg_date: 0,
+      engineframenumber: ''
     };
 
 
@@ -562,7 +563,8 @@ export class HsrpinPage implements OnInit {
           discountamt: 0,
           taxrate1: 0,
           itemid: 0,
-          selectedItemId: 0
+          selectedItemId: 0,
+          engineframenumber:this.myform.value.engineframenumber
         };
 
         hsrpindatas.push(hsrpindata);

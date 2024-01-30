@@ -14,6 +14,7 @@ import { AdditemService } from '../services/additem.service';
 import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { HsrpoutService, hsrpout } from '../services/hsrpout.service';
 import { SalesService } from '../services/sales.service';
+import { HsrpinService } from '../services/hsrpin.service';
 
 interface Hsrpout {
   selectedItemAttributes: unknown[];
@@ -206,7 +207,7 @@ export class HsrpoutPage implements OnInit {
 
   purchasebyid$ :Observable<any[]>
 
-  constructor(private saleService: SalesService,private hsrpoutservice : HsrpoutService,private formService: FormValidationService,private itemService: AdditemService,private popoverController: PopoverController,private router : Router,private formBuilder: FormBuilder,private GstService:GsttypeService,private custService:CustomerService,private encService: EncryptionService,private executiveService:ExecutiveService) { 
+  constructor(private hsrpinservice : HsrpinService,private saleService: SalesService,private hsrpoutservice : HsrpoutService,private formService: FormValidationService,private itemService: AdditemService,private popoverController: PopoverController,private router : Router,private formBuilder: FormBuilder,private GstService:GsttypeService,private custService:CustomerService,private encService: EncryptionService,private executiveService:ExecutiveService) { 
     const compid='1';
   
     this.customers$ = this.custService.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -464,6 +465,68 @@ export class HsrpoutPage implements OnInit {
     // Reset newRow back to an empty object to prepare for the next iteration
 
   }
+  getItems(hsrpout: any) {
+    const compid = 1;
+    const identifier = hsrpout.selectedItemId ? 'itemname' : 'itemcode';
+    const value = hsrpout.selectedItemId || hsrpout.itemcode;
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
+    this.itemnames$.subscribe(items => {
+      const selectedItem = items.find(item => item.tid === hsrpout.itemname);
+
+      if (selectedItem) {
+        this.selectedItemAttributes = selectedItem.attributes;
+      } else {
+        this.selectedItemAttributes = [];
+      }
+    });
+    this.itemService.getItems(compid, value).subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          hsrpout.itemcode = itemDetails.itemCode;
+          hsrpout.itemname = itemDetails.itemDesc;
+          hsrpout.barcode = itemDetails.barcode.toString();
+          hsrpout.unitname = itemDetails.unitname;
+          hsrpout.hunitname = itemDetails.unitid;
+          hsrpout.taxrate = grate[itemDetails.selectGst];
+          hsrpout.taxrate1 = grate[itemDetails.selectGst];
+          hsrpout.mrp = itemDetails.mrp;
+          hsrpout.basicrate = itemDetails.basicrate;
+          hsrpout.netrate = itemDetails.netrate;
+          hsrpout.attribute1 = itemDetails.attr1,
+          hsrpout.attribute2 = itemDetails.attr2,
+          hsrpout.attribute3 = itemDetails.attr3,
+          hsrpout.attribute4 = itemDetails.attr4,
+          hsrpout.attribute5 = itemDetails.attr5,
+          hsrpout.attribute6 = itemDetails.attr6,
+          hsrpout.attribute7 = itemDetails.attr7,
+          hsrpout.attribute8 = itemDetails.attr8,
+
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: hsrpout.itemcode,
+              itemname: hsrpout.itemname,
+              // Other form controls...
+            });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
+  // updateRows(hsrpout: hsrpout) {
+  //   // Open the popover when quantity changes
+  //   if (hsrpout.quantity > 0) {
+  //     this.presentPopover(hsrpout);
+  //   }
+ // }
   async onSubmit(form: FormGroup, hsrpoutdata: Hsrpout[]) {
     const fields = {custcode: this.custcode, custname: this.custname ,itemname: this.itemname, quantity: this.quantity, description: this.description }
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(hsrpoutdata));
@@ -802,66 +865,5 @@ onNew() {
     return this.getTotaltax(hsrpout);
   }
  
-  getItems(hsrpout: any) {
-    const compid = 1;
-    const identifier = hsrpout.selectedItemId ? 'itemname' : 'itemcode';
-    const value = hsrpout.selectedItemId || hsrpout.itemcode;
-    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-    this.itemnames$.subscribe(items => {
-      const selectedItem = items.find(item => item.tid === hsrpout.itemname);
-
-      if (selectedItem) {
-        this.selectedItemAttributes = selectedItem.attributes;
-      } else {
-        this.selectedItemAttributes = [];
-      }
-    });
-    this.itemService.getItems(compid, value).subscribe(
-      (data) => {
-        console.log('Data received:', data);
-
-        if (data && data.length > 0) {
-          const itemDetails = data[0];
-
-          // Update the quote properties
-          hsrpout.itemcode = itemDetails.itemCode;
-          hsrpout.itemname = itemDetails.itemDesc;
-          hsrpout.barcode = itemDetails.barcode.toString();
-          hsrpout.unitname = itemDetails.unitname;
-          hsrpout.hunitname = itemDetails.unitid;
-          hsrpout.taxrate = grate[itemDetails.selectGst];
-          hsrpout.taxrate1 = grate[itemDetails.selectGst];
-          hsrpout.mrp = itemDetails.mrp;
-          hsrpout.basicrate = itemDetails.basicrate;
-          hsrpout.netrate = itemDetails.netrate;
-          hsrpout.attribute1 = itemDetails.attr1,
-          hsrpout.attribute2 = itemDetails.attr2,
-          hsrpout.attribute3 = itemDetails.attr3,
-          hsrpout.attribute4 = itemDetails.attr4,
-          hsrpout.attribute5 = itemDetails.attr5,
-          hsrpout.attribute6 = itemDetails.attr6,
-          hsrpout.attribute7 = itemDetails.attr7,
-          hsrpout.attribute8 = itemDetails.attr8,
-
-            // Update form control values
-            this.myform.patchValue({
-              itemcode: hsrpout.itemcode,
-              itemname: hsrpout.itemname,
-              // Other form controls...
-            });
-        } else {
-          console.error('No data found for the selected item.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
-  // updateRows(hsrpout: hsrpout) {
-  //   // Open the popover when quantity changes
-  //   if (hsrpout.quantity > 0) {
-  //     this.presentPopover(hsrpout);
-  //   }
- // }
+ 
 }
