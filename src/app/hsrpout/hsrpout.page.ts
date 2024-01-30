@@ -86,7 +86,7 @@ export class HsrpoutPage implements OnInit {
   ];
   myform: FormGroup;
   itemcode: number = 0;
-
+  engineframenumber:string='';
   billformate: number = 0
   billno: string = '';
   hsrpdate: string = '';
@@ -221,6 +221,7 @@ export class HsrpoutPage implements OnInit {
     this.myform = formBuilder.group({
       billformate: [''],
       billno: [''],
+      engineframenumber:[''],
       hsrpdate: [''],
       custcode: [''],
     custname: [''],
@@ -428,6 +429,7 @@ export class HsrpoutPage implements OnInit {
       tcs_value: 0,
       billformate: 0,
       billno: '',
+      engineframenumber:'',
       hsrpdate: '',
       custcode: '',
       custname: 0,
@@ -519,6 +521,7 @@ export class HsrpoutPage implements OnInit {
           hsrp_rear: element.hsrp_rear,
           billformate: this.myform.value.billformate,
           billno: this.myform.value.billno,
+          engineframenumber:this.myform.value.engineframenumber,
           hsrpdate: this.myform.value.hsrpdate,
           custcode: this.myform.value.custcode,
           custname: this.myform.value.custname,

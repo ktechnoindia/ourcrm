@@ -48,7 +48,8 @@ interface Hsrpin {
   IGST: number;
   total: number;
   grossrate: number;
-
+  engineframenumber: string;
+  customername: string;
   quantityPopoverData: {
     attr1: string;
     attr2: string;
@@ -167,7 +168,8 @@ export class HsrpinPage implements OnInit {
     taxrate1: 0,
     discountamt: 0,
     discount: 0,
-
+    engineframenumber: '',
+    customername: '',
     selectedItemAttributes: [''],
     quantityPopoverData: [{
       attr1: '',
@@ -215,9 +217,9 @@ export class HsrpinPage implements OnInit {
     this.itemnames$ = this.itemService.getAllItems();
     this.hsrpdate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$=new Observable;
+    this.purchasebyid$ = new Observable;
 
-   
+
 
     this.myform = formBuilder.group({
       billformate: [''],
@@ -272,6 +274,8 @@ export class HsrpinPage implements OnInit {
       IGST: 0,
       CGST: 0,
       SGST: 0,
+      engineframenumber: [''],
+      customername: [''],
 
     })
   }
@@ -313,6 +317,8 @@ export class HsrpinPage implements OnInit {
       total: 0,
       grossrate: 0,
       selectedItemAttributes: [''],
+      engineframenumber: '',
+      customername: '',
       quantityPopoverData: [{
         attr1: '',
         attr2: '',
@@ -388,13 +394,13 @@ export class HsrpinPage implements OnInit {
     this.hsrpindata.splice(index, 1);
   }
   openQuantityPopover(hsrpin: Hsrpin) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
       // this.totalItems = data.length;
-        });
+    });
     this.hsrpindata[0].quantityPopoverData = new Array(hsrpin.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
   }
   closeQuantityPopover() {
@@ -428,8 +434,8 @@ export class HsrpinPage implements OnInit {
       part: 0,
       vehicle_no: 0,
       hsrp_front: 0,
-      hsrp_rear: 0,    
-      hsn_code: '',    
+      hsrp_rear: 0,
+      hsn_code: '',
       tcs_value: 0,
       billformate: 0,
       billno: '',
@@ -836,6 +842,8 @@ export class HsrpinPage implements OnInit {
           const itemDetails = data[0];
 
           // Update the quote properties
+          hsrpin.name = itemDetails.customername;
+
           hsrpin.itemcode = itemDetails.itemCode;
           hsrpin.itemname = itemDetails.itemDesc;
           hsrpin.barcode = itemDetails.barcode.toString();
@@ -854,13 +862,19 @@ export class HsrpinPage implements OnInit {
             hsrpin.attribute6 = itemDetails.attr6,
             hsrpin.attribute7 = itemDetails.attr7,
             hsrpin.attribute8 = itemDetails.attr8,
-
-            // Update form control values
-            this.myform.patchValue({
-              itemcode: hsrpin.itemcode,
-              itemname: hsrpin.itemname,
-              // Other form controls...
-            });
+            hsrpin.GST = grate[itemDetails.GSTType];
+          hsrpin.taxrate1 = grate[itemDetails.GSTType];
+          hsrpin.hsn_code = itemDetails.hsn_code;
+          hsrpin.description = itemDetails.itemDesc;
+          hsrpin.mrp = itemDetails.mrp;
+          hsrpin.netrate = itemDetails.price;
+          hsrpin.basicrate = itemDetails.price;
+          // Update form control values
+          this.myform.patchValue({
+            itemcode: hsrpin.itemcode,
+            itemname: hsrpin.itemname,
+            // Other form controls...
+          });
         } else {
           console.error('No data found for the selected item.');
         }

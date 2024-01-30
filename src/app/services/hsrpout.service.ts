@@ -12,7 +12,7 @@ export interface hsrpout{
   refrence: string;
   refdate: string;
   executive_name: number;
-
+  engineframenumber:string;
   //table
 barcode:string;
   part: number;

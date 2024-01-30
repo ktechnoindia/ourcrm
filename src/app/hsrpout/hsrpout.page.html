@@ -34,14 +34,19 @@
                     label="Date   :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-              <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
+              <!-- <ion-col size-lg="1" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input #firstInvalidInput (change)="getCustomers($event)" [(ngModel)]="custcode"
                     formControlName="custcode" name="custcode" type="text" label="Code :" label-placement="floating"
                     fill="outline"></ion-input>
                 </ion-row>
+              </ion-col> -->
+              <ion-col size-lg="1.3" size-md="2" size-sm="6" size="6">
+                <ion-row>
+                  <ion-input [(ngModel)]="engineframenumber" formControlName="engineframenumber" name="engineframenumber" type="date"
+                    label="Engine/Frame No. :" label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
               </ion-col>
-
               <ion-col class="ionselect" size-lg="2" size-md="3.5" size-sm="6" size="6">
                 <ion-select #firstInvalidInput class="always-flip" toggleIcon="caret-down-sharp" color="dark"
                   interface="popover" label="--- Customer Name --- " label-placement="floating" fill="outline"

@@ -81,17 +81,13 @@
                 <table style="width:100%;overflow-x: auto;">
                   <tr>
                     <th>Sr.No.</th>
-
-                    <!-- <th>Part No.</th>
-                    <th>Frame No.</th>
-                    <th>Engine No.</th>
-                    <th>Veh. Reg. No.</th>
-                    <th>Veh. Reg. Date</th>-->
-                    <th>BarCode</th>
+                    <th>Engine No/Frame No.</th>
+                    <th>Customer Name</th>
                     <th>Item Code</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
                     <th>Description</th>
+                    <th>Vehicle Reg. Date</th>
                     <th>Vehicle No</th>
                     <th>HSRP Front</th>
                     <th>HSRP Rear</th>
@@ -114,7 +110,11 @@
                   <tr *ngFor="let hsrpin of hsrpindata; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="hsrpin.barcode" (ngModelChange)="getItems(hsrpin)"
+                      <input [(ngModel)]="hsrpin.engineframenumber" (ngModelChange)="getItems(hsrpin)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="hsrpin.customername"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
@@ -138,6 +138,19 @@
                         type="hidden"></ion-input>
                     </td>
                     <td>
+                      <input *ngIf="hsrpin.itemcode !== 0" [(ngModel)]="hsrpin.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown.enter)="openQuantityPopover(hsrpin)">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpin.description" formControlName="description"
+                        name="description" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="vehicle_reg_date" formControlName="vehicle_reg_date" name="vehicle_reg_date"
+                        type="date">
+                    </td>
+                    <td>
                       <input class="table_input" [(ngModel)]="vehicle_no" formControlName="vehicle_no" name="vehicle_no"
                         type="text">
                     </td>
@@ -149,18 +162,7 @@
                       <input class="table_input" [(ngModel)]="hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"
                         type="text">
                     </td>
-                    <td>
-                      <input *ngIf="hsrpin.itemcode !== 0"
-                       [(ngModel)]="hsrpin.quantity"
-                        [ngModelOptions]="{standalone: true}" 
-                        class="table_input"
-                         type="number"
-                        (keydown.enter)="openQuantityPopover(hsrpin)">
-                    </td>
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpin.description" formControlName="description"
-                        name="description" type="text">
-                    </td>
+                    
                     <td>
                       <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
                         name="hsn_code" type="text">
@@ -170,17 +172,16 @@
                         type="number">
                     </td>
                     <td>
-                      <input [(ngModel)]="hsrpin.basicrate" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="number">
+                      <input [(ngModel)]="hsrpin.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="number">
 
                     </td>
                     <td>
-                      <input [(ngModel)]="hsrpin.netrate"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="hsrpin.netrate" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="text">
                     </td>
                     <td>
-                      <input [value]="getgrossrate(hsrpin)" [readonly]="true" class="table_input" 
-                        type="number">
+                      <input [value]="getgrossrate(hsrpin)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpin.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -197,7 +198,7 @@
                       <input [value]="getigst(hsrpin)" type="number" class="table_input">
                     </td>
                     <td>
-                      
+
                       <input [readonly]="true" [value]="getTotaltax(hsrpin)" class="table_input" type="text">
                     </td>
                     <td>
