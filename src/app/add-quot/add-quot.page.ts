@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
@@ -76,6 +76,7 @@ interface Quote {
 })
 export class AddQuotPage implements OnInit {
   gstTypes: any[] = [];
+  @ViewChild('myFormRef') myFormRef!: ElementRef;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -231,6 +232,9 @@ itemcode:number=0;
     window.print();
   }
   selectedRows: Set<number> = new Set<number>();
+  // Assuming that your items have an 'attributes' property
+selectedItemAttributes: any[] = [];
+
   constructor( private saleService: SalesService,private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
    this.purchasebyid$=new Observable;
    
@@ -363,7 +367,13 @@ itemcode:number=0;
 
   }
   
-
+  handleKeyDown(event: KeyboardEvent): void {
+    // Check if the pressed key is Enter and Ctrl (or Command for Mac)
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault(); // Prevent default behavior (e.g., new line in textarea)
+      this.onSubmit(this.myform, this.quoteData);
+    }
+  }
   closePopover() {
     // Close the popover and pass data back to the parent component
     this.popoverController.dismiss({
@@ -588,6 +598,7 @@ itemcode:number=0;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
     const value = quote.selectedItemId || quote.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
+    
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -631,6 +642,7 @@ itemcode:number=0;
         console.error('Error fetching data', error);
       }
     );
+    
   }
 
   getCustomers(event: any) {

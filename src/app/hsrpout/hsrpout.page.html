@@ -57,7 +57,7 @@
                   </ion-select-option>
                 </ion-select>
               </ion-col>
-              <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
+              <!-- <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input color="dark" [(ngModel)]="refrence" formControlName="refrence" name="refrence" type="text"
                     label="Refrence No.:" label-placement="floating" fill="outline"></ion-input>
@@ -68,7 +68,7 @@
                   <ion-input color="dark" [(ngModel)]="refdate" formControlName="refdate" name="refdate" type="date"
                     label="Ref. Date :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
-              </ion-col>
+              </ion-col> -->
               <ion-col class="ionselect" size-lg="2" size-md="3" size-sm="6" size="6">
                 <ion-select pl class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Executive Name---" label-placement="floating" fill="outline" [(ngModel)]="executive_name"
@@ -85,22 +85,20 @@
                 <table style="width:100%;">
                   <tr>
                     <th>Sr.No.</th>
-
-                    <!-- <th>Part No.</th>
-                    <th>Frame No.</th>
                     <th>Engine No.</th>
-                    <th>Veh. Reg. No.</th>
-                    <th>Veh. Reg. Date</th>-->
-                    <th>BarCode</th>
+                    <th>Frame No.</th>
+                    <th>Color</th>
+                    <th>Model</th>
+                    <th>Milaz</th>
+                    <th>Customer Name</th>
                     <th>Item Code</th>
+                    <th>HSN/SAC Code</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
-                    <th>Description</th>
                     <th>Vehicle No</th>
+                    <th>Vehicle Reg. Date</th>
                     <th>HSRP Front</th>
                     <th>HSRP Rear</th>
-
-                    <th>HSN/SAC Code</th>
                     <th>MRP</th>
                     <th>Basic Rate</th>
                     <th>Net Rate</th>
@@ -118,13 +116,23 @@
                   <tr>
                   <tr *ngFor="let hsrpout of hsrpoutdata; let i = index">
                     <td>{{i+1}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
                     <td>
-                      <input [(ngModel)]="hsrpout.barcode" (ngModelChange)="getItems(hsrpout)"
+                      <input [(ngModel)]="hsrpout.customername"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.itemcode" (ngModelChange)="getItems(hsrpout)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                    </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpout.hsn_code" formControlName="hsn_code"
+                        name="hsn_code" type="text">
                     </td>
                     <td style="width: 90px;">
                       <select class="select-option" [(ngModel)]="hsrpout.selectedItemId"
@@ -143,9 +151,19 @@
                         type="hidden"></ion-input>
                     </td>
                     <td>
+                      <input *ngIf="hsrpout.itemcode !== 0" [(ngModel)]="hsrpout.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown.enter)="openQuantityPopover(hsrpout)">
+                    </td>
+                    <td>
                       <input class="table_input" [(ngModel)]="vehicle_no" formControlName="vehicle_no" name="vehicle_no"
                         type="text">
                     </td>
+                    <td>
+                      <input class="table_input" [(ngModel)]="vehicle_reg_date" formControlName="vehicle_reg_date" name="vehicle_reg_date"
+                        type="date">
+                    </td>
+                  
                     <td>
                       <input class="table_input" [(ngModel)]="hsrp_front" formControlName="hsrp_front" name="hsrp_front"
                         type="text">
@@ -155,26 +173,12 @@
                         type="text">
                     </td>
                     <td>
-                      <input *ngIf="hsrpout.itemcode !== 0" [(ngModel)]="hsrpout.quantity"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
-                        (keydown.enter)="openQuantityPopover(hsrpout)">
-                    </td>
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpout.description" formControlName="description"
-                        name="description" type="text">
-                    </td>
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpout.hsn_code" formControlName="hsn_code"
-                        name="hsn_code" type="text">
-                    </td>
-                    <td>
                       <input [(ngModel)]="hsrpout.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number">
-
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.netrate" [ngModelOptions]="{standalone: true}" class="table_input"

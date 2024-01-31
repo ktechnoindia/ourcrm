@@ -48,6 +48,7 @@ interface Hsrpout {
   IGST: number;
   total: number;
   grossrate: number;
+  customername: string;
 
   quantityPopoverData: {
     attr1: string;
@@ -164,6 +165,7 @@ export class HsrpoutPage implements OnInit {
     taxrate1: 0,
     discountamt: 0,
     discount: 0,
+    customername: '',
 
     selectedItemAttributes: [''],
     quantityPopoverData: [{
@@ -273,7 +275,7 @@ export class HsrpoutPage implements OnInit {
       IGST: 0,
       CGST: 0,
       SGST: 0,
-
+      customername: [''],
     })
   }
   async ionViewWillEnter() {
@@ -313,6 +315,7 @@ export class HsrpoutPage implements OnInit {
       IGST: 0,
       total: 0,
       grossrate: 0,
+      customername: '',
       selectedItemAttributes: [''],
       quantityPopoverData: [{
         attr1: '',
