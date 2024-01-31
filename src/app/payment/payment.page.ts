@@ -14,7 +14,6 @@ import { VendorService } from '../services/vendor.service';
 import { LegderService } from '../services/ledger.service';
 import { PurchaseService, purchasestore } from '../services/purchase.service';
 interface Payment {
-
   billno: string,
   billdate: string,
   totalamt: number,
@@ -66,6 +65,8 @@ export class PaymentPage implements OnInit {
   userid: number = 0;
   vendorid: number = 0;
   isCheckboxChecked = false;
+  billdate: string = '';
+
   paymentData: Payment[] = [{
     billno: '',
     billdate: '',
@@ -115,23 +116,35 @@ export class PaymentPage implements OnInit {
       totalreceiveamt: [0],
       totalcurrentamt: [0],
       totalpendingamt: [0],
-      isCheckboxChecked: [false]
+      isCheckboxChecked: [false],
+      billdate: [''],
     })
 
   }
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
-    const companyid=1;
     if (this.selectedvendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill$ = this.payService.getPurchaseById(companyid,this.selectedvendorId);
+      this.paymentBill$ = this.payService.getPurchaseById(1,this.selectedvendorId);
       this.paymentBill$.subscribe(bill => {
         console.log('data length', bill.length)
-      })
-    }
-  };
+        if (bill && bill.length > 0) {
+          const bills = bill[0];
+          console.log('bills data', bill[0])
+          this.billno = bills.billno;
+          this.billdate = bills.billdate;
+          this.totalamt = bills.totalamt;
 
+          this.myform.patchValue({
+            billno: bills.billNumber,
+            billdate: bills.billDate,
+            totalamt: bills.total,
+          });
+        }
+      });
+    }
+  }
   
 
   async ionViewWillEnter() {

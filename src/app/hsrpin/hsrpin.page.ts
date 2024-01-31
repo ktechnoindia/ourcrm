@@ -90,7 +90,6 @@ export class HsrpinPage implements OnInit {
   ];
   myform: FormGroup;
   itemcode: number = 0;
-
   billformate: number = 0
   billno: string = '';
   hsrpdate: string = '';

@@ -359,10 +359,8 @@ itemcode:number=0;
   }
   
   closeQuantityPopover() {
-    const selectedAttributes = this.quoteData.filter((_, index) => this.selectedRows.has(index));
-    console.log(selectedAttributes);
-    // Perform the logic to post only selectedAttributes.
-    // ...
+    this.isQuantityPopoverOpen = false;
+
   }
   
 

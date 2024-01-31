@@ -14,6 +14,8 @@ export interface followuptable {
   companyid:number;
   // followupId:string;
   leadstatus: string;
+  leadactivity:string,
+
 }
 @Injectable({
   providedIn: 'root'
