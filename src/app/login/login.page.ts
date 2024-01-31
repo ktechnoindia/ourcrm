@@ -48,6 +48,8 @@ myform:FormGroup;
         // Handle the response as needed
         this.session.setValue('userid',response.tid);
         this.session.setValue('token',response.access_token);
+        this.session.setValue('companyid',response.companyid);
+
         this.myform.reset();
         if(response.companyid===0 && response.role===1){
           this.navCtrl.navigateForward('/createcompany'); 
