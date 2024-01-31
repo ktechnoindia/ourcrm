@@ -31,7 +31,7 @@ export const environment = {
   addservice: 'saveservices',
   addgst: 'gst',
   addexecutive: 'saveExecutive',
-  addcompany: 'saveCompany',
+  addcompany: 'masters/saveCompany',
   addroleofexecutive: 'insert_insert_executive_roles',
   addaccount: 'accounts',
   additem: 'masters/insert_item',
