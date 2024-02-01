@@ -61,7 +61,8 @@ export class HsnManagerPage implements OnInit {
         this.formService.showFailedAlert();
       }
     );
-   
+               this.form.reset();
+
   } else{
     Object.keys(this.form.controls).forEach(controlName =>{
       const control = this.form.get(controlName);

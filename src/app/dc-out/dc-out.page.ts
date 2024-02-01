@@ -993,7 +993,7 @@ export class DcOutPage implements OnInit {
 
           this.formService.showSaveLoader()
           // location.reload()
-          this.myform.reset();
+          //this.myform.reset();
 
         },
         (error: any) => {

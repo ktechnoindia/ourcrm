@@ -73,9 +73,8 @@ export class CreateunitPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-      setTimeout(() => {
-        this.form.reset();
-      }, 1000)
+    this.form.reset();
+
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {

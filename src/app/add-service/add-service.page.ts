@@ -62,6 +62,8 @@ export class AddServicePage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
+   this.myform.reset();
+
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
