@@ -468,8 +468,8 @@ export class AddSalePage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.myform.reset();
-            location.reload()
+            this.myform.reset();
+            //location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);
@@ -1026,7 +1026,7 @@ export class AddSalePage implements OnInit {
 
           this.formService.showSaveLoader()
           // location.reload()
-          this.myform.reset();
+          //this.myform.reset();
 
         },
         (error: any) => {

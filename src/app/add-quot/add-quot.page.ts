@@ -1158,7 +1158,7 @@ selectedItemAttributes: any[] = [];
 
           this.formService.showSaveLoader()
           // location.reload()
-          this.myform.reset();
+          //this.myform.reset();
 
         },
         (error: any) => {

@@ -67,10 +67,8 @@ export class AddgroupPage implements OnInit {
         this.formService.showFailedAlert();
       }
     );
-    setTimeout(() => {
-      // Reset the form and clear input fields
-      this.form.reset();
-    }, 1000); 
+            this.form.reset();
+
   }   else {
     //If the form is not valid, display error messages
     Object.keys(this.form.controls).forEach(controlName => {
