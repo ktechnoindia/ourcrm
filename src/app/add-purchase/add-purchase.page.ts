@@ -227,6 +227,7 @@ export class AddPurchasePage implements OnInit {
   printThisPage() {
     window.print();
   }
+  
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -470,7 +471,7 @@ console.log('data of ',purchases)
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            //this.form.reset();
+            this.form.reset();
             // location.reload()
           },
           (error: any) => {

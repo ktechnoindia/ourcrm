@@ -52,6 +52,8 @@ export class ViewQuotPage implements OnInit {
     'pretax',
     'posttax',
     'total',
+    'attr1',
+
   ];
   selectedColumns: string[] = [
     'quoteNumber',
@@ -96,6 +98,7 @@ export class ViewQuotPage implements OnInit {
     'pretax': 'Pre-tax',
     'posttax': 'Post-tax',
     'total': 'Total',
+    'attr1':'Attribute 1'
   };
   
   manualHeaders: string[] = [];

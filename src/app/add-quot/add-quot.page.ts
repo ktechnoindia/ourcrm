@@ -353,19 +353,27 @@ selectedItemAttributes: any[] = [];
   }
   openQuantityPopover(quote: Quote) {
     this.purchasebyid$ = this.saleService.fetchallPurchaseById(quote.itemcode, 1);
+  
     this.purchasebyid$.subscribe(data => {
       console.log('purchase data', data);
       // Assuming that the purchase data is an array of objects
       this.purchaseData = data;
-    });
   
-    this.isQuantityPopoverOpen = true;
+      // Open the quantity popover after fetching purchase data
+      this.isQuantityPopoverOpen = true;
+  
+      // Assuming there is a form save operation here
+      // Perform the form save operation here or call a function to save the form
+      // Example: this.saveForm();
+    });
   }
   
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
 
   }
+ 
+  
   
   handleKeyDown(event: KeyboardEvent): void {
     // Check if the pressed key is Enter and Ctrl (or Command for Mac)
@@ -575,6 +583,8 @@ selectedItemAttributes: any[] = [];
             this.formService.showFailedAlert();
           }, 1000);
           this.formService.shoErrorLoader();
+          this.myform.reset();
+
         }
       );
 

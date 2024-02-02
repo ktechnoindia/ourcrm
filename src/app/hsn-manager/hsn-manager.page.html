@@ -23,23 +23,18 @@
           </ion-card-header>
         </div>
         <ion-grid>
-
-
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
             <ion-row style="margin-top: 5px;">
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="hsncode" formControlName="hsncode" name="hsncode" type="text"
                     label="HSN Code :" label-placement="floating" fill="outline"></ion-input>
-
                 </ion-row>
               </ion-col>
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="unit" formControlName="unit" name="unit" type="text" label="Unit :"
                     label-placement="floating" fill="outline"></ion-input>
-
                 </ion-row>
               </ion-col>
 
