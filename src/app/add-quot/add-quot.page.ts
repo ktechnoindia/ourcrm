@@ -19,6 +19,9 @@ import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
 import { SalesService } from '../services/sales.service';
+import { Pipe, PipeTransform } from '@angular/core';
+
+
 interface Quote {
 
   barcode: string;
@@ -1192,6 +1195,11 @@ selectedItemAttributes: any[] = [];
       }
     }
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 
 }

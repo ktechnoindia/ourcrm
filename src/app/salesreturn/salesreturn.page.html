@@ -228,16 +228,16 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                        type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
                       <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.grossrate" [value]="getgrossrate(sales) "
@@ -245,7 +245,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
                         (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -278,12 +278,12 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input [(ngModel)]="sales.discount" (ionBlur)="getdiscountp(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)"
                         (keyup)="getdiscountamt(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)"

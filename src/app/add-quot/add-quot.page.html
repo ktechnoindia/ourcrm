@@ -43,7 +43,7 @@
               <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Bill Formate --- " label-placement="floating" fill="outline" [(ngModel)]="billformate"
-                  name="billformate" formControlName="billformate" name="bill formate">
+                  name="billformate" formControlName="billformate" name="bill formate"searchable="true">
                   <!-- <option value="0" disabled selected>Bill Formate</option> Default option -->
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="1">2</ion-select-option>
@@ -76,7 +76,7 @@
               <ion-col class="ionselect" size-lg="3.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]="custcode"
-                  name="custname" formControlName="custname">
+                  name="custname" formControlName="custname" searchable="true">
                   <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
@@ -141,7 +141,7 @@
                     </td>
                     <td>
                       <select class="table_select" [(ngModel)]="quote.selectedItemId"
-                        [ngModelOptions]="{standalone: true}" (change)="getItems(quote)">
+                        [ngModelOptions]="{standalone: true}" (change)="getItems(quote)" >
                         <option value="0">Item Name</option> <!--//Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
@@ -178,23 +178,23 @@
                     </td>
                     <td>
                       <input [(ngModel)]="quote.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number"(keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number"(keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
                       <input [(ngModel)]="quote.netrate" [value]="getnetrate(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [value]="getgrossrate(quote)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number"(keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -223,11 +223,11 @@
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
                         [(ngModel)]="quote.discount" (ionBlur)="getdiscountp(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)">
                       <ng-template #amountField>
                         <input [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
                           [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
-                          type="number">
+                          type="number" (keydown)="onKeyDown($event)">
                       </ng-template>
                     </td>
 

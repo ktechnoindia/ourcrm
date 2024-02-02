@@ -1038,4 +1038,10 @@ export class SalesreturnPage implements OnInit {
       }
     }
   }
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }
