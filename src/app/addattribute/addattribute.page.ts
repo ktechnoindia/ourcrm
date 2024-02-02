@@ -25,27 +25,26 @@ export class AddattributePage implements OnInit {
 
   attname$: Observable<any[]>
   searchTerm: string = '';
-  filteredAttribute$: Observable<any[]> = new Observable<any[]>();
-  firstInvalidInput: any;
+  filteredAttribute$: Observable<any[]> = new Observable<any[]>(); 
 
-  constructor(private navCtrl: NavController, private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(private navCtrl: NavController,private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
       attname: ['', Validators.required],
-      searchTerm: ['']
+      searchTerm:['']
     })
     this.attname$ = this.addatt.getattribute(1);
   }
 
   async onSubmit() {
-    const companyid = 1
     const fields = {attname: this.attname}
     // const isValid = await this.formService.validateForm(fields);
     console.log('Your form data : ', this.myform.value);
     if (true) {
+
       
       let attdata: addattribute = {
         attname: this.myform.value.attname,
-        companyid: companyid,
+        companyid: 1
       };
       this.addatt.createAttribute(attdata, '', '').subscribe(
         (response: any) => {
@@ -59,17 +58,16 @@ export class AddattributePage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-      this.myform.reset();
+      setTimeout(() => {
+        this.myform.reset();
+      }, 1000);
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
         if (control?.invalid) {
           control.markAllAsTouched()
         }
-      });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
-      }
+      })
     }
 
   }
@@ -77,7 +75,7 @@ export class AddattributePage implements OnInit {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
-  onNew() {
+  onNew(){
     location.reload();
   }
 
@@ -94,7 +92,7 @@ export class AddattributePage implements OnInit {
   onSearchTermChanged(): void {
     this.filteredAttribute$ = this.filterCustomers();
   }
-
+ 
   ngOnInit() {
     this.filteredAttribute$ = this.attname$.pipe(
       debounceTime(300),
