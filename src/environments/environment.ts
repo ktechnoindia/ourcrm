@@ -48,7 +48,7 @@ export const environment = {
   fetchallexecuitve: 'saveExecutive',
   fetchallcompany: 'masters/getcompanys',
   fetchallledger: 'masters/ledgers',
-  addattribute: 'masters/insert_attribute',
+  addattribute: 'insert_attribute',
   adduser: 'adduser',
   addpass: 'password',
   fetchunit:'get_units',
