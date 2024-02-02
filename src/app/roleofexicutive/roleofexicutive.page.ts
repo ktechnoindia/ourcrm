@@ -108,6 +108,8 @@ export class RoleofexicutivePage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
+      this.form.reset();
+
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
