@@ -19,9 +19,6 @@ import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
 import { SalesService } from '../services/sales.service';
-import { Pipe, PipeTransform } from '@angular/core';
-
-
 interface Quote {
 
   barcode: string;
@@ -355,35 +352,19 @@ selectedItemAttributes: any[] = [];
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
   openQuantityPopover(quote: Quote) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(quote.itemcode, 1);
-  
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
-      console.log('purchase data', data);
-      // Assuming that the purchase data is an array of objects
-      this.purchaseData = data;
-  
-      // Open the quantity popover after fetching purchase data
-      this.isQuantityPopoverOpen = true;
-  
-      // Assuming there is a form save operation here
-      // Perform the form save operation here or call a function to save the form
-      // Example: this.saveForm();
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
     });
+    this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+    this.isQuantityPopoverOpen = true;
   }
   
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
 
-  }
- 
-  
-  
-  handleKeyDown(event: KeyboardEvent): void {
-    // Check if the pressed key is Enter and Ctrl (or Command for Mac)
-    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
-      event.preventDefault(); // Prevent default behavior (e.g., new line in textarea)
-      this.onSubmit(this.myform, this.quoteData);
-    }
   }
   closePopover() {
     // Close the popover and pass data back to the parent component
@@ -773,7 +754,7 @@ selectedItemAttributes: any[] = [];
   }
 
   onNew() {
-    location.reload();
+    this.myform.reset()
   }
  
   getTotalQuantity(): number {
@@ -1195,7 +1176,7 @@ selectedItemAttributes: any[] = [];
       }
     }
   }
-  onKeyDown(event: KeyboardEvent): void {
+ onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault();

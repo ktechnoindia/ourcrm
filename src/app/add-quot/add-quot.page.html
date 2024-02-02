@@ -38,12 +38,12 @@
         </div>
 
         <ion-grid>
-          <form (keydown)="handleKeyDown($event)" [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
+          <form  [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
             <ion-row>
               <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Bill Formate --- " label-placement="floating" fill="outline" [(ngModel)]="billformate"
-                  name="billformate" formControlName="billformate" name="bill formate"searchable="true">
+                  name="billformate" formControlName="billformate" name="bill formate" searchable="true">
                   <!-- <option value="0" disabled selected>Bill Formate</option> Default option -->
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="1">2</ion-select-option>
@@ -141,7 +141,7 @@
                     </td>
                     <td>
                       <select class="table_select" [(ngModel)]="quote.selectedItemId"
-                        [ngModelOptions]="{standalone: true}" (change)="getItems(quote)" >
+                        [ngModelOptions]="{standalone: true}" (change)="getItems(quote)">
                         <option value="0">Item Name</option> <!--//Default option -->
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
@@ -163,7 +163,6 @@
                       <input *ngIf="quote.itemcode !== 0" [(ngModel)]="quote.quantity"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
                         (keydown.enter)="openQuantityPopover(quote)">
-
                     </td>
                     <td>
                       <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -178,23 +177,24 @@
                     </td>
                     <td>
                       <input [(ngModel)]="quote.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number"(keydown)="onKeyDown($event)">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number"(keydown)="onKeyDown($event)">
+                        type="number" (keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
                       <input [(ngModel)]="quote.netrate" [value]="getnetrate(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text" (keydown)="onKeyDown($event)">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [value]="getgrossrate(quote)" [readonly]="true" class="table_input" type="number">
                     </td>
                     <td>
                       <input [(ngModel)]="quote.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number"(keydown)="onKeyDown($event)">
+                        type="number" (keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate, quote)"
                         (ngModelChange)="getItems(quote)" [(ngModel)]="quote.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -223,7 +223,8 @@
                     <td>
                       <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
                         [(ngModel)]="quote.discount" (ionBlur)="getdiscountp(quote)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                       <ng-template #amountField>
                         <input [(ngModel)]="quote.discountamt" (keyup)="getdiscountamt(quote)"
                           [value]="getdiscountamt(quote)" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -454,14 +455,22 @@
                       <tr *ngFor="let quote of purchasebyid$ | async; let i = index">
                         <td>{{i + 1}}</td>
                         <td><ion-checkbox [(ngModel)]="selectedRows" [value]="i"></ion-checkbox></td>
-                        <td><input type="text" formControlName="attr1" [(ngModel)]="quote.attr1" name="attr1" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr2" [(ngModel)]="quote.attr2" name="attr2" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr3" [(ngModel)]="quote.attr3" name="attr3" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr4" [(ngModel)]="quote.attr4" name="attr4" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr5" [(ngModel)]="quote.attr5" name="attr5" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr6" [(ngModel)]="quote.attr6" name="attr6" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr7" [(ngModel)]="quote.attr7" name="attr7" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr8" [(ngModel)]="quote.attr8" name="attr8" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr1" [(ngModel)]="quote.attr1" name="attr1"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr2" [(ngModel)]="quote.attr2" name="attr2"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr3" [(ngModel)]="quote.attr3" name="attr3"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr4" [(ngModel)]="quote.attr4" name="attr4"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr5" [(ngModel)]="quote.attr5" name="attr5"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr6" [(ngModel)]="quote.attr6" name="attr6"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr7" [(ngModel)]="quote.attr7" name="attr7"
+                            class="pop_input"></td>
+                        <td><input type="text" formControlName="attr8" [(ngModel)]="quote.attr8" name="attr8"
+                            class="pop_input"></td>
                       </tr>
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
