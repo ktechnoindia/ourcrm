@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SessionService } from './session.service';
 
 
 
@@ -40,7 +41,7 @@ export class PaymentService {
   }
   private apiUrl = 'http://103.154.184.66:8000/account';
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient,private session:SessionService) { }
 
   createPayment(payment: pay[], key: string, user: string) {
     return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': key, 'user': user } })
@@ -56,8 +57,10 @@ export class PaymentService {
   }
 
   getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+
     const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
-    return this.httpclient.get(url);
+    return this.httpclient.get(url, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 }
 
