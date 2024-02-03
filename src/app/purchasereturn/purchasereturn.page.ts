@@ -17,6 +17,8 @@ import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { DistrictsService } from '../services/districts.service';
 import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
+import { SalesService } from '../services/sales.service';
+
 interface Purchase {
   barcode: string;
   itemcode: number;
@@ -40,6 +42,26 @@ interface Purchase {
   taxrate1: number;
   itemid: number;
   selectedItemId: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid:number,
+    itemcode:number,
+  }[],
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
 }
 @Component({
   selector: 'app-purchasereturn',
@@ -63,6 +85,7 @@ export class PurchasereturnPage implements OnInit {
   ponumber: string = '';
   gstin: string = '';
   payment: number = 0;
+  itemcode:number=0;
 
   //table data
   /* barcode: string = '';
@@ -123,7 +146,28 @@ export class PurchasereturnPage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId: 0
+    selectedItemId: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7:'',
+      attr8:'',
+      companyid:0,
+      itemcode:0,
+    }],
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
+
   }];
   ttotal!: number;
   itemid: number = 0;
@@ -167,8 +211,14 @@ export class PurchasereturnPage implements OnInit {
   isOpen = false;
   vend: any;
 
+  quantity: number = 0; // Initial value can be set based on your requirements
+  purchasebyid$ :Observable<any[]>
+  isQuantityPopoverOpen: boolean=false;
 
-  constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
+  printThisPage() {
+    window.print();
+  }
+  constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -179,8 +229,9 @@ export class PurchasereturnPage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
+    this.purchasebyid$=new Observable;
 
-
+   
     this.myform = this.formBuilder.group({
       billformate: [''],
       billNumber: ['', Validators.required],
@@ -239,6 +290,14 @@ export class PurchasereturnPage implements OnInit {
       ttotal: [''],
       companyid: [0],
       userid: [0],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
     });
     this.vendorpop = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -278,7 +337,19 @@ export class PurchasereturnPage implements OnInit {
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
-
+  openQuantityPopover(purchase: Purchase) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
+    this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+    this.isQuantityPopoverOpen = true;
+  }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
+  }
   closePopover() {
     // Close the popover and pass data back to the parent component
     this.popoverController.dismiss({
@@ -325,7 +396,18 @@ export class PurchasereturnPage implements OnInit {
         const companyid = 1;
         const userid = 1;
         let purchases: purchasereturnstore[] = [];
-
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid:companyid,
+          itemcode:element.itemcode,
+        }))
         let purchasedata: purchasereturnstore = {
           billNumber: this.myform.value.billNumber,
           billDate: this.myform.value.billDate,
@@ -379,7 +461,9 @@ export class PurchasereturnPage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
-          exicutive: 0
+          exicutive: 0,
+          quantityPopoverData: attributesArray,
+
         };
 
         purchases.push(purchasedata);
@@ -390,8 +474,8 @@ export class PurchasereturnPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.form.reset();
-            location.reload()
+             this.form.reset();
+            //location.reload()
           },
           (error: any) => {
             console.log('POST request failed', error);
@@ -444,6 +528,26 @@ export class PurchasereturnPage implements OnInit {
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7:'',
+        attr8:'',
+        companyid:0,
+        itemcode:0,
+      }],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
 
     }];
   }
@@ -472,6 +576,14 @@ export class PurchasereturnPage implements OnInit {
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
+          purchase.attribute1= itemDetails.attr1,
+          purchase.attribute2= itemDetails.attr2,
+          purchase.attribute3= itemDetails.attr3,
+          purchase.attribute4= itemDetails.attr4,
+          purchase.attribute5= itemDetails.attr5,
+          purchase.attribute6= itemDetails.attr6,
+          purchase.attribute7= itemDetails.attr7,
+          purchase.attribute8= itemDetails.attr8,
           // Update form control values
           this.myform.patchValue({
             itemcode: purchase.itemcode,
@@ -547,7 +659,16 @@ export class PurchasereturnPage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -735,6 +856,19 @@ export class PurchasereturnPage implements OnInit {
     return this.getTotaltax(purchase);
   }
   ngOnInit() {
+    this.purchaseData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid:0,
+      itemcode:0
+      // Add more properties as needed
+    }));
     // Other initialization logic...
 
     // Subscribe to value changes of basicrate, taxrate, and discount
@@ -903,5 +1037,10 @@ export class PurchasereturnPage implements OnInit {
       }
     }
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }

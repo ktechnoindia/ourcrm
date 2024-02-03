@@ -202,3 +202,19 @@ ion-popover{
   --offset-y:80px;
   --offset-x:-80px;
 }
+
+.quantity{
+  --height:450px;
+  // --width:500px
+  --offset-y:40px;
+  --offset-x:-50px;
+}
+.quantity input{
+  border: none;
+  outline: none;
+  width: 80px;
+}
+
+.attributes th input{
+background-color: transparent;
+}

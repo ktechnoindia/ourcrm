@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { Observable, combineLatest, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
 import jsPDF from 'jspdf';
@@ -45,6 +45,9 @@ export class ViewitemPage implements OnInit {
 
 
   items$: Observable<any[]>;
+  itemTypes$: Observable<any[]>;
+  items: any[] = [];
+
   searchTerm: string = '';
   filteredItems$: Observable<any[]> = new Observable<any[]>();
   columnHeaders: { [key: string]: string } = {
@@ -114,7 +117,21 @@ export class ViewitemPage implements OnInit {
 
   constructor(private additem: AdditemService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
     const compid = '1';
+    this.itemTypes$ = this.additem.fetchitemtype(encService.encrypt(compid), '', ''); // Add a method in your service to fetch item types
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid), '', '');
+    combineLatest([this.items$, this.itemTypes$]).subscribe(([items, itemTypes]) => {
+      // Create a mapping of itemtypeid to itemtypename
+      const itemTypeMapping = itemTypes.reduce((acc, itemType) => {
+        acc[itemType.itemtypeid] = itemType.itemtypename;
+        return acc;
+      }, {});
+
+      // Add itemtypename to the items data
+      this.items = items.map(item => ({
+        ...item,
+        itemtypename: itemTypeMapping[item.itemtype] || ''
+      }));
+    })
     console.log(this.items$);
 
 

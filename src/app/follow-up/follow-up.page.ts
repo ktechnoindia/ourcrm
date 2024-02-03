@@ -45,6 +45,7 @@ export class FollowUpPage implements OnInit {
   searchTerm: string = '';
   filteredFollowups$: Observable<any[]> = new Observable<any[]>();
   followups: any;
+
   // FollowUpPage class ke andar
   selectedRow: {
     srNo?: number,
@@ -58,14 +59,19 @@ export class FollowUpPage implements OnInit {
     selectpd?: string,
     remark?: string,
     nextfollowupDate?: string
-    leadstatus:string,
+    leadstatus: string,
+    leadactivity?: string;
+
   } = {
-    leadstatus: ''
-  };
+      leadstatus: '',
+     leadactivity:'',
+
+    };
   leadstatus: number = 0;
   rangeValue: number = 0; // Initial value for ion-range
+  leadactivity: string='';
 
-  constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService,private navCtrl: NavController) {
+  constructor(private productService: AdditemService, private executiveService: ExecutiveService, private datePipe: DatePipe, private followService: FollowupService, private formService: FormValidationService, private router: Router, private toastCtrl: ToastController, private followup: FollowupService, private formBuilder: FormBuilder, private encService: EncryptionService, private leadser: LeadService, private navCtrl: NavController) {
     const compid = '1';
     const custid = '1';
     const leadid = '1';
@@ -81,7 +87,7 @@ export class FollowUpPage implements OnInit {
       lid: 0,
       followupdate: [''],
       leadstatus: [this.leadstatus],
-
+      leadactivity:[this.leadactivity],
     })
 
   }
@@ -114,7 +120,8 @@ export class FollowUpPage implements OnInit {
       selectpd: leadscore.selectpd,
       remark: leadscore.rmark,
       nextfollowupDate: leadscore.nextfollowupDate,
-      leadstatus:leadscore.leadstatus,
+      leadstatus: leadscore.leadstatus,
+      leadactivity:leadscore.leadactivity,
     };
   }
 
@@ -135,7 +142,6 @@ export class FollowUpPage implements OnInit {
 
     if (await this.formService.validateForm(fields)) {
       const followupdata: followuptable = {
-
         nextfollowupDate: this.myform.value.nextfollowupDate,
         remark: this.myform.value.remark,
         followupdate: this.myform.value.followupdate,
@@ -143,8 +149,8 @@ export class FollowUpPage implements OnInit {
         leadid: this.myform.value.lid,
         companyid: 1,
         custid: 1,
-        leadstatus: this.myform.value.leadstatus,
-
+        leadstatus:this.myform.value.leadstatus,
+        leadactivity: this.myform.value.leadactivity,
       };
 
 
@@ -156,10 +162,10 @@ export class FollowUpPage implements OnInit {
           }, 1000);
           this.formService.showSaveLoader();
           this.myform.reset();
-      
+
           // Add the new follow-up data to the array
           this.followups.push(response);
-      
+
           // If you are using observables, you might need to refresh the observable here
           // Example: this.followups$ = this.followService.getFollowups();
         },
@@ -169,7 +175,7 @@ export class FollowUpPage implements OnInit {
             this.formService.showFailedAlert();
           }, 100);
           this.formService.shoErrorLoader();
-          
+
         }
       );
     }
@@ -187,7 +193,7 @@ export class FollowUpPage implements OnInit {
     }
   }
 
-  onNew(){
+  onNew() {
     //location.reload();
   }
 
@@ -230,12 +236,13 @@ export class FollowUpPage implements OnInit {
   }
   updateProgressBar() {
     // If "Not Interested" is selected, set the range value to 0
-    if (this.leadstatus === 1) {
+    if (String(this.leadstatus) === '1') {
       this.rangeValue = 0;
     } else {
       // Increment of 25% for other lead statuses
-      this.rangeValue = (this.leadstatus - 1) * 25;
+      this.rangeValue = (parseInt(String(this.leadstatus), 10) - 1) * 25;
     }
   }
   
+
 }

@@ -20,6 +20,7 @@ import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
+import { SalesService } from '../services/sales.service';
 
 
 interface Dcin {
@@ -46,6 +47,27 @@ interface Dcin {
   itemid: number;
   selectedItemId: number;
   totaltaxamount: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid:number,
+    itemcode:number,
+  }[],
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
+
 }
 @Component({
   selector: 'app-dc-in',
@@ -65,6 +87,7 @@ export class DcInPage implements OnInit {
   referenceNumber: number = 0;
   refdate: string = '';
   ponumber: string = '';
+  itemcode:number=0;
 
   totalitemno:number = 0;
   totalquantity: number = 0;
@@ -108,6 +131,26 @@ discount:number=0;
     itemid: 0,
     selectedItemId: 0,
     totaltaxamount: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7:'',
+      attr8:'',
+      companyid:0,
+      itemcode:0,
+    }],
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
 
   }];
 
@@ -146,8 +189,20 @@ isOpen = false;
   states$: Observable<any[]>;
   districts$: Observable<any[]>
   vendorpop: FormGroup;
-
-  constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
+  isQuantityPopoverOpen: boolean=false;
+  quantity: number=0;
+  printThisPage() {
+    window.print();
+  }
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
+  constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
    // this.cdr.detectChanges();
     const compid = '1';
     const id = 1;
@@ -160,7 +215,7 @@ isOpen = false;
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
 
-
+  
     this.myform = this.formBuilder.group({
       voucherformat: [''],
       voucherNumber: ['', Validators.required],
@@ -209,7 +264,23 @@ isOpen = false;
       credit: [''],
 
       ttotal: [''],
-      itemid: ['']
+      itemid: [''],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
     })
 
     this.vendorpop = this.formBuilder.group({
@@ -249,7 +320,14 @@ isOpen = false;
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
-
+  openQuantityPopover(dcin: Dcin) {
+    this.dcinData[0].quantityPopoverData = new Array(dcin.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+    this.isQuantityPopoverOpen = true;
+  }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
+  }
   closePopover() {
     // Close the popover and pass data back to the parent component
     this.popoverController.dismiss({
@@ -307,7 +385,26 @@ isOpen = false;
       itemid: 0,
       selectedItemId: 0,
       totaltaxamount: 0,
-
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7:'',
+        attr8:'',
+        companyid:0,
+        itemcode:0,
+      }],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
     }];
   }
 
@@ -337,7 +434,18 @@ isOpen = false;
         const companyid = 1;
         const userid = 1;
         let decindatas: dcinstore[] = [];
-
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid:companyid,
+          itemcode:element.itemcode,
+        }))
         let dcindata: dcinstore = {
           voucherformat: this.myform.value.voucherformat,
           voucherNumber: this.myform.value.voucherNumber,
@@ -383,6 +491,8 @@ isOpen = false;
           companyid: companyid,
           userid: userid,
           ponumber: this.myform.value.ponumber,
+          quantityPopoverData: attributesArray,
+
         }
         
         decindatas.push(dcindata);
@@ -394,8 +504,8 @@ isOpen = false;
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.myform.reset();
-            location.reload();
+            this.myform.reset();
+            //location.reload();
           },
           (error: any) => {
             console.log('POST request failed', error);
@@ -444,7 +554,14 @@ isOpen = false;
           dcin.mrp = itemDetails.mrp;
           dcin.basicrate = itemDetails.basic_rate;
           dcin.netrate = itemDetails.net_rate;
-
+          dcin.attribute1= itemDetails.attr1,
+          dcin.attribute2= itemDetails.attr2,
+          dcin.attribute3= itemDetails.attr3,
+          dcin.attribute4= itemDetails.attr4,
+          dcin.attribute5= itemDetails.attr5,
+          dcin.attribute6= itemDetails.attr6,
+          dcin.attribute7= itemDetails.attr7,
+          dcin.attribute8= itemDetails.attr8,
           // Update form control values
           this.myform.patchValue({
             itemcode: dcin.itemcode,
@@ -520,7 +637,15 @@ isOpen = false;
       itemid: 0,
       selectedItemId: 0,
       totaltaxamount: 0,
-
+      quantityPopoverData: this.dcinData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
       // Add more properties as needed
     };
     this.dcinData.push(newRow);
@@ -716,6 +841,19 @@ return this.totalquantity;
     return totalAmount;
 }
   ngOnInit() {
+    this.dcinData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid:0,
+      itemcode:0
+      // Add more properties as needed
+    }));
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
@@ -855,6 +993,11 @@ return this.totalquantity;
     }
   }
 
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 
 }

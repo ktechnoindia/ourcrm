@@ -33,7 +33,7 @@ export interface rec {
   providedIn: 'root'
 })
 export class RecepitService {
-  private apiUrl = 'http://103.154.184.66:8000/actions';
+  private apiUrl = 'http://103.154.184.66:8000/account';
   constructor(private httpclient: HttpClient) { }
 
   createRecepit(recepit: rec[], key: string, user: string) {

@@ -68,4 +68,31 @@ ion-content {
   
 
  
-      
+  .table-container {
+    width: 800px;
+    overflow-x: auto;
+    margin: 10px auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 1px;
+    text-align: center;
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #abf5ff;
+  }
+  
+  input.pop_input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  

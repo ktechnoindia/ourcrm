@@ -276,6 +276,7 @@ export class AddItemPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
+         this.myform.reset();
 
     } else {
       //If the form is not valid, display error messages

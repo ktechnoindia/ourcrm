@@ -12,22 +12,40 @@
           </ion-card-header>
         </div>
         <ion-grid>
+         
           <ion-row style="margin-top: 5px;">
-
-            <ion-col size-lg="2" size-md="6" size-sm="5" size="5">
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" name="formDate" type="date" label="From Date :" label-placement="floating"
-                  fill="outline" id="startDate" name="startDate"></ion-input>
+                <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size-lg="2" size-md="6" size-sm="5" size="5">
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-input color="warning" name="toDate" type="date" label="To Date :" label-placement="floating"
-                  fill="outline" id="endDate" name="endDate"></ion-input>
+                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            <ion-col size-lg="1" size-md="2" size-sm="2" size="2" class="custom-primary">
-              <ion-button style="justify-content: right;" expand="block">Ok</ion-button>
+            <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+              <ion-button type="submit" expand="block" (click)="filterData()">Ok</ion-button>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                <ion-select-option value="today">Today</ion-select-option>
+                <ion-select-option value="monthly">Monthly</ion-select-option>
+                <ion-select-option value="quartly">Quartly</ion-select-option>
+                <ion-select-option value="anually">Anually</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                <ion-select-option value="Standard">Standard</ion-select-option>
+                <ion-select-option value="PartyWise">PartyWise</ion-select-option>
+                <ion-select-option value="ItemWise">ItemWise</ion-select-option>
+                <ion-select-option value="Detailed">Detailed</ion-select-option>
+              </ion-select>
             </ion-col>
           </ion-row>
 
@@ -78,6 +96,16 @@
 
               </table>
             </div>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;">
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                color="secondry"></ion-icon>Print</ion-button>
+            <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                color="secondry"></ion-icon>Export To PDF</ion-button>
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                color="secondry"></ion-icon>Preview</ion-button>
+            <!-- <ion-button size="small" (click)="generateExcelReport()"><ion-icon name="grid"slot="end" size="small"
+              color="secondry"></ion-icon>Export Excel</ion-button> -->
           </ion-row>
         </ion-grid>
       </ion-card-content>

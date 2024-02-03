@@ -57,6 +57,18 @@ export interface salesstore {
   ttotal: number;
   companyid:number;
   userid:number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+    companyid:number;
+    itemcode:number;
+  }[];
 }
 @Injectable({
   providedIn: 'root'
@@ -74,4 +86,8 @@ export class SalesService {
     console.log('companyyy '+companyid);
     return this.httpclient.get(environment.apiactionurl+environment.fetchallsales+'?p='+companyid,{headers:{'key':key,'user':user}})
   }
+  fetchallPurchaseById(itemcode:number,companyid:number): Observable<any> {
+    console.log('companyyy '+companyid);
+    return this.httpclient.get(environment.apiactionurl + environment.fetchpurchasebyid+ '?itemcode='+itemcode+'&companyid='+companyid)  }
+
 }

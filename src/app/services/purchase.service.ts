@@ -59,7 +59,18 @@ export interface purchasestore {
   itemid:number;
   userid:number;
   executive:string;
-
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+    companyid:number;
+    itemcode:number;
+  }[];
 }
 @Injectable({
   providedIn: 'root'
@@ -74,4 +85,8 @@ export class PurchaseService {
     console.log('companyyy ' + companyid);
     return this.httpclient.get(environment.apiactionurl + environment.fetchallpurchase + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
   }
+
+  fetchPurchaseById(itemcode:number,companyid:number): Observable<any> {
+    const apiUrl = `http://103.154.184.66:8000/actions/get_purchase_byid?itemcode=${itemcode}&companyid=${companyid}`;
+    return this.httpclient.get(apiUrl);  }
 }

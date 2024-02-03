@@ -53,72 +53,7 @@
                   </tbody>
                 </table>
                 
-                <!-- <table style="width: 2000px;overflow-x:auto;overflow-y: auto;">
-                    <thead>
-                      <tr>
-                        <th>Sr. No.</th>
-                        <th >Code</th>
-                        <th >Name</th>
-                        <th >GSTIN</th>
-                        <th>Mobile No.</th>
-                        <th >WhatsApp No.</th>
-                        <th>Email</th>
-                        <th >Country</th>
-                        <th>State</th>
-                        <th>District</th>
-                        <th >Pincode</th>
-                        <th >Full Address</th>
-                        <th >Aadhar Number</th>
-                        <th >PAN Number</th>
-                        <th >Udhyog Aadhar Number</th>
-                        <th >Account Number</th>
-                        <th >IFSC Code</th>
-                        <th >Bank Name</th>
-                        <th >Branch Name</th>
-                        <th >Card No.</th>
-                        <th >Credit Period</th>
-                        <th >Credit Limit</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
-
-                        <td>{{ i + 1 }}</td>
-                        <td>{{customer.customer_code}}</td>
-                        <td>{{customer.name}}</td>
-                        <td>{{customer.gstin}}</td>
-                        <td>{{customer.mobile}}</td>
-                        <td>{{customer.whatsapp_number}}</td>
-                        <td>{{customer.email}}</td>
-                        <td>{{customer.countryid}}</td>
-                        <td>{{customer.stateid}}</td>
-                        <td>{{customer.districtid}}</td>
-                        <td>{{customer.pincode}}</td>
-                        <td>{{customer.address}}</td>
-                        <td>{{customer.aadhar_no}}</td>
-                        <td>{{customer.pan_no}}</td>
-                        <td>{{customer.udhyog_aadhar}}</td>
-                        <td>{{customer.account_number}}</td>
-                        <td>{{customer.ifsc_code}}</td>
-                        <td>{{customer.bank_name}}</td>
-                        <td>{{customer.branch_name}}</td>
-                        <td>{{customer.card_number}}</td>
-                        <td>{{customer.credit_period}}</td>
-                        <td>{{customer.credit_limit}}</td>
-                        <td class="Action">
-                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                          <ion-icon color="primary" icon-only name="create"></ion-icon>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td colspan="3"><p>Total : <span  style="margin-left: 10px;">{{totalItems }}</span> </p></td>
-                      </tr>
-                    </tbody>
-
-                  </table>  -->
-              </div>
+           </div>
               <div [attr.colspan]="selectedColumns.length + 1" class="total">
                 <p >Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
               </div>

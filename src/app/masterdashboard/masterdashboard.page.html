@@ -190,8 +190,8 @@
 
   <ion-grid>
     <ion-row class="lead_details">
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('customerlist')">
+      <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('customerlist')">
+        <div class="table-container" >
           <p>Customer List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           <div class="scroll-container">
@@ -221,8 +221,8 @@
           </div>
         </div>
       </ion-col>
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('vendorlist')">
+      <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('vendorlist')">
+        <div class="table-container" >
           <p>Supplier List</p>
           <ion-searchbar class="customs"  [(ngModel)]="searchTerms" (ionInput)="onSearchTermSupplier()"></ion-searchbar>
           <div class="scroll-container">
@@ -245,10 +245,9 @@
           </div>
         </div>
       </ion-col>
-    </ion-row>
-    <ion-row class="">
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('executivelist')">
+  
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('executivelist')">
+        <div class="table-container" >
           <p>Executive List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchTerms1" (ionInput)="onSearchTermExecutive()"></ion-searchbar>
           <div class="scroll-container">
@@ -273,8 +272,8 @@
           </div>
         </div>
       </ion-col>
-      <ion-col class="table_data" size="12" size-lg="6">
-        <div class="table-container" *ngIf="selectedOptions.includes('itemlist')">
+      <ion-col class="table_data" size="12" size-lg="6" *ngIf="selectedOptions.includes('itemlist')">
+        <div class="table-container" >
           <p>Item List</p>
           <ion-searchbar class="customs" [(ngModel)]="searchTerms2" (ionInput)="onSearchTermItem()"></ion-searchbar>
           <div class="scroll-container">

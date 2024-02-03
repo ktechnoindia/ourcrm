@@ -30,19 +30,8 @@
                   [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
                 <ion-row style="padding: 10px;">
                   <div class="scroll-container">
-
                     <table style="width: 100%;overflow-x:auto;overflow-y: auto;">
                       <tr>
-                        <!-- <th>Sr.No.</th> -->
-                        <!-- <th>Contact Person</th> -->
-                        <!-- <th>Country</th>
-                        <th>State</th>
-                        <th>City </th> -->
-                        <!-- <th>Address</th> -->
-                        <!-- <th>Pincode</th>
-                        <th>Email ID</th> -->
-                        <!-- <th>Lead Source</th>-->
-                        <!-- <th>Remark</th>   -->
                         <th>Lead ID</th>
                         <th>Lead Date</th>
                         <th>Company Name</th>
@@ -53,17 +42,6 @@
                       </tr>
                       <tr (click)="showDetails(leadscore)"
                         *ngFor="let leadscore of filteredFollowups$ | async; let i = index">
-                        <!-- <td>{{i+1}}</td> -->
-
-                        <!-- <td>{{leadscore.catPerson}}</td> -->
-                        <!-- <td>{{leadscore.selectedCountry}}</td>
-                          <td>{{leadscore.selectedState}}</td>
-                          <td>{{leadscore.selectedDistrict}}</td> -->
-                        <!-- <td> {{leadscore.fulladdress}}</td> -->
-                        <!-- <td>{{leadscore.pncode}}</td> -->
-                        <!-- <td>{{leadscore.emails}}</td>-->
-                        <!-- <td>{{leadscore.lscore}}</td> -->
-                        <!-- <td>{{leadscore.rmark}}</td>  -->
                         <td>{{leadscore.tid}}</td>
                         <td>{{leadscore.crdate | date:'dd/MM/YYYY'}}</td>
                         <td>{{leadscore.companyname}}</td>
@@ -71,8 +49,6 @@
                         <td>{{leadscore.selectpd}}</td>
                         <td>{{leadscore.leadtype}}</td>
                         <td>{{leadscore.executivename}}</td>
-
-
                       </tr>
 
                     </table>
@@ -87,7 +63,8 @@
                   <ion-label>List Of Follow-Up :</ion-label>
                 </ion-row>
                 <ion-item>
-                  <ion-range aria-label="Custom range" [min]="0" [max]="100" [value]="rangeValue" [pin]="true" [ticks]="true" [snaps]="true"></ion-range>
+                  <ion-range aria-label="Custom range" [min]="0" [max]="100" [value]="rangeValue" [pin]="true"
+                    [ticks]="true" [snaps]="true"></ion-range>
 
                 </ion-item>
                 <div *ngIf="selectedRow" class="compname">
@@ -99,32 +76,11 @@
                   <ion-row style="overflow-x:auto;">
                     <div class="scroll-container1">
                       <table style="overflow-x:auto; width: 100%;">
-                        <!-- <tr>
-                          <th >
-                            Company Name
-                          </th>
-                          <td  *ngIf="selectedRow">
-                            {{selectedRow.companyname}}
-                          </td>
-                          <th >
-                            Lead Id
-                          </th>
-                          <td  *ngIf="selectedRow">{{selectedRow.tid}}</td>
-                        
-                        </tr> -->
                         <tr>
                           <th>SR. No.</th>
                           <th>Date</th>
-                          <th>Remark</th>
-                          <!-- <th>followupId</th> -->
-                          <!-- <th style="width: 80px;">Company Name</th> -->
-                          <!-- <th style="width: 75px !important;">Lead Id</th>
-                          <th style="width: 80px;">Company Name</th>
-                          <th style="width: 80px;">Lead Date</th> -->
-                          <!-- <th style="width: 80px;">Product</th> -->
-                          <!-- <th style="width: 80px;">Phone</th> -->
-                          <!-- <th>Address</th> -->
-                          <!-- <th style="width: 70px;">Entered By</th> -->
+                          <th>Remark</th>                 
+                          <th>Lead Activity</th>
                           <th>Lead Status</th>
                           <th>Next Follow-Up</th>
                           <th>Update By</th>
@@ -135,14 +91,7 @@
                             <td>{{i+1}}</td>
                             <td>{{followup.followupdate}}</td>
                             <td>{{followup.remark}}</td>
-                            <!-- <td>{{selectedRow.srNo}}</td> -->
-                            <!-- <td>{{selectedRow.tid}}</td>
-                            <td>{{selectedRow.companyname}}</td>
-                            <td>{{selectedRow.crdate}}</td> -->
-                            <!-- <td>{{selectedRow.executivename}}</td> -->
-                            <!-- <td>{{selectedRow.phone}}</td> -->
-                            <!-- <td>{{selectedRow.fulladdress}}</td> -->
-                            <!-- <td>{{selectedRow.selectpd}}</td> -->
+                            <td>{{followup.leadactivity}}</td>
                             <td>{{followup.leadstatus}}</td>
                             <td>{{followup.nextfollowupDate}}</td>
                             <td>{{followup.enterdby}}</td>
@@ -157,7 +106,30 @@
 
                 <div>
                   <ion-row style="padding:0px 10px;">
-                    <ion-col size-lg="3" size-md="3" size-sm="3" size="6">
+                    <ion-col size-lg="4" size-md="4" size-sm="4" size="6">
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                        label="---Lead Status---" label-placement="floating" fill="outline" [(ngModel)]="leadstatus"
+                        formControlName="leadstatus" name="leadstatus" (ionChange)="updateProgressBar()">
+                        <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
+                        <ion-select-option id="2" value="Cold/Initiate">Cold/Initiate</ion-select-option>
+                        <ion-select-option id="3" value="Warm/Intalk">Warm/Intalk</ion-select-option>
+                        <ion-select-option id="4" value="Hot/Intersted">Hot/Intersted</ion-select-option>
+                        <ion-select-option id="5" value="Order Closed">Order Closed</ion-select-option>
+                        <ion-select-option id="1" value="Not Interested">Not Interested</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size-lg="4" size-md="4" size-sm="4" size="6">
+                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                        label="---Lead Activity" label-placement="floating" fill="outline" [(ngModel)]="leadactivity"
+                        formControlName="leadactivity" name="leadactivity" (ionChange)="updateProgressBar()">
+                        <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
+                        <ion-select-option id="1" value="oncall">On Call</ion-select-option>
+                        <ion-select-option id="2" value="byemail">By Email</ion-select-option>
+                        <ion-select-option id="3" value="onwhatsapp">On WhatsApp</ion-select-option>
+                        <ion-select-option id="4" value="onsitevisit">OnSite Visit</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size-lg="4" size-md="4" size-sm="4" size="6">
                       <ion-row>
                         <ion-input [(ngModel)]="nextfollowupDate" formControlName="nextfollowupDate"
                           name="nextfollowupDate" type="date" label="Next Follow-Up Date :" label-placement="floating"
@@ -165,19 +137,9 @@
                         <ion-input [(ngModel)]="lid" formControlName="lid" name="lid" type="hidden"></ion-input>
                       </ion-row>
                     </ion-col>
-                    <ion-col size-lg="3.5" size-md="3" size-sm="3" size="6">
-                      <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                        label="---Lead Status---" label-placement="floating" fill="outline" [(ngModel)]="leadstatus"
-                        formControlName="leadstatus" name="leadstatus" (ionChange)="updateProgressBar()">
-                        <!-- <ion-select-option value="0"> --- Lead Type --- </ion-select-option> -->
-                        <ion-select-option value="2">Cold/Initiate</ion-select-option>
-                        <ion-select-option value="3">Warm/Intalk </ion-select-option>
-                        <ion-select-option value="4">Hot/Intersted</ion-select-option>
-                        <ion-select-option value="5">Order Closed </ion-select-option>
-                        <ion-select-option value="1">Not Interested </ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                    <ion-col size-lg="5.5" size-md="6" size-sm="6" size="12">
+                  </ion-row>
+                  <ion-row style="padding:0px 10px;">
+                    <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
                       <ion-textarea [(ngModel)]="remark" formControlName="remark" label-placement="floating"
                         fill="outline" name="remark" type="text" label="Remark :"></ion-textarea>
                     </ion-col>

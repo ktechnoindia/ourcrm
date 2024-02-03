@@ -284,13 +284,13 @@ export class CompanydashboardPage implements OnInit {
     return this.lead$.pipe(
       map(leads =>
         leads.filter(lead =>
-          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchlead.toLowerCase()))
         )
       )
     );
   }
   onSearchLeadTerm(): void {
-    this.filteredLeads$ = this.filterCustomers();
+    this.filteredLeads$ = this.filterLead();
   }
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(

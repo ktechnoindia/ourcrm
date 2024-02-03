@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -20,11 +20,12 @@ import { StateService } from '../services/state.service';
 interface Purchase {
   barcode: string;
   itemcode: number;
+
   itemname: string,
   description: string;
   quantity: number;
   unitname: string;
-  hunitname:number;
+  hunitname: number;
   mrp: number;
   basicrate: number;
   netrate: number;
@@ -39,7 +40,28 @@ interface Purchase {
   total: number;
   taxrate1: number;
   itemid: number;
-  selectedItemId:number;
+  selectedItemId: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid:number,
+    itemcode:number,
+  }[],
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
+
 }
 @Component({
   selector: 'app-add-purchase',
@@ -64,7 +86,7 @@ export class AddPurchasePage implements OnInit {
   orderDate: string = '';
   orderNumber: string = '';
   ponumber: string = '';
-  gstin: string='';
+  gstin: string = '';
   payment: number = 0;
 
   //table data
@@ -87,21 +109,21 @@ export class AddPurchasePage implements OnInit {
    totaltax: number = 0;
    total: string = '';
    */
-  totalitemno:  number = 0;
-  totalquantity:  number = 0;
-  totalgrossamt:  number = 0;
+  totalitemno: number = 0;
+  totalquantity: number = 0;
+  totalgrossamt: number = 0;
   totaldiscountamt: number = 0;
   totaltaxamount: number = 0;
-  totalnetamount:  number = 0;
+  totalnetamount: number = 0;
 
-  roundoff:  number = 0;
-  pretax:  number = 0;
-  posttax:  number = 0;
+  roundoff: number = 0;
+  pretax: number = 0;
+  posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
   openingbalance: number = 0;
   closingbalance: number = 0;
-  debit:  number = 0;
+  debit: number = 0;
   credit: number = 0;
   executive: number = 0;
   purchaseData: Purchase[] = [{
@@ -110,7 +132,7 @@ export class AddPurchasePage implements OnInit {
     itemname: '',
     description: '',
     quantity: 0,
-    hunitname:0,
+    hunitname: 0,
     unitname: '',
     mrp: 0,
     basicrate: 0,
@@ -126,12 +148,32 @@ export class AddPurchasePage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId:0
+    selectedItemId: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid:0,
+      itemcode:0
+    }] ,
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
   }];
   ttotal!: number;
   itemid: number = 0;
-  companyid:number=0;
-  userid:number=0;
+  companyid: number = 0;
+  userid: number = 0;
   purchase: any;
   executive$: any;
   myform: FormGroup;
@@ -146,11 +188,11 @@ export class AddPurchasePage implements OnInit {
   totalDiscountAmt: number = 0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
- 
+
 
   name: string = '';
   vendor_code: string = '';
-  mobile:string='';
+  mobile: string = '';
   country: number = 0;
   state: number = 0;
   district: number = 0;
@@ -167,11 +209,26 @@ export class AddPurchasePage implements OnInit {
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
 
-isOpen = false;
+  isOpen = false;
   vend: any;
+  rows: any[] = [];
+  @Input() quantity: number = 0;
+  isQuantityPopoverOpen = false;
+  
+  attr1: string='';
+  attr2:string='';
+  attr3: string='';
+  attr4:string='';
+  attr5:string='';
+  attr6:string='';
+  attr7:string='';
+  attr8:string='';
 
-
-  constructor(private navCtrl: NavController,private popoverController:PopoverController ,private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService,private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
+  printThisPage() {
+    window.print();
+  }
+  
+  constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -240,9 +297,26 @@ isOpen = false;
       ttotal: [''],
       companyid: [0],
       userid: [0],
+      //a
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
     });
 
-    
+
     this.vendorpop = this.formBuilder.group({
       name: ['', [Validators.required]],
       vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
@@ -263,10 +337,13 @@ isOpen = false;
       if (event instanceof NavigationStart) {
         // Dismiss the popover before navigating
         this.closePopover();
+        this.closeQuantityPopover()
       }
     });
 
   }
+
+
   presentPopovers(e: Event) {
     this.popover.event = e;
     this.isOpen = true;
@@ -286,38 +363,28 @@ isOpen = false;
 
     });
   }
-
-  async presentPopover(purchase: any) {
-    const popover = await this.popoverController.create({
-      component: QuantitypopoverPage,
-      cssClass:'popover-content',
-      componentProps: {
-        quantity: purchase.quantity, // Pass the quantity to the popup component
-      },
-      translucent: true,
-    });
-    return await popover.present();
+  openQuantityPopover(purchase: Purchase) {
+    this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+    this.isQuantityPopoverOpen = true;
   }
 
-
-  updateRows(purchase:Purchase) {
-    // Open the popover when quantity changes
-    if (purchase.quantity > 0) {
-      this.presentPopover(purchase);
-    }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
   }
+
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
-    let quotedatas: purchasestore[] = [];
 
-
+    let purchases: purchasestore[] = [];
+console.log('data of ',purchases)
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
         element.grossrate = element.basicrate * element.quantity;
-       // element.netrate = element.basicrate + element.taxrate1;
+        // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -326,7 +393,19 @@ isOpen = false;
         console.log('Your form data : ', this.myform.value);
         const companyid = 1;
         const userid = 1;
-        let purchases: purchasestore[] = [];
+      
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid:companyid,
+          itemcode:element.itemcode,
+        }))
 
         let purchasedata: purchasestore = {
           billNumber: this.myform.value.billNumber,
@@ -368,7 +447,7 @@ isOpen = false;
           totaltaxamount: this.myform.value.totaltaxamount,
           totalnetamount: this.myform.value.totalnetamount,
           roundoff: this.myform.value.roundoff,
-          pretax:this.myform.value.pretax,
+          pretax: this.myform.value.pretax,
           posttax: this.myform.value.posttax,
           deliverydate: this.myform.value.deliverydate,
           deliveryplace: this.myform.value.deliveryplace,
@@ -380,7 +459,8 @@ isOpen = false;
           companyid: companyid,
           userid: userid,
           executive: this.myform.value.executive,
-          exicutive: 0
+          exicutive: 0,
+          quantityPopoverData: attributesArray,
         };
 
         purchases.push(purchasedata);
@@ -391,8 +471,8 @@ isOpen = false;
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.form.reset();
-            location.reload()
+            this.form.reset();
+            // location.reload()
           },
           (error: any) => {
             console.log('Purchase Post failed', error);
@@ -429,7 +509,7 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
+      hunitname: 0,
       mrp: 0,
       basicrate: 0,
       netrate: 0,
@@ -444,9 +524,29 @@ isOpen = false;
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId:0
+      selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+        companyid:0,
+        itemcode:0
+      }] ,
+      attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
     }];
-    }
+  }
   getVendors(event: any) {
     const compid = '1';
     const identifier = this.vend ? 'custcode' : 'custname';
@@ -461,7 +561,7 @@ isOpen = false;
 
           // Update the quote properties
           event.vendcode = itemDetails.vendor_code;
-          event.supplier = itemDetails. name;
+          event.supplier = itemDetails.name;
           event.gstin = itemDetails.gstin;
 
 
@@ -488,8 +588,8 @@ isOpen = false;
   getItems(purchase: any) {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
-    const value = purchase.selectedItemId ||purchase.itemcode;
-    const grate=[0,3,5,12,18,28,0,0,0];
+    const value = purchase.selectedItemId || purchase.itemcode;
+    const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -502,14 +602,22 @@ isOpen = false;
           purchase.itemname = itemDetails.itemDesc;
           purchase.barcode = itemDetails.barcode.toString();
           purchase.unitname = itemDetails.unitname;
-          purchase.hunitname=itemDetails.unitid;
+          purchase.hunitname = itemDetails.unitid;
           purchase.taxrate = grate[itemDetails.selectGst];
           purchase.taxrate1 = grate[itemDetails.selectGst];
           purchase.basicrate = itemDetails.basicrate;
           purchase.mrp = itemDetails.mrp;
-          purchase.basicrate=itemDetails.basic_rate;
-          purchase.netrate=itemDetails.net_rate;
-
+          purchase.basicrate = itemDetails.basic_rate;
+          purchase.netrate = itemDetails.net_rate;
+          purchase.attribute1= itemDetails.attr1,
+          purchase.attribute2= itemDetails.attr2,
+          purchase.attribute3= itemDetails.attr3,
+          purchase.attribute4= itemDetails.attr4,
+          purchase.attribute5= itemDetails.attr5,
+          purchase.attribute6= itemDetails.attr6,
+          purchase.attribute7= itemDetails.attr7,
+          purchase.attribute8= itemDetails.attr8,
+         
           // Update form control values
           this.myform.patchValue({
             itemcode: purchase.itemcode,
@@ -570,8 +678,8 @@ isOpen = false;
       description: '',
       quantity: 0,
       unitname: '',
-      hunitname:0,
-            mrp: 0,
+      hunitname: 0,
+      mrp: 0,
       basicrate: 0,
       netrate: 0,
       grossrate: 0,
@@ -584,8 +692,17 @@ isOpen = false;
       totaltax: 0,
       total: 0,
       taxrate1: 0,
-      itemid:0,
-      selectedItemId:0
+      itemid: 0,
+      selectedItemId: 0,
+      quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -632,8 +749,8 @@ isOpen = false;
   }
 
   getTotalQuantity(): number {
-    this.totalquantity= this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
-    return  this.totalquantity;
+    this.totalquantity = this.purchaseData.reduce((total, purchase) => total + +purchase.quantity, 0);
+    return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
@@ -642,35 +759,35 @@ isOpen = false;
       return total + grossAmount;
     }, 0);
 
-    return this.totalgrossamt= totalGrossAmount;
+    return this.totalgrossamt = totalGrossAmount;
   }
   getTaxableAmount(): number {
     const taxableAmount = this.purchaseData.reduce((total, purchase) => {
       // Assuming getgrossrate is a function that calculates gross rate based on quote
       const grossRate = this.getgrossrate(purchase);
-  
+
       // Assuming pretax, discount, and taxamt are properties of your quote object
-   
+
       const discount = purchase.discountamt || 0;
       const taxamt = purchase.totaltax || 0;
-  
+
       // Calculate the taxable amount for the current quote
-      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.purchaseData.length)) + taxamt;
-  
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.purchaseData.length)) + taxamt;
+
       // Add the taxable amount of the current quote to the total
       total += quoteTaxableAmount;
-  
+
       return total;
     }, 0);
-  
-    return this.totalnetamount= taxableAmount;
+
+    return this.totalnetamount = taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.purchaseData.reduce((total, purchase) => total + (((purchase.basicrate * purchase.quantity) + purchase.taxrate1) - purchase.discount), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.purchaseData.reduce((total, purchase) => {
-      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
       return gtotal;
     }, 0);
 
@@ -678,25 +795,26 @@ isOpen = false;
   }
   getTotalTaxAmount(): number {
     return this.purchaseData.reduce((total, purchase) => {
-      const subtotal = ((purchase.quantity * purchase.basicrate)+((this.pretax)/this.purchaseData.length))- purchase.discountamt;
-      const taxAmount = subtotal * (purchase.taxrate1 / 100) ;
-      return this.totaltaxamount= total + taxAmount ;
-  }, 0);  }
+      const subtotal = ((purchase.quantity * purchase.basicrate) + ((this.pretax) / this.purchaseData.length)) - purchase.discountamt;
+      const taxAmount = subtotal * (purchase.taxrate1 / 100);
+      return this.totaltaxamount = total + taxAmount;
+    }, 0);
+  }
   getTotalDiscountAmount(): number {
-    this.totaldiscountamt= this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
+    this.totaldiscountamt = this.purchaseData.reduce((total, purchase) => total + (purchase.discount / 100) * purchase.basicrate * purchase.quantity, 0);
     return this.totaldiscountamt;
   }
   getRoundoff(): number {
-    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
 
-    return this.roundoff= roundedTotalAmount;
+    return this.roundoff = roundedTotalAmount;
   }
   //table formaula
   getnetrate(purchase: Purchase): number {
     return purchase.basicrate + purchase.totaltax;
   }
   getTotaltax(purchase: Purchase): number {
-    return ((((purchase.quantity * purchase.basicrate)+((this.pretax)/this.purchaseData.length)-purchase.discountamt)*purchase.taxrate1 / 100));
+    return ((((purchase.quantity * purchase.basicrate) + ((this.pretax) / this.purchaseData.length) - purchase.discountamt) * purchase.taxrate1 / 100));
   }
   getgrossrate(purchase: Purchase): number {
     return purchase.quantity * purchase.basicrate;
@@ -749,32 +867,45 @@ isOpen = false;
     let totalAmount = 0;
 
     purchase.forEach(purchase => {
-        const pretaxPerItem = ((this.pretax  / this.purchaseData.length)); // Divide pretax equally among items
+      const pretaxPerItem = ((this.pretax / this.purchaseData.length)); // Divide pretax equally among items
 
-        const subtotal = (purchase.quantity * purchase.basicrate) + pretaxPerItem;
-        const discount = ((purchase.discount / 100) * purchase.basicrate * purchase.quantity);
-        const taxAmount = ((((purchase.quantity * purchase.basicrate) + pretaxPerItem) - purchase.discountamt) * purchase.taxrate1 / 100);
+      const subtotal = (purchase.quantity * purchase.basicrate) + pretaxPerItem;
+      const discount = ((purchase.discount / 100) * purchase.basicrate * purchase.quantity);
+      const taxAmount = ((((purchase.quantity * purchase.basicrate) + pretaxPerItem) - purchase.discountamt) * purchase.taxrate1 / 100);
 
-        const itemTotalAmount = subtotal + taxAmount - discount;
-        totalAmount += itemTotalAmount;
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
     });
 
     return totalAmount;
-}
-getcgst(purchase: Purchase): number {
-  return this.getTotaltax(purchase) / 2;
-}
+  }
+  getcgst(purchase: Purchase): number {
+    return this.getTotaltax(purchase) / 2;
+  }
 
-getsgst(purchase: Purchase): number {
-  return this.getTotaltax(purchase) / 2;
-}
+  getsgst(purchase: Purchase): number {
+    return this.getTotaltax(purchase) / 2;
+  }
 
-getigst(purchase: Purchase): number {
-  return this.getTotaltax(purchase);
-}
+  getigst(purchase: Purchase): number {
+    return this.getTotaltax(purchase);
+  }
   ngOnInit() {
-    // Other initialization logic...
 
+    this.rows = Array.from({ length: this.quantity }, (_, index) => index + 1);
+    this.purchaseData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid:0,
+      itemcode:0
+      // Add more properties as needed
+    }));
     // Subscribe to value changes of basicrate, taxrate, and discount
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());

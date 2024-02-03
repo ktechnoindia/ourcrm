@@ -42,6 +42,27 @@ interface Sales {
   taxrate1: number;
   itemid: number;
   selectedItemId: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid: number,
+    itemcode: number,
+  }[],
+  attribute1: string,
+  attribute2: string,
+  attribute3: string,
+  attribute4: string,
+  attribute5: string,
+  attribute6: string,
+  attribute7: string,
+  attribute8: string,
+
 }
 @Component({
   selector: 'app-add-sale',
@@ -67,7 +88,7 @@ export class AddSalePage implements OnInit {
   payment: number = 0;
   //table data
   /*barcode: string = '';
-  itemcode: string = '';
+
   itemname: number = 0;
   description: string = '';
   quantity: string = '';
@@ -98,10 +119,10 @@ export class AddSalePage implements OnInit {
   posttax: number = 0;
   deliverydate: string = '';
   deliveryplace: string = '';
-  openingbalance:number = 0;
-  closingbalance:number = 0;
-  debit:number = 0;
-  credit:number = 0;
+  openingbalance: number = 0;
+  closingbalance: number = 0;
+  debit: number = 0;
+  credit: number = 0;
   salesData: Sales[] = [{
     barcode: '',
     itemcode: 0,
@@ -124,7 +145,27 @@ export class AddSalePage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId: 0
+    selectedItemId: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0,
+    }],
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
   }];
   ttotal: number = 0;
   myform: FormGroup;
@@ -141,7 +182,7 @@ export class AddSalePage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-
+  itemcode: number = 0;
   name: string = '';
   customercode: string = '';
   customer_code: string = '';
@@ -164,7 +205,22 @@ export class AddSalePage implements OnInit {
 
   isOpen = false;
   cust: any;
+  purchasebyid$: Observable<any[]>
+  isQuantityPopoverOpen: boolean = false;
 
+  attr1: string = '';
+  attr2: string = '';
+  attr3: string = '';
+  attr4: string = '';
+  attr5: string = '';
+  attr6: string = '';
+  attr7: string = '';
+  attr8: string = '';
+  quantity: number = 0;
+
+  printThisPage() {
+    window.print();
+  }
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -176,6 +232,9 @@ export class AddSalePage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
+    this.purchasebyid$=new Observable;
+
+   
 
     this.myform = this.formBuilder.group({
       billformate: [''],
@@ -231,6 +290,23 @@ export class AddSalePage implements OnInit {
       ttotal: [''],
       itemid: [''],
       ponumber: ['1'],
+
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
+      attribute1: [''],
+      attribute2: [''],
+      attribute3: [''],
+      attribute4: [''],
+      attribute5: [''],
+      attribute6: [''],
+      attribute7: [''],
+      attribute8: [''],
     });
 
     this.customerpop = this.formBuilder.group({
@@ -279,26 +355,20 @@ export class AddSalePage implements OnInit {
     });
   }
 
-  async presentPopover(dcin: any) {
-    const popover = await this.popoverController.create({
-      component: QuantitypopoverPage,
-      cssClass: 'popover-content',
-      componentProps: {
-        quantity: dcin.quantity, // Pass the quantity to the popup component
-      },
-      translucent: true,
+  openQuantityPopover(sale: Sales) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
     });
-    return await popover.present();
+    this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+    this.isQuantityPopoverOpen = true;
   }
 
-
-  updateRows(sales: Sales) {
-    // Open the popover when quantity changes
-    if (sales.quantity > 0) {
-      this.presentPopover(sales);
-    }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
   }
-
 
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
@@ -310,7 +380,7 @@ export class AddSalePage implements OnInit {
 
       for (const element of salesData) {
         element.grossrate = element.basicrate * element.quantity;
-        //element.netrate = element.basicrate + element.taxrate1;
+        element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -321,7 +391,18 @@ export class AddSalePage implements OnInit {
         const companyid = 1;
         const userid = 1;
         let salesdatas: salesstore[] = [];
-
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid:attr.companyid,
+          itemcode: attr.itemcode,
+        }))
         let saledata: salesstore = {
           billformate: this.myform.value.billformate,
           billNumber: this.myform.value.billNumber,
@@ -374,6 +455,8 @@ export class AddSalePage implements OnInit {
           ttotal: 0,
           companyid: companyid,
           userid: userid,
+          quantityPopoverData: attributesArray,
+
         };
 
         salesdatas.push(saledata);
@@ -385,8 +468,8 @@ export class AddSalePage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.myform.reset();
-            location.reload()
+            this.myform.reset();
+            //location.reload()
           },
           (error: any) => {
             console.error('POST request failed', error);
@@ -437,7 +520,27 @@ export class AddSalePage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7: '',
+        attr8: '',
+        companyid: 0,
+        itemcode: 0,
+      }],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
     }];
   }
 
@@ -465,14 +568,21 @@ export class AddSalePage implements OnInit {
           sales.mrp = itemDetails.mrp;
           sales.basicrate = itemDetails.basic_rate;
           sales.netrate = itemDetails.net_rate;
+          sales.attribute1 = itemDetails.attr1,
+            sales.attribute2 = itemDetails.attr2,
+            sales.attribute3 = itemDetails.attr3,
+            sales.attribute4 = itemDetails.attr4,
+            sales.attribute5 = itemDetails.attr5,
+            sales.attribute6 = itemDetails.attr6,
+            sales.attribute7 = itemDetails.attr7,
+            sales.attribute8 = itemDetails.attr8,
 
-
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: sales.itemcode,
-            itemname: sales.itemname,
-            // Other form controls...
-          });
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: sales.itemcode,
+              itemname: sales.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -544,7 +654,16 @@ export class AddSalePage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: this.salesData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
     };
     this.salesData.push(newRow);
   }
@@ -604,42 +723,42 @@ export class AddSalePage implements OnInit {
     const taxableAmount = this.salesData.reduce((total, sales) => {
       // Assuming getgrossrate is a function that calculates gross rate based on quote
       const grossRate = this.getgrossrate(sales);
-  
+
       // Assuming pretax, discount, and taxamt are properties of your quote object
-   
+
       const discount = sales.discountamt || 0;
       const taxamt = sales.totaltax || 0;
-  
+
       // Calculate the taxable amount for the current quote
-      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.salesData.length)) + taxamt;
-  
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.salesData.length)) + taxamt;
+
       // Add the taxable amount of the current quote to the total
       total += quoteTaxableAmount;
-  
+
       return total;
     }, 0);
-  
-    return this.totalnetamount= taxableAmount;
+
+    return this.totalnetamount = taxableAmount;
   }
   getTotalQuantity(): number {
-    this.totalquantity= this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
+    this.totalquantity = this.salesData.reduce((total, sale) => total + +sale.quantity, 0);
     return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.salesData.reduce((total, sale) => {
-      const grossAmount =(sale.quantity * sale.basicrate);
+      const grossAmount = (sale.quantity * sale.basicrate);
       return total + grossAmount;
     }, 0);
 
-    return this.totalgrossamt= totalGrossAmount;
+    return this.totalgrossamt = totalGrossAmount;
   }
   getTotalnetAmount(): number {
     return this.salesData.reduce((total, sale) => total + (((sale.basicrate * sale.quantity) + sale.taxrate1) - sale.discount), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.salesData.reduce((total, sale) => {
-      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
       return gtotal;
     }, 0);
 
@@ -647,27 +766,27 @@ export class AddSalePage implements OnInit {
   }
   getTotalTaxAmount(): number {
     return this.salesData.reduce((total, sale) => {
-      const subtotal = ((sale.quantity * sale.basicrate)+((this.pretax)/this.salesData.length))- sale.discountamt;
-      const taxAmount = subtotal * (sale.taxrate1 / 100) ;
-      return this.totaltaxamount= total + taxAmount ;
-  }, 0);  
- }
+      const subtotal = ((sale.quantity * sale.basicrate) + ((this.pretax) / this.salesData.length)) - sale.discountamt;
+      const taxAmount = subtotal * (sale.taxrate1 / 100);
+      return this.totaltaxamount = total + taxAmount;
+    }, 0);
+  }
   getTotalDiscountAmount(): number {
-    this.totaldiscountamt= this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
+    this.totaldiscountamt = this.salesData.reduce((total, sale) => total + (sale.discount / 100) * sale.basicrate * sale.quantity, 0);
     return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
 
-    return  this.roundoff= roundedTotalAmount;
+    return this.roundoff = roundedTotalAmount;
   }
   //table formaula
   getnetrate(sale: Sales): number {
     return sale.basicrate + sale.totaltax;
   }
   getTotaltax(sale: Sales): number {
-    return ((((sale.quantity * sale.basicrate)+((this.pretax)/this.salesData.length)-sale.discountamt)*sale.taxrate1 / 100));
+    return ((((sale.quantity * sale.basicrate) + ((this.pretax) / this.salesData.length) - sale.discountamt) * sale.taxrate1 / 100));
   }
   getgrossrate(sale: Sales): number {
     return sale.quantity * sale.basicrate;
@@ -720,30 +839,43 @@ export class AddSalePage implements OnInit {
     let totalAmount = 0;
 
     sale.forEach(sale => {
-        const pretaxPerItem = ((this.pretax  / this.salesData.length)); // Divide pretax equally among items
+      const pretaxPerItem = ((this.pretax / this.salesData.length)); // Divide pretax equally among items
 
-        const subtotal = (sale.quantity * sale.basicrate) + pretaxPerItem;
-        const discount = ((sale.discount / 100) * sale.basicrate * sale.quantity);
-        const taxAmount = ((((sale.quantity * sale.basicrate) + pretaxPerItem) - sale.discountamt) * sale.taxrate1 / 100);
+      const subtotal = (sale.quantity * sale.basicrate) + pretaxPerItem;
+      const discount = ((sale.discount / 100) * sale.basicrate * sale.quantity);
+      const taxAmount = ((((sale.quantity * sale.basicrate) + pretaxPerItem) - sale.discountamt) * sale.taxrate1 / 100);
 
-        const itemTotalAmount = subtotal + taxAmount - discount;
-        totalAmount += itemTotalAmount;
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
     });
 
     return totalAmount;
-}
-getcgst(sale: Sales): number {
-  return this.getTotaltax(sale) / 2;
-}
+  }
+  getcgst(sale: Sales): number {
+    return this.getTotaltax(sale) / 2;
+  }
 
-getsgst(sale: Sales): number {
-  return this.getTotaltax(sale) / 2;
-}
+  getsgst(sale: Sales): number {
+    return this.getTotaltax(sale) / 2;
+  }
 
-getigst(sale: Sales): number {
-  return this.getTotaltax(sale);
-}
+  getigst(sale: Sales): number {
+    return this.getTotaltax(sale);
+  }
   ngOnInit() {
+    this.salesData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0
+      // Add more properties as needed
+    }));
     // Other initialization logic...
 
     // Subscribe to value changes of basicrate, taxrate, and discount
@@ -894,7 +1026,7 @@ getigst(sale: Sales): number {
 
           this.formService.showSaveLoader()
           // location.reload()
-          this.myform.reset();
+          //this.myform.reset();
 
         },
         (error: any) => {
@@ -916,6 +1048,12 @@ getigst(sale: Sales): number {
       if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
+    }
+  }
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
     }
   }
 }

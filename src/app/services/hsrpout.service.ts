@@ -7,14 +7,14 @@ export interface hsrpout{
   billformate: number;
   billno: string;
   hsrpdate: string;
-  suppliercode: string;
-  spler: number;
+  custcode: string;
+  custname: number;
   refrence: string;
   refdate: string;
   executive_name: number;
-
+  engineframenumber:string;
   //table
-
+barcode:string;
   part: number;
   frame: number;
   engine_no: number;
@@ -26,9 +26,9 @@ export interface hsrpout{
   description: string;
   hsn_code: string;
   quantity: number;
-  basic_rate: number;
-  gst_type: number;
-  tax_amt: number;
+  basicrate: number;
+  totaltax: number;
+taxrate: number;
   tcs_value: number;
   totalitemno: number;
   totalquantity: number;
@@ -46,7 +46,32 @@ export interface hsrpout{
   posttax: number;
   totalnetamount: number;
   mrp:string;
-  netrate:string;
+  netrate:number;
+  ttotal: number;
+  itemcode:number;
+  itemname:string;
+  grossrate:number;
+  CGST:number;
+  SGST: number;
+  IGST:number;
+  discount:number;
+  discountamt:number;
+  total:number;
+  taxrate1:number;
+  itemid: number;
+  selectedItemId:number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string;
+    companyid:number;
+    itemcode:number;
+  }[];
 }
 
 @Injectable({

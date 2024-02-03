@@ -207,6 +207,31 @@ ion-menu.md ion-list#inbox-list {
         display: none;
         visibility: hidden;
     }
+  .scroll-container  table{
+        border: none;
+        scroll-behavior: none;
+    }
+    ion-icon{
+        display: none;
+    }
+    .Action{
+        display: none;
+        visibility: hidden;
+    }
+    ion-input{
+        visibility: hidden;
+        display: none;
+    }
+    ion-searchbar{
+        display: none;
+        visibility: hidden;
+    }
+    .Customer ion-card-header{
+        display: none;
+    }
+    .invoice-to-hide {
+        display: none;
+      }
 }
 
 
@@ -1055,6 +1080,7 @@ ion-textarea[fill="outline"] input:focus {
 .customs.searchbar-input {
     color: #ffffff;
     font-weight: bold;
+    
 }
 
 
@@ -1148,12 +1174,12 @@ ion-loading.custom-loading {
 }
 
 :root {
-    --ion-color-rose: #fecdd3;
-    --ion-color-rose-rgb: 254, 205, 211;
+    --ion-color-rose: none;
+    --ion-color-rose-rgb: none;
     --ion-color-rose-contrast: #000000;
     --ion-color-rose-contrast-rgb: 0, 0, 0;
-    --ion-color-rose-shade: #e0b4ba;
-    --ion-color-rose-tint: #fed2d7;
+    --ion-color-rose-shade: none;
+    --ion-color-rose-tint: none;
 }
 
 .ion-color-rose {

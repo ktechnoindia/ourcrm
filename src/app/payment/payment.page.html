@@ -133,7 +133,7 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <tr *ngFor="let purchase of paymentBill$ | async; let i = index">
+                        <tr *ngFor="let purchase of myPaymentBillData; let i = index">
                           <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>

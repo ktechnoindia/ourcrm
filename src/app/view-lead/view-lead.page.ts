@@ -48,7 +48,7 @@ export class ViewLeadPage implements OnInit {
   executive$: any;
   executive: string='';
   select_sales_person:number=0;
-  formdate: string = '';
+  fromDate: string = '';
   toDate: string = '';
   lead$:Observable<any[]>;
   searchTerm: string = '';
@@ -128,13 +128,16 @@ export class ViewLeadPage implements OnInit {
         });
     this.viewLeadForm = this.formBuilder.group({
       select_sales_person:[''],
-      formdate:[''],
+      fromDate:[''],
       toDate:[''],
       searchTerm:[''],
     totalItems:[''],
     selectedColumns:[],
     })
+    this.filteredLeads$=this.lead$;
      this.updateManualHeaders();
+     this.fromDate = new Date().toISOString().split('T')[0];
+     this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -195,19 +198,32 @@ export class ViewLeadPage implements OnInit {
     });
   }
   filterData() {
-    // Update the filteredSales observable based on the date range
-    this.lead$ = this.lead$.pipe(
-      map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.formdate, this.toDate)))
+    this.filteredLeads$ = this.lead$.pipe(
+      map(leadscore => leadscore.filter(leadscore => this.isDateInRange(leadscore.crdate, this.fromDate, this.toDate)))
     );
+    // const filters = this.viewLeadForm.value;
+
+    // // Check if the selectedColumns array is empty, if so, use all available columns
+    // const columnsToDisplay = filters.selectedColumns.length > 0 ? filters.selectedColumns : this.availableColumns;
+
+    // // Update the filteredLeads$ observable based on the selected criteria
+    // this.filteredLeads$ = this.lead$.pipe(
+    //   map(leads => {
+    //     return leads.filter(lead => {
+    //       return (
+    //         (filters.select_sales_person === 0 || lead.executivename === filters.select_sales_person) &&
+    //         this.isDateInRange(lead.leaddate, filters.fromDate, filters.toDate) &&
+    //         filters.selectedColumns.every((col: string | number) => lead[col] !== undefined) // Check if all selected columns exist in lead
+    //       );
+    //     });
+    //   })
+    // );
   }
   private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
-    // Parse the dates into JavaScript Date objects
-    const saleDate = new Date(date);
+    const leadDate = new Date(date);
     const fromDateObj = new Date(fromDate);
     const toDateObj = new Date(toDate);
-
-    // Check if the saleDate is within the range
-    return saleDate >= fromDateObj && saleDate <= toDateObj;
+    return leadDate >= fromDateObj && leadDate <= toDateObj;
   }
   onButtonClick() {
     // Add any additional logic you may need before closing the page

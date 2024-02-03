@@ -11,7 +11,7 @@ import { AdditemService } from '../services/additem.service';
 import { AmcService,amc } from '../services/amc.service';
 import { FormValidationService } from '../form-validation.service';
 import { Observable } from 'rxjs';
-
+import { RouterModule,RouterLink } from '@angular/router';
 
 
 @Component({
@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
   templateUrl: './createamc.page.html',
   styleUrls: ['./createamc.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule,ReactiveFormsModule,RouterModule]
 })
 export class CreateamcPage implements OnInit {
   @ViewChild('popover')popover:any; 

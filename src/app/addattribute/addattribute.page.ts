@@ -38,9 +38,10 @@ export class AddattributePage implements OnInit {
   async onSubmit() {
     const fields = {attname: this.attname}
     // const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    console.log('Your form data : ', this.myform.value);
+    if (true) {
 
-      console.log('Your form data : ', this.myform.value);
+      
       let attdata: addattribute = {
         attname: this.myform.value.attname,
         companyid: 1

@@ -18,6 +18,7 @@ import { salesstore } from '../services/sales.service';
 import { CountryService } from '../services/country.service';
 import { DistrictsService } from '../services/districts.service';
 import { StateService } from '../services/state.service';
+import { SalesService } from '../services/sales.service';
 
 interface Sales {
   barcode: string;
@@ -42,6 +43,26 @@ interface Sales {
   taxrate1: number;
   itemid: number;
   selectedItemId: number;
+  quantityPopoverData: {
+    attr1: string;
+    attr2: string;
+    attr3: string;
+    attr4: string;
+    attr5: string;
+    attr6: string;
+    attr7: string;
+    attr8: string
+    companyid:number,
+    itemcode:number,
+  }[],
+  attribute1:string,
+  attribute2:string,
+  attribute3:string,
+  attribute4:string,
+  attribute5:string,
+  attribute6:string,
+  attribute7:string,
+  attribute8:string,
 }
 @Component({
   selector: 'app-salesreturn',
@@ -64,7 +85,10 @@ export class SalesreturnPage implements OnInit {
   custcode: string = '';
   billformate: number = 0;
   custname: number = 0;
+  quantity: number = 0; // Initial value can be set based on your requirements
 
+  itemcode:number=0;
+  
   totalitemno:number = 0;
   totalquantity: number = 0;
   totalgrossamt: number = 0;
@@ -104,7 +128,28 @@ export class SalesreturnPage implements OnInit {
     total: 0,
     taxrate1: 0,
     itemid: 0,
-    selectedItemId: 0
+    selectedItemId: 0,
+    quantityPopoverData: [{
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7:'',
+      attr8:'',
+      companyid:0,
+      itemcode:0,
+    }],
+    attribute1: '',
+    attribute2: '',
+    attribute3: '',
+    attribute4: '',
+    attribute5: '',
+    attribute6: '',
+    attribute7: '',
+    attribute8: '',
+
   }];
   ttotal!: number;
   companyid: number = 0;
@@ -148,7 +193,12 @@ export class SalesreturnPage implements OnInit {
   isOpen = false;
   cust: any;
 
-  constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
+  purchasebyid$ :Observable<any[]>
+  isQuantityPopoverOpen: boolean=false;
+  printThisPage() {
+    window.print();
+  }
+  constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -159,7 +209,9 @@ export class SalesreturnPage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
+    this.purchasebyid$=new Observable;
 
+   
     this.myform = this.formBuilder.group({
       billformate: [''],
       billNumber: ['', Validators.required],
@@ -215,7 +267,15 @@ export class SalesreturnPage implements OnInit {
       credit: [''],
       ponumber: [''],
       ttotal: [''],
-      itemid: ['']
+      itemid: [''],
+      attribute1:[''],
+      attribute2:[''],
+      attribute3:[''],
+      attribute4:[''],
+      attribute5:[''],
+      attribute6:[''],
+      attribute7:[''],
+      attribute8:[''],
     });
     this.customerpop = this.formBuilder.group({
 
@@ -252,6 +312,19 @@ export class SalesreturnPage implements OnInit {
   onStateChange() {
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
+  }
+  openQuantityPopover(sales: Sales) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+        });
+    this.salesData[0].quantityPopoverData = new Array(sales.quantity).fill({})
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+    this.isQuantityPopoverOpen = true;
+  }
+  closeQuantityPopover() {
+    this.isQuantityPopoverOpen = false;
   }
   closePopover() {
     // Close the popover and pass data back to the parent component
@@ -306,7 +379,18 @@ export class SalesreturnPage implements OnInit {
         const companyid = 1;
         const userid = 1;
         let salereturn: salereturnstore[] = [];
-
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid:companyid,
+          itemcode:element.itemcode,
+        }))
 
         let salereturndata: salereturnstore = {
           billformate: this.myform.value.billformate,
@@ -361,6 +445,8 @@ export class SalesreturnPage implements OnInit {
           companyid: companyid,
           userid: userid,
           ponumber: this.myform.value.ponumber,
+          quantityPopoverData: attributesArray,
+
         };
 
         salereturn.push(salereturndata);
@@ -423,7 +509,28 @@ export class SalesreturnPage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: [{
+        attr1: '',
+        attr2: '',
+        attr3: '',
+        attr4: '',
+        attr5: '',
+        attr6: '',
+        attr7:'',
+        attr8:'',
+        companyid:0,
+        itemcode:0,
+      }],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
+  
     }];
   }
   getItems(sales: any) {
@@ -451,7 +558,14 @@ export class SalesreturnPage implements OnInit {
           sales.mrp = itemDetails.mrp;
           sales.basicrate = itemDetails.basic_rate;
           sales.netrate = itemDetails.net_rate;
-
+          sales.attribute1= itemDetails.attr1,
+          sales.attribute2= itemDetails.attr2,
+          sales.attribute3= itemDetails.attr3,
+          sales.attribute4= itemDetails.attr4,
+          sales.attribute5= itemDetails.attr5,
+          sales.attribute6= itemDetails.attr6,
+          sales.attribute7= itemDetails.attr7,
+          sales.attribute8= itemDetails.attr8,
 
           // Update form control values
           this.myform.patchValue({
@@ -530,7 +644,16 @@ export class SalesreturnPage implements OnInit {
       total: 0,
       taxrate1: 0,
       itemid: 0,
-      selectedItemId: 0
+      selectedItemId: 0,
+      quantityPopoverData: this.salesData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
       // Add more properties as needed
     };
     this.salesData.push(newRow);
@@ -733,6 +856,19 @@ export class SalesreturnPage implements OnInit {
     return this.getTotaltax(sale);
   }
   ngOnInit() {
+    this.salesData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      attr5: '',
+      attr6: '',
+      attr7: '',
+      attr8: '',
+      companyid:0,
+      itemcode:0
+      // Add more properties as needed
+    }));
     // Other initialization logic...
 
     // Subscribe to value changes of basicrate, taxrate, and discount
@@ -878,7 +1014,7 @@ export class SalesreturnPage implements OnInit {
 
           this.formService.showSaveLoader()
           // location.reload()
-          this.myform.reset();
+         this.myform.reset();
 
         },
         (error: any) => {
@@ -900,6 +1036,12 @@ export class SalesreturnPage implements OnInit {
       if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
+    }
+  }
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
     }
   }
 }

@@ -213,7 +213,7 @@
                     <td>
                       <input *ngIf="sales.itemcode !== 0" [(ngModel)]="sales.quantity"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
-                        (keydown.enter)="presentPopover(sales)">
+                        (keydown.enter)="openQuantityPopover(sales)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -228,16 +228,16 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                        type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
                       <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.grossrate" [value]="getgrossrate(sales) "
@@ -245,7 +245,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
                         (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
                         [ngModelOptions]="{standalone: true}">
@@ -278,12 +278,12 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input [(ngModel)]="sales.discount" (ionBlur)="getdiscountp(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)"
                         (keyup)="getdiscountamt(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)"
@@ -489,15 +489,53 @@
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit" id="open-loading1">Save</ion-button>
-              <ion-button>Print</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading1" message="Saving..."
                 [duration]="1000"></ion-loading>
               <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
-
+                <ion-button  (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                  color="secondry"></ion-icon>Print</ion-button>
+                  <ion-button (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                    color="secondry"></ion-icon>Preview</ion-button>
             </ion-row>
-
+            <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
+              <ng-template>
+                <ion-content>
+                  <div style="padding: 10px;">
+                    <table style="width: 100%;">
+                      <tr class="attributes" *ngFor="let sales of salesData; let i = index">
+                        <th>Sr. No.</th>
+                        <th>Select Item Attributes</th>
+                        <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute2" [(ngModel)]="sales.attribute2" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute3" [(ngModel)]="sales.attribute3" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute4" [(ngModel)]="sales.attribute4" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute5" [(ngModel)]="sales.attribute5" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute6" [(ngModel)]="sales.attribute6" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute7" [(ngModel)]="sales.attribute7" class="pop_input"></th>
+                        <th><input type="text" formControlName="attribute8" [(ngModel)]="sales.attribute8" class="pop_input"></th>
+                      </tr>
+                      <tr *ngFor="let row of purchasebyid$ | async; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><ion-checkbox></ion-checkbox></td>
+                        <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
+                      </tr>
+                    </table>
+                    <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
+                      <ion-button style="float: right; bottom: 0;"  (click)="closeQuantityPopover()">Ok</ion-button>
+                    </ion-row>
+                  </div>
+                </ion-content>
+              </ng-template>
+            </ion-popover>
           </form>
         </ion-grid>
       </ion-card-content>

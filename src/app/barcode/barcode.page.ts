@@ -53,9 +53,8 @@ export class BarcodePage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-      setTimeout(() => {
-        this.form.reset();
-      }, 1000);
+           this.form.reset();
+
     }else{
       Object.keys(this.form.controls).forEach(controlName =>{
         const control = this.form.get(controlName);

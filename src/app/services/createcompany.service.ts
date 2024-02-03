@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core'; 
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface companystore {
   cpyname: string;
@@ -46,6 +46,7 @@ export interface companystore {
   wpnumber1: string;
   email1: string;
   website1: string;
+  userid:number;
 }
 
 @Injectable({
@@ -63,8 +64,8 @@ export class CreatecompanyService {
   createCompany(company: companystore, key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addcompany, company, { headers: { 'key': key, 'user': user } })
   }
-  fetchallcompany(companyid: string, key: string, user: string): Observable<any> {
+  fetchallcompany(companyid: number, key: string, user: string): Observable<any> {
     console.log('companyyy ' + companyid);
-    return this.httpclient.get(environment.apiactionurl + environment.fetchallcompany +'?p='+companyid + companyid, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.get(environment.apiactionurl + environment.fetchallcompany +'?p='+companyid , { headers: { 'key': key, 'user': user } })
   }
 }

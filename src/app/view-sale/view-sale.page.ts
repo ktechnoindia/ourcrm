@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { SalesService } from '../services/sales.service';
 import { EncryptionService } from '../services/encryption.service';
-import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
 
 @Component({
@@ -36,7 +36,6 @@ export class ViewSalePage implements OnInit {
     window.print();
   }
 
-  // filteredSales: Observable<any[]>;
   availableColumns: string[] = [
     'billformate',
     'billNumber',
@@ -131,7 +130,8 @@ export class ViewSalePage implements OnInit {
   total: number = 0;
   searchTerm: string = '';
   filteredSales$: Observable<any[]> = new Observable<any[]>();
-
+  selectedTimePeriods: string[] = [];
+  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
   constructor(private encService: EncryptionService, private saleService: SalesService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
@@ -143,9 +143,10 @@ export class ViewSalePage implements OnInit {
       this.totalItems = data.length;
     });
 
-    // Initialize the filteredSales with the original sales data
     this.filteredSales$ = this.sales$;
     this.updateManualHeaders();
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -177,6 +178,45 @@ export class ViewSalePage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.filteredBillingData$ = this.sales$.pipe(
+      map(data => {
+        // Implement your filtering logic based on the selected time periods
+        return data.filter(sales => {
+          // Modify this logic based on your data structure
+          const salesDate = new Date(sales.salesDate); // Assuming 'quateDate' is the field representing the date
+    
+          if (this.selectedTimePeriods.includes('today')) {
+            // Implement logic for filtering by today
+            const today = new Date();
+            return salesDate.toDateString() === today.toDateString();
+          }
+    
+          if (this.selectedTimePeriods.includes('monthly')) {
+            // Implement logic for filtering by monthly
+            const currentMonth = new Date().getMonth();
+            const salesMonth = salesDate.getMonth();
+            return salesMonth === currentMonth;
+          }
+    
+          if (this.selectedTimePeriods.includes('quartly')) {
+            // Implement logic for filtering by quarterly
+            const currentQuarter = Math.floor(new Date().getMonth() / 3);
+            const salesQuarter = Math.floor(salesDate.getMonth() / 3);
+            return salesQuarter === currentQuarter;
+          }
+    
+          if (this.selectedTimePeriods.includes('annually')) {
+            // Implement logic for filtering by annually
+            const currentYear = new Date().getFullYear();
+            const salesYear = salesDate.getFullYear();
+            return salesYear === currentYear;
+          }
+    
+          // Return true for the rows that should be included
+          return true;
+        });
+      })
+    );
   }
 
   filterData() {
@@ -187,12 +227,9 @@ export class ViewSalePage implements OnInit {
   }
 
   private isDateInRange(date: string, fromDate: string, toDate: string): boolean {
-    // Parse the dates into JavaScript Date objects
     const saleDate = new Date(date);
     const fromDateObj = new Date(fromDate);
     const toDateObj = new Date(toDate);
-
-    // Check if the saleDate is within the range
     return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
 
