@@ -38,7 +38,7 @@
         </div>
 
         <ion-grid>
-          <form  [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
+          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
             <ion-row>
               <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -164,6 +164,8 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
                         (keydown.enter)="openQuantityPopover(quote)">
                     </td>
+
+
                     <td>
                       <input [(ngModel)]="quote.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">

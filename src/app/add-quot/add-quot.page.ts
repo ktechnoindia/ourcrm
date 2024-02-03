@@ -352,19 +352,23 @@ selectedItemAttributes: any[] = [];
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
   openQuantityPopover(quote: Quote) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
-    this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-    this.isQuantityPopoverOpen = true;
+    if (quote.quantity > 0) {
+      // Fetch data based on your requirements
+      this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
+      this.purchasebyid$.subscribe(data => {
+        console.log('purchase data', data);
+  
+        // Set the popover data and open the popover
+        this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
+          .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+        this.isQuantityPopoverOpen = true;
+      });
+    }
   }
   
   closeQuantityPopover() {
+    // Perform any necessary actions when closing the popover
     this.isQuantityPopoverOpen = false;
-
   }
   closePopover() {
     // Close the popover and pass data back to the parent component
@@ -469,12 +473,12 @@ selectedItemAttributes: any[] = [];
 
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    // const isValid = await this.formService.validateForm(fields);
+    const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
-      let quotedatas: quotestore[] = [];
+      const quotedatas: quotestore[] = [];
 
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
@@ -554,21 +558,16 @@ selectedItemAttributes: any[] = [];
       this.quote.createquote(quotedatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
+          this.formService.showSuccessAlert();
           this.formService.showSaveLoader();
-          // this.myform.reset();
-          location.reload()
+          this.myform.reset();
+          // Consider navigating to a different page or providing a success message instead of location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
+          this.formService.showFailedAlert();
           this.formService.shoErrorLoader();
           this.myform.reset();
-
         }
       );
 

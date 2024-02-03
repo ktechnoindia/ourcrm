@@ -616,6 +616,7 @@ export class HsrpinPage implements OnInit {
   }
   ngOnInit() {
     this.quantity = 1; // Set an initial value for quantity
+    //this.purchasebyid$.subscribe(data => console.log(data));
 
     console.log('selectedItemAttributes', this.selectedItemAttributes);
     this.hsrpindata[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
