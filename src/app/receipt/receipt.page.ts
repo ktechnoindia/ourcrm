@@ -364,5 +364,10 @@ export class ReceiptPage implements OnInit {
     return this.billpendingamt * this.dataLength;
 
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }

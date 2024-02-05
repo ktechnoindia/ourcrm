@@ -109,7 +109,7 @@
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" type="number"
-                    label=" Opening Balance :" label-placement="floating" name="openbal" fill="outline"></ion-input>
+                    label=" Opening Balance :" label-placement="floating" name="openbal" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
           </ion-row>
@@ -117,7 +117,7 @@
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_balance" formControlName="closing_balance" type="number"
-                    label=" Closing Balance :" label-placement="floating" name="closingbal" fill="outline"></ion-input>
+                    label=" Closing Balance :" label-placement="floating" name="closingbal" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -391,14 +391,14 @@
                           <ion-row>
                             <ion-input [(ngModel)]="credit_period" formControlName="credit_period" type="number"
                               label=" Credit Period :" name="cperiod" label-placement="floating"
-                              fill="outline"></ion-input>
+                              fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                           </ion-row>
                         </ion-col>
                         <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
                           <ion-row>
                             <ion-input [(ngModel)]="credit_limit" formControlName="credit_limit" type="number"
                               label=" Credit Limit :" label-placement="floating" name="climit"
-                              fill="outline"></ion-input>
+                              fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                           </ion-row>
                         </ion-col>
 
@@ -431,7 +431,7 @@
                           <ion-row>
                             <ion-input [(ngModel)]="opening_point" formControlName="opening_point" type="number"
                               label="Opening Point :" label-placement="floating" name="openpoint"
-                              fill="outline"></ion-input>
+                              fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                           </ion-row>
                         </ion-col>
 
@@ -439,7 +439,7 @@
                           <ion-row>
                             <ion-input [(ngModel)]="closing_point" formControlName="closing_point" type="number"
                               label="Closing Point :" label-placement="floating" name="closepoint"
-                              fill="outline"></ion-input>
+                              fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                           </ion-row>
                         </ion-col>
                       </ion-row>

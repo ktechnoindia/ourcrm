@@ -112,27 +112,27 @@
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
-                      label-placement="floating" fill="outline"></ion-input>
+                      label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
 
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
-                      label="Sale Rate :" label-placement="floating" fill="outline"></ion-input>
+                      label="Sale Rate :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
-                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"></ion-input>
+                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
                 </ion-col>
 
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number"
-                      label=" Basic Rate:" label-placement="floating" fill="outline"></ion-input>
+                      label=" Basic Rate:" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
                 </ion-col>
 
@@ -264,7 +264,7 @@
                       <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
                         <ion-row>
                           <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="number"
-                            label=" Barcode :" label-placement="floating" fill="outline"></ion-input>
+                            label=" Barcode :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                         </ion-row>
                       </ion-col>
                     </ion-row>
@@ -281,13 +281,13 @@
                       <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                         <ion-row>
                           <ion-input name="minimum" formControlName="minimum" [(ngModel)]="minimum" type="number"
-                            label="Minimum :" label-placement="floating" fill="outline"></ion-input>
+                            label="Minimum :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                         </ion-row>
                       </ion-col>
                       <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
                         <ion-row>
                           <ion-input name="maximum" formControlName="maximum" [(ngModel)]="maximum" type="number"
-                            label="Maximum :" label-placement="floating" fill="outline"></ion-input>
+                            label="Maximum :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                         </ion-row>
                       </ion-col>
 

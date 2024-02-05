@@ -98,9 +98,9 @@ export class AddItemPage implements OnInit {
   unit_name: string = '';
   short_name: string = '';
 
-  groupop:FormGroup;
-  itemgroupname:string='';
-  parentgroup:number=0; 
+  groupop: FormGroup;
+  itemgroupname: string = '';
+  parentgroup: number = 0;
 
 
   constructor(private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
@@ -150,8 +150,8 @@ export class AddItemPage implements OnInit {
       valuename: [''],
       framenumber: [''],
       enginenumber: [''],
-      partnumber:[''],
-      color:[''],
+      partnumber: [''],
+      color: [''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -165,17 +165,17 @@ export class AddItemPage implements OnInit {
     });
 
     this.groupop = this.formBuilder.group({
-      itemgroupname:['',Validators.required],
-      parentgroup:[''],
-      searchTerm:['']
-  });
+      itemgroupname: ['', Validators.required],
+      parentgroup: [''],
+      searchTerm: ['']
+    });
 
-  this.router.events.subscribe((event) => {
-    if (event instanceof NavigationStart) {
-      // Dismiss the popover before navigating
-      this.closePopover();
-    }
-  });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Dismiss the popover before navigating
+        this.closePopover();
+      }
+    });
 
   }
 
@@ -259,10 +259,10 @@ export class AddItemPage implements OnInit {
         companyid: 1,
         labelname: this.myform.value.labelname,
         valuename: this.myform.value.valuename,
-        framenumber:  this.myform.value.framenumber,
+        framenumber: this.myform.value.framenumber,
         enginenumber: this.myform.value.enginenumber,
-        partnumber:  this.myform.value.partnumber,
-        color:  this.myform.value.color,
+        partnumber: this.myform.value.partnumber,
+        color: this.myform.value.color,
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
@@ -276,7 +276,7 @@ export class AddItemPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-         this.myform.reset();
+      this.myform.reset();
 
     } else {
       //If the form is not valid, display error messages
@@ -366,7 +366,7 @@ export class AddItemPage implements OnInit {
     const fields = { unit_name: this.unit_name }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-      const companyid='1'
+      const companyid = '1'
       console.log('Your form data : ', this.unitpop.value);
       let unitdata: unit = {
         unit_name: this.unitpop.value.unit_name,
@@ -402,48 +402,53 @@ export class AddItemPage implements OnInit {
   }
 
   async OnGroupSubmit() {
-    const fields = {groupname:this.itemgroupname}
-    const companyid=1
+    const fields = { groupname: this.itemgroupname }
+    const companyid = 1
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
-    console.log('Your form data : ', this.groupop.value);
-    let groupdata:group={
-      itemgroupname: this.groupop.value.itemgroupname, 
-      parentgroupid: this.groupop.value.parentgroup,
-      companyid: companyid,
-    };
-    this.groupService.createGroup(groupdata,'','').subscribe(
-      (response: any) => {
-       if(response.status){
-        console.log('POST request successful', response);
-       }
-        this.formService.showSuccessAlert();
-        this.groupop.reset();
+      console.log('Your form data : ', this.groupop.value);
+      let groupdata: group = {
+        itemgroupname: this.groupop.value.itemgroupname,
+        parentgroupid: this.groupop.value.parentgroup,
+        companyid: companyid,
+      };
+      this.groupService.createGroup(groupdata, '', '').subscribe(
+        (response: any) => {
+          if (response.status) {
+            console.log('POST request successful', response);
+          }
+          this.formService.showSuccessAlert();
+          this.groupop.reset();
 
-      },
-      (error: any) => {
-        console.error('POST request failed', error);
-        this.formService.showFailedAlert();
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          this.formService.showFailedAlert();
+        }
+      );
+      setTimeout(() => {
+        // Reset the form and clear input fields
+        this.groupop.reset();
+      }, 1000);
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.groupop.controls).forEach(controlName => {
+        const control = this.groupop.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
       }
-    );
-    setTimeout(() => {
-      // Reset the form and clear input fields
-      this.groupop.reset();
-    }, 1000); 
-  }   else {
-    //If the form is not valid, display error messages
-    Object.keys(this.groupop.controls).forEach(controlName => {
-      const control = this.groupop.get(controlName);
-      if (control?.invalid) {
-        control.markAsTouched();
-      }
-    });
-    if (this.firstInvalidInput) {
-      this.firstInvalidInput.setFocus();
     }
   }
-}
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 
 }
 

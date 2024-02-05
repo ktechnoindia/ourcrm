@@ -117,7 +117,7 @@
               <ion-col size="6" size-lg="6" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [ngModel]="ecommision" formControlName="ecommision" name="ecommision" type="number"
-                    label="Commission :" label-placement="floating" fill="outline"></ion-input>
+                    label="Commission :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
 

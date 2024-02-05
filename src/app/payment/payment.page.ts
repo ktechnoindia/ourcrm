@@ -81,10 +81,10 @@ export class PaymentPage implements OnInit {
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
 
-  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,private session:SessionService) {
-    
+  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
+
     const compid = session.getValue('companyid')?.valueOf() as string;
-    this.paymentBill=new Subscription();
+    this.paymentBill = new Subscription();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     //console.log(this.supplier$);
 
@@ -127,9 +127,9 @@ export class PaymentPage implements OnInit {
     // Check if a customer is selected
     if (this.selectedvendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill = this.payService.getPurchaseById(1,this.selectedvendorId).subscribe(bill => {
+      this.paymentBill = this.payService.getPurchaseById(1, this.selectedvendorId).subscribe(bill => {
         console.log('data length', bill.length)
-        this.myPaymentBillData=bill;
+        this.myPaymentBillData = bill;
         if (bill && bill.length > 0) {
           const bills = bill[0];
           console.log('bills data', bill[0])
@@ -146,7 +146,7 @@ export class PaymentPage implements OnInit {
       });
     }
   }
-  
+
 
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
@@ -302,5 +302,10 @@ export class PaymentPage implements OnInit {
     // Convert this.billpendingamt to a number before returning
     return this.pendingamt;
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }
