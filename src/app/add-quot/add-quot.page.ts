@@ -19,6 +19,7 @@ import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
 import { SalesService } from '../services/sales.service';
+
 interface Quote {
 
   barcode: string;
@@ -75,6 +76,7 @@ interface Quote {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddQuotPage implements OnInit {
+  
   gstTypes: any[] = [];
   @ViewChild('myFormRef') myFormRef!: ElementRef;
 
