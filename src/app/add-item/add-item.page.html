@@ -36,18 +36,27 @@
                     </ion-input>
                   </ion-row>
                 </ion-col>
-
-                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
-
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="--- HSN ---" label-placement="floating" fill="outline" [(ngModel)]="hsnname"
-                    formControlName="hsnname" name="hsnname">
-                    <!-- <ion-select-option value="">  --- HSN --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
-                      {{ hsnname.hsnname }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
+                <ion-item>
+                  <ion-label>HSN</ion-label>
+                  <ionic-selectable
+                    [(ngModel)]="selectedOption"
+                    formControlName="hsnname"
+                    [items]="filteredOptions"
+                    itemValueField="hsnid"
+                    itemTextField="hsnname"
+                    [canSearch]="true"
+                    (onChange)="selectOption($event)">
+                  </ionic-selectable>
+                </ion-item>
+                
+                
+                
+                
+                
+                
+                
+                
+                  
 
                 <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
                   <ion-button id="hsn"><ion-icon name="person-add-outline"></ion-icon></ion-button>

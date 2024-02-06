@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -16,6 +16,8 @@ import { ItemtypeService } from '../services/itemtype.service';
 import { FormValidationService } from '../form-validation.service';
 import { AddattributeService } from '../services/addattribute.service';
 import { CreateunitService, unit } from '../services/createunit.service';
+import { IonicSelectableComponent } from 'ionic-selectable';
+
 
 
 
@@ -24,11 +26,15 @@ import { CreateunitService, unit } from '../services/createunit.service';
   templateUrl: './add-item.page.html',
   styleUrls: ['./add-item.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterLink, RouterModule,],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterLink, RouterModule,IonicSelectableComponent,],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddItemPage implements OnInit {
-
+  searchQuery: string = '';
+  hsnname$: Observable<any[]> = new Observable<any[]>();
+  allOptions: any[] = [];
+  filteredOptions: any[] = [];
+  selectedOption: any;
   myform: FormGroup;
   submitted = false;
   type = 'address';
@@ -71,7 +77,6 @@ export class AddItemPage implements OnInit {
   basicrate: number = 0;
   labelname: string = '';
   valuename: string = '';
-  hsnname$: Observable<any[]>
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
   itemtypename$: Observable<any[]>
@@ -117,7 +122,7 @@ export class AddItemPage implements OnInit {
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
-      hsnname: [''].toString(),
+      hsnname: new FormControl(''),
       stocktypename: [''].toString(),
       itemtypename: [''].toString(),
       unitname: [''].toString(),
@@ -300,8 +305,19 @@ export class AddItemPage implements OnInit {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
-  ngOnInit() {
+  ngOnInit(): void {
+    // Fetch data and populate hsnOptions$
+    this.fetchData();
   }
+  fetchData() {
+    this.hsnname$ = this.hsnService.getHSNNames(1);
+    this.hsnname$.subscribe(options => {
+      this.allOptions = options;
+      // Initially, set filteredOptions to allOptions
+      this.filteredOptions = [...this.allOptions];
+    });
+  }
+ 
   selectedImage!: string | ArrayBuffer;
 
   onFileSelected(event: any) {
@@ -449,9 +465,19 @@ export class AddItemPage implements OnInit {
       event.preventDefault();
     }
   }
+  filterOptions() {
+    if (this.searchQuery) {
+      this.filteredOptions = this.allOptions.filter(option =>
+        option.hsnname.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      // If search query is empty, show all options
+      this.filteredOptions = [...this.allOptions];
+    }
+  }
 
+  selectOption(option: any) {
+    // Handle option selection
+    console.log('Selected option:', option);
+  }
 }
-
-
-
-

@@ -375,6 +375,14 @@ export class AddPurchasePage implements OnInit {
 
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
+     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+
+    htmlForm.addEventListener('keydown', (event) => {
+      // Prevent the default behavior for Enter key
+      if (event.key === 'Enter') {
+          event.preventDefault();
+      }
+  });
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
 
