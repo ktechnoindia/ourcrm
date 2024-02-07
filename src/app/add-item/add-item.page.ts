@@ -480,4 +480,5 @@ export class AddItemPage implements OnInit {
     // Handle option selection
     console.log('Selected option:', option);
   }
+  
 }

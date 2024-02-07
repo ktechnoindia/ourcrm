@@ -53,6 +53,7 @@ import { BarcodeService } from './services/barcode.service';
 import { SalereturnService } from './services/salereturn.service';
 import { PurchasereturnService } from './services/purchasereturn.service'; 
 import { SignupService } from './services/signup.service';
+
 import { InterceptorProvider } from './interceptors/interceptor';
 import { HttpInterceptorModule } from './interceptors/http-interceptor.module';
 import { CustomStorageModule } from './interceptors/custom-storage.module';
