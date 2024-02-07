@@ -52,6 +52,19 @@ export interface item {
   enginenumber: string;
   partnumber: string;
   color: string;
+  // itemDesccription:string;
+  // classofvehicle:string;
+  // makersname:string;
+  // hourspowerofcube:string;
+  // fuelused:string;
+  // noofcylinders:string;
+  // yearofmanufactur:string;
+  // seatingcapacity:string;
+  // unladenweight:string;
+  // grossvehicleweight:string;
+  // bodytype:string;
+  // wheelbase:string;
+  
 }
 
 @Injectable({

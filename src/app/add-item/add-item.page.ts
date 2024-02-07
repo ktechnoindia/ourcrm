@@ -18,7 +18,66 @@ import { AddattributeService } from '../services/addattribute.service';
 import { CreateunitService, unit } from '../services/createunit.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 
+interface Item {
+  itemDesccription: string;
+  classofvehicle: string;
+  makersname: string;
+  hourspowerofcube: string;
+  fuelused: string;
+  noofcylinders: string;
+  yearofmanufactur: string;
+  seatingcapacity: string;
+  unladenweight: string;
+  grossvehicleweight: string;
+  bodytype: string;
+  wheelbase: string;
+  attributes: any;
+  itemDesc: string;
+  itemCode: string;
+  hsnname: string;
+  selectHSN: number;
+  selectItem: number;
+  selectStock: number;
+  selectPrimaryUnit: number;
+  selectunitname: number;
 
+  itemtype: string;
+  stocktype: string;
+  stocktypename: string;
+  itemtypename: string;
+  unitname: string;
+  selectItemGroup: number;
+  selectGst: number;
+  openingbalance: string;
+  closingbalance: string;
+  selectedAttribute: string;
+  files: string;
+  barcode: number;
+  minimum: number;
+  maximum: number;
+  reorder: string;
+  mrp: number;
+  salerate: number;
+  attr1: string;
+  attr2: string;
+  attr3: string;
+  attr4: string;
+  attr5: string;
+  attr6: string;
+  attr7: string;
+  attr8: string;
+
+  selectGstservice: number;
+  companyid: number;
+  purchaserate: number;
+  basicrate: number;
+  labelname: string;
+  valuename: string;
+  framenumber: string;
+  enginenumber: string;
+  partnumber: string;
+  color: string;
+}
 
 
 @Component({
@@ -26,7 +85,7 @@ import { IonicSelectableComponent } from 'ionic-selectable';
   templateUrl: './add-item.page.html',
   styleUrls: ['./add-item.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterLink, RouterModule,IonicSelectableComponent,],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterLink, RouterModule, IonicSelectableComponent,],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddItemPage implements OnInit {
@@ -106,7 +165,21 @@ export class AddItemPage implements OnInit {
   groupop: FormGroup;
   itemgroupname: string = '';
   parentgroup: number = 0;
-
+  itemDesccription: string = '';
+  classofvehicle: string = '';
+  makersname: string = '';
+  hourspowerofcube: string = '';
+  fuelused: string = '';
+  noofcylinders: string = '';
+  yearofmanufactur: string = '';
+  seatingcapacity: string = '';
+  unladenweight: string = '';
+  grossvehicleweight: string = '';
+  bodytype: string = '';
+  wheelbase: string = '';
+  showAttributes: boolean = false; // Define the showAttributes property
+  step3: boolean = false;
+  step1: boolean = false;
 
   constructor(private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
     this.selectGst$ = this.gstsrvs.getgsttype();
@@ -157,6 +230,18 @@ export class AddItemPage implements OnInit {
       enginenumber: [''],
       partnumber: [''],
       color: [''],
+      itemDesccription: [''],
+      classofvehicle: [''],
+      makersname: [''],
+      hourspowerofcube: [''],
+      fuelused: [''],
+      noofcylinders: [''],
+      yearofmanufactur: [''],
+      seatingcapacity: [''],
+      unladenweight: [''],
+      grossvehicleweight: [''],
+      bodytype: [''],
+      wheelbase: [''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -268,6 +353,19 @@ export class AddItemPage implements OnInit {
         enginenumber: this.myform.value.enginenumber,
         partnumber: this.myform.value.partnumber,
         color: this.myform.value.color,
+        // itemDesccription: this.myform.value.itemDesccription,
+        // classofvehicle: this.myform.value.classofvehicle,
+        // makersname: this.myform.value.makersname,
+        // hourspowerofcube: this.myform.value.hourspowerofcube,
+        // fuelused: this.myform.value.fuelused,
+        // noofcylinders: this.myform.value.noofcylinders,
+        // yearofmanufactur: this.myform.value.yearofmanufactur,
+        // seatingcapacity: this.myform.value.seatingcapacity,
+        // unladenweight: this.myform.value.unladenweight,
+        // grossvehicleweight: this.myform.value.grossvehicleweight,
+        // bodytype: this.myform.value.bodytype,
+        // wheelbase: this.myform.value.wheelbase
+
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
@@ -317,7 +415,7 @@ export class AddItemPage implements OnInit {
       this.filteredOptions = [...this.allOptions];
     });
   }
- 
+
   selectedImage!: string | ArrayBuffer;
 
   onFileSelected(event: any) {
@@ -480,5 +578,10 @@ export class AddItemPage implements OnInit {
     // Handle option selection
     console.log('Selected option:', option);
   }
-  
+  toggleStep3() {
+    this.step3 = !this.step3;
+  }
+  toggleStep1() {
+    this.step1 = !this.step1;
+  }
 }
