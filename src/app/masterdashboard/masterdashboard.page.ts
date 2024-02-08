@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { EncryptionService } from '../services/encryption.service';
 import { CustomerService } from '../services/customer.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
@@ -78,7 +78,7 @@ export class MasterdashboardPage implements OnInit {
   searchTerms1:string='';
   searchTerms2:string='';
 
-  constructor(private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
+  constructor(private router: Router, private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     this.selectedOptions = ['customerlist', 'vendorlist'];
 
     const compid = '1';
@@ -235,7 +235,8 @@ export class MasterdashboardPage implements OnInit {
   async ngOnInit() {
     //this.username=await this.session.getValue('username');
     //this.companyname=await this.session.getValue('companyname');
-
+    
+   
     const compid = '1';
 
     // Fetch data for all entities
@@ -267,7 +268,11 @@ export class MasterdashboardPage implements OnInit {
 
     
   }
+  refreshPage() {
+    
+    window.location.reload();
 
+  }
   updateChartData(chartId: string, label: string, data: number[]) {
     const chart = Chart.getChart(chartId);
     if (chart) {
