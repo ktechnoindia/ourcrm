@@ -21,6 +21,7 @@ import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { SalesService } from '../services/sales.service';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 
 interface Dcin {
@@ -74,7 +75,7 @@ interface Dcin {
   templateUrl: './dc-in.page.html',
   styleUrls: ['./dc-in.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,IonicSelectableComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DcInPage implements OnInit {
@@ -157,7 +158,7 @@ discount:number=0;
 
   ttotal!: number;
   myform: FormGroup;
-  supplier$: any;
+  supplier$: Observable<any[]>;
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -202,6 +203,10 @@ isOpen = false;
   attr6:string='';
   attr7:string='';
   attr8:string='';
+  selectedItemAttributes: any[] = [];
+  filteredOptions: any[] = [];
+  searchQuery: string = '';
+  allOptions: any[] = [];
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
    // this.cdr.detectChanges();
     const compid = '1';
@@ -864,9 +869,19 @@ return this.totalquantity;
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       // this.calculateDiscountPercentage();
     });
+  // Fetch data and populate hsnOptions$
+  this.fetchData();
 
-  }
 
+}
+fetchData() {
+  this.supplier$ = this.vendname1.fetchallVendor('','','');
+  this.supplier$.subscribe(options => {
+    this.allOptions = options;
+    // Initially, set filteredOptions to allOptions
+    this.filteredOptions = [...this.allOptions];
+  });
+}
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -999,5 +1014,19 @@ return this.totalquantity;
       event.preventDefault();
     }
   }
-
+  filterOptions(): void {
+    if (this.searchQuery) {
+      this.filteredOptions = this.allOptions.filter(option =>
+        option.vendname1.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      // If search query is empty, show all options without creating a new array
+      this.filteredOptions = this.allOptions;
+    }
+  }
+  
+  selectOption(option: any): void {
+    // Handle option selection
+    console.log('Selected option:', option);
+  }
 }

@@ -65,7 +65,16 @@
                     label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
-
+              <!-- <ion-col size-lg="2.6" size-md="2" size-sm="6" size="6" class="search">
+                <ion-item lines="none">
+                  <ion-label>---Supplier Name---</ion-label>
+                  <ionic-selectable #selectComponent [(ngModel)]="suppliertype" formControlName="suppliertype"
+                    [items]="filteredOptions" itemValueField="vendcode" itemTextField="suppliername" [canSearch]="true"
+                    (onChange)="selectOption($event)" [canClear]="true" closeButtonText="Close" closeButtonSlot="end"
+                    clearButtonText="Clear" interface="popover" name="supplier">
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>  -->
               <ion-col class="ionselect" size-lg="2.6" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   (ngModelChange)="getSuppliers(dcinData)" label="--- Supplier Name ---" label-placement="floating"
@@ -75,7 +84,7 @@
                   </ion-select-option>
                 </ion-select>
               </ion-col>
-
+            
               <ion-col class="custom-primary" size-lg="0.4" size-md="2" size-sm="2" size="2">
                 <ion-button id="customer" (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
               </ion-col>

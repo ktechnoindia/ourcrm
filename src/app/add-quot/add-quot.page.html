@@ -38,7 +38,7 @@
         </div>
 
         <ion-grid>
-          <form [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
+          <form id="myform" [formGroup]="myform" (ngSubmit)="onSubmit(myform,quoteData)">
             <ion-row>
               <ion-col class="ionselect" size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
@@ -73,6 +73,16 @@
                 </ion-row>
               </ion-col>
 
+              <!-- <ion-col size-lg="3.5" size-md="2" size-sm="6" size="6" class="search">
+                <ion-item lines="none">
+                  <ion-label>---Customer Name--- </ion-label>
+                  <ionic-selectable #selectComponent [(ngModel)]="custcode" formControlName="custname"
+                    [items]="filteredOptions" itemValueField="custcode" itemTextField="custname" [canSearch]="true"
+                    (onChange)="selectOption($event)" [canClear]="true" closeButtonText="Close" closeButtonSlot="end"
+                    clearButtonText="Clear" interface="popover" name="custname">
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col> -->
               <ion-col class="ionselect" size-lg="3.5" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]="custcode"
