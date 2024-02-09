@@ -55,6 +55,8 @@ myform:FormGroup;
           this.navCtrl.navigateForward('/createcompany'); 
        
         }else{
+          this.sharedService.showHeader  = true;
+
           this.navCtrl.navigateForward('/masterdashboard'); 
   
         }
