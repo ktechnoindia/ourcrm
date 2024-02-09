@@ -176,13 +176,13 @@
                 <ion-toggle (click)="toggleStep1()" style="font-size: 18px;">You Want Attributes</ion-toggle><br /><br />
               </ion-row>
 
-              <div *ngIf="step1">
+              <div>
                 <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
                   <ion-toolbar>
                     <ion-segment style="border-bottom: 2px solid lightblue;" name="type"
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)"
-                      scrollable>
-                      <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
+                      scrollable>                    
+                        <ion-segment-button *ngIf="step1" style="border-right: 2px solid lightblue; background: fff; color: #000000;"
                         value="all">
                         <ion-label>Attribute</ion-label>
                       </ion-segment-button>

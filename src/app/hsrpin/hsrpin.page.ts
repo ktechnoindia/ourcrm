@@ -207,7 +207,7 @@ export class HsrpinPage implements OnInit {
   purchasebyid$: Observable<any[]>
   isQuantityPopoverOpen: boolean = false;
   itemid: number = 0;
-
+  fetchbyengineno$: Observable<any[]>
   constructor(private saleService: SalesService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
@@ -217,7 +217,7 @@ export class HsrpinPage implements OnInit {
     this.hsrpdate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.purchasebyid$ = new Observable;
-
+    this.fetchbyengineno$ = this.hsrpinservice.fetchbyengineno();
 
 
     this.myform = formBuilder.group({
@@ -563,7 +563,7 @@ export class HsrpinPage implements OnInit {
           taxrate1: 0,
           itemid: 0,
           selectedItemId: 0,
-          engineframenumber:this.myform.value.engineframenumber
+          engineframenumber: this.myform.value.engineframenumber
         };
 
         hsrpindatas.push(hsrpindata);
@@ -827,22 +827,13 @@ export class HsrpinPage implements OnInit {
     const identifier = hsrpin.selectedItemId ? 'itemname' : 'itemcode';
     const value = hsrpin.selectedItemId || hsrpin.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-    this.itemnames$.subscribe(items => {
-      const selectedItem = items.find(item => item.tid === hsrpin.itemname);
-
-      if (selectedItem) {
-        this.selectedItemAttributes = selectedItem.attributes;
-      } else {
-        this.selectedItemAttributes = [];
-      }
-    });
-    this.itemService.getItems(compid, value).subscribe(
-      (data) => {
+    // Make a request to your API endpoint to fetch item details
+    fetch(`https://your-api-url.com/action/get_purchase_eno?eno=${value}`)
+      .then(response => response.json())
+      .then(data => {
         console.log('Data received:', data);
-
         if (data && data.length > 0) {
           const itemDetails = data[0];
-
           // Update the quote properties
           hsrpin.name = itemDetails.customername;
 
@@ -881,10 +872,10 @@ export class HsrpinPage implements OnInit {
           console.error('No data found for the selected item.');
         }
       },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
+        (error) => {
+          console.error('Error fetching data', error);
+        }
+      );
   }
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
