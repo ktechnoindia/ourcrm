@@ -23,16 +23,25 @@ export class AddattributePage implements OnInit {
   companyid: number = 1;
   myform: FormGroup;
 
-  attname$: Observable<any[]>
+  attnames: any[] = [];
   searchTerm: string = '';
-  filteredAttribute$: Observable<any[]> = new Observable<any[]>(); 
+  filteredAttributes: any[] = [];
 
   constructor(private navCtrl: NavController,private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
       attname: ['', Validators.required],
       searchTerm:['']
     })
-    this.attname$ = this.addatt.getattribute(1);
+    this.myaction();
+  }
+  async myaction(){
+    this.addatt.getattribute(1).subscribe((response:any)=>{
+      this.attnames=response;
+      this.filteredAttributes = this.attnames;
+      console.log('>>>>>'+this.filteredAttributes);
+  }, (error) => {                              //Error callback
+    console.log('error caught in component'+error.message) 
+  });  
   }
 
   async onSubmit() {
@@ -50,8 +59,9 @@ export class AddattributePage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-          this.myform.reset();
+          this.myaction();
 
+          this.myform.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -76,29 +86,30 @@ export class AddattributePage implements OnInit {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
   onNew(){
-    location.reload();
+    //location.reload();
   }
 
-  filterCustomers(): Observable<any[]> {
-    return this.attname$.pipe(
-      map(attiributename =>
-        attiributename.filter(attribute =>
-          Object.values(attribute).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterCustomers(): Observable<any[]> {
+  //   return this.attname$.pipe(
+  //     map(attiributename =>
+  //       attiributename.filter(attribute =>
+  //         Object.values(attribute).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermChanged(): void {
-    this.filteredAttribute$ = this.filterCustomers();
+    this.filteredAttributes = this.attnames;
   }
  
   ngOnInit() {
-    this.filteredAttribute$ = this.attname$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    //this.myaction();
+    // this.filteredAttribute$ = this.attname$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
   goBack() {

@@ -37,7 +37,7 @@
                     <th>Attribute Name</th>
                     <th style="width: 100px;">Action</th>
                   </tr>
-                  <tr *ngFor="let attname of filteredAttribute$ | async; let i = index">
+                  <tr *ngFor="let attname of filteredAttributes;index as i">
                     <td>{{i+1}}</td>
                     <td>{{attname.attname}}</td>
                     <td>
