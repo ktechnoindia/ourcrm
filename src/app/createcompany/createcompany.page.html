@@ -245,7 +245,7 @@
                 slot="end"></ion-icon></ion-button>
             <div  *ngIf="step1">
               <ion-row class="headinglabel">
-                <ion-label>Resistration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
+                <ion-label>Registration Details:</ion-label><span style="width: 100%; height: 2px;background-image: linear-gradient(to right, #00b4db, #0083b0);
     "></span>
               </ion-row>
               <ion-row>
@@ -253,9 +253,14 @@
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Select Industry Type---" label-placement="floating" fill="outline"   [(ngModel)]="industry" formControlName="industry" name="selectindustry">
                     <!-- <ion-select-option value="0">---Select Industry Type---</ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
+                    <!-- <ion-select-option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
-                    </ion-select-option>
+                    </ion-select-option> -->
+                    <ion-select-option value="Texttile">Texttile</ion-select-option>
+                    <ion-select-option value="Automobile">Automobile</ion-select-option>
+                    <ion-select-option value="FMCG">FMCG</ion-select-option>
+                    <ion-select-option value="Retail">Retail</ion-select-option>
+                    <ion-select-option value="Electronics">Electronics</ion-select-option>
                   </ion-select>
                 </ion-col>
 
