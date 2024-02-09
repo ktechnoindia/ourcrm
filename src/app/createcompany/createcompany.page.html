@@ -253,9 +253,12 @@
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Select Industry Type---" label-placement="floating" fill="outline"   [(ngModel)]="industry" formControlName="industry" name="selectindustry">
                     <!-- <ion-select-option value="0">---Select Industry Type---</ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
+                    <!-- <ion-select-option *ngFor="let industry of industry$ | async" [value]="industry.industrytypeid">
                       {{ industry.industrytypename }}
-                    </ion-select-option>
+                    </ion-select-option> -->
+                    <ion-select-option value="Reatil">Reatil</ion-select-option>
+                    <ion-select-option value="Wholesale">Wholesale</ion-select-option>
+                    <ion-select-option value="Distributer">Distributer</ion-select-option>
                   </ion-select>
                 </ion-col>
 
@@ -263,9 +266,16 @@
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Select Business Type---" label-placement="floating" fill="outline"   [(ngModel)]="businesstype" formControlName="businesstype" name="business">
                     <!-- <ion-select-option value="0">---Select Business Type---</ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
+                    <!-- <ion-select-option *ngFor="let businesstype of businesstype$ | async" [value]="businesstype.businesstypeid">
                       {{ businesstype.businesstypename }}
-                    </ion-select-option>
+                    </ion-select-option> -->
+                    <ion-select-option value="Manufacturing">Manufacturing</ion-select-option>
+                    <ion-select-option value="Professional">Professional</ion-select-option>
+                    <ion-select-option value="Trading">Trading</ion-select-option>
+                    <ion-select-option value="Service">Service</ion-select-option>
+                    <ion-select-option value="Automobile">Automobile</ion-select-option>
+                    <ion-select-option value="PlyWood">PlyWood</ion-select-option>
+                    <ion-select-option value="Other">Other</ion-select-option>
                   </ion-select>
                 </ion-col>
               </ion-row>
@@ -274,9 +284,18 @@
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Select Segment Type---" label-placement="floating" fill="outline"   [(ngModel)]="segmenttype" formControlName="segmenttype" name="segment">
                     <!-- <ion-select-option value="0">---Select Segment Type---</ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
+                    <!-- <ion-select-option *ngFor="let segmenttype of segmenttype$ | async" [value]="segmenttype.segmentid">
                       {{ segmenttype.segmentname }}
-                    </ion-select-option>
+                    </ion-select-option> -->
+                    <ion-select-option value="Sales & Distribution">Sales & Distribution</ion-select-option>
+                    <ion-select-option value="Retail">Retail</ion-select-option>
+                    <ion-select-option value="Service Billing and AMC">Service Billing and AMC</ion-select-option>
+                    <ion-select-option value="Transportation">Transportation</ion-select-option>
+                    <ion-select-option value="Timber and Ply">Timber and Ply</ion-select-option>
+                    <ion-select-option value="Rice Mill">Rice Mill</ion-select-option>
+                    <ion-select-option value="Dairy">Dairy</ion-select-option>
+                    <ion-select-option value="Pipe Industry">Pipe Industry</ion-select-option>
+
                   </ion-select>
                 </ion-col>
 
@@ -284,9 +303,21 @@
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Select GST Type---" label-placement="floating" fill="outline"   [(ngModel)]="companytype" formControlName="companytype" name="gsttype">
                     <!-- <option value="0">---Select GST Type---</option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
+                    <!-- <ion-select-option *ngFor="let companytype of companytype$ | async" [value]="companytype.gsttypeid">
                       {{ companytype.gsttypename }}
-                    </ion-select-option>
+                    </ion-select-option> -->
+                    <ion-select-option value="Company">Company</ion-select-option>
+                    <ion-select-option value="Corporation">Corporation</ion-select-option>
+                    <ion-select-option value="Individual">Individual</ion-select-option>
+                    <ion-select-option value="Partnership/LLP">Partnership/LLP</ion-select-option>
+                    <ion-select-option value="Proprietor">Proprietor</ion-select-option>
+                    <ion-select-option value="Socity">Socity</ion-select-option>
+                    <ion-select-option value="Trust">Trust</ion-select-option>
+                    <ion-select-option value="Regular">Regular</ion-select-option>
+                    <ion-select-option value="Composition">Composition</ion-select-option>
+                    <ion-select-option value="NRI">NRI</ion-select-option>
+                    <ion-select-option value="NON-GST">NON-GST</ion-select-option>
+
                   </ion-select>
                 </ion-col>
                 <ion-col size="6" size-lg="6" size-md="6" size-sm="6">

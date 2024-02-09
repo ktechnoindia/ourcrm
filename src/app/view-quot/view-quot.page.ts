@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { QuotationService } from '../services/quotation.service';
 import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-view-quot',
@@ -15,7 +16,20 @@ import { EncryptionService } from '../services/encryption.service';
   imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class ViewQuotPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
+  generatePdf() {
+    let pdf = new jsPDF()
 
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        //save this pdf document
+        pdf.save("sample Pdf")
+      }
+    })
+  }
+  printThisPage() {
+    window.print();
+  }
   formDate: string = '';
   toDate: string = '';
   quote$: Observable<any[]>

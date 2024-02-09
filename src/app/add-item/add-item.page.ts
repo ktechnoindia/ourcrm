@@ -31,6 +31,8 @@ interface Item {
   grossvehicleweight: string;
   bodytype: string;
   wheelbase: string;
+  dealerrate: number;
+  subdealerrate: number;
   attributes: any;
   itemDesc: string;
   itemCode: string;
@@ -177,6 +179,9 @@ export class AddItemPage implements OnInit {
   grossvehicleweight: string = '';
   bodytype: string = '';
   wheelbase: string = '';
+  dealerrate: number = 0;
+  subdealerrate: number = 0;
+
   showAttributes: boolean = false; // Define the showAttributes property
   step3: boolean = false;
   step1: boolean = false;
@@ -242,6 +247,8 @@ export class AddItemPage implements OnInit {
       grossvehicleweight: [''],
       bodytype: [''],
       wheelbase: [''],
+      dealerrate: [''],
+  subdealerrate: [''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -275,7 +282,7 @@ export class AddItemPage implements OnInit {
   }
   addAttribute() {
     const attributeKeys = this.getAttributeKeys();
-
+  
     // Check if the maximum number of attributes (8) has been reached
     if (attributeKeys.length < 8) {
       const newAttributeKey = `attr${attributeKeys.length + 1}`;
@@ -353,19 +360,8 @@ export class AddItemPage implements OnInit {
         enginenumber: this.myform.value.enginenumber,
         partnumber: this.myform.value.partnumber,
         color: this.myform.value.color,
-        // itemDesccription: this.myform.value.itemDesccription,
-        // classofvehicle: this.myform.value.classofvehicle,
-        // makersname: this.myform.value.makersname,
-        // hourspowerofcube: this.myform.value.hourspowerofcube,
-        // fuelused: this.myform.value.fuelused,
-        // noofcylinders: this.myform.value.noofcylinders,
-        // yearofmanufactur: this.myform.value.yearofmanufactur,
-        // seatingcapacity: this.myform.value.seatingcapacity,
-        // unladenweight: this.myform.value.unladenweight,
-        // grossvehicleweight: this.myform.value.grossvehicleweight,
-        // bodytype: this.myform.value.bodytype,
-        // wheelbase: this.myform.value.wheelbase
-
+        // dealerrate:  this.myform.value.dealerrate,
+        // subdealerrate: this.myform.value.subdealerrate
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
@@ -442,45 +438,61 @@ export class AddItemPage implements OnInit {
 
 
   async OnHsnSubmit() {
-    const fields = { hsncode: this.hsncode, }
+    const fields = { hsncode: this.hsncode };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+  
+    if (isValid) {
       console.log('Your form data : ', this.hsnpop.value);
       let hsndata: hsn = {
         hsncode: this.hsnpop.value.hsncode,
         unit: this.hsnpop.value.unit,
-        //  desc:this.form.value.desc,
         companyid: 1,
       };
+  
       this.hsnService.createHSN(hsndata, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);
+            
+            // Fetch the updated HSN data again
+            this.fetchHSNData();
+  
+            this.formService.showSuccessAlert();
           }
-          this.formService.showSuccessAlert();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
           this.formService.showFailedAlert();
         }
       );
-
     } else {
       Object.keys(this.hsnpop.controls).forEach(controlName => {
         const control = this.hsnpop.get(controlName);
         if (control?.invalid) {
           control.markAllAsTouched();
         }
-      })
+      });
     }
   }
+  
+  fetchHSNData() {
+    this.hsnService.getHSNNames(1).subscribe(
+      (response: any) => {
+        // Update filteredOptions with the new HSN data
+        this.filteredOptions = response;
+      },
+      (error: any) => {
+        console.error('Failed to fetch HSN data', error);
+      }
+    );
+  }
+  
 
   async OnUnitSubmit() {
-    const fields = { unit_name: this.unit_name }
+    const fields = { unit_name: this.unit_name };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-      const companyid = '1'
+  
+    if (isValid) {
       console.log('Your form data : ', this.unitpop.value);
       let unitdata: unit = {
         unit_name: this.unitpop.value.unit_name,
@@ -489,23 +501,25 @@ export class AddItemPage implements OnInit {
         decimal_place: 0,
         companyid: '1'
       };
+  
       this.unitService.createUnit(unitdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
+          
+          // Fetch the updated unit data again
+          this.fetchUnitData();
+  
+          // Reset the form
           this.unitpop.reset();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
           this.formService.showFailedAlert();
         }
       );
-      setTimeout(() => {
-        this.unitpop.reset();
-      }, 1000)
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.unitpop.controls).forEach(controlName => {
         const control = this.unitpop.get(controlName);
         if (control?.invalid) {
@@ -514,49 +528,71 @@ export class AddItemPage implements OnInit {
       });
     }
   }
+  
+  fetchUnitData() {
+
+    this.unitname$ = this.unitService.fetchallunit('','', '').subscribe(
+      (response: any) => {
+        // Update filteredOptions with the new HSN data
+        this.filteredOptions = response;
+      },
+      (error: any) => {
+        console.error('Failed to fetch HSN data', error);
+      }
+    );
+  }
+  
 
   async OnGroupSubmit() {
-    const fields = { groupname: this.itemgroupname }
-    const companyid = 1
+    const fields = { groupname: this.itemgroupname };
+    const companyid = 1;
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+  
+    if (isValid) {
       console.log('Your form data : ', this.groupop.value);
       let groupdata: group = {
         itemgroupname: this.groupop.value.itemgroupname,
         parentgroupid: this.groupop.value.parentgroup,
         companyid: companyid,
       };
+  
       this.groupService.createGroup(groupdata, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);
+            // After successfully adding the group, fetch the updated group data again
+            this.fetchItemGroups();
+            // Show success alert
+            this.formService.showSuccessAlert();
+            // Reset the form
+            this.groupop.reset();
           }
-          this.formService.showSuccessAlert();
-          this.groupop.reset();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
+          // Show failed alert
           this.formService.showFailedAlert();
         }
       );
-      setTimeout(() => {
-        // Reset the form and clear input fields
-        this.groupop.reset();
-      }, 1000);
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.groupop.controls).forEach(controlName => {
         const control = this.groupop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
       });
+      // Set focus to the first invalid input field
       if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
     }
   }
+  
+  fetchItemGroups() {
+    this.itemgroups$ = this.groupService.getAllGroups(1);
+  }
+  
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {

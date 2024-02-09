@@ -194,10 +194,10 @@ export class AddExecutivePage implements OnInit {
   }
 
   async OnLedgerSubmit() {
-    const fields = { lname: this.lname, ledger_code: this.ledger_code }
+    const fields = { lname: this.lname, ledger_code: this.ledger_code };
     const isValid = await this.formService.validateForm(fields);
+  
     if (isValid) {
-
       console.log('Your form data : ', this.ledgerpop.value);
       let ledgerdata: ledg = {
         lname: this.ledgerpop.value.lname,
@@ -239,12 +239,19 @@ export class AddExecutivePage implements OnInit {
         discount: 0,
         userid: 0
       };
+  
       this.ledgerService.createLdeger(ledgerdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the ledger, fetch the updated ledger data again
+          this.fetchLedgerData();
+          
+          // Show success alert
           this.formService.showSuccessAlert();
+          
+          // Reset the form
           this.ledgerpop.reset();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -252,7 +259,7 @@ export class AddExecutivePage implements OnInit {
         }
       );
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.ledgerpop.controls).forEach(controlName => {
         const control = this.ledgerpop.get(controlName);
         if (control?.invalid) {
@@ -261,6 +268,13 @@ export class AddExecutivePage implements OnInit {
       });
     }
   }
+  
+  fetchLedgerData() {
+    // Assuming you have a method to fetch the updated ledger data
+    // Here, you'll update the 'ledgers$' observable with the new data
+    this.ledgers$ = this.ledgerService.fetchAllLedger('','', '');
+  }
+  
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {

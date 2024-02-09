@@ -71,11 +71,9 @@ export class RoleofexicutivePage implements OnInit {
   }
 
   async onSubmit() {
-    const fields = { exname: this.exname, extilte: this.extilte }
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+    this.submitted = true;
+    if (this.form.valid) {
       const companyid = 1
-      console.log('Your form data : ', this.form.value);
       let roleexecutdata: roleofexecut = {
         exname: this.form.value.exname,
         extilte: this.form.value.extilte,
@@ -85,7 +83,7 @@ export class RoleofexicutivePage implements OnInit {
         selectedDistrict: this.form.value.selectedDistrict,
         fulladdress: this.form.value.fulladdress,
         email: this.form.value.email,
-        wpnumber: this.form.value.email,
+        wpnumber: this.form.value.wpnumber,
         pin_code: this.form.value.pin_code,
         companyid: companyid
       };
@@ -95,10 +93,9 @@ export class RoleofexicutivePage implements OnInit {
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          this.formService.showSaveLoader()
+          this.formService.showSaveLoader();
           this.form.reset();
-
+          this.submitted = false;
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -106,12 +103,10 @@ export class RoleofexicutivePage implements OnInit {
             this.formService.showFailedAlert();
           }, 1000);
           this.formService.shoErrorLoader();
+          this.submitted = false;
         }
       );
-      this.form.reset();
-
     } else {
-      //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
         const control = this.form.get(controlName);
         if (control?.invalid) {
@@ -123,6 +118,7 @@ export class RoleofexicutivePage implements OnInit {
       }
     }
   }
+
   onNew() {
     location.reload();
   }

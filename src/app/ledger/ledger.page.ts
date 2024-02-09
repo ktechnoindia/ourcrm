@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController, PopoverController } from '@ionic/angular';
@@ -26,7 +26,7 @@ import { roletypesservice } from '../services/roletypes.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LedgerPage implements OnInit {
-
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
   selectedSalutation: string = '';
   companyName: string = '';
   selectTabs = 'address';
@@ -95,6 +95,7 @@ export class LedgerPage implements OnInit {
   roletypes$: Observable<any[]>
   ledgers$: Observable<any>;
   executivepop: FormGroup;
+   
 
   constructor(private popoverController: PopoverController, private navCtrl: NavController, private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledgerser: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
     this.myform = this.formBuilder.group({
@@ -287,8 +288,10 @@ export class LedgerPage implements OnInit {
   }
 
   async OnExecutiveSubmit() {
-    const fields = {}
-    if (await this.formService.validateForm(fields)) {
+    const fields = {}; // Assuming there are no specific fields to validate for this form
+    const isValid = await this.formService.validateForm(fields);
+  
+    if (isValid) {
       console.log('Your form data : ', this.executivepop.value);
       const executdata: execut = {
         roleid: this.executivepop.value.roleid,
@@ -303,36 +306,51 @@ export class LedgerPage implements OnInit {
         ecommision: 0,
         eemail: ''
       };
+  
       this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the executive, fetch the updated executive data again
+          this.fetchExecutiveData();
+          
+          // Show success alert after a delay
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          this.formService.showSaveLoader()
-          this.form.reset();
-
+  
+          // Optionally, reset the form
+          this.executivepop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
+          
+          // Show failed alert after a delay
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
-          this.formService.shoErrorLoader();
         }
       );
-
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
         const control = this.form.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
       });
-
+  
+      // Set focus to the first invalid input field
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
+  }
+  
+  fetchExecutiveData() {
+    // Assuming you have a method to fetch the updated executive data
+    // Here, you'll update the 'executive$' observable with the new data
+    this.executive$ = this.addExecutiveService.fetchAllExecutive('','', '');
   }
   
 }

@@ -64,6 +64,8 @@ export interface item {
   // grossvehicleweight:string;
   // bodytype:string;
   // wheelbase:string;
+  // dealerrate: number;
+  // subdealerrate: number;
   
 }
 
