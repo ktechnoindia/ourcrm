@@ -57,7 +57,7 @@ export class LeaddashboardPage implements OnInit {
     this.notificationCount = 0;
   }
   constructor(private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private leadser: LeadService,) {
-    this.selectedOptions = ['topnewlead', 'productwiselead'];
+    this.selectedOptions = ['topnewlead', 'productwiselead',];
 
     const compid = '1';
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');

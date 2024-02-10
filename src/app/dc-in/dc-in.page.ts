@@ -1019,11 +1019,17 @@ fetchData() {
   
 
   onKeyDown(event: KeyboardEvent): void {
-    // Prevent the default behavior for up and down arrow keys
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-      event.preventDefault();
+    // Prevent the default behavior for Enter key
+    if (event.key === 'Enter') {
+        event.preventDefault();
     }
-  }
+
+    // Prevent incrementing/decrementing on arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault();
+    }
+}
+
   filterOptions(): void {
     if (this.searchQuery) {
       this.filteredOptions = this.allOptions.filter(option =>

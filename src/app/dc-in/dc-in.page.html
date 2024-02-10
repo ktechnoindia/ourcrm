@@ -146,7 +146,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.itemcode" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (ngModelChange)="getItems(dcin)"/>
+                        type="number" (ngModelChange)="getItems(dcin)" (keydown)="onKeyDown($event)"/>
                     </td>
                     <td >
                       <select class="table_select" [(ngModel)]="dcin.selectedItemId"
@@ -171,7 +171,8 @@
                              [ngModelOptions]="{standalone: true}"
                              class="table_input"
                              type="number"
-                             (keydown.enter)="openQuantityPopover(dcin)">
+                             (keydown.enter)="openQuantityPopover(dcin)"
+                             (keydown)="onKeyDown($event)">
                             </td>   
                     <td >
                       <input [(ngModel)]="dcin.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -198,7 +199,7 @@
                     </td>
                     <td>
                       <input [(ngModel)]="dcin.grossrate" [value]="getgrossrate(dcin) "
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"/>
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
                     </td>
                     <td >
                       <input [(ngModel)]="dcin.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -210,16 +211,16 @@
                           </option>
                         </select> -->
                     </td>
-                    <input type="hidden" [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" />
+                    <input type="hidden" [(ngModel)]="dcin.taxrate1" [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)"/>
 
                     <td>
-                      <input [value]="getsgst(dcin)" [readonly]="true" class="table_input" type="number"/>
+                      <input [value]="getsgst(dcin)" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
                     </td>
                     <td>
-                      <input [value]="getcgst(dcin)" [readonly]="true" class="table_input" type="number"/>
+                      <input [value]="getcgst(dcin)" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
                     </td>
                     <td>
-                      <input [value]="getigst(dcin)" [readonly]="true" class="table_input" type="number"/>
+                      <input [value]="getigst(dcin)" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
                     </td>
                     <td>
                       <select class="table_select" formControlName="discountType">
@@ -239,10 +240,10 @@
                     </td>
 
                     <td>
-                      <input [value]="getTotaltax(dcin)" [readonly]="true" class="table_input" type="number"/>
+                      <input [value]="getTotaltax(dcin)" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
                     </td>
                     <td>
-                      <input [value]="getTotalamt([dcin])" [readonly]="true" class="table_input" type="number"/>
+                      <input [value]="getTotalamt([dcin])" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)"/>
 
                     </td>
 
@@ -260,21 +261,21 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Total Item :</label>
                     <input name="totalitemno" [(ngModel)]="dcinData.length" formControlName="totalitemno"
-                      class="input_table" type="number">
+                      class="input_table" type="number"(keydown)="onKeyDown($event)">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Quantity : </label>
 
                     <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
-                      formControlName="totalquantity" class="input_table" type="number">
+                      formControlName="totalquantity" class="input_table" type="number"(keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
                     <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
-                      formControlName="totalgrossamt" class="input_table" type="number">
+                      formControlName="totalgrossamt" class="input_table" type="number"(keydown)="onKeyDown($event)">
 
 
                   </ion-col>
@@ -282,21 +283,21 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
                     <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
-                      formControlName="totaldiscountamt" class="input_table" type="number">
+                      formControlName="totaldiscountamt" class="input_table" type="number"(keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
                     <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
-                      formControlName="totaltaxamount" class="input_table" type="number">
+                      formControlName="totaltaxamount" class="input_table" type="number"(keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                      [value]="getTaxableAmount()" class="input_table" type="number">
+                      [value]="getTaxableAmount()" class="input_table" type="number"(keydown)="onKeyDown($event)">
 
                   </ion-col>
                 </ion-row>
@@ -340,24 +341,24 @@
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="openingbalance" formControlName="openingbalance"
-                            name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                            name="openingbalance" placeholder="Enter Opening Balance"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="debit" formControlName="debit" name="debit"
-                            placeholder="Enter  Dedit Amount"></ion-input>
+                            placeholder="Enter  Dedit Amount"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="closingbalance" formControlName="closingbalance"
-                            name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                            name="closingbalance" placeholder="Enter Closing Balance"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="credit" formControlName="credit" name="credit"
-                            placeholder="Enter Credit Amount"></ion-input>
+                            placeholder="Enter Credit Amount"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -392,7 +393,7 @@
                       <th colspan="2">Discount Amount :</th>
                       <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
                           id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
-                          class="row_input" type="number">
+                          class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
 
@@ -400,7 +401,7 @@
                       <th colspan="2">Tax Amount : </th>
                       <td colspan="2"> <input [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
                           id="totaltaxamount" formControlName="totaltaxamount" name="totaltaxamount" class="row_input"
-                          type="number">
+                          type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
 
@@ -408,26 +409,26 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="number">
+                          class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="number">
+                          id="posttax" class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
                       <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
                           [value]="getGrandTotal()" id="totalnetamount" name="totalnetamount" class="row_input"
-                          type="number">
+                          type="number"(keydown)="onKeyDown($event)" >
                       </td>
                     </tr>
                   </table>

@@ -44,7 +44,7 @@
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input #firstInvalidInput [(ngModel)]="billNumber" formControlName="billNumber" name="billno"
-                    type="number" label=" Billing No.  :" label-placement="floating" fill="outline"></ion-input>
+                    type="number" label=" Billing No.  :" label-placement="floating" fill="outline"(keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -202,6 +202,7 @@
                              [ngModelOptions]="{standalone: true}"
                              class="table_input"
                              type="number"
+                             (keydown)="onKeyDown($event)"
                              (keydown.enter)="openQuantityPopover(purchase)">
                             </td>   
                     <td >
@@ -225,18 +226,18 @@
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number"(keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
                       <input [readonly]="true" [value]="getnetrate(purchase)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number">
+                      <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number"(keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number"  >
+                      type="number" (keydown)="onKeyDown($event)" >
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
                         [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(purchase)"> GST</option>
@@ -245,7 +246,7 @@
                         </option>
                       </select> -->
                     </td>
-                    <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}" />
+                    <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}"(keydown)="onKeyDown($event)" />
 
                     <td>
                       <input [readonly]="true" [value]="getcgst(purchase)" class="table_input" type="text">
@@ -268,10 +269,10 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
                       <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)" (keyup)="getdiscountamt(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number">
+                      <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number"(keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [readonly]="true" [value]="getTotalamt([purchase])" class="table_input" type="text">
@@ -369,24 +370,24 @@
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="openingbalance" formControlName="openingbalance"
-                            name="openingbalance" placeholder="Enter Opening Balance"></ion-input>
+                            name="openingbalance" placeholder="Enter Opening Balance"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="debit" formControlName="debit" name="debit"
-                            placeholder="Enter  Dedit Amount"></ion-input>
+                            placeholder="Enter  Dedit Amount"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="closingbalance" formControlName="closingbalance"
-                            name="closingbalance" placeholder="Enter Closing Balance"></ion-input>
+                            name="closingbalance" placeholder="Enter Closing Balance"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="credit" formControlName="credit" name="credit"
-                            placeholder="Enter Credit Amount"></ion-input>
+                            placeholder="Enter Credit Amount"(keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -421,7 +422,7 @@
                       <th colspan="2">Discount Amount :</th>
                       <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
                           id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
-                          class="row_input" type="number">
+                          class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
 
@@ -437,19 +438,19 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="number">
+                          class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="number">
+                          id="posttax" class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()" 
-                          id="roundoff" class="row_input" type="number">
+                          id="roundoff" class="row_input" type="number"(keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>

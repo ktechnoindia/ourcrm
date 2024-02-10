@@ -1092,4 +1092,17 @@ console.log('data of ',purchases)
     // Here, you'll update the 'supplier$' observable with the new data
     this.supplier$ = this.vendService.fetchallVendor('','', '');
   }
+
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for Enter key
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+
+    // Prevent incrementing/decrementing on arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault();
+    }
+}
+
 }

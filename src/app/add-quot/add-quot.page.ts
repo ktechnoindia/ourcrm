@@ -242,6 +242,8 @@ export class AddQuotPage implements OnInit {
   filteredOptions: any[] = [];
   searchQuery: string = '';
   allOptions: any[] = [];
+    inputsVisible: boolean = true;
+
   constructor(private saleService: SalesService, private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     this.purchasebyid$ = new Observable;
 
@@ -1209,9 +1211,16 @@ export class AddQuotPage implements OnInit {
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for Enter key
     if (event.key === 'Enter') {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }
+
+    // Prevent incrementing/decrementing on arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault();
+    }
+}
+
+  
   filterOptions(): void {
     if (this.searchQuery) {
       this.filteredOptions = this.allOptions.filter(option =>

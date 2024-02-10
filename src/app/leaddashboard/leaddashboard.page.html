@@ -134,7 +134,7 @@
                           </ion-card>
                         </ion-col>
                         
-                        <!-- <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
+                        <ion-col size="6" size-lg="3" size-md="3" size-sm="3">
                           <ion-card style="text-align: center; background-color: lightsalmon">
                             <ion-row class="row">
                               <ion-col size="4">
@@ -163,7 +163,7 @@
                               </ion-col>
                             </ion-row>
                           </ion-card>
-                        </ion-col> -->
+                        </ion-col>
                       </ion-row>
                     </div>
                   </ion-col>
@@ -175,6 +175,8 @@
                           label="Select Lead Table" label-placement="floating" fill="outline">
                           <ion-select-option value="topnewlead">Top New Lead</ion-select-option>
                           <ion-select-option value="productwiselead">Product Wise List</ion-select-option>
+                          <ion-select-option value="pendingfollowups">Todays Pending Follow-ups</ion-select-option>
+
                         </ion-select>
                       </ion-row>
                       <ion-row class="headinglabel" style="text-align: center;">
@@ -279,6 +281,72 @@
                 <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('productwiselead')">
                   <div class="table-container" >
                     <p>Product Wise Lead</p>
+                    <ion-searchbar class="customs"></ion-searchbar>
+                    <div class="scroll-container">
+                      <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
+                        <tr>
+                          <th><input type="checkbox" name=""></th>
+                          <th>Lead Name</th>
+                          <th>Company Name</th>
+                          <th>Email</th>
+                          <th>Phone Number</th>
+                          <th>Lead Source</th>
+                          <th>Lead Owner</th>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name=""></td>
+                          <td><a href="">Ktechnodsks</a></td>
+                          <td>Ktechno Private Ltd.</td>
+                          <td><a href="">ktechno&#64;gmail.com</a></td>
+                          <td>+91 993893849</td>
+                          <td>Thnn sndsf</td>
+                          <td>jdjfdjghj</td>
+
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name=""></td>
+                          <td><a href="">Ktechnodsks</a></td>
+                          <td>Ktechno Private Ltd.</td>
+                          <td><a href="">ktechno&#64;gmail.com</a></td>
+                          <td>+91 993893849</td>
+                          <td>Thnn sndsf</td>
+                          <td>jdjfdjghj</td>
+
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name=""></td>
+                          <td>Ktechno Private Ltd.</td>
+                          <td><a href="">ktechno&#64;gmail.com</a></td>
+                          <td>+91 993893849</td>
+                          <td>Thnn sndsf</td>
+                          <td>jdjfdjghj</td>
+                          <td>jdjfdjghj</td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name=""></td>
+                          <td>Ktechno Private Ltd.</td>
+                          <td><a href="">ktechno&#64;gmail.com</a></td>
+                          <td>+91 993893849</td>
+                          <td>Thnn sndsf</td>
+                          <td>jdjfdjghj</td>
+                          <td>jdjfdjghj</td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name=""></td>
+                          <td>Ktechno Private Ltd.</td>
+                          <td><a href="">ktechno&#64;gmail.com</a></td>
+                          <td>+91 993893849</td>
+                          <td>Thnn sndsf</td>
+                          <td>jdjfdjghj</td>
+                          <td>jdjfdjghj</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col class="table_data" size="12" size-lg="6"*ngIf="selectedOptions.includes('pendingfollowups')">
+                  <div class="table-container" >
+                    <p>Todays  Pending Follow-ups</p>
                     <ion-searchbar class="customs"></ion-searchbar>
                     <div class="scroll-container">
                       <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
