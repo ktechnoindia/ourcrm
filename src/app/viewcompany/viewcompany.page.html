@@ -1,220 +1,108 @@
 <ion-content [fullscreen]="true">
+
   <div class="Customer">
-      <ion-card-content>
-        <div class="dekstop-menu">
-          <ion-card-header>
-            <ion-row lines="none">
-              <ion-icon id="open-loading" (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-loading class="custom-loading" trigger="open-loading" message="Loading..." [duration]="1000"></ion-loading>
-              <ion-title style="text-align: center;">View Company</ion-title>
-            </ion-row>
-          </ion-card-header>
+    <ion-card-content>
+      <div class="dekstop-menu">
+        <!-- Header -->
+        <ion-card-header>
+          <ion-row lines="none">
+            <ion-icon id="open-loading" (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+            <ion-loading class="custom-loading" trigger="open-loading" message="Loading..."
+              [duration]="1000"></ion-loading>
+            <ion-title style="text-align: center;">View Company</ion-title>
+          </ion-row>
+        </ion-card-header>
 
-          <ion-grid>
-            <ion-row>
-
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
-                <ion-row>
-                  <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
-                <ion-row>
-                  <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                    label-placement="floating" fill="outline"></ion-input>
-                </ion-row>
-              </ion-col>
-
-              <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-                <ion-button expand="block" (click)="filterData()">Ok</ion-button>
-              </ion-col>
-              <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                  name="selectedColumns" multiple="true">
-                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]  }}</ion-select-option>
-                </ion-select>
-              </ion-col>
-              <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-                <ion-select (ionChange)="filterData()" class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                  label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
-                  <ion-select-option value="Standard">Standard</ion-select-option>
-                  <ion-select-option value="PartyWise">PartyWise</ion-select-option>
-                  <ion-select-option value="ItemWise">ItemWise</ion-select-option>
-                  <ion-select-option value="Detailed">Detailed</ion-select-option>
-                </ion-select>
-              </ion-col>
-            </ion-row>
-
+        <!-- Filter Options -->
+        <ion-grid>
+          <ion-row>
+            <!-- From Date Input -->
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
               <ion-row>
-                <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
+                <ion-input color="warning" [(ngModel)]="fromDate" name="fromDate" type="date" label=" From Date  :"
+                  label-placement="floating" fill="outline"></ion-input>
               </ion-row>
-              <ion-row class="Executive">
-                <div #content class="scroll-container">
-                  <table style="width: 100%;">
-                    <thead>
-                      <!-- <tr>
-                        <th style="background-color: azure; width: 500px !important;" colspan="4">Company</th>
-                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 1</th>
-                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 2</th>
-                        <th style="background-color: azure;width: 800px !important;" colspan="8">Registration</th>
-                        <th style="background-color: azure;width: 800px !important;" colspan="9">Modules</th>
-                        <th style="background-color: azure;width: 500px !important;" colspan="5">Bank Details</th>
-                        <th style="background-color: azure;width: 100px !important;" rowspan="2">Action</th>
-                      </tr> -->
-                      <tr>
-                        <th>Sr. No.</th>
-                        <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
+            </ion-col>
+            <!-- To Date Input -->
+            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+              <ion-row>
+                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                  label-placement="floating" fill="outline"></ion-input>
+              </ion-row>
+            </ion-col>
+            <!-- Filter Button -->
+            <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+              <ion-button expand="block" (click)="filterData()">Ok</ion-button>
+            </ion-col>
+            <!-- Select Columns Dropdown -->
+            <ion-col size-lg="4" size-md="4" size-sm="6" size="12">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                name="selectedColumns" multiple="true">
+                <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col]
+                  }}</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <!-- Select Report Type Dropdown -->
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+              <ion-select (ionChange)="filterData()" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                interface="popover" label="Select Report Type" label-placement="floating" fill="outline"
+                name="selectedColumns" multiple="true">
+                <ion-select-option value="Standard">Standard</ion-select-option>
+                <ion-select-option value="PartyWise">PartyWise</ion-select-option>
+                <ion-select-option value="ItemWise">ItemWise</ion-select-option>
+                <ion-select-option value="Detailed">Detailed</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
 
-                      <tr *ngFor="let company of  filteredCompany$ | async; let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td *ngFor="let col of selectedColumns">{{ company[col] }}</td>
-                        <td class="Action">
-                          <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                          <ion-icon color="primary" icon-only name="create"></ion-icon>
-                        </td>
-                      </tr>
-                      
-                  </table>
-                </div>
-               
-                  <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                    <p >Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
-                  </div>
-                
-              </ion-row>
-              <ion-row class="custom-primary" style="justify-content: right;">
-                <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
-                  color="secondry"></ion-icon>Print</ion-button>
-                <ion-button size="small" (click)="generatePdf()" ><ion-icon name="document" slot="end" size="small"
-                    color="secondry"></ion-icon>Export To PDF</ion-button>
-                    <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
-                      color="secondry"></ion-icon>Preview</ion-button>
-                  <ion-button size="small"><ion-icon name="grid"slot="end" size="small"
-                    color="secondry"></ion-icon>Export Excel</ion-button>
-              </ion-row>
-              <!-- <ion-row>
-                <div class="scroll-container">
-                  <table style="width: 100%;overflow-x: auto;overflow-y: auto;">
-                    <thead>
-                      <tr>
-                        <th style="background-color: azure; width: 500px !important;" colspan="4">Company</th>
-                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 1</th>
-                        <th style="background-color: azure;width: 1000px !important;" colspan="9">Address : 2</th>
-                        <th style="background-color: azure;width: 800px !important;" colspan="8">Registration</th>
-                        <th style="background-color: azure;width: 800px !important;" colspan="9">Modules</th>
-                        <th style="background-color: azure;width: 500px !important;" colspan="5">Bank Details</th>
-                        <th style="background-color: azure;width: 100px !important;" rowspan="2">Action</th>
-                      </tr>
-                      <tr>
-                        <th>Sr. No.</th>
-                        <th>Comany Name</th>
-                        <th>Company Code</th>
-                        <th>Company GSTIN</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>District</th>
-                        <th>Pincode</th>
-                        <th >Address</th>
-                        <th>Mobile No.</th>
-                        <th>WhatsApp No.</th>
-                        <th >Email</th>
-                        <th>Website URl</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>District</th>
-                        <th>Pincode</th>
-                        <th >Address</th>
-                        <th>Mobile No.</th>
-                        <th >WhatsApp No.</th>
-                        <th >Email</th>
-                        <th>Website URl</th>
-                        <th>Image</th>
-                        <th>Starting Date</th>
-                        <th>Industry Type</th>
-                        <th>Business Type</th>
-                        <th>Segment Type</th>
-                        <th>GST Type</th>
-                        <th>PAN No.</th>
-                        <th>TAN No.</th>
-                        <th>Sales</th>
-                        <th>Purchase</th>
-                        <th>Quotation</th>
-                        <th>Challan</th>
-                        <th>LMS</th>
-                        <th>AMC</th>
-                        <th>ALL Modules</th>
-                        <th>Language</th>
-                        <th>Curreny</th>
-                        <th>Account No.</th>
-                        <th>IFSC Code</th>
-                        <th >Bank Name</th>
-                        <th>Branch Name</th>
-                        <th>UPI ID</th>
+          <!-- Search Bar -->
+          <ion-row>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+              (ionInput)="onSearchTermChanged()"></ion-searchbar>
+          </ion-row>
+        
+          <!-- Table -->
+          <ion-row class="Executive">
+            <ion-row class="data">
+              <h1>Company List :</h1>
+            </ion-row>
+            <div #content class="scroll-container">
+              <table id="companyTable" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let company of filteredCompany$ | async; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td *ngFor="let col of selectedColumns">{{ company[col] }}</td>
+                    <td class="Action">
+                      <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                      <ion-icon color="primary" icon-only name="create"></ion-icon>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-row>
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let company of  filteredCompany$ | async; let i = index">
-                        <td>{{i + 1}}</td>
-                        <td>{{company.cpyname}}</td>
-                        <td>{{company.companyid}}</td>
-                        <td>{{company.gstin}}</td>
-                        <td>{{company.selectedCountry}}</td>
-                        <td>{{company.selectedState}}</td>
-                        <td>{{company.selectedDistrict}}</td>
-                        <td>{{company.pinCode}}</td>
-                        <td>{{company.address}}</td>
-                        <td>{{company.phone}}</td>
-                        <td>{{company.wpnumber}}</td>
-                        <td>{{company.email}}</td>
-                        <td>{{company.website}}</td>
-                        <td>{{company.selectedCountry1}}</td>
-                        <td>{{company.selectedState1}}</td>
-                        <td>{{company.selectedDistrict1}}</td>
-                        <td>{{company.pinCode1}}</td>
-                        <td>{{company.address1}}</td>
-                        <td>{{company.phone1}}</td>
-                        <td>{{company.wpnumber1}}</td>
-                        <td>{{company.email1}}</td>
-                        <td>{{company.website1}}</td>
-                        <td>{{company.logo}}</td>
-                        <td>{{company.rdate}}</td>
-                        <td>{{company.industry}}</td>
-                        <td>{{company.businesstype}}</td>
-                        <td>{{company.segmenttype}}</td>
-                        <td>{{company.companytype}}</td>
-                        <td>{{company.pannumber}}</td>
-                        <td>{{company.tanno}}</td>
-                        <td>{{company.sales}}</td>
-                        <td>{{company.purchase}}</td>
-                        <td>{{company.quotation}}</td>
-                        <td>{{company.challan}}</td>
-                        <td>{{company.lms}}</td>
-                        <td>{{company.amc}}</td>
-                        <td>{{company.alloftheabove}}</td>
-                        <td>{{company.language}}</td>
-                        <td>{{company.currency}}</td>
-                        <td>{{company.accno}}</td>
-                        <td>{{company.ifsc}}</td>
-                        <td>{{company.bname}}</td>
-                        <td>{{company.branchname}}</td>
-                        <td>{{company.upiid}}</td>
-                        <td class="Action">
-                          <ion-icon color="danger" icon-only clear (click)="presentConfirmAlert(company.tid)" name="trash"></ion-icon> 
-                            <ion-icon color="primary" icon-only clear (click)="editcompany(company)" name="create"></ion-icon>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </ion-row> -->
-          </ion-grid>
-        </div>
-      </ion-card-content>
+          <!-- Total Items -->
+          <ion-row class="custom-primary" style="justify-content: right;">
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                color="secondry"></ion-icon>Print</ion-button>
+            <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                color="secondry"></ion-icon>Export To PDF</ion-button>
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                color="secondry"></ion-icon>Preview</ion-button>
+            <ion-button size="small"><ion-icon name="grid" slot="end" size="small" color="secondry"></ion-icon>Export
+              Excel</ion-button>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card-content>
   </div>
 </ion-content>

@@ -45,6 +45,60 @@ table select {
 }
 
 td{
-    border-right: 1px solid grey;;
+    border-right: 1px solid grey;
     text-align: center;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    border: 1px solid grey;
+    width: 100%;
+    height: 400px;
+    overflow-x: auto;
+  }
+  @media screen {
+    .data{
+        display: none;
+        visibility: hidden;
+    }
+}
+@media print {
+    .data{
+        display: block;
+        visibility: visible;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: underline;
+        padding: 5px;
+        justify-content: center;
+    }
+    .scroll-container{
+        border: none;
+    }
+    .total{
+        display: none;
+        visibility: hidden;
+    }
+    ion-input{
+        display: none;
+        visibility: hidden;
+    }
+    ion-button{
+        display: none;
+        visibility: hidden;
+
+    }
+    ion-select{
+        display: none;
+        visibility: hidden;
+
+    }
+    ion-searchbar{
+        display: none;
+        visibility: hidden;
+    }
+    ion-card-header{
+        display: none;
+        visibility: hidden;
+    }
 }

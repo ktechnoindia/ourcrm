@@ -7,7 +7,8 @@ import { VendorService } from '../services/vendor.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
-
+import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
@@ -24,27 +25,7 @@ export class ViewsupplierPage implements OnInit {
   formDate: string = '';
   toDate: string = '';
 
-  generatePdf() {
-    let pdf = new jsPDF()
-
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage() {
-    window.print();
-  }
-  // generateExcelReport() {
-  //   const data: any[] = [
-  //     // Your data rows here
-  //   ];
-  //   const fileName = 'Excel Report';
-
-  //   this.excelService.generateExcel(data, fileName);
-  // }
+  
   vendors$: Observable<any[]>
   searchTerm: string = '';
 
@@ -169,4 +150,55 @@ export class ViewsupplierPage implements OnInit {
         }
     })
   }
+  generatePdf() {
+    const table = document.getElementById('supplierTable');
+
+    if (!table) {
+        console.error('Element with id "supplierTable" not found.');
+        return;
+    }
+
+    const pdf = new jsPDF();
+
+    const header = function (data: any) {
+        pdf.setFontSize(18);
+        pdf.setTextColor(40);
+        pdf.setFont('curier', 'bold');
+        pdf.text('Supplers List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+    };
+
+    const footer = function (data: any) {
+        const pageCount = pdf.internal.pages.length;
+        pdf.setFontSize(14);
+        pdf.setTextColor(40);
+        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+    };
+
+    (pdf as any).autoTable({
+        html: '#supplierTable',
+        styles: {
+            lineWidth: 0.1, // set border line width
+            lineColor: [0, 0, 0], // set border color (black in this case)
+        },
+        didDrawPage: function (data: any) {
+            header(data);
+            footer(data);
+        }
+    });
+
+    pdf.save('supplier.pdf');
+}
+
+
+  printThisPage(){
+    window.print();
+  }
+  // generateExcelReport() {
+  //   const data: any[] = [
+  //     // Your data rows here
+  //   ];
+  //   const fileName = 'Excel Report';
+
+  //   this.excelService.generateExcel(data, fileName);
+  // }
 }

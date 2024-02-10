@@ -11,7 +11,9 @@ import { SessionService } from '../services/session.service';
 import { formatDate } from '@angular/common';
 // import { Subscription } from 'rxjs';
 import jsPDF from 'jspdf';
-
+import html2canvas from 'html2canvas';
+import { content } from 'html2canvas/dist/types/css/property-descriptors/content';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-viewcompany',
@@ -29,19 +31,7 @@ export class ViewcompanyPage implements OnInit {
 
   filteredCompany$: Observable<any[]> = new Observable<any[]>();
   searchTerm: string = '';
-  generatePdf() {
-    let pdf = new jsPDF()
 
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage() {
-    window.print();
-  }
   availableColumns: string[] = [
     'cpyname',
     'companyid',
@@ -154,7 +144,7 @@ export class ViewcompanyPage implements OnInit {
   totalItems: number = 0;
 
   constructor(private alertController: AlertController, public session: SessionService, private companyService: CreatecompanyService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
-    const compid =  this.session.getValue('userid')?.valueOf() as number;
+    const compid = this.session.getValue('userid')?.valueOf() as number;
     this.companys$ = this.companyService.fetchallcompany(compid, '', '');
     console.log(compid);
     this.updateManualHeaders();
@@ -233,4 +223,72 @@ export class ViewcompanyPage implements OnInit {
   goBack() {
     this.router.navigate(["/createcompany"])
   }
+  generatePdf() {
+    const table = document.getElementById('companyTable');
+
+    if (!table) {
+      console.error('Element with id "companyTable" not found.');
+      return;
+    }
+
+    const pdf = new jsPDF();
+
+    const header = function (data: any) {
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('helvetica', 'normal');
+      pdf.text('Company List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+    };
+
+    const footer = function (data: any) {
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+    };
+
+    const adjustFontSize = function () {
+      const tableElement = document.getElementById('companyTable');
+      if (!tableElement) return;
+
+      let maxWidth = pdf.internal.pageSize.getWidth() - 20; // subtracting padding
+      let maxCellWidth = 0;
+
+      // Iterate through each cell in the table, excluding the last column
+      tableElement.querySelectorAll('td:not(:last-child), th:not(:last-child)').forEach(cell => {
+        const cellWidth = cell.getBoundingClientRect().width;
+        maxCellWidth = Math.max(maxCellWidth, cellWidth);
+      });
+
+      // Adjust font size based on the widest cell
+      const fontSize = Math.min(maxWidth / maxCellWidth * 10, 18); // adjust multiplier as needed
+
+      pdf.setFontSize(fontSize);
+    };
+
+    (pdf as any).autoTable({
+      html: '#companyTable',
+      styles: {
+        lineWidth: 0.1, // set border line width
+        lineColor: [0, 0, 0], // set border color (black in this case)
+        borederradious: 4,
+      },
+      didDrawPage: function (data: any) {
+        header(data);
+        footer(data);
+      }
+    });
+
+    adjustFontSize(); // Call the function to adjust font size
+
+    pdf.save('company.pdf');
+  }
+
+
+
+  printThisPage() {
+    // Trigger the print functionality
+    window.print();
+}
+
 }

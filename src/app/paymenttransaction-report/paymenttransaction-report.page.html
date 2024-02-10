@@ -52,9 +52,13 @@
           <ion-row>
             <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermPayment()"></ion-searchbar>
           </ion-row>
-          <ion-row>
-            <div class="scroll-container">
-              <table style="width: 100%;overflow-x:auto; ">
+          <ion-row class="Executive">
+            <ion-row class="data">
+              <h1>Payment Transactions Report :</h1>
+            </ion-row>
+            <div #content class="scroll-container">
+
+              <table id="paymentTable"style="width: 100%;overflow-x:auto; ">
                 <tr>
                   <th  style="width: 50px !important;">Sr. No.</th>
                   <th  style="width: 100px !important;">Voucher Number</th>

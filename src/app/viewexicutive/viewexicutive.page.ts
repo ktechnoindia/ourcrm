@@ -8,7 +8,8 @@ import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
 import { RouterModule,RouterLink } from '@angular/router';
 import jsPDF from 'jspdf';
-
+import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 @Component({
   selector: 'app-viewexicutive',
   templateUrl: './viewexicutive.page.html',
@@ -61,19 +62,7 @@ export class ViewexicutivePage implements OnInit {
   ];
   manualHeaders: string[] = [];
 
-  generatePdf() {
-    let pdf = new jsPDF()
-
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage(){
-    window.print();
-  }
+ 
   totalItems: number = 0;
   constructor(private router:Router,private toastCtrl:ToastController,private encService:EncryptionService,private executService:ExecutiveService) { 
     const compid='1';
@@ -145,5 +134,49 @@ export class ViewexicutivePage implements OnInit {
 
 goBack(){
   this.router.navigate(["/add-executive"])
+}
+
+generatePdf() {
+  const table = document.getElementById('executiveTable');
+
+  if (!table) {
+      console.error('Element with id "executiveTable" not found.');
+      return;
+  }
+
+  const pdf = new jsPDF();
+
+  const header = function (data: any) {
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('curier', 'bold');
+      pdf.text('Executive List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+  };
+
+  const footer = function (data: any) {
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+  };
+
+  (pdf as any).autoTable({
+      html: '#executiveTable',
+      styles: {
+          lineWidth: 0.1, // set border line width
+          lineColor: [0, 0, 0], // set border color (black in this case)
+      },
+      didDrawPage: function (data: any) {
+          header(data);
+          footer(data);
+      }
+  });
+
+  pdf.save('executive.pdf');
+}
+
+
+printThisPage(){
+  window.print();
 }
 }

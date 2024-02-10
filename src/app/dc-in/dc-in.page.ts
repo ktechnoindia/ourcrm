@@ -1045,4 +1045,6 @@ fetchData() {
     // Handle option selection
     console.log('Selected option:', option);
   }
+
+  
 }
