@@ -107,6 +107,34 @@
               <ion-row style="margin-top: 4px;">
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
+                    <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
+                      label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
+                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number"
+                      label=" Basic Rate:" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
+                      label="Sale Rate (NET) :" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
                     <ion-input [(ngModel)]="dealerrate" formControlName="dealerrate" name="dealerrate" type="number"
                       label=" Dealer Rate:" label-placement="floating" fill="outline"
                       (keydown)="onKeyDown($event)"></ion-input>
@@ -119,39 +147,9 @@
                       (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
 
-                </ion-col>
-
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
-                    <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
-                      label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
-                  </ion-row>
-
-                </ion-col>
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
-                    <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
-                      label="Sale Rate :" label-placement="floating" fill="outline"
-                      (keydown)="onKeyDown($event)"></ion-input>
-                  </ion-row>
-                </ion-col>
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
-                    <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
-                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"
-                      (keydown)="onKeyDown($event)"></ion-input>
-                  </ion-row>
-                </ion-col>
-
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
-                    <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number"
-                      label=" Basic Rate:" label-placement="floating" fill="outline"
-                      (keydown)="onKeyDown($event)"></ion-input>
-                  </ion-row>
-                </ion-col>
-
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                </ion-col>          
+               
+                        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="---Stock Type---" label-placement="floating" fill="outline" [(ngModel)]="stocktypename"
                     formControlName="stocktypename" name="stocktypename">
