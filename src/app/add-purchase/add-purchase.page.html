@@ -170,11 +170,12 @@
                   <tr *ngFor="let purchase of purchaseData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="purchase.barcode" (ngModelChange)="getItems(purchase)"  [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="purchase.barcode" (ngModelChange)="getItems(purchase)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="purchase.itemcode" (ngModelChange)="getItems(purchase)"  [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                      <input [(ngModel)]="purchase.itemcode" (ngModelChange)="getItems(purchase)"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
                       <select class="select-option" [(ngModel)]="purchase.selectedItemId"
@@ -185,33 +186,27 @@
                         </option>
                       </select>
 
-                      <ion-input style="display: none;"  [(ngModel)]="purchase.itemid" [ngModelOptions]="{standalone: true}"
-                      type="hidden"></ion-input>
-                    <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
-                      type="hidden"></ion-input>
-                    <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
-                      type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="purchase.itemid"
+                        [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
+                      <ion-input style="display: none;" [(ngModel)]="userid" [ngModelOptions]="{standalone: true}"
+                        type="hidden"></ion-input>
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.description" [ngModelOptions]="{standalone: true}"
                         class="table_input  description" type="text">
                     </td>
                     <td>
-                      <input *ngIf="purchase.itemcode !== 0"
-                             [(ngModel)]="purchase.quantity"
-                             [ngModelOptions]="{standalone: true}"
-                             class="table_input"
-                             type="number"
-                             (keydown)="onKeyDown($event)"
-                             (keydown.enter)="openQuantityPopover(purchase)">
-                            </td>   
-                    <td >
-                    
+                      <input *ngIf="purchase.itemcode !== 0" [(ngModel)]="purchase.quantity"
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)" (keydown.enter)="openQuantityPopover(purchase)">
+
+                    </td>
                     <td>
                       <input [(ngModel)]="purchase.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="text">
-                      <input [(ngModel)]="purchase.hunitname" [ngModelOptions]="{standalone: true}" 
-                      type="hidden">
+                        type="text">
+                      <input [(ngModel)]="purchase.hunitname" [ngModelOptions]="{standalone: true}" type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="purchase.unitname" (ngModelChange)="getItems(purchase)"
                         [ngModelOptions]="{standalone: true}">
                         <option value="0">Unit Name</option>
@@ -222,22 +217,24 @@
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text">
+                        type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number"(keydown)="onKeyDown($event)">
+                        type="number" (keydown)="onKeyDown($event)">
 
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getnetrate(purchase)" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getnetrate(purchase)" class="table_input" type="text"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number"(keydown)="onKeyDown($event)">
+                      <input [readonly]="true" [value]="getgrossrate(purchase)" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                      type="number" (keydown)="onKeyDown($event)" >
+                        type="number" (keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,purchase)"
                         [(ngModel)]="purchase.taxrate" [ngModelOptions]="{standalone: true}">
                         <option value="0" (ngModelChange)="getItems(purchase)"> GST</option>
@@ -246,7 +243,7 @@
                         </option>
                       </select> -->
                     </td>
-                    <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}"(keydown)="onKeyDown($event)" />
+                    <input type="hidden" [(ngModel)]="purchase.taxrate1" [ngModelOptions]="{standalone: true}" />
 
                     <td>
                       <input [readonly]="true" [value]="getcgst(purchase)" class="table_input" type="text">
@@ -257,7 +254,7 @@
                     <td>
                       <input [readonly]="true" [value]="getigst(purchase)" class="table_input" type="text">
                     </td>
-                    <td>
+                    <td style="width: 90px;">
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>
                         <option value="percentage">Percentage</option>
@@ -265,14 +262,17 @@
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'percentage'">
                       <input [(ngModel)]="purchase.discount" (ionBlur)="getdiscountp(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                        [ngModelOptions]="{standalone: true}" class="table_input" type="text"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                      <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)" (keyup)="getdiscountamt(purchase)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)">
+                      <input [(ngModel)]="purchase.discountamt" [value]="getdiscountamt(purchase)"
+                        (keyup)="getdiscountamt(purchase)" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number"(keydown)="onKeyDown($event)">
+                      <input [readonly]="true" [value]="getTotaltax(purchase)" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [readonly]="true" [value]="getTotalamt([purchase])" class="table_input" type="text">
