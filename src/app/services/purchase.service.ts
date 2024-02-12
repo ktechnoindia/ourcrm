@@ -76,6 +76,7 @@ export interface purchasestore {
   providedIn: 'root'
 })
 export class PurchaseService {
+  total!: number;
 
   constructor(private httpclient: HttpClient) { }
   createpurchase(purchase: purchasestore[], key: string, user: string) {

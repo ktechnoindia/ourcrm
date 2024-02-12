@@ -80,6 +80,7 @@ quantityPopoverData: {
   providedIn: 'root'
 })
 export class PurchasereturnService {
+  total!: number;
 
   constructor(private httpclient:HttpClient) { }
   createpurchasereturn(purchasesreturn:purchasereturnstore[],key:string,user:string){

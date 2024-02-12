@@ -81,6 +81,7 @@ export class ViewcustomerPage implements OnInit {
     'email',
     'countryid',
   ];
+  
 
   searchTerm: string = '';
   filteredCustomers$: Observable<any[]> = new Observable<any[]>();
@@ -98,7 +99,20 @@ export class ViewcustomerPage implements OnInit {
     });
     this.updateManualHeaders();
   }
-
+  selectAdditionalColumns(event: CustomEvent) {
+    const selected = event.detail.value; // Get the selected columns from the event
+    // Check if 'All Columns' is selected
+    if (selected.includes('all')) {
+      this.selectedColumns = this.availableColumns.slice(); // Select all available columns
+    } else {
+      // Exclude 'All Columns' from selection and update selected columns
+      const index = selected.indexOf('all');
+      if (index !== -1) {
+        selected.splice(index, 1);
+      }
+      this.selectedColumns = selected;
+    }
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
       this.updateManualHeaders();

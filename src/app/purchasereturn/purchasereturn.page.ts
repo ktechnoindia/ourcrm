@@ -683,7 +683,7 @@ export class PurchasereturnPage implements OnInit {
   }
 
   removePurchase(index: number, row: Purchase) {
-    this.ttotal = this.ttotal - this.purchase.total;
+    this.ttotal = this.ttotal - this.purchasereturnService.total;
     this.purchaseData.splice(index, 1);
   }
   getAllRows() {

@@ -725,7 +725,7 @@ console.log('data of ',purchases)
   }
 
   removePurchase(index: number, row: Purchase) {
-    this.ttotal = this.ttotal - this.purchase.total;
+    this.ttotal = this.ttotal - this.purchaseService.total;
     this.purchaseData.splice(index, 1);
   }
   getAllRows() {

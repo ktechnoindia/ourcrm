@@ -18,12 +18,16 @@
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12" class="short">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Columns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                name="selectedColumns" multiple="true">
-                <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
-              </ion-select>
-              
+                            label="Select Columns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                            name="selectedColumns" multiple="true">
+                  <!-- Display the first six columns initially -->
+                  <ion-select-option *ngFor="let col of availableColumns.slice(0, 6)" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                  <!-- Add an option for selecting additional columns -->
+                  <ion-select-option *ngFor="let col of availableColumns.slice(6)" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                </ion-select>
               </ion-col>
+              
+              
 
             </ion-row>
 
