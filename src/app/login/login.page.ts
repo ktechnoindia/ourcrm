@@ -56,8 +56,9 @@ myform:FormGroup;
        
         }else{
           this.sharedService.showHeader  = true;
-
-          this.navCtrl.navigateForward('/masterdashboard'); 
+          setTimeout(() => {
+            this.navCtrl.navigateForward('/masterdashboard');
+          }, 1000);
   
         }
         

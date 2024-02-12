@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SessionService } from './session.service';
 
 
 
@@ -34,23 +35,29 @@ export interface rec {
 })
 export class RecepitService {
   private apiUrl = 'http://103.154.184.66:8000/account';
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient, private session:SessionService) { }
 
   createRecepit(recepit: rec[], key: string, user: string) {
     return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': key, 'user': user } })
   }
 
   fetchAllReceppit(companyid: string, key: string, user: string): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+
     console.log('companyyy ' + companyid);
-    return this.httpclient.get(environment.apiacturl + environment.fetchrecepit + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.get(environment.apiacturl + environment.fetchrecepit + '?p=' + companyid, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }},)
   }
   fetchUserOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
-    return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid);
+    const token = this.session.getValue('token')?.valueOf();
+
+
+    return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 
   getSalesById(custCode: number, companyId: number): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
     const url = `${this.apiUrl}/get_sales_byid?custcode=${custCode}&companyid=${companyId}`;
-    return this.httpclient.get(url);
+    return this.httpclient.get(url,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 }
