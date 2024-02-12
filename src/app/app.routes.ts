@@ -927,7 +927,11 @@ export const routes: Routes = [
   {
     path: 'companydashboard',
     loadComponent: () => import('./companydashboard/companydashboard.page').then( m => m.CompanydashboardPage)
+  },  {
+    path: 'invoice',
+    loadComponent: () => import('./invoice/invoice.page').then( m => m.InvoicePage)
   },
+
 
  
 

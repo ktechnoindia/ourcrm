@@ -377,12 +377,12 @@ export class AddPurchasePage implements OnInit {
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
      const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-    htmlForm.addEventListener('keydown', (event) => {
-      // Prevent the default behavior for Enter key
-      if (event.key === 'Enter') {
-          event.preventDefault();
-      }
-  });
+  //   htmlForm.addEventListener('keydown', (event) => {
+  //     // Prevent the default behavior for Enter key
+  //     if (event.key === 'Enter') {
+  //         event.preventDefault();
+  //     }
+  // });
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
 
@@ -480,7 +480,7 @@ console.log('data of ',purchases)
             }, 1000);
             this.formService.showSaveLoader();
             this.form.reset();
-            // location.reload()
+             location.reload()
           },
           (error: any) => {
             console.log('Purchase Post failed', error);
