@@ -71,7 +71,10 @@ table select {
     height:350px;
     overflow-x:auto
 }
-
+.no-scrollbars {
+    overflow: hidden;
+  }
+  
 @media screen {
     .data{
         display: none;
@@ -79,6 +82,15 @@ table select {
     }
 }
 @media print {
+     /* Hide scrollbars */
+  .scroll-container {
+    overflow: visible !important;
+  }
+  
+  /* Set table width to 100% */
+  #companyTable {
+    width: 100% !important;
+  }
     .data{
         display: block;
         visibility: visible;

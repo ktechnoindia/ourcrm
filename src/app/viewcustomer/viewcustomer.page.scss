@@ -56,13 +56,26 @@ td{
     height: 400px;
     overflow-x: auto;
   }
-  @media screen {
+  .no-scrollbars {
+    overflow: hidden;
+  }
+  
+@media screen {
     .data{
         display: none;
         visibility: hidden;
     }
 }
 @media print {
+     /* Hide scrollbars */
+  .scroll-container {
+    overflow: visible !important;
+  }
+  
+  /* Set table width to 100% */
+  #customerTable {
+    width: 100% !important;
+  }
     .data{
         display: block;
         visibility: visible;

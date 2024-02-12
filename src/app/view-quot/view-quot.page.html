@@ -62,8 +62,12 @@
             <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row class="Executive">
-            <div #content class="scroll-container">
-              <table style="width: 100%;">
+            <ion-row class="data">
+              <h1>Quotation List :</h1>
+            </ion-row>
+            <div #content id="content" class="scroll-container">
+
+              <table id="quotationTable" style="width: 100%;">
                 <thead>
                   <tr>
                     <th>Sr. No.</th>

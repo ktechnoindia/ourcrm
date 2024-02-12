@@ -44,6 +44,10 @@ td{
         font-size: 10px;
     }
 }
+.no-scrollbars {
+    overflow: hidden;
+  }
+  
 @media screen {
     .data{
         display: none;
@@ -51,6 +55,15 @@ td{
     }
 }
 @media print {
+     /* Hide scrollbars */
+  .scroll-container {
+    overflow: visible !important;
+  }
+  
+  /* Set table width to 100% */
+  #leadTable {
+    width: 100% !important;
+  }
     .data{
         display: block;
         visibility: visible;

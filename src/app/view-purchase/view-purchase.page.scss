@@ -89,6 +89,10 @@ table tr td select{
     font-weight: 400;
     
 }
+.no-scrollbars {
+    overflow: hidden;
+  }
+  
 @media screen {
     .data{
         display: none;
@@ -96,6 +100,15 @@ table tr td select{
     }
 }
 @media print {
+     /* Hide scrollbars */
+  .scroll-container {
+    overflow: visible !important;
+  }
+  
+  /* Set table width to 100% */
+  #purchaseTable {
+    width: 100% !important;
+  }
     .data{
         display: block;
         visibility: visible;
