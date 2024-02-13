@@ -83,7 +83,7 @@
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
-                              formControlName="paymentway" id="">
+                              formControlName="paymentway" id="" (change)="fillbillwisedata(selectedVendorId,paymentway)">
                               <option value="">Select Payment Way</option>
                               <option value="BillWise">BillWise</option>
                               <option value="On Account">On Account</option>

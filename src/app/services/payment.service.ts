@@ -61,6 +61,11 @@ export class PaymentService {
     return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 
+  fillBillWise(userid: number): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+    return this.httpclient.get(environment.apiacturl + environment.fetchBillWise + '?v=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+  }
+
   getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
     const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
