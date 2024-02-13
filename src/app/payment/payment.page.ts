@@ -77,10 +77,11 @@ export class PaymentPage implements OnInit {
     pendingamt: 0,
   }]
 
-  selectedvendorId: number = 0;
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
-
+  dataLength: number = 0;
+  selectedVendorId: number = 0;
+  paymentbill$:Observable<any[]>
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
@@ -90,9 +91,15 @@ export class PaymentPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(20);
+    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
     this.outstanding$.subscribe(outstandingData => {
       console.log(outstandingData);
+    });
+    this.paymentbill$ = this.paymentservice.getPurchaseById(this.selectedVendorId, 1);
+    this.paymentbill$.subscribe(data => {
+      // Get the length of the array
+      this.dataLength = data.length;
+      console.log('Length of the array:', this.dataLength);
     });
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
@@ -127,9 +134,9 @@ export class PaymentPage implements OnInit {
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
-    if (this.selectedvendorId !== 0) {
+    if (this.selectedVendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill = this.paymentservice.getPurchaseById(1, this.selectedvendorId).subscribe(bill => {
+      this.paymentBill = this.paymentservice.getPurchaseById(1, this.selectedVendorId).subscribe(bill => {
         console.log('data length', bill.length)
         this.myPaymentBillData = bill;
         if (bill && bill.length > 0) {
@@ -149,10 +156,10 @@ export class PaymentPage implements OnInit {
     }
   }
 
-  getSalesDetails(recepit: any) {
+  getSalesDetails(payment: any) {
     const compid = '1';
-    const identifier = recepit.companyname ? 'companyname' : '';
-    const value = recepit.selectedItemId || recepit.companyname;
+    const identifier = payment.companyname ? 'companyname' : '';
+    const value = payment.selectedItemId || payment.companyname;
 
     this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
       (data) => {
@@ -162,13 +169,13 @@ export class PaymentPage implements OnInit {
           const itemDetails = data[0];
 
           // Update the quote properties
-          recepit.companyname = itemDetails.custname;
-          recepit.outstanding = itemDetails.total;
+          payment.companyname = itemDetails.custname;
+          payment.outstanding = itemDetails.total;
 
           // Update form control values
           this.myform.patchValue({
-            companyname: recepit.companyname,
-            outstanding: recepit.outstanding,
+            companyname: payment.companyname,
+            outstanding: payment.outstanding,
             // Other form controls...
           });
         } else {

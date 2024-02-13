@@ -304,7 +304,7 @@ export class ReceiptPage implements OnInit {
 
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
 
-    // Assuming outstanding_amount is a regular variable
+    // Fetching outstanding amount for the selected company
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
@@ -316,8 +316,6 @@ export class ReceiptPage implements OnInit {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
-
-
   }
 
   onCompanyChange(event: any) {
