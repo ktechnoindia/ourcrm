@@ -61,7 +61,7 @@ export class PaymentPage implements OnInit {
   ledgers$: Observable<any>;
 
   outstanding_amount: any;
-  outstanding$: Observable<any[]>
+  // outstanding$: Observable<any[]>
   purchase$: Observable<any[]>
   userid: number = 0;
   vendorid: number = 0;
@@ -93,10 +93,11 @@ export class PaymentPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
-    this.outstanding$.subscribe(outstandingData => {
-      console.log(outstandingData);
-    });
+    // this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
+    // this.outstanding$.subscribe(outstandingData => {
+    //   console.log(outstandingData);
+    // });
+
     this.paymentbill$ = this.paymentservice.getPurchaseById(this.selectedVendorId, 1);
     this.paymentbill$.subscribe(data => {
       // Get the length of the array
@@ -292,13 +293,12 @@ export class PaymentPage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-  ngOnInit() {
-    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+  fetchVendorOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
       console.log('Received outstanding data:', outstandingArray);
-
+  
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
         this.outstanding = firstItem.outstanding_amount;
@@ -307,6 +307,13 @@ export class PaymentPage implements OnInit {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
+  }
+  
+  ngOnInit() {
+    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+
+    this.fetchVendorOutstandingOnCompanyNameChange();
+
 
   }
   presentToast(arg0: string) {

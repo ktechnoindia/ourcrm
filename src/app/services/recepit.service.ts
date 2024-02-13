@@ -52,8 +52,6 @@ export class RecepitService {
   fetchUserOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
     const token = this.session.getValue('token')?.valueOf();
-
-
     return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 

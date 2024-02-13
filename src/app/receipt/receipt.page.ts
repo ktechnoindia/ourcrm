@@ -71,7 +71,7 @@ export class ReceiptPage implements OnInit {
   ledgers$: Observable<any>;
   sales$: Observable<any[]>
   outstanding_amount: any;
-  outstanding$: Observable<any[]>
+  // outstanding$: Observable<any[]>
   isCheckboxChecked = false;
   // recepitBill$: Observable<any>;
   selectedCustomerId: number = 0;
@@ -98,12 +98,12 @@ export class ReceiptPage implements OnInit {
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     console.log(this.customer$);
-    // const userid=3;
-    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
-    this.outstanding$.subscribe(outstandingData => {
-      console.log(outstandingData);
-    });
-    //console.log(this.sales$);
+    const userid=3;
+    // this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
+    // this.outstanding$.subscribe(outstandingData => {
+    //   console.log(outstandingData);
+    // });
+    // console.log(this.outstanding$);
 
     this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
     this.receiptBill$.subscribe(data => {
@@ -308,13 +308,16 @@ export class ReceiptPage implements OnInit {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
 
     // Fetching outstanding amount for the selected company
+    
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
+      console.log('Received outstanding data:', outstandingArray);
+
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
         this.outstanding = firstItem.outstanding_amount;
-        console.log('outstanding_amount (after fetch):', this.outstanding);
+        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
       } else {
         console.error('Invalid outstanding response:', outstandingArray);
       }
