@@ -28,12 +28,13 @@ interface Recepit {
 
 
 @Component({
-  selector: 'app-receipt',
+  selector: 'app-payment',
   templateUrl: './receipt.page.html',
   styleUrls: ['./receipt.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   providers: [DatePipe],
+
 })
 export class ReceiptPage implements OnInit {
   @ViewChild('popover') popover: any
@@ -70,7 +71,7 @@ export class ReceiptPage implements OnInit {
   ledgers$: Observable<any>;
   sales$: Observable<any[]>
   outstanding_amount: any;
-  // outstanding$: Observable<any[]>
+  outstanding$: Observable<any[]>
   isCheckboxChecked = false;
   selectedCustomerId: number = 0;
   receiptBill$: Observable<any>;
@@ -84,6 +85,7 @@ export class ReceiptPage implements OnInit {
     billpendingamt: 0,
   }]
   recepitbill: Subscription;
+  
   constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.recepitbill = new Subscription();
@@ -94,8 +96,7 @@ export class ReceiptPage implements OnInit {
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
    
-   // const userid=3;
-    // this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
+    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
     // this.outstanding$.subscribe(outstandingData => {
     //   console.log(outstandingData);
     // });
@@ -129,8 +130,8 @@ export class ReceiptPage implements OnInit {
       billpendingamt: [0],
       currentamt: [0],
       companyname: [''],
-      userid: [0],
-      custid: [0],
+      userid: [''],
+      custid: [''],
       outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
@@ -252,7 +253,8 @@ export class ReceiptPage implements OnInit {
           totalpendingamt: this.myform.value.totalpendingamt,
           userid: this.myform.value.userid,
           custid: this.myform.value.custid,
-          total: 0
+          total: 0,
+          custcode: this.myform.value.custcode,
         };
         receiptdatas.push(recepitdata);
       }
@@ -300,7 +302,7 @@ export class ReceiptPage implements OnInit {
       console.log('Received outstanding data:', outstandingArray);
   
       if (outstandingArray && outstandingArray.length > 0) {
-        const firstItem = outstandingArray[0];
+        const firstItem = outstandingArray[1];
         this.outstanding = firstItem.outstanding_amount;
         console.log('outstanding_amount (after fetch):', this.outstanding_amount);
       } else {

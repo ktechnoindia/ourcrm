@@ -61,7 +61,7 @@ export class PaymentPage implements OnInit {
   ledgers$: Observable<any>;
 
   outstanding_amount: any;
-  // outstanding$: Observable<any[]>
+  outstanding$: Observable<any[]>
   purchase$: Observable<any[]>
   userid: number = 0;
   vendorid: number = 0;
@@ -94,7 +94,7 @@ export class PaymentPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-    // this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
+    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
     // this.outstanding$.subscribe(outstandingData => {
     //   console.log(outstandingData);
     // });

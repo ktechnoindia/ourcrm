@@ -29,6 +29,7 @@ export interface rec {
   totalpendingamt: number ;
   userid: number ;
   custid: number ;
+  custcode:number;
 }
 @Injectable({
   providedIn: 'root'
@@ -56,9 +57,15 @@ export class RecepitService {
 
   }
 
-  getSalesById(custCode: number, companyId: number): Observable<any> {
+  getSalesById( companyId: number,custcode: number): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
-    const url = `${this.apiUrl}/get_sales_byid?custcode=${custCode}&companyid=${companyId}`;
+    const url = `${this.apiUrl}/get_sales_byid?companyid=${companyId}&custcode=${custcode}`;
     return this.httpclient.get(url,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
+  getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+    const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
+    return this.httpclient.get(url, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+  }
+ 
 }

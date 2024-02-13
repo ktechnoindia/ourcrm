@@ -78,7 +78,7 @@
                     <th style="width: 100px !important;">Bill Pending Amt</th>
                     <th>Action</th>
                   </tr>
-                  <tr *ngFor="let recepit of filteredRecepits$ | async; let i = index">
+                  <tr *ngFor="let recepit of recepits$ | async; let i = index">
                     <td>{{i+1}}</td>
                     <td>{{recepit.voucherNumber}}</td>
                     <td>{{recepit.paymentdate}}</td>

@@ -35,9 +35,11 @@
                     <tr>
                       <th>Sr. No.</th>
                       <th>Date</th>
-                      <th>Ref. Type</th>
+                      <!-- <th>Ref. Type</th> -->
                       <th>Ref/Bill No.</th>
-                      <th>Voucher Type</th>
+                      <th>Party Code</th>
+                      <th>Item Name</th>
+                      <!-- <th>Voucher Type</th> -->
                       <th>Party Name</th>
                       <th>Bill Amount</th>
                       <th>Original Amount</th>
@@ -49,24 +51,24 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of combineData$ | async; let i = index;">
-                      <td>{{ i + 1 }}</td>
-                      <ng-container *ngFor="let columnName of columnNames">
-                        <td>{{ item[columnName] }}</td>
-                      </ng-container>
-                    
-                      <td>{{ item | json }}</td>
-                      <td>{{item[1]?.attr1}}</td>
-                      <td>Customer A</td>
-                      <td>1000.0</td>
-                      <td>950.0</td>
-                      <td>800.0</td>
-                      <td>150.0</td>
-                      <td>2023-02-01</td>
-                      <td>31</td>
-                      <td><!-- Action buttons or links --></td>
-                    </tr>
-                  <!-- </ng-container> -->
+                    <tr *ngFor="let sales of sales$ | async; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{sales.billDate}}</td>
+                        <td>{{sales.billNumber}}</td>
+                        <td>{{sales.custname}}</td>
+                        <td>{{sales.itemname}}</td>
+                        <td>{{sales.quantity}}</td>
+                        <td>{{sales.itemcode}}</td>
+                        <td>{{sales.totaltax}}</td>
+                        <td>{{sales.discountamt}}</td>
+                        <td>{{sales.total}}</td>
+                        <td *ngIf="outstanding_amount !== null && sales.custname === selectedOption">
+                          <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
+                            formControlName="outstanding" type="number"></ion-input>
+                        </td>
+                      </tr>
+                      
+                    <!-- </ng-container> -->
                   </tbody>
                 </table>
 
@@ -76,16 +78,16 @@
                 <ion-row>
                   <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
                     <label class="label_table" for="">Total Bill Amount :</label>
-                    <input name="totallbillamount" class="input_table" type="text"placeholder="0.00">
+                    <input name="totallbillamount" class="input_table" type="text" placeholder="0.00">
                   </ion-col>
                   <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
                     <label class="label_table" for="">Original Amount :</label>
-                    <input name="originalamount" class="input_table" type="text"placeholder="0.00">
+                    <input name="originalamount" class="input_table" type="text" placeholder="0.00">
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
                     <label class="label_table" for="">Receiveable Amount : </label>
-                    <input name="receiveableamount" class="input_table" type="text"placeholder="0.00">
+                    <input name="receiveableamount" class="input_table" type="text" placeholder="0.00">
                   </ion-col>
                   <ion-col class="row_data" size="12" size-lg="3" size-md="3" size-sm="6">
                     <label class="label_table" for="">Pending Amount : </label>
