@@ -241,7 +241,7 @@ export class PaymentPage implements OnInit {
           totalcurrentamt: this.myform.value.totalcurrentamt,
           totalpendingamt: this.myform.value.totalpendingamt,
           userid: this.myform.value.userid,
-          vendorid: this.myform.value.vendorid,
+          vendorid: this.selectedVendorId,
         };
         paymentdatas.push(paymentdata);
       }
