@@ -50,7 +50,6 @@ export class PaymentPage implements OnInit {
   totalamt: number = 0;
   receiveamt: number = 0;
   currentamt: number = 0;
-
   totaldueamt: number = 0;
   totalreceiveamt: number = 0;
   totalcurrentamt: number = 0;
@@ -59,7 +58,6 @@ export class PaymentPage implements OnInit {
   isOpen = false;
   supplier$: Observable<any>;
   ledgers$: Observable<any>;
-
   outstanding_amount: any;
   outstanding$: Observable<any[]>
   purchase$: Observable<any[]>
@@ -67,7 +65,6 @@ export class PaymentPage implements OnInit {
   vendorid: number = 0;
   isCheckboxChecked = false;
   billdate: string = '';
-
   paymentData: Payment[] = [{
     billno: '',
     billdate: '',
@@ -76,7 +73,6 @@ export class PaymentPage implements OnInit {
     currentamt: 0,
     pendingamt: 0,
   }]
-
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
   dataLength: number = 0;
@@ -93,7 +89,7 @@ export class PaymentPage implements OnInit {
     console.log(this.supplier$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
-
+    this.userid = session.getValue('userid')?.valueOf() as number;
     this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
     // this.outstanding$.subscribe(outstandingData => {
     //   console.log(outstandingData);
