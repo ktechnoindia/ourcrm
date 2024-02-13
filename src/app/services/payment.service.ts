@@ -44,7 +44,9 @@ export class PaymentService {
   constructor(private httpclient: HttpClient,private session:SessionService) { }
 
   createPayment(payment: pay[], key: string, user: string) {
-    return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': key, 'user': user } })
+    const token = this.session.getValue('token')?.valueOf();
+
+    return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
 
   fetchAllPayment(companyid: string, key: string, user: string): Observable<any> {

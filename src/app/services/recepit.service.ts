@@ -38,7 +38,9 @@ export class RecepitService {
   constructor(private httpclient: HttpClient, private session:SessionService) { }
 
   createRecepit(recepit: rec[], key: string, user: string) {
-    return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': key, 'user': user } })
+    const token = this.session.getValue('token')?.valueOf();
+
+    return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
 
   fetchAllReceppit(companyid: string, key: string, user: string): Observable<any> {
