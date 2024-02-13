@@ -82,6 +82,8 @@ export class PaymentPage implements OnInit {
   dataLength: number = 0;
   selectedVendorId: number = 0;
   paymentbill$:Observable<any[]>
+  companyid: number = 0;
+
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;

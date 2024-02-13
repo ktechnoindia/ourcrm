@@ -7,13 +7,14 @@ import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { CreatecompanyService } from '../services/createcompany.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { VendorService } from '../services/vendor.service';
 import { CustomerService } from '../services/customer.service';
 import { LegderService } from '../services/ledger.service';
 import { SalesService } from '../services/sales.service';
 import { AdditemService } from '../services/additem.service';
+import { SessionService } from '../services/session.service';
 
 interface Recepit {
   billno: string,
@@ -84,8 +85,11 @@ export class ReceiptPage implements OnInit {
     currentamt: 0,
     billpendingamt: 0,
   }]
-  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
-    const compid = '1';
+  recepitbill: Subscription;
+  constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
+    const compid = session.getValue('companyid')?.valueOf() as string;
+    this.recepitbill = new Subscription();
+
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
 
     //this.receiptBill$= ;
@@ -96,11 +100,10 @@ export class ReceiptPage implements OnInit {
     console.log(this.customer$);
     // const userid=3;
     this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
-
     this.outstanding$.subscribe(outstandingData => {
       console.log(outstandingData);
     });
-    console.log(this.sales$);
+    //console.log(this.sales$);
 
     this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
     this.receiptBill$.subscribe(data => {
