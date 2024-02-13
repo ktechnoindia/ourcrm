@@ -292,19 +292,19 @@ export class PaymentPage implements OnInit {
   }
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-    // this.myform.get('companyname')?.valueChanges.pipe(
-    //   switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(22))
-    // ).subscribe((outstandingArray: any[]) => {
-    //   console.log('Received outstanding data:', outstandingArray);
+    this.myform.get('companyname')?.valueChanges.pipe(
+      switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
+    ).subscribe((outstandingArray: any[]) => {
+      console.log('Received outstanding data:', outstandingArray);
 
-    //   if (outstandingArray && outstandingArray.length > 0) {
-    //     const firstItem = outstandingArray[0];
-    //     this.outstanding = firstItem.outstanding_amount;
-    //     console.log('outstanding_amount (after fetch):', this.outstanding_amount);
-    //   } else {
-    //     console.error('Invalid outstanding response:', outstandingArray);
-    //   }
-    // });
+      if (outstandingArray && outstandingArray.length > 0) {
+        const firstItem = outstandingArray[0];
+        this.outstanding = firstItem.outstanding_amount;
+        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
+      } else {
+        console.error('Invalid outstanding response:', outstandingArray);
+      }
+    });
 
   }
   presentToast(arg0: string) {
