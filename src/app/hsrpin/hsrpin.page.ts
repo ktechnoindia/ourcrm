@@ -15,6 +15,7 @@ import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { AdditemService } from '../services/additem.service';
 import { FormValidationService } from '../form-validation.service';
 import { SalesService } from '../services/sales.service';
+import { SessionService } from '../services/session.service';
 
 interface Hsrpin {
   selectedItemAttributes: unknown[];
@@ -208,7 +209,7 @@ export class HsrpinPage implements OnInit {
   isQuantityPopoverOpen: boolean = false;
   itemid: number = 0;
   fetchbyengineno$: Observable<any[]>
-  constructor(private saleService: SalesService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
+  constructor(private saleService: SalesService,private session:SessionService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
     this.executive$ = this.executiveService.getexecutive();
@@ -828,7 +829,8 @@ export class HsrpinPage implements OnInit {
     const value = hsrpin.selectedItemId || hsrpin.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
     // Make a request to your API endpoint to fetch item details
-    fetch(`https://your-api-url.com/action/get_purchase_eno?eno=${value}`)
+    const token = this.session.getValue('token')?.valueOf();
+    fetch(`http://103.154.184.66:8000/sales/get_purchase_eno?eno=${hsrpin.engineframenumber}`,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
       .then(response => response.json())
       .then(data => {
         console.log('Data received:', data);
