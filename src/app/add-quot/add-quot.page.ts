@@ -19,6 +19,8 @@ import { CountryService } from '../services/country.service';
 import { IonPopover } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
 import { SalesService } from '../services/sales.service';
+import { IonicSelectableComponent } from 'ionic-selectable';
+
 interface Quote {
 
   barcode: string;
@@ -52,17 +54,17 @@ interface Quote {
     attr6: string;
     attr7: string;
     attr8: string
-    companyid:number,
-    itemcode:number,
+    companyid: number,
+    itemcode: number,
   }[],
-  attribute1:string,
-  attribute2:string,
-  attribute3:string,
-  attribute4:string,
-  attribute5:string,
-  attribute6:string,
-  attribute7:string,
-  attribute8:string,
+  attribute1: string,
+  attribute2: string,
+  attribute3: string,
+  attribute4: string,
+  attribute5: string,
+  attribute6: string,
+  attribute7: string,
+  attribute8: string,
 }
 
 @Component({
@@ -71,10 +73,13 @@ interface Quote {
   styleUrls: ['./add-quot.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, RouterModule, FormsModule, // Add this line
-    ReactiveFormsModule],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    ReactiveFormsModule, IonicSelectableComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddQuotPage implements OnInit {
+
+
+
   gstTypes: any[] = [];
   @ViewChild('myFormRef') myFormRef!: ElementRef;
 
@@ -88,7 +93,7 @@ export class AddQuotPage implements OnInit {
   refrence: string = '';
   refdate: string = '';
   quantity: number = 0; // Initial value can be set based on your requirements
-itemcode:number=0;
+  itemcode: number = 0;
 
   //table data
   /*barcode: string = '';
@@ -169,10 +174,10 @@ itemcode:number=0;
       attr4: '',
       attr5: '',
       attr6: '',
-      attr7:'',
-      attr8:'',
-      companyid:0,
-      itemcode:0,
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0,
     }],
     attribute1: '',
     attribute2: '',
@@ -196,7 +201,7 @@ itemcode:number=0;
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-  customer$: any;
+  customer$: Observable<any[]>;
   session: any;
   //quote: Quote ;
   rows = [
@@ -225,19 +230,24 @@ itemcode:number=0;
 
   isOpen = false;
   showIconDiv: boolean = false;
-  purchasebyid$ :Observable<any[]>
-  isQuantityPopoverOpen: boolean=false;
+  purchasebyid$: Observable<any[]>
+  isQuantityPopoverOpen: boolean = false;
   purchaseData: any;
   printThisPage() {
     window.print();
   }
   selectedRows: Set<number> = new Set<number>();
   // Assuming that your items have an 'attributes' property
-selectedItemAttributes: any[] = [];
+  selectedItemAttributes: any[] = [];
+  filteredOptions: any[] = [];
+  searchQuery: string = '';
+  allOptions: any[] = [];
+    inputsVisible: boolean = true;
 
-  constructor( private saleService: SalesService,private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
-   this.purchasebyid$=new Observable;
-   
+  constructor(private saleService: SalesService, private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
+    this.purchasebyid$ = new Observable;
+
+
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.gstsrvs.getgsttype().subscribe((types) => {
@@ -249,7 +259,7 @@ selectedItemAttributes: any[] = [];
     this.quateDate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
-   
+
     this.myform = this.formBuilder.group({
       billformate: [''],
       quoteNumber: ['', Validators.required],
@@ -298,14 +308,14 @@ selectedItemAttributes: any[] = [];
 
       ttotal: [''],
       itemid: [''],
-      attribute1:[''],
-      attribute2:[''],
-      attribute3:[''],
-      attribute4:[''],
-      attribute5:[''],
-      attribute6:[''],
-      attribute7:[''],
-      attribute8:[''],
+      attribute1: [''],
+      attribute2: [''],
+      attribute3: [''],
+      attribute4: [''],
+      attribute5: [''],
+      attribute6: [''],
+      attribute7: [''],
+      attribute8: [''],
 
     });
 
@@ -351,20 +361,15 @@ selectedItemAttributes: any[] = [];
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
+  popoverRows: number[] = []; // Array to hold rows for the popover
+
   openQuantityPopover(quote: Quote) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
     this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
   }
-  
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
-
   }
   closePopover() {
     // Close the popover and pass data back to the parent component
@@ -450,10 +455,10 @@ selectedItemAttributes: any[] = [];
         attr4: '',
         attr5: '',
         attr6: '',
-        attr7:'',
-        attr8:'',
-        companyid:0,
-        itemcode:0,
+        attr7: '',
+        attr8: '',
+        companyid: 0,
+        itemcode: 0,
       }],
       attribute1: '',
       attribute2: '',
@@ -463,18 +468,26 @@ selectedItemAttributes: any[] = [];
       attribute6: '',
       attribute7: '',
       attribute8: '',
-  
+
     }];
   }
 
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+
+    // htmlForm.addEventListener('keydown', (event) => {
+    //   // Prevent the default behavior for Enter key
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault();
+    //   }
+    // });
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    // const isValid = await this.formService.validateForm(fields);
+    const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
-      let quotedatas: quotestore[] = [];
+      const quotedatas: quotestore[] = [];
 
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
@@ -484,7 +497,7 @@ selectedItemAttributes: any[] = [];
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
-        this.totalquantity= element.total + +element.quantity;
+        this.totalquantity = element.total + +element.quantity;
         console.log(element);
         const companyid = 1;
         const userid = 1;
@@ -497,8 +510,8 @@ selectedItemAttributes: any[] = [];
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:attr.companyid,
-          itemcode:attr.itemcode,
+          companyid: attr.companyid,
+          itemcode: attr.itemcode,
         }))
         const quotedata: quotestore = {
           billformate: this.myform.value.billformate,
@@ -554,21 +567,16 @@ selectedItemAttributes: any[] = [];
       this.quote.createquote(quotedatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
+          this.formService.showSuccessAlert();
           this.formService.showSaveLoader();
-          // this.myform.reset();
-          location.reload()
+          this.myform.reset();
+          // Consider navigating to a different page or providing a success message instead of location.reload()
         },
         (error: any) => {
           console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
+          this.formService.showFailedAlert();
           this.formService.shoErrorLoader();
           this.myform.reset();
-
         }
       );
 
@@ -586,13 +594,13 @@ selectedItemAttributes: any[] = [];
     }
 
   }
-  
+
   getItems(quote: any) {
     const compid = 1;
     const identifier = quote.selectedItemId ? 'itemname' : 'itemcode';
     const value = quote.selectedItemId || quote.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-    
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -612,22 +620,22 @@ selectedItemAttributes: any[] = [];
           quote.mrp = itemDetails.mrp;
           quote.basicrate = itemDetails.basic_rate;
           quote.netrate = itemDetails.net_rate;
-          quote.attribute1= itemDetails.attr1,
-          quote.attribute2= itemDetails.attr2,
-          quote.attribute3= itemDetails.attr3,
-          quote.attribute4= itemDetails.attr4,
-          quote.attribute5= itemDetails.attr5,
-          quote.attribute6= itemDetails.attr6,
-          quote.attribute7= itemDetails.attr7,
-          quote.attribute8= itemDetails.attr8,
+          quote.attribute1 = itemDetails.attr1,
+            quote.attribute2 = itemDetails.attr2,
+            quote.attribute3 = itemDetails.attr3,
+            quote.attribute4 = itemDetails.attr4,
+            quote.attribute5 = itemDetails.attr5,
+            quote.attribute6 = itemDetails.attr6,
+            quote.attribute7 = itemDetails.attr7,
+            quote.attribute8 = itemDetails.attr8,
 
 
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: quote.itemcode,
-            itemname: quote.itemname,
-            // Other form controls...
-          });
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: quote.itemcode,
+              itemname: quote.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -636,7 +644,7 @@ selectedItemAttributes: any[] = [];
         console.error('Error fetching data', error);
       }
     );
-    
+
   }
 
   getCustomers(event: any) {
@@ -710,7 +718,7 @@ selectedItemAttributes: any[] = [];
       attribute6: '',
       attribute7: '',
       attribute8: '',
-    
+
     };
 
 
@@ -756,7 +764,7 @@ selectedItemAttributes: any[] = [];
   onNew() {
     this.myform.reset()
   }
- 
+
   getTotalQuantity(): number {
     this.totalquantity = this.quoteData.reduce((total, quote) => total + +quote.quantity, 0);
     return this.totalquantity;
@@ -768,7 +776,7 @@ selectedItemAttributes: any[] = [];
       return total + grossAmount;
     }, 0);
 
-    return this.totalgrossamt= totalGrossAmount;
+    return this.totalgrossamt = totalGrossAmount;
   }
 
 
@@ -802,7 +810,7 @@ selectedItemAttributes: any[] = [];
       return total;
     }, 0);
 
-    return this.totalnetamount= taxableAmount;
+    return this.totalnetamount = taxableAmount;
   }
 
 
@@ -823,18 +831,18 @@ selectedItemAttributes: any[] = [];
     return this.quoteData.reduce((total, quote) => {
       const subtotal = ((quote.quantity * quote.basicrate) + ((this.pretax) / this.quoteData.length)) - quote.discountamt;
       const taxAmount = subtotal * (quote.taxrate1 / 100);
-      return this.totaltaxamount= total + taxAmount;
+      return this.totaltaxamount = total + taxAmount;
     }, 0);
   }
 
 
   getTotalDiscountAmount(): number {
-    this.totaldiscountamt= this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
+    this.totaldiscountamt = this.quoteData.reduce((total, quote) => total + (quote.discount / 100) * quote.basicrate * quote.quantity, 0);
     return this.totaldiscountamt;
 
-    
+
   }
-  
+
   getRoundoff(): number {
     const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
     return this.roundoff = roundedTotalAmount;
@@ -930,8 +938,8 @@ selectedItemAttributes: any[] = [];
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
+      companyid: 0,
+      itemcode: 0
       // Add more properties as needed
     }));
     if (this.session && this.session.getValue) {
@@ -959,6 +967,18 @@ selectedItemAttributes: any[] = [];
       this.calculateDiscountPercentage();
     });
 
+    // Fetch data and populate hsnOptions$
+    this.fetchData();
+
+
+  }
+  fetchData() {
+    this.customer$ = this.custname1.fetchallCustomer('','','');
+    this.customer$.subscribe(options => {
+      this.allOptions = options;
+      // Initially, set filteredOptions to allOptions
+      this.filteredOptions = [...this.allOptions];
+    });
   }
   toggleTableVisibility() {
     this.showTable = !this.showTable;
@@ -1097,17 +1117,17 @@ selectedItemAttributes: any[] = [];
   // }
 
   async onCustSubmit() {
-    
-    const fields = { name: this.name, }
+    const fields = { name: this.name };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-      const companyid = 1;
+  
+    if (isValid) {
       console.log('Your form data : ', this.customerpop.value);
+  
       let custdata: cust = {
         name: this.customerpop.value.name,
         customer_code: this.customerpop.value.customer_code,
         gstin: this.customerpop.value.gstin,
-        companyid: companyid,
+        companyid: 1,
         selectedSalutation: '',
         companyName: '',
         state: this.customerpop.value.state,
@@ -1142,31 +1162,35 @@ selectedItemAttributes: any[] = [];
         pincode1: '',
         address1: ''
       };
-
+  
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the customer, fetch the updated customer data again
+          this.fetchCustomerData();
+          
+          // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          this.formService.showSaveLoader()
-          // location.reload()
-          //this.myform.reset();
-
+          
+          // Reset the form
+          this.customerpop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
+          
+          // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
-          this.formService.shoErrorLoader();
         }
       );
     } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
+      // If the form is not valid, display error messages
+      Object.keys(this.customerpop.controls).forEach(controlName => {
+        const control = this.customerpop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
@@ -1176,11 +1200,41 @@ selectedItemAttributes: any[] = [];
       }
     }
   }
- onKeyDown(event: KeyboardEvent): void {
-    // Prevent the default behavior for up and down arrow keys
+  
+  fetchCustomerData() {
+    // Assuming you have a method to fetch the updated customer data
+    // Here, you'll update the 'customer$' observable with the new data
+    this.customer$ = this.myService.fetchallCustomer('','', '');
+  }
+  
+
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for Enter key
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+
+    // Prevent incrementing/decrementing on arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-      event.preventDefault();
+        event.preventDefault();
+    }
+}
+
+  
+  filterOptions(): void {
+    if (this.searchQuery) {
+      this.filteredOptions = this.allOptions.filter(option =>
+        option.custname.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      // If search query is empty, show all options without creating a new array
+      this.filteredOptions = this.allOptions;
     }
   }
-
+  
+  selectOption(option: any): void {
+    // Handle option selection
+    console.log('Selected option:', option);
+  }
+  
 }

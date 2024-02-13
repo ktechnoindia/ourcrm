@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,8 @@ import { Router, RouterLink } from '@angular/router';
 import { QuotationService } from '../services/quotation.service';
 import { EMPTY, Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-view-quot',
@@ -15,7 +17,8 @@ import { EncryptionService } from '../services/encryption.service';
   imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class ViewQuotPage implements OnInit {
-
+  @ViewChild('content', { static: false }) el!: ElementRef
+ 
   formDate: string = '';
   toDate: string = '';
   quote$: Observable<any[]>
@@ -234,6 +237,55 @@ export class ViewQuotPage implements OnInit {
 
 // Assuming your billing data is stored in a variable named 'filteredQuatation$'
 // You may need to adjust this based on your actual variable name.
+
+generatePdf() {
+  const table = document.getElementById('quotationTable');
+
+  if (!table) {
+      console.error('Element with id "quotationTable" not found.');
+      return;
+  }
+
+  const pdf = new jsPDF();
+
+  const header = function (data: any) {
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('curier', 'bold');
+      pdf.text('Quotation List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+  };
+
+  const footer = function (data: any) {
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+  };
+
+  (pdf as any).autoTable({
+      html: '#quotationTable',
+      styles: {
+          lineWidth: 0.1, // set border line width
+          lineColor: [0, 0, 0], // set border color (black in this case)
+      },
+      didDrawPage: function (data: any) {
+          header(data);
+          footer(data);
+      }
+  });
+
+  pdf.save('quotation.pdf');
+}
+
+
+printThisPage() {
+  const content = document.getElementById('content');
+  if (content) {
+    content.classList.add('no-scrollbars');
+    window.print();
+    content.classList.remove('no-scrollbars');
+  }
+}
 
 
 

@@ -77,8 +77,12 @@
             <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row class="Executive">
+            <ion-row class="data">
+              <h1>DC-OUT Report :</h1>
+            </ion-row>
             <div #content class="scroll-container">
-              <table style="width: 100%;">
+
+              <table id="dcoutTable" style="width: 100%;">
                 <thead>
                   <tr>
                     <th>Sr. No.</th>

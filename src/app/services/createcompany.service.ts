@@ -16,10 +16,10 @@ export interface companystore {
   email: string;
   logo: string;
   rdate: string;
-  industry: number;
-  businesstype: number;
-  segmenttype: number;
-  companytype: number;
+  industry: string;
+  businesstype: string;
+  segmenttype: string;
+  companytype: string;
   pannumber: string;
   tanno: string;
   sales: boolean;

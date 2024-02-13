@@ -7,7 +7,7 @@
             <ion-row lines="none">
               <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
               <ion-title style="text-align: center;">Receipt Transaction Report</ion-title>
-             
+
             </ion-row>
           </ion-card-header>
         </div>
@@ -29,8 +29,9 @@
               <ion-button type="submit" expand="block" (click)="filterData()">Ok</ion-button>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
+                multiple="true">
                 <ion-select-option value="today">Today</ion-select-option>
                 <ion-select-option value="monthly">Monthly</ion-select-option>
                 <ion-select-option value="quartly">Quartly</ion-select-option>
@@ -38,8 +39,9 @@
               </ion-select>
             </ion-col>
             <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns"
+                multiple="true">
                 <ion-select-option value="Standard">Standard</ion-select-option>
                 <ion-select-option value="PartyWise">PartyWise</ion-select-option>
                 <ion-select-option value="ItemWise">ItemWise</ion-select-option>
@@ -48,53 +50,59 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
+            <ion-searchbar class="custom" showCancelButton="focus" [(ngModel)]="searchTerm"
+              (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
-          <ion-row >
-            <div class="scroll-container">
-              <table style="width: 100%;overflow-x:auto;overflow-y: auto; ">
-                <tr>
-                  <th  style="width: 50px !important;">Sr. No.</th>
-                  <th  style="width: 100px !important;">Voucher Number</th>
-                  <th  style="width: 100px !important;">Payment Date</th>
-                  <th style="width: 100px !important;">Customer Name</th>
-                  <th style="width: 100px !important;">Outstanding</th>
-                  <th style="width: 100px !important;">Payment Made</th>
-                  <th style="width: 100px !important;">Pending Amt.</th>
-                  <th style="width: 100px !important;">Payment By</th>
-                  <th style="width: 100px !important;">Bill No.</th>
-                  <th style="width: 100px !important;">Bill Date</th>
-                  <th style="width: 100px !important;">Total Amt.</th>
-                  <th style="width: 100px !important;">Receive Amt.</th>
-                  <th style="width: 100px !important;">Current Amt.</th>
-                  <th style="width: 100px !important;">Bill Pending Amt</th>
-                  <th>Action</th>
-                </tr>
-                <tr *ngFor="let recepit of filteredRecepits$ | async; let i = index">
-                  <td>{{i+1}}</td>
-                  <td>{{recepit.voucherNumber}}</td>
-                  <td>{{recepit.paymentdate}}</td>
-                  <td>{{recepit.ledger}}</td>
-                  <td>{{recepit.outstanding}}</td>
-                  <td>{{recepit.paymentmade}}</td>
-                  <td>{{recepit.pendingamt}}</td>
-                  <td>{{recepit.paymentway}}</td>
-                  <td>{{recepit.billno}}</td>
-                  <td>{{recepit.billdate}}</td>
-                  <td>{{recepit.totalamt}}</td>
-                  <td>{{recepit.receiveamt}}</td>
-                  <td>{{recepit.currentamt}}</td>
-                  <td>{{recepit.billpendingamt}}</td>
-                  
-              
-                  <td class="Action">
-                    <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                    <ion-icon color="primary" icon-only name="create"></ion-icon>
-                  </td>
-                </tr>
-              </table>
+          <ion-row>
+            <ion-row class="scroll-container">
+              <ion-row class="data">
+                <h1>Receipt Transaction Report :</h1>
+              </ion-row>
+              <div #content class="scroll-container">
 
-            </div>
+                <table id="receiptTable" style="width: 100%;overflow-x:auto;overflow-y: auto; ">
+                  <tr>
+                    <th style="width: 50px !important;">Sr. No.</th>
+                    <th style="width: 100px !important;">Voucher Number</th>
+                    <th style="width: 100px !important;">Payment Date</th>
+                    <th style="width: 100px !important;">Customer Name</th>
+                    <th style="width: 100px !important;">Outstanding</th>
+                    <th style="width: 100px !important;">Payment Made</th>
+                    <th style="width: 100px !important;">Pending Amt.</th>
+                    <th style="width: 100px !important;">Payment By</th>
+                    <th style="width: 100px !important;">Bill No.</th>
+                    <th style="width: 100px !important;">Bill Date</th>
+                    <th style="width: 100px !important;">Total Amt.</th>
+                    <th style="width: 100px !important;">Receive Amt.</th>
+                    <th style="width: 100px !important;">Current Amt.</th>
+                    <th style="width: 100px !important;">Bill Pending Amt</th>
+                    <th>Action</th>
+                  </tr>
+                  <tr *ngFor="let recepit of filteredRecepits$ | async; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{recepit.voucherNumber}}</td>
+                    <td>{{recepit.paymentdate}}</td>
+                    <td>{{recepit.ledger}}</td>
+                    <td>{{recepit.outstanding}}</td>
+                    <td>{{recepit.paymentmade}}</td>
+                    <td>{{recepit.pendingamt}}</td>
+                    <td>{{recepit.paymentway}}</td>
+                    <td>{{recepit.billno}}</td>
+                    <td>{{recepit.billdate}}</td>
+                    <td>{{recepit.totalamt}}</td>
+                    <td>{{recepit.receiveamt}}</td>
+                    <td>{{recepit.currentamt}}</td>
+                    <td>{{recepit.billpendingamt}}</td>
+
+
+                    <td class="Action">
+                      <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                      <ion-icon color="primary" icon-only name="create"></ion-icon>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ion-row>
           </ion-row>
           <ion-row class="custom-primary" style="justify-content: right;">
             <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"

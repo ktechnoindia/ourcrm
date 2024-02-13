@@ -1,48 +1,68 @@
+.search ion-item {
+  margin-top: 5px;
+  max-height: 35px !important;
+  border: solid 1px rgb(190, 190, 190);
+  border-radius: 4px;
+  position: relative;
+  /* Ensure the ion-item is relatively positioned */
+  outline-width: 2px;
+  outline-style: initial;
+}
+
+.search ion-label {
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(85, 105, 149);
+}
 
 .Customer ion-input {
-     min-height: 33px;
+  min-height: 33px;
 }
 
 .Customer select {
-    width: 100%;
+  width: 100%;
 }
 
 
-.scroll-container{
+.scroll-container {
   height: 200px;
 
 }
+
 .scroll-container tr td {
   width: 10px !important;
 }
+
 .scroll-container td {
   background-color: #fff;
   border: .1px solid grey;
   max-height: 20px;
 }
+
 @media(max-width:540px) {
   .Customer ion-input {
     min-height: 33px;
-   font-size: 10px;
+    font-size: 10px;
   }
+
   .ionselect ion-select {
-     min-height: 25px;
-     font-size: 10px;
- }
- }
+    min-height: 25px;
+    font-size: 10px;
+  }
+}
 
 .output td {
-    border: 1px solid grey;
-    margin: 5px;
-    // height: 30px;
+  border: 1px solid grey;
+  margin: 5px;
+  // height: 30px;
 }
 
 .output th {
-    text-align: right;
-    border: none;
-    // background-color: #fff;
-    padding-left: 10px;
+  text-align: right;
+  border: none;
+  // background-color: #fff;
+  padding-left: 10px;
 }
+
 .scroll-container {
   overflow-x: auto;
   border: 1px solid gray;
@@ -56,51 +76,60 @@
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .outstanding {
   border: solid .1px grey;
   border-radius: 10px;
+
   table td {
     background-color: #fff;
   }
 }
-.row{
+
+.row {
   margin-top: -103px;
   margin-left: 74.6%;
 }
 
-@media(max-width:990px){
-  .row{
-     margin-top: -253px;
-     margin-left: 60%;
+@media(max-width:990px) {
+  .row {
+    margin-top: -253px;
+    margin-left: 60%;
   }
-  .row1{
-     margin-top: 150px;
+
+  .row1 {
+    margin-top: 150px;
   }
 }
-@media(max-width:575px){
-  .row{
-     margin-top: -324px;
-     margin-left: 40%;
+
+@media(max-width:575px) {
+  .row {
+    margin-top: -324px;
+    margin-left: 40%;
   }
-  .row1{
-     margin-top: 0px;
+
+  .row1 {
+    margin-top: 0px;
   }
-  .row3{
-     margin-top:150px ;
+
+  .row3 {
+    margin-top: 150px;
   }
 
 }
 
-@media(max-width:475px){
-  .row{
-     margin-top: -325px;
-     margin-left: -15px;
+@media(max-width:475px) {
+  .row {
+    margin-top: -325px;
+    margin-left: -15px;
   }
-  .row1{
-     margin-top: 0px;
+
+  .row1 {
+    margin-top: 0px;
   }
-  .row3{
-     margin-top:150px ;
+
+  .row3 {
+    margin-top: 150px;
   }
 
 }
@@ -187,31 +216,32 @@ ion-input[type=number]::part(input) {
 
 @media(max-width:940px) {
   .Customer ion-card {
-      width: 100%;
-      margin-left: 0%;
+    width: 100%;
+    margin-left: 0%;
   }
 }
 
 @media(max-width:540px) {
   .Customer ion-input {
-      min-height: 25px;
-      font-size: 10px;
-      outline-width: 0;
-      outline-style: none;
+    min-height: 25px;
+    font-size: 10px;
+    outline-width: 0;
+    outline-style: none;
   }
 }
 
-ion-popover{
-  --height:260px;
-  --offset-y:50px;
-}
-.menu{
-  --width: 50px;
-  --height:120px;
-  --offset-y:10px;
+ion-popover {
+  --height: 260px;
+  --offset-y: 50px;
 }
 
-.menu ion-icon{
+.menu {
+  --width: 50px;
+  --height: 120px;
+  --offset-y: 10px;
+}
+
+.menu ion-icon {
   font-size: 20px;
 }
 
@@ -221,19 +251,33 @@ ion-popover {
   --color: white;
 
 }
-.quantity{
-  --height:450px;
+
+.quantity {
+  --height: 450px;
   // --width:500px
-  --offset-y:40px;
-  --offset-x:-50px;
+  --offset-y: 40px;
+  --offset-x: -50px;
 }
-.quantity input{
+
+.quantity input {
   border: none;
   outline: none;
   width: 80px;
 }
-.attributes th input{
+
+.attributes th input {
   background-color: transparent;
+}
+
+
+@media print {
+  // .Customer {
+  //   display: none;
+  //   visibility: hidden;
+  // }
+
+  .bill-container {
+    display: block;
+    visibility: visible;
   }
-
-
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AddserviceService } from '../services/addservice.service';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-viewservice',
@@ -15,6 +17,8 @@ import { AddserviceService } from '../services/addservice.service';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ViewservicePage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
+
   formDate:string='';
   toDate:string='';
   services$: Observable<any[]> 
@@ -77,6 +81,50 @@ export class ViewservicePage implements OnInit {
 
 goBack(){
   this.router.navigate(["/add-service"])
+}
+
+generatePdf() {
+  const table = document.getElementById('serviceTable');
+
+  if (!table) {
+      console.error('Element with id "serviceTable" not found.');
+      return;
+  }
+
+  const pdf = new jsPDF();
+
+  const header = function (data: any) {
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('curier', 'bold');
+      pdf.text('Services List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+  };
+
+  const footer = function (data: any) {
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+  };
+
+  (pdf as any).autoTable({
+      html: '#serviceTable',
+      styles: {
+          lineWidth: 0.1, // set border line width
+          lineColor: [0, 0, 0], // set border color (black in this case)
+      },
+      didDrawPage: function (data: any) {
+          header(data);
+          footer(data);
+      }
+  });
+
+  pdf.save('service.pdf');
+}
+
+
+printThisPage(){
+  window.print();
 }
 }
 

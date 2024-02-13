@@ -29,43 +29,41 @@
                   </ion-row>
                 </ion-col>
 
-                <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                <ion-col size="12" size-lg="4.5" size-md="4.5" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="itemDesc" formControlName="itemDesc" name="itemDesc" type="text"
-                      label=" Item Description :" label-placement="floating" fill="outline">
+                      label=" Item Name :" label-placement="floating" fill="outline">
                     </ion-input>
                   </ion-row>
                 </ion-col>
+                <ion-col size="12" size-lg="4.5" size-md="4.5" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="itemDesccription" formControlName="itemDesccription" name="itemDesccription"
+                      type="text" label=" Item Description :" label-placement="floating" fill="outline">
+                    </ion-input>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-lg="3" size-md="4" size-sm="6" class="search">
+                  <ion-item lines="none">
+                    <ion-label>HSN</ion-label>
+                    <ionic-selectable #selectComponent [(ngModel)]="selectedOption" formControlName="hsnname"
+                      [items]="filteredOptions" itemValueField="hsnid" itemTextField="hsnname" [canSearch]="true"
+                      (onChange)="selectOption($event)" [canClear]="true" closeButtonText="Close" closeButtonSlot="end"
+                      clearButtonText="Clear" interface="popover">
+                    </ionic-selectable>
+                  </ion-item>
 
-                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
-
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="--- HSN ---" label-placement="floating" fill="outline" [(ngModel)]="hsnname"
-                    formControlName="hsnname" name="hsnname">
-                    <!-- <ion-select-option value="">  --- HSN --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let hsnname of hsnname$ | async" [value]="hsnname.hsnid">
-                      {{ hsnname.hsnname }}
-                    </ion-select-option>
-                  </ion-select>
                 </ion-col>
 
                 <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
                   <ion-button id="hsn"><ion-icon name="person-add-outline"></ion-icon></ion-button>
                 </ion-col>
 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                    label="--- Item Type ---" label-placement="floating" fill="outline" [(ngModel)]="itemtypename"
-                    formControlName="itemtypename" name="itemtypename">
-                    <!-- <ion-select-option value="">  --- Item Type --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let itemtypename of itemtypename$ | async"
-                      [value]="itemtypename.itemtypeid">
-                      {{ itemtypename.itemtypename }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-col>
 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+
+                <ion-col size="6" size-lg="2.5" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--- GST Type ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
                     formControlName="selectGst" name="selectGst">
@@ -105,38 +103,53 @@
                 <ion-col class="custom-primary" size-lg="0.5" size-md="2" size-sm="2" size="2">
                   <ion-button id="group"><ion-icon name="person-add-outline"></ion-icon></ion-button>
                 </ion-col>
-
               </ion-row>
               <ion-row style="margin-top: 4px;">
-
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="mrp" formControlName="mrp" name="MRP" type="number" label=" MRP:"
-                      label-placement="floating" fill="outline"></ion-input>
+                      label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
 
-                </ion-col>
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-row>
-                    <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
-                      label="Sale Rate :" label-placement="floating" fill="outline"></ion-input>
-                  </ion-row>
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="purchaserate" formControlName="purchaserate" name="purchaserate"
-                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"></ion-input>
+                      type="number" label="Purchase Rate :" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
                 </ion-col>
-
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="basicrate" formControlName="basicrate" name="basicrate" type="number"
-                      label=" Basic Rate:" label-placement="floating" fill="outline"></ion-input>
+                      label=" Basic Rate:" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
                   </ion-row>
                 </ion-col>
-
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="salerate" formControlName="salerate" name="salerate" type="number"
+                      label="Sale Rate (NET) :" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="dealerrate" formControlName="dealerrate" name="dealerrate" type="number"
+                      label=" Dealer Rate:" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+
+                </ion-col> <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-row>
+                    <ion-input [(ngModel)]="subdealerrate" formControlName="subdealerrate" name="subdealerrate"
+                      type="number" label=" Sub Dealer Rate:" label-placement="floating" fill="outline"
+                      (keydown)="onKeyDown($event)"></ion-input>
+                  </ion-row>
+
+                </ion-col>          
+               
+                        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="---Stock Type---" label-placement="floating" fill="outline" [(ngModel)]="stocktypename"
                     formControlName="stocktypename" name="stocktypename">
@@ -147,7 +160,17 @@
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
-
+                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+                  <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                    label="--- Item Type ---" label-placement="floating" fill="outline" [(ngModel)]="itemtypename"
+                    formControlName="itemtypename" name="itemtypename">
+                    <!-- <ion-select-option value="">  --- Item Type --- </ion-select-option> Default option with value 0 -->
+                    <ion-select-option *ngFor="let itemtypename of itemtypename$ | async"
+                      [value]="itemtypename.itemtypeid">
+                      {{ itemtypename.itemtypename }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                   <ion-row>
                     <ion-input [(ngModel)]="openingbalance" formControlName="openingbalance" name="opening_balance"
@@ -156,153 +179,203 @@
 
                 </ion-col>
                 <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                    <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance"
-                      type="text" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="closingbalance" formControlName="closingbalance" name="closing_balance"
+                    type="text" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
                 </ion-col>
 
               </ion-row>
-              <!-- <ion-row> 
-                <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                  <ion-input [(ngModel)]="framenumber" formControlName="framenumber" name="framenumber"
-                    type="text" label="Frame Number :" label-placement="floating" fill="outline"></ion-input>
-              </ion-col>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-input [(ngModel)]="enginenumber" formControlName="enginenumber" name="enginenumber"
-                  type="text" label="Engine Number :" label-placement="floating" fill="outline"></ion-input>
-            </ion-col>
-            <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-              <ion-input [(ngModel)]="partnumber" formControlName="partnumber" name="partnumber"
-                type="text" label="Part Number :" label-placement="floating" fill="outline"></ion-input>
-          </ion-col>
-          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-            <ion-input [(ngModel)]="color" formControlName="color" name="color"
-              type="text" label="Color:" label-placement="floating" fill="outline"></ion-input>
-        </ion-col>
-              </ion-row> -->
+              <ion-row style="margin-top: 4px;">
+                <ion-toggle (click)="toggleStep1()" style="font-size: 18px;">You Want
+                  Attributes</ion-toggle><br /><br />
+              </ion-row>
 
-              <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
-                <ion-toolbar>
-                  <ion-segment style="border-bottom: 2px solid lightblue;" name="type"
-                    [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)"
-                    scrollable>
-                    <ion-segment-button style="border-right: 2px solid lightblue; background: fff; color: #000000;"
-                      value="all">
-                      <ion-label>Attribute</ion-label>
-                    </ion-segment-button>
-                    <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
-                      value="Image">
-                      <ion-label>Image</ion-label>
-                    </ion-segment-button>
-                    <ion-segment-button style="border-right: 2px solid lightblue; background: #fff; color: #000000;"
-                      value="Barcode">
-                      <ion-label>Barcode </ion-label>
-                    </ion-segment-button>
-                    <ion-segment-button value="Other"
-                      style="border-right: 2px solid lightblue; background: #fff; color: #000000;">
-                      <ion-label>Other Details</ion-label>
-                    </ion-segment-button>
-                  </ion-segment>
-                </ion-toolbar>
+              <div>
+                <ion-row style=" border: 2px solid lightblue; margin-top: 20px;">
+                  <ion-toolbar>
+                    <ion-segment style="border-bottom: 2px solid lightblue;" name="type"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="type" (ionChange)="segmentChanged($event)"
+                      scrollable>
+                      <ion-segment-button *ngIf="step1"
+                        style="border-right: 2px solid lightblue; background: fff; color: #000000;" value="all">
+                        <ion-label>Attribute</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button style="border-right: 2px solid lightblue;background: fff; color: #000000;"
+                        value="Image">
+                        <ion-label>Image</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button style="border-right: 2px solid lightblue; background: #fff; color: #000000;"
+                        value="Barcode">
+                        <ion-label>Barcode </ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="Other"
+                        style="border-right: 2px solid lightblue; background: #fff; color: #000000;">
+                        <ion-label>Other Details</ion-label>
+                      </ion-segment-button>
+                    </ion-segment>
+                  </ion-toolbar>
 
-                <ng-container [ngSwitch]="type">
-                  <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
-                    <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
-                      <ion-col size="12" size-lg="3" size-md="3" size-sm="6">
-                        <ion-row>
-                          <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                            label="---Select Attribute--- " label-placement="floating" fill="outline"
-                            [(ngModel)]="attributes[attributeKey]" formControlName="{{ attributeKey }}"
-                            name="{{ attributeKey }}" (ionChange)="onAttributeChange()">
-                            <ion-select-option value="">Select Attribute</ion-select-option>
-                            <ion-select-option *ngFor="let attributename of attname$ | async; let i = index">{{
-                              attributename.attname }}</ion-select-option>
-                          </ion-select>
-                        </ion-row>
-                      </ion-col>
-                    </ion-row>
-
-                    <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
-                    <ion-row class="headinglabel">
-                      <ion-label>Fixed Attributes :</ion-label>
-                    </ion-row>
-
-                    <ion-row style="margin-top: 10px;">
+                  <ng-container [ngSwitch]="type">
+                    <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
                       <ion-row>
-                        <ion-col>
-                          <ion-input [(ngModel)]="labelname" formControlName="labelname" name="labelname" type="text"
-                            label="Label Name :" label-placement="floating" fill="outline"></ion-input>
+                        <ion-col size="12" size-lg="4" size-md="4" size-sm="5">
+                          <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
+                            <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                              interface="popover" label="---Select Attribute--- " label-placement="floating"
+                              fill="outline" [(ngModel)]="attributes[attributeKey]" formControlName="{{ attributeKey }}"
+                              name="{{ attributeKey }}" (ionChange)="onAttributeChange()">
+                              <ion-select-option value="">Select Attribute</ion-select-option>
+                              <ion-select-option *ngFor="let attributename of attname$ | async; let i = index">{{
+                                attributename.attname }}</ion-select-option>
+                            </ion-select>
+                          </ion-row>
+                          <ion-button (click)="addAttribute()">Add New Attribute</ion-button>
                         </ion-col>
-                        <ion-col>
-                          <ion-input [(ngModel)]="valuename" formControlName="valuename" name="valuename" type="text"
-                            label=" Value :" label-placement="floating" fill="outline"></ion-input>
+
+                        <ion-col size="12" size-lg="8" size-md="8" size-sm="7">
+
+                          <ion-row class="headinglabel">
+                            <ion-label>Fixed Attributes :</ion-label>
+                            <ion-checkbox (click)="toggleStep3()" style="font-size: 16px;margin-top: 5px;">You Want
+                              Fixed
+                              Attributes then Select checkbox</ion-checkbox>
+                          </ion-row>
+
+                          <ion-row *ngIf="step3" style="margin-top: 10px;">
+                            <ion-row>
+                              <ion-col>
+                                <ion-input [(ngModel)]="classofvehicle" formControlName="classofvehicle"
+                                  name="classofvehicle" type="text" label="Class Of Vehicle :"
+                                  label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="makersname" formControlName="makersname" name="makersname"
+                                  type="text" label="Makers Name :" label-placement="floating"
+                                  fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="fuelused" formControlName="fuelused" name="fuelused" type="text"
+                                  label="Fuel Used :" label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="noofcylinders" formControlName="noofcylinders"
+                                  name="noofcylinders" type="text" label="No. Of Cylinders :" label-placement="floating"
+                                  fill="outline"></ion-input>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row>
+                              <ion-col>
+                                <ion-input [(ngModel)]="yearofmanufactur" formControlName="yearofmanufactur"
+                                  name="yearofmanufactur" type="text" label="Year Of Manufactur :"
+                                  label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="seatingcapacity" formControlName="seatingcapacity"
+                                  name="seatingcapacity" type="text" label="Seating Capacity :"
+                                  label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="unladenweight" formControlName="unladenweight"
+                                  name="unladenweight" type="text" label="Unladen Weight :" label-placement="floating"
+                                  fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="grossvehicleweight" formControlName="grossvehicleweight"
+                                  name="grossvehicleweight" type="text" label="Gross Vehicle Weight :"
+                                  label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                            </ion-row>
+                            <ion-row>
+                              <ion-col>
+                                <ion-input [(ngModel)]="bodytype" formControlName="bodytype" name="bodytype" type="text"
+                                  label="Body Type :" label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="wheelbase" formControlName="wheelbase" name="wheelbase"
+                                  type="text" label="Wheel Base :" label-placement="floating"
+                                  fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="labelname" formControlName="labelname" name="labelname"
+                                  type="text" label="Label Name :" label-placement="floating"
+                                  fill="outline"></ion-input>
+                              </ion-col>
+                              <ion-col>
+                                <ion-input [(ngModel)]="valuename" formControlName="valuename" name="valuename"
+                                  type="text" label=" Value :" label-placement="floating" fill="outline"></ion-input>
+                              </ion-col>
+
+                            </ion-row>
+                          </ion-row>
                         </ion-col>
                       </ion-row>
-                    </ion-row>
-                  </div>
+                    </div>
 
-                  <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
+                    <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
 
-                    <ion-row>
-                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                        <div class="images">
-                          <input class="file" type="file" formControlName="files" (change)="onFileSelected($event)"
-                            accept="image/*" />
-                          <img [src]="selectedImage" class="image_url" *ngIf="selectedImage" alt="Selected Image" />
-                        </div>
-                      </ion-col>
+                      <ion-row>
+                        <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                          <div class="images">
+                            <input class="file" type="file" formControlName="files" (change)="onFileSelected($event)"
+                              accept="image/*" />
+                            <img [src]="selectedImage" class="image_url" *ngIf="selectedImage" alt="Selected Image" />
+                          </div>
+                        </ion-col>
 
-                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                        <div></div>
-                      </ion-col>
-
-
-                    </ion-row>
-                  </div>
-
-                  <div style="width: 100%; margin: 0 auto;" *ngSwitchCase="'Barcode'">
-                    <ion-row style="margin-bottom: 10px;">
-                      <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
-                        <ion-row>
-                          <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="number"
-                            label=" Barcode :" label-placement="floating" fill="outline"></ion-input>
-                        </ion-row>
-                      </ion-col>
-                    </ion-row>
-                  </div>
-
-                  <div style="width: 100%; margin: 10px auto;" *ngSwitchCase="'Other'">
-
-                    <ion-row class="headinglabel">
-                      <ion-label>Quantity Levels</ion-label>
-                    </ion-row>
-
-                    <ion-row>
-
-                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                        <ion-row>
-                          <ion-input name="minimum" formControlName="minimum" [(ngModel)]="minimum" type="number"
-                            label="Minimum :" label-placement="floating" fill="outline"></ion-input>
-                        </ion-row>
-                      </ion-col>
-                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                        <ion-row>
-                          <ion-input name="maximum" formControlName="maximum" [(ngModel)]="maximum" type="number"
-                            label="Maximum :" label-placement="floating" fill="outline"></ion-input>
-                        </ion-row>
-                      </ion-col>
-
-                      <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
-                        <ion-row>
-                          <ion-input name="reorder" formControlName="reorder" [(ngModel)]="reorder" type="text"
-                            label="Re-order :" label-placement="floating" fill="outline"></ion-input>
-                        </ion-row>
-                      </ion-col>
-
-                    </ion-row>
+                        <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                          <div></div>
+                        </ion-col>
 
 
+                      </ion-row>
+                    </div>
 
-                    <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
+                    <div style="width: 100%; margin: 0 auto;" *ngSwitchCase="'Barcode'">
+                      <ion-row style="margin-bottom: 10px;">
+                        <ion-col size="12" size-lg="6" size-md="6" size-sm="6">
+                          <ion-row>
+                            <ion-input name="barcode" formControlName="barcode" [(ngModel)]="barcode" type="number"
+                              label=" Barcode :" label-placement="floating" fill="outline"
+                              (keydown)="onKeyDown($event)"></ion-input>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+
+                    <div style="width: 100%; margin: 10px auto;" *ngSwitchCase="'Other'">
+
+                      <ion-row class="headinglabel">
+                        <ion-label>Quantity Levels</ion-label>
+                      </ion-row>
+
+                      <ion-row>
+
+                        <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                          <ion-row>
+                            <ion-input name="minimum" formControlName="minimum" [(ngModel)]="minimum" type="number"
+                              label="Minimum :" label-placement="floating" fill="outline"
+                              (keydown)="onKeyDown($event)"></ion-input>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                          <ion-row>
+                            <ion-input name="maximum" formControlName="maximum" [(ngModel)]="maximum" type="number"
+                              label="Maximum :" label-placement="floating" fill="outline"
+                              (keydown)="onKeyDown($event)"></ion-input>
+                          </ion-row>
+                        </ion-col>
+
+                        <ion-col size="12" size-lg="4" size-md="4" size-sm="4">
+                          <ion-row>
+                            <ion-input name="reorder" formControlName="reorder" [(ngModel)]="reorder" type="text"
+                              label="Re-order :" label-placement="floating" fill="outline"></ion-input>
+                          </ion-row>
+                        </ion-col>
+
+                      </ion-row>
+
+
+
+                      <!--  <div style="margin-top: 30px; border:  0.5px solid grey; width: 100%;"></div>
 
                   <ion-row class="headinglabel">
                     <ion-label>Dimension & Weight</ion-label>
@@ -385,10 +458,11 @@
                     </ion-col>
 
                   </ion-row> -->
-                  </div>
-                </ng-container>
+                    </div>
+                  </ng-container>
 
-              </ion-row>
+                </ion-row>
+              </div>
               <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
                 <ion-button id="open-loading" (click)="onNew()">New</ion-button>
                 <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
@@ -493,21 +567,23 @@
           <ion-row>
             <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
               <ion-row>
-                <ion-input #firstInvalidInput [(ngModel)]="itemgroupname" formControlName="itemgroupname" name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input #firstInvalidInput [(ngModel)]="itemgroupname" formControlName="itemgroupname"
+                  name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
-            
+
             <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-              label="---Parent Group---" label-placement="floating" fill="outline"   [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="---Parent Group---" label-placement="floating" fill="outline" [(ngModel)]="parentgroup"
+                formControlName="parentgroup" name="parentgroup">
                 <!-- <option value="0">  --- Parent Group --- </option> Default option with value 0  -->
-               
+
                 <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
                   {{ itemgroup.itemgroupname }}
                 </ion-select-option>
               </ion-select>
-             
+
             </ion-col>
 
           </ion-row>
@@ -522,5 +598,3 @@
   </ng-template>
 
 </ion-popover>
-
-

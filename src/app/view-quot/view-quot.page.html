@@ -62,8 +62,12 @@
             <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
           </ion-row>
           <ion-row class="Executive">
-            <div #content class="scroll-container">
-              <table style="width: 100%;">
+            <ion-row class="data">
+              <h1>Quotation List :</h1>
+            </ion-row>
+            <div #content id="content" class="scroll-container">
+
+              <table id="quotationTable" style="width: 100%;">
                 <thead>
                   <tr>
                     <th>Sr. No.</th>
@@ -89,6 +93,16 @@
                 <p>Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
               </div>
             
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;">
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                color="secondry"></ion-icon>Print</ion-button>
+            <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                color="secondry"></ion-icon>Export To PDF</ion-button>
+            <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                color="secondry"></ion-icon>Preview</ion-button>
+            <ion-button size="small"><ion-icon name="grid" slot="end" size="small"
+                color="secondry"></ion-icon>Export Excel</ion-button>
           </ion-row>
           <!-- <ion-row>
             <div  class="scroll-container"  style="overflow-x:auto; width: 100%;">

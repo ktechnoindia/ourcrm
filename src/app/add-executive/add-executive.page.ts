@@ -57,7 +57,7 @@ export class AddExecutivePage implements OnInit {
   address: string = '';
   pincode: string = '';
   selectedOption: number = 0;
-  lgroup_name:number=0;
+  lgroup_name: number = 0;
   ledgerpop: FormGroup;
 
   countries$: Observable<any[]>
@@ -66,7 +66,7 @@ export class AddExecutivePage implements OnInit {
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
-  constructor(private navCtrl: NavController, private router: Router, private addExecutiveService: ExecutiveService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice, private ledgerService: LegderService, private encService: EncryptionService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private popoverController: PopoverController, ) {
+  constructor(private navCtrl: NavController, private router: Router, private addExecutiveService: ExecutiveService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice, private ledgerService: LegderService, private encService: EncryptionService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private popoverController: PopoverController,) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
@@ -91,9 +91,9 @@ export class AddExecutivePage implements OnInit {
       state: [0],
       district: [0],
       mobile: [''],
-      pincode:[''],
+      pincode: [''],
       address: [''],
-      lgroup_name:[0].toString()
+      lgroup_name: [0].toString()
     });
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -155,7 +155,7 @@ export class AddExecutivePage implements OnInit {
       this.form.reset();
 
     }
-     else {
+    else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
         const control = this.form.get(controlName);
@@ -193,27 +193,27 @@ export class AddExecutivePage implements OnInit {
     });
   }
 
-  async OnLedgerSubmit(){
-    const fields = { lname: this.lname, ledger_code: this.ledger_code }
+  async OnLedgerSubmit() {
+    const fields = { lname: this.lname, ledger_code: this.ledger_code };
     const isValid = await this.formService.validateForm(fields);
+  
     if (isValid) {
-
       console.log('Your form data : ', this.ledgerpop.value);
       let ledgerdata: ledg = {
         lname: this.ledgerpop.value.lname,
         ledger_code: this.ledgerpop.value.ledger_code,
-        gstin:  this.ledgerpop.value.gstin,
+        gstin: this.ledgerpop.value.gstin,
         lgroup_name: '',
         opening_balance: 0,
         closing_balance: 0,
-        mobile:  this.ledgerpop.value.mobile,
+        mobile: this.ledgerpop.value.mobile,
         whatsapp_number: '',
         email: '',
         country: this.ledgerpop.value.country,
         state: this.ledgerpop.value.state,
-        district:  this.ledgerpop.value.district,
+        district: this.ledgerpop.value.district,
         pincode: this.ledgerpop.value.pincode,
-        address:  this.ledgerpop.value.address,
+        address: this.ledgerpop.value.address,
         tdn: '',
         aadhar_no: '',
         pan_no: '',
@@ -237,14 +237,21 @@ export class AddExecutivePage implements OnInit {
         address1: '',
         companyid: 0,
         discount: 0,
-        userid:0
+        userid: 0
       };
+  
       this.ledgerService.createLdeger(ledgerdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the ledger, fetch the updated ledger data again
+          this.fetchLedgerData();
+          
+          // Show success alert
           this.formService.showSuccessAlert();
+          
+          // Reset the form
           this.ledgerpop.reset();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
@@ -252,7 +259,7 @@ export class AddExecutivePage implements OnInit {
         }
       );
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.ledgerpop.controls).forEach(controlName => {
         const control = this.ledgerpop.get(controlName);
         if (control?.invalid) {
@@ -261,7 +268,19 @@ export class AddExecutivePage implements OnInit {
       });
     }
   }
-
+  
+  fetchLedgerData() {
+    // Assuming you have a method to fetch the updated ledger data
+    // Here, you'll update the 'ledgers$' observable with the new data
+    this.ledgers$ = this.ledgerService.fetchAllLedger('','', '');
+  }
+  
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 
 
 }

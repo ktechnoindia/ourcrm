@@ -8,6 +8,8 @@ import { LegderService } from '../services/ledger.service';
 import { EncryptionService } from '../services/encryption.service';
 import jsPDF from 'jspdf';
 // import { ExcelService } from '../services/excel.service';
+import 'jspdf-autotable';
+
 @Component({
   selector: 'app-viewledger',
   templateUrl: './viewledger.page.html',
@@ -20,27 +22,7 @@ export class ViewledgerPage implements OnInit {
   formDate: string = '';
   toDate: string = '';
 
-  generatePdf() {
-    let pdf = new jsPDF()
-
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage(){
-    window.print();
-  }
-  // generateExcelReport() {
-  //   const data: any[] = [
-  //     // Your data rows here
-  //   ];
-  //   const fileName = 'Excel Report';
-
-  //   this.excelService.generateExcel(data, fileName);
-  // }
+ 
   searchTerm: string = '';
   filteredLedgers$: Observable<any[]> = new Observable<any[]>(); 
   ledgers$: Observable<any[]>
@@ -194,5 +176,47 @@ export class ViewledgerPage implements OnInit {
   goBack() {
     this.router.navigate(['/ledger']); // Navigate back to the previous page
   }
+  generatePdf() {
+    const table = document.getElementById('ledgerTable');
 
+    if (!table) {
+        console.error('Element with id "ledgerTable" not found.');
+        return;
+    }
+
+    const pdf = new jsPDF();
+
+    const header = function (data: any) {
+        pdf.setFontSize(18);
+        pdf.setTextColor(40);
+        pdf.setFont('curier', 'bold');
+        pdf.text('Ledger List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+    };
+
+    const footer = function (data: any) {
+        const pageCount = pdf.internal.pages.length;
+        pdf.setFontSize(14);
+        pdf.setTextColor(40);
+        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+    };
+
+    (pdf as any).autoTable({
+        html: '#ledgerTable',
+        styles: {
+            lineWidth: 0.1, // set border line width
+            lineColor: [0, 0, 0], // set border color (black in this case)
+        },
+        didDrawPage: function (data: any) {
+            header(data);
+            footer(data);
+        }
+    });
+
+    pdf.save('ledger.pdf');
+}
+
+
+  printThisPage(){
+    window.print();
+  }
 }

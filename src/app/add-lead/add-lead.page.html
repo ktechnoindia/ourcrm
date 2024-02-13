@@ -122,11 +122,17 @@
                 <ion-row>
                   <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="---Lead Source---" label-placement="floating" fill="outline"   [(ngModel)]="lscore" formControlName="lscore" name="leadscore">
+            
+                    <ion-select-option value="1">Online </ion-select-option>
+                    <ion-select-option value="2">Cold Call </ion-select-option>
+                    <ion-select-option value="3">Reference</ion-select-option>
+                    <ion-select-option value="4">Already Customer </ion-select-option>
+                    <ion-select-option value="5">Executive </ion-select-option>
                   <!-- <ion-select-option value="0">  --- Lead Source --- </ion-select-option> -->
-                    <ion-select-option *ngFor="let leadsourcetype of leadsourcetype$ | async"
+                    <!-- <ion-select-option *ngFor="let leadsourcetype of leadsourcetype$ | async"
                       [value]="leadsourcetype.leadsourceid">
                       {{ leadsourcetype.leadsourcename }}
-                    </ion-select-option> 
+                    </ion-select-option>  -->
                   </ion-select>
                 </ion-row>
               </ion-col>

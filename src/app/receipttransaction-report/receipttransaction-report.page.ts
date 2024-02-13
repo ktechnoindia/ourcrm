@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -7,6 +7,7 @@ import { RecepitService } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-receipttransaction-report',
@@ -16,23 +17,12 @@ import jsPDF from 'jspdf';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ReceipttransactionReportPage implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef
+
   recepits$:  Observable<any[]>;
   searchTerm: string = '';
   filteredRecepits$: Observable<any[]> = new Observable<any[]>(); 
-  el: any;
-  generatePdf() {
-    let pdf = new jsPDF()
-
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage(){
-    window.print();
-  }
+ 
   fromDate: string = '';
   toDate: string = '';
   constructor(private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
@@ -81,5 +71,48 @@ export class ReceipttransactionReportPage implements OnInit {
 
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
+  }
+  generatePdf() {
+    const table = document.getElementById('receiptTable');
+
+    if (!table) {
+        console.error('Element with id "receiptTable" not found.');
+        return;
+    }
+
+    const pdf = new jsPDF();
+
+    const header = function (data: any) {
+        pdf.setFontSize(18);
+        pdf.setTextColor(40);
+        pdf.setFont('curier', 'bold');
+        pdf.text('Receipt Transaction Report', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+    };
+
+    const footer = function (data: any) {
+        const pageCount = pdf.internal.pages.length;
+        pdf.setFontSize(14);
+        pdf.setTextColor(40);
+        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+    };
+
+    (pdf as any).autoTable({
+        html: '#receiptTable',
+        styles: {
+            lineWidth: 0.1, // set border line width
+            lineColor: [0, 0, 0], // set border color (black in this case)
+        },
+        didDrawPage: function (data: any) {
+            header(data);
+            footer(data);
+        }
+    });
+
+    pdf.save('receipttransaction.pdf');
+}
+
+
+  printThisPage(){
+    window.print();
   }
 }

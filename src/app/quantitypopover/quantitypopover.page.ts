@@ -94,6 +94,11 @@ export class QuantitypopoverPage implements OnInit {
     // this.closePopover();
     
   }
-  
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for Enter key
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+}
   
 }

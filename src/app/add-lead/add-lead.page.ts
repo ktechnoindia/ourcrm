@@ -51,6 +51,8 @@ interface lead {
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule]
 })
 export class AddLeadPage {
+  @ViewChild('firstInvalidInput') firstInvalidInput: any;
+
   form: FormGroup;
   submitted = false;
 
@@ -266,8 +268,10 @@ export class AddLeadPage {
   }
 
   async OnExecutiveSubmit() {
-    const fields = {}
-    if (await this.formService.validateForm(fields)) {
+    const fields = {}; // Assuming there are no specific fields to validate for this form
+    const isValid = await this.formService.validateForm(fields);
+  
+    if (isValid) {
       console.log('Your form data : ', this.executivepop.value);
       const executdata: execut = {
         roleid: this.executivepop.value.roleid,
@@ -282,45 +286,60 @@ export class AddLeadPage {
         ecommision: 0,
         eemail: ''
       };
+  
       this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the executive, fetch the updated executive data again
+          this.fetchExecutiveData();
+          
+          // Show success alert after a delay
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          this.formService.showSaveLoader()
-          this.form.reset();
-
+  
+          // Optionally, reset the form
+          this.executivepop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
+          
+          // Show failed alert after a delay
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
-          this.formService.shoErrorLoader();
         }
       );
-
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
         const control = this.form.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
       });
-    
+  
+      // Set focus to the first invalid input field
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
+  }
+  
+  fetchExecutiveData() {
+    // Assuming you have a method to fetch the updated executive data
+    // Here, you'll update the 'executive$' observable with the new data
+    this.executive$ = this.addExecutiveService.fetchAllExecutive('','', '');
   }
 
   async OnItemSubmit() {
-    const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode }
+    const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-      this.submitted = true;
+  
+    if (isValid) {
       console.log('Your form data : ', this.itempop.value);
-
+  
       let itemdata: item = {
         itemDesc: this.itempop.value.itemDesc,
         itemCode: this.itempop.value.itemCode,
@@ -367,31 +386,42 @@ export class AddLeadPage {
         partnumber: '',
         color: ''
       };
+  
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the item, fetch the updated item data again
+          this.fetchItemData();
+          
+          // Show success alert
           this.formService.showSuccessAlert();
+          
+          // Reset the form
           this.itempop.reset();
-
         },
         (error: any) => {
           console.error('POST request failed', error);
           this.formService.showFailedAlert();
         }
       );
-
+  
     } else {
-      //If the form is not valid, display error messages
+      // If the form is not valid, display error messages
       Object.keys(this.itempop.controls).forEach(controlName => {
         const control = this.itempop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
       });
-     
     }
-
   }
-
+  
+  fetchItemData() {
+    // Assuming you have a method to fetch the updated item data
+    // Here, you'll update the 'itemnames$' observable with the new data
+    this.itemnames$ = this.itemService.fetchallItem('','', '');
+  }
+  
 
 }

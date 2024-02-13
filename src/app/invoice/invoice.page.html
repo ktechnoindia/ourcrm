@@ -1,0 +1,231 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Invoice
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="invoice" style="border: solid 2px #000;">
+
+    <div class="invoice-subheader" style="border: solid 2px #000;
+    ">
+      <ion-row>
+        <ion-col size="2">
+          <img src="assets/ktechno-removebg-preview.png" alt="">
+        </ion-col>
+        <ion-col size="5" style="border-right: solid 2px #000;">
+          <h1>K Techno</h1>
+          <h6>(Software Sales & Services)</h6>
+          <h5><span>Address:</span>
+            Mahajano Ka Mohalla Bhakri Maulas Nagaur -341512.
+          </h5>
+          <h5><span>Branch :</span>
+            S11 Second Floor Nursery Circle Vaishali Nagar Jaipur</h5>
+          <ion-row>
+            <ion-col size="6">
+              <h5><span>GSTIN:</span>08DBUPP2096B1Z9</h5>
+              <h5><span>Email Id:</span>ktechno.in&#64;gmail.com</h5>
+              <h5><span>Pan No:</span>DBUPP2096B</h5>
+
+            </ion-col>
+            <ion-col size="6">
+              <h5><span>STATE:</span>Rajasthan [08]
+              </h5>
+              <h5><span>Phone No.:</span>7877576868</h5>
+              <h5><span>Website:</span>www.ktechno.in</h5>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="5" class="details">
+          <h5><span>Invoice No : </span> KT23-24/384</h5>
+          <h5><span>Date : </span> {{ invoiceDate }}</h5>
+          <h5><span>PO Ref No. : </span> 3131</h5>
+          <h5><span>PO Date : </span> {{ invoiceDate }}</h5>
+          <h5><span>Remark : </span> Nothing</h5>
+
+
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <div class="invoice-header">
+      <h1>Tax Invoice</h1>
+    </div>
+    <div class="shipping">
+      <ion-row>
+        <ion-col size="6" style="border-right: solid 2px #000;">
+          <h1>Billing Details (Bill To)</h1>
+          <h5><span>Name : </span> RAMDEV STEEL TRADERS</h5>
+          <h5><span>Address : </span> A/P Takali Dhokeshwar Tal.Parner Dist.A.Nagar</h5>
+          <ion-row>
+            <ion-col size="8">
+              <h5><span>POS : </span> Maharashtra</h5>
+            </ion-col>
+            <ion-col size="4">
+              <h5><span>Code : </span> 27</h5>
+            </ion-col>
+          </ion-row>
+          <h5><span>Phone No : </span> 9322593101</h5>
+          <h5><span>GSTIN : </span> 27AXBPP3190L1Z4</h5>
+
+        </ion-col>
+        <ion-col size="6">
+          <h1>Shiping Details (Ship To)</h1>
+          <h5><span>Name : </span> RAMDEV STEEL TRADERS</h5>
+          <h5><span>Address : </span> A/P Takali Dhokeshwar Tal.Parner Dist.A.Nagar</h5>
+          <h5><span>POS : </span> Maharashtra</h5>
+
+          <h5><span>Phone No : </span> 9322593101</h5>
+          <ion-row>
+            <ion-col size="6">
+              <h5><span>GSTIN : </span> 27AXBPP3190L1Z4</h5>
+
+            </ion-col>
+            <ion-col size="6">
+              <h5><span>Code : </span> 27</h5>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="Declaration">
+      <h5><span>Declaration : </span> We declare that this invoice show the actual price of the goods described and that
+        all particulars are true and correct.</h5>
+    </div>
+    <div class="invoice-content">
+
+
+      <table style="width: 100%;scroll-behavior: auto;height: 400px;">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Item Name</th>
+            <th>Item Code</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>MRP</th>
+            <th>Net Rate</th>
+            <th>Tax %</th>
+            <th>Tax Amt.</th>
+            <th>Discount Amt.</th>
+            <th>Net Amount</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="invoice-footer">
+      <ion-row>
+        <ion-col size="9">
+          <div class="taxtable">
+            <table style="width: 100%;">
+              <tr>
+                <th>Taxable AMT</th>
+                <th>CGST %</th>
+                <th>CGST AMT</th>
+                <th>SGST %</th>
+                <th>SGST AMT</th>
+                <th>IGST %</th>
+                <th>IGST AMT</th>
+              </tr>
+              <tr>
+                <td>15,000</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>18.00</td>
+                <td>270</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th>CGST</th>
+                <th>0.00</th>
+                <th>SGST </th>
+                <th>0.00</th>
+                <th>IGST</th>
+                <th>270</th>
+              </tr>
+            </table>
+          </div>
+          <div class="banktable">
+            <table  style="width: 100%;">
+              <tr>
+                <th colspan="4" style="text-align: center;background: #e1e0e0;">Bank Details:</th>
+              </tr>
+              <tr>
+                <th>UPI ID</th>
+                <td>7877576868&#64;uco</td>
+                <th>Bank Name :</th>
+                <td>Uco Bank</td>
+              </tr>
+              <tr>
+                <th>Account Number :</th>
+                <td>55325325225</td>
+                <th>Branch Name :</th>
+                <td>Harsore</td>
+              </tr>
+            
+            </table>
+           
+          </div>
+         
+        </ion-col>
+        <ion-col size="3" style="border: solid 1px #000;">
+          <h5><span>Total Amount &#8377; : </span>{{ calculateTotal() }}</h5>
+          <p>Discount Amount : &#8377;{{ calculateTotal() }}</p>
+          <p>Pre Tax : &#8377;{{ calculateTotal() }}</p>
+          <p>Taxable Amount : &#8377;{{ calculateTotal() }}</p>
+          <p>Post Tax : &#8377;{{ calculateTotal() }}</p>
+          <p>IGST Rate : &#8377;{{ calculateTotal() }}</p>
+          <p>IGST Amt : &#8377;{{ calculateTotal() }}</p>
+          <p>Cess Amount : &#8377;{{ calculateTotal() }}</p>
+          <p>Round Off Amount : &#8377;{{ calculateTotal() }}</p>
+          <h5><span>Grand Total &#8377; : </span> {{ calculateTotal() }}</h5>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="Declaration">
+      <h6><span>No. Of Items : </span> 3</h6>
+      <h5><span>Amount In Words : </span> Rupees One Thousand Seven Hundred Seventy Only </h5>
+    </div>
+    <div class="invoice-footer">
+      <ion-row>
+        <ion-col size="8" class="terms">
+          <h6>Terms & Condition : </h6>
+          <ul>
+            <li>After 1 Year AMC will applicable</li>
+            <li>Kindly do not update software without AMC.</li>
+            <li>Our Support Numbers are : 8829976868, 7577576868</li>
+            <li>Payment : 100% against to Installation</li>
+          </ul>
+        
+
+        </ion-col>
+        <ion-col size="4" style="height: 70px;">
+          <h6 style="text-align: center;font-weight: 900;">For K Techno</h6>
+          <h6 style="text-align: center;margin-top: 90px;font-weight: 700;">Authorised Signatory</h6>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

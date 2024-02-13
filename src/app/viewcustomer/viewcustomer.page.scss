@@ -56,4 +56,62 @@ td{
     height: 400px;
     overflow-x: auto;
   }
+  .no-scrollbars {
+    overflow: hidden;
+  }
   
+@media screen {
+    .data{
+        display: none;
+        visibility: hidden;
+    }
+}
+@media print {
+     /* Hide scrollbars */
+  .scroll-container {
+    overflow: visible !important;
+  }
+  
+  /* Set table width to 100% */
+  #customerTable {
+    width: 100% !important;
+  }
+    .data{
+        display: block;
+        visibility: visible;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: underline;
+        padding: 5px;
+        justify-content: center;
+    }
+    .scroll-container{
+        border: none;
+    }
+    .total{
+        display: none;
+        visibility: hidden;
+    }
+    ion-input{
+        display: none;
+        visibility: hidden;
+    }
+    ion-button{
+        display: none;
+        visibility: hidden;
+
+    }
+    ion-select{
+        display: none;
+        visibility: hidden;
+
+    }
+    ion-searchbar{
+        display: none;
+        visibility: hidden;
+    }
+    ion-card-header{
+        display: none;
+        visibility: hidden;
+    }
+}

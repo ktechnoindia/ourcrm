@@ -375,6 +375,14 @@ export class AddPurchasePage implements OnInit {
 
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
+     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+
+  //   htmlForm.addEventListener('keydown', (event) => {
+  //     // Prevent the default behavior for Enter key
+  //     if (event.key === 'Enter') {
+  //         event.preventDefault();
+  //     }
+  // });
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
 
@@ -472,7 +480,7 @@ console.log('data of ',purchases)
             }, 1000);
             this.formService.showSaveLoader();
             this.form.reset();
-            // location.reload()
+             location.reload()
           },
           (error: any) => {
             console.log('Purchase Post failed', error);
@@ -717,7 +725,7 @@ console.log('data of ',purchases)
   }
 
   removePurchase(index: number, row: Purchase) {
-    this.ttotal = this.ttotal - this.purchase.total;
+    this.ttotal = this.ttotal - this.purchaseService.total;
     this.purchaseData.splice(index, 1);
   }
   getAllRows() {
@@ -996,12 +1004,13 @@ console.log('data of ',purchases)
 
 
   async onVendorSubmit() {
-    const fields = { name: this.name, vendor_code: this.vendor_code, }
+    const fields = { name: this.name, vendor_code: this.vendor_code };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-
-      console.log('Your form data : ', this.myform.value);
-      const venddata: vend = {
+  
+    if (isValid) {
+      console.log('Your form data : ', this.vendorpop.value);
+  
+      let venddata: vend = {
         name: this.vendorpop.value.name,
         customer_code: this.vendorpop.value.vendor_code,
         gstin: this.vendorpop.value.gstin,
@@ -1039,31 +1048,35 @@ console.log('data of ',purchases)
         address1: '',
         discount: 0
       };
-
+  
       this.vendService.createVendor(venddata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          
+          // After successfully adding the vendor, fetch the updated vendor data again
+          this.fetchVendorData();
+          
+          // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
-          this.formService.showSaveLoader()
-          this.myform.reset();
-
+          
+          // Reset the form
+          this.vendorpop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
+          
+          // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
-          this.formService.shoErrorLoader();
         }
       );
-
     } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
+      // If the form is not valid, display error messages
+      Object.keys(this.vendorpop.controls).forEach(controlName => {
+        const control = this.vendorpop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
@@ -1073,4 +1086,23 @@ console.log('data of ',purchases)
       }
     }
   }
+  
+  fetchVendorData() {
+    // Assuming you have a method to fetch the updated vendor data
+    // Here, you'll update the 'supplier$' observable with the new data
+    this.supplier$ = this.vendService.fetchallVendor('','', '');
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for Enter key
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+
+    // Prevent incrementing/decrementing on arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        event.preventDefault();
+    }
+}
+
 }

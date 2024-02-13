@@ -25,7 +25,7 @@
               <ion-col size-lg="1.5" size-md="1.5" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number"
-                    label=" HSRP No.  :" label-placement="floating" fill="outline"></ion-input>
+                    label=" HSRP No.  :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.3" size-md="2" size-sm="6" size="6">
@@ -160,7 +160,7 @@
                     <td>
                       <input *ngIf="hsrpout.itemcode !== 0" [(ngModel)]="hsrpout.quantity"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
-                        (keydown.enter)="openQuantityPopover(hsrpout)">
+                        (keydown.enter)="openQuantityPopover(hsrpout)" (keydown)="onKeyDown($event)">
                     </td>
           
                     <td>
@@ -169,32 +169,32 @@
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.netrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
                     <td>
-                      <input [value]="getgrossrate(hsrpout)" [readonly]="true" class="table_input" type="number">
+                      <input [value]="getgrossrate(hsrpout)" [readonly]="true" class="table_input" type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpout.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <input type="hidden" [(ngModel)]="hsrpout.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
-                      <input [value]="getsgst(hsrpout)" [readonly]="true" class="table_input" type="number">
+                      <input [value]="getsgst(hsrpout)" [readonly]="true" class="table_input" type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [value]="getcgst(hsrpout)" [readonly]="true" class="table_input" type="number">
+                      <input [value]="getcgst(hsrpout)" [readonly]="true" class="table_input" type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [value]="getigst(hsrpout)" type="number" class="table_input">
+                      <input [value]="getigst(hsrpout)" type="number" class="table_input" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
 
@@ -230,35 +230,35 @@
                     <label class="label_table" for="">Quantity : </label>
 
                     <input name="totalquantity" [(ngModel)]="totalquantity" [value]="getTotalQuantity()"
-                      formControlName="totalquantity" class="input_table" type="number">
+                      formControlName="totalquantity" class="input_table" type="number" (keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
                     <input name="totalgrossamt" [(ngModel)]="totalgrossamt" [value]="getTotalGrossAmount()"
-                      formControlName="totalgrossamt" class="input_table" type="number">
+                      formControlName="totalgrossamt" class="input_table" type="number" (keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
                     <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
-                      formControlName="totaldiscountamt" class="input_table" type="number">
+                      formControlName="totaldiscountamt" class="input_table" type="number" (keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Tax Amount :</label>
                     <input name="totaltaxamount" [(ngModel)]="totaltaxamount" [value]="getTotalTaxAmount()"
-                      formControlName="totaltaxamount" class="input_table" type="number">
+                      formControlName="totaltaxamount" class="input_table" type="number" (keydown)="onKeyDown($event)">
 
                   </ion-col>
 
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Taxable Amount :</label>
                     <input name="totalnetamount" [(ngModel)]="totalnetamount" formControlName="totalnetamount"
-                      [value]="getTaxableAmount()" class="input_table" type="number">
+                      [value]="getTaxableAmount()" class="input_table" type="number" (keydown)="onKeyDown($event)">
 
                   </ion-col>
                 </ion-row>
@@ -370,19 +370,19 @@
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="number">
+                          class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="number">
+                          id="posttax" class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Round Off : </th>
                       <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
-                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number">
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>

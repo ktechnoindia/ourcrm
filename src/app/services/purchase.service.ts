@@ -76,6 +76,7 @@ export interface purchasestore {
   providedIn: 'root'
 })
 export class PurchaseService {
+  total!: number;
 
   constructor(private httpclient: HttpClient) { }
   createpurchase(purchase: purchasestore[], key: string, user: string) {
@@ -89,4 +90,6 @@ export class PurchaseService {
   fetchPurchaseById(itemcode:number,companyid:number): Observable<any> {
     const apiUrl = `http://103.154.184.66:8000/actions/get_purchase_byid?itemcode=${itemcode}&companyid=${companyid}`;
     return this.httpclient.get(apiUrl);  }
+
+    
 }

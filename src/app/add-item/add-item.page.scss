@@ -1,3 +1,19 @@
+.search ion-item{
+    margin-top: 5px;
+    max-height: 35px !important;
+    border: solid 1px rgb(190, 190, 190);
+    border-radius: 4px;
+    position: relative;
+    /* Ensure the ion-item is relatively positioned */
+    outline-width: 2px;
+    outline-style: initial;
+}
+.search ion-label {
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(85, 105, 149);
+}
+
+  
 .Customer ion-input {
     min-height: 35px;
     // color: goldenrod;
@@ -47,16 +63,16 @@ ion-popover {
 }
 
 .hsns {
-    --offset-y: 70px;
-    --offset-x: -90px;
+    --offset-y: 0px;
+    --offset-x: 0px;
 }
 
 .units {
-    --offset-y: 50px;
+    --offset-y:0px;
     --offset-x: 100px;
 }
 
 .groups {
-    --offset-y: 50px;
-    --offset-x: -90px;
+    --offset-y: 0px;
+    --offset-x: 150px;
 }

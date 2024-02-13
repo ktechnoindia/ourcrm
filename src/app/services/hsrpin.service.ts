@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface hsrpinstore{
@@ -84,5 +85,10 @@ export class HsrpinService {
   createhsrpin(hsrpin: hsrpinstore[], key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addhsrpin, hsrpin, { headers: { 'key': key, 'user': user } });
   }
-  
+  fetchbyengineno(): Observable<any> {
+    const companyid = 'your_company_id'; // Assuming companyid is defined somewhere in your code
+    console.log('companyyy ' + companyid);
+    const engineNo = 'ADNSAKDSDNAS'; // Example engine number
+    return this.httpclient.get(`${environment.apiactionurl}${environment.fetchbyframeno}?eno=${engineNo}`);
+  }
 }

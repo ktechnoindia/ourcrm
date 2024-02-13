@@ -74,6 +74,7 @@ export class QuotationService {
   ttotal!: number;
   taxrate: any;
   taxrate1: any;
+  quantity: any;
   constructor(private httpclient: HttpClient) { }
   createquote(quatation: quotestore[], key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.addquote, quatation, { headers: { 'key': key, 'user': user } });

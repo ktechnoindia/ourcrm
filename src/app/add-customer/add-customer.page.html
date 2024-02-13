@@ -110,7 +110,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="opening_balance" formControlName="opening_balance" name="opening_balance"
                     class="sign_input" type="number" label=" Opening Balance :" label-placement="floating"
-                    fill="outline"></ion-input>
+                    fill="outline" (keydown)="onKeyDown($event)"></ion-input>
 
                 </ion-row>
               </ion-col>
@@ -120,7 +120,7 @@
               <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="closing_balance " formControlName="closing_balance" name="closing_balance"
-                    type="number" label=" Closing Balance :" label-placement="floating" fill="outline"></ion-input>
+                    type="number" label=" Closing Balance :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
 
                 </ion-row>
               </ion-col>

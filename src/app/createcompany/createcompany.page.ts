@@ -74,13 +74,13 @@ export class CreatecompanyPage implements OnInit {
   tanno: string = '';
   pannumber: string = '';
   industry$: any;
-  industry: number = 0;
+  industry: string = '';
   companytype$: any;
-  companytype: number = 0;
+  companytype: string = '';
   businesstype$: any;
-  businesstype: number = 0;
+  businesstype: string = '';
   segmenttype$: any;
-  segmenttype: number = 0;
+  segmenttype:string = '';
 
   //step : 3 
   language: number = 0;

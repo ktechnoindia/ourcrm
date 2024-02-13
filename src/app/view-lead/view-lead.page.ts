@@ -13,6 +13,8 @@ import { EncryptionService } from '../services/encryption.service';
 import { LeadService } from '../services/lead.service';
 import { NavController } from '@ionic/angular';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 interface Lead{
   catPerson:string,
   companyname:string,
@@ -53,19 +55,7 @@ export class ViewLeadPage implements OnInit {
   lead$:Observable<any[]>;
   searchTerm: string = '';
   filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
-  generatePdf() {
-    let pdf = new jsPDF()
 
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        //save this pdf document
-        pdf.save("sample Pdf")
-      }
-    })
-  }
-  printThisPage(){
-    window.print();
-  }
    // filteredSales: Observable<any[]>;
    availableColumns: string[] = [
     'companyname',
@@ -232,5 +222,47 @@ export class ViewLeadPage implements OnInit {
   goBack() {
     this.router.navigate(["/leaddashboard"])
   }
+  generatePdf() {
+    const table = document.getElementById('leadTable');
 
+    if (!table) {
+        console.error('Element with id "leadTable" not found.');
+        return;
+    }
+
+    const pdf = new jsPDF();
+
+    const header = function (data: any) {
+        pdf.setFontSize(18);
+        pdf.setTextColor(40);
+        pdf.setFont('curier', 'bold');
+        pdf.text('Lead List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+    };
+
+    const footer = function (data: any) {
+        const pageCount = pdf.internal.pages.length;
+        pdf.setFontSize(14);
+        pdf.setTextColor(40);
+        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+    };
+
+    (pdf as any).autoTable({
+        html: '#leadTable',
+        styles: {
+            lineWidth: 0.1, // set border line width
+            lineColor: [0, 0, 0], // set border color (black in this case)
+        },
+        didDrawPage: function (data: any) {
+            header(data);
+            footer(data);
+        }
+    });
+
+    pdf.save('leads.pdf');
+}
+
+
+  printThisPage(){
+    window.print();
+  }
 }

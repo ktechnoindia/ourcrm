@@ -84,7 +84,7 @@ export class ReceiptPage implements OnInit {
     currentamt: 0,
     billpendingamt: 0,
   }]
-  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
+  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
 
@@ -263,7 +263,7 @@ export class ReceiptPage implements OnInit {
         receiptdatas.push(recepitdata);
       }
 
-      this.recepitService.createRecepit(receiptdatas, '', '').subscribe(
+      this.receiptservice.createRecepit(receiptdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -304,7 +304,7 @@ export class ReceiptPage implements OnInit {
 
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
 
-    // Assuming outstanding_amount is a regular variable
+    // Fetching outstanding amount for the selected company
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
@@ -316,8 +316,6 @@ export class ReceiptPage implements OnInit {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
-
-
   }
 
   onCompanyChange(event: any) {
@@ -364,5 +362,10 @@ export class ReceiptPage implements OnInit {
     return this.billpendingamt * this.dataLength;
 
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }

@@ -77,21 +77,30 @@ export class PaymentPage implements OnInit {
     pendingamt: 0,
   }]
 
-  selectedvendorId: number = 0;
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
+  dataLength: number = 0;
+  selectedVendorId: number = 0;
+  paymentbill$:Observable<any[]>
+  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
-  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService,private session:SessionService) {
-    
     const compid = session.getValue('companyid')?.valueOf() as string;
-    this.paymentBill=new Subscription();
+    this.paymentBill = new Subscription();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     //console.log(this.supplier$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(20);
-
+    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
+    this.outstanding$.subscribe(outstandingData => {
+      console.log(outstandingData);
+    });
+    this.paymentbill$ = this.paymentservice.getPurchaseById(this.selectedVendorId, 1);
+    this.paymentbill$.subscribe(data => {
+      // Get the length of the array
+      this.dataLength = data.length;
+      console.log('Length of the array:', this.dataLength);
+    });
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
@@ -125,11 +134,11 @@ export class PaymentPage implements OnInit {
 
   fetchBillsForCustomer() {
     // Check if a customer is selected
-    if (this.selectedvendorId !== 0) {
+    if (this.selectedVendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill = this.payService.getPurchaseById(1,this.selectedvendorId).subscribe(bill => {
+      this.paymentBill = this.paymentservice.getPurchaseById(1, this.selectedVendorId).subscribe(bill => {
         console.log('data length', bill.length)
-        this.myPaymentBillData=bill;
+        this.myPaymentBillData = bill;
         if (bill && bill.length > 0) {
           const bills = bill[0];
           console.log('bills data', bill[0])
@@ -146,8 +155,38 @@ export class PaymentPage implements OnInit {
       });
     }
   }
-  
 
+  getSalesDetails(payment: any) {
+    const compid = '1';
+    const identifier = payment.companyname ? 'companyname' : '';
+    const value = payment.selectedItemId || payment.companyname;
+
+    this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          payment.companyname = itemDetails.custname;
+          payment.outstanding = itemDetails.total;
+
+          // Update form control values
+          this.myform.patchValue({
+            companyname: payment.companyname,
+            outstanding: payment.outstanding,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -201,7 +240,7 @@ export class PaymentPage implements OnInit {
         };
         paymentdatas.push(paymentdata);
       }
-      this.payService.createPayment(paymentdatas, '', '').subscribe(
+      this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
@@ -253,19 +292,19 @@ export class PaymentPage implements OnInit {
   }
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-    // this.myform.get('companyname')?.valueChanges.pipe(
-    //   switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(22))
-    // ).subscribe((outstandingArray: any[]) => {
-    //   console.log('Received outstanding data:', outstandingArray);
+    this.myform.get('companyname')?.valueChanges.pipe(
+      switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
+    ).subscribe((outstandingArray: any[]) => {
+      console.log('Received outstanding data:', outstandingArray);
 
-    //   if (outstandingArray && outstandingArray.length > 0) {
-    //     const firstItem = outstandingArray[0];
-    //     this.outstanding = firstItem.outstanding_amount;
-    //     console.log('outstanding_amount (after fetch):', this.outstanding_amount);
-    //   } else {
-    //     console.error('Invalid outstanding response:', outstandingArray);
-    //   }
-    // });
+      if (outstandingArray && outstandingArray.length > 0) {
+        const firstItem = outstandingArray[0];
+        this.outstanding = firstItem.outstanding_amount;
+        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
+      } else {
+        console.error('Invalid outstanding response:', outstandingArray);
+      }
+    });
 
   }
   presentToast(arg0: string) {
@@ -302,5 +341,10 @@ export class PaymentPage implements OnInit {
     // Convert this.billpendingamt to a number before returning
     return this.pendingamt;
   }
-
+  onKeyDown(event: KeyboardEvent): void {
+    // Prevent the default behavior for up and down arrow keys
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
 }

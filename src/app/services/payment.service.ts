@@ -48,12 +48,16 @@ export class PaymentService {
   }
 
   fetchAllPayment(companyid: string, key: string, user: string): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+
     console.log('companyyy ' + companyid);
-    return this.httpclient.get(environment.apiacturl + environment.fetchpayment + '?p=' + companyid, { headers: { 'key': key, 'user': user } })
+    return this.httpclient.get(environment.apiacturl + environment.fetchpayment + '?p=' + companyid, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
   fetchVendorOutstanding(userid: number): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+
     console.log('companyyy ' + userid)
-    return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid);
+    return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 
   getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
