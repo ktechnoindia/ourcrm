@@ -84,7 +84,7 @@ export class ReceiptPage implements OnInit {
     currentamt: 0,
     billpendingamt: 0,
   }]
-  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private recepitService: RecepitService, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService, private salesService: SalesService,) {
+  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = '1';
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
 
@@ -263,7 +263,7 @@ export class ReceiptPage implements OnInit {
         receiptdatas.push(recepitdata);
       }
 
-      this.recepitService.createRecepit(receiptdatas, '', '').subscribe(
+      this.receiptservice.createRecepit(receiptdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {

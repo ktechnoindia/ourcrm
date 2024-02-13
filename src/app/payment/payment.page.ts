@@ -81,7 +81,7 @@ export class PaymentPage implements OnInit {
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
 
-  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private payService: PaymentService, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
+  constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.paymentBill = new Subscription();
@@ -91,7 +91,9 @@ export class PaymentPage implements OnInit {
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
     this.outstanding$ = this.paymentservice.fetchVendorOutstanding(20);
-
+    this.outstanding$.subscribe(outstandingData => {
+      console.log(outstandingData);
+    });
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
@@ -127,7 +129,7 @@ export class PaymentPage implements OnInit {
     // Check if a customer is selected
     if (this.selectedvendorId !== 0) {
       // Call your service method with the selected customer ID
-      this.paymentBill = this.payService.getPurchaseById(1, this.selectedvendorId).subscribe(bill => {
+      this.paymentBill = this.paymentservice.getPurchaseById(1, this.selectedvendorId).subscribe(bill => {
         console.log('data length', bill.length)
         this.myPaymentBillData = bill;
         if (bill && bill.length > 0) {
@@ -147,7 +149,37 @@ export class PaymentPage implements OnInit {
     }
   }
 
+  getSalesDetails(recepit: any) {
+    const compid = '1';
+    const identifier = recepit.companyname ? 'companyname' : '';
+    const value = recepit.selectedItemId || recepit.companyname;
 
+    this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
+      (data) => {
+        console.log('Data received:', data);
+
+        if (data && data.length > 0) {
+          const itemDetails = data[0];
+
+          // Update the quote properties
+          recepit.companyname = itemDetails.custname;
+          recepit.outstanding = itemDetails.total;
+
+          // Update form control values
+          this.myform.patchValue({
+            companyname: recepit.companyname,
+            outstanding: recepit.outstanding,
+            // Other form controls...
+          });
+        } else {
+          console.error('No data found for the selected item.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
+  }
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -201,7 +233,7 @@ export class PaymentPage implements OnInit {
         };
         paymentdatas.push(paymentdata);
       }
-      this.payService.createPayment(paymentdatas, '', '').subscribe(
+      this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
