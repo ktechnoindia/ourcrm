@@ -61,7 +61,7 @@ export class AccountdashboardPage implements OnInit {
       console.log(data);
       this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
     });
-    this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid), '', '');
+    this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid), '', '');
     console.log(this.recepits$);
     this.recepits$.subscribe((data: string | any[]) => {
       console.log(data);
@@ -144,7 +144,7 @@ export class AccountdashboardPage implements OnInit {
 
     //Fetch data for all entities
     this.payment$ = this.paymentservice.fetchAllPayment(this.encService.encrypt(compid), '', '');
-    this.recepits$ = this.recepitService.fetchAllReceppit(this.encService.encrypt(compid), '', '');
+    this.recepits$ = this.recepitService.fetchAllRecepit(this.encService.encrypt(compid), '', '');
 
 
     // Subscribe to the observables and update the counts

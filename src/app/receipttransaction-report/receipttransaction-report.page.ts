@@ -29,7 +29,7 @@ export class ReceipttransactionReportPage implements OnInit {
 
     const compid='1';
 
-    this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid),'','');
+    this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid),'','');
     console.log(this.recepits$);
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];

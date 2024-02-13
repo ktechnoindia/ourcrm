@@ -43,7 +43,7 @@ export class RecepitService {
     return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
 
-  fetchAllReceppit(companyid: string, key: string, user: string): Observable<any> {
+  fetchAllRecepit(companyid: string, key: string, user: string): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
 
     console.log('companyyy ' + companyid);
@@ -53,6 +53,7 @@ export class RecepitService {
     console.log('companyyy ' + userid)
     const token = this.session.getValue('token')?.valueOf();
     return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+
   }
 
   getSalesById(custCode: number, companyId: number): Observable<any> {

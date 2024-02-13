@@ -78,7 +78,7 @@ export class CompanydashboardPage implements OnInit {
       console.log(data);
       this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
     });
-    this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid), '', '');
+    this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid), '', '');
     console.log(this.recepits$);
     this.recepits$.subscribe((data: string | any[]) => {
       console.log(data);

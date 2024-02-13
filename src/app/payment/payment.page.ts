@@ -88,8 +88,9 @@ export class PaymentPage implements OnInit {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.paymentBill = new Subscription();
+
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    //console.log(this.supplier$);
+    console.log(this.supplier$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
@@ -104,6 +105,7 @@ export class PaymentPage implements OnInit {
       this.dataLength = data.length;
       console.log('Length of the array:', this.dataLength);
     });
+
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
@@ -135,7 +137,7 @@ export class PaymentPage implements OnInit {
 
   }
 
-  fetchBillsForCustomer() {
+  fetchBillsForVendor() {
     // Check if a customer is selected
     if (this.selectedVendorId !== 0) {
       // Call your service method with the selected customer ID
@@ -159,37 +161,37 @@ export class PaymentPage implements OnInit {
     }
   }
 
-  getSalesDetails(payment: any) {
-    const compid = '1';
-    const identifier = payment.companyname ? 'companyname' : '';
-    const value = payment.selectedItemId || payment.companyname;
+  // getPurchaseDetails(payment: any) {
+  //   const compid = '1';
+  //   const identifier = payment.companyname ? 'companyname' : '';
+  //   const value = payment.selectedItemId || payment.companyname;
 
-    this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
-      (data) => {
-        console.log('Data received:', data);
+  //   this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
+  //     (data) => {
+  //       console.log('Data received:', data);
 
-        if (data && data.length > 0) {
-          const itemDetails = data[0];
+  //       if (data && data.length > 0) {
+  //         const itemDetails = data[0];
 
-          // Update the quote properties
-          payment.companyname = itemDetails.custname;
-          payment.outstanding = itemDetails.total;
+  //         // Update the quote properties
+  //         payment.companyname = itemDetails.custname;
+  //         payment.outstanding = itemDetails.total;
 
-          // Update form control values
-          this.myform.patchValue({
-            companyname: payment.companyname,
-            outstanding: payment.outstanding,
-            // Other form controls...
-          });
-        } else {
-          console.error('No data found for the selected item.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
+  //         // Update form control values
+  //         this.myform.patchValue({
+  //           companyname: payment.companyname,
+  //           outstanding: payment.outstanding,
+  //           // Other form controls...
+  //         });
+  //       } else {
+  //         console.error('No data found for the selected item.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data', error);
+  //     }
+  //   );
+  // }
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -288,11 +290,7 @@ export class PaymentPage implements OnInit {
   onNew() {
     location.reload();
   }
-
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
+  
   fetchVendorOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
@@ -311,17 +309,12 @@ export class PaymentPage implements OnInit {
   
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-
     this.fetchVendorOutstandingOnCompanyNameChange();
-
-
   }
   presentToast(arg0: string) {
     throw new Error('Method not implemented.');
   }
-  onCompanyChange(event: any) {
-    // Handle any additional logic when the company name is selected
-  }
+
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }

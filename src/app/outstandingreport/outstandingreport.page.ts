@@ -37,7 +37,7 @@ this.item$ = of(null);
     const companyid='1';
     this.combineData$ = forkJoin([
       this.receiptservice.fetchUserOutstanding(1),
-      this.receiptservice.fetchAllReceppit('1', '', ''),
+      this.receiptservice.fetchAllRecepit('1', '', ''),
       this.itemservice.fetchallItem(companyid, '', ''),
     ]);
 
