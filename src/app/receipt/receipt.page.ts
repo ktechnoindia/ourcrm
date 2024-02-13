@@ -7,13 +7,14 @@ import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
 import { CreatecompanyService } from '../services/createcompany.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { PurchaseService } from '../services/purchase.service';
 import { VendorService } from '../services/vendor.service';
 import { CustomerService } from '../services/customer.service';
 import { LegderService } from '../services/ledger.service';
 import { SalesService } from '../services/sales.service';
 import { AdditemService } from '../services/additem.service';
+import { SessionService } from '../services/session.service';
 
 interface Recepit {
   billno: string,
@@ -27,13 +28,13 @@ interface Recepit {
 
 
 @Component({
-  selector: 'app-receipt',
+  selector: 'app-payment',
   templateUrl: './receipt.page.html',
   styleUrls: ['./receipt.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   providers: [DatePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class ReceiptPage implements OnInit {
   @ViewChild('popover') popover: any
@@ -72,7 +73,6 @@ export class ReceiptPage implements OnInit {
   outstanding_amount: any;
   outstanding$: Observable<any[]>
   isCheckboxChecked = false;
-  // recepitBill$: Observable<any>;
   selectedCustomerId: number = 0;
   receiptBill$: Observable<any>;
   dataLength: number = 0;
@@ -84,23 +84,23 @@ export class ReceiptPage implements OnInit {
     currentamt: 0,
     billpendingamt: 0,
   }]
-  constructor(private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
-    const compid = '1';
-    this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-
-    //this.receiptBill$= ;
-
-    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+  recepitbill: Subscription;
+  
+  constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
+    const compid = session.getValue('companyid')?.valueOf() as string;
+    this.recepitbill = new Subscription();
 
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     console.log(this.customer$);
-    // const userid=3;
-    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
 
-    this.outstanding$.subscribe(outstandingData => {
-      console.log(outstandingData);
-    });
-    console.log(this.sales$);
+    this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+
+   
+    this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
+    // this.outstanding$.subscribe(outstandingData => {
+    //   console.log(outstandingData);
+    // });
+    // console.log(this.outstanding$);
 
     this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
     this.receiptBill$.subscribe(data => {
@@ -108,6 +108,8 @@ export class ReceiptPage implements OnInit {
       this.dataLength = data.length;
       console.log('Length of the array:', this.dataLength);
     });
+    this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
+
     // this.recepitBill$.subscribe(recepitbill =>{
     //   console.log('redeeeee',recepitbill);
     // })
@@ -128,8 +130,8 @@ export class ReceiptPage implements OnInit {
       billpendingamt: [0],
       currentamt: [0],
       companyname: [''],
-      userid: [0],
-      custid: [0],
+      userid: [''],
+      custid: [''],
       outstanding_amount: [null],
       totaldueamt: [0],
       totalreceiveamt: [0],
@@ -165,44 +167,37 @@ export class ReceiptPage implements OnInit {
       });
     }
   }
+  // getSalesDetails(recepit: any) {
+  //   const compid = '1';
+  //   const identifier = recepit.companyname ? 'companyname' : '';
+  //   const value = recepit.selectedItemId || recepit.companyname;
 
+  //   this.saleService.fetchallSales(compid, value, '').subscribe(
+  //     (data) => {
+  //       console.log('Data received:', data);
 
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
+  //       if (data && data.length > 0) {
+  //         const itemDetails = data[0];
 
-  getSalesDetails(recepit: any) {
-    const compid = '1';
-    const identifier = recepit.companyname ? 'companyname' : '';
-    const value = recepit.selectedItemId || recepit.companyname;
+  //         // Update the quote properties
+  //         recepit.companyname = itemDetails.custname;
+  //         recepit.outstanding = itemDetails.total;
 
-    this.saleService.fetchallSales(compid, value, '').subscribe(
-      (data) => {
-        console.log('Data received:', data);
-
-        if (data && data.length > 0) {
-          const itemDetails = data[0];
-
-          // Update the quote properties
-          recepit.companyname = itemDetails.custname;
-          recepit.outstanding = itemDetails.total;
-
-          // Update form control values
-          this.myform.patchValue({
-            companyname: recepit.companyname,
-            outstanding: recepit.outstanding,
-            // Other form controls...
-          });
-        } else {
-          console.error('No data found for the selected item.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
+  //         // Update form control values
+  //         this.myform.patchValue({
+  //           companyname: recepit.companyname,
+  //           outstanding: recepit.outstanding,
+  //           // Other form controls...
+  //         });
+  //       } else {
+  //         console.error('No data found for the selected item.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data', error);
+  //     }
+  //   );
+  // }
 
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
@@ -258,7 +253,8 @@ export class ReceiptPage implements OnInit {
           totalpendingamt: this.myform.value.totalpendingamt,
           userid: this.myform.value.userid,
           custid: this.myform.value.custid,
-          total: 0
+          total: 0,
+          custcode: this.myform.value.custcode,
         };
         receiptdatas.push(recepitdata);
       }
@@ -299,40 +295,34 @@ export class ReceiptPage implements OnInit {
   onNew() {
     location.reload();
   }
-
-  ngOnInit() {
-
-    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-
-    // Fetching outstanding amount for the selected company
+  CustomerOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
+      console.log('Received outstanding data:', outstandingArray);
+  
       if (outstandingArray && outstandingArray.length > 0) {
-        const firstItem = outstandingArray[0];
+        const firstItem = outstandingArray[1];
         this.outstanding = firstItem.outstanding_amount;
-        console.log('outstanding_amount (after fetch):', this.outstanding);
+        console.log('outstanding_amount (after fetch):', this.outstanding_amount);
       } else {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
   }
+  ngOnInit() {
 
-  onCompanyChange(event: any) {
-    // Handle any additional logic when the company name is selected
+    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+    this.CustomerOutstandingOnCompanyNameChange();
   }
+
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
   onCustomerChange() {
-    this.customer$.subscribe(customers => {
-      const selectedCustomer = customers.find((customer: { id: any; }) => customer.id === this.myform.value.customername);
-
-      if (selectedCustomer) {
-        this.myform.patchValue({
-          ledger: selectedCustomer.name,
-        });
-      }
+     // Update the 'ledger' field with the selected supplier's name
+     this.myform.patchValue({
+      ledger: this.companyname,
     });
   }
   calculatePendingAmount(): number {

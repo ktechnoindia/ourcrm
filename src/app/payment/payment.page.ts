@@ -50,7 +50,6 @@ export class PaymentPage implements OnInit {
   totalamt: number = 0;
   receiveamt: number = 0;
   currentamt: number = 0;
-
   totaldueamt: number = 0;
   totalreceiveamt: number = 0;
   totalcurrentamt: number = 0;
@@ -59,15 +58,13 @@ export class PaymentPage implements OnInit {
   isOpen = false;
   supplier$: Observable<any>;
   ledgers$: Observable<any>;
-
   outstanding_amount: any;
-  outstanding$: Observable<any[]>
-  purchase$: Observable<any[]>
+  //outstanding$: Observable<any[]>
+  //purchase$: Observable<any[]>
   userid: number = 0;
   vendorid: number = 0;
   isCheckboxChecked = false;
   billdate: string = '';
-
   paymentData: Payment[] = [{
     billno: '',
     billdate: '',
@@ -76,32 +73,36 @@ export class PaymentPage implements OnInit {
     currentamt: 0,
     pendingamt: 0,
   }]
-
   paymentBill: Subscription;
   myPaymentBillData: any[] = [];
   dataLength: number = 0;
   selectedVendorId: number = 0;
-  paymentbill$:Observable<any[]>
+  //paymentbill$:Observable<any[]>
+  companyid: number = 0;
+
   constructor(private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.paymentBill = new Subscription();
+
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
-    //console.log(this.supplier$);
+    console.log(this.supplier$);
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+    this.userid = session.getValue('userid')?.valueOf() as number;
+  //  this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
+    // this.outstanding$.subscribe(outstandingData => {
+    //   console.log(outstandingData);
+    // });
 
-    this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
-    this.outstanding$.subscribe(outstandingData => {
-      console.log(outstandingData);
-    });
-    this.paymentbill$ = this.paymentservice.getPurchaseById(this.selectedVendorId, 1);
-    this.paymentbill$.subscribe(data => {
-      // Get the length of the array
-      this.dataLength = data.length;
-      console.log('Length of the array:', this.dataLength);
-    });
-    this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
+    // this.paymentbill$ = this.paymentservice.getPurchaseById(this.selectedVendorId, 1);
+    // this.paymentbill$.subscribe(data => {
+    //   // Get the length of the array
+    //   this.dataLength = data.length;
+    //   console.log('Length of the array:', this.dataLength);
+    // });
+
+    //this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
 
     this.myform = this.formBuilder.group({
       voucherNumber: ['', Validators.required],
@@ -132,19 +133,23 @@ export class PaymentPage implements OnInit {
 
   }
 
-  fetchBillsForCustomer() {
+  fetchBillsForVendor() {
     // Check if a customer is selected
     if (this.selectedVendorId !== 0) {
+      this.fillvendoroutstanding(this.selectedVendorId);
       // Call your service method with the selected customer ID
       this.paymentBill = this.paymentservice.getPurchaseById(1, this.selectedVendorId).subscribe(bill => {
         console.log('data length', bill.length)
-        this.myPaymentBillData = bill;
         if (bill && bill.length > 0) {
           const bills = bill[0];
           console.log('bills data', bill[0])
           this.billno = bills.billno;
           this.billdate = bills.billdate;
           this.totalamt = bills.totalamt;
+          this.pendingamt=bills.pendingamt;
+         // this.outstanding=bills.outstanding;
+          this.paymentmade=bills.paymentmade;
+
 
           this.myform.patchValue({
             billno: bills.billNumber,
@@ -156,37 +161,53 @@ export class PaymentPage implements OnInit {
     }
   }
 
-  getSalesDetails(payment: any) {
-    const compid = '1';
-    const identifier = payment.companyname ? 'companyname' : '';
-    const value = payment.selectedItemId || payment.companyname;
-
-    this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
-      (data) => {
-        console.log('Data received:', data);
-
-        if (data && data.length > 0) {
-          const itemDetails = data[0];
-
-          // Update the quote properties
-          payment.companyname = itemDetails.custname;
-          payment.outstanding = itemDetails.total;
-
-          // Update form control values
-          this.myform.patchValue({
-            companyname: payment.companyname,
-            outstanding: payment.outstanding,
-            // Other form controls...
-          });
-        } else {
-          console.error('No data found for the selected item.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
+  async fillvendoroutstanding(vendorid:number){
+    this.paymentservice.fetchVendorOutstanding(vendorid).subscribe((outstandingArray: any[]) => {
+      if(outstandingArray!) this.outstanding=outstandingArray[0]?.outstanding_amount;
+    });
   }
+  async fillbillwisedata(vendorid:number,paymentway:string){
+    if(paymentway=='BillWise'){
+    this.paymentservice.fillBillWise(vendorid).subscribe((data: any[]) => {
+      console.log(data);
+      this.myPaymentBillData = data;
+    });
+  }else{
+    alert('not applicable for now');
+  }
+  }
+
+  // getPurchaseDetails(payment: any) {
+  //   const compid = '1';
+  //   const identifier = payment.companyname ? 'companyname' : '';
+  //   const value = payment.selectedItemId || payment.companyname;
+
+  //   this.purchaseservice.fetchallPurchase(compid, value, '').subscribe(
+  //     (data) => {
+  //       console.log('Data received:', data);
+
+  //       if (data && data.length > 0) {
+  //         const itemDetails = data[0];
+
+  //         // Update the quote properties
+  //         payment.companyname = itemDetails.custname;
+  //         payment.outstanding = itemDetails.total;
+
+  //         // Update form control values
+  //         this.myform.patchValue({
+  //           companyname: payment.companyname,
+  //           outstanding: payment.outstanding,
+  //           // Other form controls...
+  //         });
+  //       } else {
+  //         console.error('No data found for the selected item.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data', error);
+  //     }
+  //   );
+  // }
   async ionViewWillEnter() {
     //   const userid = await this.session.getValue('userid');
     //   if (userid == null || userid == 'undefined' || userid == '') {
@@ -236,7 +257,7 @@ export class PaymentPage implements OnInit {
           totalcurrentamt: this.myform.value.totalcurrentamt,
           totalpendingamt: this.myform.value.totalpendingamt,
           userid: this.myform.value.userid,
-          vendorid: this.myform.value.vendorid,
+          vendorid: this.selectedVendorId,
         };
         paymentdatas.push(paymentdata);
       }
@@ -285,18 +306,13 @@ export class PaymentPage implements OnInit {
   onNew() {
     location.reload();
   }
-
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
-  ngOnInit() {
-    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+  
+  fetchVendorOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
       console.log('Received outstanding data:', outstandingArray);
-
+  
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
         this.outstanding = firstItem.outstanding_amount;
@@ -305,14 +321,16 @@ export class PaymentPage implements OnInit {
         console.error('Invalid outstanding response:', outstandingArray);
       }
     });
-
+  }
+  
+  ngOnInit() {
+    this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
+   // this.fetchVendorOutstandingOnCompanyNameChange();
   }
   presentToast(arg0: string) {
     throw new Error('Method not implemented.');
   }
-  onCompanyChange(event: any) {
-    // Handle any additional logic when the company name is selected
-  }
+
   goBack() {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }

@@ -8,6 +8,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-receipttransaction-report',
@@ -21,19 +22,19 @@ export class ReceipttransactionReportPage implements OnInit {
 
   recepits$:  Observable<any[]>;
   searchTerm: string = '';
-  filteredRecepits$: Observable<any[]> = new Observable<any[]>(); 
- 
+  filteredRecepits$: Observable<any[]>
   fromDate: string = '';
   toDate: string = '';
-  constructor(private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
+  constructor(private session: SessionService,private router:Router,private encService:EncryptionService,private recepitService:RecepitService) { 
 
-    const compid='1';
+    const compid = session.getValue('companyid')?.valueOf() as string;
 
-    this.recepits$ = this.recepitService.fetchAllReceppit(encService.encrypt(compid),'','');
+    this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid),'','');
+
     console.log(this.recepits$);
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
-    this.filteredRecepits$=this.recepits$;
+    this.filteredRecepits$=this.recepitService.fetchAllRecepit(encService.encrypt(compid),'','');
   }
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(

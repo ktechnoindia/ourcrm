@@ -29,6 +29,7 @@ export interface rec {
   totalpendingamt: number ;
   userid: number ;
   custid: number ;
+  custcode:number;
 }
 @Injectable({
   providedIn: 'root'
@@ -38,10 +39,12 @@ export class RecepitService {
   constructor(private httpclient: HttpClient, private session:SessionService) { }
 
   createRecepit(recepit: rec[], key: string, user: string) {
-    return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': key, 'user': user } })
+    const token = this.session.getValue('token')?.valueOf();
+
+    return this.httpclient.post(environment.apiacturl + environment.addrecepit, recepit, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
 
-  fetchAllReceppit(companyid: string, key: string, user: string): Observable<any> {
+  fetchAllRecepit(companyid: string, key: string, user: string): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
 
     console.log('companyyy ' + companyid);
@@ -50,14 +53,19 @@ export class RecepitService {
   fetchUserOutstanding(userid: number): Observable<any> {
     console.log('companyyy ' + userid)
     const token = this.session.getValue('token')?.valueOf();
-
-
     return this.httpclient.get(environment.apiacturl + environment.fetchUserOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+
   }
 
-  getSalesById(custCode: number, companyId: number): Observable<any> {
+  getSalesById( companyId: number,custcode: number): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
-    const url = `${this.apiUrl}/get_sales_byid?custcode=${custCode}&companyid=${companyId}`;
+    const url = `${this.apiUrl}/get_sales_byid?companyid=${companyId}&custcode=${custcode}`;
     return this.httpclient.get(url,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
+  getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+    const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
+    return this.httpclient.get(url, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+  }
+ 
 }

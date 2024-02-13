@@ -44,7 +44,9 @@ export class PaymentService {
   constructor(private httpclient: HttpClient,private session:SessionService) { }
 
   createPayment(payment: pay[], key: string, user: string) {
-    return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': key, 'user': user } })
+    const token = this.session.getValue('token')?.valueOf();
+
+    return this.httpclient.post(environment.apiacturl + environment.addpayment, payment, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
 
   fetchAllPayment(companyid: string, key: string, user: string): Observable<any> {
@@ -54,15 +56,18 @@ export class PaymentService {
     return this.httpclient.get(environment.apiacturl + environment.fetchpayment + '?p=' + companyid, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
   fetchVendorOutstanding(userid: number): Observable<any> {
-    const token = this.session.getValue('token')?.valueOf();
-
     console.log('companyyy ' + userid)
+    const token = this.session.getValue('token')?.valueOf();
     return this.httpclient.get(environment.apiacturl + environment.fetchVendorOutstanding + '?userid=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+  }
+
+  fillBillWise(userid: number): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+    return this.httpclient.get(environment.apiacturl + environment.fetchBillWise + '?v=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
 
   getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();
-
     const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
     return this.httpclient.get(url, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
