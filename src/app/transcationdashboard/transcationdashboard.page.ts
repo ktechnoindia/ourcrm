@@ -88,62 +88,69 @@ export class TranscationdashboardPage implements OnInit {
     this.selectedOptions = ['saleslist', 'purchaselist'];
     const compid = '1';
     const userid = '1';
-    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), (userid), '', '');
-    console.log(this.quote$);
+    this.quote$=new Observable();
+    this.dcin$=new Observable();
+    this.dcout$= new Observable();
+    this.sales$=new Observable();
+    this.purchase$=new Observable();
+    this.purchasereturn$=new Observable();
+    this.salreturn$=new Observable();
+    // this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), (userid), '', '');
+    // console.log(this.quote$);
 
-    this.quote$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalQuote = data.length;
-    });
-    this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
-    console.log(this.dcin$);
+    // this.quote$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totalQuote = data.length;
+    // });
+    // this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
+    // console.log(this.dcin$);
 
-    this.dcin$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totaldcin = data.length;
-    });
+    // this.dcin$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totaldcin = data.length;
+    // });
 
-    this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid), '', '');
-    console.log(this.dcout$);
+    // this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid), '', '');
+    // console.log(this.dcout$);
 
-    this.dcout$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totaldcout = data.length;
-    });
+    // this.dcout$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totaldcout = data.length;
+    // });
 
-    this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-    console.log(this.sales$);
+    // this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
+    // console.log(this.sales$);
 
-    this.sales$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalsales = data.length;
+    // this.sales$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totalsales = data.length;
 
-    });
+    // });
 
-    this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
-    console.log(this.purchase$);
+    // this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
+    // console.log(this.purchase$);
 
-    this.purchase$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalpurchase = data.length;
+    // this.purchase$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totalpurchase = data.length;
 
-    });
+    // });
 
-    this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid), '', '');
-    console.log(this.salreturn$);
+    // this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid), '', '');
+    // console.log(this.salreturn$);
 
-    this.salreturn$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalsalesreturn = data.length;
+    // this.salreturn$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totalsalesreturn = data.length;
 
-    });
-    this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid), '', '');
-    console.log(this.purchasereturn$);
+    // });
+    // this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid), '', '');
+    // console.log(this.purchasereturn$);
 
-    this.purchasereturn$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-      this.totalpurchasereturn = data.length;
-    });
+    // this.purchasereturn$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    //   this.totalpurchasereturn = data.length;
+    // });
 
 
 

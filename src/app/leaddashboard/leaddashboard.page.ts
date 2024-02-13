@@ -109,13 +109,14 @@ export class LeaddashboardPage implements OnInit {
 
 
   filterCustomers(): Observable<any[]> {
-    return this.lead$.pipe(
-      map(leads =>
-        leads.filter(lead =>
-          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
+    // return this.lead$.pipe(
+    //   map(leads =>
+    //     leads.filter(lead =>
+    //       Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+    //     )
+    //   )
+    // );
+    return this.lead$;
   }
 
   onSearchTermChanged(): void {
@@ -128,24 +129,17 @@ export class LeaddashboardPage implements OnInit {
     const compid = '1';
 
     // Fetch data for all entities
-    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
-    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
-    this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
 
 
     // Subscribe to the observables and update the counts
-    this.lead$.subscribe(data => {
-      this.totallead = data.length;
-      this.updateChartData('totalleadBarChart', 'Total Lead', [this.totallead]);
-    });
-    this.lead$.subscribe(data => {
-      this.totallead = data.length;
-      this.updateChartData('activeleadBarChart', 'Active Lead', [this.totallead]);
-    });
-    this.lead$.subscribe(data => {
-      this.totallead = data.length;
-      this.updateChartData('orderclosedBarChart', 'Order Closed', [this.totallead]);
-    });
+    // this.lead$.subscribe(data => {
+    //   this.totallead = data.length;
+    //   this.updateChartData('totalleadBarChart', 'Total Lead', [this.totallead]);
+    // });
+     
 
     this.filteredLeads$ = this.lead$.pipe(
       debounceTime(300),
