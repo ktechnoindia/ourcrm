@@ -61,6 +61,8 @@ export class RecepitService {
     const token = this.session.getValue('token')?.valueOf();
     const url = `${this.apiUrl}/get_sales_byid?companyid=${companyId}&custcode=${custcode}`;
     return this.httpclient.get(url,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+
+
   }
   getPurchaseById(companyId: number,vendorid: number ): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();

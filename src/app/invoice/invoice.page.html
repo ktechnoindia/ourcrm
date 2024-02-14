@@ -7,44 +7,50 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="invoice" style="border: solid 2px #000;">
+  <div id="invoice" #content class="invoice" style="border: solid 2px #000;">
 
     <div class="invoice-subheader" style="border: solid 2px #000;
     ">
-      <ion-row>
+      <ion-row *ngFor="let company of company$ | async; let i = index">
         <ion-col size="2">
           <img src="assets/ktechno-removebg-preview.png" alt="">
         </ion-col>
         <ion-col size="5" style="border-right: solid 2px #000;">
-          <h1>K Techno</h1>
-          <h6>(Software Sales & Services)</h6>
+          <h1>{{company.cpyname}}</h1>
+          <!-- <h6>(Software Sales & Services)</h6> -->
           <h5><span>Address:</span>
-            Mahajano Ka Mohalla Bhakri Maulas Nagaur -341512.
+            {{company.address}}
           </h5>
           <h5><span>Branch :</span>
-            S11 Second Floor Nursery Circle Vaishali Nagar Jaipur</h5>
+            {{company.address1}}</h5>
           <ion-row>
             <ion-col size="6">
-              <h5><span>GSTIN:</span>08DBUPP2096B1Z9</h5>
-              <h5><span>Email Id:</span>ktechno.in&#64;gmail.com</h5>
-              <h5><span>Pan No:</span>DBUPP2096B</h5>
-
+              <h5><span>GSTIN:</span>{{company.gstin}}</h5>
+              <h5><span>Email Id :</span>{{company.email}}</h5>
+              <h5><span>Pan No :</span>{{company.pannumber}}</h5>
+              <h5><span>Country :</span>{{company.selectedCountry}}
+              </h5>
             </ion-col>
             <ion-col size="6">
-              <h5><span>STATE:</span>Rajasthan [08]
+              <h5><span>State:</span>{{company.selectedState}}
               </h5>
-              <h5><span>Phone No.:</span>7877576868</h5>
-              <h5><span>Website:</span>www.ktechno.in</h5>
+              <h5><span>Phone No.:</span>{{company.phone}}</h5>
+              <h5><span>WhatsApp No.:</span>{{company.wpnumber}}</h5>
+
+              <h5><span>Website:</span>{{company.website}}</h5>
             </ion-col>
           </ion-row>
         </ion-col>
 
         <ion-col size="5" class="details">
-          <h5><span>Invoice No : </span> KT23-24/384</h5>
-          <h5><span>Date : </span> {{ invoiceDate }}</h5>
-          <h5><span>PO Ref No. : </span> 3131</h5>
-          <h5><span>PO Date : </span> {{ invoiceDate }}</h5>
-          <h5><span>Remark : </span> Nothing</h5>
+          <div *ngFor="let sales of sales$ | async; let i = index">
+            <h5><span>Invoice No : </span>{{sales.billNumber}}</h5>
+            <h5><span>Date : </span> {{ sales.billDate }}</h5>
+            <h5><span>PO Ref No. : </span> {{ sales.refrence }}</h5>
+            <h5><span>PO Date : </span> {{ sales.refdate }}</h5>
+            <h5><span>Remark : </span> {{ sales.description }}</h5>
+          </div>
+         
 
 
         </ion-col>
@@ -57,37 +63,39 @@
     <div class="shipping">
       <ion-row>
         <ion-col size="6" style="border-right: solid 2px #000;">
-          <h1>Billing Details (Bill To)</h1>
-          <h5><span>Name : </span> RAMDEV STEEL TRADERS</h5>
-          <h5><span>Address : </span> A/P Takali Dhokeshwar Tal.Parner Dist.A.Nagar</h5>
-          <ion-row>
-            <ion-col size="8">
-              <h5><span>POS : </span> Maharashtra</h5>
-            </ion-col>
-            <ion-col size="4">
-              <h5><span>Code : </span> 27</h5>
-            </ion-col>
-          </ion-row>
-          <h5><span>Phone No : </span> 9322593101</h5>
-          <h5><span>GSTIN : </span> 27AXBPP3190L1Z4</h5>
-
+          <div *ngFor="let customer of customers$ | async; let i = index">
+            <h1>Billing Details (Bill To)</h1>
+            <h5><span>Name : </span> {{customer.name}}</h5>
+            <h5><span>Address : </span> {{customer.address}}</h5>
+            <ion-row>
+              <ion-col size="8">
+                <h5><span>POS : </span> {{customer.stateid}}</h5>
+              </ion-col>
+              <ion-col size="4">
+                <h5><span>Code : </span> {{customer.customer_code}}</h5>
+              </ion-col>
+            </ion-row>
+            <h5><span>Phone No : </span> {{customer.customer_code}}</h5>
+            <h5><span>GSTIN : </span> {{customer.gstin}}</h5>
+          </div>
         </ion-col>
         <ion-col size="6">
-          <h1>Shiping Details (Ship To)</h1>
-          <h5><span>Name : </span> RAMDEV STEEL TRADERS</h5>
-          <h5><span>Address : </span> A/P Takali Dhokeshwar Tal.Parner Dist.A.Nagar</h5>
-          <h5><span>POS : </span> Maharashtra</h5>
+          <div *ngFor="let customer of customers$ | async; let i = index">
+            <h1>Shiping Details (Ship To)</h1>
+            <h5><span>Name : </span> {{customer.name}}</h5>
+            <h5><span>Address : </span> {{customer.address}}</h5>
+            <ion-row>
+              <ion-col size="8">
+                <h5><span>POS : </span> {{customer.stateid}}</h5>
+              </ion-col>
+              <ion-col size="4">
+                <h5><span>Code : </span> {{customer.customer_code}}</h5>
+              </ion-col>
+            </ion-row>
+            <h5><span>Phone No : </span> {{customer.customer_code}}</h5>
+            <h5><span>GSTIN : </span> {{customer.gstin}}</h5>
+          </div>
 
-          <h5><span>Phone No : </span> 9322593101</h5>
-          <ion-row>
-            <ion-col size="6">
-              <h5><span>GSTIN : </span> 27AXBPP3190L1Z4</h5>
-
-            </ion-col>
-            <ion-col size="6">
-              <h5><span>Code : </span> 27</h5>
-            </ion-col>
-          </ion-row>
         </ion-col>
       </ion-row>
     </div>
@@ -102,8 +110,8 @@
         <thead>
           <tr>
             <th>Sr. No.</th>
-            <th>Item Name</th>
             <th>Item Code</th>
+            <th>Item Name</th>
             <th>Quantity</th>
             <th>Unit</th>
             <th>MRP</th>
@@ -116,17 +124,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let sales of sales$ | async; let i = index" style="max-height: 30px !important;">
+            <td style="max-height: 30px !important;">{{ i + 1 }}</td>
+            <td style="max-height: 30px !important;">{{sales.itemcode}}</td>
+            <td style="max-height: 30px !important;">{{sales.itemname}}</td>
+            <td style="max-height: 30px !important;">{{sales.quantity}}</td>
+            <td style="max-height: 30px !important;">{{sales.unitname}}</td>
+            <td style="max-height: 30px !important;">{{sales.mrp}}  &#8377;</td>
+            <td style="max-height: 30px !important;">{{sales.netrate}}  &#8377;</td>
+            <td style="max-height: 30px !important;">{{sales.taxrate}} %</td>
+            <td style="max-height: 30px !important;">{{sales.totaltax}}  &#8377;</td>
+            <td style="max-height: 30px !important;">{{sales.discountamt}}  &#8377;</td>
+            <td style="max-height: 30px !important;">{{sales.total}}  &#8377;</td>
 
           </tr>
         </tbody>
@@ -147,66 +156,72 @@
                 <th>IGST %</th>
                 <th>IGST AMT</th>
               </tr>
-              <tr>
-                <td>15,000</td>
-                <td>0.00</td>
-                <td>0.00</td>
-                <td>0.00</td>
-                <td>0.00</td>
-                <td>18.00</td>
-                <td>270</td>
+              <tr *ngFor="let sales of sales$ | async; let i = index">
+                <td>{{sales.totaltax}}</td>
+                <td>{{sales.taxrate/2}} %</td>
+                <td>{{sales.CGST}}</td>
+                <td>{{sales.taxrate/2}} %</td>
+                <td>{{sales.SGST}}</td>
+                <td>{{sales.taxrate}} %</td>
+                <td>{{sales.IGST}}</td>
               </tr>
               <tr>
                 <th>Total</th>
                 <th>CGST</th>
-                <th>0.00</th>
+                <th>{{ cgstamt | currency: 'INR' }}</th>
                 <th>SGST </th>
-                <th>0.00</th>
+                <th>{{ sgstamt | currency: 'INR' }}</th>
                 <th>IGST</th>
-                <th>270</th>
+                <th>{{ igstamt | currency: 'INR' }}</th>
               </tr>
             </table>
           </div>
-          <div class="banktable">
-            <table  style="width: 100%;">
+          <div class="banktable" *ngFor="let sales of sales$ | async; let i = index">
+            <table style="width: 100%;">
               <tr>
                 <th colspan="4" style="text-align: center;background: #e1e0e0;">Bank Details:</th>
               </tr>
               <tr>
-                <th>UPI ID</th>
-                <td>7877576868&#64;uco</td>
+                <!-- <th>UPI ID</th> -->
+                <th>IFSC Code</th>
+                <td>{{sales.ifsc_code}}</td>
                 <th>Bank Name :</th>
-                <td>Uco Bank</td>
+                <td>{{sales.bank_name}}</td>
               </tr>
               <tr>
                 <th>Account Number :</th>
-                <td>55325325225</td>
+                <td>{{sales.account_number}}</td>
                 <th>Branch Name :</th>
-                <td>Harsore</td>
+                <td>{{sales.branch_name}}</td>
               </tr>
-            
+
             </table>
-           
+
           </div>
-         
+
         </ion-col>
         <ion-col size="3" style="border: solid 1px #000;">
-          <h5><span>Total Amount &#8377; : </span>{{ calculateTotal() }}</h5>
-          <p>Discount Amount : &#8377;{{ calculateTotal() }}</p>
-          <p>Pre Tax : &#8377;{{ calculateTotal() }}</p>
-          <p>Taxable Amount : &#8377;{{ calculateTotal() }}</p>
-          <p>Post Tax : &#8377;{{ calculateTotal() }}</p>
-          <p>IGST Rate : &#8377;{{ calculateTotal() }}</p>
-          <p>IGST Amt : &#8377;{{ calculateTotal() }}</p>
-          <p>Cess Amount : &#8377;{{ calculateTotal() }}</p>
-          <p>Round Off Amount : &#8377;{{ calculateTotal() }}</p>
-          <h5><span>Grand Total &#8377; : </span> {{ calculateTotal() }}</h5>
+          <div>
+          <h5><span>Total Amount  : </span>{{ totalAmount | currency: 'INR' }}</h5>
+          <p>Discount Amount : {{ discountAmount | currency: 'INR' }}</p>
+       
+
+          <p>CGST Amt : {{ cgstamt | currency: 'INR' }}</p>
+          <p>SGST Amt : {{ sgstamt | currency: 'INR' }}</p>
+          <p>Taxable Amount :{{ taxAmount | currency: 'INR' }}</p>
+          <p>Discount Amount :{{ discountAmount | currency: 'INR' }}</p>
+          <p>Pre Tax : &#8377; {{ pretaxAmount | currency: 'INR' }}</p>
+          <p>Post Tax : &#8377;{{ posttaxAmount | currency: 'INR' }}</p>
+          <p>Cess Amount : &#8377; 00.0</p>
+          <p>Round Off Amount : {{ grandTotal | currency: 'INR' }}</p>
+          <h5><span>Grand Total : </span>{{ grandTotal | currency: 'INR' }}</h5>
+        </div>
         </ion-col>
       </ion-row>
     </div>
     <div class="Declaration">
-      <h6><span>No. Of Items : </span> 3</h6>
-      <h5><span>Amount In Words : </span> Rupees One Thousand Seven Hundred Seventy Only </h5>
+      <h6><span>No. Of Items : </span>{{totalitem}}</h6>
+      <h5><span>Amount In Words : </span>{{ grandTotal | currency: 'INR'  }}</h5>
     </div>
     <div class="invoice-footer">
       <ion-row>
@@ -218,7 +233,7 @@
             <li>Our Support Numbers are : 8829976868, 7577576868</li>
             <li>Payment : 100% against to Installation</li>
           </ul>
-        
+
 
         </ion-col>
         <ion-col size="4" style="height: 70px;">
