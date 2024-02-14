@@ -17,6 +17,7 @@ import { QuantitypopoverPage } from '../quantitypopover/quantitypopover.page';
 import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
+import { InvoicePage } from "../invoice/invoice.page";
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -65,12 +66,12 @@ interface Sales {
 
 }
 @Component({
-  selector: 'app-add-sale',
-  templateUrl: './add-sale.page.html',
-  styleUrls: ['./add-sale.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-add-sale',
+    templateUrl: './add-sale.page.html',
+    styleUrls: ['./add-sale.page.scss'],
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule, InvoicePage]
 })
 export class AddSalePage implements OnInit {
   billformate: number = 0;

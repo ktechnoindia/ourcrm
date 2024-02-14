@@ -61,14 +61,14 @@
                             <select class="select-option" name="companyname" [(ngModel)]="selectedCustomerId"
                               formControlName="companyname" (change)="fetchBillsForCustomer()">
                               <option value="0">Ledger Name</option>
-                              <option *ngFor="let customer of customer$ | async" [value]="customer.id">
-                                {{ customer.name }}
+                              <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                                {{ customername.name }}
                               </option>
                             </select>
                           </td>
                           <!-- Assuming the input field for outstanding_amount is in the first row -->
                           <td *ngIf="outstanding_amount !== null">
-                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
+                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" [value]="outstanding"
                               formControlName="outstanding" type="number" (keydown)="onKeyDown($event)"></ion-input>
                           </td>
 
@@ -134,36 +134,36 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <!-- <tr *ngFor="let receipt of myReceiptBillData | async; let i = index">
+                        <tr *ngFor="let sale of myReceiptBillData; let i = index">
                           <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
-                            <input type="text" name="billno" [(ngModel)]="receipt.billno"
+                            <input type="text" name="billno" [(ngModel)]="sale.billNumber"
                             [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <input type="text" name="billdate"  [(ngModel)]="receipt.billdate"
+                            <input type="text" name="billdate"  [(ngModel)]="sale.billDate"
                             [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <input class="date" type="number" name="totalamt" [(ngModel)]="receipt.totalamt"
+                            <input class="date" type="number" name="totalamt" [(ngModel)]="sale.total"
                             [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
                           </td>
 
                           <td>
-                            <input class="date" type="number" name="receiveamt" [(ngModel)]="receipt.receiveamt"
+                            <input class="date" type="number" name="receiveamt" [(ngModel)]="receiveamt"
                               [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
                           </td>
                           <td>
-                            <input class="date" type="number" name="currentamt" [(ngModel)]="receipt.currentamt"
+                            <input class="date" type="number" name="currentamt" [(ngModel)]="currentamt"
                               [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)" (keydown)="onKeyDown($event)">
                           </td>
                           <td>
-                            <input type="number" name="billpendingamt" [(ngModel)]="receipt.billpendingamt"
-                              [ngModelOptions]="{standalone: true}" [value]="calculatePendingBillAmount(receipt)" (keydown)="onKeyDown($event)">
+                            <input type="number" name="billpendingamt" [(ngModel)]="billpendingamt"
+                              [ngModelOptions]="{standalone: true}"  (keydown)="onKeyDown($event)">
                           </td>
 
-                        </tr> -->
+                        </tr>
                       </table>
                     </div>
                     <div style="width: 100%;">

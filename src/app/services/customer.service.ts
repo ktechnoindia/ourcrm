@@ -47,6 +47,9 @@ companyid:number;
   providedIn: 'root'
 })
 export class CustomerService {
+  fetchCustomerById(customerId: (customerId: any) => Observable<any[]>): Observable<any[]> {
+    throw new Error('Method not implemented.');
+  }
   generateExcel: any;
  
 

@@ -76,6 +76,7 @@ export class ReceiptPage implements OnInit {
   selectedCustomerId: number = 0;
   // receiptBill$: Observable<any>;
   dataLength: number = 0;
+  myReceiptBillData: any[] = [];
   receiptData: Recepit[] = [{
     billno: '',
     billdate: '',
@@ -85,7 +86,7 @@ export class ReceiptPage implements OnInit {
     billpendingamt: 0,
   }]
   recepitbill: Subscription;
-  myReceiptBillData: any[] = [];
+
 
   constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = session.getValue('companyid')?.valueOf() as string;
@@ -148,11 +149,10 @@ export class ReceiptPage implements OnInit {
   fetchBillsForCustomer() {
     // Check if a customer is selected
     if (this.selectedCustomerId !== 0) {
-      // Call your service method with the selected customer ID
       this.filluseroutstanding(this.selectedCustomerId);
+      // Call your service method with the selected customer ID
       this.recepitbill = this.receiptservice.getSalesById(1, this.selectedCustomerId).subscribe(bill => {
-
-        console.log('data length', bill.length)
+      console.log('data length', bill.length)
         if (bill && bill.length > 0) {
           const bills = bill[0];
           console.log('bills data', bill[0])
@@ -161,8 +161,7 @@ export class ReceiptPage implements OnInit {
           this.totalamt = bills.totalamt;
           this.pendingamt=bills.pendingamt;
          // this.outstanding=bills.outstanding;
-          this.paymentmade=bills.paymentmade;
-          
+          // this.paymentmade=bills.paymentmade;          
           this.myform.patchValue({
             billno: bills.billNumber,
             billdate: bills.billDate,

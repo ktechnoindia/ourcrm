@@ -148,7 +148,7 @@ export class PaymentPage implements OnInit {
           this.totalamt = bills.totalamt;
           this.pendingamt=bills.pendingamt;
          // this.outstanding=bills.outstanding;
-          this.paymentmade=bills.paymentmade;
+          // this.paymentmade=bills.paymentmade;
 
 
           this.myform.patchValue({
