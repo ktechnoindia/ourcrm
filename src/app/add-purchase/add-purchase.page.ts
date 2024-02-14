@@ -50,17 +50,17 @@ interface Purchase {
     attr6: string;
     attr7: string;
     attr8: string
-    companyid:number,
-    itemcode:number,
+    companyid: number,
+    itemcode: number,
   }[],
-  attribute1:string,
-  attribute2:string,
-  attribute3:string,
-  attribute4:string,
-  attribute5:string,
-  attribute6:string,
-  attribute7:string,
-  attribute8:string,
+  attribute1: string,
+  attribute2: string,
+  attribute3: string,
+  attribute4: string,
+  attribute5: string,
+  attribute6: string,
+  attribute7: string,
+  attribute8: string,
 
 }
 @Component({
@@ -158,9 +158,9 @@ export class AddPurchasePage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
-    }] ,
+      companyid: 0,
+      itemcode: 0
+    }],
     attribute1: '',
     attribute2: '',
     attribute3: '',
@@ -214,20 +214,20 @@ export class AddPurchasePage implements OnInit {
   rows: any[] = [];
   @Input() quantity: number = 0;
   isQuantityPopoverOpen = false;
-  
-  attr1: string='';
-  attr2:string='';
-  attr3: string='';
-  attr4:string='';
-  attr5:string='';
-  attr6:string='';
-  attr7:string='';
-  attr8:string='';
+
+  attr1: string = '';
+  attr2: string = '';
+  attr3: string = '';
+  attr4: string = '';
+  attr5: string = '';
+  attr6: string = '';
+  attr7: string = '';
+  attr8: string = '';
 
   printThisPage() {
     window.print();
   }
-  
+
   constructor(private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private formBuilder: FormBuilder, private itemService: AdditemService, private execut: ExecutiveService, private purchaseService: PurchaseService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -306,14 +306,14 @@ export class AddPurchasePage implements OnInit {
       attr6: [''],
       attr7: [''],
       attr8: [''],
-      attribute1:[''],
-      attribute2:[''],
-      attribute3:[''],
-      attribute4:[''],
-      attribute5:[''],
-      attribute6:[''],
-      attribute7:[''],
-      attribute8:[''],
+      attribute1: [''],
+      attribute2: [''],
+      attribute3: [''],
+      attribute4: [''],
+      attribute5: [''],
+      attribute6: [''],
+      attribute7: [''],
+      attribute8: [''],
     });
 
 
@@ -365,7 +365,7 @@ export class AddPurchasePage implements OnInit {
   }
   openQuantityPopover(purchase: Purchase) {
     this.purchaseData[0].quantityPopoverData = new Array(purchase.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
   }
 
@@ -375,19 +375,19 @@ export class AddPurchasePage implements OnInit {
 
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
-     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-  //   htmlForm.addEventListener('keydown', (event) => {
-  //     // Prevent the default behavior for Enter key
-  //     if (event.key === 'Enter') {
-  //         event.preventDefault();
-  //     }
-  // });
+    //   htmlForm.addEventListener('keydown', (event) => {
+    //     // Prevent the default behavior for Enter key
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //     }
+    // });
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
 
     let purchases: purchasestore[] = [];
-console.log('data of ',purchases)
+    console.log('data of ', purchases)
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
@@ -401,7 +401,7 @@ console.log('data of ',purchases)
         console.log('Your form data : ', this.myform.value);
         const companyid = 1;
         const userid = 1;
-      
+
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -411,8 +411,8 @@ console.log('data of ',purchases)
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:companyid,
-          itemcode:element.itemcode,
+          companyid: companyid,
+          itemcode: element.itemcode,
         }))
 
         let purchasedata: purchasestore = {
@@ -472,26 +472,28 @@ console.log('data of ',purchases)
         };
 
         purchases.push(purchasedata);
-        this.purchaseService.createpurchase(purchases, '', '').subscribe(
-          (response: any) => {
-            console.log('Purchase Post successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.form.reset();
-             location.reload()
-          },
-          (error: any) => {
-            console.log('Purchase Post failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
       }
+      // Call the API outside the loop
+      this.purchaseService.createpurchase(purchases, '', '').subscribe(
+        (response: any) => {
+          console.log('Purchase Post successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.form.reset();
+          //  location.reload()
+        },
+        (error: any) => {
+          console.log('Purchase Post failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
     } else {
+      // Handle form validation errors
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
         if (control?.invalid) {
@@ -542,17 +544,17 @@ console.log('data of ',purchases)
         attr6: '',
         attr7: '',
         attr8: '',
-        companyid:0,
-        itemcode:0
-      }] ,
+        companyid: 0,
+        itemcode: 0
+      }],
       attribute1: '',
-    attribute2: '',
-    attribute3: '',
-    attribute4: '',
-    attribute5: '',
-    attribute6: '',
-    attribute7: '',
-    attribute8: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
     }];
   }
   getVendors(event: any) {
@@ -617,21 +619,21 @@ console.log('data of ',purchases)
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
-          purchase.attribute1= itemDetails.attr1,
-          purchase.attribute2= itemDetails.attr2,
-          purchase.attribute3= itemDetails.attr3,
-          purchase.attribute4= itemDetails.attr4,
-          purchase.attribute5= itemDetails.attr5,
-          purchase.attribute6= itemDetails.attr6,
-          purchase.attribute7= itemDetails.attr7,
-          purchase.attribute8= itemDetails.attr8,
-         
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: purchase.itemcode,
-            itemname: purchase.itemname,
-            // Other form controls...
-          });
+          purchase.attribute1 = itemDetails.attr1,
+            purchase.attribute2 = itemDetails.attr2,
+            purchase.attribute3 = itemDetails.attr3,
+            purchase.attribute4 = itemDetails.attr4,
+            purchase.attribute5 = itemDetails.attr5,
+            purchase.attribute6 = itemDetails.attr6,
+            purchase.attribute7 = itemDetails.attr7,
+            purchase.attribute8 = itemDetails.attr8,
+
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: purchase.itemcode,
+              itemname: purchase.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -704,13 +706,13 @@ console.log('data of ',purchases)
       selectedItemId: 0,
       quantityPopoverData: this.purchaseData[0].quantityPopoverData.map(attr => ({ ...attr })),
       attribute1: '',
-    attribute2: '',
-    attribute3: '',
-    attribute4: '',
-    attribute5: '',
-    attribute6: '',
-    attribute7: '',
-    attribute8: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: '',
       // Add more properties as needed
     };
     this.purchaseData.push(newRow);
@@ -910,8 +912,8 @@ console.log('data of ',purchases)
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
+      companyid: 0,
+      itemcode: 0
       // Add more properties as needed
     }));
     // Subscribe to value changes of basicrate, taxrate, and discount
@@ -1006,10 +1008,10 @@ console.log('data of ',purchases)
   async onVendorSubmit() {
     const fields = { name: this.name, vendor_code: this.vendor_code };
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
       console.log('Your form data : ', this.vendorpop.value);
-  
+
       let venddata: vend = {
         name: this.vendorpop.value.name,
         customer_code: this.vendorpop.value.vendor_code,
@@ -1048,25 +1050,25 @@ console.log('data of ',purchases)
         address1: '',
         discount: 0
       };
-  
+
       this.vendService.createVendor(venddata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          
+
           // After successfully adding the vendor, fetch the updated vendor data again
           this.fetchVendorData();
-          
+
           // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-          
+
           // Reset the form
           this.vendorpop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
-          
+
           // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
@@ -1086,23 +1088,23 @@ console.log('data of ',purchases)
       }
     }
   }
-  
+
   fetchVendorData() {
     // Assuming you have a method to fetch the updated vendor data
     // Here, you'll update the 'supplier$' observable with the new data
-    this.supplier$ = this.vendService.fetchallVendor('','', '');
+    this.supplier$ = this.vendService.fetchallVendor('', '', '');
   }
 
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for Enter key
     if (event.key === 'Enter') {
-        event.preventDefault();
+      event.preventDefault();
     }
 
     // Prevent incrementing/decrementing on arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault();
+      event.preventDefault();
     }
-}
+  }
 
 }

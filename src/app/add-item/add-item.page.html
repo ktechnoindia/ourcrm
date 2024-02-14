@@ -80,7 +80,7 @@
                     formControlName="unitname" name="unitname">
                     <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
                     <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
-                      {{ unitnames.unitname }}
+                      {{ unitnames.unit_name }}
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
