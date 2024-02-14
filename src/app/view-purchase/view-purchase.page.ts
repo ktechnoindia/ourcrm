@@ -144,7 +144,7 @@ export class ViewPurchasePage implements OnInit {
     const compid = '1';
 
     this.purchase$ = this.purchaseservice.fetchallPurchase(encService.encrypt(compid), '', '');
-    console.log(this.purchase$);
+    // console.log(this.purchase$);
 
     this.purchase$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
@@ -181,11 +181,11 @@ export class ViewPurchasePage implements OnInit {
   }
  
   ngOnInit() {
-    this.filteredPurchase$ = this.purchase$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredPurchase$ = this.purchase$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
     this.filteredBillingData$ = this.purchase$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods

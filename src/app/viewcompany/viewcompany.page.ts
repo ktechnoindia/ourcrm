@@ -181,11 +181,11 @@ export class ViewcompanyPage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredCompany$ = this.companys$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredCompany$ = this.companys$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
   filterData() {
     // Update the filteredSales observable based on the date range

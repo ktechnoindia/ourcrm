@@ -870,18 +870,18 @@ return this.totalquantity;
       // this.calculateDiscountPercentage();
     });
   // Fetch data and populate hsnOptions$
-  this.fetchData();
+  // this.fetchData();
 
 
 }
-fetchData() {
-  this.supplier$ = this.vendname1.fetchallVendor('','','');
-  this.supplier$.subscribe(options => {
-    this.allOptions = options;
-    // Initially, set filteredOptions to allOptions
-    this.filteredOptions = [...this.allOptions];
-  });
-}
+// fetchData() {
+//   this.supplier$ = this.vendname1.fetchallVendor('','','');
+//   this.supplier$.subscribe(options => {
+//     this.allOptions = options;
+//     // Initially, set filteredOptions to allOptions
+//     this.filteredOptions = [...this.allOptions];
+//   });
+// }
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null

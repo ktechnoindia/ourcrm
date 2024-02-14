@@ -138,11 +138,11 @@ export class ViewcustomerPage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredCustomers$ = this.customers$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredCustomers$ = this.customers$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
   editcustomer(customer: any) {

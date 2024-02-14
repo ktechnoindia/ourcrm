@@ -29,7 +29,7 @@ export class ViewitemPage implements OnInit {
   items: any[] = [];
 
   searchTerm: string = '';
-  filteredItems$: Observable<any[]> = new Observable<any[]>();
+  // filteredItems$: Observable<any[]> = new Observable<any[]>();
   columnHeaders: { [key: string]: string } = {
     'itemCode': 'Item Code',
     'itemDesc': 'Item Description',
@@ -99,20 +99,20 @@ export class ViewitemPage implements OnInit {
     const compid = '1';
     this.itemTypes$ = this.additem.fetchitemtype(encService.encrypt(compid), '', ''); // Add a method in your service to fetch item types
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid), '', '');
-    combineLatest([this.items$, this.itemTypes$]).subscribe(([items, itemTypes]) => {
-      // Create a mapping of itemtypeid to itemtypename
-      const itemTypeMapping = itemTypes.reduce((acc, itemType) => {
-        acc[itemType.itemtypeid] = itemType.itemtypename;
-        return acc;
-      }, {});
+    // combineLatest([this.items$, this.itemTypes$]).subscribe(([items, itemTypes]) => {
+    //   // Create a mapping of itemtypeid to itemtypename
+    //   const itemTypeMapping = itemTypes.reduce((acc, itemType) => {
+    //     acc[itemType.itemtypeid] = itemType.itemtypename;
+    //     return acc;
+    //   }, {});
 
-      // Add itemtypename to the items data
-      this.items = items.map(item => ({
-        ...item,
-        itemtypename: itemTypeMapping[item.itemtype] || ''
-      }));
-    })
-    console.log(this.items$);
+    //   // Add itemtypename to the items data
+    //   this.items = items.map(item => ({
+    //     ...item,
+    //     itemtypename: itemTypeMapping[item.itemtype] || ''
+    //   }));
+    // })
+    // console.log(this.items$);
 
 
     this.items$.subscribe(data => {
@@ -132,15 +132,15 @@ export class ViewitemPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
-    return this.items$.pipe(
-      map(items =>
-        items.filter(item =>
-          Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterCustomers(): Observable<any[]> {
+  //   return this.items$.pipe(
+  //     map(items =>
+  //       items.filter(item =>
+  //         Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   deleteItem(customerid: number, event: any) {
     
@@ -164,15 +164,15 @@ export class ViewitemPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredItems$ = this.filterCustomers();
+    // this.filteredItems$ = this.filterCustomers();
   }
  
   ngOnInit() {
-    this.filteredItems$ = this.items$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredItems$ = this.items$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
   goBack() {

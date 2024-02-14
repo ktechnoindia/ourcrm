@@ -125,7 +125,7 @@ export class ViewPurchasereturnPage implements OnInit {
     const compid = '1';
 
     this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid), '', '');
-    console.log(this.purchasereturn$);
+    // console.log(this.purchasereturn$);
     this.purchasereturn$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
@@ -159,11 +159,11 @@ export class ViewPurchasereturnPage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
     this.filteredBillingData$ = this.purchasereturn$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods

@@ -24,7 +24,7 @@ export class ViewroleofexicutivePage implements OnInit {
     const companyid = '1';
 
     this.roleexectives$ = this.roleexectService.fetchroleexecutive(encService.encrypt(companyid), '', '');
-    console.log(this.roleexectives$);
+    // console.log(this.roleexectives$);
 
   }
 
@@ -43,11 +43,11 @@ export class ViewroleofexicutivePage implements OnInit {
   }
  
   ngOnInit() {
-    this.filteredRoleExecutives$ = this.roleexectives$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredRoleExecutives$ = this.roleexectives$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
 

@@ -305,18 +305,18 @@ export class TranscationdashboardPage implements OnInit {
 
 
     // Subscribe to the observables and update the counts
-    this.quote$.subscribe(data => {
-      this.totalQuote = data.length;
-      this.updateChartData('totalquotationBarChart', 'Total Quotation', [this.totalQuote]);
-    });
-    this.sales$.subscribe(data => {
-      this.totalsales = data.length;
-      this.updateChartData('totalsaleBarChart', 'Total Sales', [this.totalsales]);
-    });
-    this.purchase$.subscribe(data => {
-      this.totalpurchase = data.length;
-      this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
-    });
+    // this.quote$.subscribe(data => {
+    //   this.totalQuote = data.length;
+    //   this.updateChartData('totalquotationBarChart', 'Total Quotation', [this.totalQuote]);
+    // });
+    // this.sales$.subscribe(data => {
+    //   this.totalsales = data.length;
+    //   this.updateChartData('totalsaleBarChart', 'Total Sales', [this.totalsales]);
+    // });
+    // this.purchase$.subscribe(data => {
+    //   this.totalpurchase = data.length;
+    //   this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
+    // });
 
     this.filteredQuatation$ = this.quote$.pipe(
       debounceTime(300),

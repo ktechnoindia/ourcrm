@@ -141,7 +141,7 @@
                 <th style="width: 70px !important;">Credit Amount</th>
 
               </tr>
-              <tr *ngFor="let payment of filteredPayments$ | async; let i = index">
+              <tr *ngFor="let payment of payment$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{payment.voucherNumber}}</td>
                 <td>{{payment.paymentdate}}</td>
@@ -170,7 +170,7 @@
                 <th style="width: 70px !important;">Pending Amount</th>
 
               </tr>
-              <tr *ngFor="let recepit of  filteredRecepits$ | async; let i = index">
+              <tr *ngFor="let recepit of  recepits$ | async; let i = index">
 
                 <td>{{i+1}}</td>
                 <td>{{recepit.voucherNumber}}</td>

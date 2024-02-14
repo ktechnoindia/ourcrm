@@ -125,7 +125,7 @@ export class ViewSalePage implements OnInit {
     const compid = '1';
 
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
-    console.log(this.sales$);
+    // console.log(this.sales$);
 
     this.sales$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
@@ -162,11 +162,11 @@ export class ViewSalePage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredSales$ = this.sales$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredSales$ = this.sales$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
     this.filteredBillingData$ = this.sales$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods

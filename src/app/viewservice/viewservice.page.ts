@@ -28,7 +28,7 @@ export class ViewservicePage implements OnInit {
   constructor(private addService : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
     this.services$ = this.addService.fetchallservice(compid,'','');
-    console.log(this.services$);
+    // console.log(this.services$);
   }
 
   async onSubmit(){
@@ -71,11 +71,11 @@ export class ViewservicePage implements OnInit {
   }
  
   ngOnInit() {
-    this.filteredServices$ = this.services$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredServices$ = this.services$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
 

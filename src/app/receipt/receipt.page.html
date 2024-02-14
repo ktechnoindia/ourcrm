@@ -83,14 +83,14 @@
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
-                              formControlName="paymentway" id="">
+                              formControlName="paymentway" id=""(change)="fillbillwisedata(selectedCustomerId,paymentway)">
                               <option value="">Select Payment Way</option>
                               <option value="BillWise">BillWise</option>
                               <option value="On Account">On Account</option>
                             </select>
                           </td>
                         </tr>
-                      </table>
+                      </table>  
                     </div>
                   </ion-row>
                   <!-- <table>
@@ -134,7 +134,7 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <tr *ngFor="let receipt of receiptBill$ | async; let i = index">
+                        <!-- <tr *ngFor="let receipt of myReceiptBillData | async; let i = index">
                           <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
@@ -163,7 +163,7 @@
                               [ngModelOptions]="{standalone: true}" [value]="calculatePendingBillAmount(receipt)" (keydown)="onKeyDown($event)">
                           </td>
 
-                        </tr>
+                        </tr> -->
                       </table>
                     </div>
                     <div style="width: 100%;">

@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { ExecutiveService } from '../services/executive.service';
-import { FormGroup,Validators,FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap, take } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
@@ -15,49 +15,49 @@ import { NavController } from '@ionic/angular';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
-interface Lead{
-  catPerson:string,
-  companyname:string,
-  leaddate:string,
-  phone:string,
-  emails:string,
-  pncode:string,
-  fulladdress:string,
-  lscore:number,
-  selectpd:number,
-  executivename:number,
-  selectedCountry:number,
+interface Lead {
+  catPerson: string,
+  companyname: string,
+  leaddate: string,
+  phone: string,
+  emails: string,
+  pncode: string,
+  fulladdress: string,
+  lscore: number,
+  selectpd: number,
+  executivename: number,
+  selectedCountry: number,
   selectedState: number,
   selectedDistrict: number,
-  rmark:string,
-  c:number,
-  u:number,
-  r:number,
-  leadtype:number,
-  leadassign?:number,
+  rmark: string,
+  c: number,
+  u: number,
+  r: number,
+  leadtype: number,
+  leadassign?: number,
 }
 @Component({
   selector: 'app-view-lead',
   templateUrl: './view-lead.page.html',
   styleUrls: ['./view-lead.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,RouterModule,RouterLink,ReactiveFormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, RouterLink, ReactiveFormsModule]
 })
 export class ViewLeadPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
 
   viewLeadForm: FormGroup;
   executive$: any;
-  executive: string='';
-  select_sales_person:number=0;
+  executive: string = '';
+  select_sales_person: number = 0;
   fromDate: string = '';
   toDate: string = '';
-  lead$:Observable<any[]>;
+  lead$: Observable<any[]>;
   searchTerm: string = '';
-  filteredLeads$: Observable<any[]> = new Observable<any[]>(); 
+  filteredLeads$: Observable<any[]> = new Observable<any[]>();
 
-   // filteredSales: Observable<any[]>;
-   availableColumns: string[] = [
+  // filteredSales: Observable<any[]>;
+  availableColumns: string[] = [
     'companyname',
     'crdate',
     'catPerson',
@@ -104,30 +104,30 @@ export class ViewLeadPage implements OnInit {
     'executivename': 'Executive Name',
     'rmark': 'Remarks',
   };
-  
+
   manualHeaders: string[] = [];
   totalItems: number = 0;
 
-  constructor(private encService: EncryptionService,private navCtrl:NavController,private leadser:LeadService, private execut: ExecutiveService,private router: Router, private toastCtrl: ToastController,private formBuilder:FormBuilder,private route: ActivatedRoute) {
+  constructor(private encService: EncryptionService, private navCtrl: NavController, private leadser: LeadService, private execut: ExecutiveService, private router: Router, private toastCtrl: ToastController, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     const compid = '1';
-    this.lead$ = this.leadser.fetchallleads (encService.encrypt(compid), '', '');
+    this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
     this.executive$ = this.execut.getexecutive();
     this.lead$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
-        });
+    });
     this.viewLeadForm = this.formBuilder.group({
-      select_sales_person:[''],
-      fromDate:[''],
-      toDate:[''],
-      searchTerm:[''],
-    totalItems:[''],
-    selectedColumns:[],
+      select_sales_person: [''],
+      fromDate: [''],
+      toDate: [''],
+      searchTerm: [''],
+      totalItems: [''],
+      selectedColumns: [],
     })
-    this.filteredLeads$=this.lead$;
-     this.updateManualHeaders();
-     this.fromDate = new Date().toISOString().split('T')[0];
-     this.toDate = new Date().toISOString().split('T')[0];
+    this.filteredLeads$ = this.lead$;
+    this.updateManualHeaders();
+    this.fromDate = new Date().toISOString().split('T')[0];
+    this.toDate = new Date().toISOString().split('T')[0];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
@@ -140,9 +140,9 @@ export class ViewLeadPage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
 
-   deleteRow(index: number): void {
+  deleteRow(index: number): void {
     this.lead$.subscribe(data => {
-   
+
       this.lead$ = new Observable(observer => {
         observer.next(data.filter((_, i) => i !== index));
         observer.complete();
@@ -151,9 +151,9 @@ export class ViewLeadPage implements OnInit {
   }
 
   editRow(index: number): void {
-  
+
     this.lead$.pipe(take(1)).subscribe((leads: Lead[]) => {
-     
+
       const selectedLead = leads[index];
       this.router.navigate(['/leadedit', { data: JSON.stringify(selectedLead) }]);
     });
@@ -172,13 +172,13 @@ export class ViewLeadPage implements OnInit {
   onSearchTermChanged(): void {
     this.filteredLeads$ = this.filterCustomers();
   }
- 
+
   ngOnInit() {
-    this.filteredLeads$ = this.lead$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredLeads$ = this.lead$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
     this.route.queryParams.subscribe(params => {
       if (params['data']) {
         const selectedLead = JSON.parse(params['data']) as Lead;
@@ -226,43 +226,43 @@ export class ViewLeadPage implements OnInit {
     const table = document.getElementById('leadTable');
 
     if (!table) {
-        console.error('Element with id "leadTable" not found.');
-        return;
+      console.error('Element with id "leadTable" not found.');
+      return;
     }
 
     const pdf = new jsPDF();
 
     const header = function (data: any) {
-        pdf.setFontSize(18);
-        pdf.setTextColor(40);
-        pdf.setFont('curier', 'bold');
-        pdf.text('Lead List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('curier', 'bold');
+      pdf.text('Lead List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
     };
 
     const footer = function (data: any) {
-        const pageCount = pdf.internal.pages.length;
-        pdf.setFontSize(14);
-        pdf.setTextColor(40);
-        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
     };
 
     (pdf as any).autoTable({
-        html: '#leadTable',
-        styles: {
-            lineWidth: 0.1, // set border line width
-            lineColor: [0, 0, 0], // set border color (black in this case)
-        },
-        didDrawPage: function (data: any) {
-            header(data);
-            footer(data);
-        }
+      html: '#leadTable',
+      styles: {
+        lineWidth: 0.1, // set border line width
+        lineColor: [0, 0, 0], // set border color (black in this case)
+      },
+      didDrawPage: function (data: any) {
+        header(data);
+        footer(data);
+      }
     });
 
     pdf.save('leads.pdf');
-}
+  }
 
 
-  printThisPage(){
+  printThisPage() {
     window.print();
   }
 }

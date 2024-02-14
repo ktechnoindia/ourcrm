@@ -69,5 +69,8 @@ export class RecepitService {
     const url = `${this.apiUrl}/get_payment_byid?companyid=${companyId}&vendorid=${vendorid}`;
     return this.httpclient.get(url, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
   }
- 
+  fillBillWise(userid: number): Observable<any> {
+    const token = this.session.getValue('token')?.valueOf();
+    return this.httpclient.get(environment.apiacturl + environment.fetchreceiptWise + '?v=' + userid,{ headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }});
+  }
 }

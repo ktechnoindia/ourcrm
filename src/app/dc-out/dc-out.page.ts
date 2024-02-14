@@ -178,7 +178,7 @@ export class DcOutPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-  customer$: any;
+  customer$:  Observable<any[]>;
 
   name: string = '';
   customercode: string = '';
@@ -990,7 +990,7 @@ export class DcOutPage implements OnInit {
           console.log('POST request successful', response);
           
           // After successfully adding the customer, fetch the updated customer data again
-          this.fetchCustomerData();
+          // this.fetchCustomerData();
           
           // Show success alert
           setTimeout(() => {
@@ -1023,11 +1023,11 @@ export class DcOutPage implements OnInit {
     }
   }
   
-  fetchCustomerData() {
-    // Assuming you have a method to fetch the updated customer data
-    // Here, you'll update the 'customer$' observable with the new data
-    this.customer$ = this.myService.fetchallCustomer('','', '');
-  }
+  // fetchCustomerData() {
+  //   // Assuming you have a method to fetch the updated customer data
+  //   // Here, you'll update the 'customer$' observable with the new data
+  //   this.customer$ = this.myService.fetchallCustomer('','', '');
+  // }
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for Enter key
     if (event.key === 'Enter') {

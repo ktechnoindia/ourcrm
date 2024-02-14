@@ -107,9 +107,11 @@ export class AddVendorPage implements OnInit {
   popover!: IonPopover;
 
 isOpen = false;
+paymentMethod: boolean = false;
 
   constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
     this.myform = this.formBuilder.group({
+      paymentMethod:[],
       name: ['', [Validators.required]],
       vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],

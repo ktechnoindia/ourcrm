@@ -98,7 +98,7 @@ export class ViewledgerPage implements OnInit {
     const companyid='1';
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(companyid,'','');
-    console.log(this.ledgers$);
+    // console.log(this.ledgers$);
     this.ledgers$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
@@ -151,11 +151,11 @@ export class ViewledgerPage implements OnInit {
   }
  
   ngOnInit() {
-    this.filteredLedgers$ = this.ledgers$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredLedgers$ = this.ledgers$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
   filterData() {
     // Update the filteredSales observable based on the date range

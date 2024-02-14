@@ -38,7 +38,7 @@ export class MasterdashboardPage implements OnInit {
   searchTerm: string = '';
   searchTerms:string='';
   filteredCustomers$: Observable<any[]> = new Observable<any[]>();
-  filteredSupplers$: Observable<any[]> = new Observable<any[]>();
+ filteredSupplers$: Observable<any[]> = new Observable<any[]>();
 
   username: string = 'Abhishek Pareek';
   companyname:string='Neelkanth Technologies';
@@ -84,59 +84,59 @@ export class MasterdashboardPage implements OnInit {
     const compid = '1';
 
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');
-    console.log(this.customers$);
+    // console.log(this.customers$);
 
-    this.customers$.subscribe(data => {
-      console.log(data);
-      this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
-    });
+    // this.customers$.subscribe(data => {
+    //   console.log(data);
+    //   this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
+    // });
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
-    console.log(this.vendors$);
-    this.vendors$.subscribe(data => {
-      console.log(data);
-      this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
-    });
+    // console.log(this.vendors$);
+    // this.vendors$.subscribe(data => {
+    //   console.log(data);
+    //   this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
+    // });
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
-    console.log(this.executives$);
-    this.executives$.subscribe(data => {
-      console.log(data);
-      this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
-    });
+    // console.log(this.executives$);
+    // this.executives$.subscribe(data => {
+    //   console.log(data);
+    //   this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
+    // });
 
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
-    console.log(this.items$);
-    this.items$.subscribe(data => {
-      console.log(data);
-      this.totalItems=data.length // Log the data to the console to verify if it's being fetched
-    });
+    // console.log(this.items$);
+    // this.items$.subscribe(data => {
+    //   console.log(data);
+    //   this.totalItems=data.length // Log the data to the console to verify if it's being fetched
+    // });
 
-    this.items$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-    });
-    this.filteredCustomers$ = this.customers$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.items$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    // });
+    // this.filteredCustomers$ = this.customers$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
 
-    this.filteredSupplers$ = this.vendors$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterSuppliers())
-    );
-    this.filteredExecutive$ = this.executives$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterExecutive())
-    );
+    // this.filteredSupplers$ = this.vendors$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterSuppliers())
+    // );
+    // this.filteredExecutive$ = this.executives$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterExecutive())
+    // );
 
-    this.filteredItem$ = this.items$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterItem())
-    );
+    // this.filteredItem$ = this.items$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterItem())
+    // );
   }
   createBarChart(canvas: any, label: string, data: number[]) {
     const ctx = canvas.getContext('2d');
@@ -198,7 +198,7 @@ export class MasterdashboardPage implements OnInit {
     );
   }
 
-  onSearchTermChanged(): void {
+   onSearchTermChanged(): void {
     this.filteredCustomers$ = this.filterCustomers();
   
   }
@@ -240,31 +240,31 @@ export class MasterdashboardPage implements OnInit {
     const compid = '1';
 
     // Fetch data for all entities
-    this.customers$ = this.custservice.fetchallCustomer(this.encService.encrypt(compid), '', '');
-    this.vendors$ = this.venderService.fetchallVendor(this.encService.encrypt(compid), '', '');
-    this.executives$ = this.executService.fetchAllExecutive(compid, '', '');
-    this.items$ = this.additem.fetchallItem(this.encService.encrypt(compid), '', '');
+    // this.customers$ = this.custservice.fetchallCustomer(this.encService.encrypt(compid), '', '');
+    // this.vendors$ = this.venderService.fetchallVendor(this.encService.encrypt(compid), '', '');
+    // this.executives$ = this.executService.fetchAllExecutive(compid, '', '');
+    // this.items$ = this.additem.fetchallItem(this.encService.encrypt(compid), '', '');
 
     // Subscribe to the observables and update the counts
-    this.customers$.subscribe(data => {
-      this.totalCustomer = data.length;
-      this.updateChartData('customerBarChart', 'Active Customer', [this.totalCustomer]);
-    });
+    // this.customers$.subscribe(data => {
+    //   this.totalCustomer = data.length;
+    //   this.updateChartData('customerBarChart', 'Active Customer', [this.totalCustomer]);
+    // });
 
-    this.vendors$.subscribe(data => {
-      this.totalSupplier = data.length;
-      this.updateChartData('supplierBarChart', 'Active Supplier', [this.totalSupplier]);
-    });
+    // this.vendors$.subscribe(data => {
+    //   this.totalSupplier = data.length;
+    //   this.updateChartData('supplierBarChart', 'Active Supplier', [this.totalSupplier]);
+    // });
 
-    this.executives$.subscribe(data => {
-      this.totalExecitve = data.length;
-      this.updateChartData('executiveBarChart', 'Total Executive', [this.totalExecitve]);
-    });
+    // this.executives$.subscribe(data => {
+    //   this.totalExecitve = data.length;
+    //   this.updateChartData('executiveBarChart', 'Total Executive', [this.totalExecitve]);
+    // });
 
-    this.items$.subscribe(data => {
-      this.totalItems = data.length;
-      this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
-    });
+    // this.items$.subscribe(data => {
+    //   this.totalItems = data.length;
+    //   this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
+    // });
 
     
   }

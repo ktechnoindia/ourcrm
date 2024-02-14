@@ -39,7 +39,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of filteredItems$ | async; let i = index">
+                    <tr *ngFor="let item of items$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ item[col] }}</td>
                       <td class="Action">

@@ -318,7 +318,7 @@
                                 <!-- <th >Email</th> -->
 
                             </tr>
-                            <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
+                            <tr *ngFor="let customer of customers$ | async; let i = index">
 
                                 <td>{{ i + 1 }}</td>
                                 <td>{{customer.customer_code}}</td>
@@ -347,7 +347,7 @@
                                 <th>Mobile No.</th>
                                 <th>Email</th>
                             </tr>
-                            <tr *ngFor="let vendoer of filteredSupplers$ | async; let i = index">
+                            <tr *ngFor="let vendoer of vendors$ | async; let i = index">
                                 <td>{{i + 1}}</td>
                                 <td>{{vendoer.name}}</td>
                                 <td>{{vendoer.vendor_code}}</td>
@@ -374,7 +374,7 @@
                                 <th>Phone Number</th>
                                 <th>Email</th>
                             </tr>
-                            <tr *ngFor="let execute of filteredExecutive$ | async; let i = index">
+                            <tr *ngFor="let execute of executives$ | async; let i = index">
                                 <td>{{i + 1}}</td>
                                 <td>{{execute.roleid}}</td>
                                 <td>{{execute.excode}}</td>
@@ -400,7 +400,7 @@
                                 <th>Item Type</th>
                                 <th>Item Group</th>
                             </tr>
-                            <tr *ngFor="let item of filteredItem$ | async; let i = index">
+                            <tr *ngFor="let item of items$ | async; let i = index">
                                 <td>{{i + 1}}</td>
                                 <td>{{item.itemCode}}</td>
                                 <td>{{item.itemDesc}}</td>
@@ -429,7 +429,7 @@
                                 <th style="width: 70px !important;">Exicutive Name</th>
 
                             </tr>
-                            <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
+                            <tr *ngFor="let purchase of purchase$ | async; let i = index">
                                 <td>{{i+1}}</td>
                                 <td>{{purchase.billDate}}</td>
                                 <td>{{purchase.vendcode}}</td>
@@ -461,7 +461,7 @@
                                 <th style="width: 70px !important;">Order Date</th>
                                 <th style="width: 300px !important;">Sales Person Name</th>
                             </tr>
-                            <tr *ngFor="let sales of filteredSales$ | async; let i = index">
+                            <tr *ngFor="let sales of sales$ | async; let i = index">
                                 <td>{{i+1}}</td>
                                 <td>{{sales.billDate}}</td>
                                 <td>{{sales.custcode}}</td>
@@ -489,7 +489,7 @@
                                 <th>Lead Source</th>
                                 <th>Executive Name</th>
                             </tr>
-                            <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
+                            <tr *ngFor="let leadscore of lead$ | async; let i = index">
                                 <td>{{i+1}}</td>
                                 <td>{{leadscore.companyname}}</td>
                                 <td>{{leadscore.phone}}</td>

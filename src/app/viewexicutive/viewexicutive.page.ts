@@ -68,7 +68,7 @@ export class ViewexicutivePage implements OnInit {
     const compid='1';
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
-    console.log(this.executives$);
+    // console.log(this.executives$);
     this.executives$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
@@ -96,15 +96,15 @@ export class ViewexicutivePage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredExecutives$ = this.filterCustomers();
+    // this.filteredExecutives$ = this.filterCustomers();
   }
  
   ngOnInit() {
-    this.filteredExecutives$ = this.executives$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredExecutives$ = this.executives$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
 
 

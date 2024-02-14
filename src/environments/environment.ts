@@ -79,6 +79,8 @@ export const environment = {
   fetchUserOutstanding: 'sales/user_outstanding',
   fetchVendorOutstanding: 'sales/vendor_outstanding',
   fetchBillWise: 'sales/vendor_billwise',
+  fetchreceiptWise: 'sales/user_billwise',
+
   addcreateamc: 'amc/createamc',
   addamc: 'amc/insert_amc',
   fetchamc: 'amc/get_amc',

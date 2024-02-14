@@ -113,11 +113,11 @@ export class ViewQuotPage implements OnInit {
     const compid = '1';
     const userid = '1';
     this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid),(userid), '', '');
-    console.log(this.quote$);
+    // console.log(this.quote$);
 
-    this.quote$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
-    });
+    // this.quote$.subscribe(data => {
+    //   console.log(data); // Log the data to the console to verify if it's being fetched
+    // });
     this.quote$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
@@ -153,11 +153,11 @@ export class ViewQuotPage implements OnInit {
   }
  
   ngOnInit() {
-    this.filteredQuatation$ = this.quote$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredQuatation$ = this.quote$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
     this.filteredBillingData$ = this.quote$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods

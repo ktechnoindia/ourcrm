@@ -41,7 +41,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let execute of filteredExecutives$ | async; let i = index">
+                    <tr *ngFor="let execute of executives$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ execute[col.toLowerCase()] }}</td>
                       <td class="Action">

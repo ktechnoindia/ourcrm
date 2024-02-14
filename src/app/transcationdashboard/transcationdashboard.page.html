@@ -263,7 +263,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
+              <tr *ngFor="let purchase of purchase$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchase.billDate}}</td>
                 <td>{{purchase.vendcode}}</td>
@@ -294,7 +294,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let sales of filteredSales$ | async; let i = index">
+              <tr *ngFor="let sales of sales$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{sales.billDate}}</td>
                 <td>{{sales.custcode}}</td>
@@ -321,7 +321,7 @@
                 <th style="width: 70px !important;">Quote Date</th>
                 <th style="width: 70px !important;">Customer Name</th>
               </tr>
-              <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
+              <tr *ngFor="let quote of quote$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{quote.quoteNumber}}</td>
                 <td>{{quote.quateDate}}</td>
@@ -346,7 +346,7 @@
                 <th style="width: 70px !important;">Supplier Name</th>
 
               </tr>
-              <tr *ngFor="let dcin of filteredDcin$ | async; let i = index">
+              <tr *ngFor="let dcin of dcin$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{dcin.voucherNumber}}</td>
                 <td>{{dcin.datetype}}</td>
@@ -373,7 +373,7 @@
                 <th style="width: 70px !important;">Supplier Code</th>
                 <th style="width: 70px !important;">Supplier Name</th>
               </tr>
-              <tr *ngFor="let dcout of filteredDcout$ | async; let i = index">
+              <tr *ngFor="let dcout of dcout$ | async; let i = index">
                 <td>{{i + 1}}</td>
                 <td>{{dcout.voucherformat}}</td>
                 <td>{{dcout.voucherNumber}}</td>
@@ -402,7 +402,7 @@
                 <th style="width: 70px !important;">Order Date</th>
                 <th style="width: 300px !important;">Sales Person Name</th>
               </tr>
-              <tr *ngFor="let salreturns of filteredSalereturns$ | async; let i = index">
+              <tr *ngFor="let salreturns of salreturn$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{salreturns.billDate}}</td>
                 <td>{{salreturns.custcode}}</td>
@@ -434,7 +434,7 @@
                 <th style="width: 70px !important;">Exicutive Name</th>
 
               </tr>
-              <tr *ngFor="let purchasereturn of  filteredPurchasereturns$ | async; let i = index">
+              <tr *ngFor="let purchasereturn of  purchasereturn$ | async; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{purchasereturn.billDate}}</td>
                 <td>{{purchasereturn.vendcode}}</td>

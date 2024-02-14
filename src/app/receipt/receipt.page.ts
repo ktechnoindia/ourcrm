@@ -69,12 +69,12 @@ export class ReceiptPage implements OnInit {
   isOpen = false;
   customer$: Observable<any>;
   ledgers$: Observable<any>;
-  sales$: Observable<any[]>
+  // sales$: Observable<any[]>
   outstanding_amount: any;
   outstanding$: Observable<any[]>
   isCheckboxChecked = false;
   selectedCustomerId: number = 0;
-  receiptBill$: Observable<any>;
+  // receiptBill$: Observable<any>;
   dataLength: number = 0;
   receiptData: Recepit[] = [{
     billno: '',
@@ -85,7 +85,8 @@ export class ReceiptPage implements OnInit {
     billpendingamt: 0,
   }]
   recepitbill: Subscription;
-  
+  myReceiptBillData: any[] = [];
+
   constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.recepitbill = new Subscription();
@@ -102,13 +103,13 @@ export class ReceiptPage implements OnInit {
     // });
     // console.log(this.outstanding$);
 
-    this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
-    this.receiptBill$.subscribe(data => {
-      // Get the length of the array
-      this.dataLength = data.length;
-      console.log('Length of the array:', this.dataLength);
-    });
-    this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
+    // this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
+    // this.receiptBill$.subscribe(data => {
+    //   // Get the length of the array
+    //   this.dataLength = data.length;
+    //   console.log('Length of the array:', this.dataLength);
+    // });
+    // this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
 
     // this.recepitBill$.subscribe(recepitbill =>{
     //   console.log('redeeeee',recepitbill);
@@ -148,8 +149,9 @@ export class ReceiptPage implements OnInit {
     // Check if a customer is selected
     if (this.selectedCustomerId !== 0) {
       // Call your service method with the selected customer ID
-      this.receiptBill$ = this.receiptservice.getSalesById(this.selectedCustomerId, 1);
-      this.receiptBill$.subscribe((bill) => {
+      this.filluseroutstanding(this.selectedCustomerId);
+      this.recepitbill = this.receiptservice.getSalesById(1, this.selectedCustomerId).subscribe(bill => {
+
         console.log('data length', bill.length)
         if (bill && bill.length > 0) {
           const bills = bill[0];
@@ -157,7 +159,10 @@ export class ReceiptPage implements OnInit {
           this.billno = bills.billno;
           this.billdate = bills.billdate;
           this.totalamt = bills.totalamt;
-
+          this.pendingamt=bills.pendingamt;
+         // this.outstanding=bills.outstanding;
+          this.paymentmade=bills.paymentmade;
+          
           this.myform.patchValue({
             billno: bills.billNumber,
             billdate: bills.billDate,
@@ -166,6 +171,21 @@ export class ReceiptPage implements OnInit {
         }
       });
     }
+  }
+  async filluseroutstanding(userid:number){
+    this.receiptservice.fetchUserOutstanding(userid).subscribe((outstandingArray: any[]) => {
+      if(outstandingArray!) this.outstanding=outstandingArray[0]?.outstanding_amount;
+    });
+  }
+  async fillbillwisedata(userid:number,paymentway:string){
+    if(paymentway=='BillWise'){
+    this.receiptservice.fillBillWise(userid).subscribe((data: any[]) => {
+      console.log(data);
+      this.myReceiptBillData = data;
+    });
+  }else{
+    alert('not applicable for now');
+  }
   }
   // getSalesDetails(recepit: any) {
   //   const compid = '1';
@@ -313,7 +333,7 @@ export class ReceiptPage implements OnInit {
   ngOnInit() {
 
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-    this.CustomerOutstandingOnCompanyNameChange();
+    // this.CustomerOutstandingOnCompanyNameChange();
   }
 
   goBack() {

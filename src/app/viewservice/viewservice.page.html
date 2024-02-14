@@ -34,7 +34,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let service of filteredServices$ | async; let i = index">
+                    <tr *ngFor="let service of services$ | async; let i = index">
 
                       <td>{{ i + 1 }}</td>
                       <td>{{service.service_code}}</td>

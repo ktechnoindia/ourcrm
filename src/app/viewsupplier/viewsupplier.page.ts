@@ -90,7 +90,7 @@ export class ViewsupplierPage implements OnInit {
     const compid = '1';
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid), '', '');
-    console.log(this.vendors$);
+    // console.log(this.vendors$);
     this.vendors$.subscribe(data => {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
@@ -122,11 +122,11 @@ export class ViewsupplierPage implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredSupplers$ = this.vendors$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredSupplers$ = this.vendors$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterCustomers())
+    // );
   }
   goBack() {
     this.router.navigate(["/add-vendor"])

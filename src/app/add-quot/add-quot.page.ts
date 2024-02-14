@@ -968,18 +968,18 @@ export class AddQuotPage implements OnInit {
     });
 
     // Fetch data and populate hsnOptions$
-    this.fetchData();
+    // this.fetchData();
 
 
   }
-  fetchData() {
-    this.customer$ = this.custname1.fetchallCustomer('','','');
-    this.customer$.subscribe(options => {
-      this.allOptions = options;
-      // Initially, set filteredOptions to allOptions
-      this.filteredOptions = [...this.allOptions];
-    });
-  }
+  // fetchData() {
+  //   // this.customer$ = this.custname1.fetchallCustomer('','','');
+  //   this.customer$.subscribe(options => {
+  //     this.allOptions = options;
+  //     // Initially, set filteredOptions to allOptions
+  //     this.filteredOptions = [...this.allOptions];
+  //   });
+  // }
   toggleTableVisibility() {
     this.showTable = !this.showTable;
     if (this.showTable) {

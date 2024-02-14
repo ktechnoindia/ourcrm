@@ -100,9 +100,12 @@ export class AddCustomerPage implements OnInit {
   roletypes$: Observable<any[]>
 
   ledgers$: Observable<any>;
+  paymentMethod: boolean = false;
+
   constructor(private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
 
     this.myform = this.formBuilder.group({
+      paymentMethod:[],
       selectedSalutation: [''],
       companyName: [''],
       customer_code: ['', Validators.required],
