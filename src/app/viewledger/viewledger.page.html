@@ -68,7 +68,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let ledger of filteredLedgers$ | async; let i = index">
+                      <tr *ngFor="let ledger of ledgers$ | async; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td *ngFor="let col of selectedColumns">{{ ledger[col] }}</td>
                         <td class="Action">

@@ -57,16 +57,16 @@ export class AccountdashboardPage implements OnInit {
     const compid = '1';
     this.payment$ = this.paymentservice.fetchAllPayment(encService.encrypt(compid), '', '');
     // console.log(this.payment$);
-    // this.payment$.subscribe((data: string | any[]) => {
-    //   console.log(data);
-    //   this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.payment$.subscribe((data: string | any[]) => {
+      console.log(data);
+      this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
+    });
     this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid), '', '');
     // console.log(this.recepits$);
-    // this.recepits$.subscribe((data: string | any[]) => {
-    //   console.log(data);
-    //   this.totalreceipt = data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.recepits$.subscribe((data: string | any[]) => {
+      console.log(data);
+      this.totalreceipt = data.length // Log the data to the console to verify if it's being fetched
+    });
   }
   createBarChart(canvas: any, label: string, data: number[]) {
     const ctx = canvas.getContext('2d');
@@ -108,33 +108,33 @@ export class AccountdashboardPage implements OnInit {
     });
   };
 
-  filterRecepit(): Observable<any[]> {
-    return this.recepits$.pipe(
-      map(recepits =>
-        recepits.filter(recepit =>
-          Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterRecepit(): Observable<any[]> {
+  //   return this.recepits$.pipe(
+  //     map(recepits =>
+  //       recepits.filter(recepit =>
+  //         Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
-  filterPayement(): Observable<any[]> {
-    return this.payment$.pipe(
-      map(payments =>
-        payments.filter(payemt =>
-          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterPayement(): Observable<any[]> {
+  //   return this.payment$.pipe(
+  //     map(payments =>
+  //       payments.filter(payemt =>
+  //         Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermPayment(): void {
-    this.filteredPayments$ = this.filterPayement();
+    // this.filteredPayments$ = this.filterPayement();
   }
 
 
   onSearchTermChanged(): void {
-    this.filteredRecepits$ = this.filterRecepit();
+    // this.filteredRecepits$ = this.filterRecepit();
   }
 
   async ngOnInit() {

@@ -43,7 +43,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let vendoer of filteredSupplers$ | async; let i = index">
+                    <tr *ngFor="let vendoer of vendors$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ vendoer[col] }}</td>
                       <td class="Action">

@@ -146,7 +146,7 @@ export class ViewcompanyPage implements OnInit {
   constructor(private alertController: AlertController, public session: SessionService, private companyService: CreatecompanyService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService) {
     const compid = this.session.getValue('userid')?.valueOf() as number;
     this.companys$ = this.companyService.fetchallcompany(compid, '', '');
-    console.log(compid);
+    // console.log(compid);
     this.updateManualHeaders();
 
     this.companys$.subscribe(data => {
@@ -166,26 +166,26 @@ export class ViewcompanyPage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
 
-  filterCustomers(): Observable<any[]> {
-    return this.companys$.pipe(
-      map(companies =>
-        companies.filter(company =>
-          Object.values(company).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterCustomers(): Observable<any[]> {
+  //   return this.companys$.pipe(
+  //     map(companies =>
+  //       companies.filter(company =>
+  //         Object.values(company).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermChanged(): void {
-    this.filteredCompany$ = this.filterCustomers();
+    // this.filteredCompany$ = this.filterCustomers();
   }
 
   ngOnInit() {
-    // this.filteredCompany$ = this.companys$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
-    // );
+    this.filteredCompany$ = this.companys$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      // switchMap(() => this.filterCustomers())
+    );
   }
   filterData() {
     // Update the filteredSales observable based on the date range

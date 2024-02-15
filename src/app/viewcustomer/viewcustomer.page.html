@@ -46,7 +46,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let customer of filteredCustomers$ | async; let i = index">
+                    <tr *ngFor="let customer of customers$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">{{ customer[col.toLowerCase()] }}</td>
                       <td class="Action">

@@ -178,7 +178,7 @@ export class DcOutPage implements OnInit {
   itemnames$: Observable<any[]>;
   unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
-  customer$:  Observable<any[]>;
+  customer$: any;
 
   name: string = '';
   customercode: string = '';
@@ -432,8 +432,8 @@ export class DcOutPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-             this.myform.reset();
-            //location.reload()
+            // this.myform.reset();
+            location.reload()
           },
           (error: any) => {
             console.log('POST request failed', error);
@@ -939,17 +939,16 @@ export class DcOutPage implements OnInit {
 
 
   async onCustSubmit() {
-    const fields = { name: this.name };
+    const fields = { name: this.name, }
     const isValid = await this.formService.validateForm(fields);
-  
-    if (isValid) {
+    if (await this.formService.validateForm(fields)) {
+      const companyid = 1;
       console.log('Your form data : ', this.customerpop.value);
-  
       let custdata: cust = {
         name: this.customerpop.value.name,
         customer_code: this.customerpop.value.customer_code,
         gstin: this.customerpop.value.gstin,
-        companyid: 1,
+        companyid: companyid,
         selectedSalutation: '',
         companyName: '',
         state: this.customerpop.value.state,
@@ -984,35 +983,31 @@ export class DcOutPage implements OnInit {
         pincode1: '',
         address1: ''
       };
-  
+
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          
-          // After successfully adding the customer, fetch the updated customer data again
-          // this.fetchCustomerData();
-          
-          // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-          
-          // Reset the form
-          this.customerpop.reset();
+
+          this.formService.showSaveLoader()
+          // location.reload()
+          this.myform.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);
-          
-          // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
+          this.formService.shoErrorLoader();
         }
       );
     } else {
-      // If the form is not valid, display error messages
-      Object.keys(this.customerpop.controls).forEach(controlName => {
-        const control = this.customerpop.get(controlName);
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
@@ -1022,22 +1017,10 @@ export class DcOutPage implements OnInit {
       }
     }
   }
-  
-  // fetchCustomerData() {
-  //   // Assuming you have a method to fetch the updated customer data
-  //   // Here, you'll update the 'customer$' observable with the new data
-  //   this.customer$ = this.myService.fetchallCustomer('','', '');
-  // }
   onKeyDown(event: KeyboardEvent): void {
-    // Prevent the default behavior for Enter key
-    if (event.key === 'Enter') {
-        event.preventDefault();
-    }
-
-    // Prevent incrementing/decrementing on arrow keys
+    // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault();
+      event.preventDefault();
     }
-}
-
+  }
 }

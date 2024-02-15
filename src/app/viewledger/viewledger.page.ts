@@ -100,7 +100,7 @@ export class ViewledgerPage implements OnInit {
     this.ledgers$ = this.ledgerService.fetchAllLedger(companyid,'','');
     // console.log(this.ledgers$);
     this.ledgers$.subscribe(data => {
-      console.log(data); // Log the data to the console to verify if it's being fetched
+      // console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
         });
         this.updateManualHeaders();
@@ -136,30 +136,30 @@ export class ViewledgerPage implements OnInit {
     });
   }
 
-  filterCustomers(): Observable<any[]> {
-    return this.ledgers$.pipe(
-      map(ledgers =>
-        ledgers.filter(ledger =>
-          Object.values(ledger).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterCustomers(): Observable<any[]> {
+  //   return this.ledgers$.pipe(
+  //     map(ledgers =>
+  //       ledgers.filter(ledger =>
+  //         Object.values(ledger).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermChanged(): void {
-    this.filteredLedgers$ = this.filterCustomers();
+    // this.filteredLedgers$ = this.filterCustomers();
   }
  
   ngOnInit() {
-    // this.filteredLedgers$ = this.ledgers$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
-    // );
+    this.filteredLedgers$ = this.ledgers$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      // switchMap(() => this.filterCustomers())
+    );
   }
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredLedgers$ = this.ledgers$.pipe(
+    this.ledgers$ = this.ledgers$.pipe(
       map(ledgers => ledgers.filter(ledger => this.isDateInRange(ledger.billDate, this.formDate, this.toDate)))
     );
   }

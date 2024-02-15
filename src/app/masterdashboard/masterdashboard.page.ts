@@ -86,31 +86,31 @@ export class MasterdashboardPage implements OnInit {
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');
     // console.log(this.customers$);
 
-    // this.customers$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.customers$.subscribe(data => {
+      console.log(data);
+      this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
     // console.log(this.vendors$);
-    // this.vendors$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.vendors$.subscribe(data => {
+      console.log(data);
+      this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
     // console.log(this.executives$);
-    // this.executives$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.executives$.subscribe(data => {
+      console.log(data);
+      this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
     // console.log(this.items$);
-    // this.items$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalItems=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.items$.subscribe(data => {
+      console.log(data);
+      this.totalItems=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     // this.items$.subscribe(data => {
     //   console.log(data); // Log the data to the console to verify if it's being fetched

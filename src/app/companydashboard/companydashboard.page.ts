@@ -74,43 +74,43 @@ export class CompanydashboardPage implements OnInit {
     const compid = '1';
     this.payment$ = this.paymentservice.fetchAllPayment(encService.encrypt(compid), '', '');
     // console.log(this.payment$);
-    // this.payment$.subscribe((data: string | any[]) => {
-    //   console.log(data);
-    //   this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.payment$.subscribe((data: string | any[]) => {
+      console.log(data);
+      this.totalpayment = data.length // Log the data to the console to verify if it's being fetched
+    });
     this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid), '', '');
     // console.log(this.recepits$);
-    // this.recepits$.subscribe((data: string | any[]) => {
-    //   console.log(data);
-    //   this.totalreceipt = data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.recepits$.subscribe((data: string | any[]) => {
+      console.log(data);
+      this.totalreceipt = data.length // Log the data to the console to verify if it's being fetched
+    });
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');
     // console.log(this.customers$);
-    // this.customers$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.customers$.subscribe(data => {
+      console.log(data);
+      this.totalCustomer=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.vendors$ = this.venderService.fetchallVendor(encService.encrypt(compid),'','');
     // console.log(this.vendors$);
-    // this.vendors$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.vendors$.subscribe(data => {
+      console.log(data);
+      this.totalSupplier=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.executives$ = this.executService.fetchAllExecutive(compid,'','');
     // console.log(this.executives$);
-    // this.executives$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.executives$.subscribe(data => {
+      console.log(data);
+      this.totalExecitve=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     this.items$ = this.additem.fetchallItem(encService.encrypt(compid),'','');
     // console.log(this.items$);
-    // this.items$.subscribe(data => {
-    //   console.log(data);
-    //   this.totalItems=data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.items$.subscribe(data => {
+      console.log(data);
+      this.totalItems=data.length // Log the data to the console to verify if it's being fetched
+    });
 
     // this.items$.subscribe(data => {
     //   console.log(data); // Log the data to the console to verify if it's being fetched
@@ -118,26 +118,26 @@ export class CompanydashboardPage implements OnInit {
     this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
     // console.log(this.sales$);
 
-    // this.sales$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalsales = data.length;
+    this.sales$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalsales = data.length;
 
-    // });
+    });
 
     this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
     // console.log(this.purchase$);
 
-    // this.purchase$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalpurchase = data.length;
+    this.purchase$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalpurchase = data.length;
 
-    // });
+    });
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
-    // this.lead$.subscribe(data => {
-    //   console.log(data);
-    //   this.totallead = data.length // Log the data to the console to verify if it's being fetched
-    // });
+    this.lead$.subscribe(data => {
+      console.log(data);
+      this.totallead = data.length // Log the data to the console to verify if it's being fetched
+    });
    
    }
 

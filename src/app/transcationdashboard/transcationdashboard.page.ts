@@ -95,62 +95,62 @@ export class TranscationdashboardPage implements OnInit {
     this.purchase$=new Observable();
     this.purchasereturn$=new Observable();
     this.salreturn$=new Observable();
-    // this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), (userid), '', '');
+    this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), (userid), '', '');
     // console.log(this.quote$);
 
-    // this.quote$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalQuote = data.length;
-    // });
-    // this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
+    this.quote$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalQuote = data.length;
+    });
+    this.dcin$ = this.dcinservice.fetchallDcin(encService.encrypt(compid), '', '');
     // console.log(this.dcin$);
 
-    // this.dcin$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totaldcin = data.length;
-    // });
+    this.dcin$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totaldcin = data.length;
+    });
 
-    // this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid), '', '');
+    this.dcout$ = this.dcoutservice.fetchallDcout(encService.encrypt(compid), '', '');
     // console.log(this.dcout$);
 
-    // this.dcout$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totaldcout = data.length;
-    // });
+    this.dcout$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totaldcout = data.length;
+    });
 
     // this.sales$ = this.saleService.fetchallSales(encService.encrypt(compid), '', '');
     // console.log(this.sales$);
 
-    // this.sales$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalsales = data.length;
+    this.sales$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalsales = data.length;
 
-    // });
+    });
 
     // this.purchase$ = this.purchaseService.fetchallPurchase(encService.encrypt(compid), '', '');
     // console.log(this.purchase$);
 
-    // this.purchase$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalpurchase = data.length;
+    this.purchase$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalpurchase = data.length;
 
-    // });
+    });
 
-    // this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid), '', '');
+    this.salreturn$ = this.salereturnservice.fetchallSalesreturn(encService.encrypt(compid), '', '');
     // console.log(this.salreturn$);
 
-    // this.salreturn$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalsalesreturn = data.length;
+    this.salreturn$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalsalesreturn = data.length;
 
-    // });
-    // this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid), '', '');
+    });
+    this.purchasereturn$ = this.purchasereturnservice.fetchallPurchasereturn(encService.encrypt(compid), '', '');
     // console.log(this.purchasereturn$);
 
-    // this.purchasereturn$.subscribe(data => {
-    //   console.log(data); // Log the data to the console to verify if it's being fetched
-    //   this.totalpurchasereturn = data.length;
-    // });
+    this.purchasereturn$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalpurchasereturn = data.length;
+    });
 
 
 
@@ -195,102 +195,102 @@ export class TranscationdashboardPage implements OnInit {
   }
 
 
-  filterQuatation(): Observable<any[]> {
-    return this.quote$.pipe(
-      map(quotes =>
-        quotes.filter(quote =>
-          Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterQuatation(): Observable<any[]> {
+  //   return this.quote$.pipe(
+  //     map(quotes =>
+  //       quotes.filter(quote =>
+  //         Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
-  filterPurchase(): Observable<any[]> {
-    return this.purchase$.pipe(
-      map(customers =>
-        customers.filter(customer =>
-          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterPurchase(): Observable<any[]> {
+  //   return this.purchase$.pipe(
+  //     map(customers =>
+  //       customers.filter(customer =>
+  //         Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
-  filterSales(): Observable<any[]> {
-    return this.sales$.pipe(
-      map(sales =>
-        sales.filter(sale =>
-          Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchSale.toLowerCase()))
-        )
-      )
-    );
-  };
+  // filterSales(): Observable<any[]> {
+  //   return this.sales$.pipe(
+  //     map(sales =>
+  //       sales.filter(sale =>
+  //         Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchSale.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // };
 
-  filterDcin(): Observable<any[]> {
-    return this.dcin$.pipe(
-      map(customers =>
-        customers.filter(customer =>
-          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchDcin.toLowerCase()))
-        )
-      )
-    );
-  };
+  // filterDcin(): Observable<any[]> {
+  //   return this.dcin$.pipe(
+  //     map(customers =>
+  //       customers.filter(customer =>
+  //         Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchDcin.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // };
 
-  filterPurchasereturn(): Observable<any[]> {
-    return this.purchasereturn$.pipe(
-      map(purchasereturns =>
-        purchasereturns.filter(purchasereturn =>
-          Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchPurchasereturn.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterPurchasereturn(): Observable<any[]> {
+  //   return this.purchasereturn$.pipe(
+  //     map(purchasereturns =>
+  //       purchasereturns.filter(purchasereturn =>
+  //         Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchPurchasereturn.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
-  filterSalereturn(): Observable<any[]> {
-    return this.salreturn$.pipe(
-      map(salereturns =>
-        salereturns.filter(salereturn =>
-          Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchSalereturn.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterSalereturn(): Observable<any[]> {
+  //   return this.salreturn$.pipe(
+  //     map(salereturns =>
+  //       salereturns.filter(salereturn =>
+  //         Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchSalereturn.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
-  filterDcout(): Observable<any[]> {
-    return this.dcout$.pipe(
-      map(dcouts =>
-        dcouts.filter((dcout:any) =>
-          Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchDcout.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterDcout(): Observable<any[]> {
+  //   return this.dcout$.pipe(
+  //     map(dcouts =>
+  //       dcouts.filter((dcout:any) =>
+  //         Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchDcout.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermDcout(): void {
-    this.filteredDcout$ = this.filterDcout();
+    // this.filteredDcout$ = this.filterDcout();
   }
 
   onSearchTermSalereturn(): void {
-    this.filteredSalereturns$ = this.filterSalereturn();
+    // this.filteredSalereturns$ = this.filterSalereturn();
   }
 
   onSearchTermPurchasereturn(): void {
-    this.filteredPurchasereturns$ = this.filterPurchasereturn();
+    // this.filteredPurchasereturns$ = this.filterPurchasereturn();
   }
 
   onSearchTermDcin(): void {
-    this.filteredDcin$ = this.filterDcin();
+    // this.filteredDcin$ = this.filterDcin();
   }
 
   onSearchTermSale(): void {
-    this.filteredSales$ = this.filterSales();
+    // this.filteredSales$ = this.filterSales();
   }
 
   onSearchTermQuote(): void {
-    this.filteredQuatation$ = this.filterQuatation();
+    // this.filteredQuatation$ = this.filterQuatation();
   }
 
   onSearchTermPurchase(): void {
-    this.filteredPurchase$ = this.filterPurchase();
+    // this.filteredPurchase$ = this.filterPurchase();
   }
 
   ngOnInit() {
@@ -305,58 +305,58 @@ export class TranscationdashboardPage implements OnInit {
 
 
     // Subscribe to the observables and update the counts
-    // this.quote$.subscribe(data => {
-    //   this.totalQuote = data.length;
-    //   this.updateChartData('totalquotationBarChart', 'Total Quotation', [this.totalQuote]);
-    // });
-    // this.sales$.subscribe(data => {
-    //   this.totalsales = data.length;
-    //   this.updateChartData('totalsaleBarChart', 'Total Sales', [this.totalsales]);
-    // });
-    // this.purchase$.subscribe(data => {
-    //   this.totalpurchase = data.length;
-    //   this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
-    // });
+    this.quote$.subscribe(data => {
+      this.totalQuote = data.length;
+      this.updateChartData('totalquotationBarChart', 'Total Quotation', [this.totalQuote]);
+    });
+    this.sales$.subscribe(data => {
+      this.totalsales = data.length;
+      this.updateChartData('totalsaleBarChart', 'Total Sales', [this.totalsales]);
+    });
+    this.purchase$.subscribe(data => {
+      this.totalpurchase = data.length;
+      this.updateChartData('totalpurchaseBarChart', 'Total Purchase', [this.totalpurchase]);
+    });
 
     this.filteredQuatation$ = this.quote$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterQuatation())
+      // switchMap(() => this.filterQuatation())
     );
 
     this.filteredPurchase$ = this.purchase$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterPurchase())
+      // switchMap(() => this.filterPurchase())
     );
 
     this.filteredSales$ = this.sales$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterSales())
+      // switchMap(() => this.filterSales())
     );
 
     this.filteredDcin$ = this.dcin$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterDcin())
+      // switchMap(() => this.filterDcin())
     );
 
     this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterPurchasereturn())
+      // switchMap(() => this.filterPurchasereturn())
     );
     this.filteredSalereturns$ = this.salreturn$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterSalereturn())
+      // switchMap(() => this.filterSalereturn())
     );
 
     this.filteredDcout$ = this.dcout$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterDcout())
+      // switchMap(() => this.filterDcout())
     );
   }
 

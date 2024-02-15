@@ -21,7 +21,6 @@ import { DistrictsService } from '../services/districts.service';
 import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { SalesService } from '../services/sales.service';
-import { IonicSelectableComponent } from 'ionic-selectable';
 
 
 interface Dcin {
@@ -75,7 +74,7 @@ interface Dcin {
   templateUrl: './dc-in.page.html',
   styleUrls: ['./dc-in.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule,IonicSelectableComponent],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DcInPage implements OnInit {
@@ -158,7 +157,7 @@ discount:number=0;
 
   ttotal!: number;
   myform: FormGroup;
-  supplier$: Observable<any[]>;
+  supplier$: any;
   totalItemNo: number = 0;
   totalQuantity: number = 0;
   totalGrossAmt: number = 0;
@@ -203,10 +202,6 @@ isOpen = false;
   attr6:string='';
   attr7:string='';
   attr8:string='';
-  selectedItemAttributes: any[] = [];
-  filteredOptions: any[] = [];
-  searchQuery: string = '';
-  allOptions: any[] = [];
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private vendname1: VendorService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcinService: DcinService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
    // this.cdr.detectChanges();
     const compid = '1';
@@ -869,19 +864,9 @@ return this.totalquantity;
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       // this.calculateDiscountPercentage();
     });
-  // Fetch data and populate hsnOptions$
-  // this.fetchData();
 
+  }
 
-}
-// fetchData() {
-//   this.supplier$ = this.vendname1.fetchallVendor('','','');
-//   this.supplier$.subscribe(options => {
-//     this.allOptions = options;
-//     // Initially, set filteredOptions to allOptions
-//     this.filteredOptions = [...this.allOptions];
-//   });
-// }
   calculateNetRate() {
     // Add your logic to calculate netrate based on basicrate, taxrate, and discount
     const basicrate = this.myform.get('basicrate')?.value ?? 0; // Use the nullish coalescing operator to provide a default value if null
@@ -928,13 +913,12 @@ return this.totalquantity;
   }
 
   async onVendorSubmit() {
-    const fields = { name: this.name, vendor_code: this.vendor_code };
+    const fields = { name: this.name, vendor_code: this.vendor_code, }
     const isValid = await this.formService.validateForm(fields);
-  
-    if (isValid) {
-      console.log('Your form data : ', this.vendorpop.value);
-  
-      let venddata: vend = {
+    if (await this.formService.validateForm(fields)) {
+
+      console.log('Your form data : ', this.myform.value);
+      const venddata: vend = {
         name: this.vendorpop.value.name,
         customer_code: this.vendorpop.value.vendor_code,
         gstin: this.vendorpop.value.gstin,
@@ -972,35 +956,33 @@ return this.totalquantity;
         address1: '',
         discount: 0
       };
-  
+
       this.vendService.createVendor(venddata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          
-          // After successfully adding the vendor, fetch the updated vendor data again
-          this.fetchVendorData();
-          
-          // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
+
+          this.formService.showSaveLoader()
+          //this.myform.reset();
+          //this.onNew()
           
-          // Reset the form
-          this.vendorpop.reset();
+
         },
         (error: any) => {
           console.error('POST request failed', error);
-          
-          // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
+          this.formService.shoErrorLoader();
         }
       );
+
     } else {
-      // If the form is not valid, display error messages
-      Object.keys(this.vendorpop.controls).forEach(controlName => {
-        const control = this.vendorpop.get(controlName);
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
@@ -1010,41 +992,12 @@ return this.totalquantity;
       }
     }
   }
-  
-  fetchVendorData() {
-    // Assuming you have a method to fetch the updated vendor data
-    // Here, you'll update the 'supplier$' observable with the new data
-    this.supplier$ = this.vendService.fetchallVendor('','', '');
-  }
-  
 
   onKeyDown(event: KeyboardEvent): void {
-    // Prevent the default behavior for Enter key
-    if (event.key === 'Enter') {
-        event.preventDefault();
-    }
-
-    // Prevent incrementing/decrementing on arrow keys
+    // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault();
-    }
-}
-
-  filterOptions(): void {
-    if (this.searchQuery) {
-      this.filteredOptions = this.allOptions.filter(option =>
-        option.vendname1.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    } else {
-      // If search query is empty, show all options without creating a new array
-      this.filteredOptions = this.allOptions;
+      event.preventDefault();
     }
   }
-  
-  selectOption(option: any): void {
-    // Handle option selection
-    console.log('Selected option:', option);
-  }
 
-  
 }

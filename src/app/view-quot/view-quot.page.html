@@ -76,7 +76,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
+                  <tr *ngFor="let quote of quote$ | async; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td *ngFor="let col of selectedColumns">{{ quote[col] }}</td>
                     <td class="Action">

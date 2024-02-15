@@ -138,26 +138,26 @@ export class ViewQuotPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
-    return this.quote$.pipe(
-      map(quotes =>
-        quotes.filter(quote =>
-          Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterCustomers(): Observable<any[]> {
+  //   return this.quote$.pipe(
+  //     map(quotes =>
+  //       quotes.filter(quote =>
+  //         Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
 
   onSearchTermChanged(): void {
-    this.filteredQuatation$ = this.filterCustomers();
+    // this.filteredQuatation$ = this.filterCustomers();
   }
  
   ngOnInit() {
-    // this.filteredQuatation$ = this.quote$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
-    // );
+    this.filteredQuatation$ = this.quote$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      // switchMap(() => this.filterCustomers())
+    );
     this.filteredBillingData$ = this.quote$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods
