@@ -351,14 +351,22 @@ export class PaymentPage implements OnInit {
   }
 
   calculateTotalCurrentAmt(): number {
-    // Convert this.currentamt to a number before returning
-    return this.currentamt;
+    let totalCurrentAmt = 0;
+    for (let purchase of this.myPaymentBillData) {
+      totalCurrentAmt += parseFloat(purchase.currentamt);
+    }
+    return totalCurrentAmt;
   }
+  
 
   calculateTotalPendingAmt(): number {
     // Convert this.billpendingamt to a number before returning
     return this.pendingamt;
   }
+  calculatePendingAmt(purchase: { total: number; currentamt: number; }): number {
+    return purchase.total - purchase.currentamt;
+  }
+  
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {

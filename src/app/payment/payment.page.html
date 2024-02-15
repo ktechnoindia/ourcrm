@@ -137,31 +137,35 @@
                           <td><ion-checkbox ></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
-                            <ion-input type="text" name="billno " [value]="purchase.billNumber" >
+                              <ion-input type="text" name="billno " [value]="purchase.billNumber" >
+                              </ion-input>
+                          </td>
+                          <td>
+                              <ion-input type="text" name="billdate " [value]="purchase.billDate" >
+                              </ion-input>
+                          </td>
+                          <td>
+                              <ion-input class="date" type="number" name="totalamt" [value]="purchase.total"  (keydown)="onKeyDown($event)"></ion-input>
+                          </td>
+                          <td>
+                              <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="purchase.receiveamt"
+                                  formControlName="receiveamt"  (keydown)="onKeyDown($event)"></ion-input>
+                          </td>
+                          <td>
+                              <ion-input class="date" type="number" name="currentamt" [(ngModel)]="purchase.currentamt"
+                                  formControlName="currentamt"  (keydown)="onKeyDown($event)"></ion-input>
+                          </td>
+                          <td>
+                            <ion-input class="date" type="number" name="pendingamt" [(ngModel)]="purchase.pendingamt"
+                                       formControlName="pendingamt" (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(purchase)">
                             </ion-input>
-                          </td>
-                          <td>
-                            <ion-input type="text" name="billdate " [value]="purchase.billDate" >
-                            </ion-input>
-                          </td>
-                          <td>
-                            <ion-input class="date" type="number" name="totalamt" [value]="purchase.total"  (keydown)="onKeyDown($event)"></ion-input>
-                          </td>
-
-                          <td>
-                            <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="receiveamt"
-                              formControlName="receiveamt"  (keydown)="onKeyDown($event)"></ion-input>
-                          </td>
-                          <td>
-                            <ion-input class="date" type="number" name="currentamt" [(ngModel)]="currentamt"
-                              formControlName="currentamt"  (keydown)="onKeyDown($event)"></ion-input>
-                          </td>
-                          <td>
-                            <ion-input type="number" name="pendingamt" [(ngModel)]="pendingamt"
-                              formControlName="pendingamt"  (keydown)="onKeyDown($event)"></ion-input>
-                          </td>
-
-                        </tr>
+                        </td>
+                        
+                        
+                        
+                        
+                      </tr>
+                      
                       </table>
                     </div>
                     <div style="width: 100%;">
@@ -180,7 +184,9 @@
                           <td>
                             <label for="" >Total Current Amt:</label>
                             <input type="number" name="totalcurrentamt" [(ngModel)]="totalcurrentamt"
-                            [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt"  (keydown)="onKeyDown($event)">
+                            [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt"
+                            (keydown)="onKeyDown($event)">
+                     
                           </td>
                           <td>
                             <label for="" >Total Pending Amt:</label>
