@@ -215,8 +215,9 @@
                   </ion-toolbar>
 
                   <ng-container [ngSwitch]="type">
-                    <div style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
-                      <ion-row>
+                    <div *ngIf="step1">
+                    <div   style="width: 100%; margin-bottom: 30px;" *ngSwitchCase="'all'">
+                      <ion-row >
                         <ion-col size="12" size-lg="4" size-md="4" size-sm="5">
                           <ion-row *ngFor="let attributeKey of getAttributeKeys(); let i = index">
                             <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark"
@@ -309,7 +310,7 @@
                         </ion-col>
                       </ion-row>
                     </div>
-
+                  </div>
                     <div style="width: 100%;height: 100%; margin: 0 auto;" *ngSwitchCase="'Image'">
 
                       <ion-row>

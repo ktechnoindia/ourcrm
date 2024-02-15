@@ -375,7 +375,7 @@ export class AddSalePage implements OnInit {
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));
-    let quotedatas: salesstore[] = [];
+    let salesdatas: salesstore[] = [];
 
     if (await this.formService.validateForm(fields)) {
 
@@ -391,7 +391,6 @@ export class AddSalePage implements OnInit {
         console.log(element);
         const companyid = 1;
         const userid = 1;
-        let salesdatas: salesstore[] = [];
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -461,7 +460,7 @@ export class AddSalePage implements OnInit {
         };
 
         salesdatas.push(saledata);
-
+      }
         this.saleService.createsale(salesdatas, '', '').subscribe(
           (response: any) => {
             console.log('POST request successful', response);
@@ -480,7 +479,7 @@ export class AddSalePage implements OnInit {
             this.formService.shoErrorLoader();
           }
         );
-      }
+      
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

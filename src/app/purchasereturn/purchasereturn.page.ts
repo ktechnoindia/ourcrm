@@ -379,7 +379,7 @@ export class PurchasereturnPage implements OnInit {
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
-    let quotedatas: purchasestore[] = [];
+    let purchases: purchasereturnstore[] = [];
 
 
     if (await this.formService.validateForm(fields)) {
@@ -395,7 +395,6 @@ export class PurchasereturnPage implements OnInit {
         console.log('Your form data : ', this.myform.value);
         const companyid = 1;
         const userid = 1;
-        let purchases: purchasereturnstore[] = [];
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -465,8 +464,8 @@ export class PurchasereturnPage implements OnInit {
           quantityPopoverData: attributesArray,
 
         };
-
         purchases.push(purchasedata);
+      }
         this.purchasereturnService.createpurchasereturn(purchases, '', '').subscribe(
           (response: any) => {
             console.log('POST request successful', response);
@@ -485,7 +484,7 @@ export class PurchasereturnPage implements OnInit {
             this.formService.shoErrorLoader();
           }
         );
-      }
+      
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

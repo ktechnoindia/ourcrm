@@ -162,11 +162,11 @@ export class ViewSalePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.filteredSales$ = this.sales$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
-    // );
+    this.filteredSales$ = this.sales$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
     this.filteredBillingData$ = this.sales$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods

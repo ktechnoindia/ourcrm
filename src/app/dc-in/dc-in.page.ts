@@ -417,7 +417,7 @@ isOpen = false;
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
-      let quotedatas: dcinstore[] = [];
+      let decindatas: dcinstore[] = [];
 
       for (const element of dcinData) {
 
@@ -433,7 +433,6 @@ isOpen = false;
 
         const companyid = 1;
         const userid = 1;
-        let decindatas: dcinstore[] = [];
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -496,7 +495,7 @@ isOpen = false;
         }
         
         decindatas.push(dcindata);
-
+      }
         this.dcinService.createdcin(decindatas, '', '').subscribe(
           (response: any) => {
             console.log('POST request successful', response);
@@ -516,7 +515,6 @@ isOpen = false;
           }
           
         );
-      }
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

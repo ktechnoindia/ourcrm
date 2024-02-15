@@ -346,7 +346,7 @@ export class DcOutPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcoutData));
-      let quotedatas: dcoutstore[] = [];
+      let dcoutdatas: dcoutstore[] = [];
       for (const element of dcoutData) {
 
         element.grossrate = element.basicrate * element.quantity;
@@ -360,7 +360,6 @@ export class DcOutPage implements OnInit {
         console.log(element);
         const companyid = 1;
         const userid = 1;
-        let dcoutdatas: dcoutstore[] = [];
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -424,7 +423,7 @@ export class DcOutPage implements OnInit {
         };
 
         dcoutdatas.push(dcoutdata);
-
+      }
         this.dcout.createdcout(dcoutdatas, '', '').subscribe(
           (response: any) => {
             console.log('POST request successful', response);
@@ -432,8 +431,8 @@ export class DcOutPage implements OnInit {
               this.formService.showSuccessAlert();
             }, 1000);
             this.formService.showSaveLoader();
-            // this.myform.reset();
-            location.reload()
+            this.myform.reset();
+            // location.reload()
           },
           (error: any) => {
             console.log('POST request failed', error);
@@ -443,7 +442,7 @@ export class DcOutPage implements OnInit {
             this.formService.shoErrorLoader();
           }
         );
-      }
+      
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
