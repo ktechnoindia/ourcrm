@@ -240,3 +240,216 @@ ion-popover {
 .attributes th input{
   background-color: transparent;
   }
+  .invoice {
+    border: 1px solid #ccc;
+    padding: 20px;
+  
+}
+
+.invoice-header {
+    text-align: center;
+
+}
+
+.invoice-header h1 {
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.invoice-content {
+    margin-top: 20px;
+}
+
+.customer-details,
+.items {
+    margin-bottom: 20px;
+}
+
+.item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.invoice-content tr th {
+    background: rgb(215, 215, 215);
+}
+
+.invoice-content tbody tr{
+    max-height: 30px !important;
+    min-height: 30px !important;
+    font-size: 18px;
+}
+.invoice-suheader {
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-bottom: solid 2px #000;
+}
+
+.invoice-subheader img {
+    height: 150px;
+    width: 150px;
+
+}
+
+.invoice-subheader h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.invoice-subheader h5 {
+    font-size: 12px;
+
+    span {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+}
+
+.details h5 {
+    font-size: 18px;
+    border-bottom: solid 2px #000;
+    margin: 0;
+    height: 35px;
+
+    span {
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: left;
+        width: 130px !important;
+    }
+}
+
+.shipping {
+    border: solid 2px #000;
+
+    h1 {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0px;
+        width: 100%;
+        padding: 4px;
+        border-bottom: solid 2px #000;
+
+    }
+
+    h5 {
+        font-size: 14px;
+        margin: 0;
+        height: 30px;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: left;
+        margin-left: 10px;
+
+    }
+}
+
+.Declaration {
+    border: solid 2px #000;
+    border-top: none;
+
+    h5 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: left;
+        margin-left: 10px;
+
+    }
+}
+
+.invoice-footer {
+    text-align: left;
+    margin-top: 20px;
+    border: solid 1px #000;
+
+    tr th {
+        background: rgb(215, 215, 215);
+        padding: 3px;
+    }
+
+    tr td {
+        background: #ffffff;
+        padding: 4px;
+    }
+
+    .banktable {
+        margin-top: 230px;
+    }
+}
+
+.invoice-footer h5 span {
+    font-weight: 800;
+    height: 25px !important;
+    padding: -5px;
+    justify-content: center;
+
+
+}
+
+.invoice-footer span {
+
+    p {
+        text-align: center;
+    }
+}
+.terms{
+    border-right: solid 2px #000;
+}
+.terms h6{
+font-weight: 600;
+text-align: left;
+font-size: 18px;
+}
+
+@media screen {
+  .invoice{
+    display: none;
+    visibility: hidden;
+  }
+}
+@media print {  
+  .invoice{
+    display: block;
+    visibility: visible;
+  }
+  .invoice {
+    /* Reduce font size and margins to fit on a single page */
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  /* Show the invoice content */
+  .invoice-content {
+    display: block;
+  }
+
+  /* Hide the rest of the page content */
+  body {
+    visibility: hidden;
+  }
+  .Customer {
+    display: none;
+    visibility: hidden;
+  }
+  ion-header{
+    visibility: hidden;
+    display: block;
+  }
+  
+}

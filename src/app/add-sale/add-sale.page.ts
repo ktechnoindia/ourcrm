@@ -18,6 +18,8 @@ import { CountryService } from '../services/country.service';
 import { StateService } from '../services/state.service';
 import { DistrictsService } from '../services/districts.service';
 import { InvoicePage } from "../invoice/invoice.page";
+import { SessionService } from '../services/session.service';
+import { CreatecompanyService } from '../services/createcompany.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -222,13 +224,31 @@ export class AddSalePage implements OnInit {
   printThisPage() {
     window.print();
   }
-  constructor(private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
-    const compid = '1';
-    this.taxrate$ = this.gstsrvs.getgsttype();
+
+  company$: Observable<any[]>
+  customers$: Observable<any[]>
+  compid: number = 0;
+  sales$: Observable<any[]>
+  totalAmount: number = 0;
+  discountAmount: number = 0;
+  grandTotal: number = 0;
+  taxAmount: number = 0;
+  cgstamt: number = 0;
+  sgstamt: number = 0;
+  igstamt: number = 0;
+  pretaxAmount: number = 0;
+  posttaxAmount: number = 0;
+  totalitem:number=0;
+
+
+  constructor(public session: SessionService, private companyService: CreatecompanyService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
+ const compid = this.session.getValue('userid')?.valueOf() as number;
+    const companyid = '1';
+        this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
-    this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
+    // this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     this.billDate = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
@@ -236,6 +256,10 @@ export class AddSalePage implements OnInit {
     this.purchasebyid$=new Observable;
 
    
+    //Invoice 
+    this.company$ = this.companyService.fetchallcompany(compid, '', '');
+    this.customers$ = this.custname1.fetchallCustomer(encService.encrypt(companyid), '', '');
+    this.sales$ = this.saleService.fetchallSales(encService.encrypt(companyid), '', '');
 
     this.myform = this.formBuilder.group({
       billformate: [''],

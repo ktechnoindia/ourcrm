@@ -472,128 +472,128 @@ export class AddQuotPage implements OnInit {
     }];
   }
 
-  async onSubmit(form: FormGroup, quoteData: Quote[]) {
-    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+    async onSubmit(form: FormGroup, quoteData: Quote[]) {
+      const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-    // htmlForm.addEventListener('keydown', (event) => {
-    //   // Prevent the default behavior for Enter key
-    //   if (event.key === 'Enter') {
-    //     event.preventDefault();
-    //   }
-    // });
-    const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
+      // htmlForm.addEventListener('keydown', (event) => {
+      //   // Prevent the default behavior for Enter key
+      //   if (event.key === 'Enter') {
+      //     event.preventDefault();
+      //   }
+      // });
+      const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
+      const isValid = await this.formService.validateForm(fields);
+      if (await this.formService.validateForm(fields)) {
 
-      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
+        console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
-      const quotedatas: quotestore[] = [];
+        const quotedatas: quotestore[] = [];
 
-      for (const element of quoteData) {
-        element.grossrate = element.basicrate * element.quantity;
-        // element.netrate = element.basicrate + element.totaltax;
-        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
-        element.total = element.totaltax + element.grossrate;
-        element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
-        this.totalquantity = element.total + +element.quantity;
-        console.log(element);
-        const companyid = 1;
-        const userid = 1;
-        let attributesArray = element.quantityPopoverData.map(attr => ({
-          attr1: attr.attr1,
-          attr2: attr.attr2,
-          attr3: attr.attr3,
-          attr4: attr.attr4,
-          attr5: attr.attr5,
-          attr6: attr.attr6,
-          attr7: attr.attr7,
-          attr8: attr.attr8,
-          companyid: attr.companyid,
-          itemcode: attr.itemcode,
-        }))
-        const quotedata: quotestore = {
-          billformate: this.myform.value.billformate,
-          quoteNumber: this.myform.value.quoteNumber,
-          quateDate: this.myform.value.quateDate,
-          custcode: this.myform.value.custcode.toString(),
-          custname: this.myform.value.custname,
-          refrence: this.myform.value.refrence,
-          refdate: this.myform.value.refdate,
-          barcode: element.barcode,
-          itemcode: element.itemcode,
-          itemname: element.itemname,
-          description: element.description,
-          quantity: element.quantity,
-          unitname: element.hunitname,
-          mrp: element.mrp,
-          basicrate: element.basicrate,
-          netrate: element.netrate,
-          grossrate: element.grossrate, // Add grossrate
-          taxrate: element.taxrate,
-          IGST: element.IGST,
-          CGST: element.CGST,
-          SGST: element.SGST,
-          discount: element.discount,
-          discountamt: element.discountamt,
-          totaltax: element.totaltax,
-          total: element.total,
-          totalitemno: this.myform.value.totalitemno,
-          totalquantity: this.myform.value.totalquantity,
-          totalgrossamt: this.myform.value.totalgrossamt,
-          totaldiscountamt: this.myform.value.totaldiscountamt,
-          totaltaxamount: this.myform.value.totaltaxamount,
-          totalnetamount: this.myform.value.totalnetamount,
-          deliverydate: this.myform.value.deliverydate,
-          deliveryplace: this.myform.value.deliveryplace,
-          roundoff: this.myform.value.roundoff,
-          pretax: this.myform.value.pretax,
-          posttax: this.myform.value.posttax,
-          openingbalance: this.myform.value.openingbalance,
-          closingbalance: this.myform.value.closingbalance,
-          debit: this.myform.value.debit,
-          credit: this.myform.value.credit,
-          ttotal: 0,
-          itemid: element.itemid,
-          companyid: companyid,
-          userid: userid,
-          quantityPopoverData: attributesArray,
+        for (const element of quoteData) {
+          element.grossrate = element.basicrate * element.quantity;
+          // element.netrate = element.basicrate + element.totaltax;
+          element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+          element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+          element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+          element.total = element.totaltax + element.grossrate;
+          element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
+          this.totalquantity = element.total + +element.quantity;
+          console.log(element);
+          const companyid = 1;
+          const userid = 1;
+          let attributesArray = element.quantityPopoverData.map(attr => ({
+            attr1: attr.attr1,
+            attr2: attr.attr2,
+            attr3: attr.attr3,
+            attr4: attr.attr4,
+            attr5: attr.attr5,
+            attr6: attr.attr6,
+            attr7: attr.attr7,
+            attr8: attr.attr8,
+            companyid: attr.companyid,
+            itemcode: attr.itemcode,
+          }))
+          const quotedata: quotestore = {
+            billformate: this.myform.value.billformate,
+            quoteNumber: this.myform.value.quoteNumber,
+            quateDate: this.myform.value.quateDate,
+            custcode: this.myform.value.custcode.toString(),
+            custname: this.myform.value.custname,
+            refrence: this.myform.value.refrence,
+            refdate: this.myform.value.refdate,
+            barcode: element.barcode,
+            itemcode: element.itemcode,
+            itemname: element.itemname,
+            description: element.description,
+            quantity: element.quantity,
+            unitname: element.hunitname,
+            mrp: element.mrp,
+            basicrate: element.basicrate,
+            netrate: element.netrate,
+            grossrate: element.grossrate, // Add grossrate
+            taxrate: element.taxrate,
+            IGST: element.IGST,
+            CGST: element.CGST,
+            SGST: element.SGST,
+            discount: element.discount,
+            discountamt: element.discountamt,
+            totaltax: element.totaltax,
+            total: element.total,
+            totalitemno: this.myform.value.totalitemno,
+            totalquantity: this.myform.value.totalquantity,
+            totalgrossamt: this.myform.value.totalgrossamt,
+            totaldiscountamt: this.myform.value.totaldiscountamt,
+            totaltaxamount: this.myform.value.totaltaxamount,
+            totalnetamount: this.myform.value.totalnetamount,
+            deliverydate: this.myform.value.deliverydate,
+            deliveryplace: this.myform.value.deliveryplace,
+            roundoff: this.myform.value.roundoff,
+            pretax: this.myform.value.pretax,
+            posttax: this.myform.value.posttax,
+            openingbalance: this.myform.value.openingbalance,
+            closingbalance: this.myform.value.closingbalance,
+            debit: this.myform.value.debit,
+            credit: this.myform.value.credit,
+            ttotal: 0,
+            itemid: element.itemid,
+            companyid: companyid,
+            userid: userid,
+            quantityPopoverData: attributesArray,
 
-        };
+          };
 
-        quotedatas.push(quotedata);
-      }
-      this.quote.createquote(quotedatas, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          this.formService.showSuccessAlert();
-          this.formService.showSaveLoader();
-          this.myform.reset();
-          // Consider navigating to a different page or providing a success message instead of location.reload()
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          this.formService.showFailedAlert();
-          this.formService.shoErrorLoader();
-          this.myform.reset();
+          quotedatas.push(quotedata);
         }
-      );
+        this.quote.createquote(quotedatas, '', '').subscribe(
+          (response: any) => {
+            console.log('POST request successful', response);
+            this.formService.showSuccessAlert();
+            this.formService.showSaveLoader();
+            this.myform.reset();
+            // Consider navigating to a different page or providing a success message instead of location.reload()
+          },
+          (error: any) => {
+            console.error('POST request failed', error);
+            this.formService.showFailedAlert();
+            this.formService.shoErrorLoader();
+            this.myform.reset();
+          }
+        );
 
-    } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
+      } else {
+        //If the form is not valid, display error messages
+        Object.keys(this.myform.controls).forEach(controlName => {
+          const control = this.myform.get(controlName);
+          if (control?.invalid) {
+            control.markAsTouched();
+          }
+        });
+        if (this.firstInvalidInput) {
+          this.firstInvalidInput.setFocus();
         }
-      });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
       }
+
     }
-
-  }
 
   getItems(quote: any) {
     const compid = 1;

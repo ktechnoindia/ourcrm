@@ -18,10 +18,7 @@ import { SalesService } from '../services/sales.service';
 })
 export class InvoicePage implements OnInit {
   @Input() invoiceData: any; // Define input property to receive invoice data
-  invoiceDate: string = 'January 1, 2024';
-  customerName: string = 'John Doe';
-  customerEmail: string = 'john@example.com';
-  customerPhone: string = '123-456-7890';
+  
 
   company$: Observable<any[]>
   customers$: Observable<any[]>
