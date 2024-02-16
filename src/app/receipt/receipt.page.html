@@ -68,8 +68,9 @@
                           </td>
                           <!-- Assuming the input field for outstanding_amount is in the first row -->
                           <td *ngIf="outstanding_amount !== null">
-                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" [value]="outstanding"
-                              formControlName="outstanding" type="number" (keydown)="onKeyDown($event)"></ion-input>
+                            <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
+                              [value]="outstanding" formControlName="outstanding" type="number"
+                              (keydown)="onKeyDown($event)"></ion-input>
                           </td>
 
                           <td>
@@ -79,18 +80,20 @@
                           <td>
 
                             <ion-input class="table_input" name="pendingamt" [(ngModel)]="pendingamt"
-                              [value]="calculatePendingAmount()" formControlName="pendingamt" type="number" (keydown)="onKeyDown($event)"></ion-input>
+                              [value]="calculatePendingAmount()" formControlName="pendingamt" type="number"
+                              (keydown)="onKeyDown($event)"></ion-input>
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
-                              formControlName="paymentway" id=""(change)="fillbillwisedata(selectedCustomerId,paymentway)">
+                              formControlName="paymentway" id=""
+                              (change)="fillbillwisedata(selectedCustomerId,paymentway)">
                               <option value="">Select Payment Way</option>
                               <option value="BillWise">BillWise</option>
                               <option value="On Account">On Account</option>
                             </select>
                           </td>
                         </tr>
-                      </table>  
+                      </table>
                     </div>
                   </ion-row>
                   <!-- <table>
@@ -135,34 +138,37 @@
 
                         </tr>
                         <tr *ngFor="let sale of myReceiptBillData; let i = index">
-                          <td><ion-checkbox ></ion-checkbox></td>
+                          <td><ion-checkbox></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
                             <input type="text" name="billno" [(ngModel)]="sale.billNumber"
-                            [ngModelOptions]="{standalone: true}">
+                              [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <input type="text" name="billdate"  [(ngModel)]="sale.billDate"
-                            [ngModelOptions]="{standalone: true}">
+                            <input type="text" name="billdate" [(ngModel)]="sale.billDate"
+                              [ngModelOptions]="{standalone: true}">
                           </td>
                           <td>
-                            <input class="date" type="number" name="totalamt" [(ngModel)]="sale.total"
-                            [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
+                            <input class="date" type="number" name="total" [(ngModel)]="sale.total"
+                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
                           </td>
 
                           <td>
-                            <input class="date" type="number" name="receiveamt" [(ngModel)]="receiveamt"
+                            <input class="date" type="number" name="receiveamt" [(ngModel)]="sale.receiveamt"
                               [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
                           </td>
                           <td>
-                            <input class="date" type="number" name="currentamt" [(ngModel)]="currentamt"
-                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)" (keydown)="onKeyDown($event)">
-                          </td>
-                          <td>
-                            <input type="number" name="billpendingamt" [(ngModel)]="billpendingamt"
-                              [ngModelOptions]="{standalone: true}"  (keydown)="onKeyDown($event)">
+                            <input class="date" type="number" name="currentamt" [(ngModel)]="sale.currentamt"
+                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)"
+                              (keydown)="onKeyDown($event)">
                           </td>
 
+                          <td>
+                            <ion-input class="date" type="number" name="billpendingamt"
+                              [(ngModel)]="sale.billpendingamt" formControlName="billpendingamt"
+                              (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(sale)">
+                            </ion-input>
+                          </td>
                         </tr>
                       </table>
                     </div>
@@ -172,23 +178,26 @@
                           <td>
                             <label for="">Total Due Amt:</label>
                             <input type="number" name="totaldueamt" [(ngModel)]="totaldueamt"
-                              [value]="calculateTotalDueAmt()" formControlName="totaldueamt" (keydown)="onKeyDown($event)">
+                              [value]="calculateTotalDueAmt()" formControlName="totaldueamt"
+                              (keydown)="onKeyDown($event)">
                           </td>
+
                           <td>
                             <label for="">Total Receive Amt:</label>
                             <input type="number" name="totalreceiveamt" [(ngModel)]="totalreceiveamt"
-                              [value]="calculateTotalReceiveAmt()" formControlName="totalreceiveamt" (keydown)="onKeyDown($event)">
+                              [value]="calculateTotalReceiveAmt()" formControlName="totalreceiveamt"
+                              (keydown)="onKeyDown($event)">
                           </td>
                           <td>
                             <label for="">Total Current Amt:</label>
                             <input type="number" name="totalcurrentamt" [(ngModel)]="totalcurrentamt"
-                              [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt" (keydown)="onKeyDown($event)">
+                              [value]="calculateTotalCurrentAmt()" formControlName="totalcurrentamt"
+                              (keydown)="onKeyDown($event)">
                           </td>
                           <td>
                             <label for="">Total Pending Amt:</label>
-                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt"
-                              [value]="calculateTotalPendingAmt()" formControlName="totalpendingamt" (keydown)="onKeyDown($event)">
-                          </td>
+                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt" [value]="calculateTotalPendingAmt()" formControlName="totalpendingamt" (keydown)="onKeyDown($event)">
+                        </td>
                         </tr>
                       </table>
                     </div>

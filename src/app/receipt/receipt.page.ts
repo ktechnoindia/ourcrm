@@ -88,7 +88,7 @@ export class ReceiptPage implements OnInit {
   recepitbill: Subscription;
 
 
-  constructor(private session: SessionService,private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
+  constructor(private session: SessionService, private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.recepitbill = new Subscription();
 
@@ -97,7 +97,7 @@ export class ReceiptPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
 
-   
+
     this.outstanding$ = this.receiptservice.fetchUserOutstanding(this.userid);
     // this.outstanding$.subscribe(outstandingData => {
     //   console.log(outstandingData);
@@ -152,15 +152,15 @@ export class ReceiptPage implements OnInit {
       this.filluseroutstanding(this.selectedCustomerId);
       // Call your service method with the selected customer ID
       this.recepitbill = this.receiptservice.getSalesById(1, this.selectedCustomerId).subscribe(bill => {
-      console.log('data length', bill.length)
+        console.log('data length', bill.length)
         if (bill && bill.length > 0) {
           const bills = bill[0];
           console.log('bills data', bill[0])
           this.billno = bills.billno;
           this.billdate = bills.billdate;
           this.totalamt = bills.totalamt;
-          this.pendingamt=bills.pendingamt;
-         // this.outstanding=bills.outstanding;
+          this.pendingamt = bills.pendingamt;
+          // this.outstanding=bills.outstanding;
           // this.paymentmade=bills.paymentmade;          
           this.myform.patchValue({
             billno: bills.billNumber,
@@ -171,20 +171,21 @@ export class ReceiptPage implements OnInit {
       });
     }
   }
+
   async filluseroutstanding(userid:number){
     this.receiptservice.fetchUserOutstanding(userid).subscribe((outstandingArray: any[]) => {
       if(outstandingArray!) this.outstanding=outstandingArray[0]?.outstanding_amount;
     });
   }
-  async fillbillwisedata(userid:number,paymentway:string){
-    if(paymentway=='BillWise'){
-    this.receiptservice.fillBillWise(userid).subscribe((data: any[]) => {
-      console.log(data);
-      this.myReceiptBillData = data;
-    });
-  }else{
-    alert('not applicable for now');
-  }
+  async fillbillwisedata(userid: number, paymentway: string) {
+    if (paymentway == 'BillWise') {
+      this.receiptservice.fillBillWise(userid).subscribe((data: any[]) => {
+        console.log(data);
+        this.myReceiptBillData = data;
+      });
+    } else {
+      alert('not applicable for now');
+    }
   }
   // getSalesDetails(recepit: any) {
   //   const compid = '1';
@@ -314,6 +315,7 @@ export class ReceiptPage implements OnInit {
   onNew() {
     location.reload();
   }
+ 
   CustomerOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.receiptservice.fetchUserOutstanding(companyId))
@@ -321,7 +323,7 @@ export class ReceiptPage implements OnInit {
       console.log('Received outstanding data:', outstandingArray);
   
       if (outstandingArray && outstandingArray.length > 0) {
-        const firstItem = outstandingArray[1];
+        const firstItem = outstandingArray[0];
         this.outstanding = firstItem.outstanding_amount;
         console.log('outstanding_amount (after fetch):', this.outstanding_amount);
       } else {
@@ -339,10 +341,13 @@ export class ReceiptPage implements OnInit {
     this.router.navigate(['/accountdashboard']); // Navigate back to the previous page
   }
   onCustomerChange() {
-     // Update the 'ledger' field with the selected supplier's name
-     this.myform.patchValue({
+    // Update the 'ledger' field with the selected supplier's name
+    this.myform.patchValue({
       ledger: this.companyname,
     });
+  }
+  calculatePendingAmt(sale: { total: number; currentamt: number; }): number {
+    return sale.total - sale.currentamt;
   }
   calculatePendingAmount(): number {
     this.pendingamt = this.outstanding - this.paymentmade;
@@ -355,22 +360,49 @@ export class ReceiptPage implements OnInit {
   }
 
 
+  // Methods to calculate totals
   calculateTotalDueAmt(): number {
-    return +this.totalamt * this.dataLength;
+    let totalAmt = 0;
+    for (const purchase of this.myReceiptBillData) {
+      // Assuming purchase.total is a numeric value
+      if (typeof purchase.total === 'number') {
+        totalAmt += purchase.total;
+      }
+    }
+    return totalAmt;
   }
 
   calculateTotalReceiveAmt(): number {
-    return +this.receiveamt * this.dataLength;
+    let totalAmt = 0;
+    for (const purchase of this.myReceiptBillData) {
+      // Assuming purchase.receiveamt is a numeric value
+      if (typeof purchase.receiveamt === 'number') {
+        totalAmt += purchase.receiveamt;
+      }
+    }
+    return totalAmt;
   }
 
   calculateTotalCurrentAmt(): number {
-    return +this.currentamt * this.dataLength;
+    let totalCurrentAmt = 0;
+    for (let purchase of this.myReceiptBillData) {
+      totalCurrentAmt += parseFloat(purchase.currentamt);
+    }
+    return totalCurrentAmt;
   }
 
   calculateTotalPendingAmt(): number {
-    return this.billpendingamt * this.dataLength;
+    let totalAmt = 0;
+    for (const sale of this.myReceiptBillData) {
+        // Assuming sale.pendingamt is a numeric value
+        if (typeof sale.pendingamt === 'number') {
+            totalAmt += sale.pendingamt;
+        }
+    }
+    return totalAmt;
+}
 
-  }
+
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {

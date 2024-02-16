@@ -341,14 +341,28 @@ export class PaymentPage implements OnInit {
 
   // Methods to calculate totals
   calculateTotalDueAmt(): number {
-    // Convert this.totalamt to a number before returning
-    return this.totalamt;
-  }
+    let totalAmt = 0;
+    for (const purchase of this.myPaymentBillData) {
+        // Assuming purchase.total is a numeric value
+        if (typeof purchase.total === 'number') {
+            totalAmt += purchase.total;
+        }
+    }
+    return totalAmt;
+}
+
 
   calculateTotalReceiveAmt(): number {
-    // Convert this.receiveamt to a number before returning
-    return this.receiveamt;
-  }
+    let totalAmt = 0;
+    for (const purchase of this.myPaymentBillData) {
+        // Assuming purchase.receiveamt is a numeric value
+        if (typeof purchase.receiveamt === 'number') {
+            totalAmt += purchase.receiveamt;
+        }
+    }
+    return totalAmt;
+}
+
 
   calculateTotalCurrentAmt(): number {
     let totalCurrentAmt = 0;
@@ -360,9 +374,16 @@ export class PaymentPage implements OnInit {
   
 
   calculateTotalPendingAmt(): number {
-    // Convert this.billpendingamt to a number before returning
-    return this.pendingamt;
-  }
+    let totalAmt = 0;
+    for (const purchase of this.myPaymentBillData) {
+        // Assuming purchase.pendingamt is a numeric value
+        if (typeof purchase.pendingamt === 'number') {
+            totalAmt += purchase.pendingamt;
+        }
+    }
+    return totalAmt;
+}
+
   calculatePendingAmt(purchase: { total: number; currentamt: number; }): number {
     return purchase.total - purchase.currentamt;
   }
