@@ -59,14 +59,14 @@ export class ReceipttransactionReportPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredRecepits$ = this.filterRecepit();
+    this.recepits$ = this.filterRecepit();
   }
  
   ngOnInit() {
     this.filteredRecepits$ = this.recepits$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterRecepit())
+      // switchMap(() => this.filterRecepit())
     );
   }
 

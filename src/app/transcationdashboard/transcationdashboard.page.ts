@@ -63,21 +63,21 @@ export class TranscationdashboardPage implements OnInit {
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
   username: string = 'Abhishek Pareek';
-  companyname:string='Neelkanth Technologies';
-    searchTerm: string = '';
-  filteredQuatation$: Observable<any[]> = new Observable<any[]>(); 
+  companyname: string = 'Neelkanth Technologies';
+  searchTerm: string = '';
+  filteredQuatation$: Observable<any[]> = new Observable<any[]>();
   searchTerms: string = '';
-  filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
+  filteredPurchase$: Observable<any[]> = new Observable<any[]>();
   searchSale: string = '';
   filteredSales$: Observable<any[]> = new Observable<any[]>();
   searchDcin: string = '';
   filteredDcin$: Observable<any[]> = new Observable<any[]>();
   searchPurchasereturn: string = '';
-  filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>(); 
+  filteredPurchasereturns$: Observable<any[]> = new Observable<any[]>();
   searchSalereturn: string = '';
-  filteredSalereturns$: Observable<any[]> = new Observable<any[]>(); 
+  filteredSalereturns$: Observable<any[]> = new Observable<any[]>();
   searchDcout: string = '';
-  filteredDcout$: Observable<any[]> = new Observable<any[]>(); 
+  filteredDcout$: Observable<any[]> = new Observable<any[]>();
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -88,13 +88,13 @@ export class TranscationdashboardPage implements OnInit {
     this.selectedOptions = ['saleslist', 'purchaselist'];
     const compid = '1';
     const userid = '1';
-    this.quote$=new Observable();
-    this.dcin$=new Observable();
-    this.dcout$= new Observable();
-    this.sales$=new Observable();
-    this.purchase$=new Observable();
-    this.purchasereturn$=new Observable();
-    this.salreturn$=new Observable();
+    this.quote$ = new Observable();
+    this.dcin$ = new Observable();
+    this.dcout$ = new Observable();
+    this.sales$ = new Observable();
+    this.purchase$ = new Observable();
+    this.purchasereturn$ = new Observable();
+    this.salreturn$ = new Observable();
     this.quote$ = this.quoteservice.fetchallQuote(encService.encrypt(compid), (userid), '', '');
     // console.log(this.quote$);
 
@@ -195,106 +195,106 @@ export class TranscationdashboardPage implements OnInit {
   }
 
 
-  // filterQuatation(): Observable<any[]> {
-  //   return this.quote$.pipe(
-  //     map(quotes =>
-  //       quotes.filter(quote =>
-  //         Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterQuatation(): Observable<any[]> {
+    return this.quote$.pipe(
+      map(quotes =>
+        quotes.filter(quote =>
+          Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
-  // filterPurchase(): Observable<any[]> {
-  //   return this.purchase$.pipe(
-  //     map(customers =>
-  //       customers.filter(customer =>
-  //         Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterPurchase(): Observable<any[]> {
+    return this.purchase$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerms.toLowerCase()))
+        )
+      )
+    );
+  }
 
-  // filterSales(): Observable<any[]> {
-  //   return this.sales$.pipe(
-  //     map(sales =>
-  //       sales.filter(sale =>
-  //         Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchSale.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // };
+  filterSales(): Observable<any[]> {
+    return this.sales$.pipe(
+      map(sales =>
+        sales.filter(sale =>
+          Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchSale.toLowerCase()))
+        )
+      )
+    );
+  };
 
-  // filterDcin(): Observable<any[]> {
-  //   return this.dcin$.pipe(
-  //     map(customers =>
-  //       customers.filter(customer =>
-  //         Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchDcin.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // };
+  filterDcin(): Observable<any[]> {
+    return this.dcin$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchDcin.toLowerCase()))
+        )
+      )
+    );
+  };
 
-  // filterPurchasereturn(): Observable<any[]> {
-  //   return this.purchasereturn$.pipe(
-  //     map(purchasereturns =>
-  //       purchasereturns.filter(purchasereturn =>
-  //         Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchPurchasereturn.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterPurchasereturn(): Observable<any[]> {
+    return this.purchasereturn$.pipe(
+      map(purchasereturns =>
+        purchasereturns.filter(purchasereturn =>
+          Object.values(purchasereturn).some(value => String(value).toLowerCase().includes(this.searchPurchasereturn.toLowerCase()))
+        )
+      )
+    );
+  }
 
-  // filterSalereturn(): Observable<any[]> {
-  //   return this.salreturn$.pipe(
-  //     map(salereturns =>
-  //       salereturns.filter(salereturn =>
-  //         Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchSalereturn.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterSalereturn(): Observable<any[]> {
+    return this.salreturn$.pipe(
+      map(salereturns =>
+        salereturns.filter(salereturn =>
+          Object.values(salereturn).some(value => String(value).toLowerCase().includes(this.searchSalereturn.toLowerCase()))
+        )
+      )
+    );
+  }
 
-  // filterDcout(): Observable<any[]> {
-  //   return this.dcout$.pipe(
-  //     map(dcouts =>
-  //       dcouts.filter((dcout:any) =>
-  //         Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchDcout.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterDcout(): Observable<any[]> {
+    return this.dcout$.pipe(
+      map(dcouts =>
+        dcouts.filter((dcout: any) =>
+          Object.values(dcout).some(value => String(value).toLowerCase().includes(this.searchDcout.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermDcout(): void {
-    // this.filteredDcout$ = this.filterDcout();
+    this.dcout$ = this.filterDcout();
   }
 
   onSearchTermSalereturn(): void {
-    // this.filteredSalereturns$ = this.filterSalereturn();
+    this.salreturn$ = this.filterSalereturn();
   }
 
   onSearchTermPurchasereturn(): void {
-    // this.filteredPurchasereturns$ = this.filterPurchasereturn();
+    this.purchasereturn$ = this.filterPurchasereturn();
   }
 
   onSearchTermDcin(): void {
-    // this.filteredDcin$ = this.filterDcin();
+    this.dcin$ = this.filterDcin();
   }
 
   onSearchTermSale(): void {
-    // this.filteredSales$ = this.filterSales();
+    this.sales$ = this.filterSales();
   }
 
   onSearchTermQuote(): void {
-    // this.filteredQuatation$ = this.filterQuatation();
+    this.quote$ = this.filterQuatation();
   }
 
   onSearchTermPurchase(): void {
-    // this.filteredPurchase$ = this.filterPurchase();
+    this.purchase$ = this.filterPurchase();
   }
 
   ngOnInit() {
-     //this.username=await this.session.getValue('username');
+    //this.username=await this.session.getValue('username');
     //this.companyname=await this.session.getValue('companyname');
     const compid = '1';
 

@@ -132,15 +132,15 @@ export class ViewitemPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  // filterCustomers(): Observable<any[]> {
-  //   return this.items$.pipe(
-  //     map(items =>
-  //       items.filter(item =>
-  //         Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filteritem(): Observable<any[]> {
+    return this.items$.pipe(
+      map(items =>
+        items.filter(item =>
+          Object.values(item).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   deleteItem(customerid: number, event: any) {
     
@@ -164,7 +164,7 @@ export class ViewitemPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    // this.filteredItems$ = this.filterCustomers();
+    this.items$ = this.filteritem();
   }
  
   ngOnInit() {

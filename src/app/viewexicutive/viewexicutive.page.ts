@@ -85,7 +85,7 @@ export class ViewexicutivePage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
+  filterExecutive(): Observable<any[]> {
     return this.executives$.pipe(
       map(executives =>
         executives.filter(executive =>
@@ -96,14 +96,14 @@ export class ViewexicutivePage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    // this.filteredExecutives$ = this.filterCustomers();
+    this.executives$ = this.filterExecutive();
   }
  
   ngOnInit() {
     // this.filteredExecutives$ = this.executives$.pipe(
     //   debounceTime(300),
     //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
+    //   switchMap(() => this.filterExecutive())
     // );
   }
 

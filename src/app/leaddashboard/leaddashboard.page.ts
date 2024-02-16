@@ -108,19 +108,19 @@ export class LeaddashboardPage implements OnInit {
   }
 
 
-  filterCustomers(): Observable<any[]> {
-    // return this.lead$.pipe(
-    //   map(leads =>
-    //     leads.filter(lead =>
-    //       Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-    //     )
-    //   )
-    // );
+  filterLead(): Observable<any[]> {
+    return this.lead$.pipe(
+      map(leads =>
+        leads.filter(lead =>
+          Object.values(lead).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
     return this.lead$;
   }
 
   onSearchTermChanged(): void {
-    this.filteredLeads$ = this.filterCustomers();
+    this.lead$ = this.filterLead();
   }
 
   ngOnInit() {
@@ -144,7 +144,7 @@ export class LeaddashboardPage implements OnInit {
     this.filteredLeads$ = this.lead$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterLead())
     );
 
   }

@@ -129,12 +129,12 @@ export class AccountdashboardPage implements OnInit {
   }
 
   onSearchTermPayment(): void {
-    this.filteredPayments$ = this.filterPayement();
+    this.payment$ = this.filterPayement();
   }
 
 
   onSearchTermChanged(): void {
-    this.filteredRecepits$ = this.filterRecepit();
+    this.recepits$ = this.filterRecepit();
   }
 
   async ngOnInit() {

@@ -20,7 +20,7 @@ export class PaymenttransactionReportPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
 
   payment$: Observable<any[]>;
-  filteredPayments$: Observable<any[]> = new Observable<any[]>();
+  // filteredPayments$: Observable<any[]> = new Observable<any[]>();
   searchTerm: string = '';
  
   fromDate: string = '';
@@ -31,21 +31,13 @@ export class PaymenttransactionReportPage implements OnInit {
     console.log(this.payment$);
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
-    this.filteredPayments$=this.payment$;
+    // this.filteredPayments$=this.payment$;
   }
 
-  // filterPayement(): Observable<any[]> {
-  //   return this.payment$.pipe(
-  //     map(payments =>
-  //       payments.filter(payemt =>
-  //         Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredPayments$ = this.payment$.pipe(
+    this.payment$ = this.payment$.pipe(
       map(quotes => quotes.filter(quote => this.isDateInRange(quote.paymentdate, this.fromDate, this.toDate)))
     );
   }
@@ -55,13 +47,21 @@ export class PaymenttransactionReportPage implements OnInit {
     const toDateObj = new Date(toDate);
     return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
-
+  filterPayement(): Observable<any[]> {
+    return this.payment$.pipe(
+      map(payments =>
+        payments.filter(payemt =>
+          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
   onSearchTermPayment(): void {
-    // this.filteredPayments$ = this.filterPayement();
+    this.payment$ = this.filterPayement();
   }
   
   ngOnInit() {
-    this.filteredPayments$ = this.payment$.pipe(
+    this.payment$ = this.payment$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       // switchMap(() => this.filterPayement())

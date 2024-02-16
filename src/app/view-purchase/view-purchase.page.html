@@ -90,7 +90,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let purchase of filteredPurchase$ | async; let i = index">
+                      <tr *ngFor="let purchase of purchase$ | async; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td *ngFor="let col of selectedColumns">{{ purchase[col] }}</td>
                         <td class="Action">

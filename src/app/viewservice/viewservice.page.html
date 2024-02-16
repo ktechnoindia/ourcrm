@@ -50,6 +50,13 @@
                 </table>
               </div>
             </ion-row>
+            <ion-row>
+              <div [attr.colspan]="selectedColumns.length + 1" class="total">
+                <p>Total:
+                  <span style="margin-left: 10px;">{{ totalservice }}</span>
+                </p>
+              </div>
+            </ion-row>
             <ion-row class="custom-primary" style="justify-content: right;">
               <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
                   color="secondry"></ion-icon>Print</ion-button>

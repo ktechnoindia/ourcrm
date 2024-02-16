@@ -222,11 +222,33 @@ export class CompanydashboardPage implements OnInit {
     );
   }
   onSearchTermChanged(): void {
-    this.filteredCustomers$ = this.filterCustomers();
+    this.customers$ = this.filterCustomers();
   
   }
   onSearchTermSupplier(){
-    this.filteredSupplers$ = this.filterSuppliers();
+    this.vendors$ = this.filterSuppliers();
+  }
+  onSearchTermExecutive(): void {
+    this.executives$ = this.filterExecutive();
+  }
+  onSearchTermItem(){
+    this.items$ = this.filterItem();
+  }
+  onSearchTermSale(): void {
+    this.sales$ = this.filterSales();
+  }
+
+  onSearchTermPurchase(): void {
+    this.purchase$ = this.filterPurchase();
+  }
+  onSearchLeadTerm(): void {
+    this.lead$ = this.filterLead();
+  }
+  onSearchTermPayment(): void {
+    this.payment$ = this.filterPayement();
+  }
+  onSearchTermReceipt(): void {
+    this.recepits$ = this.filterRecepit();
   }
   filterExecutive(): Observable<any[]> {
     return this.executives$.pipe(
@@ -247,13 +269,7 @@ export class CompanydashboardPage implements OnInit {
       )
     );
   }
-  onSearchTermExecutive(): void {
-    this.filteredExecutive$ = this.filterExecutive();
-  
-  }
-  onSearchTermItem(){
-    this.filteredItem$ = this.filterItem();
-  }
+ 
   filterPurchase(): Observable<any[]> {
     return this.purchase$.pipe(
       map(customers =>
@@ -273,13 +289,7 @@ export class CompanydashboardPage implements OnInit {
       )
     );
   };
-  onSearchTermSale(): void {
-    this.filteredSales$ = this.filterSales();
-  }
-
-  onSearchTermPurchase(): void {
-    this.filteredPurchase$ = this.filterPurchase();
-  }
+  
   filterLead(): Observable<any[]> {
     return this.lead$.pipe(
       map(leads =>
@@ -289,9 +299,7 @@ export class CompanydashboardPage implements OnInit {
       )
     );
   }
-  onSearchLeadTerm(): void {
-    this.filteredLeads$ = this.filterLead();
-  }
+ 
   filterRecepit(): Observable<any[]> {
     return this.recepits$.pipe(
       map(recepits =>
@@ -312,13 +320,6 @@ export class CompanydashboardPage implements OnInit {
     );
   }
 
-  onSearchTermPayment(): void {
-    this.filteredPayments$ = this.filterPayement();
-  }
-
-
-  onSearchTermReceipt(): void {
-    this.filteredRecepits$ = this.filterRecepit();
-  }
+  
 
 }

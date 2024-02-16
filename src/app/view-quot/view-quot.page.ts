@@ -106,7 +106,7 @@ export class ViewQuotPage implements OnInit {
   
   manualHeaders: string[] = [];
   selectedTimePeriods: string[] = [];
-  filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
+  // filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
 
   totalItems: number = 0;
   constructor(private encService: EncryptionService, private quoteservice: QuotationService, private router: Router, private toastCtrl: ToastController) {
@@ -138,27 +138,27 @@ export class ViewQuotPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  // filterCustomers(): Observable<any[]> {
-  //   return this.quote$.pipe(
-  //     map(quotes =>
-  //       quotes.filter(quote =>
-  //         Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterQuotation(): Observable<any[]> {
+    return this.quote$.pipe(
+      map(quotes =>
+        quotes.filter(quote =>
+          Object.values(quote).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermChanged(): void {
-    // this.filteredQuatation$ = this.filterCustomers();
+    this.quote$ = this.filterQuotation();
   }
  
   ngOnInit() {
-    this.filteredQuatation$ = this.quote$.pipe(
+    this.quote$ = this.quote$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       // switchMap(() => this.filterCustomers())
     );
-    this.filteredBillingData$ = this.quote$.pipe(
+    this.quote$ = this.quote$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods
         return data.filter(quote => {
@@ -203,7 +203,7 @@ export class ViewQuotPage implements OnInit {
 
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredQuatation$ = this.quote$.pipe(
+    this.quote$ = this.quote$.pipe(
       map(quotes => quotes.filter(quote => this.isDateInRange(quote.billDate, this.formDate, this.toDate)))
     );
   }

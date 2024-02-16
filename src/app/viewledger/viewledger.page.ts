@@ -136,25 +136,25 @@ export class ViewledgerPage implements OnInit {
     });
   }
 
-  // filterCustomers(): Observable<any[]> {
-  //   return this.ledgers$.pipe(
-  //     map(ledgers =>
-  //       ledgers.filter(ledger =>
-  //         Object.values(ledger).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterledger(): Observable<any[]> {
+    return this.ledgers$.pipe(
+      map(ledgers =>
+        ledgers.filter(ledger =>
+          Object.values(ledger).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermChanged(): void {
-    // this.filteredLedgers$ = this.filterCustomers();
+    this.ledgers$ = this.filterledger();
   }
  
   ngOnInit() {
     this.filteredLedgers$ = this.ledgers$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      // switchMap(() => this.filterCustomers())
+      // switchMap(() => this.filterledger())
     );
   }
   filterData() {

@@ -147,7 +147,7 @@ export class ViewSalePage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
+  filtersales(): Observable<any[]> {
     return this.sales$.pipe(
       map(sales =>
         sales.filter(sale =>
@@ -158,14 +158,14 @@ export class ViewSalePage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredSales$ = this.filterCustomers();
+    this.sales$ = this.filtersales();
   }
 
   ngOnInit() {
     this.filteredSales$ = this.sales$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filtersales())
     );
     this.filteredBillingData$ = this.sales$.pipe(
       map(data => {
@@ -210,7 +210,7 @@ export class ViewSalePage implements OnInit {
 
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredSales$ = this.sales$.pipe(
+    this.sales$ = this.sales$.pipe(
       map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
     );
   }

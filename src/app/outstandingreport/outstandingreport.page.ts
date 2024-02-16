@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService } from '../services/recepit.service';
-import { Observable, forkJoin, of } from 'rxjs';
+import { Observable, forkJoin, map, of } from 'rxjs';
 import { CustomerService } from '../services/customer.service';
 import { AdditemService } from '../services/additem.service';
 import { SalesService } from '../services/sales.service';
@@ -16,7 +16,7 @@ import { SessionService } from '../services/session.service';
   templateUrl: './outstandingreport.page.html',
   styleUrls: ['./outstandingreport.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, RouterLink, ReactiveFormsModule]
 })
 export class OutstandingreportPage implements OnInit {
   selectedOption: string = '';
@@ -34,6 +34,7 @@ export class OutstandingreportPage implements OnInit {
   sales$: Observable<any[]>
   outstanding_amount: any;
   outstanding: number = 0;
+  searchTerm: string = '';
 
   constructor( private session: SessionService,private encService: EncryptionService,private saleService: SalesService,private router: Router, private receiptservice: RecepitService, private itemservice: AdditemService) {
     this.outstanding$ = of(null); // Use an empty Observable initially
@@ -68,9 +69,21 @@ export class OutstandingreportPage implements OnInit {
 
     
   }
-  onCustomerSelected(custname: string) {
-    this.selectedOption = custname;
+  filterCustomers(): Observable<any[]> {
+    return this.sales$.pipe(
+      map(sales =>
+        sales.filter(sale =>
+          Object.values(sale).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
   }
+
+  onSearchTermChanged(): void {
+    this.sales$ = this.filterCustomers();
+  }
+
+
   ngOnInit(): void {
     const compid = 1;
     const companyid = '1';

@@ -120,7 +120,6 @@ export class ViewSalesreturnPage implements OnInit {
   totalItems: number = 0;
   selectedTimePeriods: string[] = [];
   filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
-  filteredSalereturns$: Observable<any[]> = new Observable<any[]>();
 
   constructor(private router:Router,private toastCtrl:ToastController,private salereturnservice:SalereturnService,private encService:EncryptionService
     ) { 
@@ -136,7 +135,6 @@ export class ViewSalesreturnPage implements OnInit {
     this.updateManualHeaders();
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
-    this.filteredSalereturns$ = this.salesreturns$;
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -149,18 +147,10 @@ export class ViewSalesreturnPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
-    return this.salesreturns$.pipe(
-      map(salesreturns =>
-        salesreturns.filter(salesreturns =>
-          Object.values(salesreturns).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+ 
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredSalereturns$ = this.salesreturns$.pipe(
+    this.salesreturns$ = this.salesreturns$.pipe(
       map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
     );
   }
@@ -170,9 +160,17 @@ export class ViewSalesreturnPage implements OnInit {
     const toDateObj = new Date(toDate);
     return saleDate >= fromDateObj && saleDate <= toDateObj;
   }
- 
+  filterSalesreturn(): Observable<any[]> {
+    return this.salesreturns$.pipe(
+      map(salesreturns =>
+        salesreturns.filter(salesreturns =>
+          Object.values(salesreturns).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
   onSearchTermChanged(): void {
-    this.filteredSalereturns$ = this.filterCustomers();
+    this.salesreturns$ = this.filterSalesreturn();
   }
  
   ngOnInit() {

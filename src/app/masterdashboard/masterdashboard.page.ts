@@ -197,14 +197,6 @@ export class MasterdashboardPage implements OnInit {
       )
     );
   }
-
-   onSearchTermChanged(): void {
-    this.filteredCustomers$ = this.filterCustomers();
-  
-  }
-  onSearchTermSupplier(){
-    this.filteredSupplers$ = this.filterSuppliers();
-  }
   filterExecutive(): Observable<any[]> {
     return this.executives$.pipe(
       map(executives =>
@@ -214,7 +206,6 @@ export class MasterdashboardPage implements OnInit {
       )
     );
   };
-
   filterItem(): Observable<any[]> {
     return this.items$.pipe(
       map(items =>
@@ -224,12 +215,17 @@ export class MasterdashboardPage implements OnInit {
       )
     );
   }
+  onSearchTermChanged(): void {
+    this.customers$ = this.filterCustomers();
+  }
+  onSearchTermSupplier(){
+    this.vendors$ = this.filterSuppliers();
+  }
   onSearchTermExecutive(): void {
-    this.filteredExecutive$ = this.filterExecutive();
-  
+    this.executives$ = this.filterExecutive();
   }
   onSearchTermItem(){
-    this.filteredItem$ = this.filterItem();
+    this.items$ = this.filterItem();
   }
   
   async ngOnInit() {

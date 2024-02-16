@@ -144,7 +144,7 @@ export class ViewPurchasereturnPage implements OnInit {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
-  filterCustomers(): Observable<any[]> {
+  filterPurchasereturn(): Observable<any[]> {
     return this.purchasereturn$.pipe(
       map(purchasereturns =>
         purchasereturns.filter(purchasereturn =>
@@ -155,14 +155,14 @@ export class ViewPurchasereturnPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredPurchasereturns$ = this.filterCustomers();
+    this.filteredPurchasereturns$ = this.filterPurchasereturn();
   }
 
   ngOnInit() {
     this.filteredPurchasereturns$ = this.purchasereturn$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterPurchasereturn())
     );
     this.filteredBillingData$ = this.purchasereturn$.pipe(
       map(data => {

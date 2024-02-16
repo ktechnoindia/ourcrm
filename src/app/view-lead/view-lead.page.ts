@@ -159,7 +159,7 @@ export class ViewLeadPage implements OnInit {
     });
   }
 
-  filterCustomers(): Observable<any[]> {
+  filterLead(): Observable<any[]> {
     return this.lead$.pipe(
       map(leads =>
         leads.filter(lead =>
@@ -170,7 +170,7 @@ export class ViewLeadPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredLeads$ = this.filterCustomers();
+    this.lead$ = this.filterLead();
   }
 
   ngOnInit() {

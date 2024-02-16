@@ -110,7 +110,7 @@ export class DcInReportPage implements OnInit {
   toDate: string = '';
   dcin$: Observable<any[]>;
   searchTerm: string = '';
-  filteredDcin$: Observable<any[]> = new Observable<any[]>();
+  // filteredDcin$: Observable<any[]> = new Observable<any[]>();
   constructor(private encService: EncryptionService, private dcinservice: DcinService, private router: Router, private toastCtrl: ToastController) {
     const compid = '1';
 
@@ -122,7 +122,7 @@ export class DcInReportPage implements OnInit {
       this.totalItems = data.length;
 
     });
-    this.filteredDcin$ = this.dcin$;
+    // this.filteredDcin$ = this.dcin$;
     this.updateManualHeaders();
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
@@ -140,7 +140,7 @@ export class DcInReportPage implements OnInit {
   }
  
 
-  filterCustomers(): Observable<any[]> {
+  filterdcin(): Observable<any[]> {
     return this.dcin$.pipe(
       map(customers =>
         customers.filter(customer =>
@@ -151,15 +151,15 @@ export class DcInReportPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredDcin$ = this.filterCustomers();
+    this.dcin$ = this.filterdcin();
   }
 
   ngOnInit() {
-    this.filteredDcin$ = this.dcin$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
-    );
+    // this.filteredDcin$ = this.dcin$.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap(() => this.filterdcin())
+    // );
     this.filteredBillingData$ = this.dcin$.pipe(
       map(data => {
         // Implement your filtering logic based on the selected time periods
@@ -202,7 +202,7 @@ export class DcInReportPage implements OnInit {
   }
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredDcin$ = this.dcin$.pipe(
+    this.dcin$ = this.dcin$.pipe(
       map(dcin => dcin.filter(dcin => this.isDateInRange(dcin.datetype, this.fromDate, this.toDate)))
     );
   }

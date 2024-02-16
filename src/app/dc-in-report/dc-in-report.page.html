@@ -90,7 +90,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let dcin of filteredDcin$ | async; let i = index">
+                  <tr *ngFor="let dcin of dcin$ | async; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td *ngFor="let col of selectedColumns">{{ dcin[col] }}</td>
                     <td class="Action">

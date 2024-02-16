@@ -147,7 +147,7 @@ export class DcOutReportPage implements OnInit {
   );
   }
 
-  filterCustomers(): Observable<any[]> {
+  filterDcout(): Observable<any[]> {
     return this.dcout$.pipe(
       map(dcouts =>
         dcouts.filter(dcout =>
@@ -158,14 +158,14 @@ export class DcOutReportPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredDcout$ = this.filterCustomers();
+    this.dcout$ = this.filterDcout();
   }
  
   ngOnInit() {
     this.filteredDcout$ = this.dcout$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterDcout())
     );
     this.filteredBillingData$ = this.dcout$.pipe(
       map(data => {
@@ -209,7 +209,7 @@ export class DcOutReportPage implements OnInit {
   }
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredDcout$ = this.dcout$.pipe(
+    this.dcout$ = this.dcout$.pipe(
       map(dcout => dcout.filter(dcout => this.isDateInRange(dcout.datetype, this.fromDate, this.toDate)))
     );
   }

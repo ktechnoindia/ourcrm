@@ -77,7 +77,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let company of filteredCompany$ | async; let i = index">
+                  <tr *ngFor="let company of companys$ | async; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td *ngFor="let col of selectedColumns">{{ company[col] }}</td>
                     <td class="Action">

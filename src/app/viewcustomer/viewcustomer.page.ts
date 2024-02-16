@@ -123,25 +123,25 @@ export class ViewcustomerPage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
 
-  // filterCustomers(): Observable<any[]> {
-  //   return this.customers$.pipe(
-  //     map(customers =>
-  //       customers.filter(customer =>
-  //         Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterCustomers(): Observable<any[]> {
+    return this.customers$.pipe(
+      map(customers =>
+        customers.filter(customer =>
+          Object.values(customer).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermChanged(): void {
-    // this.filteredCustomers$ = this.filterCustomers();
+    this.customers$ = this.filterCustomers();
   }
 
   ngOnInit() {
     this.filteredCustomers$ = this.customers$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      // switchMap(() => this.filterCustomers())
+      switchMap(() => this.filterCustomers())
     );
   }
 

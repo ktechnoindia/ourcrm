@@ -99,7 +99,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let leadscore of filteredLeads$ | async; let i = index">
+                    <tr *ngFor="let leadscore of lead$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td *ngFor="let col of selectedColumns">
                         <ng-container *ngIf="col !== 'crdate'; else dateColumn">

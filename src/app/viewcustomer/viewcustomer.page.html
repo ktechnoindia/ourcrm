@@ -18,16 +18,18 @@
               </ion-col>
               <ion-col size-lg="4" size-md="4" size-sm="6" size="12" class="short">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                            label="Select Columns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                            name="selectedColumns" multiple="true">
+                  label="Select Columns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                  name="selectedColumns" multiple="true">
                   <!-- Display the first six columns initially -->
-                  <ion-select-option *ngFor="let col of availableColumns.slice(0, 6)" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                  <ion-select-option *ngFor="let col of availableColumns.slice(0, 6)" [value]="col">{{
+                    columnHeaders[col] }}</ion-select-option>
                   <!-- Add an option for selecting additional columns -->
-                  <ion-select-option *ngFor="let col of availableColumns.slice(6)" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                  <ion-select-option *ngFor="let col of availableColumns.slice(6)" [value]="col">{{ columnHeaders[col]
+                    }}</ion-select-option>
                 </ion-select>
               </ion-col>
-              
-              
+
+
 
             </ion-row>
 
@@ -57,13 +59,13 @@
                         <ion-icon color="primary" icon-only name="create"></ion-icon>
                       </td>
                     </tr>
-                    
+
                   </tbody>
                 </table>
-                
-           </div>
+
+              </div>
               <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                <p >Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
+                <p>Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
               </div>
             </ion-row>
             <ion-row class="custom-primary" style="justify-content: right;">

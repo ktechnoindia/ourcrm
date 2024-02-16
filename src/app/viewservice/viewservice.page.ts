@@ -24,10 +24,16 @@ export class ViewservicePage implements OnInit {
   services$: Observable<any[]> 
   searchTerm: string = '';
   filteredServices$: Observable<any[]> = new Observable<any[]>(); 
+  totalservice: number=0;
+  selectedColumns: string[] = [];
 
   constructor(private addService : AddserviceService ,private router:Router,private toastCtrl:ToastController,private encService:EncryptionService) { 
     const compid='1';
     this.services$ = this.addService.fetchallservice(compid,'','');
+    this.services$.subscribe(data => {
+      console.log(data); // Log the data to the console to verify if it's being fetched
+      this.totalservice = data.length;
+    });
     // console.log(this.services$);
   }
 
@@ -56,7 +62,7 @@ export class ViewservicePage implements OnInit {
     }
   }
 
-  filterCustomers(): Observable<any[]> {
+  filterItem(): Observable<any[]> {
     return this.services$.pipe(
       map(serviecs =>
         serviecs.filter(service =>
@@ -67,7 +73,7 @@ export class ViewservicePage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredServices$ = this.filterCustomers();
+    this.services$ = this.filterItem();
   }
  
   ngOnInit() {

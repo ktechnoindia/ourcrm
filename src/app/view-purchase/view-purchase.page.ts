@@ -137,7 +137,6 @@ export class ViewPurchasePage implements OnInit {
 
   purchase$: Observable<any[]>
   searchTerm: string = '';
-  filteredPurchase$: Observable<any[]> = new Observable<any[]>(); 
   selectedTimePeriods: string[] = [];
   filteredBillingData$: Observable<any[]> = EMPTY; // Default to an empty observable
   constructor( private purchaseservice:PurchaseService,private encService: EncryptionService,private router:Router,private toastCtrl:ToastController) {
@@ -150,7 +149,6 @@ export class ViewPurchasePage implements OnInit {
       console.log(data); // Log the data to the console to verify if it's being fetched
       this.totalItems = data.length;
         });
-    this.filteredPurchase$ = this.purchase$;
     this.updateManualHeaders();
     this.formDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
@@ -166,7 +164,7 @@ export class ViewPurchasePage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
 
-   filterCustomers(): Observable<any[]> {
+   filterpurchase(): Observable<any[]> {
     return this.purchase$.pipe(
       map(customers =>
         customers.filter(customer =>
@@ -177,7 +175,7 @@ export class ViewPurchasePage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredPurchase$ = this.filterCustomers();
+    this.purchase$ = this.filterpurchase();
   }
  
   ngOnInit() {
@@ -229,7 +227,7 @@ export class ViewPurchasePage implements OnInit {
 
    filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredPurchase$ = this.purchase$.pipe(
+    this.purchase$ = this.purchase$.pipe(
       map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.formDate, this.toDate)))
     );
   }

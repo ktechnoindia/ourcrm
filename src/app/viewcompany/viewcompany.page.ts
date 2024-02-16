@@ -166,22 +166,22 @@ export class ViewcompanyPage implements OnInit {
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
   }
 
-  // filterCustomers(): Observable<any[]> {
-  //   return this.companys$.pipe(
-  //     map(companies =>
-  //       companies.filter(company =>
-  //         Object.values(company).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterCoumpany(): Observable<any[]> {
+    return this.companys$.pipe(
+      map(companies =>
+        companies.filter(company =>
+          Object.values(company).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermChanged(): void {
-    // this.filteredCompany$ = this.filterCustomers();
+    this.companys$ = this.filterCoumpany();
   }
 
   ngOnInit() {
-    this.filteredCompany$ = this.companys$.pipe(
+    this.companys$ = this.companys$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       // switchMap(() => this.filterCustomers())
@@ -189,7 +189,7 @@ export class ViewcompanyPage implements OnInit {
   }
   filterData() {
     // Update the filteredSales observable based on the date range
-    this.filteredCompany$ = this.companys$.pipe(
+    this.companys$ = this.companys$.pipe(
       map(sales => sales.filter(sale => this.isDateInRange(sale.billDate, this.fromDate, this.toDate)))
     );
   }
