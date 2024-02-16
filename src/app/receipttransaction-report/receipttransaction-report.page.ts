@@ -30,21 +30,21 @@ export class ReceipttransactionReportPage implements OnInit {
     const compid = session.getValue('companyid')?.valueOf() as string;
 
     this.recepits$ = this.recepitService.fetchAllRecepit(encService.encrypt(compid),'','');
-
     console.log(this.recepits$);
+
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
     this.filteredRecepits$=this.recepitService.fetchAllRecepit(encService.encrypt(compid),'','');
   }
-  filterRecepit(): Observable<any[]> {
-    return this.recepits$.pipe(
-      map(recepits =>
-        recepits.filter(recepit =>
-          Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterRecepit(): Observable<any[]> {
+  //   return this.recepits$.pipe(
+  //     map(recepits =>
+  //       recepits.filter(recepit =>
+  //         Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
   filterData() {
     // Update the filteredSales observable based on the date range
     this.filteredRecepits$ = this.recepits$.pipe(
@@ -59,14 +59,14 @@ export class ReceipttransactionReportPage implements OnInit {
   }
 
   onSearchTermChanged(): void {
-    this.filteredRecepits$ = this.filterRecepit();
+    // this.filteredRecepits$ = this.filterRecepit();
   }
  
   ngOnInit() {
     this.filteredRecepits$ = this.recepits$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterRecepit())
+      // switchMap(() => this.filterRecepit())
     );
   }
 

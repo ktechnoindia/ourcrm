@@ -246,25 +246,25 @@ export class MasterdashboardPage implements OnInit {
     // this.items$ = this.additem.fetchallItem(this.encService.encrypt(compid), '', '');
 
     // Subscribe to the observables and update the counts
-    // this.customers$.subscribe(data => {
-    //   this.totalCustomer = data.length;
-    //   this.updateChartData('customerBarChart', 'Active Customer', [this.totalCustomer]);
-    // });
+    this.customers$.subscribe(data => {
+      this.totalCustomer = data.length;
+      this.updateChartData('customerBarChart', 'Active Customer', [this.totalCustomer]);
+    });
 
-    // this.vendors$.subscribe(data => {
-    //   this.totalSupplier = data.length;
-    //   this.updateChartData('supplierBarChart', 'Active Supplier', [this.totalSupplier]);
-    // });
+    this.vendors$.subscribe(data => {
+      this.totalSupplier = data.length;
+      this.updateChartData('supplierBarChart', 'Active Supplier', [this.totalSupplier]);
+    });
 
-    // this.executives$.subscribe(data => {
-    //   this.totalExecitve = data.length;
-    //   this.updateChartData('executiveBarChart', 'Total Executive', [this.totalExecitve]);
-    // });
+    this.executives$.subscribe(data => {
+      this.totalExecitve = data.length;
+      this.updateChartData('executiveBarChart', 'Total Executive', [this.totalExecitve]);
+    });
 
-    // this.items$.subscribe(data => {
-    //   this.totalItems = data.length;
-    //   this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
-    // });
+    this.items$.subscribe(data => {
+      this.totalItems = data.length;
+      this.updateChartData('itemBarChart', 'Total Items', [this.totalItems]);
+    });
 
     
   }

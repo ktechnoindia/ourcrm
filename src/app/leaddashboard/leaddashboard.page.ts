@@ -129,16 +129,16 @@ export class LeaddashboardPage implements OnInit {
     const compid = '1';
 
     // Fetch data for all entities
-    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
-    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
-    //this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    // this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    // this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
+    // this.lead$ = this.leadser.fetchallleads(this.encService.encrypt(compid), '', '');
 
 
     // Subscribe to the observables and update the counts
-    // this.lead$.subscribe(data => {
-    //   this.totallead = data.length;
-    //   this.updateChartData('totalleadBarChart', 'Total Lead', [this.totallead]);
-    // });
+    this.lead$.subscribe(data => {
+      this.totallead = data.length;
+      this.updateChartData('totalleadBarChart', 'Total Lead', [this.totallead]);
+    });
      
 
     this.filteredLeads$ = this.lead$.pipe(

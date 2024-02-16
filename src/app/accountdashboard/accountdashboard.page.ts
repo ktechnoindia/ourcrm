@@ -108,33 +108,33 @@ export class AccountdashboardPage implements OnInit {
     });
   };
 
-  // filterRecepit(): Observable<any[]> {
-  //   return this.recepits$.pipe(
-  //     map(recepits =>
-  //       recepits.filter(recepit =>
-  //         Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterRecepit(): Observable<any[]> {
+    return this.recepits$.pipe(
+      map(recepits =>
+        recepits.filter(recepit =>
+          Object.values(recepit).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
-  // filterPayement(): Observable<any[]> {
-  //   return this.payment$.pipe(
-  //     map(payments =>
-  //       payments.filter(payemt =>
-  //         Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterPayement(): Observable<any[]> {
+    return this.payment$.pipe(
+      map(payments =>
+        payments.filter(payemt =>
+          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermPayment(): void {
-    // this.filteredPayments$ = this.filterPayement();
+    this.filteredPayments$ = this.filterPayement();
   }
 
 
   onSearchTermChanged(): void {
-    // this.filteredRecepits$ = this.filterRecepit();
+    this.filteredRecepits$ = this.filterRecepit();
   }
 
   async ngOnInit() {
@@ -143,31 +143,31 @@ export class AccountdashboardPage implements OnInit {
     const compid = '1';
 
     //Fetch data for all entities
-    // this.payment$ = this.paymentservice.fetchAllPayment(this.encService.encrypt(compid), '', '');
-    // this.recepits$ = this.recepitService.fetchAllRecepit(this.encService.encrypt(compid), '', '');
+    this.payment$ = this.paymentservice.fetchAllPayment(this.encService.encrypt(compid), '', '');
+    this.recepits$ = this.recepitService.fetchAllRecepit(this.encService.encrypt(compid), '', '');
 
 
     // Subscribe to the observables and update the counts
-    // this.payment$.subscribe((data: string | any[]) => {
-    //   this.totalpayment = data.length;
-    //   this.updateChartData('paymentBarChart', 'Payment Transaction', [this.totalpayment]);
-    // });
+    this.payment$.subscribe((data: string | any[]) => {
+      this.totalpayment = data.length;
+      this.updateChartData('paymentBarChart', 'Payment Transaction', [this.totalpayment]);
+    });
 
-    // this.recepits$.subscribe((data: string | any[]) => {
-    //   this.totalreceipt = data.length;
-    //   this.updateChartData('receiptBarChart', 'Receipt Transaction', [this.totalreceipt]);
-    // });
+    this.recepits$.subscribe((data: string | any[]) => {
+      this.totalreceipt = data.length;
+      this.updateChartData('receiptBarChart', 'Receipt Transaction', [this.totalreceipt]);
+    });
 
-    // this.filteredRecepits$ = this.recepits$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterRecepit())
-    // );
-    // this.filteredPayments$ = this.payment$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterPayement())
-    // );
+    this.filteredRecepits$ = this.recepits$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterRecepit())
+    );
+    this.filteredPayments$ = this.payment$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterPayement())
+    );
   }
 
   updateChartData(chartId: string, label: string, data: number[]) {

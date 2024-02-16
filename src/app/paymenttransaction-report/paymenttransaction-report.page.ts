@@ -34,15 +34,15 @@ export class PaymenttransactionReportPage implements OnInit {
     this.filteredPayments$=this.payment$;
   }
 
-  filterPayement(): Observable<any[]> {
-    return this.payment$.pipe(
-      map(payments =>
-        payments.filter(payemt =>
-          Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-        )
-      )
-    );
-  }
+  // filterPayement(): Observable<any[]> {
+  //   return this.payment$.pipe(
+  //     map(payments =>
+  //       payments.filter(payemt =>
+  //         Object.values(payemt).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+  //       )
+  //     )
+  //   );
+  // }
   filterData() {
     // Update the filteredSales observable based on the date range
     this.filteredPayments$ = this.payment$.pipe(
@@ -57,14 +57,14 @@ export class PaymenttransactionReportPage implements OnInit {
   }
 
   onSearchTermPayment(): void {
-    this.filteredPayments$ = this.filterPayement();
+    // this.filteredPayments$ = this.filterPayement();
   }
   
   ngOnInit() {
     this.filteredPayments$ = this.payment$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() => this.filterPayement())
+      // switchMap(() => this.filterPayement())
     );
   }
   goBack() {
