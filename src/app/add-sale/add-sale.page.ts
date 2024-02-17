@@ -381,7 +381,7 @@ export class AddSalePage implements OnInit {
   }
 
   openQuantityPopover(sale: Sales) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(sale.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
       console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
       // this.totalItems = data.length;
@@ -573,7 +573,7 @@ export class AddSalePage implements OnInit {
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
     const value = sales.selectedItemId || sales.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-
+   this.itemcode=sales.itemcode;
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
