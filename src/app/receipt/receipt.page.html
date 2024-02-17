@@ -196,8 +196,10 @@
                           </td>
                           <td>
                             <label for="">Total Pending Amt:</label>
-                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt" [value]="calculateTotalPendingAmt()" formControlName="totalpendingamt" (keydown)="onKeyDown($event)">
-                        </td>
+                            <input type="number" name="totalpendingamt" [(ngModel)]="totalpendingamt"
+                              [value]="calculateTotalPendingAmt()" formControlName="totalpendingamt"
+                              (keydown)="onKeyDown($event)">
+                          </td>
                         </tr>
                       </table>
                     </div>

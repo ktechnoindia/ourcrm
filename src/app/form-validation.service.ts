@@ -5,6 +5,10 @@ import { LoadingController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class FormValidationService {
+  showErrorLoader() {
+    throw new Error('Method not implemented.');
+  }
+
 
   constructor(private alertController: AlertController,private loadingController:LoadingController ) { }
   async validateForm(fields: { [key: string]: any }): Promise<boolean> {
@@ -26,7 +30,15 @@ export class FormValidationService {
   async showFailedAlert() {
     await this.showAlert('Error !', "Form don't successfully.");
   }
+  async showErrorPopup(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['OK']
+    });
 
+    await alert.present();
+  }
   async showAlert(header:string,message:string) : Promise<void>{
        const alert = await this.alertController.create({
         header,
