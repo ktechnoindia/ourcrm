@@ -24,8 +24,8 @@ import { LeadService } from '../services/lead.service';
   imports: [IonicModule, CommonModule, FormsModule,RouterLink]
 })
 export class CompanydashboardPage implements OnInit {
-  username: string = 'Abhishek Pareek';
-  companyname:string='Neelkanth Technologies';
+  username: string = '';
+  companyname:string='';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -72,6 +72,8 @@ export class CompanydashboardPage implements OnInit {
   constructor( private leadser: LeadService,private saleService: SalesService, private purchaseService: PurchaseService,private additem : AdditemService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private recepitService: RecepitService, private paymentservice: PaymentService,private encService: EncryptionService,private navCtrl: NavController,private session:SessionService,) {
     this.selectedOptions = ['customerlist', 'vendorlist'];
     const compid = '1';
+    this.username=session.getValue('fname')?.valueOf() as string;
+    this.companyname=session.getValue('companyname')?.valueOf() as string;
     this.payment$ = this.paymentservice.fetchAllPayment(encService.encrypt(compid), '', '');
     // console.log(this.payment$);
     this.payment$.subscribe((data: string | any[]) => {

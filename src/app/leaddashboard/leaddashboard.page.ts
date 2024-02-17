@@ -48,8 +48,8 @@ export class LeaddashboardPage implements OnInit {
 
   lead$: Observable<any[]>;
   totallead: number = 0;
-  username: string = 'Abhishek Pareek';
-  companyname:string='Neelkanth Technologies';
+  username: string = '';
+  companyname:string='';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -60,6 +60,8 @@ export class LeaddashboardPage implements OnInit {
     this.selectedOptions = ['topnewlead', 'productwiselead',];
 
     const compid = '1';
+    this.username=session.getValue('fname')?.valueOf() as string;
+    this.companyname=session.getValue('companyname')?.valueOf() as string;
     this.lead$ = this.leadser.fetchallleads(encService.encrypt(compid), '', '');
 
     this.lead$.subscribe(data => {

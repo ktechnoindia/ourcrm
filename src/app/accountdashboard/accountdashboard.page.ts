@@ -22,8 +22,8 @@ Chart.register(Colors);
 })
 export class AccountdashboardPage implements OnInit {
   selectedOptions: string[] = [];
-  username: string = 'Abhishek Pareek';
-  companyname:string='Neelkanth Technologies';
+  username: string = '';
+  companyname:string='';
     notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -55,6 +55,8 @@ export class AccountdashboardPage implements OnInit {
   constructor(private recepitService: RecepitService, private paymentservice: PaymentService, private navCtrl: NavController, private session: SessionService, private encService: EncryptionService) {
     this.selectedOptions = ['paymenttransactionlist', 'receipttransactionlist'];
     const compid = '1';
+    this.username=session.getValue('fname')?.valueOf() as string;
+    this.companyname=session.getValue('companyname')?.valueOf() as string;
     this.payment$ = this.paymentservice.fetchAllPayment(encService.encrypt(compid), '', '');
     // console.log(this.payment$);
     this.payment$.subscribe((data: string | any[]) => {

@@ -62,8 +62,8 @@ export class TranscationdashboardPage implements OnInit {
   totalsalesreturn: number = 0;
   totalpurchasereturn: number = 0;
   selectedOptions: string[] = [];
-  username: string = 'Abhishek Pareek';
-  companyname: string = 'Neelkanth Technologies';
+  username: string = '';
+  companyname: string = '';
   searchTerm: string = '';
   filteredQuatation$: Observable<any[]> = new Observable<any[]>();
   searchTerms: string = '';
@@ -88,6 +88,8 @@ export class TranscationdashboardPage implements OnInit {
     this.selectedOptions = ['saleslist', 'purchaselist'];
     const compid = '1';
     const userid = '1';
+    this.username=session.getValue('fname')?.valueOf() as string;
+    this.companyname=session.getValue('companyname')?.valueOf() as string;
     this.quote$ = new Observable();
     this.dcin$ = new Observable();
     this.dcout$ = new Observable();
