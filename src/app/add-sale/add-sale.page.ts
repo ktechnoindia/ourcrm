@@ -239,8 +239,8 @@ export class AddSalePage implements OnInit {
   pretaxAmount: number = 0;
   posttaxAmount: number = 0;
   totalitem:number=0;
-  tatts:number=0;
 
+  rows: any[] = [];
 
   constructor(public session: SessionService, private companyService: CreatecompanyService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
  const compid = this.session.getValue('userid')?.valueOf() as number;
@@ -568,13 +568,15 @@ export class AddSalePage implements OnInit {
       attribute8: '',
     }];
   }
+  tatts:number=0;
 
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
     const value = sales.selectedItemId || sales.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-   this.itemcode=sales.itemcode;
+    this.itemcode=sales.itemcode;
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);

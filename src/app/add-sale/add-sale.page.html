@@ -6,10 +6,10 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content class="ion-padding">
     <div id="invoice" #content class="invoice" style="border: solid 2px #000;">
-  
+
       <div class="invoice-subheader" style="border: solid 2px #000;
       ">
         <ion-row *ngFor="let company of company$ | async; let i = index">
@@ -37,12 +37,12 @@
                 </h5>
                 <h5><span>Phone No.:</span>{{company.phone}}</h5>
                 <h5><span>WhatsApp No.:</span>{{company.wpnumber}}</h5>
-  
+
                 <h5><span>Website:</span>{{company.website}}</h5>
               </ion-col>
             </ion-row>
           </ion-col>
-  
+
           <ion-col size="5" class="details">
             <div *ngFor="let sales of sales$ | async; let i = index">
               <h5><span>Invoice No : </span>{{sales.billNumber}}</h5>
@@ -51,12 +51,12 @@
               <h5><span>PO Date : </span> {{ sales.refdate }}</h5>
               <h5><span>Remark : </span> {{ sales.description }}</h5>
             </div>
-           
-  
-  
+
+
+
           </ion-col>
         </ion-row>
-  
+
       </div>
       <div class="invoice-header">
         <h1>Tax Invoice</h1>
@@ -96,17 +96,18 @@
               <h5><span>Phone No : </span> {{customer.customer_code}}</h5>
               <h5><span>GSTIN : </span> {{customer.gstin}}</h5>
             </div>
-  
+
           </ion-col>
         </ion-row>
       </div>
       <div class="Declaration">
-        <h5><span>Declaration : </span> We declare that this invoice show the actual price of the goods described and that
+        <h5><span>Declaration : </span> We declare that this invoice show the actual price of the goods described and
+          that
           all particulars are true and correct.</h5>
       </div>
       <div class="invoice-content">
-  
-  
+
+
         <table style="width: 100%;scroll-behavior: auto;height: 400px;">
           <thead>
             <tr>
@@ -121,7 +122,7 @@
               <th>Tax Amt.</th>
               <th>Discount Amt.</th>
               <th>Net Amount</th>
-  
+
             </tr>
           </thead>
           <tbody>
@@ -131,17 +132,17 @@
               <td style="max-height: 30px !important;">{{sales.itemname}}</td>
               <td style="max-height: 30px !important;">{{sales.quantity}}</td>
               <td style="max-height: 30px !important;">{{sales.unitname}}</td>
-              <td style="max-height: 30px !important;">{{sales.mrp}}  &#8377;</td>
-              <td style="max-height: 30px !important;">{{sales.netrate}}  &#8377;</td>
+              <td style="max-height: 30px !important;">{{sales.mrp}} &#8377;</td>
+              <td style="max-height: 30px !important;">{{sales.netrate}} &#8377;</td>
               <td style="max-height: 30px !important;">{{sales.taxrate}} %</td>
-              <td style="max-height: 30px !important;">{{sales.totaltax}}  &#8377;</td>
-              <td style="max-height: 30px !important;">{{sales.discountamt}}  &#8377;</td>
-              <td style="max-height: 30px !important;">{{sales.total}}  &#8377;</td>
-  
+              <td style="max-height: 30px !important;">{{sales.totaltax}} &#8377;</td>
+              <td style="max-height: 30px !important;">{{sales.discountamt}} &#8377;</td>
+              <td style="max-height: 30px !important;">{{sales.total}} &#8377;</td>
+
             </tr>
           </tbody>
         </table>
-  
+
       </div>
       <div class="invoice-footer">
         <ion-row>
@@ -195,34 +196,34 @@
                   <th>Branch Name :</th>
                   <td>{{sales.branch_name}}</td>
                 </tr>
-  
+
               </table>
-  
+
             </div>
-  
+
           </ion-col>
           <ion-col size="3" style="border: solid 1px #000;">
             <div>
-            <h5><span>Total Amount  : </span>{{ totalAmount | currency: 'INR' }}</h5>
-            <p>Discount Amount : {{ discountAmount | currency: 'INR' }}</p>
-         
-  
-            <p>CGST Amt : {{ cgstamt | currency: 'INR' }}</p>
-            <p>SGST Amt : {{ sgstamt | currency: 'INR' }}</p>
-            <p>Taxable Amount :{{ taxAmount | currency: 'INR' }}</p>
-            <p>Discount Amount :{{ discountAmount | currency: 'INR' }}</p>
-            <p>Pre Tax : &#8377; {{ pretaxAmount | currency: 'INR' }}</p>
-            <p>Post Tax : &#8377;{{ posttaxAmount | currency: 'INR' }}</p>
-            <p>Cess Amount : &#8377; 00.0</p>
-            <p>Round Off Amount : {{ grandTotal | currency: 'INR' }}</p>
-            <h5><span>Grand Total : </span>{{ grandTotal | currency: 'INR' }}</h5>
-          </div>
+              <h5><span>Total Amount : </span>{{ totalAmount | currency: 'INR' }}</h5>
+              <p>Discount Amount : {{ discountAmount | currency: 'INR' }}</p>
+
+
+              <p>CGST Amt : {{ cgstamt | currency: 'INR' }}</p>
+              <p>SGST Amt : {{ sgstamt | currency: 'INR' }}</p>
+              <p>Taxable Amount :{{ taxAmount | currency: 'INR' }}</p>
+              <p>Discount Amount :{{ discountAmount | currency: 'INR' }}</p>
+              <p>Pre Tax : &#8377; {{ pretaxAmount | currency: 'INR' }}</p>
+              <p>Post Tax : &#8377;{{ posttaxAmount | currency: 'INR' }}</p>
+              <p>Cess Amount : &#8377; 00.0</p>
+              <p>Round Off Amount : {{ grandTotal | currency: 'INR' }}</p>
+              <h5><span>Grand Total : </span>{{ grandTotal | currency: 'INR' }}</h5>
+            </div>
           </ion-col>
         </ion-row>
       </div>
       <div class="Declaration">
         <h6><span>No. Of Items : </span>{{totalitem}}</h6>
-        <h5><span>Amount In Words : </span>{{ grandTotal | currency: 'INR'  }}</h5>
+        <h5><span>Amount In Words : </span>{{ grandTotal | currency: 'INR' }}</h5>
       </div>
       <div class="invoice-footer">
         <ion-row>
@@ -234,8 +235,8 @@
               <li>Our Support Numbers are : 8829976868, 7577576868</li>
               <li>Payment : 100% against to Installation</li>
             </ul>
-  
-  
+
+
           </ion-col>
           <ion-col size="4" style="height: 70px;">
             <h6 style="text-align: center;font-weight: 900;">For K Techno</h6>
@@ -248,7 +249,7 @@
 </ion-content>
 <ion-content [fullscreen]="true">
   <div class="Customer">
-    
+
     <ion-card-content>
       <div class="dekstop-menu">
         <ion-card-header>
@@ -760,35 +761,35 @@
                             class="pop_input"></th>
                       </ng-container>
                     </tr>
-                    <tr *ngFor="let row of purchasebyid$ | async; let i = index">
+                    <tr *ngFor="let row of salesData[0]?.quantityPopoverData; let i = index ">
+
                       <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
                       <ng-container *ngIf="tatts>=0">
-                          <td><input type="text" formControlName="attr1" [(ngModel)]="row.att1" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=1">
-                          <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=2">
-                          <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=3">
-                          <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=4">
-                          <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=5">
-                          <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=6">
-                          <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
                       </ng-container>
                       <ng-container *ngIf="tatts>=7">
-                          <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
+                        <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
                       </ng-container>
-                  </tr>
-                  
+                    </tr>
 
 
                   </table>
@@ -802,7 +803,7 @@
         </form>
       </ion-grid>
     </ion-card-content>
-    
+
   </div>
 </ion-content>
 

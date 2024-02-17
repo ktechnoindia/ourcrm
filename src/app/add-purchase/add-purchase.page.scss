@@ -16,7 +16,11 @@ background-color: #fff;
 border: 1px solid grey;
 max-height: 20px;
 }
-
+ng-container{
+  background-color: #fff;
+border: 1px solid grey;
+max-height: 20px;
+}
 .output td {
   border: 1px solid grey;
   margin: 5px;
