@@ -238,25 +238,29 @@ export class ReceiptPage implements OnInit {
   async onSubmit(myform: FormGroup, receiptData: Recepit[]) {
     const fields = { voucherNumber: this.voucherNumber }
     const isValid = await this.formService.validateForm(fields);
-
-    if (await this.formService.validateForm(fields)) {
-
+  
+    if (isValid) {
+      // Validate if payment made equals total payment
+      if (this.myform.value.paymentmade !== this.calculateTotalCurrentAmt()) {
+        // Show error popup if amounts do not match
+        this.formService.showErrorPopup("Payment made and Total Current Amounts does not match of . Please verify.");
+        return; // Stop submission
+      }
+  
+      // Proceed with submission if validation passes
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(receiptData));
-
+  
       let receiptdatas: rec[] = [];
-
       console.log('Your form data : ', this.myform.value);
       for (const element of receiptData) {
-
         element.billpendingamt = element.totalamt - element.receiveamt - element.currentamt;
-
+  
         const recepitdata: rec = {
           voucherNumber: this.myform.value.voucherNumber,
           paymentdate: this.myform.value.paymentdate,
           ledger: this.myform.value.ledger,
           outstanding: this.myform.value.outstanding,
           paymentmade: this.myform.value.paymentmade,
-          //total: this.myform.value.total,
           total_payment: this.myform.value.total_payment,
           paymentway: this.myform.value.paymentway,
           totalamt: element.totalamt,
@@ -278,14 +282,14 @@ export class ReceiptPage implements OnInit {
         };
         receiptdatas.push(recepitdata);
       }
-
+  
       this.receiptservice.createRecepit(receiptdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-
+  
           this.formService.showSaveLoader();
           this.myform.reset();
         },
@@ -297,7 +301,7 @@ export class ReceiptPage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
-
+  
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -311,7 +315,7 @@ export class ReceiptPage implements OnInit {
       }
     }
   };
-
+  
   onNew() {
     location.reload();
   }

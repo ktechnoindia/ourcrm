@@ -80,7 +80,7 @@ export class PaymentPage implements OnInit {
   //paymentbill$:Observable<any[]>
   companyid: number = 0;
 
-  constructor(private cdRef: ChangeDetectorRef,private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
+  constructor(private cdr: ChangeDetectorRef,private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.paymentBill = new Subscription();
@@ -225,74 +225,81 @@ export class PaymentPage implements OnInit {
   }
 
   async onSubmit(myform: FormGroup, paymentData: Payment[]) {
-    const fields = { voucherNumber: this.voucherNumber }
+    const fields = { voucherNumber: this.voucherNumber };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-
-      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(paymentData));
-
-      let paymentdatas: pay[] = [];
-
-      for (const element of paymentData) {
-
-        console.log('Your form data : ', this.myform.value);
-        const paymentdata: pay = {
-          voucherNumber: this.myform.value.voucherNumber,
-          paymentdate: this.myform.value.paymentdate,
-          ledger: this.myform.value.ledger,
-          outstanding: this.myform.value.outstanding,
-          paymentmade: this.myform.value.paymentmade,
-          total: this.myform.value.total,
-          total_payment: this.myform.value.total_payment,
-          paymentway: this.myform.value.paymentway,
-          totalamt: element.totalamt,
-          billno: element.billno,
-          billdate: element.billdate,
-          receiveamt: element.receiveamt,
-          pendingamt: element.pendingamt,
-          currentamt: element.currentamt,
-          companyname: this.myform.value.companyname,
-          totaldueamt: this.myform.value.totaldueamt,
-          totalreceiveamt: this.myform.value.totalreceiveamt,
-          totalcurrentamt: this.myform.value.totalcurrentamt,
-          totalpendingamt: this.myform.value.totalpendingamt,
-          userid: this.myform.value.userid,
-          vendorid: this.selectedVendorId,
-        };
-        paymentdatas.push(paymentdata);
-      }
-      this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          setTimeout(() => {
-            this.formService.showSuccessAlert();
-          }, 1000);
-
-          this.formService.showSaveLoader();
-          this.myform.reset();
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          setTimeout(() => {
-            this.formService.showFailedAlert();
-          }, 1000);
-          this.formService.shoErrorLoader();
+    
+    if (isValid) {
+        // Check if payment made equals total payment
+        if (this.myform.value.paymentmade !== this.myform.value.total_payment) {
+            this.formService.showErrorPopup("Payment made & Total Current Amount does not match Total Payment. Please verify.");
+            return; // Stop submission
         }
-      );
+
+        console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(paymentData));
+
+        let paymentdatas: pay[] = [];
+
+        for (const element of paymentData) {
+            console.log('Your form data : ', this.myform.value);
+            const paymentdata: pay = {
+                voucherNumber: this.myform.value.voucherNumber,
+                paymentdate: this.myform.value.paymentdate,
+                ledger: this.myform.value.ledger,
+                outstanding: this.myform.value.outstanding,
+                paymentmade: this.myform.value.paymentmade,
+                total: this.myform.value.total,
+                total_payment: this.myform.value.total_payment,
+                paymentway: this.myform.value.paymentway,
+                totalamt: element.totalamt,
+                billno: element.billno,
+                billdate: element.billdate,
+                receiveamt: element.receiveamt,
+                pendingamt: element.pendingamt,
+                currentamt: element.currentamt,
+                companyname: this.myform.value.companyname,
+                totaldueamt: this.myform.value.totaldueamt,
+                totalreceiveamt: this.myform.value.totalreceiveamt,
+                totalcurrentamt: this.myform.value.totalcurrentamt,
+                totalpendingamt: this.myform.value.totalpendingamt,
+                userid: this.myform.value.userid,
+                vendorid: this.selectedVendorId,
+            };
+            paymentdatas.push(paymentdata);
+        }
+
+        this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
+            (response: any) => {
+                console.log('POST request successful', response);
+                setTimeout(() => {
+                    this.formService.showSuccessAlert();
+                }, 1000);
+
+                this.formService.showSaveLoader();
+                this.myform.reset();
+            },
+            (error: any) => {
+                console.error('POST request failed', error);
+                setTimeout(() => {
+                    this.formService.showFailedAlert();
+                }, 1000);
+                this.formService.showErrorLoader();
+            }
+        );
 
     } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
+        //If the form is not valid, display error messages
+        Object.keys(this.myform.controls).forEach(controlName => {
+            const control = this.myform.get(controlName);
+            if (control?.invalid) {
+                control.markAsTouched();
+            }
+        });
+        if (this.firstInvalidInput) {
+            this.firstInvalidInput.setFocus();
         }
-      });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
-      }
     }
-  }
+}
+
   onSupplierChange() {
     // Update the 'ledger' field with the selected supplier's name
     this.myform.patchValue({
@@ -364,19 +371,19 @@ export class PaymentPage implements OnInit {
 }
 
 
-  calculateTotalCurrentAmt(): number {
-    let totalCurrentAmt = 0;
-    for (let purchase of this.myPaymentBillData) {
-      totalCurrentAmt += parseFloat(purchase.currentamt);
-    }
-    return totalCurrentAmt;
+calculateTotalCurrentAmt(): number {
+  let totalCurrentAmt = 0;
+  for (let purchase of this.myPaymentBillData) {
+    totalCurrentAmt += parseFloat(purchase.currentamt);
   }
+  return totalCurrentAmt;
+}
   
 
   calculateTotalPendingAmt(): number {
     let totalAmt = 0;
     for (const purchase of this.myPaymentBillData) {
-        // Assuming purchase.pendingamt is a numeric value
+        // Assuming sale.pendingamt is a numeric value
         if (typeof purchase.pendingamt === 'number') {
             totalAmt += purchase.pendingamt;
         }
@@ -393,4 +400,5 @@ export class PaymentPage implements OnInit {
       event.preventDefault();
     }
   }
+  
 }
