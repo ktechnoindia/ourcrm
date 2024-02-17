@@ -594,7 +594,7 @@ export class AddPurchasePage implements OnInit {
       }
     );
   }
-
+   tatts:number=0;
   getItems(purchase: any) {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
@@ -619,7 +619,23 @@ export class AddPurchasePage implements OnInit {
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
-          purchase.attribute1 = itemDetails.attr1,
+          if (!(itemDetails.attr2 === '')) {
+            this.tatts = 1;
+        } else if (!(itemDetails.attr3 === '')) {
+            this.tatts = 2;
+        } else if (!(itemDetails.attr4 === '')) {
+            this.tatts = 3;
+        } else if (!(itemDetails.attr5 === '')) {
+            this.tatts = 4;
+        } else if (!(itemDetails.attr6 === '')) {
+            this.tatts = 5;
+        } else if (!(itemDetails.attr7 === '')) {
+            this.tatts = 6;
+        } else if (!(itemDetails.attr8 === '')) {
+            this.tatts = 7;
+        }
+          purchase.attribute1 = itemDetails.attr1;
+
             purchase.attribute2 = itemDetails.attr2,
             purchase.attribute3 = itemDetails.attr3,
             purchase.attribute4 = itemDetails.attr4,
@@ -627,7 +643,7 @@ export class AddPurchasePage implements OnInit {
             purchase.attribute6 = itemDetails.attr6,
             purchase.attribute7 = itemDetails.attr7,
             purchase.attribute8 = itemDetails.attr8,
-
+          
             // Update form control values
             this.myform.patchValue({
               itemcode: purchase.itemcode,

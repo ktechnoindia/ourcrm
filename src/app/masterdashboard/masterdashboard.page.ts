@@ -40,8 +40,8 @@ export class MasterdashboardPage implements OnInit {
   filteredCustomers$: Observable<any[]> = new Observable<any[]>();
  filteredSupplers$: Observable<any[]> = new Observable<any[]>();
 
-  username: string = 'Abhishek Pareek';
-  companyname:string='Neelkanth Technologies';
+  username: string = '';
+  companyname:string='';
   notificationCount: number = 5; // Replace this with the actual notification count
   openNotificationsPage() {
     // Implement your logic to open the notifications page or handle notifications
@@ -80,7 +80,8 @@ export class MasterdashboardPage implements OnInit {
 
   constructor(private router: Router, private navCtrl: NavController,private session:SessionService,private encService: EncryptionService, private custservice: CustomerService,private venderService:VendorService,private executService:ExecutiveService,private additem : AdditemService) { 
     this.selectedOptions = ['customerlist', 'vendorlist'];
-
+    this.username=session.getValue('fname')?.valueOf() as string;
+    this.companyname=session.getValue('companyname')?.valueOf() as string;
     const compid = '1';
 
     this.customers$ = this.custservice.fetchallCustomer(encService.encrypt(compid), '', '');

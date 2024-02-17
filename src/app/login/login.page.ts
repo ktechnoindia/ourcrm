@@ -49,6 +49,8 @@ myform:FormGroup;
         this.session.setValue('userid',response.tid);
         this.session.setValue('token',response.access_token);
         this.session.setValue('companyid',response.companyid);
+        this.session.setValue('companyname',response.companyname);
+        this.session.setValue('fname',response.fname);
 
         this.myform.reset();
         if(response.companyid===0 && response.role===1){
