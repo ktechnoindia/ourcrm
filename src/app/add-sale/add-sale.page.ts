@@ -594,20 +594,26 @@ export class AddSalePage implements OnInit {
           sales.mrp = itemDetails.mrp;
           sales.basicrate = itemDetails.basic_rate;
           sales.netrate = itemDetails.net_rate;
-          if (!(itemDetails.attr2 === '')) {
-            this.tatts = 1;
-        } else if (!(itemDetails.attr3 === '')) {
-            this.tatts = 2;
-        } else if (!(itemDetails.attr4 === '')) {
-            this.tatts = 3;
-        } else if (!(itemDetails.attr5 === '')) {
-            this.tatts = 4;
-        } else if (!(itemDetails.attr6 === '')) {
-            this.tatts = 5;
-        } else if (!(itemDetails.attr7 === '')) {
-            this.tatts = 6;
-        } else if (!(itemDetails.attr8 === '')) {
-            this.tatts = 7;
+          if (itemDetails.attr2 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr3 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr4 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr5 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr6 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr7 !== '') {
+            this.tatts++;
+        }
+        if (itemDetails.attr8 !== '') {
+            this.tatts++;
         }
           sales.attribute1 = itemDetails.attr1,
             sales.attribute2 = itemDetails.attr2,
