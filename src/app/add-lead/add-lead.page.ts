@@ -384,7 +384,21 @@ export class AddLeadPage {
         framenumber: '',
         enginenumber: '',
         partnumber: '',
-        color: ''
+        color: '',
+        dealerrate: 0,
+        subdealerrate: 0,
+        itemDesccription: '',
+        classofvehicle: '',
+        makersname: '',
+        hourspowerofcube: '',
+        fuelused: '',
+        noofcylinders: '',
+        yearofmanufactur: '',
+        seatingcapacity: '',
+        unladenweight: '',
+        grossvehicleweight: '',
+        bodytype: '',
+        wheelbase: ''
       };
   
       this.itemService.createItem(itemdata, '', '').subscribe(

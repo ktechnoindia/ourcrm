@@ -17,6 +17,8 @@ import { FormValidationService } from '../form-validation.service';
 import { AddattributeService } from '../services/addattribute.service';
 import { CreateunitService, unit } from '../services/createunit.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
+import { EncryptionService } from '../services/encryption.service';
+import { SessionService } from '../services/session.service';
 
 interface Item {
   itemDesccription: string;
@@ -185,10 +187,13 @@ export class AddItemPage implements OnInit {
   showAttributes: boolean = false; // Define the showAttributes property
   step3: boolean = false;
   step1: boolean = false;
+  units$: Observable<any[]>
 
-  constructor(private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+  constructor(public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+    const compid = '1';
+
     this.selectGst$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.unittype.getunits();
     this.hsnname$ = this.hsnservices.getHSNNames(1);
     this.itemgroups$ = this.groupService.getAllGroups(1);
     this.stocktypename$ = this.stocktype1.getStockTypes(1);
@@ -197,6 +202,11 @@ export class AddItemPage implements OnInit {
     this.attname$ = this.attname.getattribute(1);
     this.itemname$ = this.itemService.getAllItems();
     this.filteredItems = this.items;
+
+    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid),'','');
+    this.units$.subscribe(options => {
+    
+    });
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
@@ -360,8 +370,20 @@ export class AddItemPage implements OnInit {
         enginenumber: this.myform.value.enginenumber,
         partnumber: this.myform.value.partnumber,
         color: this.myform.value.color,
-        // dealerrate:  this.myform.value.dealerrate,
-        // subdealerrate: this.myform.value.subdealerrate
+        dealerrate: this.myform.value.dealerrate,
+        subdealerrate: this.myform.value.subdealerrate,
+        itemDesccription: this.myform.value.itemDesccription,
+        classofvehicle: this.myform.value.classofvehicle,
+        makersname: this.myform.value.makersname,
+        hourspowerofcube:this.myform.value.hourspowerofcube,
+        fuelused:this.myform.value.fuelused,
+        noofcylinders:this.myform.value.noofcylinders,
+        yearofmanufactur: this.myform.value.yearofmanufactur,
+        seatingcapacity: this.myform.value.seatingcapacity,
+        unladenweight: this.myform.value.unladenweight,
+        grossvehicleweight: this.myform.value.grossvehicleweight,
+        bodytype: this.myform.value.bodytype,
+        wheelbase: this.myform.value.wheelbase
       };
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
@@ -404,6 +426,8 @@ export class AddItemPage implements OnInit {
     this.fetchData();
   }
   fetchData() {
+    this.units$ = this.unitService.fetchallunit('','','');
+   
     this.hsnname$ = this.hsnService.getHSNNames(1);
     this.hsnname$.subscribe(options => {
       this.allOptions = options;
