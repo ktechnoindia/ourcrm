@@ -185,12 +185,12 @@ myform:FormGroup;
   // }
   ngOnInit() {
     this.sharedService.showHeader  = false;
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // Reset form data when navigating away from the page
-        this.myform.reset();
-      }
-    });
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     // Reset form data when navigating away from the page
+    //     this.myform.reset();
+    //   }
+    // });
   
   }
   goBack() {
