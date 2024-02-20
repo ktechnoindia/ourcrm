@@ -27,7 +27,7 @@
             </ion-row>
 
             <ion-row>
-              <ion-col size="3" size-lg="2" size-md="2" size-sm="3">
+              <ion-col size="3" size-lg="1.5" size-md="2" size-sm="3">
                 <ion-row>
                   <select class="select" [(ngModel)]="selectedSalutation" formControlName="selectedSalutation"
                     name="selectedSalutation">
@@ -39,24 +39,23 @@
                 </ion-row>
 
               </ion-col>
-              <div>
-                <ion-col size="9" size-lg="7" size-md="10" size-sm="9">
-                  <ion-row style="margin-top: -22px;margin-bottom: 0px;">
+              <ion-col size="6" size-lg="1.5" size-md="6" size-sm="6">
+                <ion-row>
+                  <ion-input #firstInvalidInput [(ngModel)]="vendor_code" formControlName="vendor_code" type="text"
+                    label=" Vendor Code :" label-placement="floating" name="vcode" fill="outline"
+                    maxlength="5"></ion-input>
+                </ion-row>
+              </ion-col>
+             
+              <ion-col size="6" size-lg="5" size-md="6" size-sm="6" *ngIf="selectedSalutation === 'M/S'">
+                <ion-row >
                     <ion-input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="companyName"
                       formControlName="companyName" label-placement="floating" label="Company Name :" fill="outline"
                       name="company_name" color="dark"></ion-input>
                     <!-- <input *ngIf="selectedSalutation === 'M/S'" [(ngModel)]="contactPerson" [ngModelOptions]="{standalone: true}" name="contactPerson" type="text" placeholder="Contact Person" required> -->
                   </ion-row>
                 </ion-col>
-              </div>
-              <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-                <ion-row>
-                  <ion-input #firstInvalidInput [(ngModel)]="vendor_code" formControlName="vendor_code" type="text"
-                    label=" Vendor Code :" label-placement="floating" name="vcode" fill="outline"
-                    maxlength="5"></ion-input>
-
-                </ion-row>
-              </ion-col>
+             
               <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
                 <ion-row>
                   <ion-input [(ngModel)]="name" formControlName="name" type="text" label="Vendor Name :"
@@ -165,7 +164,8 @@
                 <ion-accordion-group style="width: 100%;margin-top: 10px;">
                   <ion-accordion value="second">
                     <ion-item slot="header" color="primary" style="height: 40px;padding: 0;">
-                      <ion-label style="font-size: 14px;">Billing Address</ion-label>
+                      <!-- <ion-label style="font-size: 14px;">Billing Address</ion-label> -->
+                      <ion-label style="font-size: 14px;">Parmanent Address</ion-label>
 
                     </ion-item>
                     <div class="ion-padding" slot="content" style="margin-bottom: -10px;margin-top: -10px;">
@@ -226,7 +226,9 @@
                 <ion-accordion-group style="width: 100%;margin-top: 10px;">
                   <ion-accordion value="second">
                     <ion-item slot="header" color="primary" style="height: 40px;padding: 0;">
-                      <ion-label style="font-size: 14px;">Shopping Address</ion-label>
+                      <!-- <ion-label style="font-size: 14px;">Shopping Address</ion-label> -->
+                      <ion-label style="font-size: 14px;">Temporary  Address</ion-label>
+
                       <ion-checkbox [(ngModel)]="copyData" formControlName="copyData" (ionChange)="onCopyboxChange()">
                       </ion-checkbox>
                     </ion-item>

@@ -305,7 +305,7 @@
                 interface="popover" label="--- Customer Name --- " label-placement="floating" fill="outline"
                 [(ngModel)]=" custcode" name="custname" formControlName="custname" (change)="getCustomers($event)">
                 <!-- <option value="0"> --- Customer Name --- </option> -->
-                <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.id">
+                <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.customer_code">
                   {{ customername.name }}
                 </ion-select-option>
               </ion-select>

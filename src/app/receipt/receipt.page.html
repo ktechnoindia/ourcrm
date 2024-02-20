@@ -61,7 +61,7 @@
                             <select class="select-option" name="companyname" [(ngModel)]="selectedCustomerId"
                               formControlName="companyname" (change)="fetchBillsForCustomer()">
                               <option value="0">Ledger Name</option>
-                              <option *ngFor="let customername of customer$ | async" [value]="customername.id">
+                              <option *ngFor="let customername of customer$ | async" [value]="customername.customer_code">
                                 {{ customername.name }}
                               </option>
                             </select>
