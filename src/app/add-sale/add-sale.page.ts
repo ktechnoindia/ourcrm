@@ -381,17 +381,12 @@ export class AddSalePage implements OnInit {
     });
   }
 
-  // openQuantityPopover(sale: Sales) {
-  //   this.purchasebyid$ = this.saleService.fetchallPurchaseById(sale.itemcode, 1);
-  //   this.purchasebyid$.subscribe(data => {
-  //     console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-  //     // this.totalItems = data.length;
-  //   });
-  //   this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
-  //     .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-  //   this.isQuantityPopoverOpen = true;
-  // }
   openQuantityPopover(sale: Sales) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(sale.itemcode, 1);
+    this.purchasebyid$.subscribe(data => {
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
+      // this.totalItems = data.length;
+    });
     this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
       .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
@@ -936,7 +931,12 @@ export class AddSalePage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
   }
   calculateDiscount() {
     const discountType = this.myform.get('discountType')?.value;

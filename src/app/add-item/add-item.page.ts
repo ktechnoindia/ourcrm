@@ -424,6 +424,13 @@ export class AddItemPage implements OnInit {
   ngOnInit(): void {
     // Fetch data and populate hsnOptions$
     this.fetchData();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
   }
   fetchData() {
     this.units$ = this.unitService.fetchallunit('','','');

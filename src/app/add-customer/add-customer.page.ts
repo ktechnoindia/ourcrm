@@ -191,7 +191,13 @@ export class AddCustomerPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
   }
 
   segmentChanged(event: any) {

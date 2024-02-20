@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormGroupName, FormsModule, NgForm, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddgroupService, group } from '../services/addgroup.service';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
@@ -110,6 +110,12 @@ export class AddgroupPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
   }
   goBack() {
     this.router.navigate(['/item-master']);

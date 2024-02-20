@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddattributeService, addattribute } from '../services/addattribute.service';
@@ -26,6 +26,7 @@ export class AddattributePage implements OnInit {
   attnames: any[] = [];
   searchTerm: string = '';
   filteredAttributes: any[] = [];
+  attname$: Observable<any[]>
 
   constructor(private navCtrl: NavController,private router: Router, private addatt: AddattributeService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.myform = this.formBuilder.group({
@@ -33,6 +34,8 @@ export class AddattributePage implements OnInit {
       searchTerm:['']
     })
     this.myaction();
+    this.attname$ = this.addatt.getattribute(1);
+
   }
   async myaction(){
     this.addatt.getattribute(1).subscribe((response:any)=>{
@@ -89,27 +92,33 @@ export class AddattributePage implements OnInit {
     //location.reload();
   }
 
-  // filterCustomers(): Observable<any[]> {
-  //   return this.attname$.pipe(
-  //     map(attiributename =>
-  //       attiributename.filter(attribute =>
-  //         Object.values(attribute).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
-  //       )
-  //     )
-  //   );
-  // }
+  filterCustomers(): Observable<any[]> {
+    return this.attname$.pipe(
+      map(attiributename =>
+        attiributename.filter(attribute =>
+          Object.values(attribute).some(value => String(value).toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      )
+    );
+  }
 
   onSearchTermChanged(): void {
     this.filteredAttributes = this.attnames;
   }
  
   ngOnInit() {
-    //this.myaction();
-    // this.filteredAttribute$ = this.attname$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
-    // );
+    this.myaction();
+    this.attname$ = this.attname$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(() => this.filterCustomers())
+    );
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
   }
 
   goBack() {

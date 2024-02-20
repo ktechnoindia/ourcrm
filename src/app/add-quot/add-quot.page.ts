@@ -970,7 +970,12 @@ export class AddQuotPage implements OnInit {
     // Fetch data and populate hsnOptions$
     // this.fetchData();
 
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
   }
   // fetchData() {
   //   // this.customer$ = this.custname1.fetchallCustomer('','','');

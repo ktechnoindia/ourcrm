@@ -282,7 +282,12 @@ paymentMethod: boolean = false;
 
 
   ngOnInit() {
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
   }
   goBack() {
     this.router.navigate(['/master']); // Navigate back to the previous page

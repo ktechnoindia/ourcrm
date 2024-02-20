@@ -944,6 +944,14 @@ export class AddPurchasePage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
+  
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
   }
   calculateDiscountAmt() {
     // Calculate discountamt based on discount percentage

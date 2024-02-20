@@ -177,7 +177,13 @@ export class AddExecutivePage implements OnInit {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
   }
   navigateToVieweExecutivePage() {
     this.router.navigate(['/view-executive']); // Navigate to the target page

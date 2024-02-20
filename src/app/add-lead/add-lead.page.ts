@@ -254,9 +254,15 @@ export class AddLeadPage {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
 
-  ngOnInit() {
-    // Page initialization code goes here
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
   }
+
   goBack() {
     this.router.navigate(['/leaddashboard']);
   }

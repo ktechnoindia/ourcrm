@@ -47,7 +47,10 @@ export class CreateunitPage implements OnInit {
     // Add any additional logic you may need before closing the page
     this.navCtrl.back(); // This will navigate back to the previous page
   }
- 
+  fetchunitData(){
+    this.units$ = this.unitService.fetchallunit('','', '');
+
+  }
   async onSubmit() {
     const fields = { unit_name: this.unit_name }
     const isValid = await this.formService.validateForm(fields);
@@ -64,6 +67,8 @@ export class CreateunitPage implements OnInit {
       this.unitService.createUnit(unitdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+          this.fetchunitData();
+
           this.formService.showSuccessAlert();
           this.form.reset();
 
@@ -109,6 +114,7 @@ export class CreateunitPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+
   }
   goBack() {
     this.router.navigate(['/item-master']);
