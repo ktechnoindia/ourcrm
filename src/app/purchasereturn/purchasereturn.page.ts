@@ -855,6 +855,13 @@ export class PurchasereturnPage implements OnInit {
     return this.getTotaltax(purchase);
   }
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
     this.purchaseData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',

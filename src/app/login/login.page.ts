@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { NavigationStart, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastController } from '@ionic/angular'; 
 import { LoginService,logindata } from '../services/login.service';
@@ -27,6 +27,7 @@ export class LoginPage implements OnInit {
 
    submitValue = false;
 myform:FormGroup;
+  router: any;
    constructor(private sharedService: SharedService,private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService,private session:SessionService){
     this.myform = this.formBuilder.group({
       username:[''],
@@ -128,7 +129,13 @@ myform:FormGroup;
 
    ngOnInit(){
     this.sharedService.showHeader  = false;
-
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
 }
 
 

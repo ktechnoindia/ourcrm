@@ -839,6 +839,13 @@ return this.totalquantity;
     return totalAmount;
 }
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
     this.dcinData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',

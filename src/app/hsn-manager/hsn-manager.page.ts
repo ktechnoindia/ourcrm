@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HsnService,hsn } from '../services/hsn.service';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
@@ -100,6 +100,13 @@ ngOnInit() {
     distinctUntilChanged(),
     switchMap(() => this.filterCustomers())
   );
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationStart) {
+      // Reset form data when navigating away from the page
+      this.form.reset();
+    }
+  });
+
 }
 
   goBack() {

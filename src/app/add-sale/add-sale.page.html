@@ -723,7 +723,7 @@
           <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
             <ng-template>
               <ion-content>
-                <div style="padding: 10px;">
+                <div class="popup" style="padding: 10px;">
                   <table style="width: 100%;">
                     <tr class="attributes" *ngFor="let sales of salesData; let i = index">
                       <th>Sr. No.</th>
@@ -764,7 +764,7 @@
                     <tr *ngFor="let row of salesData[0]?.quantityPopoverData; let i = index ">
 
                       <td>{{i+1}}</td>
-                      <td><ion-checkbox></ion-checkbox></td>
+                      <td><ion-checkbox ></ion-checkbox></td>
                       <ng-container *ngIf="tatts>=0">
                         <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
                       </ng-container>

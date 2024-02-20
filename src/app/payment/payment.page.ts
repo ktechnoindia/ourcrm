@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { PaymentService, pay, } from '../services/payment.service';
 import { Observable, Subscription, map, switchMap } from 'rxjs';
@@ -333,6 +333,13 @@ export class PaymentPage implements OnInit {
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
    // this.fetchVendorOutstandingOnCompanyNameChange();
+   this.router.events.subscribe(event => {
+    if (event instanceof NavigationStart) {
+      // Reset form data when navigating away from the page
+      this.myform.reset();
+    }
+  });
+
   }
   presentToast(arg0: string) {
     throw new Error('Method not implemented.');

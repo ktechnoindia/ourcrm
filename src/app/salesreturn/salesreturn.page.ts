@@ -856,6 +856,13 @@ export class SalesreturnPage implements OnInit {
     return this.getTotaltax(sale);
   }
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
     this.salesData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',

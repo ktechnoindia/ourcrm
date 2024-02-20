@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { AmcService } from '../services/amc.service';
 import { FormValidationService } from '../form-validation.service';
 import { EncryptionService } from '../services/encryption.service';
@@ -21,6 +21,7 @@ export class PendingamcPage implements OnInit {
   amc$: Observable<any[]>;
   searchTerm: string = '';
   filteredPendingamc$: Observable<any[]> = new Observable<any[]>(); 
+  myForm: any;
   
   constructor(private router: Router,private amcService:AmcService,private formService: FormValidationService,private encService: EncryptionService,) { 
 
@@ -49,6 +50,13 @@ export class PendingamcPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myForm.reset();
+      }
+    });
+  
   }
   goBack() {
     this.router.navigate(['/amc-manager']); // Navigate back to the previous page

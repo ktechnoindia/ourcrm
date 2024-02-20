@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChil
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { RecepitService, rec } from '../services/recepit.service';
 import { EncryptionService } from '../services/encryption.service';
 import { FormValidationService } from '../form-validation.service';
@@ -336,7 +336,13 @@ export class ReceiptPage implements OnInit {
     });
   }
   ngOnInit() {
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
     // this.CustomerOutstandingOnCompanyNameChange();
   }
