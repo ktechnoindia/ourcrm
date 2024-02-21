@@ -495,38 +495,31 @@
                       <tr class="attributes" *ngFor="let purchase of purchaseData; let i = index">
                         <th>Sr. No.</th>
                         <ng-container *ngIf="purchase.attribute1">
-                          <th><input type="text" formControlName="attribute1" [(ngModel)]="purchase.attribute1"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute1" [(ngModel)]="purchase.attribute1" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute2">
-                          <th><input type="text" formControlName="attribute2" [(ngModel)]="purchase.attribute2"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute2" [(ngModel)]="purchase.attribute2" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute3">
-                          <th><input type="text" formControlName="attribute3" [(ngModel)]="purchase.attribute3"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute3" [(ngModel)]="purchase.attribute3" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute4">
-                          <th><input type="text" formControlName="attribute4" [(ngModel)]="purchase.attribute4"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute4" [(ngModel)]="purchase.attribute4" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute5">
-                          <th><input type="text" formControlName="attribute5" [(ngModel)]="purchase.attribute5"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute5" [(ngModel)]="purchase.attribute5" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute6">
-                          <th><input type="text" formControlName="attribute6" [(ngModel)]="purchase.attribute6"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute6" [(ngModel)]="purchase.attribute6" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute7">
-                          <th><input type="text" formControlName="attribute7" [(ngModel)]="purchase.attribute7"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute7" [(ngModel)]="purchase.attribute7" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute8">
-                          <th><input type="text" formControlName="attribute8" [(ngModel)]="purchase.attribute8"
-                              class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute8" [(ngModel)]="purchase.attribute8" class="pop_input" readonly></th>
                         </ng-container>
-                      </tr>
+                    </tr>
+                    
                       <!-- <tr><td>{{tatts}}</td></tr> -->
                       <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData; let i = index ">
                         <td>{{i+1}}</td>
