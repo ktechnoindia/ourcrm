@@ -60,7 +60,7 @@
                             <select class="select-option" name="companyname" [(ngModel)]="selectedVendorId"
                               formControlName="companyname" (change)="fetchBillsForVendor()">
                               <option value="0">Select Ledger Name</option>
-                              <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.vendor_code">
+                              <option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                                 {{ suppliername.name }}
                               </option>
                             </select>
@@ -70,7 +70,7 @@
                           <!-- Assuming the input field for outstanding_amount is in the first row -->
                           <td *ngIf="outstanding_amount !== null">
                             <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding" [value]="outstanding"
-                              formControlName="outstanding" type="number" (keydown)="onKeyDown($event)"></ion-input>
+                              formControlName="outstanding" type="number" (keydown)="onKeyDown($event)"readonly></ion-input>
                           </td>
 
                           <td>
@@ -79,7 +79,7 @@
                           </td>
                           <td>
                             <ion-input class="table_input" name="pendingamt" [(ngModel)]="pendingamt"
-                            [value]="calculatePendingAmount()" formControlName="pendingamt" type="number" (keydown)="onKeyDown($event)"></ion-input>
+                            [value]="calculatePendingAmount()" formControlName="pendingamt" type="number" (keydown)="onKeyDown($event)" readonly></ion-input>
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
@@ -136,32 +136,32 @@
 
                         </tr>
                         <tr *ngFor="let purchase of myPaymentBillData; let i = index">
-                          <td><ion-checkbox ></ion-checkbox></td>
+                          <td><ion-checkbox (ionChange)="selectRow($event, i)"></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
-                            <ion-input type="text" name="billno " [value]="purchase.billNumber">
+                            <ion-input type="text" name="billno " [(ngModel)]="billno" formControlName="billno" [value]="purchase.billNumber" readonly>
                             </ion-input>
                           </td>
                           <td>
-                            <ion-input type="text" name="billdate " [value]="purchase.billDate" >
+                            <ion-input type="text" name="billdate " [(ngModel)]="billdate" formControlName="billdate" [value]="purchase.billDate" readonly>
                             </ion-input>
                           </td>
                           <td>
-                            <ion-input class="date" type="number" name="totalamt" [value]="purchase.total"
-                              (keydown)="onKeyDown($event)"></ion-input>
+                            <ion-input class="date" type="number" name="totalamt" [(ngModel)]="totalamt" formControlName="totalamt" [value]="purchase.total"
+                              (keydown)="onKeyDown($event)" readonly></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="receiveamt" [(ngModel)]="purchase.receiveamt"
-                              formControlName="receiveamt" (keydown)="onKeyDown($event)"></ion-input>
+                              formControlName="receiveamt" (keydown)="onKeyDown($event)" readonly></ion-input>
                           </td>
                           <td>
                             <ion-input class="date" type="number" name="currentamt" [(ngModel)]="purchase.currentamt"
-                              formControlName="currentamt" (keydown)="onKeyDown($event)"></ion-input>
+                              formControlName="currentamt" (keydown)="onKeyDown($event)" (input)="onCurrentAmtChanged(i)" [readonly]="!isSelectedRow(i)"></ion-input>
                           </td>
                           
                           <td>
                             <ion-input class="date" type="number" name="pendingamt" [(ngModel)]="purchase.pendingamt"
-                                formControlName="pendingamt" (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(purchase)">
+                                formControlName="pendingamt" (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(purchase)" readonly>
                             </ion-input>
                         </td>
                         

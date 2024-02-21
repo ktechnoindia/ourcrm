@@ -79,7 +79,33 @@ export class PaymentPage implements OnInit {
   selectedVendorId: number = 0;
   //paymentbill$:Observable<any[]>
   companyid: number = 0;
+  selectedRowIndexes: Set<number> = new Set<number>();
 
+  selectRow(event: CustomEvent, index: number) {
+      const checkbox = event.target as HTMLInputElement;
+      if (checkbox.checked) {
+          this.selectedRowIndexes.add(index);
+      } else {
+          this.selectedRowIndexes.delete(index);
+      }
+  }
+  
+  isSelectedRow(index: number): boolean {
+      return this.selectedRowIndexes.has(index);
+  }
+  
+  onCurrentAmtChanged(index: number) {
+      if (this.isSelectedRow(index)) {
+          // Call your save method here passing the updated data
+          this.saveData(this.myPaymentBillData[index]);
+      }
+  }
+  
+  saveData(sale: any) {
+      // Implement your save logic here, e.g., making an API call to save the data
+      console.log("Saving data:", sale);
+  }
+  
   constructor(private cdr: ChangeDetectorRef,private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
@@ -332,7 +358,7 @@ export class PaymentPage implements OnInit {
   
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-   // this.fetchVendorOutstandingOnCompanyNameChange();
+   this.fetchVendorOutstandingOnCompanyNameChange();
    this.router.events.subscribe(event => {
     if (event instanceof NavigationStart) {
       // Reset form data when navigating away from the page

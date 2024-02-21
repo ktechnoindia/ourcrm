@@ -86,7 +86,33 @@ export class ReceiptPage implements OnInit {
     billpendingamt: 0,
   }]
   recepitbill: Subscription;
+  selectedRowIndexes: Set<number> = new Set<number>();
 
+  selectRow(event: CustomEvent, index: number) {
+      const checkbox = event.target as HTMLInputElement;
+      if (checkbox.checked) {
+          this.selectedRowIndexes.add(index);
+      } else {
+          this.selectedRowIndexes.delete(index);
+      }
+  }
+  
+  isSelectedRow(index: number): boolean {
+      return this.selectedRowIndexes.has(index);
+  }
+  
+  onCurrentAmtChanged(index: number) {
+      if (this.isSelectedRow(index)) {
+          // Call your save method here passing the updated data
+          this.saveData(this.myReceiptBillData[index]);
+      }
+  }
+  
+  saveData(sale: any) {
+      // Implement your save logic here, e.g., making an API call to save the data
+      console.log("Saving data:", sale);
+  }
+  
 
   constructor(private cdRef: ChangeDetectorRef,private session: SessionService, private receiptservice: RecepitService, private saleService: SalesService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private encService: EncryptionService, private formService: FormValidationService, private companyService: CreatecompanyService, private custname1: CustomerService) {
     const compid = session.getValue('companyid')?.valueOf() as string;
@@ -243,7 +269,7 @@ export class ReceiptPage implements OnInit {
       // Validate if payment made equals total payment
       if (this.myform.value.paymentmade !== this.calculateTotalCurrentAmt()) {
         // Show error popup if amounts do not match
-        this.formService.showErrorPopup("Payment made and Total Current Amounts does not match of . Please verify.");
+        this.formService.showErrorPopup("Payment made and Total Current Amounts does not match please verify.");
         return; // Stop submission
       }
   
@@ -335,6 +361,7 @@ export class ReceiptPage implements OnInit {
       }
     });
   }
+
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -384,33 +411,37 @@ export class ReceiptPage implements OnInit {
 
   calculateTotalReceiveAmt(): number {
     let totalAmt = 0;
-    for (const purchase of this.myReceiptBillData) {
-      // Assuming purchase.receiveamt is a numeric value
-      if (typeof purchase.receiveamt === 'number') {
-        totalAmt += purchase.receiveamt;
-      }
+    for (const sale of this.myReceiptBillData) {
+        // Ensure that 'sale.receiveamt' is a number and add it to the total
+        if (typeof sale.receiveamt === 'number' && !isNaN(sale.receiveamt)) {
+            totalAmt += sale.receiveamt;
+        }
     }
     return totalAmt;
-  }
+}
 
-  calculateTotalCurrentAmt(): number {
+calculateTotalCurrentAmt(): number {
     let totalCurrentAmt = 0;
-    for (let purchase of this.myReceiptBillData) {
-      totalCurrentAmt += parseFloat(purchase.currentamt);
+    for (const sale of this.myReceiptBillData) {
+        // Ensure that 'sale.currentamt' is a number and add it to the total
+        if (!isNaN(parseFloat(sale.currentamt))) {
+            totalCurrentAmt += parseFloat(sale.currentamt);
+        }
     }
     return totalCurrentAmt;
-  }
+}
 
-  calculateTotalPendingAmt(): number {
+calculateTotalPendingAmt(): number {
     let totalAmt = 0;
     for (const sale of this.myReceiptBillData) {
-        // Assuming sale.pendingamt is a numeric value
-        if (typeof sale.pendingamt === 'number') {
+        // Ensure that 'sale.pendingamt' is a number and add it to the total
+        if (typeof sale.pendingamt === 'number' && !isNaN(sale.pendingamt)) {
             totalAmt += sale.pendingamt;
         }
     }
     return totalAmt;
 }
+
 
 
   onKeyDown(event: KeyboardEvent): void {
@@ -419,4 +450,5 @@ export class ReceiptPage implements OnInit {
       event.preventDefault();
     }
   }
+  
 }

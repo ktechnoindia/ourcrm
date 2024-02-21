@@ -61,7 +61,7 @@
                             <select class="select-option" name="companyname" [(ngModel)]="selectedCustomerId"
                               formControlName="companyname" (change)="fetchBillsForCustomer()">
                               <option value="0">Ledger Name</option>
-                              <option *ngFor="let customername of customer$ | async" [value]="customername.customer_code">
+                              <option *ngFor="let customername of customer$ | async" [value]="customername.id">
                                 {{ customername.name }}
                               </option>
                             </select>
@@ -70,18 +70,18 @@
                           <td *ngIf="outstanding_amount !== null">
                             <ion-input class="table_input" name="outstanding" [(ngModel)]="outstanding"
                               [value]="outstanding" formControlName="outstanding" type="number"
-                              (keydown)="onKeyDown($event)"></ion-input>
+                              (keydown)="onKeyDown($event)" readonly></ion-input>
                           </td>
 
                           <td>
                             <ion-input class="table_input" name="paymentmade" [(ngModel)]="paymentmade"
-                              formControlName="paymentmade" type="number" (keydown)="onKeyDown($event)"></ion-input>
+                              formControlName="paymentmade" type="number" (keydown)="onKeyDown($event)" ></ion-input>
                           </td>
                           <td>
 
                             <ion-input class="table_input" name="pendingamt" [(ngModel)]="pendingamt"
                               [value]="calculatePendingAmount()" formControlName="pendingamt" type="number"
-                              (keydown)="onKeyDown($event)"></ion-input>
+                              (keydown)="onKeyDown($event)"readonly></ion-input>
                           </td>
                           <td>
                             <select class="select-option" name="paymentway" [(ngModel)]="paymentway"
@@ -137,37 +137,37 @@
                           <th>Pending Amt.</th>
 
                         </tr>
-                        <tr *ngFor="let sale of myReceiptBillData; let i = index">
-                          <td><ion-checkbox></ion-checkbox></td>
+                        <tr *ngFor="let sale of myReceiptBillData; let i = index" >
+                          <td><ion-checkbox (ionChange)="selectRow($event, i)"></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
                             <input type="text" name="billno" [(ngModel)]="sale.billNumber"
-                              [ngModelOptions]="{standalone: true}">
+                              [ngModelOptions]="{standalone: true}"readonly>
                           </td>
                           <td>
                             <input type="text" name="billdate" [(ngModel)]="sale.billDate"
-                              [ngModelOptions]="{standalone: true}">
+                              [ngModelOptions]="{standalone: true}"readonly>
                           </td>
                           <td>
                             <input class="date" type="number" name="total" [(ngModel)]="sale.total"
-                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
+                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)"readonly>
                           </td>
 
                           <td>
                             <input class="date" type="number" name="receiveamt" [(ngModel)]="sale.receiveamt"
-                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)">
+                              [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)" readonly>
                           </td>
                           <td>
                             <input class="date" type="number" name="currentamt" [(ngModel)]="sale.currentamt"
                               [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)"
-                              (keydown)="onKeyDown($event)">
+                              (keydown)="onKeyDown($event)" (input)="onCurrentAmtChanged(i)" [readonly]="!isSelectedRow(i)">
                               
                           </td>
 
                           <td>
                             <ion-input class="date" type="number" name="billpendingamt"
                               [(ngModel)]="sale.billpendingamt" formControlName="billpendingamt"
-                              (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(sale)">
+                              (keydown)="onKeyDown($event)" [value]="calculatePendingAmt(sale)" readonly>
                             </ion-input>
                           </td>
                         </tr>
