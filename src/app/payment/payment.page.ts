@@ -82,31 +82,31 @@ export class PaymentPage implements OnInit {
   selectedRowIndexes: Set<number> = new Set<number>();
 
   selectRow(event: CustomEvent, index: number) {
-      const checkbox = event.target as HTMLInputElement;
-      if (checkbox.checked) {
-          this.selectedRowIndexes.add(index);
-      } else {
-          this.selectedRowIndexes.delete(index);
-      }
+    const checkbox = event.target as HTMLInputElement;
+    if (checkbox.checked) {
+      this.selectedRowIndexes.add(index);
+    } else {
+      this.selectedRowIndexes.delete(index);
+    }
   }
-  
+
   isSelectedRow(index: number): boolean {
-      return this.selectedRowIndexes.has(index);
+    return this.selectedRowIndexes.has(index);
   }
-  
+
   onCurrentAmtChanged(index: number) {
-      if (this.isSelectedRow(index)) {
-          // Call your save method here passing the updated data
-          this.saveData(this.myPaymentBillData[index]);
-      }
+    if (this.isSelectedRow(index)) {
+      // Call your save method here passing the updated data
+      this.saveData(this.myPaymentBillData[index]);
+    }
   }
-  
+
   saveData(sale: any) {
-      // Implement your save logic here, e.g., making an API call to save the data
-      console.log("Saving data:", sale);
+    // Implement your save logic here, e.g., making an API call to save the data
+    console.log("Saving data:", sale);
   }
-  
-  constructor(private cdr: ChangeDetectorRef,private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
+
+  constructor(private cdr: ChangeDetectorRef, private purchaseservice: PurchaseService, private paymentservice: PaymentService, private ledgerService: LegderService, private navCtrl: NavController, private datePipe: DatePipe, private router: Router, private formBuilder: FormBuilder, private companyService: CreatecompanyService, private encService: EncryptionService, private formService: FormValidationService, private vendname1: VendorService, private session: SessionService) {
 
     const compid = session.getValue('companyid')?.valueOf() as string;
     this.paymentBill = new Subscription();
@@ -116,7 +116,7 @@ export class PaymentPage implements OnInit {
 
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
     this.userid = session.getValue('userid')?.valueOf() as number;
-  //  this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
+    //  this.outstanding$ = this.paymentservice.fetchVendorOutstanding(this.userid);
     // this.outstanding$.subscribe(outstandingData => {
     //   console.log(outstandingData);
     // });
@@ -172,8 +172,8 @@ export class PaymentPage implements OnInit {
           this.billno = bills.billno;
           this.billdate = bills.billdate;
           this.totalamt = bills.totalamt;
-          this.pendingamt=bills.pendingamt;
-         // this.outstanding=bills.outstanding;
+          this.pendingamt = bills.pendingamt;
+          // this.outstanding=bills.outstanding;
           // this.paymentmade=bills.paymentmade;
 
 
@@ -187,21 +187,26 @@ export class PaymentPage implements OnInit {
     }
   }
 
-  async fillvendoroutstanding(vendorid:number){
+  async fillvendoroutstanding(vendorid: number) {
     this.paymentservice.fetchVendorOutstanding(vendorid).subscribe((outstandingArray: any[]) => {
-      if(outstandingArray!) this.outstanding=outstandingArray[0]?.outstanding_amount;
+      if (outstandingArray!) this.outstanding = outstandingArray[0]?.outstanding_amount;
     });
   }
-  async fillbillwisedata(vendorid:number,paymentway:string){
-    if(paymentway=='BillWise'){
-    this.paymentservice.fillBillWise(vendorid).subscribe((data: any[]) => {
-      console.log(data);
-      this.myPaymentBillData = data;
-    });
-  }else{
-    alert('not applicable for now');
-  }
-  }
+  async fillbillwisedata(vendorid: number, paymentway: string) {
+    if (paymentway == 'BillWise') {
+        this.paymentservice.fillBillWise(vendorid).subscribe((data: any[]) => {
+            console.log(data);
+            this.myPaymentBillData = data;
+        });
+    } else if (paymentway == 'Onaccount') {
+        // Save the data or perform any necessary action
+        console.log("Saving data for 'OnAccount' payment...");
+        // Add your saving logic here
+    } else {
+        console.error("Invalid paymentway:", paymentway);
+    }
+}
+
 
   // getPurchaseDetails(payment: any) {
   //   const compid = '1';
@@ -253,78 +258,80 @@ export class PaymentPage implements OnInit {
   async onSubmit(myform: FormGroup, paymentData: Payment[]) {
     const fields = { voucherNumber: this.voucherNumber };
     const isValid = await this.formService.validateForm(fields);
-    
+
     if (isValid) {
-        // Check if payment made equals total payment
-        if (this.myform.value.paymentmade !== this.myform.value.total_payment) {
-            this.formService.showErrorPopup("Payment made & Total Current Amount does not match Total Payment. Please verify.");
-            return; // Stop submission
+      if (this.myform.value.paymentway === 'BillWise') {
+          // Check if payment made equals total payment only if payment method is 'BillWise'
+          if (this.myform.value.paymentmade !== this.myform.value.total_payment) {
+              this.formService.showErrorPopup("Payment made & Total Current Amount does not match Total Payment. Please verify.");
+              return; // Stop submission
+          }
+      }
+
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(paymentData));
+
+      let paymentdatas: pay[] = [];
+
+      for (const element of paymentData) {
+        console.log('Your form data : ', this.myform.value);
+        const paymentdata: pay = {
+          voucherNumber: this.myform.value.voucherNumber,
+          paymentdate: this.myform.value.paymentdate,
+          ledger: this.myform.value.ledger,
+          outstanding: this.myform.value.outstanding,
+          paymentmade: this.myform.value.paymentmade,
+          total: this.myform.value.total,
+          total_payment: this.myform.value.total_payment,
+          paymentway: this.myform.value.paymentway,
+          totalamt: element.totalamt,
+          billno: element.billno,
+          billdate: element.billdate,
+          receiveamt: element.receiveamt,
+          pendingamt: element.pendingamt,
+          currentamt: element.currentamt,
+          companyname: this.myform.value.companyname,
+          totaldueamt: this.myform.value.totaldueamt,
+          totalreceiveamt: this.myform.value.totalreceiveamt,
+          totalcurrentamt: this.myform.value.totalcurrentamt,
+          totalpendingamt: this.myform.value.totalpendingamt,
+          userid: this.myform.value.userid,
+          vendorid: this.selectedVendorId,
+        };
+        paymentdatas.push(paymentdata);
+      }
+
+      this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+
+          this.formService.showSaveLoader();
+          this.myform.reset();
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.showErrorLoader();
         }
-
-        console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(paymentData));
-
-        let paymentdatas: pay[] = [];
-
-        for (const element of paymentData) {
-            console.log('Your form data : ', this.myform.value);
-            const paymentdata: pay = {
-                voucherNumber: this.myform.value.voucherNumber,
-                paymentdate: this.myform.value.paymentdate,
-                ledger: this.myform.value.ledger,
-                outstanding: this.myform.value.outstanding,
-                paymentmade: this.myform.value.paymentmade,
-                total: this.myform.value.total,
-                total_payment: this.myform.value.total_payment,
-                paymentway: this.myform.value.paymentway,
-                totalamt: element.totalamt,
-                billno: element.billno,
-                billdate: element.billdate,
-                receiveamt: element.receiveamt,
-                pendingamt: element.pendingamt,
-                currentamt: element.currentamt,
-                companyname: this.myform.value.companyname,
-                totaldueamt: this.myform.value.totaldueamt,
-                totalreceiveamt: this.myform.value.totalreceiveamt,
-                totalcurrentamt: this.myform.value.totalcurrentamt,
-                totalpendingamt: this.myform.value.totalpendingamt,
-                userid: this.myform.value.userid,
-                vendorid: this.selectedVendorId,
-            };
-            paymentdatas.push(paymentdata);
-        }
-
-        this.paymentservice.createPayment(paymentdatas, '', '').subscribe(
-            (response: any) => {
-                console.log('POST request successful', response);
-                setTimeout(() => {
-                    this.formService.showSuccessAlert();
-                }, 1000);
-
-                this.formService.showSaveLoader();
-                this.myform.reset();
-            },
-            (error: any) => {
-                console.error('POST request failed', error);
-                setTimeout(() => {
-                    this.formService.showFailedAlert();
-                }, 1000);
-                this.formService.showErrorLoader();
-            }
-        );
+      );
 
     } else {
-        //If the form is not valid, display error messages
-        Object.keys(this.myform.controls).forEach(controlName => {
-            const control = this.myform.get(controlName);
-            if (control?.invalid) {
-                control.markAsTouched();
-            }
-        });
-        if (this.firstInvalidInput) {
-            this.firstInvalidInput.setFocus();
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
         }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
-}
+  }
 
   onSupplierChange() {
     // Update the 'ledger' field with the selected supplier's name
@@ -339,13 +346,13 @@ export class PaymentPage implements OnInit {
   onNew() {
     location.reload();
   }
-  
+
   fetchVendorOutstandingOnCompanyNameChange() {
     this.myform.get('companyname')?.valueChanges.pipe(
       switchMap((companyId: number) => this.paymentservice.fetchVendorOutstanding(companyId))
     ).subscribe((outstandingArray: any[]) => {
       console.log('Received outstanding data:', outstandingArray);
-  
+
       if (outstandingArray && outstandingArray.length > 0) {
         const firstItem = outstandingArray[0];
         this.outstanding = firstItem.outstanding_amount;
@@ -355,16 +362,16 @@ export class PaymentPage implements OnInit {
       }
     });
   }
-  
+
   ngOnInit() {
     this.paymentdate = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!;
-   this.fetchVendorOutstandingOnCompanyNameChange();
-   this.router.events.subscribe(event => {
-    if (event instanceof NavigationStart) {
-      // Reset form data when navigating away from the page
-      this.myform.reset();
-    }
-  });
+    this.fetchVendorOutstandingOnCompanyNameChange();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
 
   }
   presentToast(arg0: string) {
@@ -383,55 +390,56 @@ export class PaymentPage implements OnInit {
   calculateTotalDueAmt(): number {
     let totalAmt = 0;
     for (const purchase of this.myPaymentBillData) {
-        // Assuming purchase.total is a numeric value
-        if (typeof purchase.total === 'number') {
-            totalAmt += purchase.total;
-        }
+      // Assuming purchase.total is a numeric value
+      if (typeof purchase.total === 'number') {
+        totalAmt += purchase.total;
+      }
     }
     return totalAmt;
-}
+  }
 
 
   calculateTotalReceiveAmt(): number {
     let totalAmt = 0;
-    for (const purchase of this.myPaymentBillData) {
-        // Assuming purchase.receiveamt is a numeric value
-        if (typeof purchase.receiveamt === 'number') {
-            totalAmt += purchase.receiveamt;
-        }
+    for (const sale of this.myPaymentBillData) {
+      // Ensure that 'sale.receiveamt' is a number and add it to the total
+      if (typeof sale.receiveamt === 'number' && !isNaN(sale.receiveamt)) {
+        totalAmt += sale.receiveamt;
+      }
     }
     return totalAmt;
-}
-
-
-calculateTotalCurrentAmt(): number {
-  let totalCurrentAmt = 0;
-  for (let purchase of this.myPaymentBillData) {
-    totalCurrentAmt += parseFloat(purchase.currentamt);
   }
-  return totalCurrentAmt;
-}
-  
+
+  calculateTotalCurrentAmt(): number {
+    let totalCurrentAmt = 0;
+    for (const sale of this.myPaymentBillData) {
+      // Ensure that 'sale.currentamt' is a number and add it to the total
+      if (!isNaN(parseFloat(sale.currentamt))) {
+        totalCurrentAmt += parseFloat(sale.currentamt);
+      }
+    }
+    return totalCurrentAmt;
+  }
 
   calculateTotalPendingAmt(): number {
     let totalAmt = 0;
-    for (const purchase of this.myPaymentBillData) {
-        // Assuming sale.pendingamt is a numeric value
-        if (typeof purchase.pendingamt === 'number') {
-            totalAmt += purchase.pendingamt;
-        }
+    for (const sale of this.myPaymentBillData) {
+      // Ensure that 'sale.pendingamt' is a number and add it to the total
+      if (typeof sale.pendingamt === 'number' && !isNaN(sale.pendingamt)) {
+        totalAmt += sale.pendingamt;
+      }
     }
     return totalAmt;
-}
+  }
   calculatePendingAmt(purchase: { total: number; currentamt: number; }): number {
     return purchase.total - purchase.currentamt;
   }
-  
+
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault();
     }
   }
-  
+
 }

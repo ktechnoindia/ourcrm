@@ -203,16 +203,20 @@ export class ReceiptPage implements OnInit {
       if(outstandingArray!) this.outstanding=outstandingArray[0]?.outstanding_amount;
     });
   }
-  async fillbillwisedata(userid: number, paymentway: string) {
+  async fillbillwisedata(vendorid: number, paymentway: string) {
     if (paymentway == 'BillWise') {
-      this.receiptservice.fillBillWise(userid).subscribe((data: any[]) => {
-        console.log(data);
-        this.myReceiptBillData = data;
-      });
+        this.receiptservice.fillBillWise(vendorid).subscribe((data: any[]) => {
+            console.log(data);
+            this.myReceiptBillData = data;
+        });
+    } else if (paymentway == 'Onaccount') {
+        // Save the data or perform any necessary action
+        console.log("Saving data for 'OnAccount' payment...");
+        // Add your saving logic here
     } else {
-      alert('not applicable for now');
+        console.error("Invalid paymentway:", paymentway);
     }
-  }
+}
   // getSalesDetails(recepit: any) {
   //   const compid = '1';
   //   const identifier = recepit.companyname ? 'companyname' : '';
@@ -266,11 +270,12 @@ export class ReceiptPage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
   
     if (isValid) {
-      // Validate if payment made equals total payment
-      if (this.myform.value.paymentmade !== this.calculateTotalCurrentAmt()) {
-        // Show error popup if amounts do not match
-        this.formService.showErrorPopup("Payment made and Total Current Amounts does not match please verify.");
-        return; // Stop submission
+      if (this.myform.value.paymentway === 'BillWise') {
+          // Check if payment made equals total payment only if payment method is 'BillWise'
+          if (this.myform.value.paymentmade !== this.myform.value.total_payment) {
+              this.formService.showErrorPopup("Payment made & Total Current Amount does not match Total Payment. Please verify.");
+              return; // Stop submission
+          }
       }
   
       // Proceed with submission if validation passes

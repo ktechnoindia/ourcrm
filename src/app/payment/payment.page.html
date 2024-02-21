@@ -86,7 +86,7 @@
                               formControlName="paymentway" id="" (change)="fillbillwisedata(selectedVendorId,paymentway)">
                               <option value="">Select Payment Way</option>
                               <option value="BillWise">BillWise</option>
-                              <option value="On Account">On Account</option>
+                              <option value="Onaccount">On Account</option>
                             </select>
                           </td>
                         </tr>
@@ -139,15 +139,15 @@
                           <td><ion-checkbox (ionChange)="selectRow($event, i)"></ion-checkbox></td>
                           <td>{{ i + 1 }}</td>
                           <td>
-                            <ion-input type="text" name="billno " [(ngModel)]="billno" formControlName="billno" [value]="purchase.billNumber" readonly>
+                            <ion-input type="text" name="billno " [value]="purchase.billNumber" readonly>
                             </ion-input>
                           </td>
                           <td>
-                            <ion-input type="text" name="billdate " [(ngModel)]="billdate" formControlName="billdate" [value]="purchase.billDate" readonly>
+                            <ion-input type="text" name="billdate " [value]="purchase.billDate" readonly>
                             </ion-input>
                           </td>
                           <td>
-                            <ion-input class="date" type="number" name="totalamt" [(ngModel)]="totalamt" formControlName="totalamt" [value]="purchase.total"
+                            <ion-input class="date" type="number" name="totalamt" [value]="purchase.total"
                               (keydown)="onKeyDown($event)" readonly></ion-input>
                           </td>
                           <td>
