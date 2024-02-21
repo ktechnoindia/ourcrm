@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-transactionsetting',
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class TransactionsettingPage implements OnInit {
 
   selectedOption: string = ''; // Add this line to define the property
+  myForm: any;
 
   toggleDivs() {
     // Add your logic for toggling divs based on selectedOption
@@ -23,6 +24,13 @@ export class TransactionsettingPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myForm.reset();
+      }
+    });
+  
   }
   goBack(){
     this.router.navigate(["/transcationdashboard"])

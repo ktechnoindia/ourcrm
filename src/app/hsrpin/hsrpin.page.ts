@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, FormBuilder } from '@angular/forms';
 import { IonPopover, IonicModule, PopoverController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VendorService } from '../services/vendor.service';
 import { Observable } from 'rxjs';
@@ -616,6 +616,13 @@ export class HsrpinPage implements OnInit {
     location.reload();
   }
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
     this.quantity = 1; // Set an initial value for quantity
     //this.purchasebyid$.subscribe(data => console.log(data));
 

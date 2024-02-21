@@ -1,6 +1,5 @@
-
 .Customer ion-input {
-   min-height: 33px;
+  min-height: 33px;
   outline-width: 2px;
   outline-style: initial;
 }
@@ -12,15 +11,17 @@
 
 
 .scroll-container td {
-background-color: #fff;
-border: 1px solid grey;
-max-height: 20px;
-}
-ng-container{
   background-color: #fff;
-border: 1px solid grey;
-max-height: 20px; 
+  border: 1px solid grey;
+  max-height: 20px;
 }
+
+ng-container {
+  background-color: #fff;
+  border: 1px solid grey;
+  max-height: 20px;
+}
+
 .output td {
   border: 1px solid grey;
   margin: 5px;
@@ -33,79 +34,93 @@ max-height: 20px;
   // background-color: #fff;
   padding-left: 10px;
 }
+
 .scroll-container {
-overflow-x: auto;
-border: 1px solid grey;
-width: 100%;
-height: 270px;
-overflow-x: auto;
+  overflow-x: auto;
+  border: 1px solid grey;
+  width: 100%;
+  height: 270px;
+  overflow-x: auto;
 }
+
 .Customer ion-select {
-margin-top: -10px;
-margin-bottom: -10px;
---max-width: 50px !important;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  --max-width: 50px !important;
 }
+
 .delivery-label {
-font-size: 1.5em;
-font-weight: bold;
-margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
+
 .outstanding {
-border: solid .1px grey;
-border-radius: 10px;
-table td {
-  background-color: #fff;
+  border: solid .1px grey;
+  border-radius: 10px;
+
+  table td {
+    background-color: #fff;
+  }
 }
-}
+
 @media(max-width:540px) {
   .Customer ion-input {
     min-height: 25px;
-   font-size: 10px;
+    font-size: 10px;
   }
- 
- }
- .row{
+
+}
+
+.row {
   margin-top: -103px;
   margin-left: 74.4%;
 }
- @media(max-width:990px){
-   .row{
-      margin-top: -253px;
-      margin-left: 60%;
-   }
-   .row1{
-      margin-top: 150px;
-   }
- }
- @media(max-width:575px){
-   .row{
-      margin-top: -324px;
-      margin-left: 40%;
-   }
-   .row1{
-      margin-top: 0px;
-   }
-   .row3{
-      margin-top:150px ;
-   }
- 
- }
- 
- @media(max-width:475px){
-   .row{
+
+@media(max-width:990px) {
+  .row {
+    margin-top: -253px;
+    margin-left: 60%;
+  }
+
+  .row1 {
+    margin-top: 150px;
+  }
+}
+
+@media(max-width:575px) {
+  .row {
+    margin-top: -324px;
+    margin-left: 40%;
+  }
+
+  .row1 {
+    margin-top: 0px;
+  }
+
+  .row3 {
+    margin-top: 150px;
+  }
+
+}
+
+@media(max-width:475px) {
+  .row {
     margin-top: -325px;
     margin-left: -15px;
-   }
-   .row1{
-      margin-top: 0px;
-   }
-   .row3{
-      margin-top:150px ;
-   }
- 
- }
+  }
 
- ion-menu-button {
+  .row1 {
+    margin-top: 0px;
+  }
+
+  .row3 {
+    margin-top: 150px;
+  }
+
+}
+
+ion-menu-button {
   justify-content: left;
 }
 
@@ -187,40 +202,41 @@ ion-input[type=number]::part(input) {
 
 @media(max-width:940px) {
   .Customer ion-card {
-      width: 100%;
-      margin-left: 0%;
+    width: 100%;
+    margin-left: 0%;
   }
 }
 
 @media(max-width:540px) {
   .Customer ion-input {
-      min-height: 25px;
-      font-size: 10px;
-      outline-width: 0;
-      outline-style: none;
+    min-height: 25px;
+    font-size: 10px;
+    outline-width: 0;
+    outline-style: none;
   }
 }
 
-ion-popover{
-  --height:260px;
-  --offset-y:80px;
-  --offset-x:-80px;
+ion-popover {
+  --height: 260px;
+  --offset-y: 80px;
+  --offset-x: -80px;
 }
 
-.quantity{
-  --height:450px;
+.quantity {
+  --height: 450px;
   // --width:500px
-  --offset-y:40px;
-  --offset-x:-50px;
+  --offset-y: 40px;
+  --offset-x: -50px;
 }
-.quantity input{
+
+.quantity input {
   border: none;
   outline: none;
   width: 80px;
 }
 
-.attributes th input{
-background-color: transparent;
+.attributes th input {
+  background-color: transparent;
 }
 
 

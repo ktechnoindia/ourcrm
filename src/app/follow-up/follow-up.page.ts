@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, FormBuilder, Validators } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FollowupService, followuptable } from '../services/followup.service';
 import { MyService } from '../myservice.service';
@@ -222,6 +222,13 @@ export class FollowUpPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
   }
 
 

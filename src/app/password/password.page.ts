@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordService, passdata } from '../services/password.service';
@@ -38,6 +38,13 @@ export class PasswordPage implements OnInit {
   }
   ngOnInit() {
     // Page initialization code goes here
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
+  
   }
 
   onSubmit() {

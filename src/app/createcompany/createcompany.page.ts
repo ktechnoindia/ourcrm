@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -197,7 +197,13 @@ export class CreatecompanyPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
+  
   }
   //Buttons function
   toggleStep1() {

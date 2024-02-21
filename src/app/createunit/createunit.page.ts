@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { CreateunitService, unit } from '../services/createunit.service';
 import { FormValidationService } from '../form-validation.service';
 import { EncryptionService } from '../services/encryption.service';
@@ -114,7 +114,13 @@ export class CreateunitPage implements OnInit {
       distinctUntilChanged(),
       switchMap(() => this.filterCustomers())
     );
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
+  
   }
   goBack() {
     this.router.navigate(['/item-master']);

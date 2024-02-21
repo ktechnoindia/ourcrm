@@ -181,6 +181,13 @@ export class LedgerPage implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
   }
   onCountryChange() {
     console.log('selected value' + this.selectedOption);

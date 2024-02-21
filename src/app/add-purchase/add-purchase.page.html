@@ -34,7 +34,8 @@
             <ion-row>
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Bill Formate" label-placement="floating" fill="outline"  [(ngModel)]="billformate" formControlName="billformate" name="billformate">
+                  label="Bill Formate" label-placement="floating" fill="outline" [(ngModel)]="billformate"
+                  formControlName="billformate" name="billformate">
                   <!-- <ion-select-option value="0">Bill Formate</ion-select-option> Default option -->
                   <ion-select-option value="1">1</ion-select-option>
                   <ion-select-option value="2">2</ion-select-option>
@@ -44,7 +45,8 @@
               <ion-col size-lg="2" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input #firstInvalidInput [(ngModel)]="billNumber" formControlName="billNumber" name="billno"
-                    type="number" label=" Billing No.  :" label-placement="floating" fill="outline"(keydown)="onKeyDown($event)"></ion-input>
+                    type="number" label=" Billing No.  :" label-placement="floating" fill="outline"
+                    (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -57,13 +59,16 @@
 
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input color="dark"  [(ngModel)]="vendcode" formControlName="vendcode"   (change)="getVendors($event)" name="vendcode" type="text"  label="Code :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input color="dark" [(ngModel)]="vendcode" formControlName="vendcode"
+                    (change)="getVendors($event)" name="vendcode" type="text" label="Code :" label-placement="floating"
+                    fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
               <ion-col size-lg="2.5" size-md="2.5" size-sm="6" size="6">
-                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover" 
-                label="--- Supplier Name ---" label-placement="floating" fill="outline"  [(ngModel)]="vendcode" formControlName="supplier" name="supplier" (change)="getVendors($event)">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="--- Supplier Name ---" label-placement="floating" fill="outline" [(ngModel)]="vendcode"
+                  formControlName="supplier" name="supplier" (change)="getVendors($event)">
                   <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.vendor_code">
                     {{ suppliername.name }}
@@ -72,13 +77,14 @@
               </ion-col>
 
               <ion-col class="custom-primary" size-lg="0.4" size-md="2" size-sm="2" size="2">
-                <ion-button id="purch" (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
+                <ion-button id="purch" (click)="presentPopovers($event)"><ion-icon
+                    name="person-add-outline"></ion-icon></ion-button>
               </ion-col>
 
               <ion-col size-lg="2.1" size-md="2" size-sm="6" size="6">
                 <ion-row>
-                  <ion-input [(ngModel)]="gstin" (change)="getVendors($event)" formControlName="gstin" name="gstincode" type="text"
-                    label=" GSTIN  :" label-placement="floating" fill="outline"></ion-input>
+                  <ion-input [(ngModel)]="gstin" (change)="getVendors($event)" formControlName="gstin" name="gstincode"
+                    type="text" label=" GSTIN  :" label-placement="floating" fill="outline"></ion-input>
                 </ion-row>
               </ion-col>
 
@@ -119,8 +125,9 @@
               </ion-col>
 
               <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Payment Mode" label-placement="floating" fill="outline"  [(ngModel)]="payment" formControlName="payment" name="pyt">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Payment Mode" label-placement="floating" fill="outline" [(ngModel)]="payment"
+                  formControlName="payment" name="pyt">
                   <!-- <option value="0">
                  Payment Mode</option> -->
                   <ion-select-option value="0"> --- Credit --- </ion-select-option>
@@ -128,9 +135,9 @@
                 </ion-select>
               </ion-col>
               <ion-col size-lg="2.5" size-md="2" size-sm="6" size="6">
-                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label=" --- Executive Name ---" label-placement="floating" fill="outline" [(ngModel)]=" executive" name="executive"
-                  formControlName="executive">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label=" --- Executive Name ---" label-placement="floating" fill="outline" [(ngModel)]=" executive"
+                  name="executive" formControlName="executive">
                   <!-- <ion-select-option value="0"> --- Executive Name --- </ion-select-option>Default option -->
                   <ion-select-option *ngFor="let executive of executive$ | async" [value]="executive.executiveid">
                     {{ executive.executivename }}
@@ -302,7 +309,7 @@
                     <input name="totalquantity" [(ngModel)]="totalquantity" formControlName="totalquantity"
                       class="input_table" type="text">
                   </ion-col>
-                
+
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Gross Amount :</label>
                     <input name="totalgrossamt" [(ngModel)]="totalgrossamt" formControlName="totalgrossamt"
@@ -370,24 +377,26 @@
                         <th style="width: 100px !important;">Opening Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="openingbalance" formControlName="openingbalance"
-                            name="openingbalance" placeholder="Enter Opening Balance"(keydown)="onKeyDown($event)"></ion-input>
+                            name="openingbalance" placeholder="Enter Opening Balance"
+                            (keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Debit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="debit" formControlName="debit" name="debit"
-                            placeholder="Enter  Dedit Amount"(keydown)="onKeyDown($event)"></ion-input>
+                            placeholder="Enter  Dedit Amount" (keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                       <tr>
                         <th style="width: 100px !important;">Closing Balance</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="closingbalance" formControlName="closingbalance"
-                            name="closingbalance" placeholder="Enter Closing Balance"(keydown)="onKeyDown($event)"></ion-input>
+                            name="closingbalance" placeholder="Enter Closing Balance"
+                            (keydown)="onKeyDown($event)"></ion-input>
                         </td>
                         <th style="width: 100px !important;">Credit</th>
                         <td>
                           <ion-input type="number" [(ngModel)]="credit" formControlName="credit" name="credit"
-                            placeholder="Enter Credit Amount"(keydown)="onKeyDown($event)"></ion-input>
+                            placeholder="Enter Credit Amount" (keydown)="onKeyDown($event)"></ion-input>
                         </td>
                       </tr>
                     </table>
@@ -422,7 +431,7 @@
                       <th colspan="2">Discount Amount :</th>
                       <td colspan="2"> <input [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
                           id="totaldiscountamt" formControlName="totaldiscountamt" name="totaldiscountamt"
-                          class="row_input" type="number"(keydown)="onKeyDown($event)">
+                          class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
 
@@ -434,29 +443,31 @@
                       </td>
                     </tr>
 
-                  
+
                     <tr>
                       <th colspan="2">Pre-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="pretax" formControlName="pretax" name="pretax" id="pretax"
-                          class="row_input" type="number"(keydown)="onKeyDown($event)">
+                          class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Post-Tax : </th>
                       <td colspan="2"> <input [(ngModel)]="posttax" formControlName="posttax" name="posttax"
-                          id="posttax" class="row_input" type="number"(keydown)="onKeyDown($event)">
+                          id="posttax" class="row_input" type="number" (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Round Off : </th>
-                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff" [value]="getRoundoff()" 
-                          id="roundoff" class="row_input" type="number"(keydown)="onKeyDown($event)">
+                      <td colspan="2"> <input [(ngModel)]="roundoff" formControlName="roundoff" name="roundoff"
+                          [value]="getRoundoff()" id="roundoff" class="row_input" type="number"
+                          (keydown)="onKeyDown($event)">
                       </td>
                     </tr>
                     <tr>
                       <th colspan="2">Grand Total : </th>
-                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount" [value]="getGrandTotal()"
-                          id="totalnetamount" name="totalnetamount" class="row_input" type="text">
+                      <td colspan="2"> <input [(ngModel)]="totalnetamount" formControlName="totalnetamount"
+                          [value]="getGrandTotal()" id="totalnetamount" name="totalnetamount" class="row_input"
+                          type="text">
                       </td>
                     </tr>
                   </table>
@@ -464,88 +475,89 @@
               </ion-col>
             </ion-row>
             <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
-              <ion-button id="open-loading" (click)="onNew()" >New</ion-button>
+              <ion-button id="open-loading" (click)="onNew()">New</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..."
                 [duration]="1000"></ion-loading>
               <ion-button type="submit">Save</ion-button>
               <ion-button id="open-loading4" (click)="onButtonClick()">Close</ion-button>
               <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..."
                 [duration]="1000"></ion-loading>
-                <ion-button  (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+              <ion-button (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
                   color="secondry"></ion-icon>Print</ion-button>
-                  <ion-button (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
-                    color="secondry"></ion-icon>Preview</ion-button>
+              <ion-button (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                  color="secondry"></ion-icon>Preview</ion-button>
             </ion-row>
             <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
               <ng-template>
                 <ion-content>
-                  <div style="padding: 10px;">
+                  <div class="popup" style="padding: 10px;">
                     <table style="width: 100%;">
                       <tr class="attributes" *ngFor="let purchase of purchaseData; let i = index">
                         <th>Sr. No.</th>
                         <ng-container *ngIf="purchase.attribute1">
-                          <th><input type="text" formControlName="attribute1" [(ngModel)]="purchase.attribute1" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute1" [(ngModel)]="purchase.attribute1" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute2">
-                          <th><input type="text" formControlName="attribute2" [(ngModel)]="purchase.attribute2" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute2" [(ngModel)]="purchase.attribute2" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute3">
-                          <th><input type="text" formControlName="attribute3" [(ngModel)]="purchase.attribute3" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute3" [(ngModel)]="purchase.attribute3" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute4">
-                          <th><input type="text" formControlName="attribute4" [(ngModel)]="purchase.attribute4" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute4" [(ngModel)]="purchase.attribute4" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute5">
-                          <th><input type="text" formControlName="attribute5" [(ngModel)]="purchase.attribute5" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute5" [(ngModel)]="purchase.attribute5" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute6">
-                          <th><input type="text" formControlName="attribute6" [(ngModel)]="purchase.attribute6" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute6" [(ngModel)]="purchase.attribute6" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute7">
-                          <th><input type="text" formControlName="attribute7" [(ngModel)]="purchase.attribute7" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute7" [(ngModel)]="purchase.attribute7" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="purchase.attribute8">
-                          <th><input type="text" formControlName="attribute8" [(ngModel)]="purchase.attribute8" class="pop_input"></th>
+                            <th><input type="text" formControlName="attribute8" [(ngModel)]="purchase.attribute8" class="pop_input" readonly></th>
                         </ng-container>
-                      </tr>
+                    </tr>
+                    
                       <!-- <tr><td>{{tatts}}</td></tr> -->
-                      <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData; let i = index " >
+                      <tr *ngFor="let row of purchaseData[0]?.quantityPopoverData; let i = index ">
                         <td>{{i+1}}</td>
                         <ng-container *ngIf="tatts>=0">
                           <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=1">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=1">
                           <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=2">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=2">
                           <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=3">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=3">
                           <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=4">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=4">
                           <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=5">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=5">
                           <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=6">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=6">
                           <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
-                      </ng-container>
-                      <ng-container *ngIf="tatts>=7">
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=7">
                           <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
-                      </ng-container>
-                    </tr>
-                    
+                        </ng-container>
+                      </tr>
+
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
-                      <ion-button style="float: right; bottom: 0;"  (click)="closeQuantityPopover()">Ok</ion-button>
+                      <ion-button style="float: right; bottom: 0;" (click)="closeQuantityPopover()">Ok</ion-button>
                     </ion-row>
                   </div>
                 </ion-content>
               </ng-template>
             </ion-popover>
-            
+
           </form>
         </ion-grid>
       </ion-card-content>
@@ -553,7 +565,7 @@
   </div>
 </ion-content>
 
-<ion-popover trigger="purch"  #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" side="bottom" alignment="end">
+<ion-popover trigger="purch" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" side="bottom" alignment="end">
   <ng-template>
     <ion-content class="ion-padding Customer ">
       <form [formGroup]="vendorpop" (ngSubmit)="onVendorSubmit()">
@@ -561,81 +573,79 @@
           <ion-label class="executive">Add Vendor</ion-label>
         </ion-row>
         <ion-row>
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input #firstInvalidInput [(ngModel)]="vendor_code" formControlName="vendor_code" type="text"
-              label=" Vendor Code :" label-placement="floating" name="vcode" fill="outline"
-              maxlength="5"></ion-input>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input #firstInvalidInput [(ngModel)]="vendor_code" formControlName="vendor_code" type="text"
+                label=" Vendor Code :" label-placement="floating" name="vcode" fill="outline" maxlength="5"></ion-input>
 
-          </ion-row>
-        </ion-col>
-        <ion-col size="6" size-lg="5" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="name" formControlName="name" type="text" label="Vendor Name :"
-              label-placement="floating" name="customername" fill="outline"></ion-input>
-          </ion-row>
-        </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" size-lg="5" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="name" formControlName="name" type="text" label="Vendor Name :"
+                label-placement="floating" name="customername" fill="outline"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
-              label-placement="floating" name="gstincode" fill="outline" maxlength="15"></ion-input>
+          <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="gstin" formControlName="gstin" type="text" label=" GSTIN :"
+                label-placement="floating" name="gstincode" fill="outline" maxlength="15"></ion-input>
 
-          </ion-row>
-        </ion-col>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
-              label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel" label=" Mobile Number :"
+                label-placement="floating" name="phonenumber" fill="outline" maxlength="10"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <select class="select" [(ngModel)]="country" formControlName="country" name="selectedCountry"
-            label-placement="floating" fill="outline" (change)="onCountryChange()">
-            <option value="0"> --- Country --- </option> <!-- Default option with value 0 -->
-            <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
-              {{ country.countryname }}
-            </option>
-          </select>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <select class="select" [(ngModel)]="country" formControlName="country" name="selectedCountry"
+              label-placement="floating" fill="outline" (change)="onCountryChange()">
+              <option value="0"> --- Country --- </option> <!-- Default option with value 0 -->
+              <option *ngFor="let country of (countries$ | async)" [value]="country.countryid">
+                {{ country.countryname }}
+              </option>
+            </select>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <select class="select" [(ngModel)]="state" formControlName="state" name="selectedState"
-            label-placement="floating" (change)="onStateChange()">
-            <option value="0"> --- State --- </option> <!-- Default option with value 0 -->
-            <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
-              {{ state.statename }}
-            </option>
-          </select>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <select class="select" [(ngModel)]="state" formControlName="state" name="selectedState"
+              label-placement="floating" (change)="onStateChange()">
+              <option value="0"> --- State --- </option> <!-- Default option with value 0 -->
+              <option *ngFor="let state of (states$ | async)" [value]="state.stateid">
+                {{ state.statename }}
+              </option>
+            </select>
 
-        </ion-col>
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+          </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
 
-          <select class="select" [(ngModel)]="district" formControlName="district"
-            name="selectedDistrict" label-placement="floating" fill="outline">
-            <option value="0"> --- District --- </option> <!-- Default option with value 0 -->
-            <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
-              {{ district.districtname }}
-            </option>
-          </select>
-        </ion-col>
+            <select class="select" [(ngModel)]="district" formControlName="district" name="selectedDistrict"
+              label-placement="floating" fill="outline">
+              <option value="0"> --- District --- </option> <!-- Default option with value 0 -->
+              <option *ngFor="let district of (districts$ | async)" [value]="district.districtid">
+                {{ district.districtname }}
+              </option>
+            </select>
+          </ion-col>
 
-        <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="pincode" formControlName="pincode" type="text" label=" PinCode  :"
-              label-placement="floating" name="pcode" fill="outline" inputmode="numeric"
-              maxlength="6"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="6" size-lg="3" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="pincode" formControlName="pincode" type="text" label=" PinCode  :"
+                label-placement="floating" name="pcode" fill="outline" inputmode="numeric" maxlength="6"></ion-input>
+            </ion-row>
+          </ion-col>
 
-        <ion-col size="12" size-lg="9" size-md="6" size-sm="6">
-          <ion-row>
-            <ion-input [(ngModel)]="address" formControlName="address" type="text"
-              label="Full Address :" label-placement="floating" name="fname" fill="outline"></ion-input>
-          </ion-row>
-        </ion-col>
+          <ion-col size="12" size-lg="9" size-md="6" size-sm="6">
+            <ion-row>
+              <ion-input [(ngModel)]="address" formControlName="address" type="text" label="Full Address :"
+                label-placement="floating" name="fname" fill="outline"></ion-input>
+            </ion-row>
+          </ion-col>
 
         </ion-row>
 

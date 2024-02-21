@@ -13,6 +13,15 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+.popup table{
+    width: 100%;
+}
+.popup table tr td ion-checkbox{
+    padding: 5px;
+}
+.popup table tr td {
+    background: #ffffff;
+  }
 ion-content {
     --ion-background-color: #ffffff;
     color: #0083b0;

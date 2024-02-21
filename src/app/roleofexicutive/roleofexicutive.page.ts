@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleofexecutiveService, roleofexecut } from '../services/roleofexecutive.service';
@@ -128,6 +128,13 @@ export class RoleofexicutivePage implements OnInit {
   }
   ngOnInit() {
     // Page initialization code goes here
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.form.reset();
+      }
+    });
+  
   }
   goBack() {
     this.router.navigate(['/roleofexicutive']);

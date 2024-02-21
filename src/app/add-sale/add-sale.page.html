@@ -723,42 +723,42 @@
           <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
             <ng-template>
               <ion-content>
-                <div style="padding: 10px;">
+                <div class="popup" style="padding: 10px;">
                   <table style="width: 100%;">
                     <tr class="attributes" *ngFor="let sales of salesData; let i = index">
                       <th>Sr. No.</th>
                       <th>Select Item Attributes</th>
                       <ng-container *ngIf="sales.attribute1">
                         <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute2">
                         <th><input type="text" formControlName="attribute2" [(ngModel)]="sales.attribute2"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute3">
                         <th><input type="text" formControlName="attribute3" [(ngModel)]="sales.attribute3"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute4">
                         <th><input type="text" formControlName="attribute4" [(ngModel)]="sales.attribute4"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute5">
                         <th><input type="text" formControlName="attribute5" [(ngModel)]="sales.attribute5"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute6">
                         <th><input type="text" formControlName="attribute6" [(ngModel)]="sales.attribute6"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute7">
                         <th><input type="text" formControlName="attribute7" [(ngModel)]="sales.attribute7"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                       <ng-container *ngIf="sales.attribute8">
                         <th><input type="text" formControlName="attribute8" [(ngModel)]="sales.attribute8"
-                            class="pop_input"></th>
+                            class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
                     <tr *ngFor="let row of salesData[0]?.quantityPopoverData; let i = index">
@@ -790,6 +790,7 @@
                       </ng-container>
                     </tr>
                     
+
 
 
                   </table>
