@@ -68,12 +68,12 @@ interface Sales {
 
 }
 @Component({
-    selector: 'app-add-sale',
-    templateUrl: './add-sale.page.html',
-    styleUrls: ['./add-sale.page.scss'],
-    standalone: true,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule, InvoicePage]
+  selector: 'app-add-sale',
+  templateUrl: './add-sale.page.html',
+  styleUrls: ['./add-sale.page.scss'],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule, InvoicePage]
 })
 export class AddSalePage implements OnInit {
   billformate: number = 0;
@@ -238,14 +238,14 @@ export class AddSalePage implements OnInit {
   igstamt: number = 0;
   pretaxAmount: number = 0;
   posttaxAmount: number = 0;
-  totalitem:number=0;
+  totalitem: number = 0;
 
   rows: any[] = [];
 
-  constructor(public session: SessionService, private companyService: CreatecompanyService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
- const compid = this.session.getValue('userid')?.valueOf() as number;
+  constructor(public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
+    const compid = this.session.getValue('userid')?.valueOf() as number;
     const companyid = '1';
-        this.taxrate$ = this.gstsrvs.getgsttype();
+    this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
@@ -254,9 +254,9 @@ export class AddSalePage implements OnInit {
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$=new Observable;
+    this.purchasebyid$ = new Observable;
 
-   
+
     //Invoice 
     this.company$ = this.companyService.fetchallcompany(compid, '', '');
     this.customers$ = this.custname1.fetchallCustomer(encService.encrypt(companyid), '', '');
@@ -424,7 +424,7 @@ export class AddSalePage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:attr.companyid,
+          companyid: attr.companyid,
           itemcode: attr.itemcode,
         }))
         let saledata: salesstore = {
@@ -485,25 +485,25 @@ export class AddSalePage implements OnInit {
 
         salesdatas.push(saledata);
       }
-        this.saleService.createsale(salesdatas, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.myform.reset();
-            //location.reload()
-          },
-          (error: any) => {
-            console.error('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
-      
+      this.saleService.createsale(salesdatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.myform.reset();
+          //location.reload()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -567,14 +567,14 @@ export class AddSalePage implements OnInit {
   //     attribute8: '',
   //   }];
   // }
-  tatts:number=0;
+  tatts: number = 0;
 
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
     const value = sales.selectedItemId || sales.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
-    this.itemcode=sales.itemcode;
+    this.itemcode = sales.itemcode;
 
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
@@ -596,25 +596,25 @@ export class AddSalePage implements OnInit {
           sales.netrate = itemDetails.net_rate;
           if (itemDetails.attr2 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr3 !== '') {
+          }
+          if (itemDetails.attr3 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr4 !== '') {
+          }
+          if (itemDetails.attr4 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr5 !== '') {
+          }
+          if (itemDetails.attr5 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr6 !== '') {
+          }
+          if (itemDetails.attr6 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr7 !== '') {
+          }
+          if (itemDetails.attr7 !== '') {
             this.tatts++;
-        }
-        if (itemDetails.attr8 !== '') {
+          }
+          if (itemDetails.attr8 !== '') {
             this.tatts++;
-        }
+          }
           sales.attribute1 = itemDetails.attr1,
             sales.attribute2 = itemDetails.attr2,
             sales.attribute3 = itemDetails.attr3,

@@ -527,6 +527,7 @@ isOpen = false;
       }
     }
   }
+  tatts:number=0;
 
   getItems(dcin: any) {
     const compid = 1;
@@ -552,6 +553,28 @@ isOpen = false;
           dcin.mrp = itemDetails.mrp;
           dcin.basicrate = itemDetails.basic_rate;
           dcin.netrate = itemDetails.net_rate;
+          if (itemDetails.attr2 !== '') {
+            this.tatts = 1;
+        }
+        if (itemDetails.attr3 !== '') {
+            this.tatts = 2;
+        }
+        if (itemDetails.attr4 !== '') {
+            this.tatts = 3;
+        }
+        if (itemDetails.attr5 !== '') {
+            this.tatts = 4;
+        }
+        if (itemDetails.attr6 !== '') {
+            this.tatts = 5;
+        }
+        if (itemDetails.attr7 !== '') {
+            this.tatts = 6;
+        }
+        if (itemDetails.attr8 !== '') {
+            this.tatts = 7;
+        }
+        
           dcin.attribute1= itemDetails.attr1,
           dcin.attribute2= itemDetails.attr2,
           dcin.attribute3= itemDetails.attr3,

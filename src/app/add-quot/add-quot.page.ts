@@ -242,7 +242,7 @@ export class AddQuotPage implements OnInit {
   filteredOptions: any[] = [];
   searchQuery: string = '';
   allOptions: any[] = [];
-    inputsVisible: boolean = true;
+  inputsVisible: boolean = true;
 
   constructor(private saleService: SalesService, private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     this.purchasebyid$ = new Observable;
@@ -472,128 +472,129 @@ export class AddQuotPage implements OnInit {
   //   }];
   // }
 
-    async onSubmit(form: FormGroup, quoteData: Quote[]) {
-      const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+  async onSubmit(form: FormGroup, quoteData: Quote[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-      // htmlForm.addEventListener('keydown', (event) => {
-      //   // Prevent the default behavior for Enter key
-      //   if (event.key === 'Enter') {
-      //     event.preventDefault();
-      //   }
-      // });
-      const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-      const isValid = await this.formService.validateForm(fields);
-      if (await this.formService.validateForm(fields)) {
+    // htmlForm.addEventListener('keydown', (event) => {
+    //   // Prevent the default behavior for Enter key
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault();
+    //   }
+    // });
+    const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
+    const isValid = await this.formService.validateForm(fields);
+    if (await this.formService.validateForm(fields)) {
 
-        console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
+      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
-        const quotedatas: quotestore[] = [];
+      const quotedatas: quotestore[] = [];
 
-        for (const element of quoteData) {
-          element.grossrate = element.basicrate * element.quantity;
-          // element.netrate = element.basicrate + element.totaltax;
-          element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-          element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
-          element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
-          element.total = element.totaltax + element.grossrate;
-          element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
-          this.totalquantity = element.total + +element.quantity;
-          console.log(element);
-          const companyid = 1;
-          const userid = 1;
-          let attributesArray = element.quantityPopoverData.map(attr => ({
-            attr1: attr.attr1,
-            attr2: attr.attr2,
-            attr3: attr.attr3,
-            attr4: attr.attr4,
-            attr5: attr.attr5,
-            attr6: attr.attr6,
-            attr7: attr.attr7,
-            attr8: attr.attr8,
-            companyid: attr.companyid,
-            itemcode: attr.itemcode,
-          }))
-          const quotedata: quotestore = {
-            billformate: this.myform.value.billformate,
-            quoteNumber: this.myform.value.quoteNumber,
-            quateDate: this.myform.value.quateDate,
-            custcode: this.myform.value.custcode.toString(),
-            custname: this.myform.value.custname,
-            refrence: this.myform.value.refrence,
-            refdate: this.myform.value.refdate,
-            barcode: element.barcode,
-            itemcode: element.itemcode,
-            itemname: element.itemname,
-            description: element.description,
-            quantity: element.quantity,
-            unitname: element.hunitname,
-            mrp: element.mrp,
-            basicrate: element.basicrate,
-            netrate: element.netrate,
-            grossrate: element.grossrate, // Add grossrate
-            taxrate: element.taxrate,
-            IGST: element.IGST,
-            CGST: element.CGST,
-            SGST: element.SGST,
-            discount: element.discount,
-            discountamt: element.discountamt,
-            totaltax: element.totaltax,
-            total: element.total,
-            totalitemno: this.myform.value.totalitemno,
-            totalquantity: this.myform.value.totalquantity,
-            totalgrossamt: this.myform.value.totalgrossamt,
-            totaldiscountamt: this.myform.value.totaldiscountamt,
-            totaltaxamount: this.myform.value.totaltaxamount,
-            totalnetamount: this.myform.value.totalnetamount,
-            deliverydate: this.myform.value.deliverydate,
-            deliveryplace: this.myform.value.deliveryplace,
-            roundoff: this.myform.value.roundoff,
-            pretax: this.myform.value.pretax,
-            posttax: this.myform.value.posttax,
-            openingbalance: this.myform.value.openingbalance,
-            closingbalance: this.myform.value.closingbalance,
-            debit: this.myform.value.debit,
-            credit: this.myform.value.credit,
-            ttotal: 0,
-            itemid: element.itemid,
-            companyid: companyid,
-            userid: userid,
-            quantityPopoverData: attributesArray,
+      for (const element of quoteData) {
+        element.grossrate = element.basicrate * element.quantity;
+        // element.netrate = element.basicrate + element.totaltax;
+        element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
+        element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
+        element.total = element.totaltax + element.grossrate;
+        element.totaltax = (element.quantity * (element.taxrate1 / 100 * element.basicrate))
+        this.totalquantity = element.total + +element.quantity;
+        console.log(element);
+        const companyid = 1;
+        const userid = 1;
+        let attributesArray = element.quantityPopoverData.map(attr => ({
+          attr1: attr.attr1,
+          attr2: attr.attr2,
+          attr3: attr.attr3,
+          attr4: attr.attr4,
+          attr5: attr.attr5,
+          attr6: attr.attr6,
+          attr7: attr.attr7,
+          attr8: attr.attr8,
+          companyid: attr.companyid,
+          itemcode: attr.itemcode,
+        }))
+        const quotedata: quotestore = {
+          billformate: this.myform.value.billformate,
+          quoteNumber: this.myform.value.quoteNumber,
+          quateDate: this.myform.value.quateDate,
+          custcode: this.myform.value.custcode.toString(),
+          custname: this.myform.value.custname,
+          refrence: this.myform.value.refrence,
+          refdate: this.myform.value.refdate,
+          barcode: element.barcode,
+          itemcode: element.itemcode,
+          itemname: element.itemname,
+          description: element.description,
+          quantity: element.quantity,
+          unitname: element.hunitname,
+          mrp: element.mrp,
+          basicrate: element.basicrate,
+          netrate: element.netrate,
+          grossrate: element.grossrate, // Add grossrate
+          taxrate: element.taxrate,
+          IGST: element.IGST,
+          CGST: element.CGST,
+          SGST: element.SGST,
+          discount: element.discount,
+          discountamt: element.discountamt,
+          totaltax: element.totaltax,
+          total: element.total,
+          totalitemno: this.myform.value.totalitemno,
+          totalquantity: this.myform.value.totalquantity,
+          totalgrossamt: this.myform.value.totalgrossamt,
+          totaldiscountamt: this.myform.value.totaldiscountamt,
+          totaltaxamount: this.myform.value.totaltaxamount,
+          totalnetamount: this.myform.value.totalnetamount,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
+          roundoff: this.myform.value.roundoff,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
+          openingbalance: this.myform.value.openingbalance,
+          closingbalance: this.myform.value.closingbalance,
+          debit: this.myform.value.debit,
+          credit: this.myform.value.credit,
+          ttotal: 0,
+          itemid: element.itemid,
+          companyid: companyid,
+          userid: userid,
+          quantityPopoverData: attributesArray,
 
-          };
+        };
 
-          quotedatas.push(quotedata);
-        }
-        this.quote.createquote(quotedatas, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            this.formService.showSuccessAlert();
-            this.formService.showSaveLoader();
-            this.myform.reset();
-            // Consider navigating to a different page or providing a success message instead of location.reload()
-          },
-          (error: any) => {
-            console.error('POST request failed', error);
-            this.formService.showFailedAlert();
-            this.formService.shoErrorLoader();
-            this.myform.reset();
-          }
-        );
-
-      } else {
-        //If the form is not valid, display error messages
-        Object.keys(this.myform.controls).forEach(controlName => {
-          const control = this.myform.get(controlName);
-          if (control?.invalid) {
-            control.markAsTouched();
-          }
-        });
-        if (this.firstInvalidInput) {
-          this.firstInvalidInput.setFocus();
-        }
+        quotedatas.push(quotedata);
       }
+      this.quote.createquote(quotedatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          this.formService.showSuccessAlert();
+          this.formService.showSaveLoader();
+          this.myform.reset();
+          // Consider navigating to a different page or providing a success message instead of location.reload()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          this.formService.showFailedAlert();
+          this.formService.shoErrorLoader();
+          this.myform.reset();
+        }
+      );
 
+    } else {
+      //If the form is not valid, display error messages
+      Object.keys(this.myform.controls).forEach(controlName => {
+        const control = this.myform.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
+
+  }
+  tatts: number = 0;
 
   getItems(quote: any) {
     const compid = 1;
@@ -620,6 +621,27 @@ export class AddQuotPage implements OnInit {
           quote.mrp = itemDetails.mrp;
           quote.basicrate = itemDetails.basic_rate;
           quote.netrate = itemDetails.net_rate;
+          if (itemDetails.attr2 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr3 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr4 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr5 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr6 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr7 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr8 !== '') {
+            this.tatts++;
+          }
           quote.attribute1 = itemDetails.attr1,
             quote.attribute2 = itemDetails.attr2,
             quote.attribute3 = itemDetails.attr3,
@@ -1124,10 +1146,10 @@ export class AddQuotPage implements OnInit {
   async onCustSubmit() {
     const fields = { name: this.name };
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
       console.log('Your form data : ', this.customerpop.value);
-  
+
       let custdata: cust = {
         name: this.customerpop.value.name,
         customer_code: this.customerpop.value.customer_code,
@@ -1167,25 +1189,25 @@ export class AddQuotPage implements OnInit {
         pincode1: '',
         address1: ''
       };
-  
+
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
-          
+
           // After successfully adding the customer, fetch the updated customer data again
           this.fetchCustomerData();
-          
+
           // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
-          
+
           // Reset the form
           this.customerpop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
-          
+
           // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
@@ -1205,27 +1227,27 @@ export class AddQuotPage implements OnInit {
       }
     }
   }
-  
+
   fetchCustomerData() {
     // Assuming you have a method to fetch the updated customer data
     // Here, you'll update the 'customer$' observable with the new data
-    this.customer$ = this.myService.fetchallCustomer('','', '');
+    this.customer$ = this.myService.fetchallCustomer('', '', '');
   }
-  
+
 
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for Enter key
     if (event.key === 'Enter') {
-        event.preventDefault();
+      event.preventDefault();
     }
 
     // Prevent incrementing/decrementing on arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault();
+      event.preventDefault();
     }
-}
+  }
 
-  
+
   filterOptions(): void {
     if (this.searchQuery) {
       this.filteredOptions = this.allOptions.filter(option =>
@@ -1236,10 +1258,10 @@ export class AddQuotPage implements OnInit {
       this.filteredOptions = this.allOptions;
     }
   }
-  
+
   selectOption(option: any): void {
     // Handle option selection
     console.log('Selected option:', option);
   }
-  
+
 }

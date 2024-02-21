@@ -449,7 +449,7 @@
             <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
               <ng-template>
                 <ion-content>
-                  <div style="padding: 10px;">
+                  <div class="popup" style="padding: 10px;">
                     <table style="width: 100%;">
                       <tr class="attributes" *ngFor="let quote of quoteData; let i = index">
                         <th>Sr. No.</th>
@@ -488,25 +488,33 @@
                         </ng-container>
                       </tr>
 
-                      <tr *ngFor="let quote of purchasebyid$ | async; let i = index">
-                        <td>{{i + 1}}</td>
-                        <td><ion-checkbox [(ngModel)]="selectedRows" [value]="i"></ion-checkbox></td>
-                        <td><input type="text" formControlName="attr1" [(ngModel)]="quote.attr1" name="attr1"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr2" [(ngModel)]="quote.attr2" name="attr2"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr3" [(ngModel)]="quote.attr3" name="attr3"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr4" [(ngModel)]="quote.attr4" name="attr4"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr5" [(ngModel)]="quote.attr5" name="attr5"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr6" [(ngModel)]="quote.attr6" name="attr6"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr7" [(ngModel)]="quote.attr7" name="attr7"
-                            class="pop_input"></td>
-                        <td><input type="text" formControlName="attr8" [(ngModel)]="quote.attr8" name="attr8"
-                            class="pop_input"></td>
+                      <tr *ngFor="let row of quoteData[0]?.quantityPopoverData; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><ion-checkbox></ion-checkbox></td>
+                        <ng-container *ngIf="tatts>=0">
+                          <td><input type="text" formControlName="attr1" [value]="row.attr1" class="pop_input" readonly></td> 
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=1">
+                          <td><input type="text" formControlName="attr2" [value]="row.attr2" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=2">
+                          <td><input type="text" formControlName="attr3" [value]="row.attr3" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=3">
+                          <td><input type="text" formControlName="attr4" [value]="row.attr4" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=4">
+                          <td><input type="text" formControlName="attr5" [value]="row.attr5" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=5">
+                          <td><input type="text" formControlName="attr6" [value]="row.attr6" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=6">
+                          <td><input type="text" formControlName="attr7" [value]="row.attr7" class="pop_input" readonly></td>
+                        </ng-container>
+                        <ng-container *ngIf="tatts>=7">
+                          <td><input type="text" formControlName="attr8" [value]="row.attr8" class="pop_input" readonly></td>
+                        </ng-container>
                       </tr>
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">

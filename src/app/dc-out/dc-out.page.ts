@@ -52,17 +52,17 @@ interface Dcout {
     attr6: string;
     attr7: string;
     attr8: string
-    companyid:number,
-    itemcode:number,
+    companyid: number,
+    itemcode: number,
   }[],
-  attribute1:string,
-  attribute2:string,
-  attribute3:string,
-  attribute4:string,
-  attribute5:string,
-  attribute6:string,
-  attribute7:string,
-  attribute8:string,
+  attribute1: string,
+  attribute2: string,
+  attribute3: string,
+  attribute4: string,
+  attribute5: string,
+  attribute6: string,
+  attribute7: string,
+  attribute8: string,
 }
 @Component({
   selector: 'app-dc-out',
@@ -81,7 +81,7 @@ export class DcOutPage implements OnInit {
   referenceNumber: number = 0;
   refdate: string = '';
   ponumber: string = '';
-  itemcode:number=0;
+  itemcode: number = 0;
 
   //table data
   /* barcode: string = '';
@@ -104,13 +104,13 @@ export class DcOutPage implements OnInit {
    total: string = '';*/
 
   totalitemno: number = 0;
-  totalquantity:number = 0;
+  totalquantity: number = 0;
   totalgrossamt: number = 0;
   totaldiscountamt: number = 0;
   totaltaxamount: number = 0;
   totalnetamount: number = 0;
 
-  roundoff:number = 0;
+  roundoff: number = 0;
   pretax: number = 0;
   posttax: number = 0;
   deliverydate: string = '';
@@ -150,10 +150,10 @@ export class DcOutPage implements OnInit {
       attr4: '',
       attr5: '',
       attr6: '',
-      attr7:'',
-      attr8:'',
-      companyid:0,
-      itemcode:0,
+      attr7: '',
+      attr8: '',
+      companyid: 0,
+      itemcode: 0,
     }],
     attribute1: '',
     attribute2: '',
@@ -196,17 +196,17 @@ export class DcOutPage implements OnInit {
   customerpop: FormGroup;
   @ViewChild('popover', { static: false })
   popover!: IonPopover;
-  
+
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
-  isOpen:boolean= false;
+  isOpen: boolean = false;
   vend: any;
-  purchasebyid$ :Observable<any[]>
-  isQuantityPopoverOpen: boolean=false;
-  quantity: number=0;
+  purchasebyid$: Observable<any[]>
+  isQuantityPopoverOpen: boolean = false;
+  quantity: number = 0;
   printThisPage() {
     window.print();
   }
-  constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService,private myService: CustomerService,) {
+  constructor(private saleService: SalesService, private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
     this.unitname$ = this.unittype.getunits();
@@ -215,7 +215,7 @@ export class DcOutPage implements OnInit {
     this.datetype = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
-    this.purchasebyid$=new Observable;
+    this.purchasebyid$ = new Observable;
 
     this.myform = this.formBuilder.group({
       voucherformat: [''],
@@ -266,19 +266,19 @@ export class DcOutPage implements OnInit {
 
       ttotal: [''],
       itemid: [''],
-      attribute1:[''],
-      attribute2:[''],
-      attribute3:[''],
-      attribute4:[''],
-      attribute5:[''],
-      attribute6:[''],
-      attribute7:[''],
-      attribute8:[''],
+      attribute1: [''],
+      attribute2: [''],
+      attribute3: [''],
+      attribute4: [''],
+      attribute5: [''],
+      attribute6: [''],
+      attribute7: [''],
+      attribute8: [''],
 
     });
 
     this.customerpop = this.formBuilder.group({
-      
+
       customer_code: ['', Validators.required],
       name: ['', Validators.required],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
@@ -314,13 +314,13 @@ export class DcOutPage implements OnInit {
     return await popover.present();
   }
   openQuantityPopover(dcout: Dcout) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
     this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
+      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
       // this.totalItems = data.length;
-        });
+    });
     this.dcoutData[0].quantityPopoverData = new Array(dcout.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
+      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
     this.isQuantityPopoverOpen = true;
   }
   closeQuantityPopover() {
@@ -369,8 +369,8 @@ export class DcOutPage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:companyid,
-          itemcode:element.itemcode,
+          companyid: companyid,
+          itemcode: element.itemcode,
         }))
         let dcoutdata: dcoutstore = {
           voucherformat: this.myform.value.voucherformat,
@@ -424,25 +424,25 @@ export class DcOutPage implements OnInit {
 
         dcoutdatas.push(dcoutdata);
       }
-        this.dcout.createdcout(dcoutdatas, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.myform.reset();
-            // location.reload()
-          },
-          (error: any) => {
-            console.log('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
-      
+      this.dcout.createdcout(dcoutdatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.myform.reset();
+          // location.reload()
+        },
+        (error: any) => {
+          console.log('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -491,10 +491,10 @@ export class DcOutPage implements OnInit {
         attr4: '',
         attr5: '',
         attr6: '',
-        attr7:'',
-        attr8:'',
-        companyid:0,
-        itemcode:0,
+        attr7: '',
+        attr8: '',
+        companyid: 0,
+        itemcode: 0,
       }],
       attribute1: '',
       attribute2: '',
@@ -504,7 +504,7 @@ export class DcOutPage implements OnInit {
       attribute6: '',
       attribute7: '',
       attribute8: '',
-  
+
     }];
   }
 
@@ -547,12 +547,15 @@ export class DcOutPage implements OnInit {
     };
     this.dcoutData.push(newRow);
   }
+  tatts: number = 0;
 
   getItems(dcout: any) {
     const compid = 1;
     const identifier = dcout.selectedItemId ? 'itemname' : 'itemcode';
     const value = dcout.selectedItemId || dcout.itemcode;
     const grate = [0, 3, 5, 12, 18, 28, 0, 0, 0];
+    this.itemcode=dcout.itemcode;
+
     this.itemService.getItems(compid, value).subscribe(
       (data) => {
         console.log('Data received:', data);
@@ -572,20 +575,41 @@ export class DcOutPage implements OnInit {
           dcout.mrp = itemDetails.mrp;
           dcout.basicrate = itemDetails.basic_rate;
           dcout.netrate = itemDetails.net_rate;
-          dcout.attribute1= itemDetails.attr1,
-          dcout.attribute2= itemDetails.attr2,
-          dcout.attribute3= itemDetails.attr3,
-          dcout.attribute4= itemDetails.attr4,
-          dcout.attribute5= itemDetails.attr5,
-          dcout.attribute6= itemDetails.attr6,
-          dcout.attribute7= itemDetails.attr7,
-          dcout.attribute8= itemDetails.attr8,
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: dcout.itemcode,
-            itemname: dcout.itemname,
-            // Other form controls...
-          });
+          if (itemDetails.attr2 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr3 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr4 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr5 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr6 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr7 !== '') {
+            this.tatts++;
+          }
+          if (itemDetails.attr8 !== '') {
+            this.tatts++;
+          }
+          dcout.attribute1 = itemDetails.attr1,
+            dcout.attribute2 = itemDetails.attr2,
+            dcout.attribute3 = itemDetails.attr3,
+            dcout.attribute4 = itemDetails.attr4,
+            dcout.attribute5 = itemDetails.attr5,
+            dcout.attribute6 = itemDetails.attr6,
+            dcout.attribute7 = itemDetails.attr7,
+            dcout.attribute8 = itemDetails.attr8,
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: dcout.itemcode,
+              itemname: dcout.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -670,45 +694,45 @@ export class DcOutPage implements OnInit {
   }
 
   getTotalQuantity(): number {
-    this.totalquantity= this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
+    this.totalquantity = this.dcoutData.reduce((total, dcout) => total + +dcout.quantity, 0);
     return this.totalquantity;
   }
 
   getTotalGrossAmount(): number {
     const totalGrossAmount = this.dcoutData.reduce((total, dcout) => {
-      const grossAmount =(dcout.quantity * dcout.basicrate);
+      const grossAmount = (dcout.quantity * dcout.basicrate);
       return total + grossAmount;
     }, 0);
 
-    return this.totalgrossamt= totalGrossAmount;
+    return this.totalgrossamt = totalGrossAmount;
   }
   getTaxableAmount(): number {
     const taxableAmount = this.dcoutData.reduce((total, dcout) => {
       // Assuming getgrossrate is a function that calculates gross rate based on quote
       const grossRate = this.getgrossrate(dcout);
-  
+
       // Assuming pretax, discount, and taxamt are properties of your quote object
-   
+
       const discount = dcout.discountamt || 0;
       const taxamt = dcout.totaltax || 0;
-  
+
       // Calculate the taxable amount for the current quote
-      const quoteTaxableAmount = (grossRate - discount+(this.pretax/ this.dcoutData.length)) + taxamt;
-  
+      const quoteTaxableAmount = (grossRate - discount + (this.pretax / this.dcoutData.length)) + taxamt;
+
       // Add the taxable amount of the current quote to the total
       total += quoteTaxableAmount;
-  
+
       return total;
     }, 0);
-  
-    return this.totalnetamount= taxableAmount;
+
+    return this.totalnetamount = taxableAmount;
   }
   getTotalnetAmount(): number {
     return this.dcoutData.reduce((total, dcout) => total + (((dcout.basicrate * dcout.quantity) + (dcout.quantity * (dcout.taxrate1 / 100 * dcout.basicrate)) + dcout.totaltax) - ((dcout.discount / 100) * dcout.basicrate * dcout.quantity)), 0)
   }
   getGrandTotal(): number {
     const grandTotal = this.dcoutData.reduce((total, dcout) => {
-      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax;
+      const gtotal = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax;
       return gtotal;
 
     }, 0);
@@ -717,25 +741,26 @@ export class DcOutPage implements OnInit {
   }
   getTotalTaxAmount(): number {
     return this.dcoutData.reduce((total, dcout) => {
-      const subtotal = ((dcout.quantity * dcout.basicrate)+((this.pretax)/this.dcoutData.length))- dcout.discountamt;
-      const taxAmount = subtotal * (dcout.taxrate1 / 100) ;
-      return this.totaltaxamount= total + taxAmount ;
-  }, 0);  }
+      const subtotal = ((dcout.quantity * dcout.basicrate) + ((this.pretax) / this.dcoutData.length)) - dcout.discountamt;
+      const taxAmount = subtotal * (dcout.taxrate1 / 100);
+      return this.totaltaxamount = total + taxAmount;
+    }, 0);
+  }
   getTotalDiscountAmount(): number {
-    this.totaldiscountamt= this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
+    this.totaldiscountamt = this.dcoutData.reduce((total, dcout) => total + (dcout.discount / 100) * dcout.basicrate * dcout.quantity, 0);;
     return this.totaldiscountamt;
   }
   getRoundoff(): number {
     // Calculate the total amount without rounding
-    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount()+this.posttax // Change 2 to the desired number of decimal places
-    return this.roundoff= roundedTotalAmount;
+    const roundedTotalAmount = this.getTaxableAmount() + this.getTotalTaxAmount() + this.posttax // Change 2 to the desired number of decimal places
+    return this.roundoff = roundedTotalAmount;
   }
   //table formaula
   getnetrate(quote: Dcout): number {
     return quote.basicrate + quote.totaltax;
   }
   getTotaltax(dcout: Dcout): number {
-    return ((((dcout.quantity * dcout.basicrate)+((this.pretax)/this.dcoutData.length)-dcout.discountamt)*dcout.taxrate1 / 100));
+    return ((((dcout.quantity * dcout.basicrate) + ((this.pretax) / this.dcoutData.length) - dcout.discountamt) * dcout.taxrate1 / 100));
     //return this.quoteData.reduce((total, quote) => total + (+quote.basicrate * +quote.taxrate1 / 100 * + quote.quantity), 0);
   }
   getdiscountp(dcout: Dcout) {
@@ -789,18 +814,18 @@ export class DcOutPage implements OnInit {
     let totalAmount = 0;
 
     dcout.forEach(dcout => {
-        const pretaxPerItem = ((this.pretax  / this.dcoutData.length)); // Divide pretax equally among items
+      const pretaxPerItem = ((this.pretax / this.dcoutData.length)); // Divide pretax equally among items
 
-        const subtotal = (dcout.quantity * dcout.basicrate) + pretaxPerItem;
-        const discount = ((dcout.discount / 100) * dcout.basicrate * dcout.quantity);
-        const taxAmount = ((((dcout.quantity * dcout.basicrate) + pretaxPerItem) - dcout.discountamt) * dcout.taxrate1 / 100);
+      const subtotal = (dcout.quantity * dcout.basicrate) + pretaxPerItem;
+      const discount = ((dcout.discount / 100) * dcout.basicrate * dcout.quantity);
+      const taxAmount = ((((dcout.quantity * dcout.basicrate) + pretaxPerItem) - dcout.discountamt) * dcout.taxrate1 / 100);
 
-        const itemTotalAmount = subtotal + taxAmount - discount;
-        totalAmount += itemTotalAmount;
+      const itemTotalAmount = subtotal + taxAmount - discount;
+      totalAmount += itemTotalAmount;
     });
 
     return totalAmount;
-}
+  }
   getcgst(dcout: Dcout): number {
     return this.getTotaltax(dcout) / 2;
   }
@@ -819,7 +844,7 @@ export class DcOutPage implements OnInit {
         this.myform.reset();
       }
     });
-  
+
     this.dcoutData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',
@@ -829,8 +854,8 @@ export class DcOutPage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
+      companyid: 0,
+      itemcode: 0
       // Add more properties as needed
     }));
     // Other initialization logic...
