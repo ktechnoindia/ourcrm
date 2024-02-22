@@ -243,6 +243,7 @@ export class AddQuotPage implements OnInit {
   searchQuery: string = '';
   allOptions: any[] = [];
   inputsVisible: boolean = true;
+  attdata:any[]=[];
 
   constructor(private saleService: SalesService, private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     this.purchasebyid$ = new Observable;
@@ -364,9 +365,31 @@ export class AddQuotPage implements OnInit {
   popoverRows: number[] = []; // Array to hold rows for the popover
 
   openQuantityPopover(quote: Quote) {
-    this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-    this.isQuantityPopoverOpen = true;
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(quote.itemcode, 1);
+    this.purchasebyid$.subscribe((data: any) => {
+      this.attdata = data.purchase_att;
+      console.log('purchase Data', this.attdata);
+  
+      // Populate quantityPopoverData with empty objects
+      this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
+        .map(() => ({
+          attr1: '',
+          attr2: '',
+          attr3: '',
+          attr4: '',
+          attr5: '',
+          attr6: '',
+          attr7: '',
+          attr8: '',
+          companyid: 0,
+          itemcode: 0
+        }));
+  
+      // // Open the quantity popover after populating quantityPopoverData
+      setTimeout(() => {
+        this.isQuantityPopoverOpen = true;
+      }, 500);
+    });
   }
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
@@ -594,7 +617,7 @@ export class AddQuotPage implements OnInit {
     }
 
   }
-  tatts: number = 0;
+  // tatts: number = 0;
 
   getItems(quote: any) {
     const compid = 1;
@@ -621,27 +644,27 @@ export class AddQuotPage implements OnInit {
           quote.mrp = itemDetails.mrp;
           quote.basicrate = itemDetails.basic_rate;
           quote.netrate = itemDetails.net_rate;
-          if (itemDetails.attr2 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr3 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr4 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr5 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr6 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr7 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr8 !== '') {
-            this.tatts++;
-          }
+          // if (itemDetails.attr2 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr3 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr4 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr5 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr6 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr7 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr8 !== '') {
+          //   this.tatts++;
+          // }
           quote.attribute1 = itemDetails.attr1,
             quote.attribute2 = itemDetails.attr2,
             quote.attribute3 = itemDetails.attr3,

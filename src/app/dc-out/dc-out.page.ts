@@ -206,6 +206,8 @@ export class DcOutPage implements OnInit {
   printThisPage() {
     window.print();
   }
+  attdata:any[]=[];
+
   constructor(private saleService: SalesService, private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -314,14 +316,18 @@ export class DcOutPage implements OnInit {
     return await popover.present();
   }
   openQuantityPopover(dcout: Dcout) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode, 1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data', data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-    });
-    this.dcoutData[0].quantityPopoverData = new Array(dcout.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-    this.isQuantityPopoverOpen = true;
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(dcout.itemcode, 1);
+    this.purchasebyid$.subscribe((data: any) => {
+      this.attdata = data.purchase_att;
+      console.log('purchase Data', this.attdata);
+    // this.dcoutData[0].quantityPopoverData = new Array(dcout.quantity).fill({})
+    //   .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+    // this.isQuantityPopoverOpen = true;
+    setTimeout(() => {
+      this.isQuantityPopoverOpen = true;
+    }, 500);
+  });
+
   }
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
