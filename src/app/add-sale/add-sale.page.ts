@@ -388,9 +388,11 @@ attdata:any[]=[];
       console.log('puchase _', this.attdata); // Log the data to the console to verify if it's being fetched
       // this.totalItems = data.length;
     });
-    this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-    this.isQuantityPopoverOpen = true;
+ //   this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
+  //    .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
+    setTimeout(() => {
+      this.isQuantityPopoverOpen = true;
+    }, 500);  
   }
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;

@@ -762,8 +762,9 @@
                             class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
+                    <tr><td>{{attdata | json}}</td></tr>
                     <tr *ngFor="let row of attdata; let i = index">
-                      <td>{{row.attr1}}</td>
+                      <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
                       <ng-container >
                         <td>{{row.attr1}}</td> 
