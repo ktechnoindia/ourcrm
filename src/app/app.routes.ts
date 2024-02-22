@@ -931,6 +931,14 @@ export const routes: Routes = [
     path: 'invoice',
     loadComponent: () => import('./invoice/invoice.page').then( m => m.InvoicePage)
   },
+  {
+    path: 'ledgergroup',
+    loadComponent: () => import('./ledgergroup/ledgergroup.page').then( m => m.LedgergroupPage)
+  },
+  {
+    path: 'viewledgergroup',
+    loadComponent: () => import('./viewledgergroup/viewledgergroup.page').then( m => m.ViewledgergroupPage)
+  },
 
 
  

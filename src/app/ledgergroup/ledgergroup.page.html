@@ -1,0 +1,101 @@
+<ion-content>
+  <div class="Customer">
+    <div class="container_data">
+      <ion-card-content>
+        <div class="dekstop-menu">
+          <ion-card-header>
+            <ion-row lines="none">
+              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+              <ion-title style="text-align: center;">Add Ledger Group</ion-title>
+            </ion-row>
+          </ion-card-header>
+        </div>
+        <ion-grid>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+          <ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row>
+                <ion-input #firstInvalidInput [(ngModel)]="ledgrpname" formControlName="ledgrpname" name="ledgrpname" type="text" label="Ledger Group Name:" label-placement="floating"
+                fill="outline"></ion-input>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row>
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="---Parent Group---" label-placement="floating" fill="outline"   [(ngModel)]="parentgroup" formControlName="parentgroup"  name="parentgroup">
+                  <!-- <option value="0">  --- Parent Group --- </option> Default option with value 0  -->
+                 
+                 <ion-select-option>Expense</ion-select-option>
+                </ion-select>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-row>
+               <ion-item>
+                <ion-toggle (click)="toggleStep1()" style="font-size: 18px;">GST Applicable Or Not</ion-toggle><br /><br />
+               </ion-item>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+              <ion-row  *ngIf="step1">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- GST % ---" label-placement="floating" fill="outline" [(ngModel)]="selectGst"
+                formControlName="selectGst" name="selectGst">
+                <!-- <ion-select-option value="0">  --- GST Type --- </ion-select-option> Default option with value 0 -->
+                <ion-select-option *ngFor="let gsttype of selectGst$ | async" [value]="gsttype.gstid">
+                  {{ gsttype.gstname }}
+                </ion-select-option>
+              </ion-select>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+            <ion-col size-lg="3" size-md="3" size-sm="6" size="6">
+              <ion-row>
+               <ion-item>
+                <ion-toggle (click)="toggleStep2()" style="font-size: 18px;">Add Bank Account</ion-toggle><br /><br />
+               </ion-item>
+
+              </ion-row>
+            </ion-col>
+            <ion-col size-lg="9" size-md="9" size-sm="6" size="6">
+              <ion-row  *ngIf="step2">
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+                  <ion-input [(ngModel)]="account_number" formControlName="account_number"
+                  name="account_number" type="text" label="A/C Number :" label-placement="floating"
+                  fill="outline" maxlength="14"></ion-input>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+                  <ion-input [(ngModel)]="ifsc_code" formControlName="ifsc_code" name="ifsc_code" type="text"
+                  label="IFSC Code :" label-placement="floating" fill="outline" maxlength="11"></ion-input>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+                  <ion-input [(ngModel)]="bank_name" formControlName="bank_name" class="bank_name"
+                  name="bank_name" type="text" label="Bank Name :" label-placement="floating"
+                  fill="outline"></ion-input>
+                </ion-col>
+                <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
+                  <ion-input [(ngModel)]="branch_name" formControlName="branch_name" name="branch_name"
+                  type="text" label=" Branch Name :" label-placement="floating" fill="outline"></ion-input>
+                </ion-col>
+
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row class="custom-primary" style="justify-content: right;margin-top: 20px;">
+            <ion-button id="open-loading" (click)="onNew()">New</ion-button>
+            <ion-loading class="custom-loading" trigger="open-loading" message="Cleaning..." [duration]="1000"></ion-loading>
+            <ion-button type="submit" id="open-loading1">Save</ion-button>    
+            <ion-button id="open-loading4"(click)="onButtonClick()">Close</ion-button>
+            <ion-loading class="custom-loading" trigger="open-loading4" message="Customer Closing..." [duration]="1000"></ion-loading>
+          </ion-row>
+          </form>
+        </ion-grid>
+      </ion-card-content>
+    </div>
+  </div>
+</ion-content>
