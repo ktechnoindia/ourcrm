@@ -214,6 +214,7 @@ export class PurchasereturnPage implements OnInit {
   quantity: number = 0; // Initial value can be set based on your requirements
   purchasebyid$ :Observable<any[]>
   isQuantityPopoverOpen: boolean=false;
+  rows: any[] = [];
 
   printThisPage() {
     window.print();
@@ -377,16 +378,24 @@ export class PurchasereturnPage implements OnInit {
   }
 
   async onSubmit(form: FormGroup, purchaseData: Purchase[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+
+    //   htmlForm.addEventListener('keydown', (event) => {
+    //     // Prevent the default behavior for Enter key
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //     }
+    // });
     const fields = { billNumber: this.billNumber, supplier: this.supplier, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
-    let purchases: purchasereturnstore[] = [];
 
-
+    let purchases: purchasereturnstore [] = [];
+    console.log('data of ', purchases)
     if (await this.formService.validateForm(fields)) {
       for (const element of purchaseData) {
 
         element.grossrate = element.basicrate * element.quantity;
-        //element.netrate = element.basicrate + element.taxrate1;
+        // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -395,6 +404,7 @@ export class PurchasereturnPage implements OnInit {
         console.log('Your form data : ', this.myform.value);
         const companyid = 1;
         const userid = 1;
+
         let attributesArray = element.quantityPopoverData.map(attr => ({
           attr1: attr.attr1,
           attr2: attr.attr2,
@@ -404,17 +414,17 @@ export class PurchasereturnPage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:companyid,
-          itemcode:element.itemcode,
+          companyid: companyid,
+          itemcode: element.itemcode,
         }))
-        let purchasedata: purchasereturnstore = {
+
+        let purchasedata: purchasereturnstore  = {
           billNumber: this.myform.value.billNumber,
           billDate: this.myform.value.billDate,
           billformate: this.myform.value.billformate,
           payment: this.myform.value.payment,
           supplier: this.myform.value.supplier,
           gstin: this.myform.value.gstin,
-          executive: this.myform.value.executive,
           taxrate$: this.myform.value.taxrate$,
           refrence: this.myform.value.refrence,
           refdate: this.myform.value.refdate,
@@ -422,7 +432,6 @@ export class PurchasereturnPage implements OnInit {
           orderDate: this.myform.value.orderDate,
           orderNumber: this.myform.value.orderNumber,
           ponumber: this.myform.value.ponumber,
-          frombill: this.myform.value.frombill,
 
           barcode: element.barcode,
           itemcode: element.itemcode,
@@ -460,32 +469,35 @@ export class PurchasereturnPage implements OnInit {
           itemid: element.itemid,
           companyid: companyid,
           userid: userid,
+          executive: this.myform.value.executive,
           exicutive: 0,
           quantityPopoverData: attributesArray,
-
+          frombill: this.myform.value.frombill,
         };
+
         purchases.push(purchasedata);
       }
-        this.purchasereturnService.createpurchasereturn(purchases, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-             this.form.reset();
-            //location.reload()
-          },
-          (error: any) => {
-            console.log('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
-      
+      // Call the API outside the loop
+      this.purchasereturnService.createpurchasereturn(purchases, '', '').subscribe(
+        (response: any) => {
+          console.log('Purchase Post successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.form.reset();
+          location.reload()
+        },
+        (error: any) => {
+          console.log('Purchase Post failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
     } else {
+      // Handle form validation errors
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
         if (control?.invalid) {
@@ -498,58 +510,60 @@ export class PurchasereturnPage implements OnInit {
     }
   };
 
-  async ionViewWillEnter() {
-    //   const userid = await this.session.getValue('userid');
-    //   if (userid == null || userid == 'undefined' || userid == '') {
-    //     this.router.navigate(['/login']);
-    //   }
-    //  this.setlangvals();
-    this.purchaseData = [{
-      barcode: '',
-      itemcode: 0,
-      itemname: '',
-      description: '',
-      quantity: 0,
-      unitname: '',
-      hunitname: 0,
-      mrp: 0,
-      basicrate: 0,
-      netrate: 0,
-      grossrate: 0,
-      taxrate: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      discount: 0,
-      discountamt: 0,
-      totaltax: 0,
-      total: 0,
-      taxrate1: 0,
-      itemid: 0,
-      selectedItemId: 0,
-      quantityPopoverData: [{
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7:'',
-        attr8:'',
-        companyid:0,
-        itemcode:0,
-      }],
-      attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
+  // async ionViewWillEnter() {
+  //   //   const userid = await this.session.getValue('userid');
+  //   //   if (userid == null || userid == 'undefined' || userid == '') {
+  //   //     this.router.navigate(['/login']);
+  //   //   }
+  //   //  this.setlangvals();
+  //   this.purchaseData = [{
+  //     barcode: '',
+  //     itemcode: 0,
+  //     itemname: '',
+  //     description: '',
+  //     quantity: 0,
+  //     unitname: '',
+  //     hunitname: 0,
+  //     mrp: 0,
+  //     basicrate: 0,
+  //     netrate: 0,
+  //     grossrate: 0,
+  //     taxrate: 0,
+  //     CGST: 0,
+  //     SGST: 0,
+  //     IGST: 0,
+  //     discount: 0,
+  //     discountamt: 0,
+  //     totaltax: 0,
+  //     total: 0,
+  //     taxrate1: 0,
+  //     itemid: 0,
+  //     selectedItemId: 0,
+  //     quantityPopoverData: [{
+  //       attr1: '',
+  //       attr2: '',
+  //       attr3: '',
+  //       attr4: '',
+  //       attr5: '',
+  //       attr6: '',
+  //       attr7:'',
+  //       attr8:'',
+  //       companyid:0,
+  //       itemcode:0,
+  //     }],
+  //     attribute1: '',
+  //     attribute2: '',
+  //     attribute3: '',
+  //     attribute4: '',
+  //     attribute5: '',
+  //     attribute6: '',
+  //     attribute7: '',
+  //     attribute8: '',
 
-    }];
-  }
+  //   }];
+  // }
+  tatts:number=0;
+
   getItems(purchase: any) {
     const compid = 1;
     const identifier = purchase.selectedItemId ? 'itemname' : 'itemcode';
@@ -563,7 +577,6 @@ export class PurchasereturnPage implements OnInit {
         if (data && data.length > 0) {
           const itemDetails = data[0];
 
-          // Update the quote properties
           purchase.itemcode = itemDetails.itemCode;
           purchase.itemname = itemDetails.itemDesc;
           purchase.barcode = itemDetails.barcode.toString();
@@ -575,20 +588,44 @@ export class PurchasereturnPage implements OnInit {
           purchase.mrp = itemDetails.mrp;
           purchase.basicrate = itemDetails.basic_rate;
           purchase.netrate = itemDetails.net_rate;
-          purchase.attribute1= itemDetails.attr1,
-          purchase.attribute2= itemDetails.attr2,
-          purchase.attribute3= itemDetails.attr3,
-          purchase.attribute4= itemDetails.attr4,
-          purchase.attribute5= itemDetails.attr5,
-          purchase.attribute6= itemDetails.attr6,
-          purchase.attribute7= itemDetails.attr7,
-          purchase.attribute8= itemDetails.attr8,
-          // Update form control values
-          this.myform.patchValue({
-            itemcode: purchase.itemcode,
-            itemname: purchase.itemname,
-            // Other form controls...
-          });
+          if (itemDetails.attr2 !== '') {
+            this.tatts = 1;
+        }
+        if (itemDetails.attr3 !== '') {
+            this.tatts = 2;
+        }
+        if (itemDetails.attr4 !== '') {
+            this.tatts = 3;
+        }
+        if (itemDetails.attr5 !== '') {
+            this.tatts = 4;
+        }
+        if (itemDetails.attr6 !== '') {
+            this.tatts = 5;
+        }
+        if (itemDetails.attr7 !== '') {
+            this.tatts = 6;
+        }
+        if (itemDetails.attr8 !== '') {
+            this.tatts = 7;
+        }
+        
+          purchase.attribute1 = itemDetails.attr1;
+
+            purchase.attribute2 = itemDetails.attr2,
+            purchase.attribute3 = itemDetails.attr3,
+            purchase.attribute4 = itemDetails.attr4,
+            purchase.attribute5 = itemDetails.attr5,
+            purchase.attribute6 = itemDetails.attr6,
+            purchase.attribute7 = itemDetails.attr7,
+            purchase.attribute8 = itemDetails.attr8,
+          
+            // Update form control values
+            this.myform.patchValue({
+              itemcode: purchase.itemcode,
+              itemname: purchase.itemname,
+              // Other form controls...
+            });
         } else {
           console.error('No data found for the selected item.');
         }
@@ -855,13 +892,8 @@ export class PurchasereturnPage implements OnInit {
     return this.getTotaltax(purchase);
   }
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // Reset form data when navigating away from the page
-        this.myform.reset();
-      }
-    });
-  
+
+    this.rows = Array.from({ length: this.quantity }, (_, index) => index + 1);
     this.purchaseData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',
@@ -871,12 +903,10 @@ export class PurchasereturnPage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
+      companyid: 0,
+      itemcode: 0
       // Add more properties as needed
     }));
-    // Other initialization logic...
-
     // Subscribe to value changes of basicrate, taxrate, and discount
     this.myform.get('basicrate')?.valueChanges.subscribe(() => this.calculateNetRate());
     this.myform.get('taxrate')?.valueChanges.subscribe(() => this.calculateNetRate());
@@ -889,6 +919,14 @@ export class PurchasereturnPage implements OnInit {
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
     });
+  
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
+    });
+  
   }
   calculateDiscountAmt() {
     // Calculate discountamt based on discount percentage

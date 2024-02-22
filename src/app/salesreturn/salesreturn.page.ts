@@ -198,6 +198,16 @@ export class SalesreturnPage implements OnInit {
   printThisPage() {
     window.print();
   }
+  attr1: string = '';
+  attr2: string = '';
+  attr3: string = '';
+  attr4: string = '';
+  attr5: string = '';
+  attr6: string = '';
+  attr7: string = '';
+  attr8: string = '';
+  attdata:any[]=[];
+
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
@@ -268,6 +278,14 @@ export class SalesreturnPage implements OnInit {
       ponumber: [''],
       ttotal: [''],
       itemid: [''],
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
       attribute1:[''],
       attribute2:[''],
       attribute3:[''],
@@ -313,15 +331,32 @@ export class SalesreturnPage implements OnInit {
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
-  openQuantityPopover(sales: Sales) {
-    this.purchasebyid$ = this.saleService.fetchallPurchaseById(this.itemcode,1);
-    this.purchasebyid$.subscribe(data => {
-      console.log('puchase data',data); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
-        });
-    this.salesData[0].quantityPopoverData = new Array(sales.quantity).fill({})
-      .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '',companyid:0,itemcode:0 }));
-    this.isQuantityPopoverOpen = true;
+  openQuantityPopover(sale: Sales) {
+    this.purchasebyid$ = this.saleService.fetchallPurchaseById(sale.itemcode, 1);
+    this.purchasebyid$.subscribe((data: any) => {
+      this.attdata = data.purchase_att;
+      console.log('purchase Data', this.attdata);
+  
+      // Populate quantityPopoverData with empty objects
+      this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
+        .map(() => ({
+          attr1: '',
+          attr2: '',
+          attr3: '',
+          attr4: '',
+          attr5: '',
+          attr6: '',
+          attr7: '',
+          attr8: '',
+          companyid: 0,
+          itemcode: 0
+        }));
+  
+      // // Open the quantity popover after populating quantityPopoverData
+      setTimeout(() => {
+        this.isQuantityPopoverOpen = true;
+      }, 500);
+    });
   }
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
@@ -354,21 +389,25 @@ export class SalesreturnPage implements OnInit {
   }
 
 
-  async onSubmit(form: FormGroup, salereturnData: Sales[]) {
+  async onSubmit(form: FormGroup, salesData: Sales[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
+    //   htmlForm.addEventListener('keydown', (event) => {
+    //     // Prevent the default behavior for Enter key
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //     }
+    // });
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
-    const isValid = await this.formService.validateForm(fields);
+
+    console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));
+    let salesdatas: salesstore[] = [];
+
     if (await this.formService.validateForm(fields)) {
 
-      // console.log('Your form data : ', this.myform.value);
-
-      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salereturnData));
-      let salereturn: salereturnstore[] = [];
-
-
-      for (const element of salereturnData) {
+      for (const element of salesData) {
         element.grossrate = element.basicrate * element.quantity;
-        // element.netrate = element.basicrate + element.taxrate1;
+        element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.SGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
@@ -387,26 +426,23 @@ export class SalesreturnPage implements OnInit {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:companyid,
-          itemcode:element.itemcode,
+          companyid: attr.companyid,
+          itemcode: attr.itemcode,
         }))
-
-        let salereturndata: salereturnstore = {
+        let saledata: salesstore = {
           billformate: this.myform.value.billformate,
           billNumber: this.myform.value.billNumber,
           billDate: this.myform.value.billDate,
-          payment: this.myform.value.payment,
-          orderDate: this.myform.value.orderDate,
-          orderNumber: this.myform.value.orderNumber,
-          gstin: this.myform.value.gstin,
-          salePerson: this.myform.value.salePerson,
           custcode: this.myform.value.custcode,
           custname: this.myform.value.custname,
-          // unitname$:this.myform.value.unitname$,
-          // ponumber:this.myform.value.ponumber,
           refdate: this.myform.value.refdate,
           refrence: this.myform.value.refrence,
-          frombill: this.myform.value.frombill,
+          orderDate: this.myform.value.orderDate,
+          orderNumber: this.myform.value.orderNumber,
+          // ponumber: this.myform.value.ponumber,
+          gstin: this.myform.value.gstin,
+          salePerson: this.myform.value.salePerson,
+          payment: this.myform.value.payment,
 
           barcode: element.barcode,
           itemcode: element.itemcode,
@@ -432,43 +468,44 @@ export class SalesreturnPage implements OnInit {
           totaldiscountamt: this.myform.value.totaldiscountamt,
           totaltaxamount: this.myform.value.totaltaxamount,
           totalnetamount: this.myform.value.totalnetamount,
+          deliverydate: this.myform.value.deliverydate,
+          deliveryplace: this.myform.value.deliveryplace,
           roundoff: this.myform.value.roundoff,
           pretax: this.myform.value.pretax,
           posttax: this.myform.value.posttax,
-          deliverydate: this.myform.value.deliverydate,
-          deliveryplace: this.myform.value.deliveryplace,
           openingbalance: this.myform.value.openingbalance,
           closingbalance: this.myform.value.closingbalance,
           debit: this.myform.value.debit,
           credit: this.myform.value.credit,
+          ponumber: this.myform.value.ponumber,
+          ttotal: 0,
           companyid: companyid,
           userid: userid,
-          ponumber: this.myform.value.ponumber,
           quantityPopoverData: attributesArray,
 
         };
 
-        salereturn.push(salereturndata);
+        salesdatas.push(saledata);
       }
-        this.salereturnService.createSaleReturn(salereturn, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.myform.reset();
-           // location.reload()
-          },
-          (error: any) => {
-            console.error('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-        );
-      
+      this.saleService.createsale(salesdatas, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.myform.reset();
+          //location.reload()
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
+
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -480,59 +517,59 @@ export class SalesreturnPage implements OnInit {
         this.firstInvalidInput.setFocus();
       }
     }
-  }
-  async ionViewWillEnter() {
-    //   const userid = await this.session.getValue('userid');
-    //   if (userid == null || userid == 'undefined' || userid == '') {
-    //     this.router.navigate(['/login']);
-    //   }
-    //  this.setlangvals();
-    this.salesData = [{
-      barcode: '',
-      itemcode: 0,
-      itemname: '',
-      description: '',
-      quantity: 0,
-      unitname: '',
-      hunitname: 0,
-      mrp: 0,
-      basicrate: 0,
-      netrate: 0,
-      grossrate: 0,
-      taxrate: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      discount: 0,
-      discountamt: 0,
-      totaltax: 0,
-      total: 0,
-      taxrate1: 0,
-      itemid: 0,
-      selectedItemId: 0,
-      quantityPopoverData: [{
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7:'',
-        attr8:'',
-        companyid:0,
-        itemcode:0,
-      }],
-      attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
+  };
+  // async ionViewWillEnter() {
+  //   //   const userid = await this.session.getValue('userid');
+  //   //   if (userid == null || userid == 'undefined' || userid == '') {
+  //   //     this.router.navigate(['/login']);
+  //   //   }
+  //   //  this.setlangvals();
+  //   this.salesData = [{
+  //     barcode: '',
+  //     itemcode: 0,
+  //     itemname: '',
+  //     description: '',
+  //     quantity: 0,
+  //     unitname: '',
+  //     hunitname: 0,
+  //     mrp: 0,
+  //     basicrate: 0,
+  //     netrate: 0,
+  //     grossrate: 0,
+  //     taxrate: 0,
+  //     CGST: 0,
+  //     SGST: 0,
+  //     IGST: 0,
+  //     discount: 0,
+  //     discountamt: 0,
+  //     totaltax: 0,
+  //     total: 0,
+  //     taxrate1: 0,
+  //     itemid: 0,
+  //     selectedItemId: 0,
+  //     quantityPopoverData: [{
+  //       attr1: '',
+  //       attr2: '',
+  //       attr3: '',
+  //       attr4: '',
+  //       attr5: '',
+  //       attr6: '',
+  //       attr7:'',
+  //       attr8:'',
+  //       companyid:0,
+  //       itemcode:0,
+  //     }],
+  //     attribute1: '',
+  //     attribute2: '',
+  //     attribute3: '',
+  //     attribute4: '',
+  //     attribute5: '',
+  //     attribute6: '',
+  //     attribute7: '',
+  //     attribute8: '',
   
-    }];
-  }
+  //   }];
+  // }
   getItems(sales: any) {
     const compid = 1;
     const identifier = sales.selectedItemId ? 'itemname' : 'itemcode';
@@ -856,13 +893,6 @@ export class SalesreturnPage implements OnInit {
     return this.getTotaltax(sale);
   }
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // Reset form data when navigating away from the page
-        this.myform.reset();
-      }
-    });
-  
     this.salesData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
       attr1: '',
       attr2: '',
@@ -872,8 +902,8 @@ export class SalesreturnPage implements OnInit {
       attr6: '',
       attr7: '',
       attr8: '',
-      companyid:0,
-      itemcode:0
+      companyid: 0,
+      itemcode: 0
       // Add more properties as needed
     }));
     // Other initialization logic...
@@ -889,6 +919,12 @@ export class SalesreturnPage implements OnInit {
     });
     this.myform.get('discountamt')?.valueChanges.subscribe(() => {
       this.calculateDiscountPercentage();
+    });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Reset form data when navigating away from the page
+        this.myform.reset();
+      }
     });
   }
   calculateDiscount() {

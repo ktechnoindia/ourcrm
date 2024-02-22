@@ -346,7 +346,14 @@ export class DcOutPage implements OnInit {
 
 
   async onSubmit(form: FormGroup, dcoutData: Dcout[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
+    htmlForm.addEventListener('keydown', (event) => {
+      // Prevent the default behavior for Enter key
+      if (event.key === 'Enter') {
+          event.preventDefault();
+      }
+  });
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {

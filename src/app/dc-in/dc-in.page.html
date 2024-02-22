@@ -457,28 +457,28 @@
                       <tr class="attributes" *ngFor="let dcin of dcinData; let i = index">
                         <th>Sr. No.</th>
                         <ng-container *ngIf="dcin.attribute1">
-                          <th><input type="text" formControlName="attribute1" [(ngModel)]="dcin.attribute1" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute1" [(ngModel)]="dcin.attribute1" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute2">
-                          <th><input type="text" formControlName="attribute2" [(ngModel)]="dcin.attribute2" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute2" [(ngModel)]="dcin.attribute2" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute3">
-                          <th><input type="text" formControlName="attribute3" [(ngModel)]="dcin.attribute3" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute3" [(ngModel)]="dcin.attribute3" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute4">
-                          <th><input type="text" formControlName="attribute4" [(ngModel)]="dcin.attribute4" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute4" [(ngModel)]="dcin.attribute4" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute5">
-                          <th><input type="text" formControlName="attribute5" [(ngModel)]="dcin.attribute5" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute5" [(ngModel)]="dcin.attribute5" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute6">
-                          <th><input type="text" formControlName="attribute6" [(ngModel)]="dcin.attribute6" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute6" [(ngModel)]="dcin.attribute6" class="pop_input" readonly> </th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute7">
-                          <th><input type="text" formControlName="attribute7" [(ngModel)]="dcin.attribute7" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute7" [(ngModel)]="dcin.attribute7" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcin.attribute8">
-                          <th><input type="text" formControlName="attribute8" [(ngModel)]="dcin.attribute8" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute8" [(ngModel)]="dcin.attribute8" class="pop_input" readonly></th>
                         </ng-container>
                       </tr>
                       <tr *ngFor="let row of dcinData[0]?.quantityPopoverData; let i = index ">

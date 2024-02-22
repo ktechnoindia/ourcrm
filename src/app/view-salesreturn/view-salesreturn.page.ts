@@ -174,10 +174,10 @@ export class ViewSalesreturnPage implements OnInit {
   }
  
   ngOnInit() {
-    // this.filteredSalereturns$ = this.salesreturns$.pipe(
+    // this.salesreturns$ = this.salesreturns$.pipe(
     //   debounceTime(300),
     //   distinctUntilChanged(),
-    //   switchMap(() => this.filterCustomers())
+    //   switchMap(() => this.filterSalesreturn())
     // );
     this.filteredBillingData$ = this.salesreturns$.pipe(
       map(data => {

@@ -183,22 +183,22 @@
                   <tr *ngFor="let sales of salesData; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="sales.barcode" (ngModelChange)="getItems(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="sales.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
+                        (ngModelChange)="getItems(sales)" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.itemcode" (ngModelChange)="getItems(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [(ngModel)]="sales.itemcode" [ngModelOptions]="{standalone: true}"
+                        (ngModelChange)="getItems(sales)" class="table_input" type="text">
                     </td>
                     <td>
-                      <select class="select-option" style="width: 100px;outline: none;border: none;" id="itemname"
-                        [(ngModel)]=" sales.selectedItemId" [ngModelOptions]="{standalone: true}"
-                        (ngModelChange)="getItems(sales)">
+                      <select class="select-option" [(ngModel)]="sales.selectedItemId"
+                        [ngModelOptions]="{standalone: true}" (ngModelChange)="getItems(sales)">
                         <option value="0">Item Name</option><!-- Default option -->
-                        <option *ngFor="let itemname of itemnames$ | async" [value]="itemname.tid">
-                          {{ itemname.itemDesc }}
+                        <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
+                          {{ item.itemDesc }}
                         </option>
                       </select>
+                      <!-- Use a hidden input for sending itemcode -->
                       <ion-input style="display: none;" [(ngModel)]="sales.itemid" [ngModelOptions]="{standalone: true}"
                         type="hidden"></ion-input>
                       <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
@@ -207,94 +207,92 @@
                         type="hidden"></ion-input>
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.description" [ngModelOptions]="{standalone: true}"
-                        class="table_input description" type="text">
+                      <input [(ngModel)]="sales.description" [ngModelOptions]="{standalone: true}" class="description"
+                        type="text">
                     </td>
                     <td>
                       <input *ngIf="sales.itemcode !== 0" [(ngModel)]="sales.quantity"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
-                        (keydown.enter)="openQuantityPopover(sales)"(keydown)="onKeyDown($event)">
+                        (keydown)="onKeyDown($event)" (keydown.enter)="openQuantityPopover(sales)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                       <input [(ngModel)]="sales.hunitname" [ngModelOptions]="{standalone: true}" type="hidden">
                       <!-- <select class="select-option" [(ngModel)]="sales.unitname" [ngModelOptions]="{standalone: true}">
-                        <option value="0">Unit Name</option>
-                        <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
-                          {{ unitnames.unitname }}
-                        </option>
-                      </select> -->
+                          <option value="0">Unit Name</option>
+                          <option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
+                            {{ unitnames.unitname }}
+                          </option>
+                        </select> -->
                     </td>
                     <td>
                       <input [(ngModel)]="sales.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="text" (keydown)="onKeyDown($event)">
+                        type="number" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.basicrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number" (keydown)="onKeyDown($event)">
-
+  
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text" (keydown)="onKeyDown($event)">
+                      <input [(ngModel)]="sales.netrate" [value]="getnetrate(sales)" [ngModelOptions]="{standalone: true}"
+                        class="table_input" type="text" (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.grossrate" [value]="getgrossrate(sales) "
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number"(keydown)="onKeyDown($event)">
+                      <input [value]="getgrossrate(sales)" [readonly]="true" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [(ngModel)]="sales.taxrate" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="number" (keydown)="onKeyDown($event)">
                       <!-- <select class="select-option" id="taxrate" #taxrate (change)="onSelectChange(taxrate,sales)"
-                        (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
-                        [ngModelOptions]="{standalone: true}">
-                        <option value="0"> GST</option>
-                        <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
-                          {{ gsttype.gstname }}
-                        </option>
-                      </select> -->
+                          (ngModelChange)="getItems(sales)" [(ngModel)]="sales.taxrate"
+                          [ngModelOptions]="{standalone: true}">
+                          <option value="0"> GST</option>
+                          <option *ngFor="let gsttype of taxrate$ | async" [value]="gsttype.gstid">
+                            {{ gsttype.gstname }}
+                          </option>
+                        </select> -->
                     </td>
-                    <input type="hidden" [(ngModel)]="sales.taxrate1" [ngModelOptions]="{standalone: true}" />
-
+                    <input type="hidden" [(ngModel)]="sales.taxrate1" [ngModelOptions]="{standalone: true}"
+                      (keydown)="onKeyDown($event)" />
                     <td>
-                      <input [(ngModel)]="sales.CGST" [value]="getcgst(sales)" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
-                    </td>
-                    <td>
-                      <input [(ngModel)]="sales.SGST" [value]="getsgst(sales)" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                      <input [value]="getsgst(sales)" [readonly]="true" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.IGST" [value]="getigst(sales)" [ngModelOptions]="{standalone: true}"
-                        class="table_input" type="text">
+                      <input [value]="getcgst(sales)" [readonly]="true" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
-
+                    <td>
+                      <input [value]="getigst(sales)" type="number" class="table_input" (keydown)="onKeyDown($event)">
+                    </td>
                     <td>
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>
                         <option value="percentage">Percentage</option>
                       </select>
                     </td>
-                    <td *ngIf="myform.get('discountType')?.value === 'percentage'">
-                      <input [(ngModel)]="sales.discount" (ionBlur)="getdiscountp(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="number" (keydown)="onKeyDown($event)">
+                    <td>
+                      <input *ngIf="myform.get('discountType')?.value === 'percentage'; else amountField"
+                        [(ngModel)]="sales.discount" (ionBlur)="getdiscountp(sales)" [ngModelOptions]="{standalone: true}"
+                        class="table_input" type="number" (keydown)="onKeyDown($event)">
+                      <ng-template #amountField>
+                        <input [(ngModel)]="sales.discountamt" (keyup)="getdiscountamt(sales)"
+                          [value]="getdiscountamt(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
+                          type="number" (keydown)="onKeyDown($event)">
+                      </ng-template>
                     </td>
-                    <td *ngIf="myform.get('discountType')?.value === 'amount'">
-                      <input [(ngModel)]="sales.discountamt" [value]="getdiscountamt(sales)"
-                        (keyup)="getdiscountamt(sales)" [ngModelOptions]="{standalone: true}" class="table_input"
-                        type="number" (keydown)="onKeyDown($event)">
+  
+                    <td>
+                      <input [readonly]="true" [value]="getTotaltax(sales)" class="table_input" type="text">
                     </td>
                     <td>
-                      <input [(ngModel)]="sales.totaltax" [value]="getTotaltax(sales)"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+                      <input [readonly]="true" [value]="getTotalamt([sales])" class="table_input" type="text">
+  
                     </td>
-                    <td>
-                      <input [(ngModel)]="sales.total" [ngModelOptions]="{standalone: true}"
-                        [value]="getTotalamt([sales])" class="table_input" type="text">
-
-                    </td>
-
+  
                     <td>
                       <ion-icon icon-only clear color="primary" name="add" (click)="addSales()"></ion-icon>
                       <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
@@ -502,49 +500,75 @@
             <ion-popover class="quantity" #quantityPopover [isOpen]="isQuantityPopoverOpen">
               <ng-template>
                 <ion-content>
-                  <div style="padding: 10px;">
+                  <div class="popup" style="padding: 10px;">
                     <table style="width: 100%;">
 
                       <tr class="attributes" *ngFor="let sales of salesData; let i = index">
+                        <th>select</th>
                         <th>Sr. No.</th>
-                        <th>Select Item Attributes</th>
                         <ng-container *ngIf="sales.attribute1">
-                          <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute2">
-                          <th><input type="text" formControlName="attribute2" [(ngModel)]="sales.attribute2" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute2" [(ngModel)]="sales.attribute2"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute3">
-                          <th><input type="text" formControlName="attribute3" [(ngModel)]="sales.attribute3" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute3" [(ngModel)]="sales.attribute3"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute4">
-                          <th><input type="text" formControlName="attribute4" [(ngModel)]="sales.attribute4" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute4" [(ngModel)]="sales.attribute4"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute5">
-                          <th><input type="text" formControlName="attribute5" [(ngModel)]="sales.attribute5" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute5" [(ngModel)]="sales.attribute5"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute6">
-                          <th><input type="text" formControlName="attribute6" [(ngModel)]="sales.attribute6" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute6" [(ngModel)]="sales.attribute6"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute7">
-                          <th><input type="text" formControlName="attribute7" [(ngModel)]="sales.attribute7" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute7" [(ngModel)]="sales.attribute7"
+                              class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="sales.attribute8">
-                          <th><input type="text" formControlName="attribute8" [(ngModel)]="sales.attribute8" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute8" [(ngModel)]="sales.attribute8"
+                              class="pop_input" readonly></th>
                         </ng-container>
                       </tr>
-                      <tr *ngFor="let row of purchasebyid$ | async; let i = index">
-                        <td>{{i+1}}</td>
+                      <tr *ngFor="let sales of attdata; let i = index"> 
                         <td><ion-checkbox></ion-checkbox></td>
-                        <td><input type="text" formControlName="attr1" [(ngModel)]="row.attr1" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr2" [(ngModel)]="row.attr2" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr3" [(ngModel)]="row.attr3" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr4" [(ngModel)]="row.attr4" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr5" [(ngModel)]="row.attr5" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
-                        <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
-                      </tr>
+  
+                        <td>{{i+1}}</td>
+                        <!-- Display input fields only if data exists -->
+                        <ng-container *ngIf="sales.att1">
+                          <td>{{ sales.att1 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr2">
+                          <td>{{ sales.attr2 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr3">
+                          <td>{{ sales.attr3 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr4">
+                          <td>{{ sales.attr4 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr5">
+                          <td>{{ sales.attr5 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr6">
+                          <td>{{ sales.attr6 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr7">
+                          <td>{{ sales.attr7 }}</td>
+                        </ng-container>
+                        <ng-container *ngIf="sales.attr8">
+                          <td>{{ sales.attr8 }}</td>
+                        </ng-container>
+                    </tr>
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
                       <ion-button style="float: right; bottom: 0;"  (click)="closeQuantityPopover()">Ok</ion-button>

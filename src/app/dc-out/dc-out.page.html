@@ -430,60 +430,61 @@
                   <div class="popup" style="padding: 10px;">
                     <table style="width: 100%;">
                       <tr class="attributes" *ngFor="let dcout of dcoutData; let i = index">
+                        <th>Select</th>
                         <th>Sr. No.</th>
-                        <th>Select Item Attributes</th>
                         <ng-container *ngIf="dcout.attribute1">
-                          <th><input type="text" formControlName="attribute1" [(ngModel)]="dcout.attribute1" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute1" [(ngModel)]="dcout.attribute1" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute2">
-                          <th><input type="text" formControlName="attribute2" [(ngModel)]="dcout.attribute2" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute2" [(ngModel)]="dcout.attribute2" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute3">
-                          <th><input type="text" formControlName="attribute3" [(ngModel)]="dcout.attribute3" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute3" [(ngModel)]="dcout.attribute3" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute4">
-                          <th><input type="text" formControlName="attribute4" [(ngModel)]="dcout.attribute4" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute4" [(ngModel)]="dcout.attribute4" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute5">
-                          <th><input type="text" formControlName="attribute5" [(ngModel)]="dcout.attribute5" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute5" [(ngModel)]="dcout.attribute5" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute6">
-                          <th><input type="text" formControlName="attribute6" [(ngModel)]="dcout.attribute6" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute6" [(ngModel)]="dcout.attribute6" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute7">
-                          <th><input type="text" formControlName="attribute7" [(ngModel)]="dcout.attribute7" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute7" [(ngModel)]="dcout.attribute7" class="pop_input" readonly></th>
                         </ng-container>
                         <ng-container *ngIf="dcout.attribute8">
-                          <th><input type="text" formControlName="attribute8" [(ngModel)]="dcout.attribute8" class="pop_input"></th>
+                          <th><input type="text" formControlName="attribute8" [(ngModel)]="dcout.attribute8" class="pop_input" readonly></th>
                         </ng-container>
                       </tr>
                       <tr *ngFor="let sales of attdata; let i = index"> 
-                        <td>{{i+1}}</td>
                         <td><ion-checkbox></ion-checkbox></td>
+  
+                        <td>{{i+1}}</td>
                         <!-- Display input fields only if data exists -->
                         <ng-container *ngIf="sales.att1">
-                          <td><input formControlName="attr1">{{ sales.att1 }}</td>
+                          <td>{{ sales.att1 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr2">
-                          <td><input formControlName="attr2">{{ sales.attr2 }}</td>
+                          <td>{{ sales.attr2 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr3">
-                          <td><input formControlName="attr3">{{ sales.attr3 }}</td>
+                          <td>{{ sales.attr3 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr4">
-                          <td><input formControlName="attr4">{{ sales.attr4 }}</td>
+                          <td>{{ sales.attr4 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr5">
-                          <td><input formControlName="attr5">{{ sales.attr5 }}</td>
+                          <td>{{ sales.attr5 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr6">
-                          <td><input formControlName="attr6">{{ sales.attr6 }}</td>
+                          <td>{{ sales.attr6 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr7">
-                          <td><input formControlName="attr7">{{ sales.attr7 }}</td>
+                          <td>{{ sales.attr7 }}</td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr8">
-                          <td><input formControlName="attr8">{{ sales.attr8 }}</td>
+                          <td>{{ sales.attr8 }}</td>
                         </ng-container>
                     </tr>
                       <!-- <tr *ngFor="let row of dcoutData[0]?.quantityPopoverData; let i = index">
