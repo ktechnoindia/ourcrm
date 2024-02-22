@@ -272,11 +272,16 @@ export class ReceiptPage implements OnInit {
     if (isValid) {
       if (this.myform.value.paymentway === 'BillWise') {
           // Check if payment made equals total payment only if payment method is 'BillWise'
-          if (this.myform.value.paymentmade !== this.myform.value.total_payment) {
+          if (this.myform.value.paymentmade === this.myform.value.total_payment) {
               this.formService.showErrorPopup("Payment made & Total Current Amount does not match Total Payment. Please verify.");
               return; // Stop submission
           }
+      } else if (this.myform.value.paymentway === 'Onaccount') {
+          // Proceed directly to saving data when 'Onaccount' is selected
+          // Add your saving logic here
       }
+  
+    
   
       // Proceed with submission if validation passes
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(receiptData));

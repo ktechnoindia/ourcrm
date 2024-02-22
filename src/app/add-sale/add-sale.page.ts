@@ -389,7 +389,7 @@ attdata:any[]=[];
       console.log('purchase Data', this.attdata);
   
       // Populate quantityPopoverData with empty objects
-      this.attdata[0].quantityPopoverData = new Array(sale.quantity).fill({})
+      this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
         .map(() => ({
           attr1: '',
           attr2: '',
