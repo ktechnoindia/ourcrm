@@ -762,31 +762,31 @@
                             class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
-                    <tr *ngFor="let row of salesData[0]?.quantityPopoverData; let i = index">
-                      <td>{{i+1}}</td>
+                    <tr *ngFor="let row of attdata; let i = index">
+                      <td>{{row.attr1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
-                      <ng-container *ngIf="tatts>=0">
-                        <td><input type="text" formControlName="attr1" [value]="row.attr1" class="pop_input" readonly></td> 
+                      <ng-container >
+                        <td>{{row.attr1}}</td> 
                       </ng-container>
-                      <ng-container *ngIf="tatts>=1">
+                      <ng-container >
                         <td><input type="text" formControlName="attr2" [value]="row.attr2" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=2">
+                      <ng-container >
                         <td><input type="text" formControlName="attr3" [value]="row.attr3" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=3">
+                      <ng-container >
                         <td><input type="text" formControlName="attr4" [value]="row.attr4" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=4">
+                      <ng-container >
                         <td><input type="text" formControlName="attr5" [value]="row.attr5" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=5">
+                      <ng-container>
                         <td><input type="text" formControlName="attr6" [value]="row.attr6" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=6">
+                      <ng-container >
                         <td><input type="text" formControlName="attr7" [value]="row.attr7" class="pop_input" readonly></td>
                       </ng-container>
-                      <ng-container *ngIf="tatts>=7">
+                      <ng-container >
                         <td><input type="text" formControlName="attr8" [value]="row.attr8" class="pop_input" readonly></td>
                       </ng-container>
                     </tr>
