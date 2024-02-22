@@ -20,6 +20,7 @@ import { DistrictsService } from '../services/districts.service';
 import { InvoicePage } from "../invoice/invoice.page";
 import { SessionService } from '../services/session.service';
 import { CreatecompanyService } from '../services/createcompany.service';
+import { CreateunitService } from '../services/createunit.service';
 // import { quotestore } from '../services/quotation.service';
 
 interface Sales {
@@ -183,7 +184,7 @@ export class AddSalePage implements OnInit {
   customer$: any;
   executive$: any;
   itemnames$: Observable<any[]>;
-  unitname$: Observable<any[]>;
+  // unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   itemcode: number = 0;
   name: string = '';
@@ -242,12 +243,13 @@ export class AddSalePage implements OnInit {
 
   rows: any[] = [];
 attdata:any[]=[];
+units$: Observable<any[]>
 
-  constructor(public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
+  constructor(private unitService: CreateunitService,public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = this.session.getValue('userid')?.valueOf() as number;
     const companyid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.uni.fetchallunit();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
     // this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
@@ -256,6 +258,7 @@ attdata:any[]=[];
     this.deliverydate = new Date().toISOString().split('T')[0];
     this.orderDate = new Date().toISOString().split('T')[0];
     this.purchasebyid$ = new Observable;
+    this.units$ = this.unitService.fetchallunit('','','');
 
 
     //Invoice 

@@ -176,7 +176,7 @@ export class DcOutPage implements OnInit {
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
   itemnames$: Observable<any[]>;
-  unitname$: Observable<any[]>;
+  // unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   customer$: any;
 
@@ -211,7 +211,7 @@ export class DcOutPage implements OnInit {
   constructor(private saleService: SalesService, private navCtrl: NavController, private popoverController: PopoverController, private custname1: CustomerService, private vendname1: VendorService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private dcout: DcoutService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0];

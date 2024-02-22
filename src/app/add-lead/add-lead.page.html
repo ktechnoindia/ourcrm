@@ -343,13 +343,12 @@
 
             <ion-col size="6" size-lg="4" size-md="6" size-sm="6">
               <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
-                formControlName="unitname" name="unitname">
-                <!-- <ion-select-option value="0">  --- Unit Name --- </ion-select-option> -->
-                <ion-select-option *ngFor="let unitnames of unitname$ | async" [value]="unitnames.unitid">
-                  {{ unitnames.unitname }}
-                </ion-select-option>
-              </ion-select>
+              label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
+              formControlName="unitname" name="unitname">
+              <ion-select-option *ngFor="let unit of units$ | async" [value]="unit.id">
+                {{ unit.unit_name }}
+              </ion-select-option>
+            </ion-select>
             </ion-col>
 
             <ion-col size="6" size-lg="4" size-md="6" size-sm="6">

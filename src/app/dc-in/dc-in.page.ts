@@ -165,7 +165,7 @@ discount:number=0;
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
   itemnames$: Observable<any[]>;
-  unitname$: Observable<any[]>;
+  // unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
 
 
@@ -208,7 +208,7 @@ isOpen = false;
     const id = 1;
     const companyid = 1
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.supplier$ = this.vendname1.fetchallVendor(encService.encrypt(compid), '', '');
     this.datetype = new Date().toISOString().split('T')[0];

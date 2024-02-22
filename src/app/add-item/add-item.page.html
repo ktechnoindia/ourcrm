@@ -78,7 +78,7 @@
                   <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                     label="--- Unit Name ---" label-placement="floating" fill="outline" [(ngModel)]="unitname"
                     formControlName="unitname" name="unitname">
-                    <ion-select-option *ngFor="let unit of units$ | async" [value]="unit.unit_name">
+                    <ion-select-option *ngFor="let unit of units$ | async" [value]="unit.id">
                       {{ unit.unit_name }}
                     </ion-select-option>
                   </ion-select>

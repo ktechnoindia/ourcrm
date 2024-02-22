@@ -199,7 +199,7 @@ export class AddQuotPage implements OnInit {
   totalTaxAmt: number = 0;
   totalNetAmt: number = 0;
   itemnames$: Observable<any[]>;
-  unitname$: Observable<any[]>;
+  // unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   customer$: Observable<any[]>;
   session: any;
@@ -254,7 +254,7 @@ export class AddQuotPage implements OnInit {
     this.gstsrvs.getgsttype().subscribe((types) => {
       this.gstTypes = types
     });
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');
     this.quateDate = new Date().toISOString().split('T')[0];

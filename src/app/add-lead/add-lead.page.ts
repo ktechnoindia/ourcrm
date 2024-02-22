@@ -24,6 +24,8 @@ import { HsnService } from '../services/hsn.service';
 import { CreateunitService } from '../services/createunit.service';
 import { AddattributeService } from '../services/addattribute.service';
 import { AddgroupService } from '../services/addgroup.service';
+import { SessionService } from '../services/session.service';
+import { EncryptionService } from '../services/encryption.service';
 interface lead {
   catPerson: string;
   companyname: string
@@ -104,7 +106,7 @@ export class AddLeadPage {
   selectGst: number = 0;
 
   hsnname$: Observable<any[]>;
-  unitname$: any;
+  units$: Observable<any[]>;
   selectGst$: any;
   itemgroups$: Observable<any[]>
   itempop:FormGroup;
@@ -113,7 +115,7 @@ export class AddLeadPage {
   popover!: IonPopover;
   isOpen = false;
 
-  constructor(private popoverController: PopoverController,private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService, private addExecutiveService: ExecutiveService, private roletypes: roletypesservice,private ledgerService: LegderService, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService,  private hsnService: HsnService, private unitService: CreateunitService, private groupService: AddgroupService,
+  constructor(public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController,private navCtrl:NavController,private execut: ExecutiveService, private router: Router, private formBuilder: FormBuilder, private formService: FormValidationService, private leadSourceService: LeadsourceService, private leadmanage: LeadService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private itemService: AdditemService, private addExecutiveService: ExecutiveService, private roletypes: roletypesservice,private ledgerService: LegderService, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService,  private hsnService: HsnService, private unitService: CreateunitService, private groupService: AddgroupService,
   ) {
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
@@ -124,7 +126,8 @@ export class AddLeadPage {
     this.itemnames$ = this.itemService.getAllItems();
 
     this.selectGst$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.units$ = this.unittype.getunits();
+
     this.hsnname$ = this.hsnService.getHSNNames(1);
     this.itemgroups$ = this.groupService.getAllGroups(1);
 
@@ -169,6 +172,7 @@ export class AddLeadPage {
     this.roletypes$ = this.roletypes.getroletypes();
     const compid = '1';
     this.ledgers$ = this.ledgerService.fetchAllLedger(compid, '', '');
+    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid),'','');
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {

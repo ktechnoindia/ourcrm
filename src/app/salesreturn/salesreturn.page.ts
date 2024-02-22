@@ -169,7 +169,7 @@ export class SalesreturnPage implements OnInit {
   totalNetAmt: number = 0;
   totalItemNo: number = 0;
   itemnames$: Observable<any[]>;
-  unitname$: Observable<any[]>;
+  // unitname$: Observable<any[]>;
   taxrate$: Observable<any[]>;
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
 
@@ -201,7 +201,7 @@ export class SalesreturnPage implements OnInit {
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private salereturnService: SalereturnService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();
-    this.unitname$ = this.unittype.getunits();
+    // this.unitname$ = this.unittype.getunits();
     this.itemnames$ = this.itemService.getAllItems();
     this.executive$ = this.execut.getexecutive();
     this.customer$ = this.custname1.fetchallCustomer(encService.encrypt(compid), '', '');

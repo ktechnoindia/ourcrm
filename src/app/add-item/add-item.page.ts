@@ -133,7 +133,7 @@ export class AddItemPage implements OnInit {
   selectGstservice: number = 0;
   selectGst$: any;
   selectStock: string = '';
-  unitname$: any;
+  // unitname$: any;
   mrp: number = 0;
   salerate: number = 0;
   purchaserate: number = 0;
@@ -203,8 +203,10 @@ export class AddItemPage implements OnInit {
     this.itemname$ = this.itemService.getAllItems();
     this.filteredItems = this.items;
 
-    this.units$ = this.unitService.fetchallunit('','','');
-  
+    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid),'','');
+    // this.units$.subscribe(options => {
+    
+    // });
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
