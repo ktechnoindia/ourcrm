@@ -762,17 +762,34 @@
                             class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
-                    <tr *ngFor="let row of attdata; let i = index"> 
+                    <tr *ngFor="let sales of attdata; let i = index"> 
                       <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
-                      <td><input formControlName="attr1" >{{ row.att1 }}</td>
-                      <td><input formControlName="attr2" >{{ row.attr2 }}</td>
-                      <td><input formControlName="attr3" >{{ row.attr3 }}</td>
-                      <td><input formControlName="attr4" >{{ row.attr4 }}</td>
-                      <td><input formControlName="attr5" >{{ row.attr5 }}</td>
-                      <td><input formControlName="attr6" >{{ row.attr6 }}</td>
-                      <td><input formControlName="attr7" >{{ row.attr7 }}</td>
-                      <td><input formControlName="attr8" >{{ row.attr8 }}</td>
+                      <!-- Display input fields only if data exists -->
+                      <ng-container *ngIf="sales.att1">
+                        <td><input formControlName="attr1">{{ sales.att1 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr2">
+                        <td><input formControlName="attr2">{{ sales.attr2 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr3">
+                        <td><input formControlName="attr3">{{ sales.attr3 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr4">
+                        <td><input formControlName="attr4">{{ sales.attr4 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr5">
+                        <td><input formControlName="attr5">{{ sales.attr5 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr6">
+                        <td><input formControlName="attr6">{{ sales.attr6 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr7">
+                        <td><input formControlName="attr7">{{ sales.attr7 }}</td>
+                      </ng-container>
+                      <ng-container *ngIf="sales.attr8">
+                        <td><input formControlName="attr8">{{ sales.attr8 }}</td>
+                      </ng-container>
                   </tr>
                   
                     <!-- <tr *ngFor="let row of attdata; let i = index">

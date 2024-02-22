@@ -415,6 +415,14 @@ attdata:any[]=[];
   }
 
   async onSubmit(form: FormGroup, salesData: Sales[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+
+      htmlForm.addEventListener('keydown', (event) => {
+        // Prevent the default behavior for Enter key
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    });
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));
@@ -586,7 +594,7 @@ attdata:any[]=[];
   //     attribute8: '',
   //   }];
   // }
-  tatts: number = 0;
+  // tatts: number = 0;
 
   getItems(sales: any) {
     const compid = 1;
@@ -613,27 +621,27 @@ attdata:any[]=[];
           sales.mrp = itemDetails.mrp;
           sales.basicrate = itemDetails.basic_rate;
           sales.netrate = itemDetails.net_rate;
-          if (itemDetails.attr2 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr3 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr4 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr5 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr6 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr7 !== '') {
-            this.tatts++;
-          }
-          if (itemDetails.attr8 !== '') {
-            this.tatts++;
-          }
+          // if (itemDetails.attr2 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr3 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr4 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr5 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr6 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr7 !== '') {
+          //   this.tatts++;
+          // }
+          // if (itemDetails.attr8 !== '') {
+          //   this.tatts++;
+          // }
           sales.attribute1 = itemDetails.attr1,
             sales.attribute2 = itemDetails.attr2,
             sales.attribute3 = itemDetails.attr3,
