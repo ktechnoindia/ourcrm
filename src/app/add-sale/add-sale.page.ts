@@ -242,6 +242,7 @@ export class AddSalePage implements OnInit {
 
   rows: any[] = [];
 attdata:any[]=[];
+
   constructor(public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = this.session.getValue('userid')?.valueOf() as number;
     const companyid = '1';
@@ -383,17 +384,32 @@ attdata:any[]=[];
 
   openQuantityPopover(sale: Sales) {
     this.purchasebyid$ = this.saleService.fetchallPurchaseById(sale.itemcode, 1);
-    this.purchasebyid$.subscribe((data:any) => {
-    this.attdata=data.purchase_att;
-      console.log('puchase _', this.attdata); // Log the data to the console to verify if it's being fetched
-      // this.totalItems = data.length;
+    this.purchasebyid$.subscribe((data: any) => {
+      this.attdata = data.purchase_att;
+      console.log('purchase Data', this.attdata);
+  
+      // Populate quantityPopoverData with empty objects
+      this.attdata[0].quantityPopoverData = new Array(sale.quantity).fill({})
+        .map(() => ({
+          attr1: '',
+          attr2: '',
+          attr3: '',
+          attr4: '',
+          attr5: '',
+          attr6: '',
+          attr7: '',
+          attr8: '',
+          companyid: 0,
+          itemcode: 0
+        }));
+  
+      // // Open the quantity popover after populating quantityPopoverData
+      setTimeout(() => {
+        this.isQuantityPopoverOpen = true;
+      }, 500);
     });
- //   this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
-  //    .map(() => ({ attr1: '', attr2: '', attr3: '', attr4: '', attr5: '', attr6: '', attr7: '', attr8: '', companyid: 0, itemcode: 0 }));
-    setTimeout(() => {
-      this.isQuantityPopoverOpen = true;
-    }, 500);  
   }
+  
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
   }

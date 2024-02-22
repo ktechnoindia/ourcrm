@@ -305,7 +305,7 @@
                 interface="popover" label="--- Customer Name --- " label-placement="floating" fill="outline"
                 [(ngModel)]=" custcode" name="custname" formControlName="custname" (change)="getCustomers($event)">
                 <!-- <option value="0"> --- Customer Name --- </option> -->
-                <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.customer_code">
+                <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.id">
                   {{ customername.name }}
                 </ion-select-option>
               </ion-select>
@@ -762,8 +762,20 @@
                             class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
-                    <tr><td>{{attdata | json}}</td></tr>
-                    <tr *ngFor="let row of attdata; let i = index">
+                    <tr *ngFor="let row of attdata; let i = index"> 
+                      <td>{{i+1}}</td>
+                      <td><ion-checkbox></ion-checkbox></td>
+                      <td><input formControlName="attr1" >{{ row.att1 }}</td>
+                      <td><input formControlName="attr2" >{{ row.attr2 }}</td>
+                      <td><input formControlName="attr3" >{{ row.attr3 }}</td>
+                      <td><input formControlName="attr4" >{{ row.attr4 }}</td>
+                      <td><input formControlName="attr5" >{{ row.attr5 }}</td>
+                      <td><input formControlName="attr6" >{{ row.attr6 }}</td>
+                      <td><input formControlName="attr7" >{{ row.attr7 }}</td>
+                      <td><input formControlName="attr8" >{{ row.attr8 }}</td>
+                  </tr>
+                  
+                    <!-- <tr *ngFor="let row of attdata; let i = index">
                       <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
                       <ng-container >
@@ -790,7 +802,7 @@
                       <ng-container >
                         <td><input type="text" formControlName="attr8" [value]="row.attr8" class="pop_input" readonly></td>
                       </ng-container>
-                    </tr>
+                    </tr> -->
                   </table>
                   <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
                     <ion-button style="float: right; bottom: 0;" (click)="closeQuantityPopover()">Ok</ion-button>
