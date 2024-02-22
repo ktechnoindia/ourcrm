@@ -40,7 +40,7 @@
                 <ion-row>
                   <ion-input [(ngModel)]="customer_code" formControlName="customer_code" name="customer_code"
                     type="text" label=" Customer Code :" label-placement="floating" fill="outline"
-                    maxlength="5"></ion-input>
+                    maxlength="5"readonly placeholder="Code Generate in Backend"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size="6" size-lg="5" size-md="6" size-sm="6" *ngIf="selectedSalutation === 'M/S'">

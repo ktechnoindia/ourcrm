@@ -69,7 +69,7 @@
                 <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                   label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" vendcode"
                   name="suppliertype" formControlName="suppliertype" (ngModelChange)="getCustomers($event)">
-                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.customer_code">
+                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
                 </ion-select>

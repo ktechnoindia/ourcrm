@@ -75,7 +75,7 @@
                 label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]=" custcode" name="custname"
                   formControlName="custname" (change)="getCustomers($event)">
                   <!-- <option value="0"> --- Customer Name --- </option> -->
-                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.customer_code">
+                  <ion-select-option *ngFor="let customername of customer$ | async" [value]="customername.id">
                     {{ customername.name }}
                   </ion-select-option>
                 </ion-select>

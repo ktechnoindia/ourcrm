@@ -70,7 +70,7 @@
                   label="--- Supplier Name ---" label-placement="floating" fill="outline" [(ngModel)]="vendcode"
                   formControlName="supplier" name="supplier" (change)="getVendors($event)">
                   <!-- <ion-select-option value="0"> --- Supplier Name --- </ion-select-option>Default option -->
-                  <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.vendor_code">
+                  <ion-select-option *ngFor="let suppliername of supplier$ | async" [value]="suppliername.id">
                     {{ suppliername.name }}
                   </ion-select-option>
                 </ion-select>
