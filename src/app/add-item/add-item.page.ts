@@ -203,10 +203,8 @@ export class AddItemPage implements OnInit {
     this.itemname$ = this.itemService.getAllItems();
     this.filteredItems = this.items;
 
-    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid),'','');
-    this.units$.subscribe(options => {
-    
-    });
+    this.units$ = this.unitService.fetchallunit('','','');
+  
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
       itemDesc: ['', [Validators.required]],
@@ -561,8 +559,10 @@ export class AddItemPage implements OnInit {
   }
   
   fetchUnitData() {
-
-    this.unitname$ = this.unitService.fetchallunit('','', '').subscribe(
+    // Assign the observable returned by fetchallunit to units$
+    this.units$ = this.unitService.fetchallunit('', '', '');
+    // Subscribe to the observable to trigger the HTTP request
+    this.units$.subscribe(
       (response: any) => {
         // Update filteredOptions with the new HSN data
         this.filteredOptions = response;
@@ -572,6 +572,7 @@ export class AddItemPage implements OnInit {
       }
     );
   }
+
   
 
   async OnGroupSubmit() {
