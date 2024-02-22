@@ -727,8 +727,8 @@
                 <div class="popup" style="padding: 10px;">
                   <table style="width: 100%;">
                     <tr class="attributes" *ngFor="let sales of salesData; let i = index">
+                      <th>select</th>
                       <th>Sr. No.</th>
-                      <th>Select Item Attributes</th>
                       <ng-container *ngIf="sales.attribute1">
                         <th><input type="text" formControlName="attribute1" [(ngModel)]="sales.attribute1"
                             class="pop_input" readonly></th>
@@ -763,8 +763,9 @@
                       </ng-container>
                     </tr>
                     <tr *ngFor="let sales of attdata; let i = index"> 
-                      <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
+
+                      <td>{{i+1}}</td>
                       <!-- Display input fields only if data exists -->
                       <ng-container *ngIf="sales.att1">
                         <td><input formControlName="attr1">{{ sales.att1 }}</td>
