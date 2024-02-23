@@ -35,7 +35,7 @@ export const environment = {
   addroleofexecutive: 'masters/insert_insert_executive_roles',
   addaccount: 'accounts',
   additem: 'masters/insert_item',
-  addgroup: 'insert_group',
+  addgroup: 'masters/insert_group',
   additemgroup: 'masters/saveItemGroup',
   
   addunit: 'insert_units',
