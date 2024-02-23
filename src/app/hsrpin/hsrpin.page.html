@@ -25,7 +25,8 @@
               <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
                 <ion-row>
                   <ion-input [(ngModel)]="billno" formControlName="billno" name="billno" type="number"
-                    label=" HSRP No.  :" label-placement="floating" fill="outline" (keydown)="onKeyDown($event)"></ion-input>
+                    label=" HSRP No.  :" label-placement="floating" fill="outline"
+                    (keydown)="onKeyDown($event)"></ion-input>
                 </ion-row>
               </ion-col>
               <ion-col size-lg="1.3" size-md="2" size-sm="6" size="6">
@@ -106,33 +107,102 @@
 
                     <th>Action</th>
                   </tr>
+
+                 
                   <tr *ngFor="let hsrpin of hsrpindata; let i = index">
                     <td>{{i+1}}</td>
+
                     <td>
-                      <input [(ngModel)]="hsrpin.engineframenumber"(focusout)="getItems(hsrpin)"
+                      <input [(ngModel)]="hsrpin.engineframenumber" (focusout)="getItems(hsrpin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
-                    <td>
-                      <input [(ngModel)]="hsrpin.customername"
-                        [ngModelOptions]="{standalone: true}" class="table_input" type="text">
+
+                    <ng-container *ngFor="let hsrpin of attdata">
+                      <td>
+                        {{hsrpin.supplier}}
+                      </td>
+                      <td>
+                        {{hsrpin.itemcode}}
+                      </td>
+                      <td>
+                        <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
+                        name="hsn_code" type="text">
+                                            </td>
+                      <td>
+                        {{hsrpin.itemname}}
+                      </td>
+                      <td>
+                        {{hsrpin.quantity}}
+                      </td>
+                      <td>
+                        <input class="table_input" type="text">
+                      </td>
+                      <td>
+                        <input class="table_input" type="date">
+                      </td>
+                      <td>
+                        <input class="table_input" type="text">
+                      </td>
+                      <td>
+                        <input class="table_input" type="text">
+                      </td>
+                      <td>
+                        {{hsrpin.mrp}}
+                      </td>
+                      <td>
+                        {{hsrpin.basicrate}}
+                      </td>
+                      <td></td>
+                      <td>
+                        {{hsrpin.netrate}}
+                      </td>
+                      <td>
+                        {{hsrpin.taxrate}}%
+                      </td>
+                      <td>
+                        {{hsrpin.CGST}}
+                      </td> 
+                       <td>
+                        {{hsrpin.SGST}}
+                      </td> 
+                       <td>
+                        {{hsrpin.IGST}}
+                      </td>
+                      <td>
+                        {{hsrpin.totaltax}}
+                      </td>
+                      <td>
+                        <input class="table_input" type="text">
+                      </td>
+                      <td>
+                        {{hsrpin.total}}
+                      </td>
+                      <td>
+                        <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
+                        <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
+                          (click)="removehsrpin(i,hsrpin)"></ion-icon>
+                      </td>
+                    </ng-container>
+                    <!--  <td>
+                      <input [(ngModel)]="hsrpin.customername" [ngModelOptions]="{standalone: true}" class="table_input"
+                        type="text">
                     </td>
                     <td>
                       <input [(ngModel)]="hsrpin.itemcode" (ngModelChange)="getItems(hsrpin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                       <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
                         name="hsn_code" type="text">
                     </td>
                     <td style="width: 90px;">
                       <select class="select-option" [(ngModel)]="hsrpin.selectedItemId"
-                        [ngModelOptions]="{standalone: true}" >
-                        <option value="0">Item Name</option><!-- Default option -->
+                        [ngModelOptions]="{standalone: true}">
+                        <option value="0">Item Name</option>
                         <option *ngFor="let item  of itemnames$ | async" [value]="item.tid">
                           {{ item.itemDesc }}
                         </option>
                       </select>
-                      <!-- Use a hidden input for sending itemcode -->
                       <ion-input style="display: none;" [(ngModel)]="hsrpin.itemid"
                         [ngModelOptions]="{standalone: true}" type="hidden"></ion-input>
                       <ion-input style="display: none;" [(ngModel)]="companyid" [ngModelOptions]="{standalone: true}"
@@ -144,25 +214,25 @@
                       <input *ngIf="hsrpin.itemcode !== 0" [(ngModel)]="hsrpin.quantity"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="number"
                         (keydown.enter)="openQuantityPopover(hsrpin)" (keydown)="onKeyDown($event)">
+                    </td> --
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpin.vehicle_no" formControlName="vehicle_no"
+                        name="vehicle_no" type="text">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="hsrpin.vehicle_no" formControlName="vehicle_no" name="vehicle_no"
-                        type="text">
+                      <input class="table_input" [(ngModel)]="hsrpin.vehicle_reg_date"
+                        formControlName="vehicle_reg_date" name="vehicle_reg_date" type="date">
+                    </td>
+
+                    <td>
+                      <input class="table_input" [(ngModel)]="hsrpin.hsrp_front" formControlName="hsrp_front"
+                        name="hsrp_front" type="text">
                     </td>
                     <td>
-                      <input class="table_input" [(ngModel)]="hsrpin.vehicle_reg_date" formControlName="vehicle_reg_date" name="vehicle_reg_date"
-                        type="date">
+                      <input class="table_input" [(ngModel)]="hsrpin.hsrp_rear" formControlName="hsrp_rear"
+                        name="hsrp_rear" type="text">
                     </td>
-                 
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpin.hsrp_front" formControlName="hsrp_front" name="hsrp_front"
-                        type="text">
-                    </td>
-                    <td>
-                      <input class="table_input" [(ngModel)]="hsrpin.hsrp_rear" formControlName="hsrp_rear" name="hsrp_rear"
-                        type="text">
-                    </td>
-                    
+
 
                     <td>
                       <input [(ngModel)]="hsrpin.mrp" [ngModelOptions]="{standalone: true}" class="table_input"
@@ -186,10 +256,12 @@
                     </td>
                     <input type="hidden" [(ngModel)]="hsrpin.taxrate1" [ngModelOptions]="{standalone: true}" />
                     <td>
-                      <input [value]="getsgst(hsrpin)" [readonly]="true" class="table_input" type="number" (keydown)="onKeyDown($event)">
+                      <input [value]="getsgst(hsrpin)" [readonly]="true" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
-                      <input [value]="getcgst(hsrpin)" [readonly]="true" class="table_input" type="number" (keydown)="onKeyDown($event)">
+                      <input [value]="getcgst(hsrpin)" [readonly]="true" class="table_input" type="number"
+                        (keydown)="onKeyDown($event)">
                     </td>
                     <td>
                       <input [value]="getigst(hsrpin)" type="number" class="table_input" (keydown)="onKeyDown($event)">
@@ -210,7 +282,7 @@
                       <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
                       <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
                         (click)="removehsrpin(i,hsrpin)"></ion-icon>
-                    </td>
+                    </td> -->
                   </tr>
 
 
@@ -243,7 +315,8 @@
                   <ion-col class="row_data" size="12" size-lg="2" size-md="2" size-sm="6">
                     <label class="label_table" for="">Discount Amount : </label>
                     <input name="totaldiscountamt" [(ngModel)]="totaldiscountamt" [value]="getTotalDiscountAmount()"
-                      formControlName="totaldiscountamt" class="input_table" type="number" (keydown)="onKeyDown($event)">
+                      formControlName="totaldiscountamt" class="input_table" type="number"
+                      (keydown)="onKeyDown($event)">
 
                   </ion-col>
 
@@ -444,7 +517,7 @@
                         <td><input type="text" formControlName="attr6" [(ngModel)]="row.attr6" class="pop_input"></td>
                         <td><input type="text" formControlName="attr7" [(ngModel)]="row.attr7" class="pop_input"></td>
                         <td><input type="text" formControlName="attr8" [(ngModel)]="row.attr8" class="pop_input"></td>
-                        </tr>
+                      </tr>
                     </table>
                     <ion-row class="custom-primary" style="justify-content: right; margin-top: 20px;">
                       <ion-button style="float: right; bottom: 0;" (click)="closeQuantityPopover()">Ok</ion-button>

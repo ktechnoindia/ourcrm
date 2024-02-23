@@ -209,6 +209,8 @@ export class HsrpinPage implements OnInit {
   isQuantityPopoverOpen: boolean = false;
   itemid: number = 0;
   fetchbyengineno$: Observable<any[]>
+  attdata:any[]=[];
+
   constructor(private saleService: SalesService,private session:SessionService, private hsrpinservice: HsrpinService, private formService: FormValidationService, private itemService: AdditemService, private popoverController: PopoverController, private router: Router, private formBuilder: FormBuilder, private vendorService: VendorService, private encService: EncryptionService, private executiveService: ExecutiveService, private GstService: GsttypeService) {
     const compid = '1';
     this.supplier$ = this.vendorService.fetchallVendor(encService.encrypt(compid), '', '');
@@ -841,6 +843,8 @@ export class HsrpinPage implements OnInit {
       .then(response => response.json())
       .then(data => {
         console.log('Data received:', data);
+        this.attdata = data.purchase;
+      console.log('purchase Data', this.attdata);
         if (data && data.length > 0) {
           const itemDetails = data[0];
           // Update the quote properties

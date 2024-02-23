@@ -22,7 +22,8 @@ import { SessionService } from '../services/session.service';
 export class LedgergroupPage implements OnInit {
   form: FormGroup;
   ledgrpname: string = '';
-  parentgroup: number = 0;
+  itemgroupname: number = 0;
+  parentgroupid: number = 0;
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   subscription: Subscription = new Subscription();
@@ -43,7 +44,9 @@ export class LedgergroupPage implements OnInit {
     this.form = this.formBuilder.group({
 
       ledgrpname: ['', Validators.required],
-      parentgroup: [''],
+      parentgroupid: [1],
+      itemgroupname: [],
+
       // selectGst: [''],
       // account_number: ['', Validators.pattern(/^\d{9,18}$/)], // Account number validation (between 9 and 18 digits)
       // ifsc_code: ['', Validators.pattern(/^[A-Za-z]{4}\d{7}$/)], // IFSC code validation (4 alphabets + 7 digits)
@@ -62,12 +65,14 @@ export class LedgergroupPage implements OnInit {
       console.log('Your form data : ', this.form.value);
       let groupdata: {
         ledgrpname: string;
-        parentgroupid: any;
+        parentgroupid: number;
         companyid: number;
+        itemgroupname:string;
       } = {
         ledgrpname: this.form.value.ledgrpname,
-        parentgroupid: this.form.value.parentgroup,
+        parentgroupid: this.form.value.parentgroupid,
         companyid: companyid,
+        itemgroupname:  this.form.value.itemgroupname
       };
       
       this.subscription = this.ledgrpservice.createledgerGroup(groupdata, '', '').subscribe(
