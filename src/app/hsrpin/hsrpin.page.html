@@ -117,7 +117,7 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
 
-                    <ng-container *ngFor="let hsrpin of attdata">
+                    <ng-container *ngFor="let hsrpin of attdata.slice(0, 1)">
                       <td>
                         {{hsrpin.supplier}}
                       </td>

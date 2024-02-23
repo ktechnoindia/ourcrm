@@ -19,7 +19,7 @@ export class LedgergroupService {
   constructor(private httpclient:HttpClient,private session:SessionService) { }
   createledgerGroup(groups:group,key:string,user:string){
     const token = this.session.getValue('token')?.valueOf();
-    return this.httpclient.post(environment.apiactionurl+environment.additemgroup,groups, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
+    return this.httpclient.post(environment.apiactionurl+environment.addgroup,groups, { headers: { 'key': '', 'user': '', 'Authorization': 'Bearer '+token }})
   }
   getledgerGroups(companyid:number): Observable<any> {
     const token = this.session.getValue('token')?.valueOf();

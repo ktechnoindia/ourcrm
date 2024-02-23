@@ -48,6 +48,7 @@ interface Hsrpin {
   SGST: number;
   IGST: number;
   total: number;
+  supplier:string;
   grossrate: number;
   engineframenumber: string;
   customername: string;
@@ -145,7 +146,6 @@ export class HsrpinPage implements OnInit {
     IGST: 0,
     total: 0,
     grossrate: 0,
-
     part: 0,
     frame: 0,
     engine_no: 0,
@@ -162,6 +162,7 @@ export class HsrpinPage implements OnInit {
     basicrate: 0,
     totaltax: 0,
     taxrate: 0,
+    supplier:'',
     tcs_value: 0,
     itemname: '',
     selectedItemId: 0,
@@ -288,6 +289,7 @@ export class HsrpinPage implements OnInit {
     //   }
     //  this.setlangvals();
     this.hsrpindata = [{
+      supplier:'',
       part: 0,
       frame: 0,
       engine_no: 0,
@@ -849,7 +851,7 @@ export class HsrpinPage implements OnInit {
           const itemDetails = data[0];
           // Update the quote properties
           hsrpin.name = itemDetails.customername;
-
+          hsrpin.engineframenumber=itemDetails.engineframenumber;
           hsrpin.itemcode = itemDetails.itemCode;
           hsrpin.itemname = itemDetails.itemDesc;
           hsrpin.barcode = itemDetails.barcode.toString();
