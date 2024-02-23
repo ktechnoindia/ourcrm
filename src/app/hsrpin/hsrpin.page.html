@@ -81,41 +81,50 @@
 
                 <table style="width:100%;overflow-x: auto;">
                   <tr>
-                    <th>Sr.No.</th>
+
                     <th>Engine No/Frame No.</th>
-                    <th>Customer Name</th>
-                    <th>Item Code</th>
-                    <th>HSN/SAC Code</th>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Vehicle No</th>
-                    <th>Vehicle Reg. Date</th>
-                    <th>HSRP Front</th>
-                    <th>HSRP Rear</th>
+                    <ng-container>
+                  <tr>
+                    <th style="width: 70px;">Sr.No.</th>
+                    <th style="width: 70px;">Customer Name</th>
+                    <th style="width: 70px;">Item Code</th>
+                    <th style="width: 70px;">HSN/SAC Code</th>
+                    <th style="width: 70px;">Item Name</th>
+                    <th style="width: 70px;">Quantity</th>
+                    <th style="width: 70px;">Vehicle No</th>
+                    <th style="width: 70px;">Vehicle Reg. Date</th>
+                    <th style="width: 70px;">HSRP Front</th>
+                    <th style="width: 70px;">HSRP Rear</th>
 
-                    <th>MRP</th>
-                    <th>Basic Rate</th>
-                    <th>Net Rate</th>
-                    <th>Gross Amount</th>
-                    <th>GST</th>
-                    <th>CGST</th>
-                    <th>SGST</th>
-                    <th>IGST</th>
-                    <th>Tax Amount</th>
-                    <th>TCS value</th>
-                    <th>Net Amount</th>
+                    <th style="width: 100px;">MRP</th>
+                    <th style="width: 100px;">Basic Rate</th>
+                    <th style="width: 100px;">Net Rate</th>
+                    <th style="width: 100px;">Gross Amount</th>
+                    <th style="width: 100px;">GST</th>
+                    <th style="width: 100px;">CGST</th>
+                    <th style="width: 100px;">SGST</th>
+                    <th style="width: 100px;">IGST</th>
+                    <th style="width: 100px;">Tax Amount</th>
+                    <th style="width: 100px;">TCS value</th>
+                    <th style="width: 100px;">Net Amount</th>
 
-                    <th>Action</th>
+                    <th style="width: 100px;">Action</th>
+                  </tr>
+                  </ng-container>
+
                   </tr>
 
-                 
+
                   <tr *ngFor="let hsrpin of hsrpindata; let i = index">
-                    <td>{{i+1}}</td>
+
 
                     <td>
                       <input [(ngModel)]="hsrpin.engineframenumber" (focusout)="getItems(hsrpin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
+                    <ng-container *ngFor="let hsrpin of attdata; let i = index">
+                  <tr>
+                    <td style="width: 70px;">{{i+1}}</td>
 
                     <ng-container *ngFor="let hsrpin of attdata.slice(0, 1)">
                       <td>
@@ -127,63 +136,67 @@
                       <td>
                         <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
                         name="hsn_code" type="text">
-                                            </td>
-                      <td>
-                        {{hsrpin.itemname}}
-                      </td>
-                      <td>
-                        {{hsrpin.quantity}}
-                      </td>
-                      <td>
-                        <input class="table_input" type="text">
-                      </td>
-                      <td>
-                        <input class="table_input" type="date">
-                      </td>
-                      <td>
-                        <input class="table_input" type="text">
-                      </td>
-                      <td>
-                        <input class="table_input" type="text">
-                      </td>
-                      <td>
-                        {{hsrpin.mrp}}
-                      </td>
-                      <td>
-                        {{hsrpin.basicrate}}
-                      </td>
-                      <td></td>
-                      <td>
-                        {{hsrpin.netrate}}
-                      </td>
-                      <td>
-                        {{hsrpin.taxrate}}%
-                      </td>
-                      <td>
-                        {{hsrpin.CGST}}
-                      </td> 
-                       <td>
-                        {{hsrpin.SGST}}
-                      </td> 
-                       <td>
-                        {{hsrpin.IGST}}
-                      </td>
-                      <td>
-                        {{hsrpin.totaltax}}
-                      </td>
-                      <td>
-                        <input class="table_input" type="text">
-                      </td>
-                      <td>
-                        {{hsrpin.total}}
-                      </td>
-                      <td>
-                        <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
-                        <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
-                          (click)="removehsrpin(i,hsrpin)"></ion-icon>
-                      </td>
-                    </ng-container>
-                    <!--  <td>
+                    </td>
+                    <td style="width: 70px;">
+                      {{hsrpin.itemname}}
+                    </td>
+                    <td style="width: 70px;">
+                      {{hsrpin.quantity}}
+                    </td>
+                    <td style="width: 70px;">
+                      <input class="table_input" type="text">
+                    </td>
+                    <td style="width: 70px;">
+                      <input class="table_input" type="date">
+                    </td>
+                    <td style="width: 70px;">
+                      <input class="table_input" type="text">
+                    </td>
+                    <td style="width: 70px;">
+                      <input class="table_input" type="text">
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.mrp}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.basicrate}}
+                    </td>
+                  
+                    <td style="width: 100px;">
+                      {{hsrpin.netrate}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.grossrate}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.taxrate}}%
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.CGST}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.SGST}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.IGST}}
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.totaltax}}
+                    </td>
+                    <td style="width: 100px;">
+                      <input class="table_input" type="text">
+                    </td>
+                    <td style="width: 100px;">
+                      {{hsrpin.total}}
+                    </td>
+                    <td style="width: 100px;">
+                      <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
+                      <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
+                        (click)="removehsrpin(i,hsrpin)"></ion-icon>
+                    </td>
+                  </tr>
+                  </ng-container>
+                  <!--  <td>
                       <input [(ngModel)]="hsrpin.customername" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">
                     </td>
@@ -191,7 +204,7 @@
                       <input [(ngModel)]="hsrpin.itemcode" (ngModelChange)="getItems(hsrpin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td> -->
-                    <!-- <td>
+                  <!-- <td>
                       <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
                         name="hsn_code" type="text">
                     </td>
