@@ -100,7 +100,7 @@ export class LedgerPage implements OnInit {
   constructor(private popoverController: PopoverController, private navCtrl: NavController, private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledgerser: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required,]],
-      ledger_code: ['', [Validators.required, Validators.maxLength(10)]],
+      ledger_code: [''],
       gstin: [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)],
       mobile: ['', [Validators.maxLength(10)]],
       email: ['', [Validators.email]],
@@ -208,7 +208,7 @@ export class LedgerPage implements OnInit {
 
   async onSubmit() {
 
-    const fields = { lname: this.lname, ledger_code: this.ledger_code }
+    const fields = { lname: this.lname}
     const isValid = await this.formService.validateForm(fields);
     if (isValid) {
      
