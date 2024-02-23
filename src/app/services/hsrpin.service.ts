@@ -12,7 +12,7 @@ export interface hsrpinstore{
   refrence: string;
   refdate: string;
   executive_name: number;
-
+  supplier:string;
   //table
 barcode:string;
   part: number;
@@ -22,7 +22,7 @@ barcode:string;
   vehicle_reg_no: number;
   vehicle_reg_date: number;
   hsrp_front: number;
-  hsrp_rear: number;
+  hsrp_rear: string;
   description: string;
   hsn_code: string;
   quantity: number;

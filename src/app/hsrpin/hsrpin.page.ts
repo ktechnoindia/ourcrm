@@ -27,7 +27,7 @@ interface Hsrpin {
   vehicle_reg_no: number;
   vehicle_reg_date: number;
   hsrp_front: number;
-  hsrp_rear: number;
+  hsrp_rear: string;
   mrp: string;
   netrate: number;
   description: string;
@@ -107,8 +107,8 @@ export class HsrpinPage implements OnInit {
   vehicle_no: number = 0;
   vehicle_reg_no: number = 0;
   vehicle_reg_date: number = 0;
-  hsrp_front: number = 0;
-  hsrp_rear: number = 0;
+  hsrp_front:number=0;
+  hsrp_rear: string = '';
   description: string = '';
   hsn_code: string = '';
   quantity: number = 0;
@@ -138,6 +138,7 @@ export class HsrpinPage implements OnInit {
   cdr: any;
   isOpen = false;
   hsrpindata: Hsrpin[] = [{
+    supplier:'',
     barcode: '',
     itemcode: 0,
     itemid: 0,
@@ -153,7 +154,7 @@ export class HsrpinPage implements OnInit {
     vehicle_reg_no: 0,
     vehicle_reg_date: 0,
     hsrp_front: 0,
-    hsrp_rear: 0,
+    hsrp_rear: '',
     description: '',
     hsn_code: '',
     mrp: '',
@@ -162,7 +163,6 @@ export class HsrpinPage implements OnInit {
     basicrate: 0,
     totaltax: 0,
     taxrate: 0,
-    supplier:'',
     tcs_value: 0,
     itemname: '',
     selectedItemId: 0,
@@ -282,69 +282,69 @@ export class HsrpinPage implements OnInit {
 
     })
   }
-  async ionViewWillEnter() {
-    //   const userid = await this.session.getValue('userid');
-    //   if (userid == null || userid == 'undefined' || userid == '') {
-    //     this.router.navigate(['/login']);
-    //   }
-    //  this.setlangvals();
-    this.hsrpindata = [{
-      supplier:'',
-      part: 0,
-      frame: 0,
-      engine_no: 0,
-      vehicle_no: 0,
-      vehicle_reg_no: 0,
-      vehicle_reg_date: 0,
-      hsrp_front: 0,
-      hsrp_rear: 0,
-      description: '',
-      hsn_code: '',
-      mrp: '',
-      netrate: 0,
-      quantity: 0,
-      basicrate: 0,
-      totaltax: 0,
-      taxrate: 0,
-      tcs_value: 0,
-      itemname: '',
-      itemcode: 0,
-      selectedItemId: 0,
-      taxrate1: 0,
-      discountamt: 0,
-      discount: 0,
-      barcode: '',
-      itemid: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      total: 0,
-      grossrate: 0,
-      selectedItemAttributes: [''],
-      engineframenumber: '',
-      customername: '',
-      quantityPopoverData: [{
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7: '',
-        attr8: '',
-        companyid: 0,
-        itemcode: 0,
-      }],
-      attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
-    }];
-  }
+  // async ionViewWillEnter() {
+  //   //   const userid = await this.session.getValue('userid');
+  //   //   if (userid == null || userid == 'undefined' || userid == '') {
+  //   //     this.router.navigate(['/login']);
+  //   //   }
+  //   //  this.setlangvals();
+  //   this.hsrpindata = [{
+  //     supplier:'',
+  //     part: 0,
+  //     frame: 0,
+  //     engine_no: 0,
+  //     vehicle_no: 0,
+  //     vehicle_reg_no: 0,
+  //     vehicle_reg_date: 0,
+  //     hsrp_front: 0,
+  //     hsrp_rear: 0,
+  //     description: '',
+  //     hsn_code: '',
+  //     mrp: '',
+  //     netrate: 0,
+  //     quantity: 0,
+  //     basicrate: 0,
+  //     totaltax: 0,
+  //     taxrate: 0,
+  //     tcs_value: 0,
+  //     itemname: '',
+  //     itemcode: 0,
+  //     selectedItemId: 0,
+  //     taxrate1: 0,
+  //     discountamt: 0,
+  //     discount: 0,
+  //     barcode: '',
+  //     itemid: 0,
+  //     CGST: 0,
+  //     SGST: 0,
+  //     IGST: 0,
+  //     total: 0,
+  //     grossrate: 0,
+  //     selectedItemAttributes: [''],
+  //     engineframenumber: '',
+  //     customername: '',
+  //     quantityPopoverData: [{
+  //       attr1: '',
+  //       attr2: '',
+  //       attr3: '',
+  //       attr4: '',
+  //       attr5: '',
+  //       attr6: '',
+  //       attr7: '',
+  //       attr8: '',
+  //       companyid: 0,
+  //       itemcode: 0,
+  //     }],
+  //     attribute1: '',
+  //     attribute2: '',
+  //     attribute3: '',
+  //     attribute4: '',
+  //     attribute5: '',
+  //     attribute6: '',
+  //     attribute7: '',
+  //     attribute8: '',
+  //   }];
+  // }
 
   onItemSelect(hsrpin: Hsrpin) {
     this.itemnames$.subscribe((items) => {
@@ -411,73 +411,57 @@ export class HsrpinPage implements OnInit {
     this.isQuantityPopoverOpen = false;
   }
 
+ 
   addHsrpin() {
-    console.log('addquotewww' + this.hsrpindata.length);
-    // You can initialize the new row data here
-    let newRow: hsrpinstore = {
-      barcode: '',
+    // Assuming hsrpindata is an array, push a new object with default values
+    this.hsrpindata.push({
+      engineframenumber: '', // provide default values for other properties if needed
+      supplier: '',
       itemcode: 0,
-      itemname: '',
-      description: '',
-      quantity: 0,
-      mrp: '',
-      basicrate: 0,
-      netrate: 0,
-      grossrate: 0,
-      taxrate: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      discount: 0,
-      discountamt: 0,
-      totaltax: 0,
-      total: 0,
-      taxrate1: 0,
-      itemid: 0,
-      selectedItemId: 0,
-      part: 0,
-      vehicle_no: 0,
-      hsrp_front: 0,
-      hsrp_rear: 0,
       hsn_code: '',
-      tcs_value: 0,
-      billformate: 0,
-      billno: '',
-      hsrpdate: '',
-      suppliercode: '',
-      spler: 0,
-      refrence: '',
-      refdate: '',
-      executive_name: 0,
-      totalitemno: 0,
-      totalquantity: 0,
-      totalgrossamt: 0,
-      deliverydate: '',
-      deliveryplace: '',
-      openingbalance: 0,
-      debit: 0,
-      closingbalance: 0,
-      credit: 0,
-      totaldiscountamt: 0,
-      totaltaxamount: 0,
-      roundoff: 0,
-      pretax: 0,
-      posttax: 0,
-      totalnetamount: 0,
-      ttotal: 0,
-      quantityPopoverData: this.hsrpindata[0].quantityPopoverData.map(attr => ({ ...attr })),
+      itemname: '',
+      quantity: 0, // example default value
+      vehicle_no: 0,
+      vehicle_reg_date: 0,
+      hsrp_front: 0,
+      hsrp_rear: '',
+      mrp: '', // example default value
+      basicrate: 0, // example default value
+      netrate: 0, // example default value
+      grossrate: 0, // example default value
+      taxrate: 0, // example default value
+      CGST: 0, // example default value
+      SGST: 0, // example default value
+      IGST: 0, // example default value
+      totaltax: 0, // example default value
+      tcs_value: 0, // example default value
+      total: 0 // example default value
+      ,
+      selectedItemAttributes: [],
+      barcode: '',
+      part: 0,
       frame: 0,
       engine_no: 0,
       vehicle_reg_no: 0,
-      vehicle_reg_date: 0,
-      engineframenumber: ''
-    };
-
-
-    this.hsrpindata.push();
-    // Reset newRow back to an empty object to prepare for the next iteration
-
+      description: '',
+      taxrate1: 0,
+      discountamt: 0,
+      discount: 0,
+      selectedItemId: 0,
+      itemid: 0,
+      customername: '',
+      quantityPopoverData: [],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: ''
+    });
   }
+  
   async onSubmit(form: FormGroup, hsrpindata: Hsrpin[]) {
     const fields = { itemname: this.itemname, quantity: this.quantity, description: this.description }
     // const isValid = await this.formService.validateForm(fields);
@@ -568,7 +552,8 @@ export class HsrpinPage implements OnInit {
           taxrate1: 0,
           itemid: 0,
           selectedItemId: 0,
-          engineframenumber: this.myform.value.engineframenumber
+          engineframenumber: this.myform.value.engineframenumber,
+          supplier: ''
         };
 
         hsrpindatas.push(hsrpindata);
