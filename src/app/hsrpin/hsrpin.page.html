@@ -109,7 +109,7 @@
                   <tr *ngFor="let hsrpin of hsrpindata; let i = index">
                     <td>{{i+1}}</td>
                     <td>
-                      <input [(ngModel)]="hsrpin.engineframenumber"(ngModelChange)="getItems(hsrpin)"
+                      <input [(ngModel)]="hsrpin.engineframenumber"(focusout)="getItems(hsrpin)"
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
                     <td>
