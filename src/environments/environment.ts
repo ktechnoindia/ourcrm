@@ -37,10 +37,12 @@ export const environment = {
   additem: 'masters/insert_item',
   addgroup: 'insert_group',
   additemgroup: 'masters/saveItemGroup',
+  
   addunit: 'insert_units',
   addHsn: 'masters/insert_hsn',
   addcomapny: 'createcompany',
   fetchallitemgroups: 'getItemGroups',
+  fetchallledegergroups:'getGroups',
   fetchallcust: 'masters/get_customers',
   fetchallvend: 'masters/get_vendors',
   fetchallitem: 'get_items/1/1',
