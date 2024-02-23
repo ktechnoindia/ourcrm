@@ -113,7 +113,7 @@ paymentMethod: boolean = false;
     this.myform = this.formBuilder.group({
       paymentMethod:[],
       name: ['', [Validators.required]],
-      vendor_code: ['', [Validators.required, Validators.maxLength(10)]],
+      vendor_code: [''],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       mobile: ['', [Validators.maxLength(10)]],
       email: ['', [Validators.email]],
@@ -202,7 +202,7 @@ paymentMethod: boolean = false;
   }
 
   async onSubmit() {
-    const fields = { name: this.name, vendor_code: this.vendor_code, }
+    const fields = { name: this.name,  }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 

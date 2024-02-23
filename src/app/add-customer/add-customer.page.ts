@@ -108,7 +108,7 @@ export class AddCustomerPage implements OnInit {
       paymentMethod:[],
       selectedSalutation: [''],
       companyName: [''],
-      customer_code: ['', Validators.required],
+      customer_code: [''],
       name: ['', Validators.required],
       gstin: ['', [Validators.pattern(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/)]],
       select_group: [''],
