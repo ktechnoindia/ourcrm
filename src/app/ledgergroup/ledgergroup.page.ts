@@ -11,6 +11,11 @@ import { GsttypeService } from '../services/gsttype.service';
 import { LedgergroupService } from '../services/ledgergroup.service';
 import { SessionService } from '../services/session.service';
 
+interface Group {
+  ledgrpname: string;
+  parentgroup: string;
+  companyid: number;
+}
 
 @Component({
   selector: 'app-ledgergroup',
@@ -22,8 +27,7 @@ import { SessionService } from '../services/session.service';
 export class LedgergroupPage implements OnInit {
   form: FormGroup;
   ledgrpname: string = '';
-  itemgroupname: number = 0;
-  parentgroupid: number = 0;
+  parentgroup: string = '';
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
   subscription: Subscription = new Subscription();
@@ -44,9 +48,8 @@ export class LedgergroupPage implements OnInit {
     this.form = this.formBuilder.group({
 
       ledgrpname: ['', Validators.required],
-      parentgroupid: [1],
-      itemgroupname: [],
-
+      parentgroup: [''],
+   
       // selectGst: [''],
       // account_number: ['', Validators.pattern(/^\d{9,18}$/)], // Account number validation (between 9 and 18 digits)
       // ifsc_code: ['', Validators.pattern(/^[A-Za-z]{4}\d{7}$/)], // IFSC code validation (4 alphabets + 7 digits)
@@ -63,19 +66,13 @@ export class LedgergroupPage implements OnInit {
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.form.value);
-      let groupdata: {
-        ledgrpname: string;
-        parentgroupid: number;
-        companyid: number;
-        itemgroupname:string;
-      } = {
+      const ledgergroupdata: Group = {
         ledgrpname: this.form.value.ledgrpname,
-        parentgroupid: this.form.value.parentgroupid,
+        parentgroup: this.form.value.parentgroup,
         companyid: companyid,
-        itemgroupname:  this.form.value.itemgroupname
       };
       
-      this.subscription = this.ledgrpservice.createledgerGroup(groupdata, '', '').subscribe(
+      this.subscription = this.ledgrpservice.createledgerGroup(ledgergroupdata, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);

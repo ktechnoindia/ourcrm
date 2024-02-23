@@ -309,9 +309,11 @@ ion-content {
     height: 100%;
     width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, rgba(152,242,249,0.9305847338935574) 2%, rgba(157,208,255,0.885766806722689) 88%);
+
   }
   .row ion-icon {
-    background-color: #ffeaac;
+    // background-color: #ffeaac;
     border-radius: 4px;
     margin: 4px;
     padding: 5px;
@@ -322,7 +324,7 @@ ion-content {
   
   }
   .row img {
-    background-color: #ffeaac;
+    // background-color: #ffeaac;
     border-radius: 4px;
     margin: 4px;
     padding: 5px;
@@ -330,7 +332,7 @@ ion-content {
     width: 100px;
     justify-content: left;
     text-align: left;
-  
+  color: #fff;
   }
   
   .row ion-title {
@@ -339,7 +341,7 @@ ion-content {
     justify-content: center;
     font-weight: bold;
     font-size: 28px;
-  color: #000;
+  color: #ffffff;
   }
   
   .row ion-label {
@@ -349,6 +351,6 @@ ion-content {
     //margin-left: 10px;
     font-weight: 900;
     font-size: 16px;
-    color:#2b2b2b;
+    color:#ffffff;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
