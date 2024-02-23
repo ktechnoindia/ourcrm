@@ -12,7 +12,7 @@ import { LedgergroupService } from '../services/ledgergroup.service';
 import { SessionService } from '../services/session.service';
 
 interface Group {
-  ledgrpname: string;
+  groupname: string;
   parentgroup: string;
   companyid: number;
 }
@@ -26,7 +26,7 @@ interface Group {
   changeDetection: ChangeDetectionStrategy.OnPush,})
 export class LedgergroupPage implements OnInit {
   form: FormGroup;
-  ledgrpname: string = '';
+  groupname: string = '';
   parentgroup: string = '';
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
@@ -47,7 +47,7 @@ export class LedgergroupPage implements OnInit {
     this.itemgroups$ = this.ledgrpservice.getledgerGroups(compid);
     this.form = this.formBuilder.group({
 
-      ledgrpname: ['', Validators.required],
+      groupname: ['', Validators.required],
       parentgroup: [''],
    
       // selectGst: [''],
@@ -61,13 +61,13 @@ export class LedgergroupPage implements OnInit {
 
   }
   async onSubmit() {
-    const fields = { ledgrpname: this.ledgrpname }
+    const fields = { groupname: this.groupname }
     const companyid = 1
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.form.value);
       const ledgergroupdata: Group = {
-        ledgrpname: this.form.value.ledgrpname,
+        groupname: this.form.value.groupname,
         parentgroup: this.form.value.parentgroup,
         companyid: companyid,
       };

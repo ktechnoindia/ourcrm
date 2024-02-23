@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { SessionService } from './session.service';
 // Assuming `group` is defined in ledgergroup.service.ts
 interface group {
-  ledgrpname: string;
+  groupname: string;
   parentgroup: string;
   companyid: number;
   // other properties...
