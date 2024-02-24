@@ -150,14 +150,13 @@ export class ViewcustomerPage implements OnInit {
 
   editcustomer(customer: any) {
     let navigationExtras: NavigationExtras = {
-      state: {
-        customer: customer,
-        edit: true
+      queryParams: {
+        edit: true,
+        customer: JSON.stringify(customer) // Convert customer object to string
       }
     };
     this.router.navigate(['add-customer'], navigationExtras);
   }
-  
 
   async openToast(msg: string) {
     this.session.openToast(msg);

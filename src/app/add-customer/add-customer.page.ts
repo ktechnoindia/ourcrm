@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController } from '@ionic/angular';
-import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -104,7 +104,7 @@ export class AddCustomerPage implements OnInit {
   paymentMethod: boolean = false;
   edit: any;
 
-  constructor( private session: SessionService,private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
+  constructor( private route: ActivatedRoute,private session: SessionService,private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
 
     this.myform = this.formBuilder.group({
       paymentMethod:[],
@@ -193,15 +193,28 @@ export class AddCustomerPage implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // Reset form data when navigating away from the page
-        this.myform.reset();
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const editMode = params['edit'];
+      const customer = JSON.parse(params['customer']); // Parse the string back to an object
+      
+      if (editMode && customer) {
+        // Pre-fill form fields with customer data
+        this.myform.patchValue({
+          // Assuming 'name', 'email', 'address', etc. are form control names
+          name: customer.name,
+          email: customer.email,
+          address: customer.address,
+          phone:customer.phone,
+          gstin:customer.gstin,
+          opening_balance:customer.opening_balance,
+
+
+          // Add more fields as needed
+        });
       }
     });
   }
-
   segmentChanged(event: any) {
     const selectedValue = event.detail.value;
 
