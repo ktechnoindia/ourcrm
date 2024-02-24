@@ -109,7 +109,7 @@
                   </tr>
 
 
-                  <tr *ngFor="let hsrpin of hsrpindata.slice(); let i = index">
+                  <tr *ngFor="let hsrpin of hsrpindata; let i = index">
                     <td>{{i+1}}</td>
 
                     <td>
@@ -117,105 +117,105 @@
                         [ngModelOptions]="{standalone: true}" class="table_input" type="text">
                     </td>
 
-                    <ng-container *ngFor="let hsrpin of attdata.slice(0, 1)">
+                    <ng-container *ngFor="let hsrpindata of attdata.slice(0, 1)">
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.supplier" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.supplier" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>
                         <!-- {{hsrpin.supplier}} -->
                       </td>
                       <td>
-                        <input type="number" [(ngModel)]="hsrpin.itemcode" [ngModelOptions]="{standalone: true}"
+                        <input type="number" [(ngModel)]="hsrpindata.itemcode" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>
                         <!-- {{hsrpin.itemcode}} -->
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.hsn_code" formControlName="hsn_code"
+                        <input class="table_input" [(ngModel)]="hsrpindata.hsn_code" formControlName="hsn_code"
                           name="hsn_code" type="text">
                       </td>
                       <td style="width: 100px;">
-                        <input type="text" [(ngModel)]="hsrpin.itemname" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.itemname" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>
                         <!-- {{hsrpin.itemname}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.quantity" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.quantity" [ngModelOptions]="{standalone: true}"
                           class="table_input" type="number" readonly>
                         <!-- {{hsrpin.quantity}} -->
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.vehicle_no" formControlName="vehicle_no"
+                        <input class="table_input" [(ngModel)]="hsrpindata.vehicle_no" formControlName="vehicle_no"
                           name="vehicle_no" type="number">
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.vehicle_reg_date"
+                        <input class="table_input" [(ngModel)]="hsrpindata.vehicle_reg_date"
                           formControlName="vehicle_reg_date" name="vehicle_reg_date" type="date">
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.hsrp_front" formControlName="hsrp_front"
+                        <input class="table_input" [(ngModel)]="hsrpindata.hsrp_front" formControlName="hsrp_front"
                           name="hsrp_front" type="number">
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.hsrp_rear" formControlName="hsrp_rear"
+                        <input class="table_input" [(ngModel)]="hsrpindata.hsrp_rear" formControlName="hsrp_rear"
                           name="hsrp_rear" type="text">
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.mrp" [ngModelOptions]="{standalone: true}"
+                        <input class="table_input" [(ngModel)]="hsrpindata.mrp" [ngModelOptions]="{standalone: true}"
                           type="text" readonly>&#x20B9;
                         <!-- {{hsrpin.mrp}} -->
                       </td>
                       <td>
-                        <input class="table_input" [(ngModel)]="hsrpin.basicrate" formControlName="basicrate" readonly
+                        <input class="table_input" [(ngModel)]="hsrpindata.basicrate" formControlName="basicrate" readonly
                           name="basicrate" type="text">&#x20B9;
                         <!-- {{hsrpin.basicrate}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.netrate" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.netrate" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.netrate}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.grossrate" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.grossrate" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.grossrate}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.taxrate" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.taxrate" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>%
                         <!-- {{hsrpin.taxrate}}% -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.CGST" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.CGST" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.CGST}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.SGST" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.SGST" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.SGST}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.IGST" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.IGST" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.IGST}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.totaltax" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.totaltax" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly>&#x20B9;
                         <!-- {{hsrpin.totaltax}} -->
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.tcs_value" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.tcs_value" [ngModelOptions]="{standalone: true}"
                           class="table_input">
                       </td>
                       <td>
-                        <input type="text" [(ngModel)]="hsrpin.total" [ngModelOptions]="{standalone: true}"
+                        <input type="text" [(ngModel)]="hsrpindata.total" [ngModelOptions]="{standalone: true}"
                           class="table_input" readonly> &#x20B9;
                         <!-- {{hsrpin.total}} -->
                       </td>
                       <td>
                         <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
                         <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
-                          (click)="removehsrpin(i,hsrpin)"></ion-icon>
+                          (click)="removehsrpin(i,hsrpindata)"></ion-icon>
                       </td>
                     </ng-container>
                     

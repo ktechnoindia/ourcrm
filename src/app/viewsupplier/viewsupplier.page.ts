@@ -98,11 +98,11 @@ export class ViewsupplierPage implements OnInit {
     this.updateManualHeaders();
   }
 
-  editvendor(vendoer:any){
-    console.log(vendoer);
+  editvendor(vendor:any){
+    console.log(vendor);
     let navigationExtras: NavigationExtras = {
       state: {
-        vendoer: vendoer,
+        vendor: vendor,
         edit:true
       }
     };

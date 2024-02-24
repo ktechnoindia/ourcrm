@@ -43,13 +43,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let vendoer of vendors$ | async; let i = index">
+                    <tr *ngFor="let vendor of vendors$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td *ngFor="let col of selectedColumns">{{ vendoer[col] }}</td>
+                      <td *ngFor="let col of selectedColumns">{{ vendor[col] }}</td>
                       <td class="Action">
                         <ion-icon color="danger" icon-only name="trash"
-                          (click)="deleteSuppler(vendoer.id,$event)"></ion-icon>
-                        <ion-icon color="primary" icon-only clear (click)="editvendor(vendoer)"
+                          (click)="deleteSuppler(vendor.id,$event)"></ion-icon>
+                        <ion-icon color="primary" icon-only clear (click)="editvendor(vendor)"
                           name="create"></ion-icon>
                       </td>
                     </tr>
