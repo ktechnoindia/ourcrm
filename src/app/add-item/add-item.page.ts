@@ -647,7 +647,7 @@ export class AddItemPage implements OnInit {
 
   selectOption(option: any) {
     // Handle option selection
-    this.hsnname=option.hsnname;
+    this.hsnname=option.value.hsnname;
     console.log('Selected option:', option);
   }
   toggleStep3() {
