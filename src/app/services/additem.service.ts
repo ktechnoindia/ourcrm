@@ -111,21 +111,14 @@ export class AdditemService {
     return this.httpclient.get(environment.apiactionurl + environment.fetchallItem);
   }
 
-  // fetchitemledgerreport(userid: number): Observable<any> {
-  //   console.log('companyyy ' + userid);
-  //   const token = this.session.getValue('token')?.valueOf();
-  //   return this.httpclient.get(environment.apiacturl + 'accounts/itemLedgerRpt' , { 
-  //       headers: { 
-  //           'Authorization': 'Bearer ' + token 
-  //       }
-  //   });
-  fetchitemledgerrpt(companyid:string): Observable<any> {
-      
 
+  fetchitemledgerrpt(companyid:string): Observable<any> {
       console.log('companyyy '+companyid);
       return this.httpclient.get(environment.apiacturl+environment.fetchitemledgerrpt+companyid,{headers:{ }})
-    
+    }
 
 
+    editItem(tid :number,companyid:number){
+      return this.httpclient.post(`${environment.apibaseurl}${environment.edititem}/$${tid}/${companyid}`,{});
     }
 }

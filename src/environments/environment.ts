@@ -113,6 +113,7 @@ export const environment = {
   fetchitemledgerrpt:'account/itemLedgerRpt',
   editcust:'masters/ecustomer',
   editvend:'masters/evendor/',
+  edititem:'masters/update_item',
 };
 
 

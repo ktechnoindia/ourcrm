@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Observable, combineLatest, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
 import { AdditemService } from '../services/additem.service';
@@ -122,6 +122,18 @@ export class ViewitemPage implements OnInit {
     });
     this.updateManualHeaders();
   }
+  edititem(item:any){
+    console.log(item);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit: true,
+        item: JSON.stringify(item) // Convert customer object to string
+      }
+    };
+    this.router.navigate(['/add-item'], navigationExtras);
+
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {
       this.updateManualHeaders();

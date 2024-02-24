@@ -44,8 +44,9 @@
                       <td *ngFor="let col of selectedColumns">{{ item[col] }}</td>
                       <td class="Action">
                         <ion-icon color="danger" (click)="deleteItem(item.tid,$event)" icon-only name="trash"></ion-icon>
-                        <ion-icon color="primary" icon-only name="create"></ion-icon>
-                      </td>
+                        <ion-icon color="primary" icon-only clear (click)="edititem(item)"
+                        name="create"></ion-icon>
+                                            </td>
                     </tr>
                   
                   </tbody>

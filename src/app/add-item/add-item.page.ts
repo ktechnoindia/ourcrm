@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
@@ -196,7 +196,8 @@ export class AddItemPage implements OnInit {
   ledgergroup$: Observable<any[]>;
   groupname: string='';
   subscription: Subscription = new Subscription();
-  constructor(private ledgrpservice:LedgergroupService,public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+  edit: any;
+  constructor(private route: ActivatedRoute,private ledgrpservice:LedgergroupService,public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
     const compid = '1';
     this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
 
@@ -268,7 +269,7 @@ export class AddItemPage implements OnInit {
       dealerrate: [''],
   subdealerrate: [''],
   // groupname:[''],
-  // parentgroup:[''],
+  itemgroupname:[''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -282,7 +283,7 @@ export class AddItemPage implements OnInit {
     });
 
     this.groupop = this.formBuilder.group({
-      // itemgroupname: ['', Validators.required],
+      itemgroupname: ['', Validators.required],
       parentgroup: [''],
       searchTerm: [''],
       groupname:[''],
@@ -329,10 +330,13 @@ export class AddItemPage implements OnInit {
   async onSubmit() {
     const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode }
     const isValid = await this.formService.validateForm(fields);
+    const companid=1;
+    const tid =1;
     if (await this.formService.validateForm(fields)) {
       this.submitted = true;
       console.log('Your form data : ', this.myform.value);
-
+      const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
+      const userid = await this.session.getValue('userid');
       let itemdata: item = {
         itemDesc: this.myform.value.itemDesc,
         itemCode: this.myform.value.itemCode,
@@ -397,6 +401,18 @@ export class AddItemPage implements OnInit {
         bodytype: this.myform.value.bodytype,
         wheelbase: this.myform.value.wheelbase
       };
+      if (this.edit) {
+        this.itemService.editItem(companid,tid).subscribe((response: any) => {
+          if (response.status) { 
+            this.openToast('Saved!'); 
+          } else { 
+            this.openToast('Not Saved'); 
+          }
+        }, (error) => {
+          console.log('error caught in component' + error.message);
+          this.openToast('error ' + error.message);
+        });
+      } else {
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -411,7 +427,7 @@ export class AddItemPage implements OnInit {
       );
       this.myform.reset();
 
-    } else {
+    } }else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -425,7 +441,9 @@ export class AddItemPage implements OnInit {
     }
 
   }
-
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   onNew() {
     location.reload();
   }
@@ -442,7 +460,65 @@ export class AddItemPage implements OnInit {
         this.myform.reset();
       }
     });
-  
+    this.route.queryParams.subscribe(params => {
+      const editMode = params['edit'];
+      const item = JSON.parse(params['item']); // Parse the string back to an object
+      
+      if (editMode && item) {
+        // Pre-fill form fields with item data
+        this.myform.patchValue({
+          itemCode:item.itemCode,
+          itemDesc:item.itemDesc,
+          itemDesccription:item.itemDesccription,
+          hsnname:item.hsnname,
+          selectGst:item.selectGst,
+          unitname:item.unitname,
+          selectItemGroup:item.selectItemGroup,
+          mrp:item.mrp,
+          purchaserate:item.purchaserate,
+          basicrate:item.basicrate,
+          salerate:item.salerate,
+          dealerrate:item.dealerrate,
+          subdealerrate:item.subdealerrate,
+          stocktypename:item.stocktypename,
+          itemtypename:item.itemtypename,
+          openingbalance:item.openingbalance,
+          closingbalance:item.closingbalance,
+          attr1: item.attr1,
+  attr2: item.attr2,
+  attr3: item.attr3,
+  attr4: item.attr4,
+  attr5: item.attr5,
+  attr6: item.attr6,
+  attr7: item.attr7,
+  attr8: item.attr8,
+  barcode: item.barcode,
+  basic_rate: item.basic_rate,
+  companyid: item.companyid,
+  crdate: item.crdate,
+  isactive: item.isactive,
+  itemname: item.itemname,
+  itemtype: item.itemtype,
+  maximum: item.maximum,
+  minimum: item.minimum,
+  net_rate: item.net_rate,
+  purchase_rate: item.purchase_rate,
+  reorder: item.reorder,
+  selectGstservice: item.selectGstservice,
+  selectHSN: item.selectHSN,
+  selectItem: item.selectItem,
+  selectPrimaryUnit: item.selectPrimaryUnit,
+  selectStock: item.selectStock,
+  selectunitname: item.selectunitname,
+  stocktype: item.stocktype,
+  tid: item.tid,
+  userid: item.userid
+        }
+        
+        
+        );
+      }
+    });
   }
   fetchData() {
     this.units$ = this.unitService.fetchallunit('','','');
