@@ -114,7 +114,7 @@ export class AdditemService {
   fetchitemledgerreport(userid: number): Observable<any> {
     console.log('companyyy ' + userid);
     const token = this.session.getValue('token')?.valueOf();
-    return this.httpclient.get(environment.apiacturl + 'accounts/itemLedgerRpt?userid=' + userid, { 
+    return this.httpclient.get(environment.apiacturl + 'accounts/fetchitemledgerrpt?userid=' + userid, { 
         headers: { 
             'Authorization': 'Bearer ' + token 
         }

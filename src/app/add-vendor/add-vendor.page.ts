@@ -119,7 +119,7 @@ paymentMethod: boolean = false;
       email: ['', [Validators.email]],
       select_group: [''],
       opening_balance: [''],
-      closing_balance: [''],
+      closing_balance: 1,
       whatsapp_number: ['', [Validators.maxLength(10)]],
       country: [''],
       state: [''],

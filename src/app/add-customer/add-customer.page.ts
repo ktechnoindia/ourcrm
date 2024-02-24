@@ -114,7 +114,7 @@ export class AddCustomerPage implements OnInit {
       select_group: [''],
       discount: [''],
       opening_balance: [''],
-      closing_balance: [''],
+      closing_balance: 1,
       mobile: [''],
       whatsapp_number: [''],
       email: ['', Validators.email],

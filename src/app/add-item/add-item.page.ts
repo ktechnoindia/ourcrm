@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
 import { HsnService, hsn } from '../services/hsn.service';
@@ -19,7 +19,12 @@ import { CreateunitService, unit } from '../services/createunit.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { EncryptionService } from '../services/encryption.service';
 import { SessionService } from '../services/session.service';
-
+import { LedgergroupService } from '../services/ledgergroup.service';
+interface Group {
+  groupname: string;
+  parentgroup: string;
+  companyid: number;
+}
 interface Item {
   itemDesccription: string;
   classofvehicle: string;
@@ -143,7 +148,7 @@ export class AddItemPage implements OnInit {
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
   itemtypename$: Observable<any[]>
-  itemgroups$: Observable<any[]>
+  // itemgroups$: Observable<any[]>
   framenumber: string = '';
   enginenumber: string = '';
   partnumber: string = '';
@@ -168,7 +173,7 @@ export class AddItemPage implements OnInit {
 
   groupop: FormGroup;
   itemgroupname: string = '';
-  parentgroup: number = 0;
+  parentgroup:string = '';
   itemDesccription: string = '';
   classofvehicle: string = '';
   makersname: string = '';
@@ -188,14 +193,17 @@ export class AddItemPage implements OnInit {
   step3: boolean = false;
   step1: boolean = false;
   units$: Observable<any[]>
-
-  constructor(public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+  ledgergroup$: Observable<any[]>;
+  groupname: string='';
+  subscription: Subscription = new Subscription();
+  constructor(private ledgrpservice:LedgergroupService,public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
     const compid = '1';
+    this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
 
     this.selectGst$ = this.gstsrvs.getgsttype();
     // this.unitname$ = this.unittype.getunits();
     this.hsnname$ = this.hsnservices.getHSNNames(1);
-    this.itemgroups$ = this.groupService.getAllGroups(1);
+    // this.itemgroups$ = this.groupService.getAllGroups(1);
     this.stocktypename$ = this.stocktype1.getStockTypes(1);
     this.itemtypename$ = this.itemtype1.getItemTypes(1);
     this.selectedAttribute = 'default value';
@@ -259,6 +267,8 @@ export class AddItemPage implements OnInit {
       wheelbase: [''],
       dealerrate: [''],
   subdealerrate: [''],
+  // groupname:[''],
+  // parentgroup:[''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -272,9 +282,10 @@ export class AddItemPage implements OnInit {
     });
 
     this.groupop = this.formBuilder.group({
-      itemgroupname: ['', Validators.required],
+      // itemgroupname: ['', Validators.required],
       parentgroup: [''],
-      searchTerm: ['']
+      searchTerm: [''],
+      groupname:[''],
     });
 
     this.router.events.subscribe((event) => {
@@ -579,53 +590,57 @@ export class AddItemPage implements OnInit {
   
 
   async OnGroupSubmit() {
-    const fields = { groupname: this.itemgroupname };
+    const fields = { groupname: this.groupname};
     const companyid = 1;
+
+    // Validate the form
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
-      console.log('Your form data : ', this.groupop.value);
-      let groupdata: group = {
-        itemgroupname: this.groupop.value.itemgroupname,
-        parentgroupid: this.groupop.value.parentgroup,
-        companyid: companyid,
-      };
-  
-      this.groupService.createGroup(groupdata, '', '').subscribe(
-        (response: any) => {
-          if (response.status) {
-            console.log('POST request successful', response);
-            // After successfully adding the group, fetch the updated group data again
-            this.fetchItemGroups();
-            // Show success alert
-            this.formService.showSuccessAlert();
-            // Reset the form
-            this.groupop.reset();
-          }
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          // Show failed alert
-          this.formService.showFailedAlert();
-        }
-      );
+        console.log('Your form data: ', this.groupop.value);
+
+        // Construct the ledger group data
+        const ledgergroupdata: Group = {
+            groupname: this.groupop.value.groupname,
+            parentgroup: this.groupop.value.parentgroup,
+            companyid: companyid,
+        };
+
+        // Call the service method to create ledger group
+        this.subscription = this.ledgrpservice.createledgerGroup(ledgergroupdata, '', '').subscribe(
+            (response: any) => {
+                if (response.status) {
+                    console.log('POST request successful', response);
+                }
+                this.formService.showSuccessAlert();
+                this.groupop.reset();
+                this.fetchItemGroups();
+            },
+            (error: any) => {
+                console.error('POST request failed', error);
+                this.formService.showFailedAlert();
+            }
+        );
+
     } else {
-      // If the form is not valid, display error messages
-      Object.keys(this.groupop.controls).forEach(controlName => {
-        const control = this.groupop.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
+        // If the form is not valid, display error messages
+        Object.keys(this.groupop.controls).forEach(controlName => {
+            const control = this.groupop.get(controlName);
+            if (control?.invalid) {
+                control.markAsTouched();
+            }
+        });
+
+        if (this.firstInvalidInput) {
+            this.firstInvalidInput.setFocus();
         }
-      });
-      // Set focus to the first invalid input field
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
-      }
     }
-  }
+}
+
+
   
   fetchItemGroups() {
-    this.itemgroups$ = this.groupService.getAllGroups(1);
+    this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
   }
   
   onKeyDown(event: KeyboardEvent): void {

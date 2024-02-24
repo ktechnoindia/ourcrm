@@ -106,7 +106,7 @@ export class LedgerPage implements OnInit {
       email: ['', [Validators.email]],
       lgroup_name: [''].toString(),
       opening_balance: [''],
-      closing_balance: [''],
+      closing_balance: 1,
       whatsapp_number: ['', [Validators.maxLength(10)]],
       country: [''],
       state: [''],
