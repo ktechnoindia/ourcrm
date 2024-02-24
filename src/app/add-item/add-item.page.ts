@@ -325,7 +325,8 @@ export class AddItemPage implements OnInit {
       let itemdata: item = {
         itemDesc: this.myform.value.itemDesc,
         itemCode: this.myform.value.itemCode,
-        hsnname: this.myform.value.hsnname.toString(),
+        hsnname:this.hsnname,
+        // hsnname: this.myform.value.hsnname.toString(),
         selectHSN: 1,
         unitname: this.myform.value.unitname.toString(),
         selectItem: 1,
@@ -646,6 +647,7 @@ export class AddItemPage implements OnInit {
 
   selectOption(option: any) {
     // Handle option selection
+    this.hsnname=option.hsnname;
     console.log('Selected option:', option);
   }
   toggleStep3() {
