@@ -53,61 +53,25 @@
                 <thead>
                   <tr>
                     <th>Sr. No.</th>
-                    <th>Date</th>
-                    <th>Voucher No.</th>
-                    <th>Ref/Bill No.</th>
-                    <th>Particulars</th>
-                    <th>Debit</th>
-                    <th>Credit</th>
+                    <th>Item Name</th>
+                    <th>Item Code</th>
+                    <th>Opening Balance</th>
+                    <th>Inward</th>
+                    <th>Outward</th>
+                    <th>Closing Balance</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- Dummy data entries -->
-                  <tr>
-                    <td>1</td>
-                    <td>2023-01-01</td>
-                    <td>V001</td>
-                    <td>RB001</td>
-                    <td>Item A</td>
-                    <td>500.0</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>2023-01-05</td>
-                    <td>V002</td>
-                    <td>PB002</td>
-                    <td>Item B</td>
-                    <td></td>
-                    <td>700.0</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>2023-01-10</td>
-                    <td>V003</td>
-                    <td>RB002</td>
-                    <td>Item C</td>
-                    <td>300.0</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>2023-01-15</td>
-                    <td>V004</td>
-                    <td>PB003</td>
-                    <td>Item D</td>
-                    <td></td>
-                    <td>400.0</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>2023-01-20</td>
-                    <td>V005</td>
-                    <td>RB003</td>
-                    <td>Item E</td>
-                    <td>600.0</td>
-                    <td></td>
-                  </tr>
+                  <tr *ngFor="let item of fetchitemledger$ | async; let i = index">
+                    <td>{{ i + 1 }}</td>
+        <td>{{ item.itemname }}</td>
+        <td>{{ item.itemcode }}</td>
+        <td>{{ item.obalance }}</td>
+        <td>{{ item.purchases }}</td>
+        <td>{{ item.sales }}</td>
+        <td>{{ item.closing  }}</td>
+                 
                 </tbody>
               </table>
             </div>
