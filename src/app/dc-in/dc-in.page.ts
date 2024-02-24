@@ -214,7 +214,6 @@ isOpen = false;
     this.datetype = new Date().toISOString().split('T')[0];
     this.refdate = new Date().toISOString().split('T')[0];
     this.deliverydate = new Date().toISOString().split('T')[0];
-
   
     this.myform = this.formBuilder.group({
       voucherformat: [''],

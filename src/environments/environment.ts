@@ -108,6 +108,9 @@ export const environment = {
   addhsrpout: 'hsrp/insert_hsrpout',
   addhsrpin: 'hsrp/insert_hsrpin',
   fetchbyframeno:'action/get_purchase_eno',
+
+  fetchrows:'accounts/get_rpt_config',
+  fetchitemledgerrpt:'accounts/itemLedgerRpt'
 };
 
 

@@ -411,7 +411,75 @@ export class HsrpinPage implements OnInit {
     this.isQuantityPopoverOpen = false;
   }
 
- 
+  // addHsrpin() {
+  //   console.log('addquotewww' + this.hsrpindata.length);
+  //   // You can initialize the new row data here
+  //   let newRow: hsrpinstore = {
+  //     engineframenumber: '',
+  //     supplier: '',
+  //     itemcode: 0,
+  //     hsn_code: '',
+  //     itemname: '',
+  //     quantity: 0,
+  //     vehicle_no: 0,
+  //     vehicle_reg_date: 0,
+  //     hsrp_front: 0,
+  //     hsrp_rear: 0,
+  //     mrp: '',
+  //     netrate: 0,
+
+  //     basicrate: 0,
+  //     taxrate: 0,
+  //     CGST: 0,
+  //     SGST: 0,
+  //     IGST: 0,
+  //     totaltax: 0,
+  //     total: 0,
+  //     tcs_value: 0,
+  //     grossrate: 0,
+  //     billno: '',
+  //     hsrpdate: '',
+  //     suppliercode: '',
+  //     spler: 0,
+  //     refrence: '',
+  //     refdate: '',
+  //     executive_name: 0,
+  //     totalitemno: 0,
+  //     totalquantity: 0,
+  //     totalgrossamt: 0,
+  //     deliverydate: '',
+  //     deliveryplace: '',
+  //     openingbalance: 0,
+  //     debit: 0,
+  //     closingbalance: 0,
+  //     credit: 0,
+  //     totaldiscountamt: 0,
+  //     totaltaxamount: 0,
+  //     roundoff: 0,
+  //     pretax: 0,
+  //     posttax: 0,
+  //     totalnetamount: 0,
+  //     ttotal: 0,
+  //     quantityPopoverData: this.hsrpindata[0].quantityPopoverData.map(attr => ({ ...attr })),
+  //     frame: 0,
+  //     engine_no: 0,
+  //     vehicle_reg_no: 0,
+  //     billformate: 0,
+  //     barcode: '',
+  //     part: 0,
+  //     description: '',
+  //     discount: 0,
+  //     discountamt: 0,
+  //     taxrate1: 0,
+  //     itemid: 0,
+  //     selectedItemId: 0
+  //   };
+
+
+  //   this.hsrpindata.push();
+  //   // Reset newRow back to an empty object to prepare for the next iteration
+
+  // }
   addHsrpin() {
     // Assuming hsrpindata is an array, push a new object with default values
     this.hsrpindata.push({
