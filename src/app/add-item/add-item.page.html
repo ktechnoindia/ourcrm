@@ -93,8 +93,8 @@
                     label="--- Item Group ---" label-placement="floating" fill="outline" [(ngModel)]="selectItemGroup"
                     formControlName="selectItemGroup" name="selectItemGroup">
                     <!-- <ion-select-option value="0">  --- Item Group --- </ion-select-option> Default option with value 0 -->
-                    <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
-                      {{ itemgroup.itemgroupname }}
+                    <ion-select-option *ngFor="let groupname of ledgergroup$  | async" [value]="groupname.groupname">
+                      {{ groupname.groupname }}
                     </ion-select-option>
                   </ion-select>
                 </ion-col>
@@ -570,8 +570,8 @@
           <ion-row>
             <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
               <ion-row>
-                <ion-input #firstInvalidInput [(ngModel)]="itemgroupname" formControlName="itemgroupname"
-                  name="itemgroupname" type="text" label="Item Group Name :" label-placement="floating"
+                <ion-input #firstInvalidInput [(ngModel)]="groupname" formControlName="groupname"
+                  name="groupname" type="text" label="Item Group Name :" label-placement="floating"
                   fill="outline"></ion-input>
               </ion-row>
             </ion-col>
@@ -579,11 +579,11 @@
             <ion-col size-lg="6" size-md="6" size-sm="6" size="6">
               <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
                 label="---Parent Group---" label-placement="floating" fill="outline" [(ngModel)]="parentgroup"
-                formControlName="parentgroup" name="parentgroup">
+                formControlName="parentgroup" name="parentgroup" >
                 <!-- <option value="0">  --- Parent Group --- </option> Default option with value 0  -->
 
-                <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
-                  {{ itemgroup.itemgroupname }}
+                <ion-select-option *ngFor="let groupname of ledgergroup$  | async" [value]="groupname.groupname">
+                  {{ groupname.groupname }}
                 </ion-select-option>
               </ion-select>
 

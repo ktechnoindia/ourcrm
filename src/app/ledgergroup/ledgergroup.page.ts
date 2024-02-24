@@ -67,7 +67,7 @@ export class LedgergroupPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.form.value);
       const ledgergroupdata: Group = {
-        groupname: this.form.value.groupname,
+        groupname: this.form.value.ledgrpname,
         parentgroup: this.form.value.parentgroup,
         companyid: companyid,
       };
