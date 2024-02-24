@@ -31,7 +31,7 @@ export class ViewsupplierPage implements OnInit {
 
   filteredSupplers$: Observable<any[]> = new Observable<any[]>();
   columnHeaders: { [key: string]: string } = {
-    'vendor_code': 'Vendor Code',
+    'id': 'Vendor Code',
     'name': 'Name',
     'gstin': 'GSTIN',
     'whatsapp_number': 'WhatsApp Number',
@@ -54,7 +54,7 @@ export class ViewsupplierPage implements OnInit {
   };
   
   availableColumns: string[] = [
-    'vendor_code',
+    'id',
     'name',
     'gstin',
     'whatsapp_number',
@@ -76,7 +76,7 @@ export class ViewsupplierPage implements OnInit {
     'credit_limit',
   ];
   selectedColumns: string[] = [
-    'vendor_code',
+    'id',
     'name',
     'gstin',
     'whatsapp_number',
@@ -101,9 +101,9 @@ export class ViewsupplierPage implements OnInit {
   editvendor(vendor:any){
     console.log(vendor);
     let navigationExtras: NavigationExtras = {
-      state: {
-        vendor: vendor,
-        edit:true
+      queryParams: {
+        edit: true,
+        vendor: JSON.stringify(vendor) // Convert customer object to string
       }
     };
     this.router.navigate(['/add-vendor'], navigationExtras);

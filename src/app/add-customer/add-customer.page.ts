@@ -201,17 +201,46 @@ export class AddCustomerPage implements OnInit {
       if (editMode && customer) {
         // Pre-fill form fields with customer data
         this.myform.patchValue({
-          // Assuming 'name', 'email', 'address', etc. are form control names
           name: customer.name,
           email: customer.email,
           address: customer.address,
-          phone:customer.phone,
-          gstin:customer.gstin,
-          opening_balance:customer.opening_balance,
-
-
-          // Add more fields as needed
-        });
+          phone: customer.mobile,
+          gstin: customer.gstin,
+          opening_balance: customer.opening_balance,
+          closing_balance: customer.closing_balance,
+          closing_point: customer.closing_point,
+          account_number: customer.account_number,
+          bank_name: customer.bank_name,
+          branch_name: customer.branch_name,
+          card_number: customer.card_number,
+          companyid: customer.companyid,
+          country: customer.country,
+          crdate: customer.crdate,
+          credit_limit: customer.credit_limit,
+          credit_period: customer.credit_period,
+          id: customer.id,
+          district: customer.district,
+          groupid: customer.groupid,
+          ifsc_code: customer.ifsc_code,
+          isactive: customer.isactive,
+          pan_no: customer.pan_no,
+          pincode: customer.pincode,
+          select_sales_person: customer.select_sales_person,
+          state: customer.state,
+          tdn: customer.tdn,
+          udhyog_aadhar: customer.udhyog_aadhar,
+          whatsapp_number: customer.whatsapp_number,
+          discount:customer.discount,
+          mobile:customer.mobile, 
+          opening_point:customer.opening_point,
+          selectedOption1:customer.selectedOption1,
+          selectedState1:customer.selectedState1,
+          selectedDistrict1:customer.selectedDistrict1,
+          pincode1:customer.pincode1,
+          address1:customer.address1,
+          select_group:customer.select_group,
+        }
+        );
       }
     });
   }

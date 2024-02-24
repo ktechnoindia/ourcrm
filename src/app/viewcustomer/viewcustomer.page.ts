@@ -26,7 +26,7 @@ export class ViewcustomerPage implements OnInit {
   toDate: string = '';
   compid: string = '';
   columnHeaders: { [key: string]: string } = {
-    'customer_code': 'Customer Code',
+    'id': 'Customer Code',
     'name': 'Name',
     'gstin': 'GSTIN',
     'whatsapp_number': 'WhatsApp Number',
@@ -34,6 +34,12 @@ export class ViewcustomerPage implements OnInit {
     'countryid': 'Country',
     'stateid': 'State',
     'districtid': 'District',
+    'selectedOption1': 'Country2',
+    'selectedState1': 'State2',
+    'selectedDistrict1': 'District2',
+    'pincode1': 'Pincode2',
+    'address1': 'Address2',
+    'select_group': 'Customer Type',
     'pincode': 'Pincode',
     'address': 'Address',
     'aadhar_no': 'Aadhar Number',
@@ -50,7 +56,7 @@ export class ViewcustomerPage implements OnInit {
 
   manualHeaders: string[] = [];
   availableColumns: string[] = [
-    'customer_code',
+    'id',
     'name',
     'gstin',
     'whatsapp_number',
@@ -60,6 +66,12 @@ export class ViewcustomerPage implements OnInit {
     'districtid',
     'pincode',
     'address',
+    'selectedOption1',
+    'selectedState1',
+    'selectedDistrict1',
+    'pincode1',
+    'address1',
+    'select_group',
     'aadhar_no',
     'pan_no',
     'udhyog_aadhar',
@@ -73,7 +85,7 @@ export class ViewcustomerPage implements OnInit {
   ];
 
   selectedColumns: string[] = [
-    'customer_code',
+    'id',
     'name',
     'gstin',
     'whatsapp_number',

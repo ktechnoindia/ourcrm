@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StateService } from '../services/state.service';
@@ -109,9 +109,9 @@ export class AddVendorPage implements OnInit {
 
 isOpen = false;
 paymentMethod: boolean = false;
-  edit: any;
+  edit: any;  
 
-  constructor( private session: SessionService,private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
+  constructor( private route: ActivatedRoute,private session: SessionService,private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
     this.myform = this.formBuilder.group({
       paymentMethod:[],
       name: ['', [Validators.required]],
@@ -304,6 +304,56 @@ paymentMethod: boolean = false;
       if (event instanceof NavigationStart) {
         // Reset form data when navigating away from the page
         this.myform.reset();
+      }
+    });
+    this.route.queryParams.subscribe(params => {
+      const editMode = params['edit'];
+      const vendor = JSON.parse(params['vendor']); // Parse the string back to an object
+      
+      if (editMode && vendor) {
+        // Pre-fill form fields with vendor data
+        this.myform.patchValue({
+          name: vendor.name,
+          email: vendor.email,
+          address: vendor.address,
+          phone: vendor.mobile,
+          gstin: vendor.gstin,
+          opening_balance: vendor.opening_balance,
+          closing_balance: vendor.closing_balance,
+          closing_point: vendor.closing_point,
+          account_number: vendor.account_number,
+          bank_name: vendor.bank_name,
+          branch_name: vendor.branch_name,
+          card_number: vendor.card_number,
+          companyid: vendor.companyid,
+          countryid: vendor.countryid,
+          crdate: vendor.crdate,
+          credit_limit: vendor.credit_limit,
+          credit_period: vendor.credit_period,
+          districtid: vendor.districtid,
+          groupid: vendor.groupid,
+          ifsc_code: vendor.ifsc_code,
+          isactive: vendor.isactive,
+          pan_no: vendor.pan_no,
+          pincode: vendor.pincode,
+          select_sales_person: vendor.select_sales_person,
+          stateid: vendor.stateid,
+          tdn: vendor.tdn,
+          udhyog_aadhar: vendor.udhyog_aadhar,
+          vendor_code: vendor.vendor_code,
+          whatsapp_number: vendor.whatsapp_number,
+          discount:vendor.discount,
+          mobile:vendor.mobile, 
+          opening_point:vendor.opening_point,
+          selectedOption1:vendor.selectedOption1,
+          selectedState1:vendor.selectedState1,
+          selectedDistrict1:vendor.selectedDistrict1,
+          pincode1:vendor.pincode1,
+          address1:vendor.address1,
+          select_group:vendor.select_group,
+        }
+        
+        );
       }
     });
   }
