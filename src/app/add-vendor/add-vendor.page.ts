@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import { CustomertypeService } from '../services/customertype.service';
 import { FormValidationService } from '../form-validation.service';
 import { LegderService } from '../services/ledger.service';
 import { roletypesservice } from '../services/roletypes.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-add-vendor',
@@ -108,8 +109,9 @@ export class AddVendorPage implements OnInit {
 
 isOpen = false;
 paymentMethod: boolean = false;
+  edit: any;
 
-  constructor(private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
+  constructor( private session: SessionService,private navCtrl: NavController, private custtp: CustomertypeService, private formService: FormValidationService, private execut: ExecutiveService, private https: HttpClient, private router: Router, private vendService: VendorService, private formBuilder: FormBuilder, private toastController: ToastController, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,private popoverController: PopoverController, ) {
     this.myform = this.formBuilder.group({
       paymentMethod:[],
       name: ['', [Validators.required]],
@@ -200,13 +202,18 @@ paymentMethod: boolean = false;
     console.log('selected value' + this.state);
     this.districts$ = this.districtservice.getDistricts(this.state);
   }
-
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   async onSubmit() {
     const fields = { name: this.name,  }
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', this.myform.value);
+
+      const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
+      const userid = await this.session.getValue('userid');
       const venddata: vend = {
         name: this.myform.value.name,
         customer_code: this.myform.value.vendor_code,
@@ -245,7 +252,18 @@ paymentMethod: boolean = false;
         address1: this.myform.value.address1,
         discount: this.myform.value.discount,
       };
-
+      if (this.edit) {
+        this.vendService.editVendor(1, keys, userid).subscribe((response: any) => {
+          if (response.status) { 
+            this.openToast('Saved!'); 
+          } else { 
+            this.openToast('Not Saved'); 
+          }
+        }, (error) => {
+          console.log('error caught in component' + error.message);
+          this.openToast('error ' + error.message);
+        });
+      } else {
       this.vendService.createVendor(venddata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -266,7 +284,7 @@ paymentMethod: boolean = false;
         }
       );
 
-    } else {
+    } }else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

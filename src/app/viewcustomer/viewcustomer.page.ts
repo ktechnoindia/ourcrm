@@ -24,8 +24,7 @@ export class ViewcustomerPage implements OnInit {
   @ViewChild('content', { static: false }) el!: ElementRef
   formDate: string = '';
   toDate: string = '';
-  compid: string='';
-
+  compid: string = '';
   columnHeaders: { [key: string]: string } = {
     'customer_code': 'Customer Code',
     'name': 'Name',
@@ -48,7 +47,7 @@ export class ViewcustomerPage implements OnInit {
     'credit_period': 'Credit Period',
     'credit_limit': 'Credit Limit',
   };
-  
+
   manualHeaders: string[] = [];
   availableColumns: string[] = [
     'customer_code',
@@ -81,13 +80,14 @@ export class ViewcustomerPage implements OnInit {
     'email',
     'countryid',
   ];
-  
+
 
   searchTerm: string = '';
   filteredCustomers$: Observable<any[]> = new Observable<any[]>();
   customers$: Observable<any[]>; // Assuming you have an Observable for your customers
 
   totalItems: number = 0;
+  customer: any; // Declare customer variable to hold the data
 
   constructor(public session: SessionService, private router: Router, private toastCtrl: ToastController, private encService: EncryptionService, private custservice: CustomerService) {
     const compid = '1';
@@ -99,6 +99,8 @@ export class ViewcustomerPage implements OnInit {
     });
     this.updateManualHeaders();
   }
+
+
   selectAdditionalColumns(event: CustomEvent) {
     const selected = event.detail.value; // Get the selected columns from the event
     // Check if 'All Columns' is selected
@@ -117,6 +119,7 @@ export class ViewcustomerPage implements OnInit {
     if ('selectedColumns' in changes) {
       this.updateManualHeaders();
     }
+    
   }
 
   updateManualHeaders() {
@@ -154,6 +157,7 @@ export class ViewcustomerPage implements OnInit {
     };
     this.router.navigate(['add-customer'], navigationExtras);
   }
+  
 
   async openToast(msg: string) {
     this.session.openToast(msg);
@@ -163,66 +167,66 @@ export class ViewcustomerPage implements OnInit {
     this.router.navigate(["/add-customer"])
   }
 
-  deleteCustomer(customerid: number, event: any) { 
+  deleteCustomer(customerid: number, event: any) {
     const confirmDelete = confirm('Are you sure you want to delete this customer?');
     if (!confirmDelete) {
       return;
     }
-  
-  const companyid = 1;
-  this.custservice.deleteCustomer(customerid,companyid).subscribe({
-    next: (res) => {
-      alert('Customer Deleted!');
-      console.log('delete',res)
-    },
-    error: (err) => {
-      console.error('Error deleting customer', err);
-      // Handle the error as needed
-    }
-  });
+
+    const companyid = 1;
+    this.custservice.deleteCustomer(customerid, companyid).subscribe({
+      next: (res) => {
+        alert('Customer Deleted!');
+        console.log('delete', res)
+      },
+      error: (err) => {
+        console.error('Error deleting customer', err);
+        // Handle the error as needed
+      }
+    });
   }
 
   generatePdf() {
     const table = document.getElementById('customerTable');
 
     if (!table) {
-        console.error('Element with id "customerTable" not found.');
-        return;
+      console.error('Element with id "customerTable" not found.');
+      return;
     }
 
     const pdf = new jsPDF();
 
     const header = function (data: any) {
-        pdf.setFontSize(18);
-        pdf.setTextColor(40);
-        pdf.setFont('curier', 'bold');
-        pdf.text('Customer List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+      pdf.setFontSize(18);
+      pdf.setTextColor(40);
+      pdf.setFont('curier', 'bold');
+      pdf.text('Customer List', pdf.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
     };
 
     const footer = function (data: any) {
-        const pageCount = pdf.internal.pages.length;
-        pdf.setFontSize(14);
-        pdf.setTextColor(40);
-        pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
+      const pageCount = pdf.internal.pages.length;
+      pdf.setFontSize(14);
+      pdf.setTextColor(40);
+      pdf.text('Page ' + data.pageNumber + ' of ' + pageCount, pdf.internal.pageSize.getWidth() / 2, pdf.internal.pageSize.getHeight() - 10, { align: 'center' });
     };
 
     (pdf as any).autoTable({
-        html: '#customerTable',
-        styles: {
-            lineWidth: 0.1, // set border line width
-            lineColor: [0, 0, 0], // set border color (black in this case)
-        },
-        didDrawPage: function (data: any) {
-            header(data);
-            footer(data);
-        }
+      html: '#customerTable',
+      styles: {
+        lineWidth: 0.1, // set border line width
+        lineColor: [0, 0, 0], // set border color (black in this case)
+      },
+      didDrawPage: function (data: any) {
+        header(data);
+        footer(data);
+      }
     });
 
     pdf.save('company.pdf');
-}
+  }
 
 
-  printThisPage(){
+  printThisPage() {
     window.print();
   }
 }

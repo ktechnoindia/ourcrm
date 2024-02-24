@@ -67,5 +67,7 @@ export class CustomerService {
   deleteCustomer(customerid: number, companyid: number): Observable<any> {
     return this.httpclient.post(`${environment.apiactionurl}${environment.deleteCustomer}/${customerid}/${companyid}`,{});
   }
-  
+  editCustomer(customerid :number,key:string,user:string){
+    return this.httpclient.post(environment.apibaseurl+environment.editcust,customerid ,{headers:{'key':key,'user':user}})
+  }
 }

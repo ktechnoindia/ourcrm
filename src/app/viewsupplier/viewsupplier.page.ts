@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { VendorService } from '../services/vendor.service';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { EncryptionService } from '../services/encryption.service';
@@ -96,6 +96,18 @@ export class ViewsupplierPage implements OnInit {
       this.totalItems = data.length;
     });
     this.updateManualHeaders();
+  }
+
+  editvendor(vendoer:any){
+    console.log(vendoer);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        vendoer: vendoer,
+        edit:true
+      }
+    };
+    this.router.navigate(['/add-vendor'], navigationExtras);
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('selectedColumns' in changes) {

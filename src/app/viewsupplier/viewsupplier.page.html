@@ -34,7 +34,7 @@
               </ion-row>
               <div #content class="scroll-container">
 
-              <table id="supplierTable" style="width: 100%;">
+                <table id="supplierTable" style="width: 100%;">
                   <thead>
                     <tr>
                       <th>Sr. No.</th>
@@ -49,17 +49,18 @@
                       <td class="Action">
                         <ion-icon color="danger" icon-only name="trash"
                           (click)="deleteSuppler(vendoer.id,$event)"></ion-icon>
-                        <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        <ion-icon color="primary" icon-only clear (click)="editvendor(vendoer)"
+                          name="create"></ion-icon>
                       </td>
                     </tr>
 
                   </tbody>
                 </table>
               </div>
-          
-                <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                  <p >Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
-                </div>
+
+              <div [attr.colspan]="selectedColumns.length + 1" class="total">
+                <p>Total: <span style="margin-left: 10px;">{{ totalItems }}</span></p>
+              </div>
             </ion-row>
             <ion-row class="custom-primary" style="justify-content: right;">
               <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"

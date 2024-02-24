@@ -212,13 +212,13 @@
                           class="table_input" readonly> &#x20B9;
                         <!-- {{hsrpin.total}} -->
                       </td>
-
+                      <td>
+                        <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
+                        <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
+                          (click)="removehsrpin(i,hsrpin)"></ion-icon>
+                      </td>
                     </ng-container>
-                    <td>
-                      <ion-icon icon-only clear color="primary" name="add" (click)="addHsrpin()"></ion-icon>
-                      <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
-                        (click)="removehsrpin(i,hsrpin)"></ion-icon>
-                    </td>
+                    
                     <!--  <td>
                       <input [(ngModel)]="hsrpin.customername" [ngModelOptions]="{standalone: true}" class="table_input"
                         type="text">

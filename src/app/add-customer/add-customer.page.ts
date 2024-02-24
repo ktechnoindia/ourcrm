@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController } from '@ionic/angular';
 import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidationService } from '../form-validation.service';
 import { roletypesservice } from '../services/roletypes.service';
 import { LegderService } from '../services/ledger.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -101,8 +102,9 @@ export class AddCustomerPage implements OnInit {
 
   ledgers$: Observable<any>;
   paymentMethod: boolean = false;
+  edit: any;
 
-  constructor(private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
+  constructor( private session: SessionService,private popoverController: PopoverController, private navCtrl: NavController, private custtp: CustomertypeService, private formBuilder: FormBuilder, private execut: ExecutiveService, private myService: CustomerService, private router: Router, private toastCtrl: ToastController, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private formService: FormValidationService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
 
     this.myform = this.formBuilder.group({
       paymentMethod:[],
@@ -217,8 +219,22 @@ export class AddCustomerPage implements OnInit {
     if (await this.formService.validateForm(fields)) {
       const companyid = 1;
       console.log('Your form data : ', this.myform.value);
-      let custdata: cust = { name: this.myform.value.name, customer_code: this.myform.value.customer_code, gstin: this.myform.value.gstin, select_group: this.myform.value.select_group, opening_balance: this.myform.value.opening_balance, closing_balance: this.myform.value.closing_balance, mobile: this.myform.value.mobile, whatsapp_number: this.myform.value.whatsapp_number, email: this.myform.value.email, country: this.myform.value.country, state: this.myform.value.state, district: this.myform.value.district, pincode: this.myform.value.pincode, address: this.myform.value.address, tdn: this.myform.value.tdn, aadhar_no: this.myform.value.aadhar_no, pan_no: this.myform.value.pan_no, udhyog_aadhar: this.myform.value.udhyog_aadhar, account_number: this.myform.value.account_number, ifsc_code: this.myform.value.ifsc_code, bank_name: this.myform.value.bank_name, branch_name: this.myform.value.branch_name, credit_period: this.myform.value.credit_period, credit_limit: this.myform.value.credit_limit, select_sales_person: this.myform.value.select_sales_person, card_number: this.myform.value.card_number, opening_point: this.myform.value.opening_point, closing_point: this.myform.value.closing_point, selectedSalutation: this.myform.value.selectedSalutation, companyName: this.myform.value.companyName, selectedOption1: this.myform.value.selectedOption1, selectedState1: this.myform.value.selectedState1, selectedDistrict1: this.myform.value.selectedDistrict1, pincode1: this.myform.value.pincode1, address1: this.myform.value.address1, discount: this.myform.value.discount, companyid: companyid };
+      const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
+      const userid = await this.session.getValue('userid');
 
+      let custdata: cust = { name: this.myform.value.name, customer_code: this.myform.value.customer_code, gstin: this.myform.value.gstin, select_group: this.myform.value.select_group, opening_balance: this.myform.value.opening_balance, closing_balance: this.myform.value.closing_balance, mobile: this.myform.value.mobile, whatsapp_number: this.myform.value.whatsapp_number, email: this.myform.value.email, country: this.myform.value.country, state: this.myform.value.state, district: this.myform.value.district, pincode: this.myform.value.pincode, address: this.myform.value.address, tdn: this.myform.value.tdn, aadhar_no: this.myform.value.aadhar_no, pan_no: this.myform.value.pan_no, udhyog_aadhar: this.myform.value.udhyog_aadhar, account_number: this.myform.value.account_number, ifsc_code: this.myform.value.ifsc_code, bank_name: this.myform.value.bank_name, branch_name: this.myform.value.branch_name, credit_period: this.myform.value.credit_period, credit_limit: this.myform.value.credit_limit, select_sales_person: this.myform.value.select_sales_person, card_number: this.myform.value.card_number, opening_point: this.myform.value.opening_point, closing_point: this.myform.value.closing_point, selectedSalutation: this.myform.value.selectedSalutation, companyName: this.myform.value.companyName, selectedOption1: this.myform.value.selectedOption1, selectedState1: this.myform.value.selectedState1, selectedDistrict1: this.myform.value.selectedDistrict1, pincode1: this.myform.value.pincode1, address1: this.myform.value.address1, discount: this.myform.value.discount, companyid: companyid };
+      if (this.edit) {
+        this.myService.editCustomer(1, keys, userid).subscribe((response: any) => {
+          if (response.status) { 
+            this.openToast('Saved!'); 
+          } else { 
+            this.openToast('Not Saved'); 
+          }
+        }, (error) => {
+          console.log('error caught in component' + error.message);
+          this.openToast('error ' + error.message);
+        });
+      } else {
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -239,7 +255,7 @@ export class AddCustomerPage implements OnInit {
           this.formService.shoErrorLoader();
         }
       );
-    } else {
+    }} else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);

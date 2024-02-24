@@ -110,7 +110,9 @@ export const environment = {
   fetchbyframeno:'action/get_purchase_eno',
 
   fetchrows:'accounts/get_rpt_config',
-  fetchitemledgerrpt:'accounts/itemLedgerRpt'
+  fetchitemledgerrpt:'accounts/itemLedgerRpt',
+  editcust:'masters/ecustomer',
+  editvend:'masters/evendor/',
 };
 
 
