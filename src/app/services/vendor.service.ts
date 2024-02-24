@@ -64,7 +64,8 @@ export interface vend{
   deleteVendor(customerid:number,companyid:number){
     return this.httpclient.post(`${environment.apiactionurl}${environment.deleteVendor}/${customerid}/${companyid}`,{});
   }
-  editVendor(vendorid :number,key:string,user:string){
-    return this.httpclient.post(environment.apibaseurl+environment.editvend,vendorid ,{headers:{'key':key,'user':user}})
+  editVendor(vendorid :number,companyid:number){
+    return this.httpclient.post(`${environment.apibaseurl}${environment.editvend}/$${vendorid}/${companyid}`,{});
   }
+  
   }

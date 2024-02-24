@@ -207,6 +207,8 @@ paymentMethod: boolean = false;
   }
   async onSubmit() {
     const fields = { name: this.name,  }
+    const companid=1;
+    const vendorid =1;
     const isValid = await this.formService.validateForm(fields);
     if (await this.formService.validateForm(fields)) {
 
@@ -253,7 +255,7 @@ paymentMethod: boolean = false;
         discount: this.myform.value.discount,
       };
       if (this.edit) {
-        this.vendService.editVendor(1, keys, userid).subscribe((response: any) => {
+        this.vendService.editVendor(companid,vendorid).subscribe((response: any) => {
           if (response.status) { 
             this.openToast('Saved!'); 
           } else { 
