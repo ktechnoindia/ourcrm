@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
+import { SessionService } from './session.service';
 
 
 export interface item {
@@ -78,7 +79,7 @@ export class AdditemService {
 
 
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient,private session:SessionService) { }
   createItem(items: item, key: string, user: string) {
     return this.httpclient.post(environment.apiactionurl + environment.additem, items, { headers: { 'key': key, 'user': user } })
   }
@@ -109,4 +110,16 @@ export class AdditemService {
   getItemAttributes(itemname: any) {
     return this.httpclient.get(environment.apiactionurl + environment.fetchallItem);
   }
+
+  fetchitemledgerreport(userid: number): Observable<any> {
+    console.log('companyyy ' + userid);
+    const token = this.session.getValue('token')?.valueOf();
+    return this.httpclient.get(environment.apiacturl + 'accounts/itemLedgerRpt?userid=' + userid, { 
+        headers: { 
+            'Authorization': 'Bearer ' + token 
+        }
+    });
+}
+
+ 
 }

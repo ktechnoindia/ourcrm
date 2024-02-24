@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { AdditemService } from '../services/additem.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-ledger',
@@ -13,8 +15,13 @@ import { RouterModule } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule,RouterModule]
 })
 export class ItemLedgerPage implements OnInit {
+  fetchitemledger$: Observable<any>;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private itemservice:AdditemService) {
+
+    this.fetchitemledger$= this.itemservice.fetchitemledgerreport(1);
+    console.log(this.fetchitemledger$);
+   }
 
   ngOnInit() {
   }
