@@ -109,7 +109,7 @@
                   </tr>
 
 
-                  <tr *ngFor="let hsrpin of hsrpindata; let i = index">
+                  <tr *ngFor="let hsrpin of hsrpindata.slice(); let i = index">
                     <td>{{i+1}}</td>
 
                     <td>
@@ -319,7 +319,7 @@
                       <ion-icon *ngIf="i>0" icon-only clear color="danger" name="trash"
                         (click)="removehsrpin(i,hsrpin)"></ion-icon>
                     </td> -->
-                  </tr>
+                 
 
 
                 </table>
