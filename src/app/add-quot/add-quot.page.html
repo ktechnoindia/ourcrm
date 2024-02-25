@@ -119,7 +119,7 @@
                 <table style="width:100%;overflow-x:auto;overflow-y: auto;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th>BarCode</th>
+                    <!-- <th>BarCode</th> -->
                     <th>Item Code</th>
                     <th>Item Name</th>
                     <th>Description</th>
@@ -130,9 +130,9 @@
                     <th>Net Rate</th>
                     <th>Gross Amount</th>
                     <th>GST</th>
-                    <th>CGST</th>
+                    <!-- <th>CGST</th>
                     <th>SGST</th>
-                    <th>IGST</th>
+                    <th>IGST</th> -->
                     <th>Discount By</th>
                     <th>Dis.Amount</th>
                     <th>Tax Amount</th>
@@ -141,10 +141,10 @@
                   </tr>
                   <tr *ngFor="let quote of quoteData; let i = index">
                     <td>{{i+1}}</td>
-                    <td>
+                    <!-- <td>
                       <input [(ngModel)]="quote.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
                         (ngModelChange)="getItems(quote)" type="text">
-                    </td>
+                    </td> -->
                     <td>
                       <input [(ngModel)]="quote.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(quote)" class="table_input" type="text">
@@ -217,7 +217,7 @@
                       <input type="hidden" [(ngModel)]="quote.taxrate1" [ngModelOptions]="{standalone: true}"
                         (keydown)="onKeyDown($event)" />
                     </td>
-                    <td>
+                    <!-- <td>
                       <input [value]="getsgst(quote)" [readonly]="true" class="table_input" type="number"
                         (keydown)="onKeyDown($event)">
                     </td>
@@ -227,7 +227,7 @@
                     </td>
                     <td>
                       <input [value]="getigst(quote)" type="number" class="table_input" (keydown)="onKeyDown($event)">
-                    </td>
+                    </td> -->
                     <td>
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>
