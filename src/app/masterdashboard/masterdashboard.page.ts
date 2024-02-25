@@ -281,6 +281,11 @@ export class MasterdashboardPage implements OnInit {
   logout() {
     // Clear authentication tokens or perform other logout logic
    // this.authService.logout();
+   this.session.setValue('userid','');
+   this.session.setValue('token','');
+   this.session.setValue('companyid','');
+   this.session.setValue('companyname','');
+   this.session.setValue('fname','');
 
     // Navigate to the login page (assuming your login page has a route named 'login')
     this.navCtrl.navigateRoot('/login');
