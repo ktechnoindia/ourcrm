@@ -29,6 +29,11 @@ export class LoginPage implements OnInit {
 myform:FormGroup;
   router: any;
    constructor(private sharedService: SharedService,private navCtrl: NavController, private toastCtrl: ToastController,private formBuilder:FormBuilder,private logIn : LoginService,private session:SessionService){
+    const token=this.session.getValue('token');
+    if(token!= ''){
+      this.sharedService.showHeader  = true;
+      this.navCtrl.navigateForward('/masterdashboard');
+    }
     this.myform = this.formBuilder.group({
       username:[''],
       password:['']
@@ -61,7 +66,7 @@ myform:FormGroup;
           this.sharedService.showHeader  = true;
           setTimeout(() => {
             this.navCtrl.navigateForward('/masterdashboard');
-          }, 2000);
+          }, 1000);
   
         }
         
