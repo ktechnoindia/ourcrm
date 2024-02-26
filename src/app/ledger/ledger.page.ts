@@ -16,6 +16,7 @@ import { LegderService, ledg } from '../services/ledger.service';
 import { FormValidationService } from '../form-validation.service';
 import { AddgroupService } from '../services/addgroup.service';
 import { roletypesservice } from '../services/roletypes.service';
+import { LedgergroupService } from '../services/ledgergroup.service';
 
 @Component({
   selector: 'app-ledger',
@@ -96,8 +97,9 @@ export class LedgerPage implements OnInit {
   ledgers$: Observable<any>;
   executivepop: FormGroup;
    
+  ledgergroup$: Observable<any[]>;
 
-  constructor(private popoverController: PopoverController, private navCtrl: NavController, private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledgerser: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
+  constructor(private ledgrpservice:LedgergroupService,private popoverController: PopoverController, private navCtrl: NavController, private toastController: ToastController, private formService: FormValidationService, private https: HttpClient, private formBuilder: FormBuilder, private custtp: CustomertypeService, private execut: ExecutiveService, private ledgerser: LegderService, private router: Router, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private groupService: AddgroupService, private roletypes: roletypesservice, private addExecutiveService: ExecutiveService, private ledgerService: LegderService,) {
     this.myform = this.formBuilder.group({
       lname: ['', [Validators.required,]],
       ledger_code: [''],
@@ -153,6 +155,7 @@ export class LedgerPage implements OnInit {
       emanager: [''],
       roleid: [0],
     })
+    this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
 
     this.states$ = new Observable<any[]>(); // Initialize the property in the constructor
     this.countries$ = this.countryService.getCountries();

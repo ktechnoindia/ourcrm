@@ -148,7 +148,7 @@ export class AddItemPage implements OnInit {
   attname$: Observable<any[]>
   stocktypename$: Observable<any[]>
   itemtypename$: Observable<any[]>
-  // itemgroups$: Observable<any[]>
+  itemgroups$: Observable<any[]>
   framenumber: string = '';
   enginenumber: string = '';
   partnumber: string = '';
@@ -204,7 +204,7 @@ export class AddItemPage implements OnInit {
     this.selectGst$ = this.gstsrvs.getgsttype();
     // this.unitname$ = this.unittype.getunits();
     this.hsnname$ = this.hsnservices.getHSNNames(1);
-    // this.itemgroups$ = this.groupService.getAllGroups(1);
+    this.itemgroups$ = this.groupService.getAllGroups(1);
     this.stocktypename$ = this.stocktype1.getStockTypes(1);
     this.itemtypename$ = this.itemtype1.getItemTypes(1);
     this.selectedAttribute = 'default value';
@@ -268,7 +268,7 @@ export class AddItemPage implements OnInit {
       wheelbase: [''],
       dealerrate: [''],
   subdealerrate: [''],
-  // groupname:[''],
+  groupname:[''],
   itemgroupname:[''],
     });
 
@@ -666,57 +666,60 @@ export class AddItemPage implements OnInit {
   
 
   async OnGroupSubmit() {
-    const fields = { groupname: this.groupname};
+    const fields = { groupname: this.itemgroupname };
     const companyid = 1;
 
     // Validate the form
     const isValid = await this.formService.validateForm(fields);
 
     if (isValid) {
-        console.log('Your form data: ', this.groupop.value);
-
-        // Construct the ledger group data
-        const ledgergroupdata: Group = {
-            groupname: this.groupop.value.groupname,
-            parentgroup: this.groupop.value.parentgroup,
-            companyid: companyid,
-        };
-
-        // Call the service method to create ledger group
-        this.subscription = this.ledgrpservice.createledgerGroup(ledgergroupdata, '', '').subscribe(
-            (response: any) => {
-                if (response.status) {
-                    console.log('POST request successful', response);
-                }
-                this.formService.showSuccessAlert();
-                this.groupop.reset();
-                this.fetchItemGroups();
-            },
-            (error: any) => {
-                console.error('POST request failed', error);
-                this.formService.showFailedAlert();
-            }
-        );
+      console.log('Your form data : ', this.groupop.value);
+      let groupdata: group = {
+        itemgroupname: this.groupop.value.itemgroupname,
+        parentgroupid: this.groupop.value.parentgroup,
+        companyid: companyid,
+      };
+  
+      this.groupService.createGroup(groupdata, '', '').subscribe(
+        (response: any) => {
+          if (response.status) {
+            console.log('POST request successful', response);
+            // After successfully adding the group, fetch the updated group data again
+            this.fetchItemGroups();
+            // Show success alert
+            this.formService.showSuccessAlert();
+            // Reset the form
+            this.groupop.reset();
+          }
+        },
+        (error: any) => {
+          console.error('POST request failed', error);
+          // Show failed alert
+          this.formService.showFailedAlert();
+        }
+      );
 
     } else {
         // If the form is not valid, display error messages
-        Object.keys(this.groupop.controls).forEach(controlName => {
-            const control = this.groupop.get(controlName);
-            if (control?.invalid) {
-                control.markAsTouched();
+       // If the form is not valid, display error messages
+       Object.keys(this.groupop.controls).forEach(controlName => {
+        const control = this.groupop.get(controlName);
+        if (control?.invalid) {
+          control.markAsTouched();
             }
         });
 
-        if (this.firstInvalidInput) {
-            this.firstInvalidInput.setFocus();
-        }
+        // Set focus to the first invalid input field
+      if (this.firstInvalidInput) {
+        this.firstInvalidInput.setFocus();
+      }
     }
 }
 
 
   
   fetchItemGroups() {
-    this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
+    this.itemgroups$ = this.groupService.getAllGroups(1);
   }
   
   onKeyDown(event: KeyboardEvent): void {

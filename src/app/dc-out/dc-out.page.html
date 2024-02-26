@@ -109,7 +109,7 @@
                 <table style="width:100%;overflow-x:auto;">
                   <tr>
                     <th>Sr.No.</th>
-                    <th>BarCode</th>
+                    <!-- <th>BarCode</th> -->
                     <th>Item Code</th>
                     <th>Item Name</th>
                     <th>Description</th>
@@ -120,9 +120,9 @@
                     <th>Net Rate</th>
                     <th>Gross Amount</th>
                     <th>GST</th>
-                    <th>CGST</th>
+                    <!-- <th>CGST</th>
                     <th>SGST</th>
-                    <th>IGST</th>
+                    <th>IGST</th> -->
                     <th>Discount BY</th>
                     <th>Discount Amount</th>
                     <th>Tax Amount</th>
@@ -131,10 +131,10 @@
                   </tr>
                   <tr *ngFor="let dcout of dcoutData; let i = index">
                     <td>{{i+1}}</td>
-                    <td>
+                    <!-- <td>
                       <input [(ngModel)]="dcout.barcode" [ngModelOptions]="{standalone: true}" class="table_input"
                         (ngModelChange)="getItems(dcout)" type="text">
-                    </td>
+                    </td> -->
                     <td>
                       <input [(ngModel)]="dcout.itemcode" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="getItems(dcout)" class="table_input" type="text">
@@ -204,7 +204,7 @@
                       </select> -->
                     </td>
                     <input type="hidden" [(ngModel)]="dcout.taxrate1" [ngModelOptions]="{standalone: true}" (keydown)="onKeyDown($event)"/>
-                    <td>
+                    <!-- <td>
                       <input [value]="getsgst(dcout)" [readonly]="true" class="table_input" type="number"(keydown)="onKeyDown($event)">
                     </td>
                     <td>
@@ -212,7 +212,7 @@
                     </td>
                     <td>
                       <input [value]="getigst(dcout)" type="number" class="table_input"(keydown)="onKeyDown($event)">
-                    </td>
+                    </td> -->
                     <td>
                       <select class="select-option" formControlName="discountType">
                         <option value="amount">Amount</option>

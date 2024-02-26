@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonPopover, IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
@@ -219,6 +219,53 @@ export class PurchasereturnPage implements OnInit {
   printThisPage() {
     window.print();
   }
+  addNewRow() {
+    // Assuming quoteData is your array holding rows data
+    this.purchaseData.push({
+      barcode: '',
+      itemcode: 0,
+      itemname: '',
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      itemid: 0,
+      selectedItemId: 0,
+      quantityPopoverData: [],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: ''
+    }); // Add an empty object for a new row
+
+    
+  }
+
+// Event listener for keydown events
+@HostListener('document:keydown', ['$event'])
+handleKeyboardEvent(event: KeyboardEvent) {
+  if (event.key === 'Enter' && event.shiftKey) {
+    // If Shift+Enter is pressed, add a new row
+    this.addNewRow();
+  } 
+}
   constructor(private saleService: SalesService,private navCtrl: NavController, private popoverController: PopoverController, private encService: EncryptionService, private vendname1: VendorService, private itemService: AdditemService, private formBuilder: FormBuilder, private execut: ExecutiveService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private purchasereturnService: PurchasereturnService, private formService: FormValidationService, private vendService: VendorService, private countryservice: CountryService, private stateservice: StateService, private districtservice: DistrictsService,) {
     const compid = '1';
     this.taxrate$ = this.gstsrvs.getgsttype();

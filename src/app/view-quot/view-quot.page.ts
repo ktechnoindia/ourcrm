@@ -98,7 +98,7 @@ export class ViewQuotPage implements OnInit {
     'discount': 'Discount',
     'discountamt': 'Discount Amount',
     'totaltax': 'Total Tax',
-    'pretax': 'Pre-tax',
+     'pretax': 'Pre-tax',
     'posttax': 'Post-tax',
     'total': 'Total',
     'attr1':'Attribute 1'

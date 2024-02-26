@@ -68,8 +68,8 @@
                     label="--Group Name--" label-placement="floating" fill="outline" fill="outline" name="lgroup_name"
                     formControlName="lgroup_name" [(ngModel)]="lgroup_name">
                     <!-- <ion-select-option value="">  -- Group Name -- </ion-select-option> Default option with value 0  -->
-                    <ion-select-option *ngFor="let itemgroup of itemgroups$  | async" [value]="itemgroup.itemgroupid">
-                      {{ itemgroup.itemgroupname }}
+                    <ion-select-option *ngFor="let groupname of ledgergroup$  | async" [value]="groupname.groupid">
+                      {{ groupname.groupname }}
                     </ion-select-option>
                   </ion-select>
                 </ion-row>

@@ -1,191 +1,114 @@
-<ion-content>
-  <div class="Customer">
-    <div>
-      <ion-card-content>
-        <div class="dekstop-menu">
-          <ion-card-header >
-            <ion-row lines="none">
-              <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
-              <ion-title style="text-align: center;">Quotation Report</ion-title>
-            </ion-row>
-          </ion-card-header>
-        </div>
-        <ion-grid>
-        <form #viewQuoteForm="ngForm" >
-          <ion-row>
-            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
-              <ion-row>
-                <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
-                  label-placement="floating" fill="outline"></ion-input>
+  <ion-content>
+    <div class="Customer">
+      <div>
+        <ion-card-content>
+          <div class="dekstop-menu">
+            <ion-card-header >
+              <ion-row lines="none">
+                <ion-icon (click)="goBack()" class="back" name="arrow-back"></ion-icon>
+                <ion-title style="text-align: center;">Quotation Report</ion-title>
               </ion-row>
-            </ion-col>
-            <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
-              <ion-row>
-                <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
-                  label-placement="floating" fill="outline"></ion-input>
-              </ion-row>
-            </ion-col>
-            <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
-              <ion-button type="submit" expand="block" (click)="filterData()">Ok</ion-button>
-            </ion-col>
-           
-            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
-                          interface="popover" label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
-                          multiple="true">
-                <ion-select-option value="today">Today</ion-select-option>
-                <ion-select-option value="monthly">Monthly</ion-select-option>
-                <ion-select-option value="quartly">Quartly</ion-select-option>
-                <ion-select-option value="annually">Annually</ion-select-option>
-              </ion-select>
-            </ion-col>
-            <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
-              <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
-                <ion-select-option value="Standard">Standard</ion-select-option>
-                <ion-select-option value="PartyWise">PartyWise</ion-select-option>
-                <ion-select-option value="ItemWise">ItemWise</ion-select-option>
-                <ion-select-option value="Detailed">Detailed</ion-select-option>
-
-              </ion-select>
-            </ion-col>
-            <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
-              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
-                label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
-                name="selectedColumns" multiple="true">
-                <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
-              </ion-select>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
-          </ion-row>
-          <ion-row class="Executive">
-            <ion-row class="data">
-              <h1>Quotation List :</h1>
-            </ion-row>
-            <div #content id="content" class="scroll-container">
-
-              <table id="quotationTable" style="width: 100%;">
-                <thead>
-                  <tr>
-                    <th>Sr. No.</th>
-                    <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let quote of quote$ | async; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td *ngFor="let col of selectedColumns">{{ quote[col] }}</td>
-                    <td class="Action">
-                      <ion-icon color="danger" icon-only name="trash"></ion-icon>
-                      <ion-icon color="primary" icon-only name="create"></ion-icon>
-                    </td>
-                  </tr>
-                 
-                </tbody>
-              </table>
-            </div>
+            </ion-card-header>
+          </div>
+          <ion-grid>
+          <form #viewQuoteForm="ngForm" >
+            <ion-row>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="formDate" name="formDate" type="date" label=" From Date  :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="2" size-md="6" size-sm="6" size="5">
+                <ion-row>
+                  <ion-input color="warning" [(ngModel)]="toDate" name="toDate" type="date" label=" To Date :"
+                    label-placement="floating" fill="outline"></ion-input>
+                </ion-row>
+              </ion-col>
+              <ion-col size-lg="1" size-md="2" size-sm="6" size="2" class="custom-primary">
+                <ion-button type="submit" expand="block" (click)="filterData()">Ok</ion-button>
+              </ion-col>
             
-              <div [attr.colspan]="selectedColumns.length + 1" class="total">
-                <p>Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                <ion-select [(ngModel)]="selectedTimePeriods" class="always-flip" toggleIcon="caret-down-sharp" color="dark"
+                            interface="popover" label="Select Time Period" label-placement="floating" fill="outline" name="selectedColumns"
+                            multiple="true">
+                  <ion-select-option value="today">Today</ion-select-option>
+                  <ion-select-option value="monthly">Monthly</ion-select-option>
+                  <ion-select-option value="quartly">Quartly</ion-select-option>
+                  <ion-select-option value="annually">Annually</ion-select-option>
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="2" size-md="2" size-sm="6" size="12">
+                <ion-select  class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Select Report Type" label-placement="floating" fill="outline" name="selectedColumns" multiple="true">
+                  <ion-select-option value="Standard">Standard</ion-select-option>
+                  <ion-select-option value="PartyWise">PartyWise</ion-select-option>
+                  <ion-select-option value="ItemWise">ItemWise</ion-select-option>
+                  <ion-select-option value="Detailed">Detailed</ion-select-option>
+
+                </ion-select>
+              </ion-col>
+              <ion-col size-lg="3" size-md="3" size-sm="6" size="12">
+                <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                  label="Select Coloumns" label-placement="floating" fill="outline" [(ngModel)]="selectedColumns"
+                  name="selectedColumns" multiple="true">
+                  <ion-select-option *ngFor="let col of availableColumns" [value]="col">{{ columnHeaders[col] }}</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-searchbar class="custom" [ngModelOptions]="{standalone: true}" showCancelButton="focus" [(ngModel)]="searchTerm" (ionInput)="onSearchTermChanged()"></ion-searchbar>
+            </ion-row>
+            <ion-row class="Executive">
+              <ion-row class="data">
+                <h1>Quotation List :</h1>
+              </ion-row>
+              <div #content id="content" class="scroll-container">
+
+                <table id="quotationTable" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th *ngFor="let col of selectedColumns">{{ columnHeaders[col] }}</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr *ngFor="let quote of quote$ | async; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td *ngFor="let col of selectedColumns">{{ quote[col] }}</td>
+                      <td class="Action">
+                        <ion-icon color="danger" icon-only name="trash"></ion-icon>
+                        <ion-icon color="primary" icon-only name="create"></ion-icon>
+                      </td>
+                    </tr>
+                  
+                  </tbody>
+                </table>
               </div>
-            
-          </ion-row>
-          <ion-row class="custom-primary" style="justify-content: right;">
-            <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
-                color="secondry"></ion-icon>Print</ion-button>
-            <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
-                color="secondry"></ion-icon>Export To PDF</ion-button>
-            <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
-                color="secondry"></ion-icon>Preview</ion-button>
-            <ion-button size="small"><ion-icon name="grid" slot="end" size="small"
-                color="secondry"></ion-icon>Export Excel</ion-button>
-          </ion-row>
-          <!-- <ion-row>
-            <div  class="scroll-container"  style="overflow-x:auto; width: 100%;">
-              <table style="width:2500px;">
-                <tr>
-                  <th >Sr.No.</th>
-                  <th >Bill Formate</th>
-                  <th >Quote No.</th>
-                  <th >Quote Date</th>
-                  <th >Customer Code</th>
-                  <th >Customer Name</th>
-                  <th >Refrence No.</th>
-                  <th >Refrence Date</th>
-                  <th >Delivery Date</th>
-                  <th>Delivery Place</th>
+              
+                <div [attr.colspan]="selectedColumns.length + 1" class="total">
+                  <p>Total: <span style="margin-left: 10px;">{{totalItems }}</span></p>
+                </div>
+              
+            </ion-row>
+            <ion-row class="custom-primary" style="justify-content: right;">
+              <ion-button size="small" (click)="printThisPage()"><ion-icon name="print" slot="end" size="small"
+                  color="secondry"></ion-icon>Print</ion-button>
+              <ion-button size="small" (click)="generatePdf()"><ion-icon name="document" slot="end" size="small"
+                  color="secondry"></ion-icon>Export To PDF</ion-button>
+              <ion-button size="small" (click)="printThisPage()"><ion-icon name="eye" slot="end" size="small"
+                  color="secondry"></ion-icon>Preview</ion-button>
+              <ion-button size="small"><ion-icon name="grid" slot="end" size="small"
+                  color="secondry"></ion-icon>Export Excel</ion-button>
+            </ion-row>
+          </form>
+        </ion-grid>
 
-                  <th >BarCode</th>
-                  <th>Item Code</th>
-                  <th >Item Name</th>
-                  <th >Description</th>
-                  <th>Quantity</th>
-                  <th>Unit</th>
-                  <th>MRP</th>
-                  <th>Basic Rate</th>
-                  <th>Net Rate</th>
-                  <th>Gross Amount</th>
-                  <th>GST</th>
-                  <th>CGST</th>
-                  <th>SGST</th>
-                  <th>IGST</th>
-                  <th>Discount %</th>
-                  <th >Discount Amount</th>
-                  <th>Tax Amount</th>
-                  <th>Pre-Tax</th>
-                  <th>Post-Tax</th>
-                  <th>Net Amount</th>
-                  <th>Action</th>
-                </tr>
-                <tr *ngFor="let quote of filteredQuatation$ | async; let i = index">
-                  <td>{{i+1}}</td>
-                  <td>{{quote.billformate}}</td>
-                  <td>{{quote.quoteNumber}}</td>
-                  <td>{{quote.quateDate}}</td>
-                  <td>{{quote.custcode}}</td>
-                  <td>{{quote.custname}}</td>
-                  <td>{{quote.refrence}}</td>
-                  <td>{{quote.refdate}}</td>
-                  <td>{{quote.deliverydate}}</td>
-                  <td>{{quote.deliveryplace}}</td>
-
-                  <td>{{quote.barcode}}</td>
-                  <td>{{quote.itemcode}}</td>
-                  <td>{{quote.itemname}}</td>
-                  <td>{{quote.description}}</td>
-                  <td>{{quote.quantity}}</td>
-                  <td>{{quote.unitname}}</td>
-                  <td>{{quote.mrp  | currency : 'INR'}}</td>
-                  <td>{{quote.basicrate  | currency : 'INR'}}</td>
-                  <td>{{quote.netrate  | currency : 'INR'}}</td>
-                  <td>{{quote.grossrate  | currency : 'INR'}}</td>
-                  <td>{{quote.taxrate}} %</td>
-                  <td>{{quote.IGST}} %</td>
-                  <td>{{quote.CGST}} %</td>
-                  <td>{{quote.SGST}} %</td>
-                  <td>{{quote.discount}} %</td>
-                  <td>{{quote.discountamt  | currency : 'INR'}}</td>
-                  <td>{{quote.totaltax  | currency : 'INR'}}</td>
-                  <td>{{quote.pretax  | currency : 'INR'}}</td>
-                  <td>{{quote.posttax  | currency : 'INR'}}</td>
-                  <td>{{quote.total  | currency : 'INR'}}</td>
-                  <td>
-                    <ion-icon name="create"></ion-icon>
-                    <ion-icon name="trash" (click)="deleteRow(i)"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </ion-row>
-         -->
-        </form>
-      </ion-grid>
-
-      </ion-card-content>
+        </ion-card-content>
+      </div>
     </div>
-  </div>
-</ion-content>
+  </ion-content>
