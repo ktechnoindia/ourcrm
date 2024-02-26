@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { ActivatedRoute, NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { NavigationStart, Router, RouterLink, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 import { GsttypeService } from '../services/gsttype.service';
 import { UnitnameService } from '../services/unitname.service';
 import { HsnService, hsn } from '../services/hsn.service';
@@ -19,12 +19,7 @@ import { CreateunitService, unit } from '../services/createunit.service';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { EncryptionService } from '../services/encryption.service';
 import { SessionService } from '../services/session.service';
-import { LedgergroupService } from '../services/ledgergroup.service';
-interface Group {
-  groupname: string;
-  parentgroup: string;
-  companyid: number;
-}
+
 interface Item {
   itemDesccription: string;
   classofvehicle: string;
@@ -173,7 +168,7 @@ export class AddItemPage implements OnInit {
 
   groupop: FormGroup;
   itemgroupname: string = '';
-  parentgroup:string = '';
+  parentgroup: number = 0;
   itemDesccription: string = '';
   classofvehicle: string = '';
   makersname: string = '';
@@ -193,13 +188,9 @@ export class AddItemPage implements OnInit {
   step3: boolean = false;
   step1: boolean = false;
   units$: Observable<any[]>
-  ledgergroup$: Observable<any[]>;
-  groupname: string='';
-  subscription: Subscription = new Subscription();
-  edit: any;
-  constructor(private route: ActivatedRoute,private ledgrpservice:LedgergroupService,public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+
+  constructor(public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
     const compid = '1';
-    this.ledgergroup$ = this.ledgrpservice.getledgerGroups(1);
 
     this.selectGst$ = this.gstsrvs.getgsttype();
     // this.unitname$ = this.unittype.getunits();
@@ -244,7 +235,7 @@ export class AddItemPage implements OnInit {
       attr8: [''],
       mrp: [''],
       salerate: [''],
-      attributes: this.formBuilder.group({}),
+      attributes: [''],
       searchTerm: [''],
       purchaserate: [''],
       basicrate: [''],
@@ -268,8 +259,6 @@ export class AddItemPage implements OnInit {
       wheelbase: [''],
       dealerrate: [''],
   subdealerrate: [''],
-  groupname:[''],
-  itemgroupname:[''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -285,8 +274,7 @@ export class AddItemPage implements OnInit {
     this.groupop = this.formBuilder.group({
       itemgroupname: ['', Validators.required],
       parentgroup: [''],
-      searchTerm: [''],
-      groupname:[''],
+      searchTerm: ['']
     });
 
     this.router.events.subscribe((event) => {
@@ -330,20 +318,17 @@ export class AddItemPage implements OnInit {
   async onSubmit() {
     const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode }
     const isValid = await this.formService.validateForm(fields);
-    const companid=1;
-    const tid =1;
-    if (await this.formService.validateForm(fields)) {
+  //  if (await this.formService.validateForm(fields)) {
       this.submitted = true;
       console.log('Your form data : ', this.myform.value);
-      const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
-      const userid = await this.session.getValue('userid');
+
       let itemdata: item = {
         itemDesc: this.myform.value.itemDesc,
         itemCode: this.myform.value.itemCode,
         hsnname:this.hsnname,
         // hsnname: this.myform.value.hsnname.toString(),
         selectHSN: 1,
-        unitname: this.myform.value.unitname.toString(),
+        unitname: this.myform.value.unitname,
         selectItem: 1,
         selectStock: 1,
         selectPrimaryUnit: 1,
@@ -351,8 +336,8 @@ export class AddItemPage implements OnInit {
         itemtype: '',
         stocktype: '',
         selectGstservice: 1,
-        stocktypename: this.myform.value.stocktypename.toString(),
-        itemtypename: this.myform.value.itemtypename.toString(),
+        stocktypename: this.myform.value.stocktypename,
+        itemtypename: this.myform.value.itemtypename,
 
         selectItemGroup: this.myform.value.selectItemGroup,
         selectGst: this.myform.value.selectGst,
@@ -401,18 +386,6 @@ export class AddItemPage implements OnInit {
         bodytype: this.myform.value.bodytype,
         wheelbase: this.myform.value.wheelbase
       };
-      if (this.edit) {
-        this.itemService.editItem(companid,tid).subscribe((response: any) => {
-          if (response.status) { 
-            this.openToast('Saved!'); 
-          } else { 
-            this.openToast('Not Saved'); 
-          }
-        }, (error) => {
-          console.log('error caught in component' + error.message);
-          this.openToast('error ' + error.message);
-        });
-      } else {
       this.itemService.createItem(itemdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -427,23 +400,21 @@ export class AddItemPage implements OnInit {
       );
       this.myform.reset();
 
-    } }else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
-        if (control?.invalid) {
-          control.markAsTouched();
-        }
-      });
-      if (this.firstInvalidInput) {
-        this.firstInvalidInput.setFocus();
-      }
-    }
+    // } else {
+    //   //If the form is not valid, display error messages
+    //   Object.keys(this.myform.controls).forEach(controlName => {
+    //     const control = this.myform.get(controlName);
+    //     if (control?.invalid) {
+    //       control.markAsTouched();
+    //     }
+    //   });
+    //   if (this.firstInvalidInput) {
+    //     this.firstInvalidInput.setFocus();
+    //   }
+    // }
 
   }
-  openToast(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
+
   onNew() {
     location.reload();
   }
@@ -460,65 +431,7 @@ export class AddItemPage implements OnInit {
         this.myform.reset();
       }
     });
-    this.route.queryParams.subscribe(params => {
-      const editMode = params['edit'];
-      const item = JSON.parse(params['item']); // Parse the string back to an object
-      
-      if (editMode && item) {
-        // Pre-fill form fields with item data
-        this.myform.patchValue({
-          itemCode:item.itemCode,
-          itemDesc:item.itemDesc,
-          itemDesccription:item.itemDesccription,
-          hsnname:item.hsnname,
-          selectGst:item.selectGst,
-          unitname:item.unitname,
-          selectItemGroup:item.selectItemGroup,
-          mrp:item.mrp,
-          purchaserate:item.purchaserate,
-          basicrate:item.basicrate,
-          salerate:item.salerate,
-          dealerrate:item.dealerrate,
-          subdealerrate:item.subdealerrate,
-          stocktypename:item.stocktypename,
-          itemtypename:item.itemtypename,
-          openingbalance:item.openingbalance,
-          closingbalance:item.closingbalance,
-          attr1: item.attr1,
-  attr2: item.attr2,
-  attr3: item.attr3,
-  attr4: item.attr4,
-  attr5: item.attr5,
-  attr6: item.attr6,
-  attr7: item.attr7,
-  attr8: item.attr8,
-  barcode: item.barcode,
-  basic_rate: item.basic_rate,
-  companyid: item.companyid,
-  crdate: item.crdate,
-  isactive: item.isactive,
-  itemname: item.itemname,
-  itemtype: item.itemtype,
-  maximum: item.maximum,
-  minimum: item.minimum,
-  net_rate: item.net_rate,
-  purchase_rate: item.purchase_rate,
-  reorder: item.reorder,
-  selectGstservice: item.selectGstservice,
-  selectHSN: item.selectHSN,
-  selectItem: item.selectItem,
-  selectPrimaryUnit: item.selectPrimaryUnit,
-  selectStock: item.selectStock,
-  selectunitname: item.selectunitname,
-  stocktype: item.stocktype,
-  tid: item.tid,
-  userid: item.userid
-        }
-        
-        
-        );
-      }
-    });
+  
   }
   fetchData() {
     this.units$ = this.unitService.fetchallunit('','','');
@@ -668,10 +581,8 @@ export class AddItemPage implements OnInit {
   async OnGroupSubmit() {
     const fields = { groupname: this.itemgroupname };
     const companyid = 1;
-
-    // Validate the form
     const isValid = await this.formService.validateForm(fields);
-
+  
     if (isValid) {
       console.log('Your form data : ', this.groupop.value);
       let groupdata: group = {
@@ -698,25 +609,20 @@ export class AddItemPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-
     } else {
-        // If the form is not valid, display error messages
-       // If the form is not valid, display error messages
-       Object.keys(this.groupop.controls).forEach(controlName => {
+      // If the form is not valid, display error messages
+      Object.keys(this.groupop.controls).forEach(controlName => {
         const control = this.groupop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
-            }
-        });
-
-        // Set focus to the first invalid input field
+        }
+      });
+      // Set focus to the first invalid input field
       if (this.firstInvalidInput) {
         this.firstInvalidInput.setFocus();
       }
     }
-}
-
-
+  }
   
   fetchItemGroups() {
     this.itemgroups$ = this.groupService.getAllGroups(1);
@@ -741,7 +647,7 @@ export class AddItemPage implements OnInit {
 
   selectOption(option: any) {
     // Handle option selection
-    this.hsnname=option.value.hsnname;
+    this.hsnname=option.hsnname;
     console.log('Selected option:', option);
   }
   toggleStep3() {
