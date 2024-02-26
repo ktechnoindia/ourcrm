@@ -498,19 +498,20 @@ export class AddQuotPage implements OnInit {
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-    // htmlForm.addEventListener('keydown', (event) => {
-    //   // Prevent the default behavior for Enter key
-    //   if (event.key === 'Enter') {
-    //     event.preventDefault();
-    //   }
-    // });
+    htmlForm.addEventListener('keydown', (event) => {
+      // Prevent the default behavior for Enter key
+      if (event.key === 'Enter') {
+        event.preventDefault();
+      }
+    });
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     const isValid = await this.formService.validateForm(fields);
+    const quotedatas: quotestore[] = [];
+
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
 
-      const quotedatas: quotestore[] = [];
 
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;

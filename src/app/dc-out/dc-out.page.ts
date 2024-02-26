@@ -356,10 +356,11 @@ export class DcOutPage implements OnInit {
   });
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
+    let dcoutdatas: dcoutstore[] = [];
+
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcoutData));
-      let dcoutdatas: dcoutstore[] = [];
       for (const element of dcoutData) {
 
         element.grossrate = element.basicrate * element.quantity;

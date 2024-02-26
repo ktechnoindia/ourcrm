@@ -409,14 +409,21 @@ isOpen = false;
 
 
   async onSubmit(form: FormGroup, dcinData: Dcin[]) {
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
+    htmlForm.addEventListener('keydown', (event) => {
+      // Prevent the default behavior for Enter key
+      if (event.key === 'Enter') {
+          event.preventDefault();
+      }
+  });
     const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
     const isValid = await this.formService.validateForm(fields);
-   
+    let decindatas: dcinstore[] = [];
+
     if (await this.formService.validateForm(fields)) {
 
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
-      let decindatas: dcinstore[] = [];
 
       for (const element of dcinData) {
 
