@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, PopoverController, ToastController } from '@ionic/angular';
@@ -233,6 +233,7 @@ export class AddQuotPage implements OnInit {
   purchasebyid$: Observable<any[]>
   isQuantityPopoverOpen: boolean = false;
   purchaseData: any;
+  focusedRowIndex: any;
   printThisPage() {
     window.print();
   }
@@ -244,6 +245,55 @@ export class AddQuotPage implements OnInit {
   allOptions: any[] = [];
   inputsVisible: boolean = true;
   attdata:any[]=[];
+  addNewRow() {
+    // Assuming quoteData is your array holding rows data
+    this.quoteData.push({
+      barcode: '',
+      itemcode: 0,
+      itemname: '',
+      description: '',
+      quantity: 0,
+      unitname: '',
+      hunitname: 0,
+      mrp: 0,
+      basicrate: 0,
+      netrate: 0,
+      grossrate: 0,
+      taxrate: 0,
+      CGST: 0,
+      SGST: 0,
+      IGST: 0,
+      discount: 0,
+      discountamt: 0,
+      totaltax: 0,
+      total: 0,
+      taxrate1: 0,
+      itemid: 0,
+      selectedItemId: 0,
+      quantityPopoverData: [],
+      attribute1: '',
+      attribute2: '',
+      attribute3: '',
+      attribute4: '',
+      attribute5: '',
+      attribute6: '',
+      attribute7: '',
+      attribute8: ''
+    }); // Add an empty object for a new row
+
+    
+  }
+
+// Event listener for keydown events
+@HostListener('document:keydown', ['$event'])
+handleKeyboardEvent(event: KeyboardEvent) {
+  if (event.key === 'Enter' && event.shiftKey) {
+    // If Shift+Enter is pressed, add a new row
+    this.addNewRow();
+  } 
+}
+
+
 
   constructor(private saleService: SalesService, private cdr: ChangeDetectorRef, private popoverController: PopoverController, private navCtrl: NavController, private formBuilder: FormBuilder, private custname1: CustomerService, private encService: EncryptionService, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private quote: QuotationService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService,) {
     this.purchasebyid$ = new Observable;
@@ -496,14 +546,14 @@ export class AddQuotPage implements OnInit {
   // }
 
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
-    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+    // const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-    htmlForm.addEventListener('keydown', (event) => {
-      // Prevent the default behavior for Enter key
-      if (event.key === 'Enter') {
-        event.preventDefault();
-      }
-    });
+    // htmlForm.addEventListener('keydown', (event) => {
+    //   // Prevent the default behavior for Enter key
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault();
+    //   }
+    // });
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     const isValid = await this.formService.validateForm(fields);
     const quotedatas: quotestore[] = [];
