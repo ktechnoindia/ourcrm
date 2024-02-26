@@ -546,8 +546,8 @@ handleKeyboardEvent(event: KeyboardEvent) {
   // }
 
   async onSubmit(form: FormGroup, quoteData: Quote[]) {
-    // const htmlForm = document.getElementById('myForm') as HTMLFormElement;
-
+    const htmlForm = document.getElementById('myForm') as HTMLFormElement;
+  
     // htmlForm.addEventListener('keydown', (event) => {
     //   // Prevent the default behavior for Enter key
     //   if (event.key === 'Enter') {
@@ -556,13 +556,11 @@ handleKeyboardEvent(event: KeyboardEvent) {
     // });
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
     const isValid = await this.formService.validateForm(fields);
-    const quotedatas: quotestore[] = [];
-
+    const quotestores: quotestore[] = [];
+    console.log('data of ', quotestores);
+  
     if (await this.formService.validateForm(fields)) {
-
-      console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(quoteData));
-
-
+  
       for (const element of quoteData) {
         element.grossrate = element.basicrate * element.quantity;
         // element.netrate = element.basicrate + element.totaltax;
@@ -587,7 +585,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           companyid: attr.companyid,
           itemcode: attr.itemcode,
         }))
-        const quotedata: quotestore = {
+        const quotestore: quotestore = {
           billformate: this.myform.value.billformate,
           quoteNumber: this.myform.value.quoteNumber,
           quateDate: this.myform.value.quateDate,
@@ -633,27 +631,32 @@ handleKeyboardEvent(event: KeyboardEvent) {
           companyid: companyid,
           userid: userid,
           quantityPopoverData: attributesArray,
-
+  
         };
-
-        quotedatas.push(quotedata);
+  
+        quotestores.push(quotestore);
       }
-      this.quote.createquote(quotedatas, '', '').subscribe(
+      this.quote.createquote(quotestores, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
           this.formService.showSaveLoader();
-          this.myform.reset();
-          // Consider navigating to a different page or providing a success message instead of location.reload()
+          
+          // Append the submitted data to the existing data array
+          this.quoteData.push(...quoteData);
+          
+          // Reset the form after successfully submitting the data
+this.myform.reset();
+                    //  location.reload()
+
         },
         (error: any) => {
           console.error('POST request failed', error);
           this.formService.showFailedAlert();
           this.formService.shoErrorLoader();
-          this.myform.reset();
         }
       );
-
+  
     } else {
       //If the form is not valid, display error messages
       Object.keys(this.myform.controls).forEach(controlName => {
@@ -666,8 +669,9 @@ handleKeyboardEvent(event: KeyboardEvent) {
         this.firstInvalidInput.setFocus();
       }
     }
-
-  }
+  
+  };
+  
   // tatts: number = 0;
 
   getItems(quote: any) {
@@ -1066,12 +1070,12 @@ handleKeyboardEvent(event: KeyboardEvent) {
     // Fetch data and populate hsnOptions$
     // this.fetchData();
 
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // Reset form data when navigating away from the page
-        this.myform.reset();
-      }
-    });
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     // Reset form data when navigating away from the page
+    //     this.myform.reset();
+    //   }
+    // });
   }
   // fetchData() {
   //   // this.customer$ = this.custname1.fetchallCustomer('','','');

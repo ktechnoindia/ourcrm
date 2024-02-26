@@ -393,22 +393,22 @@ handleKeyboardEvent(event: KeyboardEvent) {
 
   async onSubmit(form: FormGroup, dcoutData: Dcout[]) {
     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
-
-    htmlForm.addEventListener('keydown', (event) => {
-      // Prevent the default behavior for Enter key
-      if (event.key === 'Enter') {
-          event.preventDefault();
-      }
-  });
-    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
+  
+    // htmlForm.addEventListener('keydown', (event) => {
+    //   if (event.key === 'Enter') {
+    //       event.preventDefault();
+    //   }
+    // });
+  
+    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode };
     const isValid = await this.formService.validateForm(fields);
-
-    if (await this.formService.validateForm(fields)) {
+  
+    if (isValid) {
       let dcoutdatas: dcoutstore[] = [];
-
+  
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcoutData));
+  
       for (const element of dcoutData) {
-
         element.grossrate = element.basicrate * element.quantity;
         // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
@@ -416,7 +416,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
-
+  
         console.log(element);
         const companyid = 1;
         const userid = 1;
@@ -431,7 +431,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           attr8: attr.attr8,
           companyid: companyid,
           itemcode: element.itemcode,
-        }))
+        }));
         let dcoutdata: dcoutstore = {
           voucherformat: this.myform.value.voucherformat,
           voucherNumber: this.myform.value.voucherNumber,
@@ -440,7 +440,6 @@ handleKeyboardEvent(event: KeyboardEvent) {
           suppliertype: this.myform.value.suppliertype,
           referenceNumber: this.myform.value.referenceNumber,
           refdate: this.myform.value.refdate,
-
           barcode: element.barcode,
           itemcode: element.itemcode,
           itemname: element.itemname,
@@ -450,7 +449,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           mrp: element.mrp,
           basicrate: element.basicrate,
           netrate: element.netrate,
-          grossrate: element.grossrate, // Add grossrate
+          grossrate: element.grossrate,
           taxrate: element.taxrate,
           IGST: element.IGST,
           CGST: element.CGST,
@@ -479,11 +478,11 @@ handleKeyboardEvent(event: KeyboardEvent) {
           taxrate1: element.taxrate1,
           ponumber: this.myform.value.ponumber,
           quantityPopoverData: attributesArray,
-
         };
-
+  
         dcoutdatas.push(dcoutdata);
       }
+  
       this.dcout.createdcout(dcoutdatas, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -502,7 +501,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           this.formService.shoErrorLoader();
         }
       );
-
+  
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -515,58 +514,8 @@ handleKeyboardEvent(event: KeyboardEvent) {
       }
     }
   }
-  async ionViewWillEnter() {
-    //   const userid = await this.session.getValue('userid');
-    //   if (userid == null || userid == 'undefined' || userid == '') {
-    //     this.router.navigate(['/login']);
-    //   }
-    //  this.setlangvals();
-    this.dcoutData = [{
-      barcode: '',
-      itemcode: 0,
-      itemname: '',
-      description: '',
-      quantity: 0,
-      unitname: '',
-      hunitname: 0,
-      mrp: 0,
-      basicrate: 0,
-      netrate: 0,
-      grossrate: 0,
-      taxrate: 0,
-      CGST: 0,
-      SGST: 0,
-      IGST: 0,
-      discount: 0,
-      discountamt: 0,
-      totaltax: 0,
-      total: 0,
-      taxrate1: 0,
-      itemid: 0,
-      selectedItemId: 0,
-      quantityPopoverData: [{
-        attr1: '',
-        attr2: '',
-        attr3: '',
-        attr4: '',
-        attr5: '',
-        attr6: '',
-        attr7: '',
-        attr8: '',
-        companyid: 0,
-        itemcode: 0,
-      }],
-      attribute1: '',
-      attribute2: '',
-      attribute3: '',
-      attribute4: '',
-      attribute5: '',
-      attribute6: '',
-      attribute7: '',
-      attribute8: '',
-
-    }];
-  }
+  
+ 
 
   addDcout() {
     console.log('addrowwww' + this.dcoutData.length);

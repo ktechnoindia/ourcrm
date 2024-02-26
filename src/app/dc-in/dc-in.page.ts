@@ -459,23 +459,22 @@ handleKeyboardEvent(event: KeyboardEvent) {
 
   async onSubmit(form: FormGroup, dcinData: Dcin[]) {
     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
-
-    htmlForm.addEventListener('keydown', (event) => {
-      // Prevent the default behavior for Enter key
-      if (event.key === 'Enter') {
-          event.preventDefault();
-      }
-  });
-    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode }
+  
+    // htmlForm.addEventListener('keydown', (event) => {
+    //   // Prevent the default behavior for Enter key
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault();
+    //   }
+    // });
+  
+    const fields = { voucherNumber: this.voucherNumber, suppliertype: this.suppliertype, vendcode: this.vendcode };
     const isValid = await this.formService.validateForm(fields);
-    let decindatas: dcinstore[] = [];
-
-    if (await this.formService.validateForm(fields)) {
-
+    const dcinstores: dcinstore[] = [];
+  
+    if (isValid) {
       console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(dcinData));
-
+  
       for (const element of dcinData) {
-
         element.grossrate = element.basicrate * element.quantity;
         // element.netrate = element.basicrate + element.taxrate1;
         element.CGST = ((element.taxrate1 / 100 * element.basicrate) * element.quantity) / 2;
@@ -483,9 +482,9 @@ handleKeyboardEvent(event: KeyboardEvent) {
         element.IGST = (element.taxrate1 / 100 * element.basicrate) * element.quantity;
         element.total = element.totaltax + element.grossrate;
         element.totaltax = element.quantity * (element.taxrate1 / 100 * element.basicrate);
-
+  
         console.log(element);
-
+  
         const companyid = 1;
         const userid = 1;
         let attributesArray = element.quantityPopoverData.map(attr => ({
@@ -497,9 +496,10 @@ handleKeyboardEvent(event: KeyboardEvent) {
           attr6: attr.attr6,
           attr7: attr.attr7,
           attr8: attr.attr8,
-          companyid:companyid,
-          itemcode:element.itemcode,
-        }))
+          companyid: companyid,
+          itemcode: element.itemcode,
+        }));
+  
         let dcindata: dcinstore = {
           voucherformat: this.myform.value.voucherformat,
           voucherNumber: this.myform.value.voucherNumber,
@@ -527,8 +527,8 @@ handleKeyboardEvent(event: KeyboardEvent) {
           totaltax: element.totaltax,
           total: element.total,
           taxrate1: element.taxrate1,
-          pretax:this.myform.value.pretax,
-          posttax:this.myform.value.posttax,
+          pretax: this.myform.value.pretax,
+          posttax: this.myform.value.posttax,
           totalitemno: this.myform.value.totalitemno,
           totalquantity: this.myform.value.totalquantity,
           totalgrossamt: this.myform.value.totalgrossamt,
@@ -546,30 +546,29 @@ handleKeyboardEvent(event: KeyboardEvent) {
           userid: userid,
           ponumber: this.myform.value.ponumber,
           quantityPopoverData: attributesArray,
-
-        }
-        
-        decindatas.push(dcindata);
+        };
+  
+        dcinstores.push(dcindata);
       }
-        this.dcinService.createdcin(decindatas, '', '').subscribe(
-          (response: any) => {
-            console.log('POST request successful', response);
-            setTimeout(() => {
-              this.formService.showSuccessAlert();
-            }, 1000);
-            this.formService.showSaveLoader();
-            this.myform.reset();
-            //location.reload();
-          },
-          (error: any) => {
-            console.log('POST request failed', error);
-            setTimeout(() => {
-              this.formService.showFailedAlert();
-            }, 1000);
-            this.formService.shoErrorLoader();
-          }
-          
-        );
+  
+      this.dcinService.createdcin(dcinstores, '', '').subscribe(
+        (response: any) => {
+          console.log('POST request successful', response);
+          setTimeout(() => {
+            this.formService.showSuccessAlert();
+          }, 1000);
+          this.formService.showSaveLoader();
+          this.myform.reset();
+          // location.reload();
+        },
+        (error: any) => {
+          console.log('POST request failed', error);
+          setTimeout(() => {
+            this.formService.showFailedAlert();
+          }, 1000);
+          this.formService.shoErrorLoader();
+        }
+      );
     } else {
       Object.keys(this.myform.controls).forEach(controlName => {
         const control = this.myform.get(controlName);
@@ -582,6 +581,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
       }
     }
   }
+  
   tatts:number=0;
 
   getItems(dcin: any) {
