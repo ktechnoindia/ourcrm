@@ -224,7 +224,7 @@ export class AddItemPage implements OnInit {
       maximum: [0],
       reorder: [''],
       selectItemGroup: [''],
-
+      
       attr1: [''],
       attr2: [''],
       attr3: [''],
@@ -390,7 +390,7 @@ export class AddItemPage implements OnInit {
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-          this.myform.reset();
+          // this.myform.reset();
 
         },
         (error: any) => {
@@ -398,7 +398,80 @@ export class AddItemPage implements OnInit {
           this.formService.showFailedAlert();
         }
       );
-      this.myform.reset();
+       
+    
+      this.myform = this.formBuilder.group({
+        itemCode: ['', [Validators.required]],
+        itemDesc: ['', [Validators.required]],
+        hsnname: new FormControl(''),
+        stocktypename: [''].toString(),
+        itemtypename: [''].toString(),
+        unitname: [''].toString(),
+        selectGst: [0],
+        openingbalance: [''],
+        closingbalance: [''],
+        selectedAttribute: [''],
+        files: [''],
+        barcode: [0],
+        minimum: [0],
+        maximum: [0],
+        reorder: [''],
+        selectItemGroup: [0],
+        
+        attr1: [''],
+        attr2: [''],
+        attr3: [''],
+        attr4: [''],
+        attr5: [''],
+        attr6: [''],
+        attr7: [''],
+        attr8: [''],
+        mrp: [0],
+        salerate: [0],
+        attributes: {},
+        searchTerm: [''],
+        purchaserate: [0],
+        basicrate: [0],
+        labelname: [''],
+        valuename: [''],
+        framenumber: [''],
+        enginenumber: [''],
+        partnumber: [''],
+        color: [''],
+        itemDesccription: [''],
+        classofvehicle: [''],
+        makersname: [''],
+        hourspowerofcube: [''],
+        fuelused: [''],
+        noofcylinders: [''],
+        yearofmanufactur: [''],
+        seatingcapacity: [''],
+        unladenweight: [''],
+        grossvehicleweight: [''],
+        bodytype: [''],
+        wheelbase: [''],
+        dealerrate: [0],
+    subdealerrate: [0],
+      });
+      this.attributes={};
+      this.hsnpop = this.formBuilder.group({
+        hsncode: ['', [Validators.required]],
+        unit: [''],
+      });
+  
+      this.unitpop = this.formBuilder.group({
+        unit_name: ['', [Validators.required]],
+        short_name: [''],
+      });
+  
+      this.groupop = this.formBuilder.group({
+        itemgroupname: ['', Validators.required],
+        parentgroup: [''],
+        searchTerm: ['']
+      });
+     this.step1 = false;
+
+      // this.myform.reset();
 
     // } else {
     //   //If the form is not valid, display error messages
@@ -423,6 +496,7 @@ export class AddItemPage implements OnInit {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
   ngOnInit(): void {
+    
     // Fetch data and populate hsnOptions$
     this.fetchData();
     this.router.events.subscribe(event => {
@@ -431,7 +505,7 @@ export class AddItemPage implements OnInit {
         this.myform.reset();
       }
     });
-  
+    
   }
   fetchData() {
     this.units$ = this.unitService.fetchallunit('','','');
