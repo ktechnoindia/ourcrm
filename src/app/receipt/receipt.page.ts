@@ -76,7 +76,14 @@ export class ReceiptPage implements OnInit {
   selectedCustomerId: number = 0;
   // receiptBill$: Observable<any>;
   dataLength: number = 0;
-  myReceiptBillData: any[] = [];
+  myReceiptBillData: any[] = [{
+    billno: '',
+    billdate: '',
+    totalamt: 0,
+    receiveamt: 0,
+    currentamt: 0,
+    billpendingamt: 0,
+  }];
   receiptData: Recepit[] = [{
     billno: '',
     billdate: '',

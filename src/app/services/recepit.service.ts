@@ -35,6 +35,9 @@ export interface rec {
   providedIn: 'root'
 })
 export class RecepitService {
+  updateRecepit(sale: any) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://103.154.184.66:8000/account';
   constructor(private httpclient: HttpClient, private session:SessionService) { }
 
