@@ -54,7 +54,7 @@ export interface quotestore {
   userid:number;
   itemid:number;
   quantityPopoverData: {
-    attr1: string;
+    att1: string;
     attr2: string;
     attr3: string;
     attr4: string;

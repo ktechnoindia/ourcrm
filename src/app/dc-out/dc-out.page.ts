@@ -44,7 +44,7 @@ interface Dcout {
   itemid: number;
   selectedItemId: 0;
   quantityPopoverData: {
-    attr1: string;
+    att1: string;
     attr2: string;
     attr3: string;
     attr4: string;
@@ -144,7 +144,7 @@ export class DcOutPage implements OnInit {
     grossrate: 0,
     selectedItemId: 0,
     quantityPopoverData: [{
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',
@@ -421,7 +421,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
         const companyid = 1;
         const userid = 1;
         let attributesArray = element.quantityPopoverData.map(attr => ({
-          attr1: attr.attr1,
+          att1: attr.att1,
           attr2: attr.attr2,
           attr3: attr.attr3,
           attr4: attr.attr4,
@@ -605,7 +605,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           if (itemDetails.attr8 !== '') {
             this.tatts++;
           }
-          dcout.attribute1 = itemDetails.attr1,
+          dcout.attribute1 = itemDetails.att1,
             dcout.attribute2 = itemDetails.attr2,
             dcout.attribute3 = itemDetails.attr3,
             dcout.attribute4 = itemDetails.attr4,
@@ -855,7 +855,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
     });
 
     this.dcoutData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',

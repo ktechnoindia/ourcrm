@@ -46,7 +46,7 @@ interface Quote {
   itemid: number;
   selectedItemId: number;
   quantityPopoverData: {
-    attr1: string;
+    att1: string;
     attr2: string;
     attr3: string;
     attr4: string;
@@ -133,7 +133,7 @@ export class AddQuotPage implements OnInit {
   debit: number = 0;
   credit: number = 0;
 
-  attr1: string = '';
+  att1: string = '';
   attr2: string = '';
   attr3: string = '';
   attr4: string = '';
@@ -168,7 +168,7 @@ export class AddQuotPage implements OnInit {
     itemid: 0,
     selectedItemId: 0,
     quantityPopoverData: [{
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',
@@ -205,7 +205,7 @@ export class AddQuotPage implements OnInit {
   session: any;
   //quote: Quote ;
   rows = [
-    { attr1: null, attr2: null, attr3: null, attr4: null, attr5: null, attr6: null, attr7: null, attr8: null },
+    { att1: null, attr2: null, attr3: null, attr4: null, attr5: null, attr6: null, attr7: null, attr8: null },
     // Add more rows as needed
   ];
   showTable: boolean = false;
@@ -423,7 +423,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
       // Populate quantityPopoverData with empty objects
       this.quoteData[0].quantityPopoverData = new Array(quote.quantity).fill({})
         .map(() => ({
-          attr1: '',
+          att1: '',
           attr2: '',
           attr3: '',
           attr4: '',
@@ -522,7 +522,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
   //     itemid: 0,
   //     selectedItemId: 0,
   //     quantityPopoverData: [{
-  //       attr1: '',
+  //       att1: '',
   //       attr2: '',
   //       attr3: '',
   //       attr4: '',
@@ -555,7 +555,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
     //   }
     // });
     const fields = { quoteNumber: this.quoteNumber, custcode: this.custcode, custname: this.custcode }
-    const isValid = await this.formService.validateForm(fields);
+      const isValid = await this.formService.validateForm(fields);
     const quotestores: quotestore[] = [];
     console.log('data of ', quotestores);
   
@@ -574,7 +574,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
         const companyid = 1;
         const userid = 1;
         let attributesArray = element.quantityPopoverData.map(attr => ({
-          attr1: attr.attr1,
+          att1: attr.att1,
           attr2: attr.attr2,
           attr3: attr.attr3,
           attr4: attr.attr4,
@@ -720,7 +720,7 @@ this.myform.reset();
           // if (itemDetails.attr8 !== '') {
           //   this.tatts++;
           // }
-          quote.attribute1 = itemDetails.attr1,
+          quote.attribute1 = itemDetails.att1,
             quote.attribute2 = itemDetails.attr2,
             quote.attribute3 = itemDetails.attr3,
             quote.attribute4 = itemDetails.attr4,
@@ -1030,7 +1030,7 @@ this.myform.reset();
   }
   ngOnInit() {
     this.quoteData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',
@@ -1200,7 +1200,7 @@ this.myform.reset();
   //   // Generate new rows based on the quantity
   //   for (let i = 0; i < quantity; i++) {
   //     this.rows.push({
-  //       attr1: null,
+  //       att1: null,
   //       attr2: null,
   //       // ... other attributes
   //       attr8: null,

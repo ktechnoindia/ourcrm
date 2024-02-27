@@ -47,7 +47,7 @@ interface Sales {
   itemid: number;
   selectedItemId: number;
   quantityPopoverData: {
-    attr1: string;
+    att1: string;
     attr2: string;
     attr3: string;
     attr4: string;
@@ -151,7 +151,7 @@ export class AddSalePage implements OnInit {
     itemid: 0,
     selectedItemId: 0,
     quantityPopoverData: [{
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',
@@ -212,7 +212,7 @@ export class AddSalePage implements OnInit {
   purchasebyid$: Observable<any[]>
   isQuantityPopoverOpen: boolean = false;
 
-  attr1: string = '';
+  att1: string = '';
   attr2: string = '';
   attr3: string = '';
   attr4: string = '';
@@ -291,7 +291,6 @@ if (event.key === 'Enter' && event.shiftKey) {
   this.addNewRow();
 } 
 }
-
   constructor(private unitService: CreateunitService,public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = this.session.getValue('userid')?.valueOf() as number;
     const companyid = '1';
@@ -368,7 +367,7 @@ if (event.key === 'Enter' && event.shiftKey) {
       itemid: [''],
       ponumber: ['1'],
 
-      attr1: [''],
+      att1: [''],
       attr2: [''],
       attr3: [''],
       attr4: [''],
@@ -441,7 +440,7 @@ if (event.key === 'Enter' && event.shiftKey) {
       // Populate quantityPopoverData with empty objects
       this.salesData[0].quantityPopoverData = new Array(sale.quantity).fill({})
         .map(() => ({
-          attr1: '',
+          att1: '',
           attr2: '',
           attr3: '',
           attr4: '',
@@ -463,7 +462,7 @@ if (event.key === 'Enter' && event.shiftKey) {
   closeQuantityPopover() {
     this.isQuantityPopoverOpen = false;
   }
-
+ 
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
@@ -473,12 +472,11 @@ if (event.key === 'Enter' && event.shiftKey) {
     //         event.preventDefault();
     //     }
     // });
-
-    
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));
     let salesdatas: salesstore[] = [];
+    console.log('data of ', salesdatas);
 
     if (await this.formService.validateForm(fields)) {
 
@@ -495,7 +493,7 @@ if (event.key === 'Enter' && event.shiftKey) {
         const companyid = 1;
         const userid = 1;
         let attributesArray = element.quantityPopoverData.map(attr => ({
-          attr1: attr.attr1,
+          att1: attr.att1,
           attr2: attr.attr2,
           attr3: attr.attr3,
           attr4: attr.attr4,
@@ -694,7 +692,7 @@ if (event.key === 'Enter' && event.shiftKey) {
           // if (itemDetails.attr8 !== '') {
           //   this.tatts++;
           // }
-          sales.attribute1 = itemDetails.attr1,
+          sales.attribute1 = itemDetails.att1,
             sales.attribute2 = itemDetails.attr2,
             sales.attribute3 = itemDetails.attr3,
             sales.attribute4 = itemDetails.attr4,
@@ -781,7 +779,7 @@ if (event.key === 'Enter' && event.shiftKey) {
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      quantityPopoverData: this.salesData[0].quantityPopoverData.map(attr => ({ ...attr })),
+      quantityPopoverData: this.salesData[0].quantityPopoverData.map(att => ({ ...att })),
       attribute1: '',
       attribute2: '',
       attribute3: '',
@@ -990,7 +988,7 @@ if (event.key === 'Enter' && event.shiftKey) {
   }
   ngOnInit() {
     this.salesData[0].quantityPopoverData = Array.from({ length: this.quantity }, () => ({
-      attr1: '',
+      att1: '',
       attr2: '',
       attr3: '',
       attr4: '',

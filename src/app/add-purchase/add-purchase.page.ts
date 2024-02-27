@@ -552,57 +552,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
     }
   };
 
-  // async ionViewWillEnter() {
-  //   //   const userid = await this.session.getValue('userid');
-  //   //   if (userid == null || userid == 'undefined' || userid == '') {
-  //   //     this.router.navigate(['/login']);
-  //   //   }
-  //   //  this.setlangvals();
-  //   this.purchaseData = [{
-  //     barcode: '',
-  //     itemcode: 0,
-  //     itemname: '',
-  //     description: '',
-  //     quantity: 0,
-  //     unitname: '',
-  //     hunitname: 0,
-  //     mrp: 0,
-  //     basicrate: 0,
-  //     netrate: 0,
-  //     grossrate: 0,
-  //     taxrate: 0,
-  //     CGST: 0,
-  //     SGST: 0,
-  //     IGST: 0,
-  //     discount: 0,
-  //     discountamt: 0,
-  //     totaltax: 0,
-  //     total: 0,
-  //     taxrate1: 0,
-  //     itemid: 0,
-  //     selectedItemId: 0,
-  //     quantityPopoverData: [{
-  //       attr1: '',
-  //       attr2: '',
-  //       attr3: '',
-  //       attr4: '',
-  //       attr5: '',
-  //       attr6: '',
-  //       attr7: '',
-  //       attr8: '',
-  //       companyid: 0,
-  //       itemcode: 0
-  //     }],
-  //     attribute1: '',
-  //     attribute2: '',
-  //     attribute3: '',
-  //     attribute4: '',
-  //     attribute5: '',
-  //     attribute6: '',
-  //     attribute7: '',
-  //     attribute8: '',
-  //   }];
-  // }
+  
   getVendors(event: any) {
     const compid = '1';
     const identifier = this.vend ? 'custcode' : 'custname';

@@ -763,34 +763,35 @@
                     </tr>
                     <tr *ngFor="let sales of attdata; let i = index">
                       <td><ion-checkbox></ion-checkbox></td>
-
+                  
                       <td>{{i+1}}</td>
                       <!-- Display input fields only if data exists -->
                       <ng-container *ngIf="sales.att1">
-                        <td>{{ sales.att1 }}</td>
+                          <td><input type="text" formControlName="att1" [(ngModel)]="sales.att1"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr2">
-                        <td>{{ sales.attr2 }}</td>
+                          <td><input type="text" formControlName="attr2" [(ngModel)]="sales.attr2"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr3">
-                        <td>{{ sales.attr3 }}</td>
+                          <td><input type="text" formControlName="attr3" [(ngModel)]="sales.attr3"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr4">
-                        <td>{{ sales.attr4 }}</td>
+                          <td><input type="text" formControlName="attr4" [(ngModel)]="sales.attr4"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr5">
-                        <td>{{ sales.attr5 }}</td>
+                          <td><input type="text" formControlName="attr5" [(ngModel)]="sales.attr5"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr6">
-                        <td>{{ sales.attr6 }}</td>
+                          <td><input type="text" formControlName="attr6" [(ngModel)]="sales.attr6"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr7">
-                        <td>{{ sales.attr7 }}</td>
+                          <td><input type="text" formControlName="attr7" [(ngModel)]="sales.attr7"></td>
                       </ng-container>
                       <ng-container *ngIf="sales.attr8">
-                        <td>{{ sales.attr8 }}</td>
+                          <td><input type="text" formControlName="attr8" [(ngModel)]="sales.attr8"></td>
                       </ng-container>
-                    </tr>
+                  </tr>
+                  
 
                    
                   </table>
