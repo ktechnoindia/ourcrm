@@ -322,22 +322,23 @@ export class AddItemPage implements OnInit {
     this.submitted = true;
     console.log('Your form data : ', this.myform.value);
 
-    let itemdata: item = {
-      itemDesc: this.myform.value.itemDesc,
-      itemCode: this.myform.value.itemCode,
-      hsnname: this.hsnname,
-      // hsnname: this.myform.value.hsnname.toString(),
-      selectHSN: 1,
-      unitname: this.myform.value.unitname,
-      selectItem: 1,
-      selectStock: 1,
-      selectPrimaryUnit: 1,
-      selectunitname: 1,
-      itemtype: '',
-      stocktype: '',
-      selectGstservice: 1,
-      stocktypename: this.myform.value.stocktypename,
-      itemtypename: this.myform.value.itemtypename,
+      let itemdata: item = {
+        itemDesc: this.myform.value.itemDesc,
+        itemCode: this.myform.value.itemCode,
+        hsnname: this.myform.value.hsnname.toString(), // Convert to string if necessary
+        unitname: this.myform.value.unitname.toString(), // Convert to string if necessary
+        // hsnname: this.myform.value.hsnname.toString(),
+        selectHSN: 1,
+        // unitname: this.myform.value.unitname,
+        selectItem: 1,
+        selectStock: 1,
+        selectPrimaryUnit: 1,
+        selectunitname: 1,
+        itemtype: '',
+        stocktype: '',
+        selectGstservice: 1,
+        stocktypename: this.myform.value.stocktypename.toString(),
+        itemtypename: this.myform.value.itemtypename.toString(),
 
       selectItemGroup: this.myform.value.selectItemGroup,
       selectGst: this.myform.value.selectGst,
