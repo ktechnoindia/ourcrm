@@ -779,7 +779,7 @@ if (event.key === 'Enter' && event.shiftKey) {
       taxrate1: 0,
       itemid: 0,
       selectedItemId: 0,
-      quantityPopoverData: this.salesData[0].quantityPopoverData.map(att => ({ ...att })),
+      quantityPopoverData: this.salesData[0].quantityPopoverData.map(attr => ({ ...attr })),
       attribute1: '',
       attribute2: '',
       attribute3: '',

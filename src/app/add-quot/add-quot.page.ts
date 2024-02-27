@@ -244,7 +244,18 @@ export class AddQuotPage implements OnInit {
   searchQuery: string = '';
   allOptions: any[] = [];
   inputsVisible: boolean = true;
-  attdata:any[]=[];
+  attdata:any[]=[
+    this.att1,
+    this.attr2,
+    this.attr3,
+    this.attr4,
+    this.attr5,
+    this.attr6,
+    this.attr7,
+    this.attr8,
+    this.companyid,
+    this.itemcode,
+  ];
   addNewRow() {
     // Assuming quoteData is your array holding rows data
     this.quoteData.push({

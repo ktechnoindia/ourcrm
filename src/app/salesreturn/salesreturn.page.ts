@@ -438,12 +438,12 @@ handleKeyboardEvent(event: KeyboardEvent) {
   async onSubmit(form: FormGroup, salesData: Sales[]) {
     const htmlForm = document.getElementById('myForm') as HTMLFormElement;
 
-      htmlForm.addEventListener('keydown', (event) => {
-        // Prevent the default behavior for Enter key
-        if (event.key === 'Enter') {
-            event.preventDefault();
-        }
-    });
+    //   htmlForm.addEventListener('keydown', (event) => {
+    //      Prevent the default behavior for Enter key
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //     }
+    // });
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));

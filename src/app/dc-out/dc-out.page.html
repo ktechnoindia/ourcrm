@@ -463,30 +463,31 @@
                         <td>{{i+1}}</td>
                         <!-- Display input fields only if data exists -->
                         <ng-container *ngIf="sales.att1">
-                            <td><input type="text" formControlName="att1" [(ngModel)]="sales.att1"></td>
+                            <td><input type="text" formControlName="att1" [(ngModel)]="sales.att1" [value]="sales.att1" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr2">
-                            <td><input type="text" formControlName="attr2" [(ngModel)]="sales.attr2"></td>
+                            <td><input type="text" formControlName="attr2" [(ngModel)]="sales.attr2"  [value]="sales.attr2" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr3">
-                            <td><input type="text" formControlName="attr3" [(ngModel)]="sales.attr3"></td>
+                            <td><input type="text" formControlName="attr3" [(ngModel)]="sales.attr3" [value]="sales.attr3" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr4">
-                            <td><input type="text" formControlName="attr4" [(ngModel)]="sales.attr4"></td>
+                            <td><input type="text" formControlName="attr4" [(ngModel)]="sales.attr4" [value]="sales.attr4" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr5">
-                            <td><input type="text" formControlName="attr5" [(ngModel)]="sales.attr5"></td>
+                            <td><input type="text" formControlName="attr5" [(ngModel)]="sales.attr5"  [value]="sales.attr5" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr6">
-                            <td><input type="text" formControlName="attr6" [(ngModel)]="sales.attr6"></td>
+                            <td><input type="text" formControlName="attr6" [(ngModel)]="sales.attr6"  [value]="sales.attr6" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr7">
-                            <td><input type="text" formControlName="attr7" [(ngModel)]="sales.attr7"></td>
+                            <td><input type="text" formControlName="attr7" [(ngModel)]="sales.attr7"  [value]="sales.attr7" class="pop_input" readonly></td>
                         </ng-container>
                         <ng-container *ngIf="sales.attr8">
-                            <td><input type="text" formControlName="attr8" [(ngModel)]="sales.attr8"></td>
+                            <td><input type="text" formControlName="attr8" [(ngModel)]="sales.attr8"  [value]="sales.attr8" class="pop_input" readonly></td>
                         </ng-container>
                     </tr>
+                    
                     
                       <!-- <tr *ngFor="let row of dcoutData[0]?.quantityPopoverData; let i = index">
                         <td>{{i+1}}</td>
