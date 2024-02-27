@@ -291,6 +291,7 @@ if (event.key === 'Enter' && event.shiftKey) {
   this.addNewRow();
 } 
 }
+
   constructor(private unitService: CreateunitService,public session: SessionService, private companyService: CreatecompanyService, private navCtrl: NavController, private popoverController: PopoverController, private execut: ExecutiveService, private custname1: CustomerService, private encService: EncryptionService, private formBuilder: FormBuilder, private itemService: AdditemService, private unittype: UnitnameService, private gstsrvs: GsttypeService, private router: Router, private toastCtrl: ToastController, private saleService: SalesService, private formService: FormValidationService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private myService: CustomerService) {
     const compid = this.session.getValue('userid')?.valueOf() as number;
     const companyid = '1';
@@ -472,6 +473,8 @@ if (event.key === 'Enter' && event.shiftKey) {
     //         event.preventDefault();
     //     }
     // });
+
+    
     const fields = { billNumber: this.billNumber, custcode: this.custcode, custname: this.custname }
 
     console.log('Your form data : ', JSON.stringify(this.myform.value) + '    -> ' + JSON.stringify(salesData));

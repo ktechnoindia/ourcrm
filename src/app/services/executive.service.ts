@@ -40,6 +40,8 @@ export class ExecutiveService {
   deleteexecutive(customerid: number, companyid: number): Observable<any> {
     return this.httpclient.post(`${environment.apiactionurl}${environment.deleteExecutive}/${customerid}/${companyid}`,{});
   }
-  
+  editExecutive(tid :number,companyid:number){
+    return this.httpclient.post(`${environment.apibaseurl}${environment.editexecutive}/${tid}/${companyid}`,{});
+  }
 }
 

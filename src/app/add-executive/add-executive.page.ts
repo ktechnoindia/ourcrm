@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { roletypesservice } from '../services/roletypes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ import { EncryptionService } from '../services/encryption.service';
 import { StateService } from '../services/state.service';
 import { CountryService } from '../services/country.service';
 import { DistrictsService } from '../services/districts.service';
+import { SessionService } from '../services/session.service';
 @Component({
   selector: 'app-add-executive',
   templateUrl: './add-executive.page.html',
@@ -65,8 +66,9 @@ export class AddExecutivePage implements OnInit {
   districts$: Observable<any[]>
 
   @ViewChild('firstInvalidInput') firstInvalidInput: any;
+  edit: any;
 
-  constructor(private navCtrl: NavController, private router: Router, private addExecutiveService: ExecutiveService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice, private ledgerService: LegderService, private encService: EncryptionService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private popoverController: PopoverController,) {
+  constructor(public session: SessionService,private route: ActivatedRoute,private navCtrl: NavController, private router: Router, private addExecutiveService: ExecutiveService, private formService: FormValidationService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private roletypes: roletypesservice, private ledgerService: LegderService, private encService: EncryptionService, private countryService: CountryService, private stateservice: StateService, private districtservice: DistrictsService, private popoverController: PopoverController,) {
     this.roletypes$ = this.roletypes.getroletypes();
 
     this.form = this.formBuilder.group({
@@ -124,15 +126,33 @@ export class AddExecutivePage implements OnInit {
     console.log('selected value' + this.district);
     this.districts$ = this.districtservice.getDistricts(1);
   }
-
+  openToast(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
 
   async onSubmit() {
     const fields = {}
+    const companyid =0;
+    const tid =1;
     if (await this.formService.validateForm(fields)) {
       console.log('Your form data : ', this.form.value);
+      const keys = formatDate(new Date(), 'yMMddHH', 'en-IN');
+      const userid = await this.session.getValue('userid');
       const executdata: execut = {
         roleid: this.form.value.roleid, excode: this.form.value.excode, executivename: this.form.value.executivename, emanager: this.form.value.emanager, emobile: this.form.value.emobile, eemail: this.form.value.eemail, ewhatsapp: this.form.value.ewhatsapp, epan: this.form.value.epan, ecommision: this.form.value.ecommision, ledger: this.form.value.ledger, companyid: 1
       };
+      if (this.edit) {
+        this.addExecutiveService.editExecutive(companyid,tid).subscribe((response: any) => {
+          if (response.status) { 
+            this.openToast('Saved!'); 
+          } else { 
+            this.openToast('Not Saved'); 
+          }
+        }, (error) => {
+          console.log('error caught in component' + error.message);
+          this.openToast('error ' + error.message);
+        });
+      } else {
       this.addExecutiveService.createExecutive(executdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
@@ -154,7 +174,7 @@ export class AddExecutivePage implements OnInit {
       );
       this.form.reset();
 
-    }
+    }}
     else {
       //If the form is not valid, display error messages
       Object.keys(this.form.controls).forEach(controlName => {
@@ -178,12 +198,39 @@ export class AddExecutivePage implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+      const editMode = params['edit'];
+      const executives = JSON.parse(params['executives']); // Parse the string back to an object
+      
+      if (editMode && executives) {
+        // Pre-fill form fields with item data
+        this.form.patchValue({
+          roleid: executives.roleid,
+          excode: executives.excode,
+          executivename: executives.executivename,
+          emanager: executives.emanager,
+          emobile: executives.emobile,
+          eemail: executives.eemail,
+          ewhatsapp: executives.ewhatsapp,
+          epan: executives.epan,
+          ecommision: executives.ecommision,
+          ledger: executives.ledger,
+          companyid: 1,
+        }
+        
+        
+        );
+      }
+    });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         // Reset form data when navigating away from the page
         this.form.reset();
       }
     });
+
+  
   }
   navigateToVieweExecutivePage() {
     this.router.navigate(['/view-executive']); // Navigate to the target page

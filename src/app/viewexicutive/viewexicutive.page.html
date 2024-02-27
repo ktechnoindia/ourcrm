@@ -41,12 +41,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let execute of executives$ | async; let i = index">
+                    <tr *ngFor="let executives of executives$ | async; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td *ngFor="let col of selectedColumns">{{ execute[col.toLowerCase()] }}</td>
+                      <td *ngFor="let col of selectedColumns">{{ executives[col.toLowerCase()] }}</td>
                       <td class="Action">
-                        <ion-icon color="danger" (click)="deleteExecutive(execute.executiveid,$event)" icon-only name="trash"></ion-icon>
-                        <ion-icon color="primary" icon-only name="create"></ion-icon>
+                        <ion-icon color="danger" (click)="deleteExecutive(executives.executiveid,$event)" icon-only name="trash"></ion-icon>
+                        <ion-icon color="primary" icon-only clear (click)="editexecutive(executives)"
+                        name="create"></ion-icon>
                       </td>
                     </tr>
                    

@@ -799,14 +799,14 @@ handleKeyboardEvent(event: KeyboardEvent) {
     this.ttotal = this.ttotal - this.purchaseService.total;
     this.purchaseData.splice(index, 1);
   }
-  getAllRows() {
-    console.log('Number of Rows:', this.purchaseData.length);
+  // getAllRows() {
+  //   console.log('Number of Rows:', this.purchaseData.length);
 
-    for (let i = 0; i < this.purchaseData.length; i++) {
-      const quote = this.purchaseData[i];
-      console.log('Row:', quote);
-    }
-  }
+  //   for (let i = 0; i < this.purchaseData.length; i++) {
+  //     const quote = this.purchaseData[i];
+  //     console.log('Row:', quote);
+  //   }
+  // }
   calculateTotalSum() {
     let sum = 0;
     for (const row of this.purchaseData) {

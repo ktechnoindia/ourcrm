@@ -114,6 +114,9 @@ export const environment = {
   editcust:'masters/ecustomer',
   editvend:'masters/evendor/',
   edititem:'masters/update_item',
+  editexecutive:'masters/updateExecutive',
+  editsales:'sales/edit_sales',
+
 };
 
 

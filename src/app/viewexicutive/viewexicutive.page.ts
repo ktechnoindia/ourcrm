@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Observable, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { ExecutiveService } from '../services/executive.service';
 import { EncryptionService } from '../services/encryption.service';
@@ -80,7 +80,17 @@ export class ViewexicutivePage implements OnInit {
       this.updateManualHeaders();
     }
   }
+  editexecutive(executives:any){
+    console.log(executives);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit: true,
+        item: JSON.stringify(executives) // Convert customer object to string
+      }
+    };
+    this.router.navigate(['/add-executive'], navigationExtras);
 
+  }
   updateManualHeaders() {
     // Use the mapping to get the headers for the selected columns
     this.manualHeaders = ['Sr. No.', ...this.selectedColumns.map(col => this.columnHeaders[col]), 'Action'];
