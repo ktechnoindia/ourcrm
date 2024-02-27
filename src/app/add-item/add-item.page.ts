@@ -189,7 +189,7 @@ export class AddItemPage implements OnInit {
   step1: boolean = false;
   units$: Observable<any[]>
 
-  constructor(public session: SessionService,private encService:EncryptionService,private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
+  constructor(public session: SessionService, private encService: EncryptionService, private popoverController: PopoverController, private navCtrl: NavController, private groupService: AddgroupService, private itemtype1: ItemtypeService, private formService: FormValidationService, private router: Router, private stocktype1: StocktypeService, private itemService: AdditemService, private formBuilder: FormBuilder, private toastCtrl: ToastController, private gstsrvs: GsttypeService, private unittype: UnitnameService, private hsnservices: HsnService, private attname: AddattributeService, private hsnService: HsnService, private unitService: CreateunitService,) {
     const compid = '1';
 
     this.selectGst$ = this.gstsrvs.getgsttype();
@@ -203,9 +203,9 @@ export class AddItemPage implements OnInit {
     this.itemname$ = this.itemService.getAllItems();
     this.filteredItems = this.items;
 
-    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid),'','');
+    this.units$ = this.unitService.fetchallunit(encService.encrypt(compid), '', '');
     // this.units$.subscribe(options => {
-    
+
     // });
     this.myform = this.formBuilder.group({
       itemCode: ['', [Validators.required]],
@@ -224,7 +224,7 @@ export class AddItemPage implements OnInit {
       maximum: [0],
       reorder: [''],
       selectItemGroup: [''],
-      
+
       attr1: [''],
       attr2: [''],
       attr3: [''],
@@ -258,7 +258,7 @@ export class AddItemPage implements OnInit {
       bodytype: [''],
       wheelbase: [''],
       dealerrate: [''],
-  subdealerrate: [''],
+      subdealerrate: [''],
     });
 
     this.hsnpop = this.formBuilder.group({
@@ -292,7 +292,7 @@ export class AddItemPage implements OnInit {
   }
   addAttribute() {
     const attributeKeys = this.getAttributeKeys();
-  
+
     // Check if the maximum number of attributes (8) has been reached
     if (attributeKeys.length < 8) {
       const newAttributeKey = `attr${attributeKeys.length + 1}`;
@@ -318,160 +318,160 @@ export class AddItemPage implements OnInit {
   async onSubmit() {
     const fields = { itemDesc: this.itemDesc, itemCode: this.itemCode }
     const isValid = await this.formService.validateForm(fields);
-  //  if (await this.formService.validateForm(fields)) {
-      this.submitted = true;
-      console.log('Your form data : ', this.myform.value);
+    //  if (await this.formService.validateForm(fields)) {
+    this.submitted = true;
+    console.log('Your form data : ', this.myform.value);
 
-      let itemdata: item = {
-        itemDesc: this.myform.value.itemDesc,
-        itemCode: this.myform.value.itemCode,
-        hsnname:this.hsnname,
-        // hsnname: this.myform.value.hsnname.toString(),
-        selectHSN: 1,
-        unitname: this.myform.value.unitname,
-        selectItem: 1,
-        selectStock: 1,
-        selectPrimaryUnit: 1,
-        selectunitname: 1,
-        itemtype: '',
-        stocktype: '',
-        selectGstservice: 1,
-        stocktypename: this.myform.value.stocktypename,
-        itemtypename: this.myform.value.itemtypename,
+    let itemdata: item = {
+      itemDesc: this.myform.value.itemDesc,
+      itemCode: this.myform.value.itemCode,
+      hsnname: this.hsnname,
+      // hsnname: this.myform.value.hsnname.toString(),
+      selectHSN: 1,
+      unitname: this.myform.value.unitname,
+      selectItem: 1,
+      selectStock: 1,
+      selectPrimaryUnit: 1,
+      selectunitname: 1,
+      itemtype: '',
+      stocktype: '',
+      selectGstservice: 1,
+      stocktypename: this.myform.value.stocktypename,
+      itemtypename: this.myform.value.itemtypename,
 
-        selectItemGroup: this.myform.value.selectItemGroup,
-        selectGst: this.myform.value.selectGst,
-        openingbalance: this.myform.value.openingbalance,
-        closingbalance: this.myform.value.closingbalance,
-        selectedAttribute: this.myform.value.selectedAttribute,
-        files: this.myform.value.files,
-        barcode: this.myform.value.barcode,
-        minimum: this.myform.value.minimum,
-        maximum: this.myform.value.maximum,
-        reorder: this.myform.value.reorder,
-        mrp: this.myform.value.mrp,
-        salerate: this.myform.value.salerate,
-        purchaserate: this.myform.value.purchaserate,
-        basicrate: this.myform.value.basicrate,
+      selectItemGroup: this.myform.value.selectItemGroup,
+      selectGst: this.myform.value.selectGst,
+      openingbalance: this.myform.value.openingbalance,
+      closingbalance: this.myform.value.closingbalance,
+      selectedAttribute: this.myform.value.selectedAttribute,
+      files: this.myform.value.files,
+      barcode: this.myform.value.barcode,
+      minimum: this.myform.value.minimum,
+      maximum: this.myform.value.maximum,
+      reorder: this.myform.value.reorder,
+      mrp: this.myform.value.mrp,
+      salerate: this.myform.value.salerate,
+      purchaserate: this.myform.value.purchaserate,
+      basicrate: this.myform.value.basicrate,
 
-        attr1: this.myform.value.attr1,
-        attr2: this.myform.value.attr2,
-        attr3: this.myform.value.attr3,
-        attr4: this.myform.value.attr4,
-        attr5: this.myform.value.attr5,
-        attr6: this.myform.value.attr6,
-        attr7: this.myform.value.attr7,
-        attr8: this.myform.value.attr8,
-        attributes: this.attributes,
+      attr1: this.myform.value.attr1,
+      attr2: this.myform.value.attr2,
+      attr3: this.myform.value.attr3,
+      attr4: this.myform.value.attr4,
+      attr5: this.myform.value.attr5,
+      attr6: this.myform.value.attr6,
+      attr7: this.myform.value.attr7,
+      attr8: this.myform.value.attr8,
+      attributes: this.attributes,
 
-        companyid: 1,
-        labelname: this.myform.value.labelname,
-        valuename: this.myform.value.valuename,
-        framenumber: this.myform.value.framenumber,
-        enginenumber: this.myform.value.enginenumber,
-        partnumber: this.myform.value.partnumber,
-        color: this.myform.value.color,
-        dealerrate: this.myform.value.dealerrate,
-        subdealerrate: this.myform.value.subdealerrate,
-        itemDesccription: this.myform.value.itemDesccription,
-        classofvehicle: this.myform.value.classofvehicle,
-        makersname: this.myform.value.makersname,
-        hourspowerofcube:this.myform.value.hourspowerofcube,
-        fuelused:this.myform.value.fuelused,
-        noofcylinders:this.myform.value.noofcylinders,
-        yearofmanufactur: this.myform.value.yearofmanufactur,
-        seatingcapacity: this.myform.value.seatingcapacity,
-        unladenweight: this.myform.value.unladenweight,
-        grossvehicleweight: this.myform.value.grossvehicleweight,
-        bodytype: this.myform.value.bodytype,
-        wheelbase: this.myform.value.wheelbase
-      };
-      this.itemService.createItem(itemdata, '', '').subscribe(
-        (response: any) => {
-          console.log('POST request successful', response);
-          this.formService.showSuccessAlert();
-          // this.myform.reset();
+      companyid: 1,
+      labelname: this.myform.value.labelname,
+      valuename: this.myform.value.valuename,
+      framenumber: this.myform.value.framenumber,
+      enginenumber: this.myform.value.enginenumber,
+      partnumber: this.myform.value.partnumber,
+      color: this.myform.value.color,
+      dealerrate: this.myform.value.dealerrate,
+      subdealerrate: this.myform.value.subdealerrate,
+      itemDesccription: this.myform.value.itemDesccription,
+      classofvehicle: this.myform.value.classofvehicle,
+      makersname: this.myform.value.makersname,
+      hourspowerofcube: this.myform.value.hourspowerofcube,
+      fuelused: this.myform.value.fuelused,
+      noofcylinders: this.myform.value.noofcylinders,
+      yearofmanufactur: this.myform.value.yearofmanufactur,
+      seatingcapacity: this.myform.value.seatingcapacity,
+      unladenweight: this.myform.value.unladenweight,
+      grossvehicleweight: this.myform.value.grossvehicleweight,
+      bodytype: this.myform.value.bodytype,
+      wheelbase: this.myform.value.wheelbase
+    };
+    this.itemService.createItem(itemdata, '', '').subscribe(
+      (response: any) => {
+        console.log('POST request successful', response);
+        this.formService.showSuccessAlert();
+        // this.myform.reset();
 
-        },
-        (error: any) => {
-          console.error('POST request failed', error);
-          this.formService.showFailedAlert();
-        }
-      );
-       
-    
-      this.myform = this.formBuilder.group({
-        itemCode: ['', [Validators.required]],
-        itemDesc: ['', [Validators.required]],
-        hsnname: new FormControl(''),
-        stocktypename: [''].toString(),
-        itemtypename: [''].toString(),
-        unitname: [''].toString(),
-        selectGst: [0],
-        openingbalance: [''],
-        closingbalance: [''],
-        selectedAttribute: [''],
-        files: [''],
-        barcode: [0],
-        minimum: [0],
-        maximum: [0],
-        reorder: [''],
-        selectItemGroup: [0],
-        
-        attr1: [''],
-        attr2: [''],
-        attr3: [''],
-        attr4: [''],
-        attr5: [''],
-        attr6: [''],
-        attr7: [''],
-        attr8: [''],
-        mrp: [0],
-        salerate: [0],
-        attributes: {},
-        searchTerm: [''],
-        purchaserate: [0],
-        basicrate: [0],
-        labelname: [''],
-        valuename: [''],
-        framenumber: [''],
-        enginenumber: [''],
-        partnumber: [''],
-        color: [''],
-        itemDesccription: [''],
-        classofvehicle: [''],
-        makersname: [''],
-        hourspowerofcube: [''],
-        fuelused: [''],
-        noofcylinders: [''],
-        yearofmanufactur: [''],
-        seatingcapacity: [''],
-        unladenweight: [''],
-        grossvehicleweight: [''],
-        bodytype: [''],
-        wheelbase: [''],
-        dealerrate: [0],
-    subdealerrate: [0],
-      });
-      this.attributes={};
-      this.hsnpop = this.formBuilder.group({
-        hsncode: ['', [Validators.required]],
-        unit: [''],
-      });
-  
-      this.unitpop = this.formBuilder.group({
-        unit_name: ['', [Validators.required]],
-        short_name: [''],
-      });
-  
-      this.groupop = this.formBuilder.group({
-        itemgroupname: ['', Validators.required],
-        parentgroup: [''],
-        searchTerm: ['']
-      });
-     this.step1 = false;
+      },
+      (error: any) => {
+        console.error('POST request failed', error);
+        this.formService.showFailedAlert();
+      }
+    );
 
-      // this.myform.reset();
+
+    this.myform = this.formBuilder.group({
+      itemCode: ['', [Validators.required]],
+      itemDesc: ['', [Validators.required]],
+      hsnname: new FormControl(''),
+      stocktypename: [''].toString(),
+      itemtypename: [''].toString(),
+      unitname: [''].toString(),
+      selectGst: [0],
+      openingbalance: [''],
+      closingbalance: [''],
+      selectedAttribute: [''],
+      files: [''],
+      barcode: [0],
+      minimum: [0],
+      maximum: [0],
+      reorder: [''],
+      selectItemGroup: [0],
+
+      attr1: [''],
+      attr2: [''],
+      attr3: [''],
+      attr4: [''],
+      attr5: [''],
+      attr6: [''],
+      attr7: [''],
+      attr8: [''],
+      mrp: [0],
+      salerate: [0],
+      attributes: {},
+      searchTerm: [''],
+      purchaserate: [0],
+      basicrate: [0],
+      labelname: [''],
+      valuename: [''],
+      framenumber: [''],
+      enginenumber: [''],
+      partnumber: [''],
+      color: [''],
+      itemDesccription: [''],
+      classofvehicle: [''],
+      makersname: [''],
+      hourspowerofcube: [''],
+      fuelused: [''],
+      noofcylinders: [''],
+      yearofmanufactur: [''],
+      seatingcapacity: [''],
+      unladenweight: [''],
+      grossvehicleweight: [''],
+      bodytype: [''],
+      wheelbase: [''],
+      dealerrate: [0],
+      subdealerrate: [0],
+    });
+    this.attributes = {};
+    this.hsnpop = this.formBuilder.group({
+      hsncode: ['', [Validators.required]],
+      unit: [''],
+    });
+
+    this.unitpop = this.formBuilder.group({
+      unit_name: ['', [Validators.required]],
+      short_name: [''],
+    });
+
+    this.groupop = this.formBuilder.group({
+      itemgroupname: ['', Validators.required],
+      parentgroup: [''],
+      searchTerm: ['']
+    });
+    this.step1 = false;
+
+    // this.myform.reset();
 
     // } else {
     //   //If the form is not valid, display error messages
@@ -496,7 +496,7 @@ export class AddItemPage implements OnInit {
     this.navCtrl.back(); // This will navigate back to the previous page
   }
   ngOnInit(): void {
-    
+
     // Fetch data and populate hsnOptions$
     this.fetchData();
     this.router.events.subscribe(event => {
@@ -505,11 +505,11 @@ export class AddItemPage implements OnInit {
         this.myform.reset();
       }
     });
-    
+
   }
   fetchData() {
-    this.units$ = this.unitService.fetchallunit('','','');
-   
+    this.units$ = this.unitService.fetchallunit('', '', '');
+
     this.hsnname$ = this.hsnService.getHSNNames(1);
     this.hsnname$.subscribe(options => {
       this.allOptions = options;
@@ -546,7 +546,7 @@ export class AddItemPage implements OnInit {
   async OnHsnSubmit() {
     const fields = { hsncode: this.hsncode };
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
       console.log('Your form data : ', this.hsnpop.value);
       let hsndata: hsn = {
@@ -554,15 +554,15 @@ export class AddItemPage implements OnInit {
         unit: this.hsnpop.value.unit,
         companyid: 1,
       };
-  
+
       this.hsnService.createHSN(hsndata, '', '').subscribe(
         (response: any) => {
           if (response.status) {
             console.log('POST request successful', response);
-            
+
             // Fetch the updated HSN data again
             this.fetchHSNData();
-  
+
             this.formService.showSuccessAlert();
           }
         },
@@ -580,7 +580,7 @@ export class AddItemPage implements OnInit {
       });
     }
   }
-  
+
   fetchHSNData() {
     this.hsnService.getHSNNames(1).subscribe(
       (response: any) => {
@@ -592,12 +592,12 @@ export class AddItemPage implements OnInit {
       }
     );
   }
-  
+
 
   async OnUnitSubmit() {
     const fields = { unit_name: this.unit_name };
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
       console.log('Your form data : ', this.unitpop.value);
       let unitdata: unit = {
@@ -607,15 +607,15 @@ export class AddItemPage implements OnInit {
         decimal_place: 0,
         companyid: '1'
       };
-  
+
       this.unitService.createUnit(unitdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
           this.formService.showSuccessAlert();
-          
+
           // Fetch the updated unit data again
           this.fetchUnitData();
-  
+
           // Reset the form
           this.unitpop.reset();
         },
@@ -634,7 +634,7 @@ export class AddItemPage implements OnInit {
       });
     }
   }
-  
+
   fetchUnitData() {
     // Assign the observable returned by fetchallunit to units$
     this.units$ = this.unitService.fetchallunit('', '', '');
@@ -650,13 +650,13 @@ export class AddItemPage implements OnInit {
     );
   }
 
-  
+
 
   async OnGroupSubmit() {
     const fields = { groupname: this.itemgroupname };
     const companyid = 1;
     const isValid = await this.formService.validateForm(fields);
-  
+
     if (isValid) {
       console.log('Your form data : ', this.groupop.value);
       let groupdata: group = {
@@ -664,7 +664,7 @@ export class AddItemPage implements OnInit {
         parentgroupid: this.groupop.value.parentgroup,
         companyid: companyid,
       };
-  
+
       this.groupService.createGroup(groupdata, '', '').subscribe(
         (response: any) => {
           if (response.status) {
@@ -697,11 +697,11 @@ export class AddItemPage implements OnInit {
       }
     }
   }
-  
+
   fetchItemGroups() {
     this.itemgroups$ = this.groupService.getAllGroups(1);
   }
-  
+
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
@@ -721,7 +721,7 @@ export class AddItemPage implements OnInit {
 
   selectOption(option: any) {
     // Handle option selection
-    this.hsnname=option.hsnname;
+    this.hsnname = option.hsnname;
     console.log('Selected option:', option);
   }
   toggleStep3() {
