@@ -720,26 +720,30 @@ if (event.key === 'Enter' && event.shiftKey) {
     const compid = '1';
     const identifier = this.cust ? 'custcode' : 'custname';
     const value = this.cust;
-
+  
     this.custname1.fetchallCustomer(compid, '', value).subscribe(
       (data) => {
         if (data && data.length > 0) {
           const itemDetails = data[0];
-
+  
           // Update the quote properties
           event.custcode = itemDetails.customer_code;
           event.custname = itemDetails.name;
-          event.gstin = itemDetails.gstin,
-
-            // Update form control values
-            this.myform.patchValue({
-              custcode: itemDetails.customer_code,
-              custname: itemDetails.custname,
-              gstin: itemDetails.gstin,
-              // Other form controls...
-            });
-          this.custcode = itemDetails.customer_code;
-
+          event.gstin1 = itemDetails.gstin;
+  
+          // Update form control values
+          this.myform.patchValue({
+            custcode: itemDetails.customer_code,
+            custname: itemDetails.custname,
+            gstin1: itemDetails.gstin,
+            // Other form controls...
+          });
+  
+          // Assign GSTIN value directly to the variable
+          this.gstin = itemDetails.gstin; // Assuming this.gstin is bound to your GSTIN input field
+  
+          console.log('Updated GSTIN:', this.gstin); // Check in console if the GSTIN is correctly updated
+  
         } else {
           console.error('No data found for the selected item.');
         }
@@ -749,6 +753,8 @@ if (event.key === 'Enter' && event.shiftKey) {
       }
     );
   }
+  
+  
 
 
 
@@ -792,7 +798,7 @@ if (event.key === 'Enter' && event.shiftKey) {
   }
 
   onNew() {
-    location.reload();
+    window.location.reload();
   }
 
   calculateTotal(sales: Sales) {
@@ -1100,16 +1106,17 @@ if (event.key === 'Enter' && event.shiftKey) {
   }
 
   async onCustSubmit() {
-    const fields = { name: this.name, }
+    const fields = { name: this.name };
     const isValid = await this.formService.validateForm(fields);
-    if (await this.formService.validateForm(fields)) {
-      const companyid = 1;
+
+    if (isValid) {
       console.log('Your form data : ', this.customerpop.value);
+
       let custdata: cust = {
         name: this.customerpop.value.name,
         customer_code: this.customerpop.value.customer_code,
         gstin: this.customerpop.value.gstin,
-        companyid: companyid,
+        companyid: 1,
         selectedSalutation: '',
         companyName: '',
         state: this.customerpop.value.state,
@@ -1148,27 +1155,31 @@ if (event.key === 'Enter' && event.shiftKey) {
       this.myService.createCustomer(custdata, '', '').subscribe(
         (response: any) => {
           console.log('POST request successful', response);
+
+          // After successfully adding the customer, fetch the updated customer data again
+          this.fetchCustomerData();
+
+          // Show success alert
           setTimeout(() => {
             this.formService.showSuccessAlert();
           }, 1000);
 
-          this.formService.showSaveLoader()
-          // location.reload()
-          //this.myform.reset();
-
+          // Reset the form
+          this.customerpop.reset();
         },
         (error: any) => {
           console.error('POST request failed', error);
+
+          // Show error alert
           setTimeout(() => {
             this.formService.showFailedAlert();
           }, 1000);
-          this.formService.shoErrorLoader();
         }
       );
     } else {
-      //If the form is not valid, display error messages
-      Object.keys(this.myform.controls).forEach(controlName => {
-        const control = this.myform.get(controlName);
+      // If the form is not valid, display error messages
+      Object.keys(this.customerpop.controls).forEach(controlName => {
+        const control = this.customerpop.get(controlName);
         if (control?.invalid) {
           control.markAsTouched();
         }
@@ -1177,6 +1188,12 @@ if (event.key === 'Enter' && event.shiftKey) {
         this.firstInvalidInput.setFocus();
       }
     }
+  }
+
+  fetchCustomerData() {
+    // Assuming you have a method to fetch the updated customer data
+    // Here, you'll update the 'customer$' observable with the new data
+    this.customer$ = this.myService.fetchallCustomer('', '', '');
   }
   onKeyDown(event: KeyboardEvent): void {
     // Prevent the default behavior for up and down arrow keys

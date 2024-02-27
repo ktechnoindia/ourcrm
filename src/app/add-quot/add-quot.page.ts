@@ -1068,7 +1068,7 @@ this.myform.reset();
     });
 
     // Fetch data and populate hsnOptions$
-    // this.fetchData();
+    this.fetchData();
 
     // this.router.events.subscribe(event => {
     //   if (event instanceof NavigationStart) {
@@ -1077,14 +1077,14 @@ this.myform.reset();
     //   }
     // });
   }
-  // fetchData() {
-  //   // this.customer$ = this.custname1.fetchallCustomer('','','');
-  //   this.customer$.subscribe(options => {
-  //     this.allOptions = options;
-  //     // Initially, set filteredOptions to allOptions
-  //     this.filteredOptions = [...this.allOptions];
-  //   });
-  // }
+  fetchData() {
+    // this.customer$ = this.custname1.fetchallCustomer('','','');
+    this.customer$.subscribe(options => {
+      this.allOptions = options;
+      // Initially, set filteredOptions to allOptions
+      this.filteredOptions = [...this.allOptions];
+    });
+  }
   toggleTableVisibility() {
     this.showTable = !this.showTable;
     if (this.showTable) {

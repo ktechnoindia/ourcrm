@@ -301,15 +301,13 @@
               </ion-row>
             </ion-col>
             <ion-col size-lg="2.6" size-md="2" size-sm="6" size="6">
-              <ion-select #firstInvalidInput class="always-flip" toggleIcon="caret-down-sharp" color="dark"
-                interface="popover" label="--- Customer Name --- " label-placement="floating" fill="outline"
-                [(ngModel)]=" custcode" name="custname" formControlName="custname" (change)="getCustomers($event)">
-                <!-- <option value="0"> --- Customer Name --- </option> -->
+              <ion-select class="always-flip" toggleIcon="caret-down-sharp" color="dark" interface="popover"
+                label="--- Customer Name --- " label-placement="floating" fill="outline" [(ngModel)]="custcode"
+                name="custname" formControlName="custname" searchable="true" (change)="getCustomers($event)">
                 <ion-select-option *ngFor="let customername of customers$ | async" [value]="customername.id">
                   {{ customername.name }}
                 </ion-select-option>
-              </ion-select>
-            </ion-col>
+              </ion-select> </ion-col>
 
             <ion-col class="custom-primary" size-lg="0.4" size-md="2" size-sm="2" size="2">
               <ion-button (click)="presentPopovers($event)"><ion-icon name="person-add-outline"></ion-icon></ion-button>
@@ -317,8 +315,9 @@
 
             <ion-col size-lg="1.5" size-md="2" size-sm="6" size="6">
               <ion-row>
-                <ion-input [(ngModel)]="gstin" (change)="getCustomers($event)" formControlName="gstin" name="gstincode"
-                  type="text" label=" GSTIN  :" label-placement="floating" fill="outline"></ion-input>
+                <ion-input [(ngModel)]="gstin" formControlName="gstin" name="gstin" type="text" label="GSTIN:"
+                  label-placement="floating" fill="outline" (change)="getCustomers($event)">
+                </ion-input>
               </ion-row>
             </ion-col>
 
@@ -401,7 +400,7 @@
                   <th>Net Amount</th>
                   <th>Action</th>
                 </tr>
-                
+
                 <tr *ngFor="let sales of salesData; let i = index">
                   <td>{{i+1}}</td>
                   <!-- <td>
@@ -762,7 +761,7 @@
                             class="pop_input" readonly></th>
                       </ng-container>
                     </tr>
-                    <tr *ngFor="let sales of attdata; let i = index"> 
+                    <tr *ngFor="let sales of attdata; let i = index">
                       <td><ion-checkbox></ion-checkbox></td>
 
                       <td>{{i+1}}</td>
@@ -791,8 +790,8 @@
                       <ng-container *ngIf="sales.attr8">
                         <td>{{ sales.attr8 }}</td>
                       </ng-container>
-                  </tr>
-                  
+                    </tr>
+
                     <!-- <tr *ngFor="let row of attdata; let i = index">
                       <td>{{i+1}}</td>
                       <td><ion-checkbox></ion-checkbox></td>
