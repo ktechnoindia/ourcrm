@@ -692,7 +692,7 @@ if (event.key === 'Enter' && event.shiftKey) {
           // if (itemDetails.attr8 !== '') {
           //   this.tatts++;
           // }
-          sales.attribute1 = itemDetails.att1,
+          sales.attribute1 = itemDetails.attr1,
             sales.attribute2 = itemDetails.attr2,
             sales.attribute3 = itemDetails.attr3,
             sales.attribute4 = itemDetails.attr4,

@@ -605,7 +605,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           if (itemDetails.attr8 !== '') {
             this.tatts++;
           }
-          dcout.attribute1 = itemDetails.att1,
+          dcout.attribute1 = itemDetails.attr1,
             dcout.attribute2 = itemDetails.attr2,
             dcout.attribute3 = itemDetails.attr3,
             dcout.attribute4 = itemDetails.attr4,

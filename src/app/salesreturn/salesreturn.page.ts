@@ -641,7 +641,7 @@ handleKeyboardEvent(event: KeyboardEvent) {
           sales.mrp = itemDetails.mrp;
           sales.basicrate = itemDetails.basic_rate;
           sales.netrate = itemDetails.net_rate;
-          sales.attribute1= itemDetails.att1,
+          sales.attribute1= itemDetails.attr1,
           sales.attribute2= itemDetails.attr2,
           sales.attribute3= itemDetails.attr3,
           sales.attribute4= itemDetails.attr4,

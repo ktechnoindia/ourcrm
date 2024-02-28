@@ -731,7 +731,7 @@ this.myform.reset();
           // if (itemDetails.attr8 !== '') {
           //   this.tatts++;
           // }
-          quote.attribute1 = itemDetails.att1,
+          quote.attribute1 = itemDetails.attr1,
             quote.attribute2 = itemDetails.attr2,
             quote.attribute3 = itemDetails.attr3,
             quote.attribute4 = itemDetails.attr4,
